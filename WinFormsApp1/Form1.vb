@@ -48,7 +48,7 @@ Public Class Form1
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'留個言吧……')]")).Click()
             Thread.Sleep(2000)
             Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.dwxx2s2f.dicw6rsg.kady6ibp.rs0gx3tq > input"))
-            upload_img_input.SendKeys("C:\Users\Yan\Desktop\testimg.png" & vbLf & "C:\Users\Yan\Desktop\testimg.jpg") ' if muti img use "& vbLf &" to join the img path
+            upload_img_input.SendKeys("C:\Users\Yan\Desktop\testimg.png" & vbLf & "C:\Users\Yan\Desktop\testimg.png") ' if muti img use "& vbLf &" to join the img path
             Thread.Sleep(1000)
             chromeDriver.FindElement(By.CssSelector("._1mf._1mj")).SendKeys(content_RichTextBox.Text)
             'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
@@ -61,16 +61,28 @@ Public Class Form1
         Else ' 
             'Dim btn_eles = chromeDriver.FindElements(By.CssSelector("div.oajrlxb2.g5ia77u1.mtkw9kbi.tlpljxtp.qensuy8j.ppp5ayq2.goun2846.ccm00jje.s44p3ltw.mk2mc5f4.rt8b4zig.n8ej3o3l.agehan2d.sk4xxmp2.rq0escxv.nhd2j8a9.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.l9j0dhe7.i1ao9s8h.esuyzwwr.f1sip0of.du4w35lb.btwxx1t3.abiwlrkh.p8dawk7l.lzcic4wl.bp9cbjyn.ue3kfks5.pw54ja7n.uo3d90p7.l82x9zwi.j83agx80.rj1gh0hx.buofh1pr.g5gj957u.taijpn5t.idt9hxom.cxgpxx05.dflh9lhu.sj5x9vvc.scb9dxdr"))
             'btn_eles.ElementAt(1).Click()
+            Dim fail_over = False
+            Dim msgbox_ele As Object
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'相片／影片')]")).Click()
             Thread.Sleep(2000)
-            Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
+            Try
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
+                msgbox_ele.SendKeys(content_RichTextBox.Text)
+            Catch ex As Exception
+                fail_over = True
+            End Try
 
+            If fail_over Then
+                'msgbox_ele = chromeDriver.FindElement(By.CssSelector(".oo9gr5id.lzcic4wl.l9j0dhe7.gsox5hk5.rq0escxv.a8c37x1j.datstx6m.k4urcfbm.notranslate"))
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label='XXXX，在想些什麼？']"))
+                msgbox_ele.SendKeys(content_RichTextBox.Text)
+
+            End If
             Thread.Sleep(1000)
-
             Dim img_upload_input = chromeDriver.FindElement(By.CssSelector("div.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.dflh9lhu.scb9dxdr.aahdfvyu.tvmbv18p.gbw9n0fl.fneq0qzw > input"))
-            msgbox_ele.SendKeys(content_RichTextBox.Text)
+
             'imgupload_ele.SendKeys("C:\Users\Yan\Desktop\testimg.png")
-            img_upload_input.SendKeys("C:\Users\Yan\Desktop\testimg.jpg")
+            img_upload_input.SendKeys("C:\Users\Yan\Desktop\testimg.png")
 
 
             '### submit post ###
@@ -94,13 +106,12 @@ Public Class Form1
         End Try
 
         Dim scroll_x_value = 2000
-        Dim my_counter As Integer = 0
         Dim pre_counter As Integer = 0
 
 
         While True
             scroll_x_value += 1000
-            my_counter = chromeDriver.FindElements(By.CssSelector("div.ow4ym5g4.auili1gw.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.oygrvhab.cxmmr5t8.hcukyx3x.kvgmc6g5.tgvbjcpo.hpfvmrgz.qt6c0cv9.rz4wbd8a.a8nywdso.jb3vyjys.du4w35lb.bp9cbjyn.ns4p8fja.btwxx1t3.l9j0dhe7 > div > div > div > div:nth-child(1) > span > span > span")).Count
+            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("div.ow4ym5g4.auili1gw.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.oygrvhab.cxmmr5t8.hcukyx3x.kvgmc6g5.tgvbjcpo.hpfvmrgz.qt6c0cv9.rz4wbd8a.a8nywdso.jb3vyjys.du4w35lb.bp9cbjyn.ns4p8fja.btwxx1t3.l9j0dhe7 > div > div > div > div:nth-child(1) > span > span > span")).Count
             If my_counter = pre_counter Then
                 Exit While
             End If
