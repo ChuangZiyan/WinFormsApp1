@@ -31,6 +31,7 @@ Partial Class Form1
         Me.url_lbl = New System.Windows.Forms.Label()
         Me.get_groups_btn = New System.Windows.Forms.Button()
         Me.Group_ListView = New System.Windows.Forms.ListView()
+        Me.get_groups_from_m = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'write_a_post_btn
@@ -99,7 +100,7 @@ Partial Class Form1
         '
         Me.get_groups_btn.Location = New System.Drawing.Point(563, 528)
         Me.get_groups_btn.Name = "get_groups_btn"
-        Me.get_groups_btn.Size = New System.Drawing.Size(522, 60)
+        Me.get_groups_btn.Size = New System.Drawing.Size(229, 60)
         Me.get_groups_btn.TabIndex = 7
         Me.get_groups_btn.Text = "Get groups"
         Me.get_groups_btn.UseVisualStyleBackColor = True
@@ -112,11 +113,21 @@ Partial Class Form1
         Me.Group_ListView.TabIndex = 8
         Me.Group_ListView.UseCompatibleStateImageBehavior = False
         '
+        'get_groups_from_m
+        '
+        Me.get_groups_from_m.Location = New System.Drawing.Point(809, 528)
+        Me.get_groups_from_m.Name = "get_groups_from_m"
+        Me.get_groups_from_m.Size = New System.Drawing.Size(229, 60)
+        Me.get_groups_from_m.TabIndex = 9
+        Me.get_groups_from_m.Text = "Get m groups"
+        Me.get_groups_from_m.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1097, 600)
+        Me.Controls.Add(Me.get_groups_from_m)
         Me.Controls.Add(Me.Group_ListView)
         Me.Controls.Add(Me.get_groups_btn)
         Me.Controls.Add(Me.url_lbl)
@@ -142,4 +153,5 @@ Partial Class Form1
     Friend WithEvents url_lbl As Label
     Friend WithEvents get_groups_btn As Button
     Friend WithEvents Group_ListView As ListView
+    Friend WithEvents get_groups_from_m As Button
 End Class

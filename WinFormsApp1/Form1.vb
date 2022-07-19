@@ -7,8 +7,8 @@ Imports OpenQA.Selenium.Support.UI
 
 Public Class Form1
 
-    Dim fb_email As String = ""
-    Dim fb_passwd As String = ""
+    Dim fb_email As String = "yan18954@gmail.com"
+    Dim fb_passwd As String = "aa147258369"
     Dim chromeDriver As IWebDriver
     Dim webDriverWait As WebDriverWait
 
@@ -133,6 +133,68 @@ Public Class Form1
 
     End Sub
 
+    Private Sub get_groups_from_m_Click(sender As Object, e As EventArgs) Handles get_groups_from_m.Click
+
+        Dim curr_row As Integer = 0
+
+        '### Find manage groups ###
+        chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/manage/")
+        Thread.Sleep(3000)
+        Dim pre_counter As Integer = 0
+
+        While True 'Scroll to the bottom
+            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector(".h3z9dlai.ld7irhx5.pbevjfx6.igjjae4c")).Count
+            If my_counter = pre_counter Then
+                Exit While
+            End If
+            chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
+            pre_counter = my_counter
+            Thread.Sleep(1000)
+        End While
+
+
+        Dim mng_group_name_classes = chromeDriver.FindElements(By.CssSelector(".h3z9dlai.ld7irhx5.pbevjfx6.igjjae4c"))
+        Dim mng_group_url_classes = chromeDriver.FindElements(By.CssSelector("div > div > div > div > div._2pip > div > a"))
+
+        'Debug.WriteLine(group_url_classes.Count)
+        For i As Integer = 0 To mng_group_name_classes.Count - 1
+            'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
+            Group_ListView.Items.Add(mng_group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
+            Group_ListView.Items(curr_row).SubItems.Add(mng_group_url_classes.ElementAt(i).GetAttribute("href"))
+            curr_row += 1
+        Next
+
+
+
+        '### Find other groups ###
+        chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/")
+        Thread.Sleep(3000)
+        pre_counter = 0
+        While True ' Scroll to the bottom
+            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("div._2pip > div > a > div > div._7ymb._3qn7._61-0._2fyi._3qng > div > div._4ik4._4ik5 > div")).Count
+            If my_counter = pre_counter Then
+                Exit While
+            End If
+            chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
+            pre_counter = my_counter
+            Thread.Sleep(1000)
+        End While
+
+
+        'Add to the listview
+        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector("div._2pip > div > a > div > div._7ymb._3qn7._61-0._2fyi._3qng > div > div._4ik4._4ik5 > div"))
+        Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("div._7om2 > div > div > div:nth-child(3) > div > div._2pip > div > a"))
+
+        'Debug.WriteLine(group_url_classes.Count)
+        For i As Integer = 0 To group_url_classes.Count - 1
+            'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
+            Group_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
+            Group_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
+            curr_row += 1
+        Next
+
+    End Sub
+
 
     Private Sub Driver_close_Click(sender As Object, e As EventArgs) Handles driver_close_bnt.Click
         driver_close_bnt.Enabled = False
@@ -162,6 +224,5 @@ Public Class Form1
         Group_ListView.Columns.Add("GroupName", 100)
         Group_ListView.Columns.Add("URL", 800)
     End Sub
-
 
 End Class
