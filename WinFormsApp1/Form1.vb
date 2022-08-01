@@ -66,7 +66,8 @@ Public Class Form1
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'相片／影片')]")).Click()
             Thread.Sleep(2000)
             Try
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
+                'msgbox_ele = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
             Catch ex As Exception
                 fail_over = True
@@ -74,7 +75,7 @@ Public Class Form1
 
             If fail_over Then
                 'msgbox_ele = chromeDriver.FindElement(By.CssSelector(".oo9gr5id.lzcic4wl.l9j0dhe7.gsox5hk5.rq0escxv.a8c37x1j.datstx6m.k4urcfbm.notranslate"))
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label='XXXX，在想些什麼？']"))
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
 
             End If
@@ -153,10 +154,9 @@ Public Class Form1
         End While
 
 
+        'Get manage groups and add to the listview
         Dim mng_group_name_classes = chromeDriver.FindElements(By.CssSelector(".h3z9dlai.ld7irhx5.pbevjfx6.igjjae4c"))
         Dim mng_group_url_classes = chromeDriver.FindElements(By.CssSelector("div > div > div > div > div._2pip > div > a"))
-
-        'Debug.WriteLine(group_url_classes.Count)
         For i As Integer = 0 To mng_group_name_classes.Count - 1
             'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
             Group_ListView.Items.Add(mng_group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
@@ -181,7 +181,7 @@ Public Class Form1
         End While
 
 
-        'Add to the listview
+        'Get other groups and add to the listview
         Dim group_name_classes = chromeDriver.FindElements(By.CssSelector("div._2pip > div > a > div > div._7ymb._3qn7._61-0._2fyi._3qng > div > div._4ik4._4ik5 > div"))
         Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("div._7om2 > div > div > div:nth-child(3) > div > div._2pip > div > a"))
 
