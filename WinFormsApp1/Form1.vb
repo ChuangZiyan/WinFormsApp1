@@ -7,11 +7,11 @@ Imports OpenQA.Selenium.Support.UI
 
 Public Class Form1
 
-    Dim fb_email As String = "yan18954@gmail.com"
-    Dim fb_passwd As String = "aa147258369"
+    Dim fileContents As String = System.IO.File.ReadAllText("C:\Users\Yan\Desktop\fb_auth.txt")
+    Dim fb_email As String = Split(fileContents)(0)
+    Dim fb_passwd As String = Split(fileContents)(1)
     Dim chromeDriver As IWebDriver
     Dim webDriverWait As WebDriverWait
-
 
 
     Private Sub Invoke_Chrome_btn_Click(sender As Object, e As EventArgs) Handles invoke_chrome_btn.Click
@@ -20,6 +20,7 @@ Public Class Form1
         chromeDriver = New ChromeDriver(options)
         Thread.Sleep(1000)
         driver_close_bnt.Enabled = True
+        refresh_url_timer.Enabled = True
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
 
 
@@ -38,7 +39,7 @@ Public Class Form1
 
         'Dim postURL As String = "https://www.facebook.com/groups/737807930865755/posts/737820730864475?comment_id=737820784197803"
         'Dim postURL As String = "https://www.facebook.com/ETtoday/posts/pfbid0Z9CFxwaXaUKQLEUtRMU8aqHomsBiygPgLcqzFXnDYoE8eJ9Qu4ZY9yCvK8tAwzbol?comment_id=608850700553438"
-        Dim myURL As String = url_TextBox.Text
+        Dim myURL As String = target_url_TextBox.Text
 
         Dim js_code As String = "document.querySelector(""._1mf._1mj > Span "").innerHTML = ""123"" "
 
@@ -112,7 +113,7 @@ Public Class Form1
 
         While True
             scroll_x_value += 1000
-            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("div.ow4ym5g4.auili1gw.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.oygrvhab.cxmmr5t8.hcukyx3x.kvgmc6g5.tgvbjcpo.hpfvmrgz.qt6c0cv9.rz4wbd8a.a8nywdso.jb3vyjys.du4w35lb.bp9cbjyn.ns4p8fja.btwxx1t3.l9j0dhe7 > div > div > div > div:nth-child(1) > span > span > span")).Count
+            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("div.goun2846.mk2mc5f4.ccm00jje.s44p3ltw.rt8b4zig.sk4xxmp2.n8ej3o3l.agehan2d.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.hpfvmrgz.jb3vyjys.qt6c0cv9.l9j0dhe7.du4w35lb.bp9cbjyn.btwxx1t3.dflh9lhu.scb9dxdr.nnctdnn4 > div.goun2846.mk2mc5f4.ccm00jje.s44p3ltw.rt8b4zig.sk4xxmp2.n8ej3o3l.agehan2d.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.hpfvmrgz.jb3vyjys.rz4wbd8a.qt6c0cv9.a8nywdso.du4w35lb.bp9cbjyn.ns4p8fja.btwxx1t3.l9j0dhe7 > div > div > div > div:nth-child(1) > span > span > span")).Count
             If my_counter = pre_counter Then
                 Exit While
             End If
@@ -124,7 +125,7 @@ Public Class Form1
 
 
         Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("a.oajrlxb2.gs1a9yip.g5ia77u1.mtkw9kbi.tlpljxtp.qensuy8j.ppp5ayq2.goun2846.ccm00jje.s44p3ltw.mk2mc5f4.rt8b4zig.n8ej3o3l.agehan2d.sk4xxmp2.rq0escxv.nhd2j8a9.mg4g778l.pfnyh3mw.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.hpfvmrgz.jb3vyjys.rz4wbd8a.qt6c0cv9.a8nywdso.l9j0dhe7.i1ao9s8h.esuyzwwr.f1sip0of.du4w35lb.btwxx1t3.abiwlrkh.p8dawk7l.lzcic4wl.ue3kfks5.pw54ja7n.uo3d90p7.l82x9zwi.a8c37x1j"))
-        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector("div.ow4ym5g4.auili1gw.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.oygrvhab.cxmmr5t8.hcukyx3x.kvgmc6g5.tgvbjcpo.hpfvmrgz.qt6c0cv9.rz4wbd8a.a8nywdso.jb3vyjys.du4w35lb.bp9cbjyn.ns4p8fja.btwxx1t3.l9j0dhe7 > div > div > div > div:nth-child(1) > span > span > span"))
+        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector("div.goun2846.mk2mc5f4.ccm00jje.s44p3ltw.rt8b4zig.sk4xxmp2.n8ej3o3l.agehan2d.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.hpfvmrgz.jb3vyjys.qt6c0cv9.l9j0dhe7.du4w35lb.bp9cbjyn.btwxx1t3.dflh9lhu.scb9dxdr.nnctdnn4 > div.goun2846.mk2mc5f4.ccm00jje.s44p3ltw.rt8b4zig.sk4xxmp2.n8ej3o3l.agehan2d.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.hpfvmrgz.jb3vyjys.rz4wbd8a.qt6c0cv9.a8nywdso.du4w35lb.bp9cbjyn.ns4p8fja.btwxx1t3.l9j0dhe7 > div > div > div > div:nth-child(1) > span > span > span"))
         Debug.WriteLine(group_url_classes.Count)
         For i As Integer = 1 To group_url_classes.Count - 1
             'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
@@ -198,6 +199,7 @@ Public Class Form1
 
     Private Sub Driver_close_Click(sender As Object, e As EventArgs) Handles driver_close_bnt.Click
         driver_close_bnt.Enabled = False
+        refresh_url_timer.Enabled = False
         chromeDriver.Close()
         chromeDriver.Quit()
 
@@ -217,7 +219,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         driver_close_bnt.Enabled = False
-        url_TextBox.Text = "https://www.facebook.com/groups/737807930865755"
+        target_url_TextBox.Text = "https://www.facebook.com/groups/737807930865755"
         Group_ListView.View = View.Details
         Group_ListView.GridLines = True
         Group_ListView.FullRowSelect = True
@@ -225,4 +227,31 @@ Public Class Form1
         Group_ListView.Columns.Add("URL", 800)
     End Sub
 
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles refresh_url_timer.Tick
+        Try
+            'Debug.WriteLine(chromeDriver.Url)
+            If curr_url_TextBox.Text <> chromeDriver.Url Then
+                curr_url_TextBox.Text = chromeDriver.Url
+            End If
+        Catch ex As System.NullReferenceException
+            Debug.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Private Sub replace_str_btn_Click(sender As Object, e As EventArgs) Handles replace_str_btn.Click
+        Dim compare_str = compare_str_textbox.Text
+        Dim replace_str = replace_str_textbox.Text
+
+        For Each item As ListViewItem In Group_ListView.Items
+            Debug.WriteLine(item.SubItems(1))
+            item.SubItems(1).Text = item.SubItems(1).Text.Replace(compare_str, replace_str)
+        Next
+
+
+        Debug.WriteLine(Group_ListView)
+
+
+    End Sub
 End Class
