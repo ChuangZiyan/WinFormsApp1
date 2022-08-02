@@ -15,15 +15,22 @@ Public Class Form1
 
 
     Private Sub Invoke_Chrome_btn_Click(sender As Object, e As EventArgs) Handles invoke_chrome_btn.Click
+
+        'check if chromedriver process exist
+        Dim p() As Process = Process.GetProcessesByName("chromedriver")
+        Dim retValue As Boolean = p.Length > 0
+        If retValue Then
+            MsgBox("chromedriver already exist", vbInformation + vbOKOnly, "Information")
+            Exit Sub
+        End If
+
         Dim options = New Chrome.ChromeOptions()
-        options.AddArguments("--disable-notifications")
+        options.AddArguments("--disable-notifications", "--disable-popup-blocking")
         chromeDriver = New ChromeDriver(options)
         Thread.Sleep(1000)
         driver_close_bnt.Enabled = True
         refresh_url_timer.Enabled = True
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
-
-
         Thread.Sleep(1000)
         chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
         Thread.Sleep(500)
