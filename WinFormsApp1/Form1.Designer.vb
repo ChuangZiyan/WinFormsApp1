@@ -39,6 +39,8 @@ Partial Class Form1
         Me.replace_str_btn = New System.Windows.Forms.Button()
         Me.compare_str_textbox = New System.Windows.Forms.TextBox()
         Me.replace_str_textbox = New System.Windows.Forms.TextBox()
+        Me.invoke_chromeB_btn = New System.Windows.Forms.Button()
+        Me.driverB_close_bnt = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'write_a_post_btn
@@ -65,7 +67,7 @@ Partial Class Form1
         Me.invoke_chrome_btn.Name = "invoke_chrome_btn"
         Me.invoke_chrome_btn.Size = New System.Drawing.Size(160, 60)
         Me.invoke_chrome_btn.TabIndex = 2
-        Me.invoke_chrome_btn.Text = "Open Chrome"
+        Me.invoke_chrome_btn.Text = "Open Chrome A"
         Me.invoke_chrome_btn.UseVisualStyleBackColor = False
         '
         'driver_close_bnt
@@ -75,7 +77,7 @@ Partial Class Form1
         Me.driver_close_bnt.Name = "driver_close_bnt"
         Me.driver_close_bnt.Size = New System.Drawing.Size(160, 60)
         Me.driver_close_bnt.TabIndex = 3
-        Me.driver_close_bnt.Text = "Close Chrome"
+        Me.driver_close_bnt.Text = "Close Chrome A"
         Me.driver_close_bnt.UseVisualStyleBackColor = False
         '
         'reply_comment_bnt
@@ -172,11 +174,33 @@ Partial Class Form1
         Me.replace_str_textbox.Size = New System.Drawing.Size(198, 27)
         Me.replace_str_textbox.TabIndex = 14
         '
+        'invoke_chromeB_btn
+        '
+        Me.invoke_chromeB_btn.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.invoke_chromeB_btn.Location = New System.Drawing.Point(12, 313)
+        Me.invoke_chromeB_btn.Name = "invoke_chromeB_btn"
+        Me.invoke_chromeB_btn.Size = New System.Drawing.Size(160, 60)
+        Me.invoke_chromeB_btn.TabIndex = 15
+        Me.invoke_chromeB_btn.Text = "Open Chrome B"
+        Me.invoke_chromeB_btn.UseVisualStyleBackColor = False
+        '
+        'driverB_close_bnt
+        '
+        Me.driverB_close_bnt.BackColor = System.Drawing.Color.LightCoral
+        Me.driverB_close_bnt.Location = New System.Drawing.Point(12, 379)
+        Me.driverB_close_bnt.Name = "driverB_close_bnt"
+        Me.driverB_close_bnt.Size = New System.Drawing.Size(160, 60)
+        Me.driverB_close_bnt.TabIndex = 16
+        Me.driverB_close_bnt.Text = "Close Chrome B"
+        Me.driverB_close_bnt.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1104, 600)
+        Me.Controls.Add(Me.driverB_close_bnt)
+        Me.Controls.Add(Me.invoke_chromeB_btn)
         Me.Controls.Add(Me.replace_str_textbox)
         Me.Controls.Add(Me.compare_str_textbox)
         Me.Controls.Add(Me.replace_str_btn)
@@ -215,4 +239,6 @@ Partial Class Form1
     Friend WithEvents replace_str_btn As Button
     Friend WithEvents compare_str_textbox As TextBox
     Friend WithEvents replace_str_textbox As TextBox
+    Friend WithEvents invoke_chromeB_btn As Button
+    Friend WithEvents driverB_close_bnt As Button
 End Class

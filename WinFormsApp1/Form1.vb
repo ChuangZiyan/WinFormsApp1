@@ -13,16 +13,19 @@ Public Class Form1
     Dim chromeDriver As IWebDriver
     Dim webDriverWait As WebDriverWait
 
+    Dim chromeDriver_B As IWebDriver
+    'Dim webDriverWait As WebDriverWait
+
 
     Private Sub Invoke_Chrome_btn_Click(sender As Object, e As EventArgs) Handles invoke_chrome_btn.Click
 
         'check if chromedriver process exist
-        Dim p() As Process = Process.GetProcessesByName("chromedriver")
-        Dim retValue As Boolean = p.Length > 0
-        If retValue Then
-            MsgBox("chromedriver already exist", vbInformation + vbOKOnly, "Information")
-            Exit Sub
-        End If
+        'Dim p() As Process = Process.GetProcessesByName("chromedriver")
+        'Dim retValue As Boolean = p.Length > 0
+        'If retValue Then
+        'MsgBox("chromedriver already exist", vbInformation + vbOKOnly, "Information")
+        'Exit Sub
+        'End If
 
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
@@ -40,6 +43,22 @@ Public Class Form1
         Thread.Sleep(1000)
 
     End Sub
+
+    Private Sub invoke_chrome2_btn_Click(sender As Object, e As EventArgs) Handles invoke_chromeB_btn.Click
+        Dim options = New Chrome.ChromeOptions()
+        options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+        chromeDriver_B = New ChromeDriver(options)
+        Thread.Sleep(1000)
+        chromeDriver_B.Navigate.GoToUrl("https://www.facebook.com/")
+        Thread.Sleep(1000)
+        chromeDriver_B.FindElement(By.Name("email")).SendKeys(fb_email)
+        Thread.Sleep(500)
+        chromeDriver_B.FindElement(By.Name("pass")).SendKeys(fb_passwd)
+        Thread.Sleep(500)
+        chromeDriver_B.FindElement(By.Name("pass")).SendKeys(Keys.Return)
+        Thread.Sleep(1000)
+    End Sub
+
 
 
     Private Sub Write_post_Click(sender As Object, e As EventArgs) Handles write_a_post_btn.Click
@@ -212,6 +231,13 @@ Public Class Form1
 
     End Sub
 
+    Private Sub driverB_close_bnt_Click(sender As Object, e As EventArgs) Handles driverB_close_bnt.Click
+        chromeDriver_B.Close()
+        chromeDriver_B.Quit()
+    End Sub
+
+
+
     Private Sub Reply_comment_bnt_Click(sender As Object, e As EventArgs) Handles reply_comment_bnt.Click
         Dim str_arr() As String = content_RichTextBox.Text.Split(vbLf)
         Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
@@ -261,4 +287,5 @@ Public Class Form1
 
 
     End Sub
+
 End Class
