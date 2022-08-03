@@ -10,10 +10,15 @@ Public Class Form1
     Dim fileContents As String = System.IO.File.ReadAllText("C:\Users\Yan\Desktop\fb_auth.txt")
     Dim fb_email As String = Split(fileContents)(0)
     Dim fb_passwd As String = Split(fileContents)(1)
+
     Dim chromeDriver As IWebDriver
+    Dim chromeDriver_B As IWebDriver
+
+
+
     Dim webDriverWait As WebDriverWait
 
-    Dim chromeDriver_B As IWebDriver
+
     'Dim webDriverWait As WebDriverWait
 
 
@@ -26,6 +31,15 @@ Public Class Form1
         'MsgBox("chromedriver already exist", vbInformation + vbOKOnly, "Information")
         'Exit Sub
         'End If
+        Try
+            Dim url = chromeDriver.Url
+            MsgBox("chrome A already exist")
+            Exit Sub
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+
 
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
@@ -45,6 +59,14 @@ Public Class Form1
     End Sub
 
     Private Sub invoke_chrome2_btn_Click(sender As Object, e As EventArgs) Handles invoke_chromeB_btn.Click
+        Try
+            Dim url = chromeDriver_B.Url
+            MsgBox("chrome B already exist")
+            Exit Sub
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
         chromeDriver_B = New ChromeDriver(options)
@@ -224,16 +246,26 @@ Public Class Form1
 
 
     Private Sub Driver_close_Click(sender As Object, e As EventArgs) Handles driver_close_bnt.Click
-        driver_close_bnt.Enabled = False
-        refresh_url_timer.Enabled = False
-        chromeDriver.Close()
-        chromeDriver.Quit()
+        'driver_close_bnt.Enabled = False
+
+        Try
+            chromeDriver.Close()
+            chromeDriver.Quit()
+            refresh_url_timer.Enabled = False
+        Catch ex As Exception
+            MsgBox("chrome A not exist")
+        End Try
 
     End Sub
 
     Private Sub driverB_close_bnt_Click(sender As Object, e As EventArgs) Handles driverB_close_bnt.Click
-        chromeDriver_B.Close()
-        chromeDriver_B.Quit()
+        Try
+            chromeDriver_B.Close()
+            chromeDriver_B.Quit()
+        Catch ex As Exception
+            MsgBox("chrome B not exist")
+        End Try
+
     End Sub
 
 
@@ -251,7 +283,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        driver_close_bnt.Enabled = False
+        'driver_close_bnt.Enabled = False
         target_url_TextBox.Text = "https://www.facebook.com/groups/737807930865755"
         Group_ListView.View = View.Details
         Group_ListView.GridLines = True
