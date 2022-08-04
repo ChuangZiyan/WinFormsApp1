@@ -68,6 +68,24 @@ Public Class Form1
         Dim myURL As String = target_url_TextBox.Text
 
         Dim js_code As String = "document.querySelector(""._1mf._1mj > Span "").innerHTML = ""123"" "
+        Dim img_path_str As String = ""
+
+
+        'get selected img path into string 
+        If img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
+                If img_path_str = "" Then
+                    img_path_str = img_CheckedListBox.Items(i).ToString
+                Else
+                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
+                End If
+
+            Next
+        End If
+
+
 
         If myURL.Contains("groups") Then ' If post in group
             chromeDriver.Navigate.GoToUrl(myURL)
@@ -75,7 +93,7 @@ Public Class Form1
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'留個言吧……')]")).Click()
             Thread.Sleep(2000)
             Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.dwxx2s2f.dicw6rsg.kady6ibp.rs0gx3tq > input"))
-            upload_img_input.SendKeys("C:\Users\Yan\Desktop\testimg.png" & vbLf & "C:\Users\Yan\Desktop\testimg.png") ' if muti img use "& vbLf &" to join the img path
+            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
             Thread.Sleep(1000)
             chromeDriver.FindElement(By.CssSelector("._1mf._1mj")).SendKeys(content_RichTextBox.Text)
             'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
@@ -111,26 +129,10 @@ Public Class Form1
 
             'imgupload_ele.SendKeys("C:\Users\Yan\Desktop\testimg.png")
             'img_upload_input.SendKeys("C:\Users\Yan\Desktop\testimg.png")
-            Dim img_path_str As String = ""
-
-            If img_CheckedListBox.CheckedItems.Count <> 0 Then
-                For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
-                    'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
-                    Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
-                    If img_path_str = "" Then
-                        img_path_str = img_CheckedListBox.Items(i).ToString
-                    Else
-                        img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
-                    End If
-
-                Next
-            End If
-
-            Debug.WriteLine(img_path_str)
 
 
+            'Debug.WriteLine(img_path_str)
             img_upload_input.SendKeys(img_path_str)
-
 
             '### submit post ###
             'chromeDriver.FindElement(By.CssSelector("div.k4urcfbm.discj3wi.dati1w0a.hv4rvrfc.i1fnvgqd.j83agx80.rq0escxv.bp9cbjyn > input")).Click()
@@ -278,19 +280,17 @@ Public Class Form1
         Group_ListView.FullRowSelect = True
         Group_ListView.Columns.Add("GroupName", 100)
         Group_ListView.Columns.Add("URL", 800)
-        render_img_listbox()
 
+        render_img_listbox()
 
     End Sub
 
     Private Sub render_img_listbox()
-        Dim files() As String = IO.Directory.GetFiles("C:\Users\Yan\Desktop\myimg")
+        Dim files() As String = IO.Directory.GetFiles("C:\Users\Yan\Desktop\myimg") ' your img folder
 
         For Each file As String In files
-            ' Do work, example
             'Debug.WriteLine(file)
             img_CheckedListBox.Items.Add(file)
-            'img_ListBox.Items.Add(file)
         Next
 
 

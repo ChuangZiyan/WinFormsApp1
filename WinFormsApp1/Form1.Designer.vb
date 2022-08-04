@@ -185,7 +185,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1584, 600)
+        Me.ClientSize = New System.Drawing.Size(1434, 600)
         Me.Controls.Add(Me.img_CheckedListBox)
         Me.Controls.Add(Me.replace_str_textbox)
         Me.Controls.Add(Me.compare_str_textbox)
