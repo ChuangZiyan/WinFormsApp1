@@ -58,28 +58,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub invoke_chrome2_btn_Click(sender As Object, e As EventArgs) Handles invoke_chromeB_btn.Click
-        Try
-            Dim url = chromeDriver_B.Url
-            MsgBox("chrome B already exist")
-            Exit Sub
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-        Dim options = New Chrome.ChromeOptions()
-        options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-        chromeDriver_B = New ChromeDriver(options)
-        Thread.Sleep(1000)
-        chromeDriver_B.Navigate.GoToUrl("https://www.facebook.com/")
-        Thread.Sleep(1000)
-        chromeDriver_B.FindElement(By.Name("email")).SendKeys(fb_email)
-        Thread.Sleep(500)
-        chromeDriver_B.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-        Thread.Sleep(500)
-        chromeDriver_B.FindElement(By.Name("pass")).SendKeys(Keys.Return)
-        Thread.Sleep(1000)
-    End Sub
 
 
 
@@ -132,7 +110,26 @@ Public Class Form1
             Dim img_upload_input = chromeDriver.FindElement(By.CssSelector("div.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.dflh9lhu.scb9dxdr.aahdfvyu.tvmbv18p.gbw9n0fl.fneq0qzw > input"))
 
             'imgupload_ele.SendKeys("C:\Users\Yan\Desktop\testimg.png")
-            img_upload_input.SendKeys("C:\Users\Yan\Desktop\testimg.png")
+            'img_upload_input.SendKeys("C:\Users\Yan\Desktop\testimg.png")
+            Dim img_path_str As String = ""
+
+            If img_CheckedListBox.CheckedItems.Count <> 0 Then
+                For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
+                    'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+                    Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
+                    If img_path_str = "" Then
+                        img_path_str = img_CheckedListBox.Items(i).ToString
+                    Else
+                        img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
+                    End If
+
+                Next
+            End If
+
+            Debug.WriteLine(img_path_str)
+
+
+            img_upload_input.SendKeys(img_path_str)
 
 
             '### submit post ###
@@ -258,15 +255,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub driverB_close_bnt_Click(sender As Object, e As EventArgs) Handles driverB_close_bnt.Click
-        Try
-            chromeDriver_B.Close()
-            chromeDriver_B.Quit()
-        Catch ex As Exception
-            MsgBox("chrome B not exist")
-        End Try
-
-    End Sub
 
 
 
@@ -290,6 +278,22 @@ Public Class Form1
         Group_ListView.FullRowSelect = True
         Group_ListView.Columns.Add("GroupName", 100)
         Group_ListView.Columns.Add("URL", 800)
+        render_img_listbox()
+
+
+    End Sub
+
+    Private Sub render_img_listbox()
+        Dim files() As String = IO.Directory.GetFiles("C:\Users\Yan\Desktop\myimg")
+
+        For Each file As String In files
+            ' Do work, example
+            'Debug.WriteLine(file)
+            img_CheckedListBox.Items.Add(file)
+            'img_ListBox.Items.Add(file)
+        Next
+
+
     End Sub
 
 

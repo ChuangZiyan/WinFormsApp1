@@ -39,8 +39,7 @@ Partial Class Form1
         Me.replace_str_btn = New System.Windows.Forms.Button()
         Me.compare_str_textbox = New System.Windows.Forms.TextBox()
         Me.replace_str_textbox = New System.Windows.Forms.TextBox()
-        Me.invoke_chromeB_btn = New System.Windows.Forms.Button()
-        Me.driverB_close_bnt = New System.Windows.Forms.Button()
+        Me.img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.SuspendLayout()
         '
         'write_a_post_btn
@@ -107,7 +106,7 @@ Partial Class Form1
         '
         'get_groups_btn
         '
-        Me.get_groups_btn.Location = New System.Drawing.Point(563, 528)
+        Me.get_groups_btn.Location = New System.Drawing.Point(899, 531)
         Me.get_groups_btn.Name = "get_groups_btn"
         Me.get_groups_btn.Size = New System.Drawing.Size(120, 60)
         Me.get_groups_btn.TabIndex = 7
@@ -116,7 +115,7 @@ Partial Class Form1
         '
         'Group_ListView
         '
-        Me.Group_ListView.Location = New System.Drawing.Point(563, 75)
+        Me.Group_ListView.Location = New System.Drawing.Point(899, 78)
         Me.Group_ListView.Name = "Group_ListView"
         Me.Group_ListView.Size = New System.Drawing.Size(522, 447)
         Me.Group_ListView.TabIndex = 8
@@ -124,7 +123,7 @@ Partial Class Form1
         '
         'get_groups_from_m
         '
-        Me.get_groups_from_m.Location = New System.Drawing.Point(689, 528)
+        Me.get_groups_from_m.Location = New System.Drawing.Point(1025, 531)
         Me.get_groups_from_m.Name = "get_groups_from_m"
         Me.get_groups_from_m.Size = New System.Drawing.Size(126, 60)
         Me.get_groups_from_m.TabIndex = 9
@@ -153,7 +152,7 @@ Partial Class Form1
         '
         'replace_str_btn
         '
-        Me.replace_str_btn.Location = New System.Drawing.Point(782, 21)
+        Me.replace_str_btn.Location = New System.Drawing.Point(1118, 24)
         Me.replace_str_btn.Name = "replace_str_btn"
         Me.replace_str_btn.Size = New System.Drawing.Size(99, 28)
         Me.replace_str_btn.TabIndex = 12
@@ -162,45 +161,32 @@ Partial Class Form1
         '
         'compare_str_textbox
         '
-        Me.compare_str_textbox.Location = New System.Drawing.Point(563, 21)
+        Me.compare_str_textbox.Location = New System.Drawing.Point(899, 24)
         Me.compare_str_textbox.Name = "compare_str_textbox"
         Me.compare_str_textbox.Size = New System.Drawing.Size(213, 27)
         Me.compare_str_textbox.TabIndex = 13
         '
         'replace_str_textbox
         '
-        Me.replace_str_textbox.Location = New System.Drawing.Point(887, 21)
+        Me.replace_str_textbox.Location = New System.Drawing.Point(1223, 24)
         Me.replace_str_textbox.Name = "replace_str_textbox"
         Me.replace_str_textbox.Size = New System.Drawing.Size(198, 27)
         Me.replace_str_textbox.TabIndex = 14
         '
-        'invoke_chromeB_btn
+        'img_CheckedListBox
         '
-        Me.invoke_chromeB_btn.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.invoke_chromeB_btn.Location = New System.Drawing.Point(12, 313)
-        Me.invoke_chromeB_btn.Name = "invoke_chromeB_btn"
-        Me.invoke_chromeB_btn.Size = New System.Drawing.Size(160, 60)
-        Me.invoke_chromeB_btn.TabIndex = 15
-        Me.invoke_chromeB_btn.Text = "Open Chrome B"
-        Me.invoke_chromeB_btn.UseVisualStyleBackColor = False
-        '
-        'driverB_close_bnt
-        '
-        Me.driverB_close_bnt.BackColor = System.Drawing.Color.LightCoral
-        Me.driverB_close_bnt.Location = New System.Drawing.Point(12, 379)
-        Me.driverB_close_bnt.Name = "driverB_close_bnt"
-        Me.driverB_close_bnt.Size = New System.Drawing.Size(160, 60)
-        Me.driverB_close_bnt.TabIndex = 16
-        Me.driverB_close_bnt.Text = "Close Chrome B"
-        Me.driverB_close_bnt.UseVisualStyleBackColor = False
+        Me.img_CheckedListBox.FormattingEnabled = True
+        Me.img_CheckedListBox.Location = New System.Drawing.Point(525, 129)
+        Me.img_CheckedListBox.Name = "img_CheckedListBox"
+        Me.img_CheckedListBox.Size = New System.Drawing.Size(368, 400)
+        Me.img_CheckedListBox.TabIndex = 15
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1104, 600)
-        Me.Controls.Add(Me.driverB_close_bnt)
-        Me.Controls.Add(Me.invoke_chromeB_btn)
+        Me.ClientSize = New System.Drawing.Size(1584, 600)
+        Me.Controls.Add(Me.img_CheckedListBox)
         Me.Controls.Add(Me.replace_str_textbox)
         Me.Controls.Add(Me.compare_str_textbox)
         Me.Controls.Add(Me.replace_str_btn)
@@ -239,6 +225,5 @@ Partial Class Form1
     Friend WithEvents replace_str_btn As Button
     Friend WithEvents compare_str_textbox As TextBox
     Friend WithEvents replace_str_textbox As TextBox
-    Friend WithEvents invoke_chromeB_btn As Button
-    Friend WithEvents driverB_close_bnt As Button
+    Friend WithEvents img_CheckedListBox As CheckedListBox
 End Class
