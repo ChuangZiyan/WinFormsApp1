@@ -7,7 +7,7 @@ Imports OpenQA.Selenium.Support.UI
 
 Public Class Form1
 
-    Dim fileContents As String = System.IO.File.ReadAllText("C:\Users\Yan\Desktop\fb_auth.txt")
+    Dim fileContents As String = System.IO.File.ReadAllText("C:\selenium_file\fb_auth.txt")
     Dim fb_email As String = Split(fileContents)(0)
     Dim fb_passwd As String = Split(fileContents)(1)
 
@@ -24,26 +24,35 @@ Public Class Form1
 
     Private Sub Invoke_Chrome_btn_Click(sender As Object, e As EventArgs) Handles invoke_chrome_btn.Click
 
-        'check if chromedriver process exist
-        'Dim p() As Process = Process.GetProcessesByName("chromedriver")
-        'Dim retValue As Boolean = p.Length > 0
-        'If retValue Then
-        'MsgBox("chromedriver already exist", vbInformation + vbOKOnly, "Information")
+        'Try
+        'Dim url = chromeDriver.Url
+        'MsgBox("chrome A already exist")
         'Exit Sub
-        'End If
-        Try
-            Dim url = chromeDriver.Url
-            MsgBox("chrome A already exist")
-            Exit Sub
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
+        'Catch ex As Exception
+        'Debug.WriteLine(ex)
+        'End Try
 
-
+        Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
+        serv.HideCommandPromptWindow = True 'hide cmd
 
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-        chromeDriver = New ChromeDriver(options)
+
+
+
+        If pc_RadioButton.Checked = False Then
+            Dim dev_model As String = ""
+            If pixel5_RadioButton.Checked Then
+                dev_model = "Pixel 5"
+            ElseIf i12pro_RadioButton.Checked Then
+                dev_model = "iPhone 12 Pro"
+            ElseIf ipadair_RadioButton.Checked Then
+                dev_model = "iPad Air"
+            End If
+            options.EnableMobileEmulation(dev_model)
+        End If
+
+        chromeDriver = New ChromeDriver(serv, options)
         Thread.Sleep(1000)
         driver_close_bnt.Enabled = True
         refresh_url_timer.Enabled = True
@@ -57,8 +66,6 @@ Public Class Form1
         Thread.Sleep(1000)
 
     End Sub
-
-
 
 
     Private Sub Write_post_Click(sender As Object, e As EventArgs) Handles write_a_post_btn.Click
@@ -286,7 +293,7 @@ Public Class Form1
     End Sub
 
     Private Sub render_img_listbox()
-        Dim files() As String = IO.Directory.GetFiles("C:\Users\Yan\Desktop\myimg") ' your img folder
+        Dim files() As String = IO.Directory.GetFiles("C:\selenium_file\my_img") ' your img folder
 
         For Each file As String In files
             'Debug.WriteLine(file)

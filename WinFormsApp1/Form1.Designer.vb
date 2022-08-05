@@ -40,6 +40,12 @@ Partial Class Form1
         Me.compare_str_textbox = New System.Windows.Forms.TextBox()
         Me.replace_str_textbox = New System.Windows.Forms.TextBox()
         Me.img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
+        Me.devtype_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.ipadair_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.i12pro_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.pixel5_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.pc_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'write_a_post_btn
@@ -62,7 +68,7 @@ Partial Class Form1
         'invoke_chrome_btn
         '
         Me.invoke_chrome_btn.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.invoke_chrome_btn.Location = New System.Drawing.Point(12, 129)
+        Me.invoke_chrome_btn.Location = New System.Drawing.Point(12, 285)
         Me.invoke_chrome_btn.Name = "invoke_chrome_btn"
         Me.invoke_chrome_btn.Size = New System.Drawing.Size(160, 60)
         Me.invoke_chrome_btn.TabIndex = 2
@@ -72,7 +78,7 @@ Partial Class Form1
         'driver_close_bnt
         '
         Me.driver_close_bnt.BackColor = System.Drawing.Color.LightCoral
-        Me.driver_close_bnt.Location = New System.Drawing.Point(12, 195)
+        Me.driver_close_bnt.Location = New System.Drawing.Point(12, 351)
         Me.driver_close_bnt.Name = "driver_close_bnt"
         Me.driver_close_bnt.Size = New System.Drawing.Size(160, 60)
         Me.driver_close_bnt.TabIndex = 3
@@ -117,7 +123,7 @@ Partial Class Form1
         '
         Me.Group_ListView.Location = New System.Drawing.Point(899, 78)
         Me.Group_ListView.Name = "Group_ListView"
-        Me.Group_ListView.Size = New System.Drawing.Size(522, 447)
+        Me.Group_ListView.Size = New System.Drawing.Size(449, 447)
         Me.Group_ListView.TabIndex = 8
         Me.Group_ListView.UseCompatibleStateImageBehavior = False
         '
@@ -152,7 +158,7 @@ Partial Class Form1
         '
         'replace_str_btn
         '
-        Me.replace_str_btn.Location = New System.Drawing.Point(1118, 24)
+        Me.replace_str_btn.Location = New System.Drawing.Point(1085, 24)
         Me.replace_str_btn.Name = "replace_str_btn"
         Me.replace_str_btn.Size = New System.Drawing.Size(99, 28)
         Me.replace_str_btn.TabIndex = 12
@@ -163,14 +169,14 @@ Partial Class Form1
         '
         Me.compare_str_textbox.Location = New System.Drawing.Point(899, 24)
         Me.compare_str_textbox.Name = "compare_str_textbox"
-        Me.compare_str_textbox.Size = New System.Drawing.Size(213, 27)
+        Me.compare_str_textbox.Size = New System.Drawing.Size(180, 27)
         Me.compare_str_textbox.TabIndex = 13
         '
         'replace_str_textbox
         '
-        Me.replace_str_textbox.Location = New System.Drawing.Point(1223, 24)
+        Me.replace_str_textbox.Location = New System.Drawing.Point(1190, 24)
         Me.replace_str_textbox.Name = "replace_str_textbox"
-        Me.replace_str_textbox.Size = New System.Drawing.Size(198, 27)
+        Me.replace_str_textbox.Size = New System.Drawing.Size(158, 27)
         Me.replace_str_textbox.TabIndex = 14
         '
         'img_CheckedListBox
@@ -181,11 +187,70 @@ Partial Class Form1
         Me.img_CheckedListBox.Size = New System.Drawing.Size(368, 400)
         Me.img_CheckedListBox.TabIndex = 15
         '
+        'devtype_GroupBox
+        '
+        Me.devtype_GroupBox.Controls.Add(Me.ipadair_RadioButton)
+        Me.devtype_GroupBox.Controls.Add(Me.i12pro_RadioButton)
+        Me.devtype_GroupBox.Controls.Add(Me.pixel5_RadioButton)
+        Me.devtype_GroupBox.Controls.Add(Me.pc_RadioButton)
+        Me.devtype_GroupBox.Location = New System.Drawing.Point(12, 129)
+        Me.devtype_GroupBox.Name = "devtype_GroupBox"
+        Me.devtype_GroupBox.Size = New System.Drawing.Size(160, 150)
+        Me.devtype_GroupBox.TabIndex = 16
+        Me.devtype_GroupBox.TabStop = False
+        Me.devtype_GroupBox.Text = "Device Type"
+        '
+        'ipadair_RadioButton
+        '
+        Me.ipadair_RadioButton.AutoSize = True
+        Me.ipadair_RadioButton.Location = New System.Drawing.Point(6, 113)
+        Me.ipadair_RadioButton.Name = "ipadair_RadioButton"
+        Me.ipadair_RadioButton.Size = New System.Drawing.Size(85, 23)
+        Me.ipadair_RadioButton.TabIndex = 3
+        Me.ipadair_RadioButton.TabStop = True
+        Me.ipadair_RadioButton.Text = "iPad Air"
+        Me.ipadair_RadioButton.UseVisualStyleBackColor = True
+        '
+        'i12pro_RadioButton
+        '
+        Me.i12pro_RadioButton.AutoSize = True
+        Me.i12pro_RadioButton.Location = New System.Drawing.Point(6, 84)
+        Me.i12pro_RadioButton.Name = "i12pro_RadioButton"
+        Me.i12pro_RadioButton.Size = New System.Drawing.Size(128, 23)
+        Me.i12pro_RadioButton.TabIndex = 2
+        Me.i12pro_RadioButton.TabStop = True
+        Me.i12pro_RadioButton.Text = "iPhone 12 Pro"
+        Me.i12pro_RadioButton.UseVisualStyleBackColor = True
+        '
+        'pixel5_RadioButton
+        '
+        Me.pixel5_RadioButton.AutoSize = True
+        Me.pixel5_RadioButton.Location = New System.Drawing.Point(6, 55)
+        Me.pixel5_RadioButton.Name = "pixel5_RadioButton"
+        Me.pixel5_RadioButton.Size = New System.Drawing.Size(75, 23)
+        Me.pixel5_RadioButton.TabIndex = 1
+        Me.pixel5_RadioButton.TabStop = True
+        Me.pixel5_RadioButton.Text = "Pixel 5"
+        Me.pixel5_RadioButton.UseVisualStyleBackColor = True
+        '
+        'pc_RadioButton
+        '
+        Me.pc_RadioButton.AutoSize = True
+        Me.pc_RadioButton.Checked = True
+        Me.pc_RadioButton.Location = New System.Drawing.Point(6, 26)
+        Me.pc_RadioButton.Name = "pc_RadioButton"
+        Me.pc_RadioButton.Size = New System.Drawing.Size(49, 23)
+        Me.pc_RadioButton.TabIndex = 0
+        Me.pc_RadioButton.TabStop = True
+        Me.pc_RadioButton.Text = "PC"
+        Me.pc_RadioButton.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1434, 600)
+        Me.ClientSize = New System.Drawing.Size(1359, 600)
+        Me.Controls.Add(Me.devtype_GroupBox)
         Me.Controls.Add(Me.img_CheckedListBox)
         Me.Controls.Add(Me.replace_str_textbox)
         Me.Controls.Add(Me.compare_str_textbox)
@@ -204,6 +269,8 @@ Partial Class Form1
         Me.Controls.Add(Me.write_a_post_btn)
         Me.Name = "Form1"
         Me.Text = "Form1"
+        Me.devtype_GroupBox.ResumeLayout(False)
+        Me.devtype_GroupBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -226,4 +293,9 @@ Partial Class Form1
     Friend WithEvents compare_str_textbox As TextBox
     Friend WithEvents replace_str_textbox As TextBox
     Friend WithEvents img_CheckedListBox As CheckedListBox
+    Friend WithEvents devtype_GroupBox As GroupBox
+    Friend WithEvents pc_RadioButton As RadioButton
+    Friend WithEvents i12pro_RadioButton As RadioButton
+    Friend WithEvents pixel5_RadioButton As RadioButton
+    Friend WithEvents ipadair_RadioButton As RadioButton
 End Class
