@@ -4,6 +4,7 @@ Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Chrome
 Imports OpenQA.Selenium.Support.Extensions
 Imports OpenQA.Selenium.Support.UI
+Imports OpenQA.Selenium.Interactions
 
 Public Class Form1
 
@@ -12,10 +13,6 @@ Public Class Form1
     Dim fb_passwd As String = Split(fileContents)(1)
 
     Dim chromeDriver As IWebDriver
-    Dim chromeDriver_B As IWebDriver
-
-
-
     Dim webDriverWait As WebDriverWait
 
 
@@ -57,13 +54,21 @@ Public Class Form1
         driver_close_bnt.Enabled = True
         refresh_url_timer.Enabled = True
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
-        Thread.Sleep(1000)
-        chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
-        Thread.Sleep(500)
-        chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-        Thread.Sleep(500)
-        chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
-        Thread.Sleep(1000)
+        'chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/?hl=zh_TW")
+
+
+
+
+
+        'Thread.Sleep(1000)
+        'chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
+        'Thread.Sleep(500)
+        'chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
+        'Thread.Sleep(500)
+        'chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
+        'Thread.Sleep(1000)
+
+
 
     End Sub
 
@@ -331,4 +336,30 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim act = New Actions(chromeDriver)
+        Dim myele = chromeDriver.FindElement(By.CssSelector("._6ltj > a"))
+        Dim login_btn = chromeDriver.FindElement(By.Name("login"))
+        Dim bbb = chromeDriver.FindElement(By.CssSelector("._8esh"))
+
+        'act.MoveByOffset(0, 0).Build().Perform() ' reset point position
+        act.MoveByOffset(740, 435).Build.Perform()
+        act.Click.Perform()
+
+
+
+        'Thread.Sleep(3000)
+        'act.MoveToElement(login_btn).Perform()
+        'Thread.Sleep(2000)
+
+        'aaa.Click()
+        'act.MoveToElement(myele).Perform()
+        'Thread.Sleep(2000)
+        'act.MoveToElement(bbb).Perform()
+        'Thread.Sleep(1000)
+
+        'Thread.Sleep(1000)
+
+
+    End Sub
 End Class
