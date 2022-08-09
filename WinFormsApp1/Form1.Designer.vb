@@ -45,7 +45,11 @@ Partial Class Form1
         Me.i12pro_RadioButton = New System.Windows.Forms.RadioButton()
         Me.pixel5_RadioButton = New System.Windows.Forms.RadioButton()
         Me.pc_RadioButton = New System.Windows.Forms.RadioButton()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.cursor_clickl_btn = New System.Windows.Forms.Button()
+        Me.cursor_x_TextBox = New System.Windows.Forms.TextBox()
+        Me.cursor_y_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -246,21 +250,57 @@ Partial Class Form1
         Me.pc_RadioButton.Text = "PC"
         Me.pc_RadioButton.UseVisualStyleBackColor = True
         '
-        'Button1
+        'cursor_clickl_btn
         '
-        Me.Button1.Location = New System.Drawing.Point(46, 448)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(94, 29)
-        Me.Button1.TabIndex = 17
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.cursor_clickl_btn.Location = New System.Drawing.Point(689, 73)
+        Me.cursor_clickl_btn.Name = "cursor_clickl_btn"
+        Me.cursor_clickl_btn.Size = New System.Drawing.Size(102, 32)
+        Me.cursor_clickl_btn.TabIndex = 17
+        Me.cursor_clickl_btn.Text = "Cursor click"
+        Me.cursor_clickl_btn.UseVisualStyleBackColor = True
+        '
+        'cursor_x_TextBox
+        '
+        Me.cursor_x_TextBox.Location = New System.Drawing.Point(553, 77)
+        Me.cursor_x_TextBox.Name = "cursor_x_TextBox"
+        Me.cursor_x_TextBox.Size = New System.Drawing.Size(43, 27)
+        Me.cursor_x_TextBox.TabIndex = 18
+        '
+        'cursor_y_TextBox
+        '
+        Me.cursor_y_TextBox.Location = New System.Drawing.Point(629, 77)
+        Me.cursor_y_TextBox.Name = "cursor_y_TextBox"
+        Me.cursor_y_TextBox.Size = New System.Drawing.Size(45, 27)
+        Me.cursor_y_TextBox.TabIndex = 19
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(528, 80)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(22, 19)
+        Me.Label1.TabIndex = 20
+        Me.Label1.Text = "X:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(602, 80)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(21, 19)
+        Me.Label2.TabIndex = 21
+        Me.Label2.Text = "Y:"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1359, 600)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(1354, 596)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.cursor_y_TextBox)
+        Me.Controls.Add(Me.cursor_x_TextBox)
+        Me.Controls.Add(Me.cursor_clickl_btn)
         Me.Controls.Add(Me.devtype_GroupBox)
         Me.Controls.Add(Me.img_CheckedListBox)
         Me.Controls.Add(Me.replace_str_textbox)
@@ -309,5 +349,11 @@ Partial Class Form1
     Friend WithEvents i12pro_RadioButton As RadioButton
     Friend WithEvents pixel5_RadioButton As RadioButton
     Friend WithEvents ipadair_RadioButton As RadioButton
+    Friend WithEvents cursor_clickl_btn As Button
+    Friend WithEvents cursor_x_TextBox As TextBox
+    Friend WithEvents cursor_y_TextBox As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents cursor_position_lbl As Label
     Friend WithEvents Button1 As Button
 End Class

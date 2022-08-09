@@ -15,6 +15,9 @@ Public Class Form1
     Dim chromeDriver As IWebDriver
     Dim webDriverWait As WebDriverWait
 
+    Dim cursor_x As Integer = 0
+    Dim cursor_y As Integer = 0
+
 
     'Dim webDriverWait As WebDriverWait
 
@@ -51,13 +54,15 @@ Public Class Form1
 
         chromeDriver = New ChromeDriver(serv, options)
         Thread.Sleep(1000)
+
+
+        'chromeDriver.ExecuteJavaScript("onmousemove = function(e){ mouse.x = e.clientX, mouse.y = e.clientY };")
+
+
         driver_close_bnt.Enabled = True
         refresh_url_timer.Enabled = True
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
         'chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/?hl=zh_TW")
-
-
-
 
 
         'Thread.Sleep(1000)
@@ -336,30 +341,31 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim act = New Actions(chromeDriver)
-        Dim myele = chromeDriver.FindElement(By.CssSelector("._6ltj > a"))
-        Dim login_btn = chromeDriver.FindElement(By.Name("login"))
-        Dim bbb = chromeDriver.FindElement(By.CssSelector("._8esh"))
+    Private Sub cursor_Click(sender As Object, e As EventArgs) Handles cursor_clickl_btn.Click
+
+        'Dim myele = chromeDriver.FindElement(By.CssSelector("._6ltj > a"))
+        'Dim login_btn = chromeDriver.FindElement(By.Name("login"))
+        'Dim bbb = chromeDriver.FindElement(By.CssSelector("._8esh"))
 
         'act.MoveByOffset(0, 0).Build().Perform() ' reset point position
-        act.MoveByOffset(740, 435).Build.Perform()
+        Dim act = New Actions(chromeDriver)
+        cursor_x = cursor_x_TextBox.Text
+        cursor_y = cursor_y_TextBox.Text
+        act.MoveByOffset(cursor_x, cursor_y).Build.Perform()
         act.Click.Perform()
-
-
+        Debug.WriteLine(cursor_x & "," & cursor_y)
+        act.MoveByOffset(-cursor_x, -cursor_y).Build.Perform()
 
         'Thread.Sleep(3000)
         'act.MoveToElement(login_btn).Perform()
         'Thread.Sleep(2000)
-
         'aaa.Click()
         'act.MoveToElement(myele).Perform()
         'Thread.Sleep(2000)
         'act.MoveToElement(bbb).Perform()
         'Thread.Sleep(1000)
-
         'Thread.Sleep(1000)
 
-
     End Sub
+
 End Class
