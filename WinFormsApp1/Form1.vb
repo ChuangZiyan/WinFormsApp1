@@ -5,6 +5,9 @@ Imports OpenQA.Selenium.Chrome
 Imports OpenQA.Selenium.Support.Extensions
 Imports OpenQA.Selenium.Support.UI
 Imports OpenQA.Selenium.Interactions
+Imports WebDriverManager
+Imports WebDriverManager.DriverConfigs
+Imports WebDriverManager.DriverConfigs.Impl
 
 Public Class Form1
 
@@ -31,6 +34,10 @@ Public Class Form1
         'Catch ex As Exception
         'Debug.WriteLine(ex)
         'End Try
+
+        Dim driverManager = New DriverManager()
+        driverManager.SetUpDriver(New ChromeConfig())
+
 
         Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
         serv.HideCommandPromptWindow = True 'hide cmd
