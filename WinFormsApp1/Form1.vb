@@ -305,6 +305,17 @@ Public Class Form1
         Group_ListView.Columns.Add("GroupName", 100)
         Group_ListView.Columns.Add("URL", 800)
 
+
+
+        Dim row = 0
+        For Each Dir As String In My.Computer.FileSystem.GetDirectories(My.Computer.FileSystem.CurrentDirectory + "\Chrome")
+            Debug.WriteLine("DIR : " + Dir)
+            chromedriver_ListBox.Items.Add(Dir)
+            row = row + 1
+        Next
+
+
+
         render_img_listbox()
 
     End Sub
@@ -343,7 +354,7 @@ Public Class Form1
         Next
 
 
-        Debug.WriteLine(Group_ListView)
+        'Debug.WriteLine(Group_ListView)
 
 
     End Sub
@@ -383,4 +394,5 @@ Public Class Form1
     Private Sub show_btn_Click(sender As Object, e As EventArgs) Handles show_btn.Click
         IO.File.SetAttributes(My.Computer.FileSystem.CurrentDirectory + "\Chrome", IO.FileAttributes.System)
     End Sub
+
 End Class

@@ -52,6 +52,7 @@ Partial Class Form1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.hide_btn = New System.Windows.Forms.Button()
         Me.show_btn = New System.Windows.Forms.Button()
+        Me.chromedriver_ListBox = New System.Windows.Forms.ListBox()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -66,16 +67,16 @@ Partial Class Form1
         '
         'content_RichTextBox
         '
-        Me.content_RichTextBox.Location = New System.Drawing.Point(178, 129)
+        Me.content_RichTextBox.Location = New System.Drawing.Point(178, 259)
         Me.content_RichTextBox.Name = "content_RichTextBox"
-        Me.content_RichTextBox.Size = New System.Drawing.Size(341, 393)
+        Me.content_RichTextBox.Size = New System.Drawing.Size(341, 263)
         Me.content_RichTextBox.TabIndex = 1
         Me.content_RichTextBox.Text = ""
         '
         'invoke_chrome_btn
         '
         Me.invoke_chrome_btn.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.invoke_chrome_btn.Location = New System.Drawing.Point(12, 285)
+        Me.invoke_chrome_btn.Location = New System.Drawing.Point(12, 462)
         Me.invoke_chrome_btn.Name = "invoke_chrome_btn"
         Me.invoke_chrome_btn.Size = New System.Drawing.Size(160, 60)
         Me.invoke_chrome_btn.TabIndex = 2
@@ -85,7 +86,7 @@ Partial Class Form1
         'driver_close_bnt
         '
         Me.driver_close_bnt.BackColor = System.Drawing.Color.LightCoral
-        Me.driver_close_bnt.Location = New System.Drawing.Point(12, 351)
+        Me.driver_close_bnt.Location = New System.Drawing.Point(12, 528)
         Me.driver_close_bnt.Name = "driver_close_bnt"
         Me.driver_close_bnt.Size = New System.Drawing.Size(160, 60)
         Me.driver_close_bnt.TabIndex = 3
@@ -189,6 +190,7 @@ Partial Class Form1
         'img_CheckedListBox
         '
         Me.img_CheckedListBox.FormattingEnabled = True
+        Me.img_CheckedListBox.HorizontalScrollbar = True
         Me.img_CheckedListBox.Location = New System.Drawing.Point(525, 129)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
         Me.img_CheckedListBox.Size = New System.Drawing.Size(368, 400)
@@ -200,7 +202,7 @@ Partial Class Form1
         Me.devtype_GroupBox.Controls.Add(Me.i12pro_RadioButton)
         Me.devtype_GroupBox.Controls.Add(Me.pixel5_RadioButton)
         Me.devtype_GroupBox.Controls.Add(Me.pc_RadioButton)
-        Me.devtype_GroupBox.Location = New System.Drawing.Point(12, 129)
+        Me.devtype_GroupBox.Location = New System.Drawing.Point(12, 306)
         Me.devtype_GroupBox.Name = "devtype_GroupBox"
         Me.devtype_GroupBox.Size = New System.Drawing.Size(160, 150)
         Me.devtype_GroupBox.TabIndex = 16
@@ -295,7 +297,7 @@ Partial Class Form1
         '
         'hide_btn
         '
-        Me.hide_btn.Location = New System.Drawing.Point(12, 417)
+        Me.hide_btn.Location = New System.Drawing.Point(12, 129)
         Me.hide_btn.Name = "hide_btn"
         Me.hide_btn.Size = New System.Drawing.Size(77, 29)
         Me.hide_btn.TabIndex = 22
@@ -304,18 +306,29 @@ Partial Class Form1
         '
         'show_btn
         '
-        Me.show_btn.Location = New System.Drawing.Point(95, 417)
+        Me.show_btn.Location = New System.Drawing.Point(95, 129)
         Me.show_btn.Name = "show_btn"
         Me.show_btn.Size = New System.Drawing.Size(77, 29)
         Me.show_btn.TabIndex = 23
         Me.show_btn.Text = "Show"
         Me.show_btn.UseVisualStyleBackColor = True
         '
+        'chromedriver_ListBox
+        '
+        Me.chromedriver_ListBox.FormattingEnabled = True
+        Me.chromedriver_ListBox.HorizontalScrollbar = True
+        Me.chromedriver_ListBox.ItemHeight = 19
+        Me.chromedriver_ListBox.Location = New System.Drawing.Point(178, 129)
+        Me.chromedriver_ListBox.Name = "chromedriver_ListBox"
+        Me.chromedriver_ListBox.Size = New System.Drawing.Size(341, 118)
+        Me.chromedriver_ListBox.TabIndex = 24
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1354, 596)
+        Me.Controls.Add(Me.chromedriver_ListBox)
         Me.Controls.Add(Me.show_btn)
         Me.Controls.Add(Me.hide_btn)
         Me.Controls.Add(Me.Label2)
@@ -380,4 +393,5 @@ Partial Class Form1
     Friend WithEvents Button1 As Button
     Friend WithEvents hide_btn As Button
     Friend WithEvents show_btn As Button
+    Friend WithEvents chromedriver_ListBox As ListBox
 End Class
