@@ -50,6 +50,8 @@ Partial Class Form1
         Me.cursor_y_TextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.hide_btn = New System.Windows.Forms.Button()
+        Me.show_btn = New System.Windows.Forms.Button()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -291,11 +293,31 @@ Partial Class Form1
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "Y:"
         '
+        'hide_btn
+        '
+        Me.hide_btn.Location = New System.Drawing.Point(12, 417)
+        Me.hide_btn.Name = "hide_btn"
+        Me.hide_btn.Size = New System.Drawing.Size(77, 29)
+        Me.hide_btn.TabIndex = 22
+        Me.hide_btn.Text = "Hide"
+        Me.hide_btn.UseVisualStyleBackColor = True
+        '
+        'show_btn
+        '
+        Me.show_btn.Location = New System.Drawing.Point(95, 417)
+        Me.show_btn.Name = "show_btn"
+        Me.show_btn.Size = New System.Drawing.Size(77, 29)
+        Me.show_btn.TabIndex = 23
+        Me.show_btn.Text = "Show"
+        Me.show_btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1354, 596)
+        Me.Controls.Add(Me.show_btn)
+        Me.Controls.Add(Me.hide_btn)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cursor_y_TextBox)
@@ -356,4 +378,6 @@ Partial Class Form1
     Friend WithEvents Label2 As Label
     Friend WithEvents cursor_position_lbl As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents hide_btn As Button
+    Friend WithEvents show_btn As Button
 End Class

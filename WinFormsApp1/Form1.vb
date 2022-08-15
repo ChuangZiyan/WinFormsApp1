@@ -375,4 +375,12 @@ Public Class Form1
 
     End Sub
 
+    Private Sub hide_btn_Click(sender As Object, e As EventArgs) Handles hide_btn.Click
+        MsgBox(My.Computer.FileSystem.CurrentDirectory)
+        IO.File.SetAttributes(My.Computer.FileSystem.CurrentDirectory + "\Chrome", IO.FileAttributes.Hidden)
+    End Sub
+
+    Private Sub show_btn_Click(sender As Object, e As EventArgs) Handles show_btn.Click
+        IO.File.SetAttributes(My.Computer.FileSystem.CurrentDirectory + "\Chrome", IO.FileAttributes.System)
+    End Sub
 End Class
