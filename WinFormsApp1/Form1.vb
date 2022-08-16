@@ -283,7 +283,6 @@ Public Class Form1
 
 
 
-
     Private Sub Reply_comment_bnt_Click(sender As Object, e As EventArgs) Handles reply_comment_bnt.Click
         Dim str_arr() As String = content_RichTextBox.Text.Split(vbLf)
         Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
@@ -306,12 +305,15 @@ Public Class Form1
         Group_ListView.Columns.Add("URL", 800)
 
 
-
-        Dim row = 0
         For Each Dir As String In My.Computer.FileSystem.GetDirectories(My.Computer.FileSystem.CurrentDirectory + "\Chrome")
-            Debug.WriteLine("DIR : " + Dir)
-            chromedriver_ListBox.Items.Add(Dir)
-            row = row + 1
+            'Debug.WriteLine("DIR : " + Dir)
+            'chromedriver_ListBox.Items.Add(Dir + "\X64\chromedriver.exe")
+            For Each driver_dir As String In My.Computer.FileSystem.GetDirectories(Dir)
+                'Debug.WriteLine(driver_dir)
+                chromedriver_ListBox.Items.Add(driver_dir + "\chromedriver.exe")
+
+            Next
+
         Next
 
 
