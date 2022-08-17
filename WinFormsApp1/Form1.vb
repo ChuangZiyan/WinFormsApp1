@@ -395,4 +395,26 @@ Public Class Form1
         IO.File.SetAttributes(My.Computer.FileSystem.CurrentDirectory + "\Chrome", IO.FileAttributes.System)
     End Sub
 
+    Private Sub crawl_post_btn_Click(sender As Object, e As EventArgs) Handles crawl_post_btn.Click
+        Dim driverManager = New DriverManager()
+        driverManager.SetUpDriver(New ChromeConfig())
+
+
+        Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
+        serv.HideCommandPromptWindow = True 'hide cmd
+
+        Dim options = New Chrome.ChromeOptions()
+        options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--headless")
+
+        chromeDriver = New ChromeDriver(serv, options)
+        Thread.Sleep(1000)
+        chromeDriver.Navigate.GoToUrl(target_url_TextBox.Text)
+        Thread.Sleep(1000)
+
+        Dim content As String = chromeDriver.FindElement(By.CssSelector("._5_jv._58jw > p")).GetAttribute("innerHTML")
+
+        content_RichTextBox.Text = content
+        chromeDriver.Quit()
+
+    End Sub
 End Class

@@ -53,6 +53,7 @@ Partial Class Form1
         Me.hide_btn = New System.Windows.Forms.Button()
         Me.show_btn = New System.Windows.Forms.Button()
         Me.chromedriver_ListBox = New System.Windows.Forms.ListBox()
+        Me.crawl_post_btn = New System.Windows.Forms.Button()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -60,7 +61,7 @@ Partial Class Form1
         '
         Me.write_a_post_btn.Location = New System.Drawing.Point(178, 528)
         Me.write_a_post_btn.Name = "write_a_post_btn"
-        Me.write_a_post_btn.Size = New System.Drawing.Size(160, 60)
+        Me.write_a_post_btn.Size = New System.Drawing.Size(100, 60)
         Me.write_a_post_btn.TabIndex = 0
         Me.write_a_post_btn.Text = "Write a post"
         Me.write_a_post_btn.UseVisualStyleBackColor = True
@@ -95,9 +96,9 @@ Partial Class Form1
         '
         'reply_comment_bnt
         '
-        Me.reply_comment_bnt.Location = New System.Drawing.Point(359, 528)
+        Me.reply_comment_bnt.Location = New System.Drawing.Point(284, 528)
         Me.reply_comment_bnt.Name = "reply_comment_bnt"
-        Me.reply_comment_bnt.Size = New System.Drawing.Size(160, 60)
+        Me.reply_comment_bnt.Size = New System.Drawing.Size(108, 60)
         Me.reply_comment_bnt.TabIndex = 4
         Me.reply_comment_bnt.Text = "Reply comment"
         Me.reply_comment_bnt.UseVisualStyleBackColor = True
@@ -323,11 +324,22 @@ Partial Class Form1
         Me.chromedriver_ListBox.Size = New System.Drawing.Size(341, 118)
         Me.chromedriver_ListBox.TabIndex = 24
         '
+        'crawl_post_btn
+        '
+        Me.crawl_post_btn.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.crawl_post_btn.Location = New System.Drawing.Point(398, 528)
+        Me.crawl_post_btn.Name = "crawl_post_btn"
+        Me.crawl_post_btn.Size = New System.Drawing.Size(121, 60)
+        Me.crawl_post_btn.TabIndex = 25
+        Me.crawl_post_btn.Text = "Crawl post"
+        Me.crawl_post_btn.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1354, 596)
+        Me.Controls.Add(Me.crawl_post_btn)
         Me.Controls.Add(Me.chromedriver_ListBox)
         Me.Controls.Add(Me.show_btn)
         Me.Controls.Add(Me.hide_btn)
@@ -394,4 +406,5 @@ Partial Class Form1
     Friend WithEvents hide_btn As Button
     Friend WithEvents show_btn As Button
     Friend WithEvents chromedriver_ListBox As ListBox
+    Friend WithEvents crawl_post_btn As Button
 End Class
