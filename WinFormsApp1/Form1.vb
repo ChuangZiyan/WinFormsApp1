@@ -45,8 +45,6 @@ Public Class Form1
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
 
-
-
         If pc_RadioButton.Checked = False Then
             Dim dev_model As String = ""
             If pixel5_RadioButton.Checked Then
@@ -72,13 +70,13 @@ Public Class Form1
         'chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/?hl=zh_TW")
 
 
-        'Thread.Sleep(1000)
-        'chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
-        'Thread.Sleep(500)
-        'chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-        'Thread.Sleep(500)
-        'chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
-        'Thread.Sleep(1000)
+        Thread.Sleep(1000)
+        chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
+        Thread.Sleep(500)
+        chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
+        Thread.Sleep(500)
+        chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
+        Thread.Sleep(1000)
 
 
 
@@ -419,4 +417,40 @@ Public Class Form1
         chromeDriver.Quit()
 
     End Sub
+
+    Private Sub block_user_btn_Click(sender As Object, e As EventArgs) Handles block_user_btn.Click
+
+        Dim mytabs = chromeDriver.WindowHandles
+
+        For Each mytab In mytabs
+            'Debug.WriteLine("tab:" & mytab)
+            chromeDriver.SwitchTo.Window(mytab)
+            Thread.Sleep(1000)
+            click_by_aria_label("查看選項")
+            Thread.Sleep(500)
+            click_by_span_text("封鎖")
+            Thread.Sleep(500)
+            'submit
+            'click_by_aria_label("確認")
+
+        Next
+
+    End Sub
+
+    Private Sub click_by_aria_label(str As String)
+        Try
+            chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + str + "']")).Click()
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
+    Private Sub click_by_span_text(str As String)
+        Try
+            chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Sub
+
 End Class

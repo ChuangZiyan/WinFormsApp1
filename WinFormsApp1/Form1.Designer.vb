@@ -54,6 +54,7 @@ Partial Class Form1
         Me.show_btn = New System.Windows.Forms.Button()
         Me.chromedriver_ListBox = New System.Windows.Forms.ListBox()
         Me.crawl_post_btn = New System.Windows.Forms.Button()
+        Me.block_user_btn = New System.Windows.Forms.Button()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -334,11 +335,21 @@ Partial Class Form1
         Me.crawl_post_btn.Text = "Crawl post"
         Me.crawl_post_btn.UseVisualStyleBackColor = False
         '
+        'block_user_btn
+        '
+        Me.block_user_btn.Location = New System.Drawing.Point(12, 164)
+        Me.block_user_btn.Name = "block_user_btn"
+        Me.block_user_btn.Size = New System.Drawing.Size(77, 28)
+        Me.block_user_btn.TabIndex = 26
+        Me.block_user_btn.Text = "BlkUsr"
+        Me.block_user_btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1354, 596)
+        Me.Controls.Add(Me.block_user_btn)
         Me.Controls.Add(Me.crawl_post_btn)
         Me.Controls.Add(Me.chromedriver_ListBox)
         Me.Controls.Add(Me.show_btn)
@@ -407,4 +418,5 @@ Partial Class Form1
     Friend WithEvents show_btn As Button
     Friend WithEvents chromedriver_ListBox As ListBox
     Friend WithEvents crawl_post_btn As Button
+    Friend WithEvents block_user_btn As Button
 End Class
