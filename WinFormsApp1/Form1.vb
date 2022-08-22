@@ -112,10 +112,16 @@ Public Class Form1
         If myURL.Contains("groups") Then ' If post in group
             chromeDriver.Navigate.GoToUrl(myURL)
             Thread.Sleep(3000)
-            chromeDriver.FindElement(By.XPath("//span[contains(text(),'留個言吧……')]")).Click()
+            'chromeDriver.FindElement(By.XPath("//span[contains(text(),'留個言吧……')]")).Click()
+            click_by_span_text("相片／影片")
+
             Thread.Sleep(2000)
             'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.fwlpnqze.r5g9zsuq.b0eko5f3.q46jt4gp.p9ctufpz.rj0o91l8.sl27f92c.alzwoclg.bdao358l.jgcidaqu.ta68dy8c.kpwa50dg.m0cukt09.h8391g91.qykh3frn.i0v5kuzt.lkznwk7v.gxnvzty1.k0kqjr44.i85zmo3j > div.alzwoclg > div:nth-child(1) > input"))
-            Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
+            'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
+
+
+            Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input"))
+
             upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
             Thread.Sleep(1000)
             chromeDriver.FindElement(By.CssSelector("._1mf._1mj")).SendKeys(content_RichTextBox.Text)
