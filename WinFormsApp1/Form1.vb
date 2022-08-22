@@ -90,39 +90,14 @@ Public Class Form1
         Dim myURL As String = target_url_TextBox.Text
 
         Dim js_code As String = "document.querySelector(""._1mf._1mj > Span "").innerHTML = ""123"" "
-        Dim img_path_str As String = ""
-
-
-        'get selected img path into string 
-        If img_CheckedListBox.CheckedItems.Count <> 0 Then
-            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
-                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
-                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
-                If img_path_str = "" Then
-                    img_path_str = img_CheckedListBox.Items(i).ToString
-                Else
-                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
-                End If
-
-            Next
-        End If
-
 
 
         If myURL.Contains("groups") Then ' If post in group
             chromeDriver.Navigate.GoToUrl(myURL)
-            Thread.Sleep(3000)
-            'chromeDriver.FindElement(By.XPath("//span[contains(text(),'留個言吧……')]")).Click()
-            click_by_span_text("相片／影片")
-
-            Thread.Sleep(2000)
-            'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.fwlpnqze.r5g9zsuq.b0eko5f3.q46jt4gp.p9ctufpz.rj0o91l8.sl27f92c.alzwoclg.bdao358l.jgcidaqu.ta68dy8c.kpwa50dg.m0cukt09.h8391g91.qykh3frn.i0v5kuzt.lkznwk7v.gxnvzty1.k0kqjr44.i85zmo3j > div.alzwoclg > div:nth-child(1) > input"))
-            'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
 
 
-            Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input"))
-
-            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+            Thread.Sleep(1000)
+            Tring_to_upload_img()
             Thread.Sleep(1000)
             chromeDriver.FindElement(By.CssSelector("._1mf._1mj")).SendKeys(content_RichTextBox.Text)
             'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
@@ -163,7 +138,7 @@ Public Class Form1
 
 
             'Debug.WriteLine(img_path_str)
-            img_upload_input.SendKeys(img_path_str)
+            'img_upload_input.SendKeys(img_path_str)
 
             '### submit post ###
             'chromeDriver.FindElement(By.CssSelector("div.k4urcfbm.discj3wi.dati1w0a.hv4rvrfc.i1fnvgqd.j83agx80.rq0escxv.bp9cbjyn > input")).Click()
@@ -173,6 +148,50 @@ Public Class Form1
 
 
     End Sub
+
+    Private Sub Tring_to_upload_img()
+        Dim img_path_str As String = ""
+
+        'get selected img path into string 
+        If img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
+                If img_path_str = "" Then
+                    img_path_str = img_CheckedListBox.Items(i).ToString
+                Else
+                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
+                End If
+
+            Next
+        End If
+
+        click_by_span_text("留個言吧……")
+        Thread.Sleep(2000)
+
+        Dim ele1 = IsElementPresent("div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input")
+        Dim ele2 = IsElementPresent("#toolbarLabel + div > div > input")
+
+        If ele1 = False AndAlso ele2 = False Then
+            click_by_aria_label("相片／影片")
+        End If
+
+        Thread.Sleep(2000)
+        'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.fwlpnqze.r5g9zsuq.b0eko5f3.q46jt4gp.p9ctufpz.rj0o91l8.sl27f92c.alzwoclg.bdao358l.jgcidaqu.ta68dy8c.kpwa50dg.m0cukt09.h8391g91.qykh3frn.i0v5kuzt.lkznwk7v.gxnvzty1.k0kqjr44.i85zmo3j > div.alzwoclg > div:nth-child(1) > input"))
+        'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
+        Dim upload_img_input As Object
+
+        If IsElementPresent("div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input") Then
+            upload_img_input = chromeDriver.FindElement(By.CssSelector("div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input"))
+            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+        Else
+            upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
+            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+        End If
+
+
+    End Sub
+
 
     Private Sub Get_Groups_Click(sender As Object, e As EventArgs) Handles get_groups_btn.Click
 
@@ -461,5 +480,15 @@ Public Class Form1
             Debug.WriteLine(ex)
         End Try
     End Sub
+
+    Function IsElementPresent(locatorKey As String) As Boolean
+        Try
+            chromeDriver.FindElement(By.CssSelector(locatorKey))
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 
 End Class
