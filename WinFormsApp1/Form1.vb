@@ -8,6 +8,8 @@ Imports OpenQA.Selenium.Interactions
 Imports WebDriverManager
 Imports WebDriverManager.DriverConfigs
 Imports WebDriverManager.DriverConfigs.Impl
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Public Class Form1
 
@@ -20,6 +22,8 @@ Public Class Form1
 
     Dim cursor_x As Integer = 0
     Dim cursor_y As Integer = 0
+
+    Dim css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
 
     'Dim webDriverWait As WebDriverWait
@@ -88,16 +92,33 @@ Public Class Form1
         'Dim postURL As String = "https://www.facebook.com/groups/737807930865755/posts/737820730864475?comment_id=737820784197803"
         'Dim postURL As String = "https://www.facebook.com/ETtoday/posts/pfbid0Z9CFxwaXaUKQLEUtRMU8aqHomsBiygPgLcqzFXnDYoE8eJ9Qu4ZY9yCvK8tAwzbol?comment_id=608850700553438"
         Dim myURL As String = target_url_TextBox.Text
+        Dim img_path_str As String = ""
+        chromeDriver.Navigate.GoToUrl(myURL)
+        'get selected img path into string 
+        If img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
+                If img_path_str = "" Then
+                    img_path_str = img_CheckedListBox.Items(i).ToString
+                Else
+                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
+                End If
 
-        Dim js_code As String = "document.querySelector(""._1mf._1mj > Span "").innerHTML = ""123"" "
+            Next
+        End If
 
+        'Dim js_code As String = "document.querySelector(""._1mf._1mj > Span "").innerHTML = ""123"" "
 
         If myURL.Contains("groups") Then ' If post in group
-            chromeDriver.Navigate.GoToUrl(myURL)
-
-
+            'chromeDriver.Navigate.GoToUrl(myURL)
             Thread.Sleep(1000)
-            Tring_to_upload_img()
+            click_by_span_text("留個言吧……")
+
+            If img_path_str <> "" Then
+                Tring_to_upload_img(img_path_str)
+            End If
+
             Thread.Sleep(1000)
             chromeDriver.FindElement(By.CssSelector("._1mf._1mj")).SendKeys(content_RichTextBox.Text)
             'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
@@ -113,32 +134,26 @@ Public Class Form1
             'btn_eles.ElementAt(1).Click()
             Dim fail_over = False
             Dim msgbox_ele As Object
-            chromeDriver.FindElement(By.XPath("//span[contains(text(),'相片／影片')]")).Click()
+
+            click_by_span_text("相片／影片")
             Thread.Sleep(2000)
-            Try
-                'msgbox_ele = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
-                msgbox_ele.SendKeys(content_RichTextBox.Text)
-            Catch ex As Exception
-                fail_over = True
-            End Try
 
-            If fail_over Then
-                'msgbox_ele = chromeDriver.FindElement(By.CssSelector(".oo9gr5id.lzcic4wl.l9j0dhe7.gsox5hk5.rq0escxv.a8c37x1j.datstx6m.k4urcfbm.notranslate"))
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
-                msgbox_ele.SendKeys(content_RichTextBox.Text)
+            msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
+            msgbox_ele.SendKeys(content_RichTextBox.Text)
 
-            End If
+
             Thread.Sleep(1000)
-            'Dim img_upload_input = chromeDriver.FindElement(By.CssSelector("div.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.dflh9lhu.scb9dxdr.aahdfvyu.tvmbv18p.gbw9n0fl.fneq0qzw > input"))
+            Dim img_upload_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("homepage_post_img_input")))
 
-            Dim img_upload_input = chromeDriver.FindElement(By.CssSelector("div.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.dflh9lhu.scb9dxdr.aahdfvyu.tvmbv18p.gbw9n0fl.fneq0qzw > input"))
+            'Dim img_upload_input = chromeDriver.FindElement(By.CssSelector("div.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.dflh9lhu.scb9dxdr.aahdfvyu.tvmbv18p.gbw9n0fl.fneq0qzw > input"))
             'imgupload_ele.SendKeys("C:\Users\Yan\Desktop\testimg.png")
             'img_upload_input.SendKeys("C:\Users\Yan\Desktop\testimg.png")
 
-
             'Debug.WriteLine(img_path_str)
-            'img_upload_input.SendKeys(img_path_str)
+            If img_path_str <> "" Then
+                img_upload_input.SendKeys(img_path_str)
+            End If
+
 
             '### submit post ###
             'chromeDriver.FindElement(By.CssSelector("div.k4urcfbm.discj3wi.dati1w0a.hv4rvrfc.i1fnvgqd.j83agx80.rq0escxv.bp9cbjyn > input")).Click()
@@ -149,28 +164,17 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Tring_to_upload_img()
-        Dim img_path_str As String = ""
+    Private Sub Tring_to_upload_img(img_path_str)
 
-        'get selected img path into string 
-        If img_CheckedListBox.CheckedItems.Count <> 0 Then
-            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
-                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
-                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
-                If img_path_str = "" Then
-                    img_path_str = img_CheckedListBox.Items(i).ToString
-                Else
-                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
-                End If
 
-            Next
-        End If
 
-        click_by_span_text("留個言吧……")
         Thread.Sleep(2000)
 
-        Dim ele1 = IsElementPresent("div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input")
-        Dim ele2 = IsElementPresent("#toolbarLabel + div > div > input")
+        Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
+        Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
+
+        Debug.WriteLine(ele1)
+        Debug.WriteLine(ele2)
 
         If ele1 = False AndAlso ele2 = False Then
             click_by_aria_label("相片／影片")
@@ -181,11 +185,11 @@ Public Class Form1
         'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
         Dim upload_img_input As Object
 
-        If IsElementPresent("div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input") Then
-            upload_img_input = chromeDriver.FindElement(By.CssSelector("div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input"))
+        If IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString) Then
+            upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
             upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
         Else
-            upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
+            upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
             upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
         End If
 
@@ -342,7 +346,12 @@ Public Class Form1
 
         Next
 
+        Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
+        Debug.WriteLine(css_selector_config)
 
+        css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
+
+        Debug.WriteLine(css_selector_config_obj.Item("group_post_img_input_1").ToString)
 
         render_img_listbox()
 
@@ -486,6 +495,7 @@ Public Class Form1
             chromeDriver.FindElement(By.CssSelector(locatorKey))
             Return True
         Catch ex As Exception
+            'Debug.WriteLine(ex)
             Return False
         End Try
     End Function
