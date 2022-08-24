@@ -108,8 +108,6 @@ Public Class Form1
             Next
         End If
 
-        'Dim js_code As String = "document.querySelector(""._1mf._1mj > Span "").innerHTML = ""123"" "
-
         If myURL.Contains("groups") Then ' If post in group
             'chromeDriver.Navigate.GoToUrl(myURL)
             Thread.Sleep(1000)
@@ -120,7 +118,8 @@ Public Class Form1
             End If
 
             Thread.Sleep(1000)
-            chromeDriver.FindElement(By.CssSelector("._1mf._1mj")).SendKeys(content_RichTextBox.Text)
+            'chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......'] > div > div > div")).SendKeys(content_RichTextBox.Text)
+            chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']")).SendKeys(content_RichTextBox.Text)
             'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
 
             Thread.Sleep(500)
@@ -314,8 +313,12 @@ Public Class Form1
 
 
     Private Sub Reply_comment_bnt_Click(sender As Object, e As EventArgs) Handles reply_comment_bnt.Click
+
+        chromeDriver.Navigate.GoToUrl(target_url_TextBox.Text)
+        Thread.Sleep(1000)
+
         Dim str_arr() As String = content_RichTextBox.Text.Split(vbLf)
-        Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
+        Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
         For Each line As String In str_arr
             line = line.Replace(vbCr, "").Replace(vbLf, "")
             msgbox_ele.SendKeys(line)
@@ -323,6 +326,13 @@ Public Class Form1
             msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
             Thread.Sleep(100)
         Next
+
+        If img_CheckedListBox.CheckedItems.Count <> 0 Then
+            Debug.WriteLine(img_CheckedListBox.Items(0).ToString())
+            Dim comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("replay_comment_img_input")))
+            comment_img_input.SendKeys(img_CheckedListBox.Items(0).ToString())
+        End If
+
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load

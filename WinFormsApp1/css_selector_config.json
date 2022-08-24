@@ -1,5 +1,6 @@
 {
 	"group_post_img_input_1": "div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input",
 	"group_post_img_input_2": "#toolbarLabel + div > div > input",
-	"homepage_post_img_input": "div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input"
+	"homepage_post_img_input": "div.om3e55n1.g4tp4svg.bdao358l.alzwoclg.cqf1kptm.gvxzyvdx.thmcm15y.cgu29s5g.i15ihif8.dnr7xe2t.q46jt4gp.r5g9zsuq > div > div:nth-child(1) > input",
+	"replay_comment_img_input": "div.r5g9zsuq.fwlpnqze.d2hqwtrz > div > div.jg3vgc78.cgu29s5g.lq84ybu9.hf30pyar.oxkhqvkx > div:nth-child(1) > form > div > div > div.pmpvxvll.e9r0l795 > ul > li:nth-child(3) > input"
 }
