@@ -118,8 +118,9 @@ Public Class Form1
             End If
 
             Thread.Sleep(1000)
+            Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
             'chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......'] > div > div > div")).SendKeys(content_RichTextBox.Text)
-            chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']")).SendKeys(content_RichTextBox.Text)
+            msgbox_ele.SendKeys(content_RichTextBox.Text)
             'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
 
             Thread.Sleep(500)
@@ -515,5 +516,9 @@ Public Class Form1
         End Try
     End Function
 
-
+    Private Sub clr_post_btn_Click(sender As Object, e As EventArgs) Handles clr_post_btn.Click
+        Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
+        msgbox_ele.SendKeys(Keys.LeftControl + "a")
+        msgbox_ele.SendKeys(Keys.Delete)
+    End Sub
 End Class
