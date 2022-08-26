@@ -385,6 +385,11 @@ Public Class Form1
             If curr_url_TextBox.Text <> chromeDriver.Url Then
                 curr_url_TextBox.Text = chromeDriver.Url
             End If
+
+            If chromeDriver.Url.Contains("groups") AndAlso IsElementPresent(css_selector_config_obj.Item("group_name_a")) Then
+                group_name_TextBox.Text = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_name_a"))).GetAttribute("innerHTML")
+            End If
+
         Catch ex As System.NullReferenceException
             Debug.WriteLine(ex)
         End Try

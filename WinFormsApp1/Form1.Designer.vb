@@ -55,6 +55,8 @@ Partial Class Form1
         Me.chromedriver_ListBox = New System.Windows.Forms.ListBox()
         Me.crawl_post_btn = New System.Windows.Forms.Button()
         Me.block_user_btn = New System.Windows.Forms.Button()
+        Me.group_name_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -344,11 +346,30 @@ Partial Class Form1
         Me.block_user_btn.Text = "BlkUsr"
         Me.block_user_btn.UseVisualStyleBackColor = True
         '
+        'group_name_TextBox
+        '
+        Me.group_name_TextBox.Location = New System.Drawing.Point(629, 24)
+        Me.group_name_TextBox.Name = "group_name_TextBox"
+        Me.group_name_TextBox.ReadOnly = True
+        Me.group_name_TextBox.Size = New System.Drawing.Size(264, 27)
+        Me.group_name_TextBox.TabIndex = 27
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(525, 24)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(98, 19)
+        Me.Label3.TabIndex = 28
+        Me.Label3.Text = "GroupName:"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1354, 596)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.group_name_TextBox)
         Me.Controls.Add(Me.block_user_btn)
         Me.Controls.Add(Me.crawl_post_btn)
         Me.Controls.Add(Me.chromedriver_ListBox)
@@ -419,4 +440,6 @@ Partial Class Form1
     Friend WithEvents chromedriver_ListBox As ListBox
     Friend WithEvents crawl_post_btn As Button
     Friend WithEvents block_user_btn As Button
+    Friend WithEvents group_name_TextBox As TextBox
+    Friend WithEvents Label3 As Label
 End Class
