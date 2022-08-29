@@ -24,6 +24,7 @@ Public Class Form1
     Dim cursor_y As Integer = 0
 
     Dim css_selector_config_obj As Newtonsoft.Json.Linq.JObject
+    Dim m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
 
     'Dim webDriverWait As WebDriverWait
@@ -246,19 +247,20 @@ Public Class Form1
         Dim pre_counter As Integer = 0
 
         While True 'Scroll to the bottom
-            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector(".h3z9dlai.ld7irhx5.pbevjfx6.igjjae4c")).Count
+
+            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector(m_css_selector_config_obj.Item("mng_group_name_classes"))).Count
             If my_counter = pre_counter Then
                 Exit While
             End If
             chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
             pre_counter = my_counter
-            Thread.Sleep(1000)
+
         End While
 
 
         'Get manage groups and add to the listview
-        Dim mng_group_name_classes = chromeDriver.FindElements(By.CssSelector(".h3z9dlai.ld7irhx5.pbevjfx6.igjjae4c"))
-        Dim mng_group_url_classes = chromeDriver.FindElements(By.CssSelector("div > div > div > div > div._2pip > div > a"))
+        Dim mng_group_name_classes = chromeDriver.FindElements(By.CssSelector(m_css_selector_config_obj.Item("mng_group_name_classes")))
+        Dim mng_group_url_classes = chromeDriver.FindElements(By.CssSelector(m_css_selector_config_obj.Item("mng_group_url_classes")))
         For i As Integer = 0 To mng_group_name_classes.Count - 1
             'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
             Group_ListView.Items.Add(mng_group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
@@ -358,11 +360,15 @@ Public Class Form1
         Next
 
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
-        Debug.WriteLine(css_selector_config)
-
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
 
-        Debug.WriteLine(css_selector_config_obj.Item("group_post_img_input_1").ToString)
+
+        Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
+        m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
+
+
+
+
 
         render_img_listbox()
 
