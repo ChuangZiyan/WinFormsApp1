@@ -2,6 +2,8 @@
 Imports System.Threading
 Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Chrome
+Imports OpenQA.Selenium.Edge
+Imports OpenQA.Selenium.Firefox
 Imports OpenQA.Selenium.Support.Extensions
 Imports OpenQA.Selenium.Support.UI
 Imports OpenQA.Selenium.Interactions
@@ -29,17 +31,27 @@ Public Class Form1
 
     'Dim webDriverWait As WebDriverWait
 
+    Private Sub Invoke_edge_Click(sender As Object, e As EventArgs) Handles invoke_edge.Click
+        Dim driverManager = New DriverManager()
+        driverManager.SetUpDriver(New EdgeConfig())
+        Dim edgeDrvier = New EdgeDriver()
+        edgeDrvier.Navigate.GoToUrl("https://tw.yahoo.com/")
+        Thread.Sleep(3000)
+        edgeDrvier.Quit()
+
+    End Sub
+
+    Private Sub invoke_firefox_Click(sender As Object, e As EventArgs) Handles invoke_firefox.Click
+        Dim driverManager = New DriverManager()
+        driverManager.SetUpDriver(New FirefoxConfig())
+        Dim firefoxDriver = New FirefoxDriver()
+        firefoxDriver.Navigate.GoToUrl("https://tw.yahoo.com/")
+        Thread.Sleep(3000)
+        firefoxDriver.Quit()
+    End Sub
+
 
     Private Sub Invoke_Chrome_btn_Click(sender As Object, e As EventArgs) Handles invoke_chrome_btn.Click
-
-        'Try
-        'Dim url = chromeDriver.Url
-        'MsgBox("chrome A already exist")
-        'Exit Sub
-        'Catch ex As Exception
-        'Debug.WriteLine(ex)
-        'End Try
-
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New ChromeConfig())
 
@@ -527,4 +539,5 @@ Public Class Form1
         msgbox_ele.SendKeys(Keys.LeftControl + "a")
         msgbox_ele.SendKeys(Keys.Delete)
     End Sub
+
 End Class

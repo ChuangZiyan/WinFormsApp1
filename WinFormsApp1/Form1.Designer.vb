@@ -58,6 +58,8 @@ Partial Class Form1
         Me.clr_post_btn = New System.Windows.Forms.Button()
         Me.group_name_TextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.invoke_edge = New System.Windows.Forms.Button()
+        Me.invoke_firefox = New System.Windows.Forms.Button()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -347,6 +349,16 @@ Partial Class Form1
         Me.block_user_btn.Text = "BlkUsr"
         Me.block_user_btn.UseVisualStyleBackColor = True
         '
+        'clr_post_btn
+        '
+        Me.clr_post_btn.ForeColor = System.Drawing.Color.Black
+        Me.clr_post_btn.Location = New System.Drawing.Point(12, 259)
+        Me.clr_post_btn.Name = "clr_post_btn"
+        Me.clr_post_btn.Size = New System.Drawing.Size(160, 29)
+        Me.clr_post_btn.TabIndex = 27
+        Me.clr_post_btn.Text = "Clear"
+        Me.clr_post_btn.UseVisualStyleBackColor = True
+        '
         'group_name_TextBox
         '
         Me.group_name_TextBox.Location = New System.Drawing.Point(629, 24)
@@ -364,21 +376,31 @@ Partial Class Form1
         Me.Label3.TabIndex = 28
         Me.Label3.Text = "GroupName:"
         '
-        'clr_post_btn
+        'invoke_edge
         '
-        Me.clr_post_btn.ForeColor = System.Drawing.Color.Black
-        Me.clr_post_btn.Location = New System.Drawing.Point(12, 259)
-        Me.clr_post_btn.Name = "clr_post_btn"
-        Me.clr_post_btn.Size = New System.Drawing.Size(160, 29)
-        Me.clr_post_btn.TabIndex = 27
-        Me.clr_post_btn.Text = "Clear"
-        Me.clr_post_btn.UseVisualStyleBackColor = True
+        Me.invoke_edge.Location = New System.Drawing.Point(12, 594)
+        Me.invoke_edge.Name = "invoke_edge"
+        Me.invoke_edge.Size = New System.Drawing.Size(77, 38)
+        Me.invoke_edge.TabIndex = 29
+        Me.invoke_edge.Text = "Edge"
+        Me.invoke_edge.UseVisualStyleBackColor = True
+        '
+        'invoke_firefox
+        '
+        Me.invoke_firefox.Location = New System.Drawing.Point(95, 594)
+        Me.invoke_firefox.Name = "invoke_firefox"
+        Me.invoke_firefox.Size = New System.Drawing.Size(77, 38)
+        Me.invoke_firefox.TabIndex = 30
+        Me.invoke_firefox.Text = "Firefox"
+        Me.invoke_firefox.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1354, 596)
+        Me.ClientSize = New System.Drawing.Size(1354, 684)
+        Me.Controls.Add(Me.invoke_firefox)
+        Me.Controls.Add(Me.invoke_edge)
         Me.Controls.Add(Me.clr_post_btn)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.group_name_TextBox)
@@ -455,4 +477,6 @@ Partial Class Form1
     Friend WithEvents clr_post_btn As Button
     Friend WithEvents group_name_TextBox As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents invoke_edge As Button
+    Friend WithEvents invoke_firefox As Button
 End Class
