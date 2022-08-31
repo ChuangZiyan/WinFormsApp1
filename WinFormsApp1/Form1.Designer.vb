@@ -60,6 +60,7 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.invoke_edge = New System.Windows.Forms.Button()
         Me.invoke_firefox = New System.Windows.Forms.Button()
+        Me.show_log_btn = New System.Windows.Forms.Button()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -394,11 +395,22 @@ Partial Class Form1
         Me.invoke_firefox.Text = "Firefox"
         Me.invoke_firefox.UseVisualStyleBackColor = True
         '
+        'show_log_btn
+        '
+        Me.show_log_btn.BackColor = System.Drawing.SystemColors.Info
+        Me.show_log_btn.Location = New System.Drawing.Point(12, 219)
+        Me.show_log_btn.Name = "show_log_btn"
+        Me.show_log_btn.Size = New System.Drawing.Size(160, 28)
+        Me.show_log_btn.TabIndex = 31
+        Me.show_log_btn.Text = "Show Logs"
+        Me.show_log_btn.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1354, 684)
+        Me.Controls.Add(Me.show_log_btn)
         Me.Controls.Add(Me.invoke_firefox)
         Me.Controls.Add(Me.invoke_edge)
         Me.Controls.Add(Me.clr_post_btn)
@@ -432,7 +444,7 @@ Partial Class Form1
         Me.Controls.Add(Me.content_RichTextBox)
         Me.Controls.Add(Me.write_a_post_btn)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Main Form"
         Me.devtype_GroupBox.ResumeLayout(False)
         Me.devtype_GroupBox.PerformLayout()
         Me.ResumeLayout(False)
@@ -479,4 +491,5 @@ Partial Class Form1
     Friend WithEvents Label3 As Label
     Friend WithEvents invoke_edge As Button
     Friend WithEvents invoke_firefox As Button
+    Friend WithEvents show_log_btn As Button
 End Class

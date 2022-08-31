@@ -29,6 +29,7 @@ Public Class Form1
     Dim m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
 
+
     'Dim webDriverWait As WebDriverWait
 
     Private Sub Invoke_edge_Click(sender As Object, e As EventArgs) Handles invoke_edge.Click
@@ -540,4 +541,7 @@ Public Class Form1
         msgbox_ele.SendKeys(Keys.Delete)
     End Sub
 
+    Private Sub show_log_btn_Click(sender As Object, e As EventArgs) Handles show_log_btn.Click
+        Form2.Visible = True
+    End Sub
 End Class
