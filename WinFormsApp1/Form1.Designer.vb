@@ -61,6 +61,7 @@ Partial Class Form1
         Me.invoke_edge = New System.Windows.Forms.Button()
         Me.invoke_firefox = New System.Windows.Forms.Button()
         Me.show_log_btn = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -405,11 +406,21 @@ Partial Class Form1
         Me.show_log_btn.Text = "Show Logs"
         Me.show_log_btn.UseVisualStyleBackColor = False
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(797, 73)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(94, 29)
+        Me.Button2.TabIndex = 32
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1354, 684)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.show_log_btn)
         Me.Controls.Add(Me.invoke_firefox)
         Me.Controls.Add(Me.invoke_edge)
@@ -492,4 +503,5 @@ Partial Class Form1
     Friend WithEvents invoke_edge As Button
     Friend WithEvents invoke_firefox As Button
     Friend WithEvents show_log_btn As Button
+    Friend WithEvents Button2 As Button
 End Class

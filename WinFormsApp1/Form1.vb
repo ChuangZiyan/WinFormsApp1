@@ -108,6 +108,7 @@ Public Class Form1
         Dim myURL As String = target_url_TextBox.Text
         Dim img_path_str As String = ""
         chromeDriver.Navigate.GoToUrl(myURL)
+        write_log("Post to " + myURL)
         'get selected img path into string 
         If img_CheckedListBox.CheckedItems.Count <> 0 Then
             For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
@@ -125,16 +126,25 @@ Public Class Form1
         If myURL.Contains("groups") Then ' If post in group
             'chromeDriver.Navigate.GoToUrl(myURL)
             Thread.Sleep(1000)
-            click_by_span_text("留個言吧……")
-
+            If click_by_span_text("留個言吧……") = False Then
+                Exit Sub
+            End If
             If img_path_str <> "" Then
                 Tring_to_upload_img(img_path_str)
             End If
 
             Thread.Sleep(1000)
-            Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
+            Try
+                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
+                msgbox_ele.SendKeys(content_RichTextBox.Text)
+                write_log("Success : sendkey to div[aria-label$='留個言吧......']")
+            Catch ex As Exception
+                write_log("Fail : sendkey to div[aria-label$='留個言吧......']")
+                Exit Sub
+            End Try
+
             'chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......'] > div > div > div")).SendKeys(content_RichTextBox.Text)
-            msgbox_ele.SendKeys(content_RichTextBox.Text)
+
             'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
 
             Thread.Sleep(500)
@@ -149,12 +159,19 @@ Public Class Form1
             Dim fail_over = False
             Dim msgbox_ele As Object
 
-            click_by_span_text("相片／影片")
+            If click_by_span_text("相片／影片") = False Then
+                Exit Sub
+            End If
             Thread.Sleep(2000)
 
-            msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
-            msgbox_ele.SendKeys(content_RichTextBox.Text)
-
+            Try
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
+                msgbox_ele.SendKeys(content_RichTextBox.Text)
+                write_log("Success : sendkey to div[aria-label$='在想些什麼？']")
+            Catch ex As Exception
+                write_log("Fail : sendkey to div[aria-label$='在想些什麼？']")
+                Exit Sub
+            End Try
 
             Thread.Sleep(1000)
             Dim img_upload_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("homepage_post_img_input")))
@@ -187,11 +204,11 @@ Public Class Form1
         Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
         Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
 
-        Debug.WriteLine(ele1)
-        Debug.WriteLine(ele2)
 
         If ele1 = False AndAlso ele2 = False Then
-            click_by_aria_label("相片／影片")
+            If click_by_aria_label("相片／影片") = False Then
+                Exit Sub
+            End If
         End If
 
         Thread.Sleep(2000)
@@ -203,8 +220,15 @@ Public Class Form1
             upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
             upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
         Else
-            upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
-            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+            Try
+                upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
+                upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+                write_log("Success : upload img file")
+            Catch ex As Exception
+                write_log("Fail : upload img file")
+                Exit Sub
+            End Try
+
         End If
 
 
@@ -509,21 +533,29 @@ Public Class Form1
 
     End Sub
 
-    Private Sub click_by_aria_label(str As String)
+    Private Function click_by_aria_label(str As String) As Boolean
         Try
             chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + str + "']")).Click()
+            write_log("Success : Click: " + str)
+            Return True
         Catch ex As Exception
+            write_log("Fail : Click: " + str)
             Debug.WriteLine(ex)
+            Return False
         End Try
-    End Sub
+    End Function
 
-    Private Sub click_by_span_text(str As String)
+    Private Function click_by_span_text(str As String) As Boolean
         Try
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
+            write_log("Success : Click: " + str)
+            Return True
         Catch ex As Exception
+            write_log("Fail : Click: " + str)
             Debug.WriteLine(ex)
+            Return False
         End Try
-    End Sub
+    End Function
 
     Function IsElementPresent(locatorKey As String) As Boolean
         Try
@@ -543,5 +575,14 @@ Public Class Form1
 
     Private Sub show_log_btn_Click(sender As Object, e As EventArgs) Handles show_log_btn.Click
         Form2.Visible = True
+    End Sub
+
+    Private Sub write_log(content As String)
+        Form2.form2_logs_RichTextBox.AppendText(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " - " + content & vbCrLf)
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim content = "Success : test log"
+        Form2.form2_logs_RichTextBox.AppendText(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " - " + content & vbCrLf)
     End Sub
 End Class

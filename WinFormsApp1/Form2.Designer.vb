@@ -24,13 +24,14 @@ Partial Class Form2
     Private Sub InitializeComponent()
         Me.form2_logs_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.form2_clear_log_btn = New System.Windows.Forms.Button()
+        Me.form2_save_log_btn = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'form2_logs_RichTextBox
         '
         Me.form2_logs_RichTextBox.Location = New System.Drawing.Point(12, 12)
         Me.form2_logs_RichTextBox.Name = "form2_logs_RichTextBox"
-        Me.form2_logs_RichTextBox.Size = New System.Drawing.Size(776, 498)
+        Me.form2_logs_RichTextBox.Size = New System.Drawing.Size(999, 498)
         Me.form2_logs_RichTextBox.TabIndex = 0
         Me.form2_logs_RichTextBox.Text = ""
         '
@@ -38,16 +39,26 @@ Partial Class Form2
         '
         Me.form2_clear_log_btn.Location = New System.Drawing.Point(12, 516)
         Me.form2_clear_log_btn.Name = "form2_clear_log_btn"
-        Me.form2_clear_log_btn.Size = New System.Drawing.Size(776, 60)
+        Me.form2_clear_log_btn.Size = New System.Drawing.Size(494, 60)
         Me.form2_clear_log_btn.TabIndex = 1
         Me.form2_clear_log_btn.Text = "Clear"
         Me.form2_clear_log_btn.UseVisualStyleBackColor = True
+        '
+        'form2_save_log_btn
+        '
+        Me.form2_save_log_btn.Location = New System.Drawing.Point(512, 516)
+        Me.form2_save_log_btn.Name = "form2_save_log_btn"
+        Me.form2_save_log_btn.Size = New System.Drawing.Size(499, 60)
+        Me.form2_save_log_btn.TabIndex = 2
+        Me.form2_save_log_btn.Text = "Save"
+        Me.form2_save_log_btn.UseVisualStyleBackColor = True
         '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(805, 588)
+        Me.ClientSize = New System.Drawing.Size(1023, 588)
+        Me.Controls.Add(Me.form2_save_log_btn)
         Me.Controls.Add(Me.form2_clear_log_btn)
         Me.Controls.Add(Me.form2_logs_RichTextBox)
         Me.Name = "Form2"
@@ -58,4 +69,5 @@ Partial Class Form2
 
     Friend WithEvents form2_logs_RichTextBox As RichTextBox
     Friend WithEvents form2_clear_log_btn As Button
+    Friend WithEvents form2_save_log_btn As Button
 End Class
