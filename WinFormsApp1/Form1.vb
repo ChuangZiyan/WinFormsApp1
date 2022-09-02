@@ -137,9 +137,9 @@ Public Class Form1
             Try
                 Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
-                write_log("Success : sendkey to div[aria-label$='留個言吧......']")
+                write_log("sendkey to div[aria-label$='留個言吧......']")
             Catch ex As Exception
-                write_log("Fail : sendkey to div[aria-label$='留個言吧......']")
+                write_err_log("sendkey to div[aria-label$='留個言吧......']")
                 Exit Sub
             End Try
 
@@ -167,9 +167,9 @@ Public Class Form1
             Try
                 msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
-                write_log("Success : sendkey to div[aria-label$='在想些什麼？']")
+                write_log("sendkey to div[aria-label$='在想些什麼？']")
             Catch ex As Exception
-                write_log("Fail : sendkey to div[aria-label$='在想些什麼？']")
+                write_err_log("sendkey to div[aria-label$='在想些什麼？']")
                 Exit Sub
             End Try
 
@@ -223,9 +223,9 @@ Public Class Form1
             Try
                 upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
                 upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-                write_log("Success : upload img file")
+                write_log("upload img file")
             Catch ex As Exception
-                write_log("Fail : upload img file")
+                write_err_log("upload img file")
                 Exit Sub
             End Try
 
@@ -536,10 +536,10 @@ Public Class Form1
     Private Function click_by_aria_label(str As String) As Boolean
         Try
             chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + str + "']")).Click()
-            write_log("Success : Click: " + str)
+            write_log("Click: " + str)
             Return True
         Catch ex As Exception
-            write_log("Fail : Click: " + str)
+            write_err_log("Click: " + str)
             Debug.WriteLine(ex)
             Return False
         End Try
@@ -548,10 +548,10 @@ Public Class Form1
     Private Function click_by_span_text(str As String) As Boolean
         Try
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
-            write_log("Success : Click: " + str)
+            write_log("Click: " + str)
             Return True
         Catch ex As Exception
-            write_log("Fail : Click: " + str)
+            write_err_log("Click: " + str)
             Debug.WriteLine(ex)
             Return False
         End Try
@@ -578,11 +578,13 @@ Public Class Form1
     End Sub
 
     Private Sub write_log(content As String)
-        Form2.form2_logs_RichTextBox.AppendText(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " - " + content & vbCrLf)
+        Form2.form2_logs_RichTextBox.SelectionColor = Color.Black
+        Form2.form2_logs_RichTextBox.AppendText(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " - Success: " + content & vbCrLf)
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim content = "Success : test log"
-        Form2.form2_logs_RichTextBox.AppendText(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " - " + content & vbCrLf)
+    Private Sub write_err_log(content As String)
+        Form2.form2_logs_RichTextBox.SelectionColor = Color.Red
+        Form2.form2_logs_RichTextBox.AppendText(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " - Fail: " + content & vbCrLf)
     End Sub
+
 End Class

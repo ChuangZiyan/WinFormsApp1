@@ -25,6 +25,8 @@ Partial Class Form2
         Me.form2_logs_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.form2_clear_log_btn = New System.Windows.Forms.Button()
         Me.form2_save_log_btn = New System.Windows.Forms.Button()
+        Me.test_success_log_btn = New System.Windows.Forms.Button()
+        Me.test_fail_log_btn = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'form2_logs_RichTextBox
@@ -37,27 +39,47 @@ Partial Class Form2
         '
         'form2_clear_log_btn
         '
-        Me.form2_clear_log_btn.Location = New System.Drawing.Point(12, 516)
+        Me.form2_clear_log_btn.Location = New System.Drawing.Point(522, 516)
         Me.form2_clear_log_btn.Name = "form2_clear_log_btn"
-        Me.form2_clear_log_btn.Size = New System.Drawing.Size(494, 60)
+        Me.form2_clear_log_btn.Size = New System.Drawing.Size(241, 60)
         Me.form2_clear_log_btn.TabIndex = 1
         Me.form2_clear_log_btn.Text = "Clear"
         Me.form2_clear_log_btn.UseVisualStyleBackColor = True
         '
         'form2_save_log_btn
         '
-        Me.form2_save_log_btn.Location = New System.Drawing.Point(512, 516)
+        Me.form2_save_log_btn.Location = New System.Drawing.Point(769, 516)
         Me.form2_save_log_btn.Name = "form2_save_log_btn"
-        Me.form2_save_log_btn.Size = New System.Drawing.Size(499, 60)
+        Me.form2_save_log_btn.Size = New System.Drawing.Size(242, 60)
         Me.form2_save_log_btn.TabIndex = 2
         Me.form2_save_log_btn.Text = "Save"
         Me.form2_save_log_btn.UseVisualStyleBackColor = True
+        '
+        'test_success_log_btn
+        '
+        Me.test_success_log_btn.Location = New System.Drawing.Point(12, 521)
+        Me.test_success_log_btn.Name = "test_success_log_btn"
+        Me.test_success_log_btn.Size = New System.Drawing.Size(140, 50)
+        Me.test_success_log_btn.TabIndex = 3
+        Me.test_success_log_btn.Text = "Test Success"
+        Me.test_success_log_btn.UseVisualStyleBackColor = True
+        '
+        'test_fail_log_btn
+        '
+        Me.test_fail_log_btn.Location = New System.Drawing.Point(199, 521)
+        Me.test_fail_log_btn.Name = "test_fail_log_btn"
+        Me.test_fail_log_btn.Size = New System.Drawing.Size(154, 50)
+        Me.test_fail_log_btn.TabIndex = 4
+        Me.test_fail_log_btn.Text = "Test Fail"
+        Me.test_fail_log_btn.UseVisualStyleBackColor = True
         '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1023, 588)
+        Me.Controls.Add(Me.test_fail_log_btn)
+        Me.Controls.Add(Me.test_success_log_btn)
         Me.Controls.Add(Me.form2_save_log_btn)
         Me.Controls.Add(Me.form2_clear_log_btn)
         Me.Controls.Add(Me.form2_logs_RichTextBox)
@@ -70,4 +92,6 @@ Partial Class Form2
     Friend WithEvents form2_logs_RichTextBox As RichTextBox
     Friend WithEvents form2_clear_log_btn As Button
     Friend WithEvents form2_save_log_btn As Button
+    Friend WithEvents test_success_log_btn As Button
+    Friend WithEvents test_fail_log_btn As Button
 End Class
