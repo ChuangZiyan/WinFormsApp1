@@ -20,14 +20,13 @@ Public Class Form1
     Dim fb_passwd As String = Split(fileContents)(1)
 
     Dim chromeDriver As IWebDriver
-    Dim webDriverWait As WebDriverWait
+    'Dim webDriverWait As WebDriverWait
 
     Dim cursor_x As Integer = 0
     Dim cursor_y As Integer = 0
 
     Dim css_selector_config_obj As Newtonsoft.Json.Linq.JObject
     Dim m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
-
 
 
     'Dim webDriverWait As WebDriverWait
@@ -56,13 +55,11 @@ Public Class Form1
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New ChromeConfig())
 
-
         Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
         serv.HideCommandPromptWindow = True 'hide cmd
 
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-
         If pc_RadioButton.Checked = False Then
             Dim dev_model As String = ""
             If pixel5_RadioButton.Checked Then
@@ -76,28 +73,16 @@ Public Class Form1
         End If
 
         chromeDriver = New ChromeDriver(serv, options)
-        Thread.Sleep(1000)
-
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
 
         'chromeDriver.ExecuteJavaScript("onmousemove = function(e){ mouse.x = e.clientX, mouse.y = e.clientY };")
-
-
         driver_close_bnt.Enabled = True
         refresh_url_timer.Enabled = True
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
         'chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/?hl=zh_TW")
-
-
-        Thread.Sleep(1000)
         chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
-        Thread.Sleep(500)
         chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-        Thread.Sleep(500)
         chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
-        Thread.Sleep(1000)
-
-
-
     End Sub
 
 
@@ -124,8 +109,8 @@ Public Class Form1
         End If
 
         If myURL.Contains("groups") Then ' If post in group
-            'chromeDriver.Navigate.GoToUrl(myURL)
-            Thread.Sleep(1000)
+            chromeDriver.Navigate.GoToUrl(myURL)
+
             If click_by_span_text("留個言吧……") = False Then
                 Exit Sub
             End If
@@ -133,7 +118,7 @@ Public Class Form1
                 Tring_to_upload_img(img_path_str)
             End If
 
-            Thread.Sleep(1000)
+
             Try
                 Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
@@ -147,7 +132,7 @@ Public Class Form1
 
             'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
 
-            Thread.Sleep(500)
+
             'chromeDriver.ExecuteJavaScript(js_code)
             '### submit post ###
             'click_by_span_text("發佈")
@@ -162,7 +147,6 @@ Public Class Form1
             If click_by_span_text("相片／影片") = False Then
                 Exit Sub
             End If
-            Thread.Sleep(2000)
 
             Try
                 msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
@@ -173,7 +157,6 @@ Public Class Form1
                 Exit Sub
             End Try
 
-            Thread.Sleep(1000)
             Dim img_upload_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("homepage_post_img_input")))
 
             'Dim img_upload_input = chromeDriver.FindElement(By.CssSelector("div.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.dflh9lhu.scb9dxdr.aahdfvyu.tvmbv18p.gbw9n0fl.fneq0qzw > input"))
@@ -198,12 +181,8 @@ Public Class Form1
     Private Sub Tring_to_upload_img(img_path_str)
 
 
-
-        Thread.Sleep(2000)
-
         Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
         Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
-
 
         If ele1 = False AndAlso ele2 = False Then
             If click_by_aria_label("相片／影片") = False Then
@@ -211,7 +190,6 @@ Public Class Form1
             End If
         End If
 
-        Thread.Sleep(2000)
         'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.fwlpnqze.r5g9zsuq.b0eko5f3.q46jt4gp.p9ctufpz.rj0o91l8.sl27f92c.alzwoclg.bdao358l.jgcidaqu.ta68dy8c.kpwa50dg.m0cukt09.h8391g91.qykh3frn.i0v5kuzt.lkznwk7v.gxnvzty1.k0kqjr44.i85zmo3j > div.alzwoclg > div:nth-child(1) > input"))
         'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
         Dim upload_img_input As Object
@@ -546,6 +524,7 @@ Public Class Form1
     End Function
 
     Private Function click_by_span_text(str As String) As Boolean
+
         Try
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
             write_log("Click: " + str)
@@ -579,12 +558,12 @@ Public Class Form1
 
     Private Sub write_log(content As String)
         Form2.form2_logs_RichTextBox.SelectionColor = Color.Black
-        Form2.form2_logs_RichTextBox.AppendText(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " - Success: " + content & vbCrLf)
+        Form2.form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content & vbCrLf)
     End Sub
 
     Private Sub write_err_log(content As String)
         Form2.form2_logs_RichTextBox.SelectionColor = Color.Red
-        Form2.form2_logs_RichTextBox.AppendText(Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " - Fail: " + content & vbCrLf)
+        Form2.form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content & vbCrLf)
     End Sub
 
 End Class
