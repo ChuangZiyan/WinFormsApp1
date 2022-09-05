@@ -12,6 +12,7 @@ Imports WebDriverManager.DriverConfigs
 Imports WebDriverManager.DriverConfigs.Impl
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports System.Net.NetworkInformation
 
 Public Class Form1
 
@@ -381,11 +382,14 @@ Public Class Form1
         Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
-
-
-
-
         render_img_listbox()
+
+    End Sub
+    Private Sub IsInternetConnected()
+        If Not My.Computer.Network.Ping("google.com") Then
+            MsgBox("Network is unreachable")
+            write_err_log("Network is unreachable")
+        End If
 
     End Sub
 
@@ -415,6 +419,8 @@ Public Class Form1
         Catch ex As System.NullReferenceException
             Debug.WriteLine(ex)
         End Try
+
+
 
     End Sub
 
@@ -518,7 +524,8 @@ Public Class Form1
             Return True
         Catch ex As Exception
             write_err_log("Click: " + str)
-            Debug.WriteLine(ex)
+            IsInternetConnected()
+            'Debug.WriteLine(ex)
             Return False
         End Try
     End Function
@@ -531,7 +538,8 @@ Public Class Form1
             Return True
         Catch ex As Exception
             write_err_log("Click: " + str)
-            Debug.WriteLine(ex)
+            IsInternetConnected()
+            'Debug.WriteLine(ex)
             Return False
         End Try
     End Function
