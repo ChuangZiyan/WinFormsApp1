@@ -13,6 +13,8 @@ Imports WebDriverManager.DriverConfigs.Impl
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 Imports System.Net.NetworkInformation
+Imports System.IO.File
+Imports System.IO
 
 Public Class Form1
 
@@ -75,6 +77,7 @@ Public Class Form1
 
         chromeDriver = New ChromeDriver(serv, options)
         chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+        write_log("Invoke Chrome")
 
         'chromeDriver.ExecuteJavaScript("onmousemove = function(e){ mouse.x = e.clientX, mouse.y = e.clientY };")
         driver_close_bnt.Enabled = True
@@ -567,11 +570,44 @@ Public Class Form1
     Private Sub write_log(content As String)
         Form2.form2_logs_RichTextBox.SelectionColor = Color.Black
         Form2.form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content & vbCrLf)
+        log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content)
     End Sub
 
     Private Sub write_err_log(content As String)
         Form2.form2_logs_RichTextBox.SelectionColor = Color.Red
         Form2.form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content & vbCrLf)
+        log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content)
+    End Sub
+
+
+    Public Sub log_to_file(content As String)
+        Dim thisDate As String = Date.Today.ToString("dd-MM-yyyy")
+        Dim log_path = My.Computer.FileSystem.CurrentDirectory + "\logs\" + thisDate
+        If Not System.IO.Directory.Exists(log_path) Then
+            System.IO.Directory.CreateDirectory(log_path)
+        End If
+
+        Dim filename_counter As Integer = 1
+
+        Dim max_file_line As Integer = 20
+
+        While True 'check file exist or higher than max line
+            If Not My.Computer.FileSystem.FileExists(log_path + "\selenium_log." & filename_counter & ".txt") Then
+                Exit While
+            End If
+            Dim lineCount = File.ReadAllLines(log_path + "\selenium_log." & filename_counter & ".txt").Length
+            'Debug.WriteLine(lineCount)
+            If lineCount > max_file_line Then
+                filename_counter += 1
+            Else
+                Exit While
+            End If
+        End While
+
+        Dim log_file As System.IO.StreamWriter
+        log_file = My.Computer.FileSystem.OpenTextFileWriter(log_path + "\selenium_log." & filename_counter & ".txt", True)
+        log_file.WriteLine(content)
+        log_file.Close()
     End Sub
 
 End Class

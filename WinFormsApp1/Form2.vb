@@ -13,6 +13,7 @@
         'Form2.form2_logs_RichTextBox.SelectedText = "Fail"
         form2_logs_RichTextBox.SelectionColor = Color.Black
         form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content & vbCrLf)
+        Form1.log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content)
     End Sub
 
     Private Sub test_fail_log_btn_Click(sender As Object, e As EventArgs) Handles test_fail_log_btn.Click
@@ -20,6 +21,7 @@
         'Form2.form2_logs_RichTextBox.SelectedText = "Fail"
         form2_logs_RichTextBox.SelectionColor = Color.Red
         form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content & vbCrLf)
+        Form1.log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content)
     End Sub
 
     Private Sub form2_save_log_btn_Click(sender As Object, e As EventArgs) Handles form2_save_log_btn.Click
