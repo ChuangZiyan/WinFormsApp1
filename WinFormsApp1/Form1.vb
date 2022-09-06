@@ -77,7 +77,7 @@ Public Class Form1
 
         chromeDriver = New ChromeDriver(serv, options)
         chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-        write_log("Invoke Chrome")
+        Write_log("Invoke Chrome")
 
         'chromeDriver.ExecuteJavaScript("onmousemove = function(e){ mouse.x = e.clientX, mouse.y = e.clientY };")
         driver_close_bnt.Enabled = True
@@ -97,7 +97,7 @@ Public Class Form1
         Dim myURL As String = target_url_TextBox.Text
         Dim img_path_str As String = ""
         chromeDriver.Navigate.GoToUrl(myURL)
-        write_log("Post to " + myURL)
+        Write_log("Post to " + myURL)
         'get selected img path into string 
         If img_CheckedListBox.CheckedItems.Count <> 0 Then
             For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
@@ -126,9 +126,9 @@ Public Class Form1
             Try
                 Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
-                write_log("sendkey to div[aria-label$='留個言吧......']")
+                Write_log("sendkey to div[aria-label$='留個言吧......']")
             Catch ex As Exception
-                write_err_log("sendkey to div[aria-label$='留個言吧......']")
+                Write_err_log("sendkey to div[aria-label$='留個言吧......']")
                 Exit Sub
             End Try
 
@@ -155,9 +155,9 @@ Public Class Form1
             Try
                 msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
-                write_log("sendkey to div[aria-label$='在想些什麼？']")
+                Write_log("sendkey to div[aria-label$='在想些什麼？']")
             Catch ex As Exception
-                write_err_log("sendkey to div[aria-label$='在想些什麼？']")
+                Write_err_log("sendkey to div[aria-label$='在想些什麼？']")
                 Exit Sub
             End Try
 
@@ -205,9 +205,9 @@ Public Class Form1
             Try
                 upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
                 upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-                write_log("upload img file")
+                Write_log("upload img file")
             Catch ex As Exception
-                write_err_log("upload img file")
+                Write_err_log("upload img file")
                 Exit Sub
             End Try
 
@@ -391,7 +391,7 @@ Public Class Form1
     Private Sub IsInternetConnected()
         If Not My.Computer.Network.Ping("google.com") Then
             MsgBox("Network is unreachable")
-            write_err_log("Network is unreachable")
+            Write_err_log("Network is unreachable")
         End If
 
     End Sub
@@ -523,10 +523,10 @@ Public Class Form1
     Private Function click_by_aria_label(str As String) As Boolean
         Try
             chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + str + "']")).Click()
-            write_log("Click: " + str)
+            Write_log("Click: " + str)
             Return True
         Catch ex As Exception
-            write_err_log("Click: " + str)
+            Write_err_log("Click: " + str)
             IsInternetConnected()
             'Debug.WriteLine(ex)
             Return False
@@ -537,10 +537,10 @@ Public Class Form1
 
         Try
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
-            write_log("Click: " + str)
+            Write_log("Click: " + str)
             Return True
         Catch ex As Exception
-            write_err_log("Click: " + str)
+            Write_err_log("Click: " + str)
             IsInternetConnected()
             'Debug.WriteLine(ex)
             Return False
@@ -567,20 +567,20 @@ Public Class Form1
         Form2.Visible = True
     End Sub
 
-    Private Sub write_log(content As String)
+    Private Sub Write_log(content As String)
         Form2.form2_logs_RichTextBox.SelectionColor = Color.Black
         Form2.form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content & vbCrLf)
-        log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content)
+        Log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content)
     End Sub
 
-    Private Sub write_err_log(content As String)
+    Private Sub Write_err_log(content As String)
         Form2.form2_logs_RichTextBox.SelectionColor = Color.Red
         Form2.form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content & vbCrLf)
-        log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content)
+        Log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content)
     End Sub
 
 
-    Public Sub log_to_file(content As String)
+    Public Sub Log_to_file(content As String)
         Dim thisDate As String = Date.Today.ToString("dd-MM-yyyy")
         Dim log_path = My.Computer.FileSystem.CurrentDirectory + "\logs\" + thisDate
         If Not System.IO.Directory.Exists(log_path) Then
@@ -589,7 +589,7 @@ Public Class Form1
 
         Dim filename_counter As Integer = 1
 
-        Dim max_file_line As Integer = 20
+        Dim max_file_line As Integer = 10
 
         While True 'check file exist or higher than max line
             If Not My.Computer.FileSystem.FileExists(log_path + "\selenium_log." & filename_counter & ".txt") Then
