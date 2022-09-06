@@ -18,9 +18,9 @@ Imports System.IO
 
 Public Class Form1
 
-    Dim fileContents As String = System.IO.File.ReadAllText("C:\selenium_file\fb_auth.txt")
-    Dim fb_email As String = Split(fileContents)(0)
-    Dim fb_passwd As String = Split(fileContents)(1)
+    ReadOnly fileContents As String = ReadAllText("C:\selenium_file\fb_auth.txt")
+    ReadOnly fb_email As String = Split(fileContents)(0)
+    ReadOnly fb_passwd As String = Split(fileContents)(1)
 
     Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
@@ -595,7 +595,7 @@ Public Class Form1
             If Not My.Computer.FileSystem.FileExists(log_path + "\selenium_log." & filename_counter & ".txt") Then
                 Exit While
             End If
-            Dim lineCount = File.ReadAllLines(log_path + "\selenium_log." & filename_counter & ".txt").Length
+            Dim lineCount = ReadAllLines(log_path + "\selenium_log." & filename_counter & ".txt").Length
             'Debug.WriteLine(lineCount)
             If lineCount > max_file_line Then
                 filename_counter += 1
