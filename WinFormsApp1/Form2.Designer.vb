@@ -22,38 +22,10 @@ Partial Class Form2
     '請勿使用程式碼編輯器進行修改。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.form2_logs_RichTextBox = New System.Windows.Forms.RichTextBox()
-        Me.form2_clear_log_btn = New System.Windows.Forms.Button()
-        Me.form2_save_log_btn = New System.Windows.Forms.Button()
         Me.test_success_log_btn = New System.Windows.Forms.Button()
         Me.test_fail_log_btn = New System.Windows.Forms.Button()
+        Me.eventlog_ListView = New System.Windows.Forms.ListView()
         Me.SuspendLayout()
-        '
-        'form2_logs_RichTextBox
-        '
-        Me.form2_logs_RichTextBox.Location = New System.Drawing.Point(12, 12)
-        Me.form2_logs_RichTextBox.Name = "form2_logs_RichTextBox"
-        Me.form2_logs_RichTextBox.Size = New System.Drawing.Size(999, 498)
-        Me.form2_logs_RichTextBox.TabIndex = 0
-        Me.form2_logs_RichTextBox.Text = ""
-        '
-        'form2_clear_log_btn
-        '
-        Me.form2_clear_log_btn.Location = New System.Drawing.Point(522, 516)
-        Me.form2_clear_log_btn.Name = "form2_clear_log_btn"
-        Me.form2_clear_log_btn.Size = New System.Drawing.Size(241, 60)
-        Me.form2_clear_log_btn.TabIndex = 1
-        Me.form2_clear_log_btn.Text = "Clear"
-        Me.form2_clear_log_btn.UseVisualStyleBackColor = True
-        '
-        'form2_save_log_btn
-        '
-        Me.form2_save_log_btn.Location = New System.Drawing.Point(769, 516)
-        Me.form2_save_log_btn.Name = "form2_save_log_btn"
-        Me.form2_save_log_btn.Size = New System.Drawing.Size(242, 60)
-        Me.form2_save_log_btn.TabIndex = 2
-        Me.form2_save_log_btn.Text = "Save"
-        Me.form2_save_log_btn.UseVisualStyleBackColor = True
         '
         'test_success_log_btn
         '
@@ -73,25 +45,28 @@ Partial Class Form2
         Me.test_fail_log_btn.Text = "Test Fail"
         Me.test_fail_log_btn.UseVisualStyleBackColor = True
         '
+        'eventlog_ListView
+        '
+        Me.eventlog_ListView.Location = New System.Drawing.Point(12, 12)
+        Me.eventlog_ListView.Name = "eventlog_ListView"
+        Me.eventlog_ListView.Size = New System.Drawing.Size(999, 503)
+        Me.eventlog_ListView.TabIndex = 5
+        Me.eventlog_ListView.UseCompatibleStateImageBehavior = False
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1023, 588)
+        Me.Controls.Add(Me.eventlog_ListView)
         Me.Controls.Add(Me.test_fail_log_btn)
         Me.Controls.Add(Me.test_success_log_btn)
-        Me.Controls.Add(Me.form2_save_log_btn)
-        Me.Controls.Add(Me.form2_clear_log_btn)
-        Me.Controls.Add(Me.form2_logs_RichTextBox)
         Me.Name = "Form2"
         Me.Text = "Selenium Log"
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents form2_logs_RichTextBox As RichTextBox
-    Friend WithEvents form2_clear_log_btn As Button
-    Friend WithEvents form2_save_log_btn As Button
     Friend WithEvents test_success_log_btn As Button
     Friend WithEvents test_fail_log_btn As Button
+    Friend WithEvents eventlog_ListView As ListView
 End Class

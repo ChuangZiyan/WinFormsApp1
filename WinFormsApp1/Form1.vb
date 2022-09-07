@@ -567,16 +567,14 @@ Public Class Form1
         Form2.Visible = True
     End Sub
 
-    Private Sub Write_log(content As String)
-        Form2.form2_logs_RichTextBox.SelectionColor = Color.Black
-        Form2.form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content & vbCrLf)
-        Log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Success: " + content)
+    Public Sub Write_log(content As String)
+        Form2.EventlogListview_AddNewItem(Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + ",Info," + content)
+        Log_to_file(Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + ",Info," + content)
     End Sub
 
-    Private Sub Write_err_log(content As String)
-        Form2.form2_logs_RichTextBox.SelectionColor = Color.Red
-        Form2.form2_logs_RichTextBox.AppendText("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content & vbCrLf)
-        Log_to_file("[ " + Date.Now.ToString("yyyy/MM/dd HH:mm:ss") + " ] - Fail: " + content)
+    Public Sub Write_err_log(content As String)
+        Form2.EventlogListview_AddNewItem(Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + ",Error," + content)
+        Log_to_file(Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + ",Error," + content)
     End Sub
 
 
@@ -604,10 +602,18 @@ Public Class Form1
             End If
         End While
 
+
         Dim log_file As System.IO.StreamWriter
         log_file = My.Computer.FileSystem.OpenTextFileWriter(log_path + "\selenium_log." & filename_counter & ".txt", True)
         log_file.WriteLine(content)
         log_file.Close()
+
+
+        'write to buffer
+        Dim log_file_temp As System.IO.StreamWriter
+        log_file_temp = My.Computer.FileSystem.OpenTextFileWriter(My.Computer.FileSystem.CurrentDirectory + "\logs\selenium_log_temp.txt", True)
+        log_file_temp.WriteLine(content)
+        log_file_temp.Close()
     End Sub
 
 End Class
