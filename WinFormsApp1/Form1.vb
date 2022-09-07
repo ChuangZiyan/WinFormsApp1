@@ -386,6 +386,7 @@ Public Class Form1
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
         render_img_listbox()
+        Form2.Visible = True
 
     End Sub
     Private Sub IsInternetConnected()
