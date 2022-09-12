@@ -62,6 +62,7 @@ Partial Class Form1
         Me.invoke_firefox = New System.Windows.Forms.Button()
         Me.show_log_btn = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.show_script_editor_btn = New System.Windows.Forms.Button()
         Me.devtype_GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -354,7 +355,7 @@ Partial Class Form1
         'clr_post_btn
         '
         Me.clr_post_btn.ForeColor = System.Drawing.Color.Black
-        Me.clr_post_btn.Location = New System.Drawing.Point(12, 259)
+        Me.clr_post_btn.Location = New System.Drawing.Point(12, 271)
         Me.clr_post_btn.Name = "clr_post_btn"
         Me.clr_post_btn.Size = New System.Drawing.Size(160, 29)
         Me.clr_post_btn.TabIndex = 27
@@ -399,7 +400,7 @@ Partial Class Form1
         'show_log_btn
         '
         Me.show_log_btn.BackColor = System.Drawing.SystemColors.Info
-        Me.show_log_btn.Location = New System.Drawing.Point(12, 219)
+        Me.show_log_btn.Location = New System.Drawing.Point(12, 198)
         Me.show_log_btn.Name = "show_log_btn"
         Me.show_log_btn.Size = New System.Drawing.Size(160, 28)
         Me.show_log_btn.TabIndex = 31
@@ -415,11 +416,22 @@ Partial Class Form1
         Me.Button2.Text = "Button2"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'show_script_editor_btn
+        '
+        Me.show_script_editor_btn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.show_script_editor_btn.Location = New System.Drawing.Point(12, 232)
+        Me.show_script_editor_btn.Name = "show_script_editor_btn"
+        Me.show_script_editor_btn.Size = New System.Drawing.Size(160, 29)
+        Me.show_script_editor_btn.TabIndex = 33
+        Me.show_script_editor_btn.Text = "Script Editor"
+        Me.show_script_editor_btn.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1354, 684)
+        Me.Controls.Add(Me.show_script_editor_btn)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.show_log_btn)
         Me.Controls.Add(Me.invoke_firefox)
@@ -504,4 +516,5 @@ Partial Class Form1
     Friend WithEvents invoke_firefox As Button
     Friend WithEvents show_log_btn As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents show_script_editor_btn As Button
 End Class

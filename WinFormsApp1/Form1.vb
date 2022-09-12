@@ -54,7 +54,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub Invoke_Chrome_btn_Click(sender As Object, e As EventArgs) Handles invoke_chrome_btn.Click
+    Public Sub Invoke_Chrome_btn_Click(sender As Object, e As EventArgs) Handles invoke_chrome_btn.Click
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New ChromeConfig())
 
@@ -87,6 +87,22 @@ Public Class Form1
         chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
         chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
         chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
+    End Sub
+
+    Public Sub open_Chrome()
+        Dim driverManager = New DriverManager()
+        driverManager.SetUpDriver(New ChromeConfig())
+        Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
+        serv.HideCommandPromptWindow = True 'hide cmd
+        Dim options = New Chrome.ChromeOptions()
+        options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+        chromeDriver = New ChromeDriver(serv, options)
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+        Write_log("Open Chrome")
+    End Sub
+
+    Public Sub navigate_GoToUrl(url As String)
+        chromeDriver.Navigate.GoToUrl(url)
     End Sub
 
 
@@ -332,6 +348,10 @@ Public Class Form1
 
     End Sub
 
+    Public Sub quit_chrome()
+        chromeDriver.Quit()
+    End Sub
+
 
 
     Private Sub Reply_comment_bnt_Click(sender As Object, e As EventArgs) Handles reply_comment_bnt.Click
@@ -386,7 +406,7 @@ Public Class Form1
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
         render_img_listbox()
-        Form2.Visible = True
+        'Form2.Visible = True
 
     End Sub
     Private Sub IsInternetConnected()
@@ -617,4 +637,7 @@ Public Class Form1
         log_file_temp.Close()
     End Sub
 
+    Private Sub show_script_editor_btn_Click(sender As Object, e As EventArgs) Handles show_script_editor_btn.Click
+        ScriptEditor_Form.Visible = True
+    End Sub
 End Class
