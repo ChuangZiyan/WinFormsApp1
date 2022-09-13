@@ -105,6 +105,19 @@ Public Class Form1
         chromeDriver.Navigate.GoToUrl(url)
     End Sub
 
+    Public Sub login_fb(fb_email As String, fb_passwd As String)
+        Try
+            chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
+            chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
+            chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
+            Write_log("login successfully")
+            ScriptEditor_Form.current_user_TextBox.Text = fb_email
+        Catch ex As Exception
+            Write_err_log("bad login")
+            ScriptEditor_Form.current_user_TextBox.Text = ""
+        End Try
+
+    End Sub
 
     Private Sub Write_post_Click(sender As Object, e As EventArgs) Handles write_a_post_btn.Click
 

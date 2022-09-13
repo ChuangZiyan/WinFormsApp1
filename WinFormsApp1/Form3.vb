@@ -2,8 +2,6 @@
 Public Class ScriptEditor_Form
     Private Sub run_script_btn_Click(sender As Object, e As EventArgs) Handles run_script_btn.Click
         script_output_RichTextBox.Clear()
-        Dim script_text = script_editor_richtextbox.Text
-        'script_log_RichTextBox.Text = script_text
         For Each cmd As String In script_editor_richtextbox.Lines
             'script_log_RichTextBox.AppendText("Cmd:" + cmd & vbCrLf)
             command_routing(cmd)
@@ -12,7 +10,7 @@ Public Class ScriptEditor_Form
     End Sub
 
     Private Sub command_routing(cmd As String)
-        Thread.Sleep(2000) ' for test
+        Thread.Sleep(2000) ' for testing
         Dim cmd_array() As String = Split(cmd)
 
         Select Case cmd_array(0)
@@ -24,6 +22,13 @@ Public Class ScriptEditor_Form
             Case "quit_chrome"
                 Form1.quit_chrome()
                 script_output_RichTextBox.AppendText("cmd: quit chrome" & vbCrLf)
+            Case "login_fb"
+                If cmd_array.Length = 3 Then
+                    script_output_RichTextBox.AppendText("cmd: login with " & cmd_array(1) & vbCrLf)
+                    Form1.login_fb(cmd_array(1), cmd_array(2))
+                Else
+                    script_output_RichTextBox.AppendText("error: invalid parameter" & vbCrLf)
+                End If
             Case "navigate_to"
                 If cmd_array.Length = 2 Then
                     script_output_RichTextBox.AppendText("cmd: navigate to " & cmd_array(1) & vbCrLf)
@@ -41,9 +46,10 @@ Public Class ScriptEditor_Form
 
     Private Sub show_help()
         script_output_RichTextBox.Text = "Usage: [command] [parameter1] [parameter2]...
-        open_chrome" & vbTab & vbTab & "-open chrome
-        quit_chrome" & vbTab & vbTab & "-close chrome and quit chrome driver
-        navigate_to [url]" & vbTab & vbTab & "-navigate to url"
+        open_chrome" & vbTab & "-open chrome
+        quit_chrome" & vbTab & "-close chrome and quit chrome driver
+        navigate_to [url]" & vbTab & "-navigate to url
+        login_fb [email] [password]" & vbTab & "-login facebook"
     End Sub
 
     Private Sub show_help_btn_Click(sender As Object, e As EventArgs) Handles show_help_btn.Click

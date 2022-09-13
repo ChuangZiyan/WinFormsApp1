@@ -26,14 +26,16 @@ Partial Class ScriptEditor_Form
         Me.run_script_btn = New System.Windows.Forms.Button()
         Me.script_output_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.show_help_btn = New System.Windows.Forms.Button()
+        Me.current_user_TextBox = New System.Windows.Forms.TextBox()
+        Me.curr_user_Label = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'script_editor_richtextbox
         '
         Me.script_editor_richtextbox.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.script_editor_richtextbox.Location = New System.Drawing.Point(12, 12)
+        Me.script_editor_richtextbox.Location = New System.Drawing.Point(12, 47)
         Me.script_editor_richtextbox.Name = "script_editor_richtextbox"
-        Me.script_editor_richtextbox.Size = New System.Drawing.Size(591, 486)
+        Me.script_editor_richtextbox.Size = New System.Drawing.Size(591, 451)
         Me.script_editor_richtextbox.TabIndex = 0
         Me.script_editor_richtextbox.Text = ""
         '
@@ -49,9 +51,9 @@ Partial Class ScriptEditor_Form
         'script_output_RichTextBox
         '
         Me.script_output_RichTextBox.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.script_output_RichTextBox.Location = New System.Drawing.Point(609, 12)
+        Me.script_output_RichTextBox.Location = New System.Drawing.Point(609, 47)
         Me.script_output_RichTextBox.Name = "script_output_RichTextBox"
-        Me.script_output_RichTextBox.Size = New System.Drawing.Size(640, 486)
+        Me.script_output_RichTextBox.Size = New System.Drawing.Size(640, 451)
         Me.script_output_RichTextBox.TabIndex = 2
         Me.script_output_RichTextBox.Text = ""
         '
@@ -64,11 +66,29 @@ Partial Class ScriptEditor_Form
         Me.show_help_btn.Text = "Help"
         Me.show_help_btn.UseVisualStyleBackColor = True
         '
+        'current_user_TextBox
+        '
+        Me.current_user_TextBox.Location = New System.Drawing.Point(663, 12)
+        Me.current_user_TextBox.Name = "current_user_TextBox"
+        Me.current_user_TextBox.Size = New System.Drawing.Size(586, 27)
+        Me.current_user_TextBox.TabIndex = 4
+        '
+        'curr_user_Label
+        '
+        Me.curr_user_Label.AutoSize = True
+        Me.curr_user_Label.Location = New System.Drawing.Point(609, 15)
+        Me.curr_user_Label.Name = "curr_user_Label"
+        Me.curr_user_Label.Size = New System.Drawing.Size(48, 19)
+        Me.curr_user_Label.TabIndex = 5
+        Me.curr_user_Label.Text = "User :"
+        '
         'ScriptEditor_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1261, 547)
+        Me.Controls.Add(Me.curr_user_Label)
+        Me.Controls.Add(Me.current_user_TextBox)
         Me.Controls.Add(Me.show_help_btn)
         Me.Controls.Add(Me.script_output_RichTextBox)
         Me.Controls.Add(Me.run_script_btn)
@@ -76,6 +96,7 @@ Partial Class ScriptEditor_Form
         Me.Name = "ScriptEditor_Form"
         Me.Text = "Script Editor"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -83,4 +104,6 @@ Partial Class ScriptEditor_Form
     Friend WithEvents run_script_btn As Button
     Friend WithEvents script_output_RichTextBox As RichTextBox
     Friend WithEvents show_help_btn As Button
+    Friend WithEvents current_user_TextBox As TextBox
+    Friend WithEvents curr_user_Label As Label
 End Class
