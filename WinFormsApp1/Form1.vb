@@ -89,13 +89,16 @@ Public Class Form1
         chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
     End Sub
 
-    Public Sub open_Chrome()
+    Public Sub open_Chrome(profile As String)
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New ChromeConfig())
         Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
         serv.HideCommandPromptWindow = True 'hide cmd
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+        If profile <> "" Then
+            options.AddArguments("--user-data-dir=" + profile)
+        End If
         chromeDriver = New ChromeDriver(serv, options)
         chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
         Write_log("Open Chrome")

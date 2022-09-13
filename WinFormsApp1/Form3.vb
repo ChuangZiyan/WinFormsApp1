@@ -1,5 +1,7 @@
 ﻿Imports System.Threading
 Public Class ScriptEditor_Form
+
+    Dim current_profile As String = "cmd"
     Private Sub run_script_btn_Click(sender As Object, e As EventArgs) Handles run_script_btn.Click
         script_output_RichTextBox.Clear()
         For Each cmd As String In script_editor_richtextbox.Lines
@@ -17,36 +19,50 @@ Public Class ScriptEditor_Form
             Case "show_help"
                 show_help()
             Case "open_chrome"
-                Form1.open_Chrome()
-                script_output_RichTextBox.AppendText("cmd: open chrome" & vbCrLf)
+                If cmd_array.Length = 2 Then
+                    Form1.open_Chrome(cmd_array(1))
+                    current_profile = cmd_array(1).Split("\")(UBound(cmd_array(1).Split("\")))
+                    print_to_output(current_profile)
+                Else
+                    current_profile = "cmd"
+                    Form1.open_Chrome("")
+                    print_to_output("open chrome")
+
+                End If
+
+
             Case "quit_chrome"
                 Form1.quit_chrome()
-                script_output_RichTextBox.AppendText("cmd: quit chrome" & vbCrLf)
+                print_to_output("quit chrome")
             Case "login_fb"
                 If cmd_array.Length = 3 Then
-                    script_output_RichTextBox.AppendText("cmd: login with " & cmd_array(1) & vbCrLf)
+                    print_to_output("login with " & cmd_array(1))
                     Form1.login_fb(cmd_array(1), cmd_array(2))
                 Else
-                    script_output_RichTextBox.AppendText("error: invalid parameter" & vbCrLf)
+                    print_to_output("error invalid parameter")
                 End If
             Case "navigate_to"
                 If cmd_array.Length = 2 Then
-                    script_output_RichTextBox.AppendText("cmd: navigate to " & cmd_array(1) & vbCrLf)
+                    print_to_output("navigate to " & cmd_array(1))
                     Form1.navigate_GoToUrl(cmd_array(1))
                 Else
-                    script_output_RichTextBox.AppendText("error: invalid parameter" & vbCrLf)
+                    print_to_output("error invalid parameter")
                 End If
             Case Else
-                script_output_RichTextBox.AppendText("error: unknow command" & vbCrLf)
+                print_to_output("error unknow command")
         End Select
 
 
 
     End Sub
 
+    Private Sub print_to_output(content As String)
+        script_output_RichTextBox.AppendText(current_profile + ": " + content & vbCrLf)
+    End Sub
+
     Private Sub show_help()
         script_output_RichTextBox.Text = "Usage: [command] [parameter1] [parameter2]...
-        open_chrome" & vbTab & "-open chrome
+        open_chrome [profile]" & vbTab & "-open chrome with profile or not
         quit_chrome" & vbTab & "-close chrome and quit chrome driver
         navigate_to [url]" & vbTab & "-navigate to url
         login_fb [email] [password]" & vbTab & "-login facebook"
