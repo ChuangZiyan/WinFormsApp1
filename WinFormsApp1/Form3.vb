@@ -20,7 +20,7 @@ Public Class ScriptEditor_Form
                 show_help()
             Case "open_chrome"
                 If cmd_array.Length = 2 Then
-                    Form1.open_Chrome(cmd_array(1))
+                    Form1.open_Chrome(cmd_array(1).Replace("%20", " "))
                     current_profile = cmd_array(1).Split("\")(UBound(cmd_array(1).Split("\")))
                     print_to_output(current_profile)
                 Else
@@ -44,7 +44,7 @@ Public Class ScriptEditor_Form
             Case "navigate_to"
                 If cmd_array.Length = 2 Then
                     print_to_output("navigate to " & cmd_array(1))
-                    Form1.navigate_GoToUrl(cmd_array(1))
+                    Form1.navigate_GoToUrl(cmd_array(1).Replace("%20", " "))
                 Else
                     print_to_output("error invalid parameter")
                 End If
