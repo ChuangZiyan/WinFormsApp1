@@ -110,6 +110,7 @@ Public Class Form1
 
     Public Sub login_fb(fb_email As String, fb_passwd As String)
         Try
+            chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
             chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
             chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
             chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
@@ -119,6 +120,96 @@ Public Class Form1
             Write_err_log("bad login")
             ScriptEditor_Form.current_user_TextBox.Text = ""
         End Try
+
+    End Sub
+
+
+    Public Sub write_post(url As String)
+        'Dim postURL As String = "https://www.facebook.com/groups/737807930865755/posts/737820730864475?comment_id=737820784197803"
+        'Dim postURL As String = "https://www.facebook.com/ETtoday/posts/pfbid0Z9CFxwaXaUKQLEUtRMU8aqHomsBiygPgLcqzFXnDYoE8eJ9Qu4ZY9yCvK8tAwzbol?comment_id=608850700553438"
+        Dim myURL As String = url
+        Dim img_path_str As String = ""
+        chromeDriver.Navigate.GoToUrl(myURL)
+        Write_log("Post to " + myURL)
+        'get selected img path into string 
+        If img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
+                If img_path_str = "" Then
+                    img_path_str = img_CheckedListBox.Items(i).ToString
+                Else
+                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
+                End If
+
+            Next
+        End If
+
+        If myURL.Contains("groups") Then ' If post in group
+            chromeDriver.Navigate.GoToUrl(myURL)
+
+            If click_by_span_text("留個言吧……") = False Then
+                Exit Sub
+            End If
+            If img_path_str <> "" Then
+                Tring_to_upload_img(img_path_str)
+            End If
+
+
+            Try
+                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
+                msgbox_ele.SendKeys(content_RichTextBox.Text)
+                Write_log("sendkey to div[aria-label$='留個言吧......']")
+            Catch ex As Exception
+                Write_err_log("sendkey to div[aria-label$='留個言吧......']")
+                Exit Sub
+            End Try
+
+            'chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......'] > div > div > div")).SendKeys(content_RichTextBox.Text)
+
+            'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
+
+
+            'chromeDriver.ExecuteJavaScript(js_code)
+            '### submit post ###
+            'click_by_span_text("發佈")
+
+
+        Else ' 
+            'Dim btn_eles = chromeDriver.FindElements(By.CssSelector("div.oajrlxb2.g5ia77u1.mtkw9kbi.tlpljxtp.qensuy8j.ppp5ayq2.goun2846.ccm00jje.s44p3ltw.mk2mc5f4.rt8b4zig.n8ej3o3l.agehan2d.sk4xxmp2.rq0escxv.nhd2j8a9.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.l9j0dhe7.i1ao9s8h.esuyzwwr.f1sip0of.du4w35lb.btwxx1t3.abiwlrkh.p8dawk7l.lzcic4wl.bp9cbjyn.ue3kfks5.pw54ja7n.uo3d90p7.l82x9zwi.j83agx80.rj1gh0hx.buofh1pr.g5gj957u.taijpn5t.idt9hxom.cxgpxx05.dflh9lhu.sj5x9vvc.scb9dxdr"))
+            'btn_eles.ElementAt(1).Click()
+            Dim fail_over = False
+            Dim msgbox_ele As Object
+
+            If click_by_span_text("相片／影片") = False Then
+                Exit Sub
+            End If
+
+            Try
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
+                msgbox_ele.SendKeys(content_RichTextBox.Text)
+                Write_log("sendkey to div[aria-label$='在想些什麼？']")
+            Catch ex As Exception
+                Write_err_log("sendkey to div[aria-label$='在想些什麼？']")
+                Exit Sub
+            End Try
+
+            Dim img_upload_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("homepage_post_img_input")))
+
+            'Dim img_upload_input = chromeDriver.FindElement(By.CssSelector("div.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.dflh9lhu.scb9dxdr.aahdfvyu.tvmbv18p.gbw9n0fl.fneq0qzw > input"))
+            'imgupload_ele.SendKeys("C:\Users\Yan\Desktop\testimg.png")
+            'img_upload_input.SendKeys("C:\Users\Yan\Desktop\testimg.png")
+
+            'Debug.WriteLine(img_path_str)
+            If img_path_str <> "" Then
+                img_upload_input.SendKeys(img_path_str)
+            End If
+
+
+            '### submit post ###
+            'chromeDriver.FindElement(By.CssSelector("div.k4urcfbm.discj3wi.dati1w0a.hv4rvrfc.i1fnvgqd.j83agx80.rq0escxv.bp9cbjyn > input")).Click()
+
+        End If
 
     End Sub
 
