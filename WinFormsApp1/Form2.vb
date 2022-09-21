@@ -60,12 +60,12 @@
 
     Private Sub test_success_log_btn_Click(sender As Object, e As EventArgs) Handles test_success_log_btn.Click
         Dim content = "test success log"
-        Form1.Write_log(content)
+
     End Sub
 
     Private Sub test_fail_log_btn_Click(sender As Object, e As EventArgs) Handles test_fail_log_btn.Click
         Dim content = "test fail log"
-        Form1.Write_err_log(content)
+
     End Sub
 
     Private Sub Show_err_log_btn_Click(sender As Object, e As EventArgs) Handles show_err_log_btn.Click

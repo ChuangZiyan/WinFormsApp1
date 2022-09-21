@@ -20,12 +20,12 @@ Public Class ScriptEditor_Form
                 show_help()
             Case "open_chrome"
                 If cmd_array.Length = 2 Then
-                    Form1.open_Chrome(cmd_array(1).Replace("%20", " "))
+                    'Form1.open_Chrome(cmd_array(1).Replace("%20", " "))
                     current_profile = cmd_array(1).Split("\")(UBound(cmd_array(1).Split("\")))
                     print_to_output(current_profile)
                 Else
                     current_profile = "cmd"
-                    Form1.open_Chrome("")
+                    'Form1.open_Chrome("")
                     print_to_output("open chrome")
 
                 End If
@@ -37,7 +37,7 @@ Public Class ScriptEditor_Form
             Case "login_fb"
                 If cmd_array.Length = 3 Then
                     print_to_output("login with " & cmd_array(1))
-                    Form1.login_fb(cmd_array(1), cmd_array(2))
+                    'Form1.login_fb(cmd_array(1), cmd_array(2))
                 Else
                     print_to_output("error invalid parameter")
                 End If

@@ -19,8 +19,9 @@ Imports System.IO
 Public Class Form1
 
     ReadOnly fileContents As String = ReadAllText("C:\selenium_file\fb_auth.txt")
-    ReadOnly fb_email As String = Split(fileContents)(0)
-    ReadOnly fb_passwd As String = Split(fileContents)(1)
+
+
+    Dim log_path = My.Computer.FileSystem.CurrentDirectory + "\logs"
 
     Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
@@ -32,29 +33,26 @@ Public Class Form1
     Dim m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
 
+    Dim used_browser As String = "N/A"
+    Dim dev_model As String = "PC"
+    Dim chrome_profile As String = "N/A"
+
     'Dim webDriverWait As WebDriverWait
 
-    Private Sub Invoke_edge_Click(sender As Object, e As EventArgs) Handles invoke_edge.Click
-        Dim driverManager = New DriverManager()
-        driverManager.SetUpDriver(New EdgeConfig())
-        Dim edgeDrvier = New EdgeDriver()
-        edgeDrvier.Navigate.GoToUrl("https://tw.yahoo.com/")
-        Thread.Sleep(3000)
-        edgeDrvier.Quit()
-
-    End Sub
-
-    Private Sub invoke_firefox_Click(sender As Object, e As EventArgs) Handles invoke_firefox.Click
-        Dim driverManager = New DriverManager()
-        driverManager.SetUpDriver(New FirefoxConfig())
-        Dim firefoxDriver = New FirefoxDriver()
-        firefoxDriver.Navigate.GoToUrl("https://tw.yahoo.com/")
-        Thread.Sleep(3000)
-        firefoxDriver.Quit()
+    Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
+        If chrome_RadioButton.Checked = True Then
+            Open_Chrome()
+        ElseIf firefox_RadioButton.Checked = True Then
+            Open_Firefox()
+        ElseIf edge_RadioButton.Checked = True Then
+            Open_Edge()
+        End If
     End Sub
 
 
-    Public Sub Invoke_Chrome_btn_Click(sender As Object, e As EventArgs) Handles invoke_chrome_btn.Click
+    Private Sub Open_Chrome()
+        used_browser = "Chrome"
+
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New ChromeConfig())
 
@@ -62,9 +60,13 @@ Public Class Form1
         serv.HideCommandPromptWindow = True 'hide cmd
 
         Dim options = New Chrome.ChromeOptions()
+        Dim profile = profile_path_TextBox.Text
+        If profile <> "" Then
+            options.AddArguments("--user-data-dir=" + profile)
+            chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
+        End If
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
         If pc_RadioButton.Checked = False Then
-            Dim dev_model As String = ""
             If pixel5_RadioButton.Checked Then
                 dev_model = "Pixel 5"
             ElseIf i12pro_RadioButton.Checked Then
@@ -75,51 +77,74 @@ Public Class Form1
             options.EnableMobileEmulation(dev_model)
         End If
 
+
         chromeDriver = New ChromeDriver(serv, options)
         chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-        Write_log("Invoke Chrome")
 
-        'chromeDriver.ExecuteJavaScript("onmousemove = function(e){ mouse.x = e.clientX, mouse.y = e.clientY };")
-        driver_close_bnt.Enabled = True
-        refresh_url_timer.Enabled = True
-        chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
-        'chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/?hl=zh_TW")
-        chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
-        chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-        chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
     End Sub
 
-    Public Sub open_Chrome(profile As String)
+    Private Sub Open_Firefox()
+        used_browser = "Firefox"
         Dim driverManager = New DriverManager()
-        driverManager.SetUpDriver(New ChromeConfig())
-        Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
-        serv.HideCommandPromptWindow = True 'hide cmd
-        Dim options = New Chrome.ChromeOptions()
-        options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-        If profile <> "" Then
-            options.AddArguments("--user-data-dir=" + profile)
+        driverManager.SetUpDriver(New FirefoxConfig())
+        Dim firefoxDriver = New FirefoxDriver()
+    End Sub
+
+    Private Sub Open_Edge()
+        used_browser = "Edge"
+        Dim driverManager = New DriverManager()
+        driverManager.SetUpDriver(New EdgeConfig())
+        Dim edgeDrvier = New EdgeDriver()
+    End Sub
+
+    Private Sub Insert_open_browser_btn_Click(sender As Object, e As EventArgs) Handles Insert_open_browser_btn.Click
+        If chrome_RadioButton.Checked = True Then
+            used_browser = "Chrome"
+        ElseIf firefox_RadioButton.Checked = True Then
+            used_browser = "Firefox"
+        ElseIf edge_RadioButton.Checked = True Then
+            used_browser = "Edge"
         End If
-        chromeDriver = New ChromeDriver(serv, options)
-        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-        Write_log("Open Chrome")
+        Insert_to_script("開啟", "瀏覽器")
+    End Sub
+
+
+    Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
+        Dim fb_email = fb_account_TextBox.Text
+        Dim fb_passwd = fb_password_TextBox.Text
+        Insert_to_script("登入", fb_email + ";" + fb_passwd)
+
     End Sub
 
     Public Sub navigate_GoToUrl(url As String)
-        chromeDriver.Navigate.GoToUrl(url)
-    End Sub
-
-    Public Sub login_fb(fb_email As String, fb_passwd As String)
         Try
-            chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
-            chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-            chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
-            Write_log("login successfully")
-            ScriptEditor_Form.current_user_TextBox.Text = fb_email
+            chromeDriver.Navigate.GoToUrl(url)
         Catch ex As Exception
-            Write_err_log("bad login")
-            ScriptEditor_Form.current_user_TextBox.Text = ""
+
         End Try
 
+    End Sub
+
+    Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
+        Try
+            curr_url_TextBox.Text = chromeDriver.Url
+
+        Catch ex As Exception
+
+            Debug.WriteLine(e)
+        End Try
+    End Sub
+
+    Private Sub navigate_to_url_btn_Click(sender As Object, e As EventArgs) Handles navigate_to_url_btn.Click
+        navigate_GoToUrl(curr_url_TextBox.Text)
+    End Sub
+
+    Private Sub get_groupname_Button_Click(sender As Object, e As EventArgs) Handles get_groupname_Button.Click
+        If chromeDriver.Url.Contains("groups") AndAlso IsElementPresent(css_selector_config_obj.Item("group_name_a")) Then
+            group_name_TextBox.Text = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_name_a"))).GetAttribute("innerHTML")
+        Else
+            Debug.WriteLine("cant get group name")
+        End If
     End Sub
 
     Private Sub Write_post_Click(sender As Object, e As EventArgs) Handles write_a_post_btn.Click
@@ -129,7 +154,7 @@ Public Class Form1
         Dim myURL As String = target_url_TextBox.Text
         Dim img_path_str As String = ""
         chromeDriver.Navigate.GoToUrl(myURL)
-        Write_log("Post to " + myURL)
+        'Write_log("Post to " + myURL)
         'get selected img path into string 
         If img_CheckedListBox.CheckedItems.Count <> 0 Then
             For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
@@ -158,9 +183,9 @@ Public Class Form1
             Try
                 Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
-                Write_log("sendkey to div[aria-label$='留個言吧......']")
+                'Write_log("sendkey to div[aria-label$='留個言吧......']")
             Catch ex As Exception
-                Write_err_log("sendkey to div[aria-label$='留個言吧......']")
+                'Write_err_log("sendkey to div[aria-label$='留個言吧......']")
                 Exit Sub
             End Try
 
@@ -187,9 +212,9 @@ Public Class Form1
             Try
                 msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
                 msgbox_ele.SendKeys(content_RichTextBox.Text)
-                Write_log("sendkey to div[aria-label$='在想些什麼？']")
+                'Write_log("sendkey to div[aria-label$='在想些什麼？']")
             Catch ex As Exception
-                Write_err_log("sendkey to div[aria-label$='在想些什麼？']")
+                'Write_err_log("sendkey to div[aria-label$='在想些什麼？']")
                 Exit Sub
             End Try
 
@@ -237,9 +262,9 @@ Public Class Form1
             Try
                 upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
                 upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-                Write_log("upload img file")
+                'Write_log("upload img file")
             Catch ex As Exception
-                Write_err_log("upload img file")
+                'Write_err_log("upload img file")
                 Exit Sub
             End Try
 
@@ -249,7 +274,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub Get_Groups_Click(sender As Object, e As EventArgs) Handles get_groups_btn.Click
+    Private Sub Get_Groups_Click(sender As Object, e As EventArgs)
 
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/groups/feed/")
         Thread.Sleep(3000)
@@ -282,13 +307,13 @@ Public Class Form1
         Debug.WriteLine(group_url_classes.Count)
         For i As Integer = 1 To group_url_classes.Count - 1
             'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
-            Group_ListView.Items.Add(group_name_classes.ElementAt(i - 1).GetAttribute("innerHTML"), 100)
-            Group_ListView.Items(i - 1).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
+            'Group_ListView.Items.Add(group_name_classes.ElementAt(i - 1).GetAttribute("innerHTML"), 100)
+            'Group_ListView.Items(i - 1).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
         Next
 
     End Sub
 
-    Private Sub get_groups_from_m_Click(sender As Object, e As EventArgs) Handles get_groups_from_m.Click
+    Private Sub get_groups_from_m_Click(sender As Object, e As EventArgs)
 
         Dim curr_row As Integer = 0
 
@@ -314,8 +339,8 @@ Public Class Form1
         Dim mng_group_url_classes = chromeDriver.FindElements(By.CssSelector(m_css_selector_config_obj.Item("mng_group_url_classes")))
         For i As Integer = 0 To mng_group_name_classes.Count - 1
             'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
-            Group_ListView.Items.Add(mng_group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
-            Group_ListView.Items(curr_row).SubItems.Add(mng_group_url_classes.ElementAt(i).GetAttribute("href"))
+            'Group_ListView.Items.Add(mng_group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
+            'Group_ListView.Items(curr_row).SubItems.Add(mng_group_url_classes.ElementAt(i).GetAttribute("href"))
             curr_row += 1
         Next
 
@@ -343,8 +368,8 @@ Public Class Form1
         'Debug.WriteLine(group_url_classes.Count)
         For i As Integer = 0 To group_url_classes.Count - 1
             'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
-            Group_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
-            Group_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
+            'Group_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
+            'Group_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
             curr_row += 1
         Next
 
@@ -394,13 +419,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'driver_close_bnt.Enabled = False
-        target_url_TextBox.Text = "https://www.facebook.com/groups/737807930865755"
-        Group_ListView.View = View.Details
-        Group_ListView.GridLines = True
-        Group_ListView.FullRowSelect = True
-        Group_ListView.Columns.Add("GroupName", 100)
-        Group_ListView.Columns.Add("URL", 800)
+        Render_eventlog_listview()
+
 
 
         For Each Dir As String In My.Computer.FileSystem.GetDirectories(My.Computer.FileSystem.CurrentDirectory + "\Chrome")
@@ -428,7 +448,7 @@ Public Class Form1
     Private Sub IsInternetConnected()
         If Not My.Computer.Network.Ping("google.com") Then
             MsgBox("Network is unreachable")
-            Write_err_log("Network is unreachable")
+            'Write_err_log("Network is unreachable")
         End If
 
     End Sub
@@ -464,20 +484,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub replace_str_btn_Click(sender As Object, e As EventArgs) Handles replace_str_btn.Click
-        Dim compare_str = compare_str_textbox.Text
-        Dim replace_str = replace_str_textbox.Text
-
-        For Each item As ListViewItem In Group_ListView.Items
-            Debug.WriteLine(item.SubItems(1))
-            item.SubItems(1).Text = item.SubItems(1).Text.Replace(compare_str, replace_str)
-        Next
-
-
-        'Debug.WriteLine(Group_ListView)
-
-
-    End Sub
 
     Private Sub cursor_Click(sender As Object, e As EventArgs) Handles cursor_clickl_btn.Click
 
@@ -560,10 +566,10 @@ Public Class Form1
     Private Function click_by_aria_label(str As String) As Boolean
         Try
             chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + str + "']")).Click()
-            Write_log("Click: " + str)
+            'Write_log("Click: " + str)
             Return True
         Catch ex As Exception
-            Write_err_log("Click: " + str)
+            'Write_err_log("Click: " + str)
             IsInternetConnected()
             'Debug.WriteLine(ex)
             Return False
@@ -574,10 +580,10 @@ Public Class Form1
 
         Try
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
-            Write_log("Click: " + str)
+            'Write_log("Click: " + str)
             Return True
         Catch ex As Exception
-            Write_err_log("Click: " + str)
+            'Write_err_log("Click: " + str)
             IsInternetConnected()
             'Debug.WriteLine(ex)
             Return False
@@ -604,16 +610,49 @@ Public Class Form1
         Form2.Visible = True
     End Sub
 
-    Public Sub Write_log(content As String)
-        Form2.EventlogListview_AddNewItem(Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + ",Info," + content)
-        Log_to_file(Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + ",Info," + content)
+
+
+    Private Sub Insert_to_script(action As String, content As String)
+        Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url_TextBox.Text + "," + action + "," + content + ","
+        EventlogListview_AddNewItem(myline)
     End Sub
 
-    Public Sub Write_err_log(content As String)
-        Form2.EventlogListview_AddNewItem(Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + ",Error," + content)
-        Log_to_file(Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + ",Error," + content)
+    Public Sub Write_log(action As String, content As String)
+
+
+        Dim curr_url = "N/A"
+        Try
+            curr_url = chromeDriver.Url.Replace(",", "")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+        Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url + "," + action + "," + content + ",成功"
+        EventlogListview_AddNewItem(myline)
+        Log_to_file(myline)
     End Sub
 
+    Public Sub Write_err_log(action As String, content As String)
+        Dim curr_url = "N/A"
+        Try
+            curr_url = chromeDriver.Url.Replace(",", "")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+        Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url + "," + action + "," + content + ",失敗"
+        EventlogListview_AddNewItem(myline)
+        Log_to_file(myline)
+    End Sub
+
+    Public Sub EventlogListview_AddNewItem(content)
+        Dim curr_row = script_ListView.Items.Count
+        script_ListView.Items.Insert(curr_row, curr_row + 1.ToString)
+
+        Dim splittedLine() As String = content.Split(",")
+        For Each log In splittedLine
+            script_ListView.Items(curr_row).SubItems.Add(log)
+        Next
+    End Sub
 
     Public Sub Log_to_file(content As String)
         Dim thisDate As String = Date.Today.ToString("dd-MM-yyyy")
@@ -653,7 +692,85 @@ Public Class Form1
         log_file_temp.Close()
     End Sub
 
-    Private Sub show_script_editor_btn_Click(sender As Object, e As EventArgs) Handles show_script_editor_btn.Click
-        ScriptEditor_Form.Visible = True
+
+    Private Sub Render_eventlog_listview()
+        script_ListView.View = View.Details
+        script_ListView.GridLines = True
+        script_ListView.FullRowSelect = True
+        script_ListView.Columns.Add("編號", 0)
+        script_ListView.Columns.Add("日期", 0)
+        script_ListView.Columns.Add("時間", 0)
+        script_ListView.Columns.Add("瀏覽器", 100)
+        script_ListView.Columns.Add("設備", 100)
+        script_ListView.Columns.Add("名稱", 100)
+        script_ListView.Columns.Add("網址", 100)
+        script_ListView.Columns.Add("執行動作", 100)
+        script_ListView.Columns.Add("內容", 200)
+        script_ListView.Columns.Add("執行結果", 100)
+
+
+        If Not System.IO.Directory.Exists(log_path) Then
+            System.IO.Directory.CreateDirectory(log_path)
+        End If
+
+        If Not My.Computer.FileSystem.FileExists(log_path + "\selenium_log_temp.txt") Then
+            Dim log_file_temp As System.IO.StreamWriter
+            log_file_temp = My.Computer.FileSystem.OpenTextFileWriter(log_path + "\selenium_log_temp.txt", True)
+            log_file_temp.Write("")
+            log_file_temp.Close()
+        End If
+
+        Update_eventlog_listview()
     End Sub
+
+    Public Sub Update_eventlog_listview()
+        script_ListView.Items.Clear()
+        Dim log_lines = IO.File.ReadAllLines(log_path + "\selenium_log_temp.txt").Reverse()
+        Dim curr_row As Integer = 0
+        Dim index As Integer = IO.File.ReadAllLines(log_path + "\selenium_log_temp.txt").Length
+        For Each line In log_lines
+            Dim splittedLine() As String = line.Split(",")
+            script_ListView.Items.Add(index.ToString)
+            For Each log In splittedLine
+                script_ListView.Items(curr_row).SubItems.Add(log)
+            Next
+            curr_row += 1
+            index -= 1
+        Next
+
+    End Sub
+
+    Dim current_state = 0
+    Private Sub collapse_btn_Click(sender As Object, e As EventArgs) Handles collapse_btn.Click
+        If current_state = 0 Then
+            script_ListView.Columns(0).Width = 50
+            script_ListView.Columns(1).Width = 100
+            script_ListView.Columns(2).Width = 80
+            current_state = 1
+        Else
+            script_ListView.Columns(0).Width = 0
+            script_ListView.Columns(1).Width = 0
+            script_ListView.Columns(2).Width = 0
+            current_state = 0
+        End If
+    End Sub
+
+
+
+
+    'for the singe action 
+
+    Private Function Login_fb(fb_email As String, fb_passwd As String)
+        Try
+            navigate_GoToUrl("https://www.facebook.com/")
+            chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
+            chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
+            chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
 End Class

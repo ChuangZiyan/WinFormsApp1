@@ -30,21 +30,10 @@ Partial Class Form1
         Me.reply_comment_bnt = New System.Windows.Forms.Button()
         Me.target_url_TextBox = New System.Windows.Forms.TextBox()
         Me.url_lbl = New System.Windows.Forms.Label()
-        Me.get_groups_btn = New System.Windows.Forms.Button()
-        Me.Group_ListView = New System.Windows.Forms.ListView()
-        Me.get_groups_from_m = New System.Windows.Forms.Button()
         Me.curr_url_lbl = New System.Windows.Forms.Label()
         Me.curr_url_TextBox = New System.Windows.Forms.TextBox()
         Me.refresh_url_timer = New System.Windows.Forms.Timer(Me.components)
-        Me.replace_str_btn = New System.Windows.Forms.Button()
-        Me.compare_str_textbox = New System.Windows.Forms.TextBox()
-        Me.replace_str_textbox = New System.Windows.Forms.TextBox()
         Me.img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
-        Me.devtype_GroupBox = New System.Windows.Forms.GroupBox()
-        Me.ipadair_RadioButton = New System.Windows.Forms.RadioButton()
-        Me.i12pro_RadioButton = New System.Windows.Forms.RadioButton()
-        Me.pixel5_RadioButton = New System.Windows.Forms.RadioButton()
-        Me.pc_RadioButton = New System.Windows.Forms.RadioButton()
         Me.cursor_clickl_btn = New System.Windows.Forms.Button()
         Me.cursor_x_TextBox = New System.Windows.Forms.TextBox()
         Me.cursor_y_TextBox = New System.Windows.Forms.TextBox()
@@ -63,12 +52,48 @@ Partial Class Form1
         Me.show_log_btn = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.show_script_editor_btn = New System.Windows.Forms.Button()
-        Me.devtype_GroupBox.SuspendLayout()
+        Me.script_ListView = New System.Windows.Forms.ListView()
+        Me.test_fail_log_btn = New System.Windows.Forms.Button()
+        Me.test_success_log_btn = New System.Windows.Forms.Button()
+        Me.eventlog_search_btn = New System.Windows.Forms.Button()
+        Me.eventlog_search_TextBox = New System.Windows.Forms.TextBox()
+        Me.show_err_log_btn = New System.Windows.Forms.Button()
+        Me.show_all_log_btn = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.collapse_btn = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Insert_open_browser_btn = New System.Windows.Forms.Button()
+        Me.navigate_to_url_btn = New System.Windows.Forms.Button()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.pc_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.i12pro_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.pixel5_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.ipadair_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.edge_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.firefox_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.chrome_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.Get_url_btn = New System.Windows.Forms.Button()
+        Me.get_groupname_Button = New System.Windows.Forms.Button()
+        Me.open_browser_Button = New System.Windows.Forms.Button()
+        Me.Insert_login_Button = New System.Windows.Forms.Button()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.fb_password_TextBox = New System.Windows.Forms.TextBox()
+        Me.fb_account_TextBox = New System.Windows.Forms.TextBox()
+        Me.profile_path_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.GroupBox1.SuspendLayout()
+        Me.cmd_GroupBox.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'write_a_post_btn
         '
-        Me.write_a_post_btn.Location = New System.Drawing.Point(178, 528)
+        Me.write_a_post_btn.Location = New System.Drawing.Point(178, 819)
         Me.write_a_post_btn.Name = "write_a_post_btn"
         Me.write_a_post_btn.Size = New System.Drawing.Size(100, 60)
         Me.write_a_post_btn.TabIndex = 0
@@ -77,7 +102,7 @@ Partial Class Form1
         '
         'content_RichTextBox
         '
-        Me.content_RichTextBox.Location = New System.Drawing.Point(178, 259)
+        Me.content_RichTextBox.Location = New System.Drawing.Point(178, 550)
         Me.content_RichTextBox.Name = "content_RichTextBox"
         Me.content_RichTextBox.Size = New System.Drawing.Size(341, 263)
         Me.content_RichTextBox.TabIndex = 1
@@ -86,7 +111,7 @@ Partial Class Form1
         'invoke_chrome_btn
         '
         Me.invoke_chrome_btn.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.invoke_chrome_btn.Location = New System.Drawing.Point(12, 462)
+        Me.invoke_chrome_btn.Location = New System.Drawing.Point(12, 753)
         Me.invoke_chrome_btn.Name = "invoke_chrome_btn"
         Me.invoke_chrome_btn.Size = New System.Drawing.Size(160, 60)
         Me.invoke_chrome_btn.TabIndex = 2
@@ -96,16 +121,16 @@ Partial Class Form1
         'driver_close_bnt
         '
         Me.driver_close_bnt.BackColor = System.Drawing.Color.LightCoral
-        Me.driver_close_bnt.Location = New System.Drawing.Point(12, 528)
+        Me.driver_close_bnt.Location = New System.Drawing.Point(694, 134)
         Me.driver_close_bnt.Name = "driver_close_bnt"
-        Me.driver_close_bnt.Size = New System.Drawing.Size(160, 60)
+        Me.driver_close_bnt.Size = New System.Drawing.Size(94, 29)
         Me.driver_close_bnt.TabIndex = 3
-        Me.driver_close_bnt.Text = "Close Chrome A"
+        Me.driver_close_bnt.Text = "關閉瀏覽器"
         Me.driver_close_bnt.UseVisualStyleBackColor = False
         '
         'reply_comment_bnt
         '
-        Me.reply_comment_bnt.Location = New System.Drawing.Point(284, 528)
+        Me.reply_comment_bnt.Location = New System.Drawing.Point(284, 819)
         Me.reply_comment_bnt.Name = "reply_comment_bnt"
         Me.reply_comment_bnt.Size = New System.Drawing.Size(108, 60)
         Me.reply_comment_bnt.TabIndex = 4
@@ -114,7 +139,7 @@ Partial Class Form1
         '
         'target_url_TextBox
         '
-        Me.target_url_TextBox.Location = New System.Drawing.Point(116, 75)
+        Me.target_url_TextBox.Location = New System.Drawing.Point(137, 373)
         Me.target_url_TextBox.Name = "target_url_TextBox"
         Me.target_url_TextBox.Size = New System.Drawing.Size(403, 27)
         Me.target_url_TextBox.TabIndex = 5
@@ -122,151 +147,44 @@ Partial Class Form1
         'url_lbl
         '
         Me.url_lbl.AutoSize = True
-        Me.url_lbl.Location = New System.Drawing.Point(12, 83)
+        Me.url_lbl.Location = New System.Drawing.Point(33, 381)
         Me.url_lbl.Name = "url_lbl"
         Me.url_lbl.Size = New System.Drawing.Size(90, 19)
         Me.url_lbl.TabIndex = 6
         Me.url_lbl.Text = "Target URL:"
         '
-        'get_groups_btn
-        '
-        Me.get_groups_btn.Location = New System.Drawing.Point(899, 531)
-        Me.get_groups_btn.Name = "get_groups_btn"
-        Me.get_groups_btn.Size = New System.Drawing.Size(120, 60)
-        Me.get_groups_btn.TabIndex = 7
-        Me.get_groups_btn.Text = "Get groups"
-        Me.get_groups_btn.UseVisualStyleBackColor = True
-        '
-        'Group_ListView
-        '
-        Me.Group_ListView.Location = New System.Drawing.Point(899, 78)
-        Me.Group_ListView.Name = "Group_ListView"
-        Me.Group_ListView.Size = New System.Drawing.Size(449, 447)
-        Me.Group_ListView.TabIndex = 8
-        Me.Group_ListView.UseCompatibleStateImageBehavior = False
-        '
-        'get_groups_from_m
-        '
-        Me.get_groups_from_m.Location = New System.Drawing.Point(1025, 531)
-        Me.get_groups_from_m.Name = "get_groups_from_m"
-        Me.get_groups_from_m.Size = New System.Drawing.Size(126, 60)
-        Me.get_groups_from_m.TabIndex = 9
-        Me.get_groups_from_m.Text = "Get m groups"
-        Me.get_groups_from_m.UseVisualStyleBackColor = True
-        '
         'curr_url_lbl
         '
         Me.curr_url_lbl.AutoSize = True
-        Me.curr_url_lbl.Location = New System.Drawing.Point(12, 24)
+        Me.curr_url_lbl.Location = New System.Drawing.Point(51, 236)
         Me.curr_url_lbl.Name = "curr_url_lbl"
-        Me.curr_url_lbl.Size = New System.Drawing.Size(98, 19)
+        Me.curr_url_lbl.Size = New System.Drawing.Size(46, 19)
         Me.curr_url_lbl.TabIndex = 10
-        Me.curr_url_lbl.Text = "Current URL:"
+        Me.curr_url_lbl.Text = "網址 :"
         '
         'curr_url_TextBox
         '
-        Me.curr_url_TextBox.Location = New System.Drawing.Point(116, 21)
+        Me.curr_url_TextBox.Location = New System.Drawing.Point(107, 233)
         Me.curr_url_TextBox.Name = "curr_url_TextBox"
-        Me.curr_url_TextBox.Size = New System.Drawing.Size(403, 27)
+        Me.curr_url_TextBox.Size = New System.Drawing.Size(473, 27)
         Me.curr_url_TextBox.TabIndex = 11
         '
         'refresh_url_timer
         '
         Me.refresh_url_timer.Interval = 2000
         '
-        'replace_str_btn
-        '
-        Me.replace_str_btn.Location = New System.Drawing.Point(1085, 24)
-        Me.replace_str_btn.Name = "replace_str_btn"
-        Me.replace_str_btn.Size = New System.Drawing.Size(99, 28)
-        Me.replace_str_btn.TabIndex = 12
-        Me.replace_str_btn.Text = "Replace to"
-        Me.replace_str_btn.UseVisualStyleBackColor = True
-        '
-        'compare_str_textbox
-        '
-        Me.compare_str_textbox.Location = New System.Drawing.Point(899, 24)
-        Me.compare_str_textbox.Name = "compare_str_textbox"
-        Me.compare_str_textbox.Size = New System.Drawing.Size(180, 27)
-        Me.compare_str_textbox.TabIndex = 13
-        '
-        'replace_str_textbox
-        '
-        Me.replace_str_textbox.Location = New System.Drawing.Point(1190, 24)
-        Me.replace_str_textbox.Name = "replace_str_textbox"
-        Me.replace_str_textbox.Size = New System.Drawing.Size(158, 27)
-        Me.replace_str_textbox.TabIndex = 14
-        '
         'img_CheckedListBox
         '
         Me.img_CheckedListBox.FormattingEnabled = True
         Me.img_CheckedListBox.HorizontalScrollbar = True
-        Me.img_CheckedListBox.Location = New System.Drawing.Point(525, 129)
+        Me.img_CheckedListBox.Location = New System.Drawing.Point(525, 425)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
         Me.img_CheckedListBox.Size = New System.Drawing.Size(368, 400)
         Me.img_CheckedListBox.TabIndex = 15
         '
-        'devtype_GroupBox
-        '
-        Me.devtype_GroupBox.Controls.Add(Me.ipadair_RadioButton)
-        Me.devtype_GroupBox.Controls.Add(Me.i12pro_RadioButton)
-        Me.devtype_GroupBox.Controls.Add(Me.pixel5_RadioButton)
-        Me.devtype_GroupBox.Controls.Add(Me.pc_RadioButton)
-        Me.devtype_GroupBox.Location = New System.Drawing.Point(12, 306)
-        Me.devtype_GroupBox.Name = "devtype_GroupBox"
-        Me.devtype_GroupBox.Size = New System.Drawing.Size(160, 150)
-        Me.devtype_GroupBox.TabIndex = 16
-        Me.devtype_GroupBox.TabStop = False
-        Me.devtype_GroupBox.Text = "Device Type"
-        '
-        'ipadair_RadioButton
-        '
-        Me.ipadair_RadioButton.AutoSize = True
-        Me.ipadair_RadioButton.Location = New System.Drawing.Point(6, 113)
-        Me.ipadair_RadioButton.Name = "ipadair_RadioButton"
-        Me.ipadair_RadioButton.Size = New System.Drawing.Size(85, 23)
-        Me.ipadair_RadioButton.TabIndex = 3
-        Me.ipadair_RadioButton.TabStop = True
-        Me.ipadair_RadioButton.Text = "iPad Air"
-        Me.ipadair_RadioButton.UseVisualStyleBackColor = True
-        '
-        'i12pro_RadioButton
-        '
-        Me.i12pro_RadioButton.AutoSize = True
-        Me.i12pro_RadioButton.Location = New System.Drawing.Point(6, 84)
-        Me.i12pro_RadioButton.Name = "i12pro_RadioButton"
-        Me.i12pro_RadioButton.Size = New System.Drawing.Size(128, 23)
-        Me.i12pro_RadioButton.TabIndex = 2
-        Me.i12pro_RadioButton.TabStop = True
-        Me.i12pro_RadioButton.Text = "iPhone 12 Pro"
-        Me.i12pro_RadioButton.UseVisualStyleBackColor = True
-        '
-        'pixel5_RadioButton
-        '
-        Me.pixel5_RadioButton.AutoSize = True
-        Me.pixel5_RadioButton.Location = New System.Drawing.Point(6, 55)
-        Me.pixel5_RadioButton.Name = "pixel5_RadioButton"
-        Me.pixel5_RadioButton.Size = New System.Drawing.Size(75, 23)
-        Me.pixel5_RadioButton.TabIndex = 1
-        Me.pixel5_RadioButton.TabStop = True
-        Me.pixel5_RadioButton.Text = "Pixel 5"
-        Me.pixel5_RadioButton.UseVisualStyleBackColor = True
-        '
-        'pc_RadioButton
-        '
-        Me.pc_RadioButton.AutoSize = True
-        Me.pc_RadioButton.Checked = True
-        Me.pc_RadioButton.Location = New System.Drawing.Point(6, 26)
-        Me.pc_RadioButton.Name = "pc_RadioButton"
-        Me.pc_RadioButton.Size = New System.Drawing.Size(49, 23)
-        Me.pc_RadioButton.TabIndex = 0
-        Me.pc_RadioButton.TabStop = True
-        Me.pc_RadioButton.Text = "PC"
-        Me.pc_RadioButton.UseVisualStyleBackColor = True
-        '
         'cursor_clickl_btn
         '
-        Me.cursor_clickl_btn.Location = New System.Drawing.Point(689, 73)
+        Me.cursor_clickl_btn.Location = New System.Drawing.Point(710, 371)
         Me.cursor_clickl_btn.Name = "cursor_clickl_btn"
         Me.cursor_clickl_btn.Size = New System.Drawing.Size(102, 32)
         Me.cursor_clickl_btn.TabIndex = 17
@@ -275,14 +193,14 @@ Partial Class Form1
         '
         'cursor_x_TextBox
         '
-        Me.cursor_x_TextBox.Location = New System.Drawing.Point(553, 77)
+        Me.cursor_x_TextBox.Location = New System.Drawing.Point(574, 375)
         Me.cursor_x_TextBox.Name = "cursor_x_TextBox"
         Me.cursor_x_TextBox.Size = New System.Drawing.Size(43, 27)
         Me.cursor_x_TextBox.TabIndex = 18
         '
         'cursor_y_TextBox
         '
-        Me.cursor_y_TextBox.Location = New System.Drawing.Point(629, 77)
+        Me.cursor_y_TextBox.Location = New System.Drawing.Point(650, 375)
         Me.cursor_y_TextBox.Name = "cursor_y_TextBox"
         Me.cursor_y_TextBox.Size = New System.Drawing.Size(45, 27)
         Me.cursor_y_TextBox.TabIndex = 19
@@ -290,7 +208,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(528, 80)
+        Me.Label1.Location = New System.Drawing.Point(549, 378)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(22, 19)
         Me.Label1.TabIndex = 20
@@ -299,7 +217,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(602, 80)
+        Me.Label2.Location = New System.Drawing.Point(623, 378)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(21, 19)
         Me.Label2.TabIndex = 21
@@ -307,7 +225,7 @@ Partial Class Form1
         '
         'hide_btn
         '
-        Me.hide_btn.Location = New System.Drawing.Point(12, 129)
+        Me.hide_btn.Location = New System.Drawing.Point(12, 420)
         Me.hide_btn.Name = "hide_btn"
         Me.hide_btn.Size = New System.Drawing.Size(77, 29)
         Me.hide_btn.TabIndex = 22
@@ -316,7 +234,7 @@ Partial Class Form1
         '
         'show_btn
         '
-        Me.show_btn.Location = New System.Drawing.Point(95, 129)
+        Me.show_btn.Location = New System.Drawing.Point(95, 420)
         Me.show_btn.Name = "show_btn"
         Me.show_btn.Size = New System.Drawing.Size(77, 29)
         Me.show_btn.TabIndex = 23
@@ -328,7 +246,7 @@ Partial Class Form1
         Me.chromedriver_ListBox.FormattingEnabled = True
         Me.chromedriver_ListBox.HorizontalScrollbar = True
         Me.chromedriver_ListBox.ItemHeight = 19
-        Me.chromedriver_ListBox.Location = New System.Drawing.Point(178, 129)
+        Me.chromedriver_ListBox.Location = New System.Drawing.Point(178, 420)
         Me.chromedriver_ListBox.Name = "chromedriver_ListBox"
         Me.chromedriver_ListBox.Size = New System.Drawing.Size(341, 118)
         Me.chromedriver_ListBox.TabIndex = 24
@@ -336,7 +254,7 @@ Partial Class Form1
         'crawl_post_btn
         '
         Me.crawl_post_btn.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.crawl_post_btn.Location = New System.Drawing.Point(398, 528)
+        Me.crawl_post_btn.Location = New System.Drawing.Point(398, 819)
         Me.crawl_post_btn.Name = "crawl_post_btn"
         Me.crawl_post_btn.Size = New System.Drawing.Size(121, 60)
         Me.crawl_post_btn.TabIndex = 25
@@ -345,7 +263,7 @@ Partial Class Form1
         '
         'block_user_btn
         '
-        Me.block_user_btn.Location = New System.Drawing.Point(12, 164)
+        Me.block_user_btn.Location = New System.Drawing.Point(12, 455)
         Me.block_user_btn.Name = "block_user_btn"
         Me.block_user_btn.Size = New System.Drawing.Size(77, 28)
         Me.block_user_btn.TabIndex = 26
@@ -355,7 +273,7 @@ Partial Class Form1
         'clr_post_btn
         '
         Me.clr_post_btn.ForeColor = System.Drawing.Color.Black
-        Me.clr_post_btn.Location = New System.Drawing.Point(12, 271)
+        Me.clr_post_btn.Location = New System.Drawing.Point(12, 562)
         Me.clr_post_btn.Name = "clr_post_btn"
         Me.clr_post_btn.Size = New System.Drawing.Size(160, 29)
         Me.clr_post_btn.TabIndex = 27
@@ -364,24 +282,23 @@ Partial Class Form1
         '
         'group_name_TextBox
         '
-        Me.group_name_TextBox.Location = New System.Drawing.Point(629, 24)
+        Me.group_name_TextBox.Location = New System.Drawing.Point(107, 200)
         Me.group_name_TextBox.Name = "group_name_TextBox"
-        Me.group_name_TextBox.ReadOnly = True
-        Me.group_name_TextBox.Size = New System.Drawing.Size(264, 27)
+        Me.group_name_TextBox.Size = New System.Drawing.Size(473, 27)
         Me.group_name_TextBox.TabIndex = 27
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(525, 24)
+        Me.Label3.Location = New System.Drawing.Point(21, 203)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(98, 19)
+        Me.Label3.Size = New System.Drawing.Size(80, 19)
         Me.Label3.TabIndex = 28
-        Me.Label3.Text = "GroupName:"
+        Me.Label3.Text = "群組名稱 : "
         '
         'invoke_edge
         '
-        Me.invoke_edge.Location = New System.Drawing.Point(12, 594)
+        Me.invoke_edge.Location = New System.Drawing.Point(12, 885)
         Me.invoke_edge.Name = "invoke_edge"
         Me.invoke_edge.Size = New System.Drawing.Size(77, 38)
         Me.invoke_edge.TabIndex = 29
@@ -390,7 +307,7 @@ Partial Class Form1
         '
         'invoke_firefox
         '
-        Me.invoke_firefox.Location = New System.Drawing.Point(95, 594)
+        Me.invoke_firefox.Location = New System.Drawing.Point(95, 885)
         Me.invoke_firefox.Name = "invoke_firefox"
         Me.invoke_firefox.Size = New System.Drawing.Size(77, 38)
         Me.invoke_firefox.TabIndex = 30
@@ -400,7 +317,7 @@ Partial Class Form1
         'show_log_btn
         '
         Me.show_log_btn.BackColor = System.Drawing.SystemColors.Info
-        Me.show_log_btn.Location = New System.Drawing.Point(12, 198)
+        Me.show_log_btn.Location = New System.Drawing.Point(12, 489)
         Me.show_log_btn.Name = "show_log_btn"
         Me.show_log_btn.Size = New System.Drawing.Size(160, 28)
         Me.show_log_btn.TabIndex = 31
@@ -409,7 +326,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(797, 73)
+        Me.Button2.Location = New System.Drawing.Point(818, 371)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(94, 29)
         Me.Button2.TabIndex = 32
@@ -419,26 +336,365 @@ Partial Class Form1
         'show_script_editor_btn
         '
         Me.show_script_editor_btn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.show_script_editor_btn.Location = New System.Drawing.Point(12, 232)
+        Me.show_script_editor_btn.Location = New System.Drawing.Point(12, 523)
         Me.show_script_editor_btn.Name = "show_script_editor_btn"
         Me.show_script_editor_btn.Size = New System.Drawing.Size(160, 29)
         Me.show_script_editor_btn.TabIndex = 33
         Me.show_script_editor_btn.Text = "Script Editor"
         Me.show_script_editor_btn.UseVisualStyleBackColor = False
         '
+        'script_ListView
+        '
+        Me.script_ListView.Location = New System.Drawing.Point(18, 61)
+        Me.script_ListView.Name = "script_ListView"
+        Me.script_ListView.Size = New System.Drawing.Size(920, 478)
+        Me.script_ListView.TabIndex = 36
+        Me.script_ListView.UseCompatibleStateImageBehavior = False
+        '
+        'test_fail_log_btn
+        '
+        Me.test_fail_log_btn.Location = New System.Drawing.Point(455, 19)
+        Me.test_fail_log_btn.Name = "test_fail_log_btn"
+        Me.test_fail_log_btn.Size = New System.Drawing.Size(96, 31)
+        Me.test_fail_log_btn.TabIndex = 35
+        Me.test_fail_log_btn.Text = "Test Fail"
+        Me.test_fail_log_btn.UseVisualStyleBackColor = True
+        '
+        'test_success_log_btn
+        '
+        Me.test_success_log_btn.Location = New System.Drawing.Point(340, 17)
+        Me.test_success_log_btn.Name = "test_success_log_btn"
+        Me.test_success_log_btn.Size = New System.Drawing.Size(109, 35)
+        Me.test_success_log_btn.TabIndex = 34
+        Me.test_success_log_btn.Text = "Test Success"
+        Me.test_success_log_btn.UseVisualStyleBackColor = True
+        '
+        'eventlog_search_btn
+        '
+        Me.eventlog_search_btn.Location = New System.Drawing.Point(844, 20)
+        Me.eventlog_search_btn.Name = "eventlog_search_btn"
+        Me.eventlog_search_btn.Size = New System.Drawing.Size(94, 29)
+        Me.eventlog_search_btn.TabIndex = 40
+        Me.eventlog_search_btn.Text = "Search"
+        Me.eventlog_search_btn.UseVisualStyleBackColor = True
+        '
+        'eventlog_search_TextBox
+        '
+        Me.eventlog_search_TextBox.Location = New System.Drawing.Point(637, 20)
+        Me.eventlog_search_TextBox.Name = "eventlog_search_TextBox"
+        Me.eventlog_search_TextBox.Size = New System.Drawing.Size(201, 27)
+        Me.eventlog_search_TextBox.TabIndex = 39
+        '
+        'show_err_log_btn
+        '
+        Me.show_err_log_btn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.show_err_log_btn.ForeColor = System.Drawing.Color.Red
+        Me.show_err_log_btn.Location = New System.Drawing.Point(232, 20)
+        Me.show_err_log_btn.Name = "show_err_log_btn"
+        Me.show_err_log_btn.Size = New System.Drawing.Size(94, 29)
+        Me.show_err_log_btn.TabIndex = 38
+        Me.show_err_log_btn.Text = "Error"
+        Me.show_err_log_btn.UseVisualStyleBackColor = True
+        '
+        'show_all_log_btn
+        '
+        Me.show_all_log_btn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.show_all_log_btn.Location = New System.Drawing.Point(132, 22)
+        Me.show_all_log_btn.Name = "show_all_log_btn"
+        Me.show_all_log_btn.Size = New System.Drawing.Size(94, 29)
+        Me.show_all_log_btn.TabIndex = 37
+        Me.show_all_log_btn.Text = "All"
+        Me.show_all_log_btn.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.collapse_btn)
+        Me.GroupBox1.Controls.Add(Me.script_ListView)
+        Me.GroupBox1.Controls.Add(Me.test_fail_log_btn)
+        Me.GroupBox1.Controls.Add(Me.eventlog_search_btn)
+        Me.GroupBox1.Controls.Add(Me.test_success_log_btn)
+        Me.GroupBox1.Controls.Add(Me.show_all_log_btn)
+        Me.GroupBox1.Controls.Add(Me.eventlog_search_TextBox)
+        Me.GroupBox1.Controls.Add(Me.show_err_log_btn)
+        Me.GroupBox1.Location = New System.Drawing.Point(930, 12)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(944, 813)
+        Me.GroupBox1.TabIndex = 41
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "腳本"
+        '
+        'collapse_btn
+        '
+        Me.collapse_btn.Location = New System.Drawing.Point(18, 23)
+        Me.collapse_btn.Name = "collapse_btn"
+        Me.collapse_btn.Size = New System.Drawing.Size(94, 29)
+        Me.collapse_btn.TabIndex = 41
+        Me.collapse_btn.Text = "展開/收合"
+        Me.collapse_btn.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(6, 30)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(91, 19)
+        Me.Label4.TabIndex = 42
+        Me.Label4.Text = "選擇瀏覽器 :"
+        '
+        'cmd_GroupBox
+        '
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_open_browser_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.navigate_to_url_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.GroupBox3)
+        Me.cmd_GroupBox.Controls.Add(Me.GroupBox2)
+        Me.cmd_GroupBox.Controls.Add(Me.Get_url_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.get_groupname_Button)
+        Me.cmd_GroupBox.Controls.Add(Me.open_browser_Button)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_login_Button)
+        Me.cmd_GroupBox.Controls.Add(Me.Label8)
+        Me.cmd_GroupBox.Controls.Add(Me.fb_password_TextBox)
+        Me.cmd_GroupBox.Controls.Add(Me.fb_account_TextBox)
+        Me.cmd_GroupBox.Controls.Add(Me.profile_path_TextBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Label7)
+        Me.cmd_GroupBox.Controls.Add(Me.Label6)
+        Me.cmd_GroupBox.Controls.Add(Me.group_name_TextBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Label3)
+        Me.cmd_GroupBox.Controls.Add(Me.Label5)
+        Me.cmd_GroupBox.Controls.Add(Me.Label4)
+        Me.cmd_GroupBox.Controls.Add(Me.curr_url_lbl)
+        Me.cmd_GroupBox.Controls.Add(Me.curr_url_TextBox)
+        Me.cmd_GroupBox.Controls.Add(Me.driver_close_bnt)
+        Me.cmd_GroupBox.Location = New System.Drawing.Point(12, 12)
+        Me.cmd_GroupBox.Name = "cmd_GroupBox"
+        Me.cmd_GroupBox.Size = New System.Drawing.Size(912, 334)
+        Me.cmd_GroupBox.TabIndex = 43
+        Me.cmd_GroupBox.TabStop = False
+        Me.cmd_GroupBox.Text = "命令 :"
+        '
+        'Insert_open_browser_btn
+        '
+        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(794, 134)
+        Me.Insert_open_browser_btn.Name = "Insert_open_browser_btn"
+        Me.Insert_open_browser_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_open_browser_btn.TabIndex = 60
+        Me.Insert_open_browser_btn.Text = "插入至腳本"
+        Me.Insert_open_browser_btn.UseVisualStyleBackColor = True
+        '
+        'navigate_to_url_btn
+        '
+        Me.navigate_to_url_btn.Location = New System.Drawing.Point(694, 231)
+        Me.navigate_to_url_btn.Name = "navigate_to_url_btn"
+        Me.navigate_to_url_btn.Size = New System.Drawing.Size(94, 29)
+        Me.navigate_to_url_btn.TabIndex = 59
+        Me.navigate_to_url_btn.Text = "前往網址"
+        Me.navigate_to_url_btn.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.pc_RadioButton)
+        Me.GroupBox3.Controls.Add(Me.i12pro_RadioButton)
+        Me.GroupBox3.Controls.Add(Me.pixel5_RadioButton)
+        Me.GroupBox3.Controls.Add(Me.ipadair_RadioButton)
+        Me.GroupBox3.Location = New System.Drawing.Point(107, 68)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(583, 50)
+        Me.GroupBox3.TabIndex = 58
+        Me.GroupBox3.TabStop = False
+        '
+        'pc_RadioButton
+        '
+        Me.pc_RadioButton.AutoSize = True
+        Me.pc_RadioButton.Checked = True
+        Me.pc_RadioButton.Location = New System.Drawing.Point(6, 24)
+        Me.pc_RadioButton.Name = "pc_RadioButton"
+        Me.pc_RadioButton.Size = New System.Drawing.Size(49, 23)
+        Me.pc_RadioButton.TabIndex = 0
+        Me.pc_RadioButton.TabStop = True
+        Me.pc_RadioButton.Text = "PC"
+        Me.pc_RadioButton.UseVisualStyleBackColor = True
+        '
+        'i12pro_RadioButton
+        '
+        Me.i12pro_RadioButton.AutoSize = True
+        Me.i12pro_RadioButton.Location = New System.Drawing.Point(61, 24)
+        Me.i12pro_RadioButton.Name = "i12pro_RadioButton"
+        Me.i12pro_RadioButton.Size = New System.Drawing.Size(128, 23)
+        Me.i12pro_RadioButton.TabIndex = 2
+        Me.i12pro_RadioButton.TabStop = True
+        Me.i12pro_RadioButton.Text = "iPhone 12 Pro"
+        Me.i12pro_RadioButton.UseVisualStyleBackColor = True
+        '
+        'pixel5_RadioButton
+        '
+        Me.pixel5_RadioButton.AutoSize = True
+        Me.pixel5_RadioButton.Location = New System.Drawing.Point(195, 24)
+        Me.pixel5_RadioButton.Name = "pixel5_RadioButton"
+        Me.pixel5_RadioButton.Size = New System.Drawing.Size(75, 23)
+        Me.pixel5_RadioButton.TabIndex = 1
+        Me.pixel5_RadioButton.TabStop = True
+        Me.pixel5_RadioButton.Text = "Pixel 5"
+        Me.pixel5_RadioButton.UseVisualStyleBackColor = True
+        '
+        'ipadair_RadioButton
+        '
+        Me.ipadair_RadioButton.AutoSize = True
+        Me.ipadair_RadioButton.Location = New System.Drawing.Point(276, 24)
+        Me.ipadair_RadioButton.Name = "ipadair_RadioButton"
+        Me.ipadair_RadioButton.Size = New System.Drawing.Size(85, 23)
+        Me.ipadair_RadioButton.TabIndex = 3
+        Me.ipadair_RadioButton.TabStop = True
+        Me.ipadair_RadioButton.Text = "iPad Air"
+        Me.ipadair_RadioButton.UseVisualStyleBackColor = True
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.edge_RadioButton)
+        Me.GroupBox2.Controls.Add(Me.firefox_RadioButton)
+        Me.GroupBox2.Controls.Add(Me.chrome_RadioButton)
+        Me.GroupBox2.Location = New System.Drawing.Point(107, 11)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(583, 51)
+        Me.GroupBox2.TabIndex = 57
+        Me.GroupBox2.TabStop = False
+        '
+        'edge_RadioButton
+        '
+        Me.edge_RadioButton.AutoSize = True
+        Me.edge_RadioButton.Location = New System.Drawing.Point(181, 17)
+        Me.edge_RadioButton.Name = "edge_RadioButton"
+        Me.edge_RadioButton.Size = New System.Drawing.Size(66, 23)
+        Me.edge_RadioButton.TabIndex = 46
+        Me.edge_RadioButton.Text = "Edge"
+        Me.edge_RadioButton.UseVisualStyleBackColor = True
+        '
+        'firefox_RadioButton
+        '
+        Me.firefox_RadioButton.AutoSize = True
+        Me.firefox_RadioButton.Location = New System.Drawing.Point(98, 17)
+        Me.firefox_RadioButton.Name = "firefox_RadioButton"
+        Me.firefox_RadioButton.Size = New System.Drawing.Size(77, 23)
+        Me.firefox_RadioButton.TabIndex = 45
+        Me.firefox_RadioButton.Text = "Firefox"
+        Me.firefox_RadioButton.UseVisualStyleBackColor = True
+        '
+        'chrome_RadioButton
+        '
+        Me.chrome_RadioButton.AutoSize = True
+        Me.chrome_RadioButton.Checked = True
+        Me.chrome_RadioButton.Location = New System.Drawing.Point(6, 17)
+        Me.chrome_RadioButton.Name = "chrome_RadioButton"
+        Me.chrome_RadioButton.Size = New System.Drawing.Size(86, 23)
+        Me.chrome_RadioButton.TabIndex = 44
+        Me.chrome_RadioButton.TabStop = True
+        Me.chrome_RadioButton.Text = "Chrome"
+        Me.chrome_RadioButton.UseVisualStyleBackColor = True
+        '
+        'Get_url_btn
+        '
+        Me.Get_url_btn.Location = New System.Drawing.Point(596, 231)
+        Me.Get_url_btn.Name = "Get_url_btn"
+        Me.Get_url_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Get_url_btn.TabIndex = 56
+        Me.Get_url_btn.Text = "獲取網址"
+        Me.Get_url_btn.UseVisualStyleBackColor = True
+        '
+        'get_groupname_Button
+        '
+        Me.get_groupname_Button.Location = New System.Drawing.Point(596, 200)
+        Me.get_groupname_Button.Name = "get_groupname_Button"
+        Me.get_groupname_Button.Size = New System.Drawing.Size(94, 29)
+        Me.get_groupname_Button.TabIndex = 55
+        Me.get_groupname_Button.Text = "獲取名稱"
+        Me.get_groupname_Button.UseVisualStyleBackColor = True
+        '
+        'open_browser_Button
+        '
+        Me.open_browser_Button.Location = New System.Drawing.Point(596, 134)
+        Me.open_browser_Button.Name = "open_browser_Button"
+        Me.open_browser_Button.Size = New System.Drawing.Size(94, 29)
+        Me.open_browser_Button.TabIndex = 54
+        Me.open_browser_Button.Text = "開啟瀏覽器"
+        Me.open_browser_Button.UseVisualStyleBackColor = True
+        '
+        'Insert_login_Button
+        '
+        Me.Insert_login_Button.Location = New System.Drawing.Point(596, 165)
+        Me.Insert_login_Button.Name = "Insert_login_Button"
+        Me.Insert_login_Button.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_login_Button.TabIndex = 53
+        Me.Insert_login_Button.Text = "登入-插入"
+        Me.Insert_login_Button.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(324, 170)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(50, 19)
+        Me.Label8.TabIndex = 52
+        Me.Label8.Text = "密碼 : "
+        '
+        'fb_password_TextBox
+        '
+        Me.fb_password_TextBox.Location = New System.Drawing.Point(380, 167)
+        Me.fb_password_TextBox.Name = "fb_password_TextBox"
+        Me.fb_password_TextBox.Size = New System.Drawing.Size(200, 27)
+        Me.fb_password_TextBox.TabIndex = 51
+        '
+        'fb_account_TextBox
+        '
+        Me.fb_account_TextBox.Location = New System.Drawing.Point(107, 167)
+        Me.fb_account_TextBox.Name = "fb_account_TextBox"
+        Me.fb_account_TextBox.Size = New System.Drawing.Size(200, 27)
+        Me.fb_account_TextBox.TabIndex = 50
+        '
+        'profile_path_TextBox
+        '
+        Me.profile_path_TextBox.Location = New System.Drawing.Point(107, 134)
+        Me.profile_path_TextBox.Name = "profile_path_TextBox"
+        Me.profile_path_TextBox.Size = New System.Drawing.Size(473, 27)
+        Me.profile_path_TextBox.TabIndex = 49
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(51, 170)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(50, 19)
+        Me.Label7.TabIndex = 48
+        Me.Label7.Text = "帳號 : "
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(36, 137)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(61, 19)
+        Me.Label6.TabIndex = 47
+        Me.Label6.Text = "Profile :"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(21, 92)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(76, 19)
+        Me.Label5.TabIndex = 43
+        Me.Label5.Text = "設備類型 :"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1354, 684)
+        Me.ClientSize = New System.Drawing.Size(1886, 937)
+        Me.Controls.Add(Me.cmd_GroupBox)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.show_script_editor_btn)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.show_log_btn)
         Me.Controls.Add(Me.invoke_firefox)
         Me.Controls.Add(Me.invoke_edge)
         Me.Controls.Add(Me.clr_post_btn)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.group_name_TextBox)
         Me.Controls.Add(Me.block_user_btn)
         Me.Controls.Add(Me.crawl_post_btn)
         Me.Controls.Add(Me.chromedriver_ListBox)
@@ -449,27 +705,23 @@ Partial Class Form1
         Me.Controls.Add(Me.cursor_y_TextBox)
         Me.Controls.Add(Me.cursor_x_TextBox)
         Me.Controls.Add(Me.cursor_clickl_btn)
-        Me.Controls.Add(Me.devtype_GroupBox)
         Me.Controls.Add(Me.img_CheckedListBox)
-        Me.Controls.Add(Me.replace_str_textbox)
-        Me.Controls.Add(Me.compare_str_textbox)
-        Me.Controls.Add(Me.replace_str_btn)
-        Me.Controls.Add(Me.curr_url_TextBox)
-        Me.Controls.Add(Me.curr_url_lbl)
-        Me.Controls.Add(Me.get_groups_from_m)
-        Me.Controls.Add(Me.Group_ListView)
-        Me.Controls.Add(Me.get_groups_btn)
         Me.Controls.Add(Me.url_lbl)
         Me.Controls.Add(Me.target_url_TextBox)
         Me.Controls.Add(Me.reply_comment_bnt)
-        Me.Controls.Add(Me.driver_close_bnt)
         Me.Controls.Add(Me.invoke_chrome_btn)
         Me.Controls.Add(Me.content_RichTextBox)
         Me.Controls.Add(Me.write_a_post_btn)
         Me.Name = "Form1"
         Me.Text = "Main Form"
-        Me.devtype_GroupBox.ResumeLayout(False)
-        Me.devtype_GroupBox.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.cmd_GroupBox.ResumeLayout(False)
+        Me.cmd_GroupBox.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -482,28 +734,17 @@ Partial Class Form1
     Friend WithEvents reply_comment_bnt As Button
     Friend WithEvents target_url_TextBox As TextBox
     Friend WithEvents url_lbl As Label
-    Friend WithEvents get_groups_btn As Button
-    Friend WithEvents Group_ListView As ListView
-    Friend WithEvents get_groups_from_m As Button
     Friend WithEvents curr_url_lbl As Label
     Friend WithEvents curr_url_TextBox As TextBox
     Friend WithEvents refresh_url_timer As Timer
-    Friend WithEvents replace_str_btn As Button
-    Friend WithEvents compare_str_textbox As TextBox
-    Friend WithEvents replace_str_textbox As TextBox
     Friend WithEvents img_CheckedListBox As CheckedListBox
-    Friend WithEvents devtype_GroupBox As GroupBox
-    Friend WithEvents pc_RadioButton As RadioButton
-    Friend WithEvents i12pro_RadioButton As RadioButton
-    Friend WithEvents pixel5_RadioButton As RadioButton
-    Friend WithEvents ipadair_RadioButton As RadioButton
     Friend WithEvents cursor_clickl_btn As Button
     Friend WithEvents cursor_x_TextBox As TextBox
     Friend WithEvents cursor_y_TextBox As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents cursor_position_lbl As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Insert_login_Button As Button
     Friend WithEvents hide_btn As Button
     Friend WithEvents show_btn As Button
     Friend WithEvents chromedriver_ListBox As ListBox
@@ -517,4 +758,36 @@ Partial Class Form1
     Friend WithEvents show_log_btn As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents show_script_editor_btn As Button
+    Friend WithEvents script_ListView As ListView
+    Friend WithEvents test_fail_log_btn As Button
+    Friend WithEvents test_success_log_btn As Button
+    Friend WithEvents eventlog_search_btn As Button
+    Friend WithEvents eventlog_search_TextBox As TextBox
+    Friend WithEvents show_err_log_btn As Button
+    Friend WithEvents show_all_log_btn As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents cmd_GroupBox As GroupBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents fb_password_TextBox As TextBox
+    Friend WithEvents fb_account_TextBox As TextBox
+    Friend WithEvents profile_path_TextBox As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents edge_RadioButton As RadioButton
+    Friend WithEvents firefox_RadioButton As RadioButton
+    Friend WithEvents chrome_RadioButton As RadioButton
+    Friend WithEvents ipadair_RadioButton As RadioButton
+    Friend WithEvents Label5 As Label
+    Friend WithEvents i12pro_RadioButton As RadioButton
+    Friend WithEvents pixel5_RadioButton As RadioButton
+    Friend WithEvents pc_RadioButton As RadioButton
+    Friend WithEvents Get_url_btn As Button
+    Friend WithEvents get_groupname_Button As Button
+    Friend WithEvents open_browser_Button As Button
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents collapse_btn As Button
+    Friend WithEvents navigate_to_url_btn As Button
+    Friend WithEvents Insert_open_browser_btn As Button
 End Class
