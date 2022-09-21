@@ -127,16 +127,16 @@ Public Class Form1
 
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
         Try
-            curr_url_TextBox.Text = chromeDriver.Url
-
+            chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
+            chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
+            chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
+            Write_log("login successfully")
+            ScriptEditor_Form.current_user_TextBox.Text = fb_email
         Catch ex As Exception
 
             Debug.WriteLine(e)
         End Try
-    End Sub
 
-    Private Sub navigate_to_url_btn_Click(sender As Object, e As EventArgs) Handles navigate_to_url_btn.Click
-        navigate_GoToUrl(curr_url_TextBox.Text)
     End Sub
 
     Private Sub get_groupname_Button_Click(sender As Object, e As EventArgs) Handles get_groupname_Button.Click
