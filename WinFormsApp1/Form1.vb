@@ -33,9 +33,9 @@ Public Class Form1
     Dim m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
 
-    Dim used_browser As String = "N/A"
+    Dim used_browser As String = ""
     Dim dev_model As String = "PC"
-    Dim chrome_profile As String = "N/A"
+    Dim chrome_profile As String = ""
 
     'Dim webDriverWait As WebDriverWait
 
@@ -48,6 +48,43 @@ Public Class Form1
             Open_Edge()
         End If
     End Sub
+
+
+    Private Function Open_Browser(browser As String, devicetype As String, profile As String)
+        Debug.WriteLine(browser)
+        Debug.WriteLine(devicetype)
+        Debug.WriteLine(profile)
+        If browser = "Chrome" Then
+            Try
+                Dim driverManager = New DriverManager()
+                driverManager.SetUpDriver(New ChromeConfig())
+                Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
+                serv.HideCommandPromptWindow = True 'hide cmd
+                Dim options = New Chrome.ChromeOptions()
+                If profile <> "" Then
+                    options.AddArguments("--user-data-dir=" + profile)
+                    chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
+                End If
+                options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+                dev_model = devicetype
+                If devicetype <> "PC" Then
+                    options.EnableMobileEmulation(dev_model)
+                End If
+                chromeDriver = New ChromeDriver(serv, options)
+                chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+                Return True
+            Catch ex As Exception
+                Return False
+            End Try
+
+        ElseIf browser = "Firefox" Then
+            Open_Firefox()
+        ElseIf browser = "Edge" Then
+            Open_Edge()
+        End If
+
+        Return False
+    End Function
 
 
     Private Sub Open_Chrome()
@@ -127,11 +164,8 @@ Public Class Form1
 
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
         Try
-            chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
-            chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-            chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
-            Write_log("login successfully")
-            ScriptEditor_Form.current_user_TextBox.Text = fb_email
+
+
         Catch ex As Exception
 
             Debug.WriteLine(e)
@@ -773,4 +807,37 @@ Public Class Form1
 
     End Function
 
+    Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
+        For Each item As ListViewItem In script_ListView.Items
+            '3 : browser type
+            '4 : device type
+            '5 : profile
+            '6 : url
+            '7 : action ... click sendkey or navigate
+            '8 : parameter and content
+            '9 : result
+            'Debug.WriteLine(item.SubItems.Item(3).Text + "   " + item.SubItems.Item(4).Text)
+            Dim brower = item.SubItems.Item(3).Text
+            Dim devicetype = item.SubItems.Item(4).Text
+            Dim profile = item.SubItems.Item(5).Text
+            Dim action = item.SubItems.Item(7).Text
+            Dim content = item.SubItems.Item(8).Text
+            Select Case action
+                Case "開啟"
+                    Debug.WriteLine("open brower")
+                    If Open_Browser(brower, devicetype, profile) Then
+                        item.SubItems.Item(9).Text = "成功"
+                    Else
+                        item.SubItems.Item(9).Text = "失敗"
+                    End If
+                Case "登入"
+                    Dim auth() As String = content.Split(";")
+                    If Login_fb(auth(0), auth(1)) Then
+                        item.SubItems.Item(9).Text = "成功"
+                    Else
+                        item.SubItems.Item(9).Text = "失敗"
+                    End If
+            End Select
+        Next
+    End Sub
 End Class

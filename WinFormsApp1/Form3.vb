@@ -51,7 +51,7 @@ Public Class ScriptEditor_Form
             Case "write_post"
                 If cmd_array.Length = 2 Then
                     print_to_output("write post to " & cmd_array(1))
-                    Form1.write_post(cmd_array(1).Replace("%20", " "))
+                    'Form1.write_post(cmd_array(1).Replace("%20", " "))
                 Else
                     print_to_output("error invalid parameter")
                 End If

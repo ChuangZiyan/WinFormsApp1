@@ -60,6 +60,7 @@ Partial Class Form1
         Me.show_err_log_btn = New System.Windows.Forms.Button()
         Me.show_all_log_btn = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Run_script_btn = New System.Windows.Forms.Button()
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
@@ -408,6 +409,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Run_script_btn)
         Me.GroupBox1.Controls.Add(Me.collapse_btn)
         Me.GroupBox1.Controls.Add(Me.script_ListView)
         Me.GroupBox1.Controls.Add(Me.test_fail_log_btn)
@@ -422,6 +424,15 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
+        '
+        'Run_script_btn
+        '
+        Me.Run_script_btn.Location = New System.Drawing.Point(18, 550)
+        Me.Run_script_btn.Name = "Run_script_btn"
+        Me.Run_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Run_script_btn.TabIndex = 42
+        Me.Run_script_btn.Text = "測試腳本"
+        Me.Run_script_btn.UseVisualStyleBackColor = True
         '
         'collapse_btn
         '
@@ -790,4 +801,5 @@ Partial Class Form1
     Friend WithEvents collapse_btn As Button
     Friend WithEvents navigate_to_url_btn As Button
     Friend WithEvents Insert_open_browser_btn As Button
+    Friend WithEvents Run_script_btn As Button
 End Class
