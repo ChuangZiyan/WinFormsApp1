@@ -22,7 +22,6 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.write_a_post_btn = New System.Windows.Forms.Button()
         Me.content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.invoke_chrome_btn = New System.Windows.Forms.Button()
@@ -32,7 +31,6 @@ Partial Class Form1
         Me.url_lbl = New System.Windows.Forms.Label()
         Me.curr_url_lbl = New System.Windows.Forms.Label()
         Me.curr_url_TextBox = New System.Windows.Forms.TextBox()
-        Me.refresh_url_timer = New System.Windows.Forms.Timer(Me.components)
         Me.img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.cursor_clickl_btn = New System.Windows.Forms.Button()
         Me.cursor_x_TextBox = New System.Windows.Forms.TextBox()
@@ -53,19 +51,25 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.show_script_editor_btn = New System.Windows.Forms.Button()
         Me.script_ListView = New System.Windows.Forms.ListView()
-        Me.test_fail_log_btn = New System.Windows.Forms.Button()
-        Me.test_success_log_btn = New System.Windows.Forms.Button()
-        Me.eventlog_search_btn = New System.Windows.Forms.Button()
-        Me.eventlog_search_TextBox = New System.Windows.Forms.TextBox()
-        Me.show_err_log_btn = New System.Windows.Forms.Button()
-        Me.show_all_log_btn = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.For_Test_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Clear_script_btn = New System.Windows.Forms.Button()
         Me.Run_script_btn = New System.Windows.Forms.Button()
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Insert_delay_btn = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.wait_random_second_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.wait_second_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.wait_minute_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.Insert_open_browser_btn = New System.Windows.Forms.Button()
-        Me.navigate_to_url_btn = New System.Windows.Forms.Button()
+        Me.Insert_navigate_to_url_btn = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.pc_RadioButton = New System.Windows.Forms.RadioButton()
         Me.i12pro_RadioButton = New System.Windows.Forms.RadioButton()
@@ -87,7 +91,12 @@ Partial Class Form1
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
+        Me.For_Test_GroupBox.SuspendLayout()
         Me.cmd_GroupBox.SuspendLayout()
+        CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.wait_hour_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -169,10 +178,6 @@ Partial Class Form1
         Me.curr_url_TextBox.Name = "curr_url_TextBox"
         Me.curr_url_TextBox.Size = New System.Drawing.Size(473, 27)
         Me.curr_url_TextBox.TabIndex = 11
-        '
-        'refresh_url_timer
-        '
-        Me.refresh_url_timer.Interval = 2000
         '
         'img_CheckedListBox
         '
@@ -352,72 +357,11 @@ Partial Class Form1
         Me.script_ListView.TabIndex = 36
         Me.script_ListView.UseCompatibleStateImageBehavior = False
         '
-        'test_fail_log_btn
-        '
-        Me.test_fail_log_btn.Location = New System.Drawing.Point(455, 19)
-        Me.test_fail_log_btn.Name = "test_fail_log_btn"
-        Me.test_fail_log_btn.Size = New System.Drawing.Size(96, 31)
-        Me.test_fail_log_btn.TabIndex = 35
-        Me.test_fail_log_btn.Text = "Test Fail"
-        Me.test_fail_log_btn.UseVisualStyleBackColor = True
-        '
-        'test_success_log_btn
-        '
-        Me.test_success_log_btn.Location = New System.Drawing.Point(340, 17)
-        Me.test_success_log_btn.Name = "test_success_log_btn"
-        Me.test_success_log_btn.Size = New System.Drawing.Size(109, 35)
-        Me.test_success_log_btn.TabIndex = 34
-        Me.test_success_log_btn.Text = "Test Success"
-        Me.test_success_log_btn.UseVisualStyleBackColor = True
-        '
-        'eventlog_search_btn
-        '
-        Me.eventlog_search_btn.Location = New System.Drawing.Point(844, 20)
-        Me.eventlog_search_btn.Name = "eventlog_search_btn"
-        Me.eventlog_search_btn.Size = New System.Drawing.Size(94, 29)
-        Me.eventlog_search_btn.TabIndex = 40
-        Me.eventlog_search_btn.Text = "Search"
-        Me.eventlog_search_btn.UseVisualStyleBackColor = True
-        '
-        'eventlog_search_TextBox
-        '
-        Me.eventlog_search_TextBox.Location = New System.Drawing.Point(637, 20)
-        Me.eventlog_search_TextBox.Name = "eventlog_search_TextBox"
-        Me.eventlog_search_TextBox.Size = New System.Drawing.Size(201, 27)
-        Me.eventlog_search_TextBox.TabIndex = 39
-        '
-        'show_err_log_btn
-        '
-        Me.show_err_log_btn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.show_err_log_btn.ForeColor = System.Drawing.Color.Red
-        Me.show_err_log_btn.Location = New System.Drawing.Point(232, 20)
-        Me.show_err_log_btn.Name = "show_err_log_btn"
-        Me.show_err_log_btn.Size = New System.Drawing.Size(94, 29)
-        Me.show_err_log_btn.TabIndex = 38
-        Me.show_err_log_btn.Text = "Error"
-        Me.show_err_log_btn.UseVisualStyleBackColor = True
-        '
-        'show_all_log_btn
-        '
-        Me.show_all_log_btn.Font = New System.Drawing.Font("Microsoft JhengHei UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.show_all_log_btn.Location = New System.Drawing.Point(132, 22)
-        Me.show_all_log_btn.Name = "show_all_log_btn"
-        Me.show_all_log_btn.Size = New System.Drawing.Size(94, 29)
-        Me.show_all_log_btn.TabIndex = 37
-        Me.show_all_log_btn.Text = "All"
-        Me.show_all_log_btn.UseVisualStyleBackColor = True
-        '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Run_script_btn)
+        Me.GroupBox1.Controls.Add(Me.For_Test_GroupBox)
         Me.GroupBox1.Controls.Add(Me.collapse_btn)
         Me.GroupBox1.Controls.Add(Me.script_ListView)
-        Me.GroupBox1.Controls.Add(Me.test_fail_log_btn)
-        Me.GroupBox1.Controls.Add(Me.eventlog_search_btn)
-        Me.GroupBox1.Controls.Add(Me.test_success_log_btn)
-        Me.GroupBox1.Controls.Add(Me.show_all_log_btn)
-        Me.GroupBox1.Controls.Add(Me.eventlog_search_TextBox)
-        Me.GroupBox1.Controls.Add(Me.show_err_log_btn)
         Me.GroupBox1.Location = New System.Drawing.Point(930, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(944, 813)
@@ -425,14 +369,36 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
         '
+        'For_Test_GroupBox
+        '
+        Me.For_Test_GroupBox.Controls.Add(Me.Clear_script_btn)
+        Me.For_Test_GroupBox.Controls.Add(Me.Run_script_btn)
+        Me.For_Test_GroupBox.Location = New System.Drawing.Point(18, 545)
+        Me.For_Test_GroupBox.Name = "For_Test_GroupBox"
+        Me.For_Test_GroupBox.Size = New System.Drawing.Size(336, 107)
+        Me.For_Test_GroupBox.TabIndex = 44
+        Me.For_Test_GroupBox.TabStop = False
+        Me.For_Test_GroupBox.Text = "測試用功能"
+        '
+        'Clear_script_btn
+        '
+        Me.Clear_script_btn.BackColor = System.Drawing.Color.LightCoral
+        Me.Clear_script_btn.Location = New System.Drawing.Point(106, 26)
+        Me.Clear_script_btn.Name = "Clear_script_btn"
+        Me.Clear_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Clear_script_btn.TabIndex = 43
+        Me.Clear_script_btn.Text = "清除腳本"
+        Me.Clear_script_btn.UseVisualStyleBackColor = False
+        '
         'Run_script_btn
         '
-        Me.Run_script_btn.Location = New System.Drawing.Point(18, 550)
+        Me.Run_script_btn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.Run_script_btn.Location = New System.Drawing.Point(6, 26)
         Me.Run_script_btn.Name = "Run_script_btn"
         Me.Run_script_btn.Size = New System.Drawing.Size(94, 29)
         Me.Run_script_btn.TabIndex = 42
         Me.Run_script_btn.Text = "測試腳本"
-        Me.Run_script_btn.UseVisualStyleBackColor = True
+        Me.Run_script_btn.UseVisualStyleBackColor = False
         '
         'collapse_btn
         '
@@ -454,8 +420,18 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_delay_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Label13)
+        Me.cmd_GroupBox.Controls.Add(Me.wait_random_second_NumericUpDown)
+        Me.cmd_GroupBox.Controls.Add(Me.Label12)
+        Me.cmd_GroupBox.Controls.Add(Me.wait_second_NumericUpDown)
+        Me.cmd_GroupBox.Controls.Add(Me.Label11)
+        Me.cmd_GroupBox.Controls.Add(Me.wait_minute_NumericUpDown)
+        Me.cmd_GroupBox.Controls.Add(Me.Label10)
+        Me.cmd_GroupBox.Controls.Add(Me.wait_hour_NumericUpDown)
+        Me.cmd_GroupBox.Controls.Add(Me.Label9)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_open_browser_btn)
-        Me.cmd_GroupBox.Controls.Add(Me.navigate_to_url_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_navigate_to_url_btn)
         Me.cmd_GroupBox.Controls.Add(Me.GroupBox3)
         Me.cmd_GroupBox.Controls.Add(Me.GroupBox2)
         Me.cmd_GroupBox.Controls.Add(Me.Get_url_btn)
@@ -482,6 +458,88 @@ Partial Class Form1
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
         '
+        'Insert_delay_btn
+        '
+        Me.Insert_delay_btn.Location = New System.Drawing.Point(596, 263)
+        Me.Insert_delay_btn.Name = "Insert_delay_btn"
+        Me.Insert_delay_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_delay_btn.TabIndex = 70
+        Me.Insert_delay_btn.Text = "插入"
+        Me.Insert_delay_btn.UseVisualStyleBackColor = True
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(503, 268)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(77, 19)
+        Me.Label13.TabIndex = 69
+        Me.Label13.Text = "隨機+/-秒"
+        '
+        'wait_random_second_NumericUpDown
+        '
+        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(413, 266)
+        Me.wait_random_second_NumericUpDown.Name = "wait_random_second_NumericUpDown"
+        Me.wait_random_second_NumericUpDown.Size = New System.Drawing.Size(84, 27)
+        Me.wait_random_second_NumericUpDown.TabIndex = 68
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(377, 268)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(30, 19)
+        Me.Label12.TabIndex = 67
+        Me.Label12.Text = "/秒"
+        '
+        'wait_second_NumericUpDown
+        '
+        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(311, 266)
+        Me.wait_second_NumericUpDown.Name = "wait_second_NumericUpDown"
+        Me.wait_second_NumericUpDown.Size = New System.Drawing.Size(60, 27)
+        Me.wait_second_NumericUpDown.TabIndex = 66
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(275, 268)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(30, 19)
+        Me.Label11.TabIndex = 65
+        Me.Label11.Text = "/分"
+        '
+        'wait_minute_NumericUpDown
+        '
+        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(209, 266)
+        Me.wait_minute_NumericUpDown.Name = "wait_minute_NumericUpDown"
+        Me.wait_minute_NumericUpDown.Size = New System.Drawing.Size(60, 27)
+        Me.wait_minute_NumericUpDown.TabIndex = 64
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(173, 268)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(30, 19)
+        Me.Label10.TabIndex = 63
+        Me.Label10.Text = "/時"
+        '
+        'wait_hour_NumericUpDown
+        '
+        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(107, 266)
+        Me.wait_hour_NumericUpDown.Name = "wait_hour_NumericUpDown"
+        Me.wait_hour_NumericUpDown.Size = New System.Drawing.Size(60, 27)
+        Me.wait_hour_NumericUpDown.TabIndex = 62
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(21, 268)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(76, 19)
+        Me.Label9.TabIndex = 61
+        Me.Label9.Text = "等待時間 :"
+        '
         'Insert_open_browser_btn
         '
         Me.Insert_open_browser_btn.Location = New System.Drawing.Point(794, 134)
@@ -491,14 +549,14 @@ Partial Class Form1
         Me.Insert_open_browser_btn.Text = "插入至腳本"
         Me.Insert_open_browser_btn.UseVisualStyleBackColor = True
         '
-        'navigate_to_url_btn
+        'Insert_navigate_to_url_btn
         '
-        Me.navigate_to_url_btn.Location = New System.Drawing.Point(694, 231)
-        Me.navigate_to_url_btn.Name = "navigate_to_url_btn"
-        Me.navigate_to_url_btn.Size = New System.Drawing.Size(94, 29)
-        Me.navigate_to_url_btn.TabIndex = 59
-        Me.navigate_to_url_btn.Text = "前往網址"
-        Me.navigate_to_url_btn.UseVisualStyleBackColor = True
+        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(694, 231)
+        Me.Insert_navigate_to_url_btn.Name = "Insert_navigate_to_url_btn"
+        Me.Insert_navigate_to_url_btn.Size = New System.Drawing.Size(115, 29)
+        Me.Insert_navigate_to_url_btn.TabIndex = 59
+        Me.Insert_navigate_to_url_btn.Text = "前往網址-插入"
+        Me.Insert_navigate_to_url_btn.UseVisualStyleBackColor = True
         '
         'GroupBox3
         '
@@ -726,9 +784,13 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Main Form"
         Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.For_Test_GroupBox.ResumeLayout(False)
         Me.cmd_GroupBox.ResumeLayout(False)
         Me.cmd_GroupBox.PerformLayout()
+        CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.wait_hour_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -747,7 +809,6 @@ Partial Class Form1
     Friend WithEvents url_lbl As Label
     Friend WithEvents curr_url_lbl As Label
     Friend WithEvents curr_url_TextBox As TextBox
-    Friend WithEvents refresh_url_timer As Timer
     Friend WithEvents img_CheckedListBox As CheckedListBox
     Friend WithEvents cursor_clickl_btn As Button
     Friend WithEvents cursor_x_TextBox As TextBox
@@ -770,12 +831,6 @@ Partial Class Form1
     Friend WithEvents Button2 As Button
     Friend WithEvents show_script_editor_btn As Button
     Friend WithEvents script_ListView As ListView
-    Friend WithEvents test_fail_log_btn As Button
-    Friend WithEvents test_success_log_btn As Button
-    Friend WithEvents eventlog_search_btn As Button
-    Friend WithEvents eventlog_search_TextBox As TextBox
-    Friend WithEvents show_err_log_btn As Button
-    Friend WithEvents show_all_log_btn As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label4 As Label
     Friend WithEvents cmd_GroupBox As GroupBox
@@ -799,7 +854,19 @@ Partial Class Form1
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents collapse_btn As Button
-    Friend WithEvents navigate_to_url_btn As Button
+    Friend WithEvents Insert_navigate_to_url_btn As Button
     Friend WithEvents Insert_open_browser_btn As Button
     Friend WithEvents Run_script_btn As Button
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Insert_delay_btn As Button
+    Friend WithEvents Label13 As Label
+    Friend WithEvents wait_random_second_NumericUpDown As NumericUpDown
+    Friend WithEvents Label12 As Label
+    Friend WithEvents wait_second_NumericUpDown As NumericUpDown
+    Friend WithEvents Label11 As Label
+    Friend WithEvents wait_minute_NumericUpDown As NumericUpDown
+    Friend WithEvents Label10 As Label
+    Friend WithEvents wait_hour_NumericUpDown As NumericUpDown
+    Friend WithEvents For_Test_GroupBox As GroupBox
+    Friend WithEvents Clear_script_btn As Button
 End Class

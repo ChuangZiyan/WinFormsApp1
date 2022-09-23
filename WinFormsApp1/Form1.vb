@@ -15,6 +15,7 @@ Imports Newtonsoft.Json.Linq
 Imports System.Net.NetworkInformation
 Imports System.IO.File
 Imports System.IO
+Imports System.Text.RegularExpressions
 
 Public Class Form1
 
@@ -149,36 +150,57 @@ Public Class Form1
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
         Dim fb_email = fb_account_TextBox.Text
         Dim fb_passwd = fb_password_TextBox.Text
-        Insert_to_script("登入", fb_email + ";" + fb_passwd)
+
+        If fb_email = "" OrElse fb_passwd = "" Then
+            MsgBox("帳號與密碼不可為空")
+        Else
+            Insert_to_script("登入", fb_email + ";" + fb_passwd)
+        End If
+
+
 
     End Sub
 
-    Public Sub navigate_GoToUrl(url As String)
+    Private Sub Insert_navigate_to_url_btn_Click(sender As Object, e As EventArgs) Handles Insert_navigate_to_url_btn.Click
+
+        Dim pattern As String
+        pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+        If Regex.IsMatch(curr_url_TextBox.Text, pattern) Then
+            Insert_to_script("前往", curr_url_TextBox.Text)
+        Else
+            MsgBox("網址格式錯誤")
+        End If
+
+    End Sub
+
+    Public Function Navigate_GoToUrl(url As String)
         Try
             chromeDriver.Navigate.GoToUrl(url)
+            chromeDriver.Navigate.GoToUrl(url)
+            Return True
         Catch ex As Exception
-
+            Return False
         End Try
 
-    End Sub
-
-    Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
-        Try
+    End Function
 
 
-        Catch ex As Exception
 
-            Debug.WriteLine(e)
-        End Try
 
-    End Sub
+
 
     Private Sub get_groupname_Button_Click(sender As Object, e As EventArgs) Handles get_groupname_Button.Click
-        If chromeDriver.Url.Contains("groups") AndAlso IsElementPresent(css_selector_config_obj.Item("group_name_a")) Then
-            group_name_TextBox.Text = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_name_a"))).GetAttribute("innerHTML")
-        Else
-            Debug.WriteLine("cant get group name")
-        End If
+        Try
+            If chromeDriver.Url.Contains("groups") AndAlso IsElementPresent(css_selector_config_obj.Item("group_name_a")) Then
+                group_name_TextBox.Text = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_name_a"))).GetAttribute("innerHTML")
+            Else
+                Debug.WriteLine("cant get group name")
+            End If
+
+        Catch ex As Exception
+            MsgBox("未偵測到Chrome")
+        End Try
+
     End Sub
 
     Private Sub Write_post_Click(sender As Object, e As EventArgs) Handles write_a_post_btn.Click
@@ -414,11 +436,9 @@ Public Class Form1
         'driver_close_bnt.Enabled = False
 
         Try
-            chromeDriver.Close()
             chromeDriver.Quit()
-            refresh_url_timer.Enabled = False
         Catch ex As Exception
-            MsgBox("chrome A not exist")
+            MsgBox("未偵測到Chrome")
         End Try
 
     End Sub
@@ -498,25 +518,6 @@ Public Class Form1
 
     End Sub
 
-
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles refresh_url_timer.Tick
-        Try
-            'Debug.WriteLine(chromeDriver.Url)
-            If curr_url_TextBox.Text <> chromeDriver.Url Then
-                curr_url_TextBox.Text = chromeDriver.Url
-            End If
-
-            If chromeDriver.Url.Contains("groups") AndAlso IsElementPresent(css_selector_config_obj.Item("group_name_a")) Then
-                group_name_TextBox.Text = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_name_a"))).GetAttribute("innerHTML")
-            End If
-
-        Catch ex As System.NullReferenceException
-            Debug.WriteLine(ex)
-        End Try
-
-
-
-    End Sub
 
 
     Private Sub cursor_Click(sender As Object, e As EventArgs) Handles cursor_clickl_btn.Click
@@ -643,8 +644,6 @@ Public Class Form1
     Private Sub show_log_btn_Click(sender As Object, e As EventArgs) Handles show_log_btn.Click
         Form2.Visible = True
     End Sub
-
-
 
     Private Sub Insert_to_script(action As String, content As String)
         Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url_TextBox.Text + "," + action + "," + content + ","
@@ -837,7 +836,55 @@ Public Class Form1
                     Else
                         item.SubItems.Item(9).Text = "失敗"
                     End If
+                Case "前往"
+                    If navigate_GoToUrl(content) Then
+                        item.SubItems.Item(9).Text = "成功"
+                    Else
+                        item.SubItems.Item(9).Text = "失敗"
+                    End If
+                Case "等待"
+                    Try
+                        Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
+                        item.SubItems.Item(9).Text = "成功"
+                    Catch ex As Exception
+                        item.SubItems.Item(9).Text = "失敗"
+                    End Try
+
+
             End Select
         Next
+    End Sub
+
+
+    Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
+        Try
+            curr_url_TextBox.Text = chromeDriver.Url
+        Catch ex As Exception
+            MsgBox("未偵測到Chrome")
+        End Try
+    End Sub
+
+
+    Private Sub Insert_delay_btn_Click(sender As Object, e As EventArgs) Handles Insert_delay_btn.Click
+
+        Dim rnd_num As New Random()
+        Dim hour = wait_hour_NumericUpDown.Value
+        Dim minute = wait_minute_NumericUpDown.Value
+        Dim second = wait_second_NumericUpDown.Value
+        Dim random_sec = rnd_num.Next(-wait_random_second_NumericUpDown.Value, wait_random_second_NumericUpDown.Value)
+
+        Dim total_second = hour * 3600 + minute * 60 + second + random_sec
+
+        Debug.WriteLine(total_second)
+        If total_second > 0 Then
+            Insert_to_script("等待", total_second)
+        Else 'if generated the negative number give default second
+            Insert_to_script("等待", "1")
+        End If
+
+    End Sub
+
+    Private Sub Clear_script_btn_Click(sender As Object, e As EventArgs) Handles Clear_script_btn.Click
+        script_ListView.Items.Clear()
     End Sub
 End Class
