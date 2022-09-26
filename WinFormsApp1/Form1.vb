@@ -806,6 +806,8 @@ Public Class Form1
         Select Case parm
             Case "留個言吧"
                 Return Click_leave_message()
+            Case "發佈"
+                Return click_by_aria_label("發佈")
         End Select
 
         Return False
@@ -831,6 +833,10 @@ Public Class Form1
 
     End Function
 
+    Private Function Click_post()
+        Return click_by_span_text("發佈")
+
+    End Function
 
     Private Function Write_post_send_content(content)
         Try
