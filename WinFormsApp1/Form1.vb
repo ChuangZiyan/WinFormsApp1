@@ -99,6 +99,7 @@ Public Class Form1
         Dim profile = profile_path_TextBox.Text
         If profile <> "" Then
             options.AddArguments("--user-data-dir=" + profile)
+            Debug.WriteLine(profile)
             chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
         End If
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
@@ -133,16 +134,7 @@ Public Class Form1
         Dim edgeDrvier = New EdgeDriver()
     End Sub
 
-    Private Sub Insert_open_browser_btn_Click(sender As Object, e As EventArgs) Handles Insert_open_browser_btn.Click
-        If chrome_RadioButton.Checked = True Then
-            used_browser = "Chrome"
-        ElseIf firefox_RadioButton.Checked = True Then
-            used_browser = "Firefox"
-        ElseIf edge_RadioButton.Checked = True Then
-            used_browser = "Edge"
-        End If
-        Insert_to_script("開啟", "瀏覽器")
-    End Sub
+
 
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
         Dim fb_email = fb_account_TextBox.Text
@@ -755,7 +747,7 @@ Public Class Form1
             Dim result As Boolean
             Select Case action
                 Case "開啟"
-                    result = Open_Browser(brower, devicetype, profile)
+                    result = Open_Browser(brower, devicetype, content)
                 Case "關閉"
                     result = Quit_chromedriver()
                 Case "登入"
@@ -948,6 +940,19 @@ Public Class Form1
 
     Private Sub Clear_script_btn_Click(sender As Object, e As EventArgs) Handles Clear_script_btn.Click
         script_ListView.Items.Clear()
+    End Sub
+
+    Private Sub Insert_open_browser_btn_Click(sender As Object, e As EventArgs) Handles Insert_open_browser_btn.Click
+        If chrome_RadioButton.Checked = True Then
+            used_browser = "Chrome"
+            Dim myprofile = profile_path_TextBox.Text
+            chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
+        ElseIf firefox_RadioButton.Checked = True Then
+            used_browser = "Firefox"
+        ElseIf edge_RadioButton.Checked = True Then
+            used_browser = "Edge"
+        End If
+        Insert_to_script("開啟", profile_path_TextBox.Text)
     End Sub
 
     Private Sub Insert_click_leave_msg_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_leave_msg_btn.Click
