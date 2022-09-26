@@ -50,7 +50,6 @@ Public Class Form1
         End If
     End Sub
 
-
     Private Function Open_Browser(browser As String, devicetype As String, profile As String)
         Debug.WriteLine(browser)
         Debug.WriteLine(devicetype)
@@ -86,7 +85,6 @@ Public Class Form1
 
         Return False
     End Function
-
 
     Private Sub Open_Chrome()
         used_browser = "Chrome"
@@ -146,7 +144,6 @@ Public Class Form1
         Insert_to_script("開啟", "瀏覽器")
     End Sub
 
-
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
         Dim fb_email = fb_account_TextBox.Text
         Dim fb_passwd = fb_password_TextBox.Text
@@ -185,10 +182,6 @@ Public Class Form1
     End Function
 
 
-
-
-
-
     Private Sub get_groupname_Button_Click(sender As Object, e As EventArgs) Handles get_groupname_Button.Click
         Try
             If chromeDriver.Url.Contains("groups") AndAlso IsElementPresent(css_selector_config_obj.Item("group_name_a")) Then
@@ -203,13 +196,10 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Write_post_Click(sender As Object, e As EventArgs) Handles write_a_post_btn.Click
+    Private Sub Write_post_Click(myURL)
 
-        'Dim postURL As String = "https://www.facebook.com/groups/737807930865755/posts/737820730864475?comment_id=737820784197803"
-        'Dim postURL As String = "https://www.facebook.com/ETtoday/posts/pfbid0Z9CFxwaXaUKQLEUtRMU8aqHomsBiygPgLcqzFXnDYoE8eJ9Qu4ZY9yCvK8tAwzbol?comment_id=608850700553438"
-        Dim myURL As String = target_url_TextBox.Text
         Dim img_path_str As String = ""
-        chromeDriver.Navigate.GoToUrl(myURL)
+
         'Write_log("Post to " + myURL)
         'get selected img path into string 
         If img_CheckedListBox.CheckedItems.Count <> 0 Then
@@ -226,7 +216,7 @@ Public Class Form1
         End If
 
         If myURL.Contains("groups") Then ' If post in group
-            chromeDriver.Navigate.GoToUrl(myURL)
+            'chromeDriver.Navigate.GoToUrl(myURL)
 
             If click_by_span_text("留個言吧……") = False Then
                 Exit Sub
@@ -295,39 +285,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Tring_to_upload_img(img_path_str)
 
-
-        Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
-        Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
-
-        If ele1 = False AndAlso ele2 = False Then
-            If click_by_aria_label("相片／影片") = False Then
-                Exit Sub
-            End If
-        End If
-
-        'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("div.fwlpnqze.r5g9zsuq.b0eko5f3.q46jt4gp.p9ctufpz.rj0o91l8.sl27f92c.alzwoclg.bdao358l.jgcidaqu.ta68dy8c.kpwa50dg.m0cukt09.h8391g91.qykh3frn.i0v5kuzt.lkznwk7v.gxnvzty1.k0kqjr44.i85zmo3j > div.alzwoclg > div:nth-child(1) > input"))
-        'Dim upload_img_input = chromeDriver.FindElement(By.CssSelector("#toolbarLabel + div > div > input"))
-        Dim upload_img_input As Object
-
-        If IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString) Then
-            upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
-            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-        Else
-            Try
-                upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
-                upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-                'Write_log("upload img file")
-            Catch ex As Exception
-                'Write_err_log("upload img file")
-                Exit Sub
-            End Try
-
-        End If
-
-
-    End Sub
 
 
     Private Sub Get_Groups_Click(sender As Object, e As EventArgs)
@@ -449,9 +407,9 @@ Public Class Form1
 
 
 
-    Private Sub Reply_comment_bnt_Click(sender As Object, e As EventArgs) Handles reply_comment_bnt.Click
+    Private Sub Reply_comment_bnt_Click(sender As Object, e As EventArgs)
 
-        chromeDriver.Navigate.GoToUrl(target_url_TextBox.Text)
+        'chromeDriver.Navigate.GoToUrl(target_url_TextBox.Text)
         Thread.Sleep(1000)
 
         Dim str_arr() As String = content_RichTextBox.Text.Split(vbLf)
@@ -475,18 +433,6 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Render_eventlog_listview()
 
-
-
-        For Each Dir As String In My.Computer.FileSystem.GetDirectories(My.Computer.FileSystem.CurrentDirectory + "\Chrome")
-            'Debug.WriteLine("DIR : " + Dir)
-            'chromedriver_ListBox.Items.Add(Dir + "\X64\chromedriver.exe")
-            For Each driver_dir As String In My.Computer.FileSystem.GetDirectories(Dir)
-                'Debug.WriteLine(driver_dir)
-                chromedriver_ListBox.Items.Add(driver_dir + "\chromedriver.exe")
-
-            Next
-
-        Next
 
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
@@ -520,7 +466,7 @@ Public Class Form1
 
 
 
-    Private Sub cursor_Click(sender As Object, e As EventArgs) Handles cursor_clickl_btn.Click
+    Private Sub cursor_Click(sender As Object, e As EventArgs)
 
         'Dim myele = chromeDriver.FindElement(By.CssSelector("._6ltj > a"))
         'Dim login_btn = chromeDriver.FindElement(By.Name("login"))
@@ -528,8 +474,8 @@ Public Class Form1
 
         'act.MoveByOffset(0, 0).Build().Perform() ' reset point position
         Dim act = New Actions(chromeDriver)
-        cursor_x = cursor_x_TextBox.Text
-        cursor_y = cursor_y_TextBox.Text
+        'cursor_x = cursor_x_TextBox.Text
+        'cursor_y = cursor_y_TextBox.Text
         act.MoveByOffset(cursor_x, cursor_y).Build.Perform()
         act.Click.Perform()
         Debug.WriteLine(cursor_x & "," & cursor_y)
@@ -547,16 +493,16 @@ Public Class Form1
 
     End Sub
 
-    Private Sub hide_btn_Click(sender As Object, e As EventArgs) Handles hide_btn.Click
+    Private Sub hide_btn_Click(sender As Object, e As EventArgs)
         MsgBox(My.Computer.FileSystem.CurrentDirectory)
         IO.File.SetAttributes(My.Computer.FileSystem.CurrentDirectory + "\Chrome", IO.FileAttributes.Hidden)
     End Sub
 
-    Private Sub show_btn_Click(sender As Object, e As EventArgs) Handles show_btn.Click
+    Private Sub show_btn_Click(sender As Object, e As EventArgs)
         IO.File.SetAttributes(My.Computer.FileSystem.CurrentDirectory + "\Chrome", IO.FileAttributes.System)
     End Sub
 
-    Private Sub crawl_post_btn_Click(sender As Object, e As EventArgs) Handles crawl_post_btn.Click
+    Private Sub crawl_post_btn_Click(sender As Object, e As EventArgs)
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New ChromeConfig())
 
@@ -569,7 +515,7 @@ Public Class Form1
 
         chromeDriver = New ChromeDriver(serv, options)
         Thread.Sleep(1000)
-        chromeDriver.Navigate.GoToUrl(target_url_TextBox.Text)
+        'chromeDriver.Navigate.GoToUrl(target_url_TextBox.Text)
         Thread.Sleep(1000)
 
         Dim content As String = chromeDriver.FindElement(By.CssSelector("._5_jv._58jw > p")).GetAttribute("innerHTML")
@@ -579,7 +525,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub block_user_btn_Click(sender As Object, e As EventArgs) Handles block_user_btn.Click
+    Private Sub block_user_btn_Click(sender As Object, e As EventArgs)
 
         Dim mytabs = chromeDriver.WindowHandles
 
@@ -635,13 +581,7 @@ Public Class Form1
         End Try
     End Function
 
-    Private Sub clr_post_btn_Click(sender As Object, e As EventArgs) Handles clr_post_btn.Click
-        Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
-        msgbox_ele.SendKeys(Keys.LeftControl + "a")
-        msgbox_ele.SendKeys(Keys.Delete)
-    End Sub
-
-    Private Sub show_log_btn_Click(sender As Object, e As EventArgs) Handles show_log_btn.Click
+    Private Sub show_log_btn_Click(sender As Object, e As EventArgs)
         Form2.Visible = True
     End Sub
 
@@ -791,20 +731,7 @@ Public Class Form1
 
 
 
-    'for the singe action 
-
-    Private Function Login_fb(fb_email As String, fb_passwd As String)
-        Try
-            navigate_GoToUrl("https://www.facebook.com/")
-            chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
-            chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-            chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-
-    End Function
+    '####################### Function script for selenium executing ##############################################################
 
     Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
         For Each item As ListViewItem In script_ListView.Items
@@ -821,39 +748,162 @@ Public Class Form1
             Dim profile = item.SubItems.Item(5).Text
             Dim action = item.SubItems.Item(7).Text
             Dim content = item.SubItems.Item(8).Text
+            Dim result As Boolean
             Select Case action
                 Case "開啟"
-                    Debug.WriteLine("open brower")
-                    If Open_Browser(brower, devicetype, profile) Then
-                        item.SubItems.Item(9).Text = "成功"
-                    Else
-                        item.SubItems.Item(9).Text = "失敗"
-                    End If
+                    result = Open_Browser(brower, devicetype, profile)
                 Case "登入"
                     Dim auth() As String = content.Split(";")
-                    If Login_fb(auth(0), auth(1)) Then
-                        item.SubItems.Item(9).Text = "成功"
-                    Else
-                        item.SubItems.Item(9).Text = "失敗"
-                    End If
+                    result = Login_fb(auth(0), auth(1))
                 Case "前往"
-                    If navigate_GoToUrl(content) Then
-                        item.SubItems.Item(9).Text = "成功"
-                    Else
-                        item.SubItems.Item(9).Text = "失敗"
-                    End If
+                    result = Navigate_GoToUrl(content)
                 Case "等待"
                     Try
                         Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
-                        item.SubItems.Item(9).Text = "成功"
+                        result = True
                     Catch ex As Exception
-                        item.SubItems.Item(9).Text = "失敗"
+                        result = False
                     End Try
-
-
+                Case "點擊"
+                    result = Click_element_by_feature(content)
+                Case "發送"
+                    result = Write_post_send_content(content)
+                Case "清空"
+                    result = Clear_post_content()
+                Case "上載"
+                    result = Tring_to_upload_img(content)
             End Select
+
+            If result = True Then ' record the result
+                item.SubItems.Item(9).Text = "成功"
+            ElseIf result = False Then
+                item.SubItems.Item(9).Text = "失敗"
+            End If
+
         Next
     End Sub
+
+    Private Function Login_fb(fb_email As String, fb_passwd As String)
+        Try
+            Navigate_GoToUrl("https://www.facebook.com/")
+            chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
+            chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
+            chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
+    Public Function Click_element_by_feature(parm As String)
+        Select Case parm
+            Case "留個言吧"
+                Return Click_leave_message()
+        End Select
+
+        Return False
+    End Function
+
+    Private Function Click_leave_message()
+
+        Try
+            Dim myURL = chromeDriver.Url
+            If myURL.Contains("groups") Then ' If post in group
+                chromeDriver.FindElement(By.XPath("//span[contains(text(),'留個言吧……')]")).Click()
+            Else ' personal page
+                chromeDriver.FindElement(By.XPath("//span[contains(text(),'在想些什麼？')]")).Click()
+            End If
+            Return True
+
+        Catch ex As Exception
+
+            Return False
+        End Try
+
+        Return False
+
+    End Function
+
+
+    Private Function Write_post_send_content(content)
+        Try
+            Dim myURL = chromeDriver.Url
+            If myURL.Contains("groups") Then ' If post in group
+                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
+                msgbox_ele.SendKeys(content)
+            Else ' personal page
+                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
+                msgbox_ele.SendKeys(content)
+            End If
+            Return True
+
+        Catch ex As Exception
+
+            Return False
+        End Try
+
+        Return False
+
+
+    End Function
+
+    Private Function Clear_post_content()
+        Try
+            Dim myURL = chromeDriver.Url
+            Dim msgbox_ele As Object
+
+            If myURL.Contains("groups") Then ' If post in group
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
+
+            Else ' personal page
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
+            End If
+            msgbox_ele.SendKeys(Keys.LeftControl + "a")
+            msgbox_ele.SendKeys(Keys.Delete)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+        Return False
+    End Function
+
+    Private Function Tring_to_upload_img(img_path_str)
+
+        Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
+        Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
+
+        If ele1 = False AndAlso ele2 = False Then
+            If click_by_aria_label("相片／影片") = False Then
+                Return False
+            End If
+        End If
+
+        Dim upload_img_input As Object
+
+        If IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString) Then
+            Try
+                upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
+                upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+                Return True
+            Catch ex As Exception
+                Return False
+            End Try
+
+        Else
+            Try
+                upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
+                upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+                Return True
+            Catch ex As Exception
+                Return False
+            End Try
+
+        End If
+
+        Return False
+
+    End Function
 
 
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
@@ -886,5 +936,43 @@ Public Class Form1
 
     Private Sub Clear_script_btn_Click(sender As Object, e As EventArgs) Handles Clear_script_btn.Click
         script_ListView.Items.Clear()
+    End Sub
+
+    Private Sub Insert_click_leave_msg_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_leave_msg_btn.Click
+        Insert_to_script("點擊", "留個言吧")
+    End Sub
+
+    Private Sub Insert_send_content_btn_Click(sender As Object, e As EventArgs) Handles Insert_send_content_btn.Click
+        Insert_to_script("發送", content_RichTextBox.Text)
+    End Sub
+
+    Private Sub Insert_clear_content_btn_Click(sender As Object, e As EventArgs) Handles Insert_clear_content_btn.Click
+        Insert_to_script("清空", "內容")
+    End Sub
+
+    Private Sub Insert_click_img_video_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_img_video_btn.Click
+        Dim img_path_str As String = ""
+
+        'Write_log("Post to " + myURL)
+        'get selected img path into string 
+        If img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
+                If img_path_str = "" Then
+                    img_path_str = img_CheckedListBox.Items(i).ToString
+                Else
+                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
+                End If
+            Next
+            Insert_to_script("上載", img_path_str)
+        Else
+            MsgBox("未勾選任何檔案")
+        End If
+
+    End Sub
+
+    Private Sub Insert_submit_post_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_post_btn.Click
+        Insert_to_script("點擊", "發佈")
     End Sub
 End Class

@@ -22,34 +22,13 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.write_a_post_btn = New System.Windows.Forms.Button()
         Me.content_RichTextBox = New System.Windows.Forms.RichTextBox()
-        Me.invoke_chrome_btn = New System.Windows.Forms.Button()
         Me.driver_close_bnt = New System.Windows.Forms.Button()
-        Me.reply_comment_bnt = New System.Windows.Forms.Button()
-        Me.target_url_TextBox = New System.Windows.Forms.TextBox()
-        Me.url_lbl = New System.Windows.Forms.Label()
         Me.curr_url_lbl = New System.Windows.Forms.Label()
         Me.curr_url_TextBox = New System.Windows.Forms.TextBox()
         Me.img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
-        Me.cursor_clickl_btn = New System.Windows.Forms.Button()
-        Me.cursor_x_TextBox = New System.Windows.Forms.TextBox()
-        Me.cursor_y_TextBox = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.hide_btn = New System.Windows.Forms.Button()
-        Me.show_btn = New System.Windows.Forms.Button()
-        Me.chromedriver_ListBox = New System.Windows.Forms.ListBox()
-        Me.crawl_post_btn = New System.Windows.Forms.Button()
-        Me.block_user_btn = New System.Windows.Forms.Button()
-        Me.clr_post_btn = New System.Windows.Forms.Button()
         Me.group_name_TextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.invoke_edge = New System.Windows.Forms.Button()
-        Me.invoke_firefox = New System.Windows.Forms.Button()
-        Me.show_log_btn = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.show_script_editor_btn = New System.Windows.Forms.Button()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.For_Test_GroupBox = New System.Windows.Forms.GroupBox()
@@ -58,6 +37,11 @@ Partial Class Form1
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Insert_click_img_video_btn = New System.Windows.Forms.Button()
+        Me.Insert_clear_content_btn = New System.Windows.Forms.Button()
+        Me.Insert_send_content_btn = New System.Windows.Forms.Button()
+        Me.Insert_click_leave_msg_btn = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Insert_delay_btn = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.wait_random_second_NumericUpDown = New System.Windows.Forms.NumericUpDown()
@@ -90,6 +74,7 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.Insert_submit_post_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.For_Test_GroupBox.SuspendLayout()
         Me.cmd_GroupBox.SuspendLayout()
@@ -101,32 +86,13 @@ Partial Class Form1
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'write_a_post_btn
-        '
-        Me.write_a_post_btn.Location = New System.Drawing.Point(178, 819)
-        Me.write_a_post_btn.Name = "write_a_post_btn"
-        Me.write_a_post_btn.Size = New System.Drawing.Size(100, 60)
-        Me.write_a_post_btn.TabIndex = 0
-        Me.write_a_post_btn.Text = "Write a post"
-        Me.write_a_post_btn.UseVisualStyleBackColor = True
-        '
         'content_RichTextBox
         '
-        Me.content_RichTextBox.Location = New System.Drawing.Point(178, 550)
+        Me.content_RichTextBox.Location = New System.Drawing.Point(7, 376)
         Me.content_RichTextBox.Name = "content_RichTextBox"
-        Me.content_RichTextBox.Size = New System.Drawing.Size(341, 263)
+        Me.content_RichTextBox.Size = New System.Drawing.Size(371, 136)
         Me.content_RichTextBox.TabIndex = 1
         Me.content_RichTextBox.Text = ""
-        '
-        'invoke_chrome_btn
-        '
-        Me.invoke_chrome_btn.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.invoke_chrome_btn.Location = New System.Drawing.Point(12, 753)
-        Me.invoke_chrome_btn.Name = "invoke_chrome_btn"
-        Me.invoke_chrome_btn.Size = New System.Drawing.Size(160, 60)
-        Me.invoke_chrome_btn.TabIndex = 2
-        Me.invoke_chrome_btn.Text = "Open Chrome A"
-        Me.invoke_chrome_btn.UseVisualStyleBackColor = False
         '
         'driver_close_bnt
         '
@@ -137,31 +103,6 @@ Partial Class Form1
         Me.driver_close_bnt.TabIndex = 3
         Me.driver_close_bnt.Text = "關閉瀏覽器"
         Me.driver_close_bnt.UseVisualStyleBackColor = False
-        '
-        'reply_comment_bnt
-        '
-        Me.reply_comment_bnt.Location = New System.Drawing.Point(284, 819)
-        Me.reply_comment_bnt.Name = "reply_comment_bnt"
-        Me.reply_comment_bnt.Size = New System.Drawing.Size(108, 60)
-        Me.reply_comment_bnt.TabIndex = 4
-        Me.reply_comment_bnt.Text = "Reply comment"
-        Me.reply_comment_bnt.UseVisualStyleBackColor = True
-        '
-        'target_url_TextBox
-        '
-        Me.target_url_TextBox.Location = New System.Drawing.Point(137, 373)
-        Me.target_url_TextBox.Name = "target_url_TextBox"
-        Me.target_url_TextBox.Size = New System.Drawing.Size(403, 27)
-        Me.target_url_TextBox.TabIndex = 5
-        '
-        'url_lbl
-        '
-        Me.url_lbl.AutoSize = True
-        Me.url_lbl.Location = New System.Drawing.Point(33, 381)
-        Me.url_lbl.Name = "url_lbl"
-        Me.url_lbl.Size = New System.Drawing.Size(90, 19)
-        Me.url_lbl.TabIndex = 6
-        Me.url_lbl.Text = "Target URL:"
         '
         'curr_url_lbl
         '
@@ -183,108 +124,10 @@ Partial Class Form1
         '
         Me.img_CheckedListBox.FormattingEnabled = True
         Me.img_CheckedListBox.HorizontalScrollbar = True
-        Me.img_CheckedListBox.Location = New System.Drawing.Point(525, 425)
+        Me.img_CheckedListBox.Location = New System.Drawing.Point(7, 628)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
-        Me.img_CheckedListBox.Size = New System.Drawing.Size(368, 400)
+        Me.img_CheckedListBox.Size = New System.Drawing.Size(372, 136)
         Me.img_CheckedListBox.TabIndex = 15
-        '
-        'cursor_clickl_btn
-        '
-        Me.cursor_clickl_btn.Location = New System.Drawing.Point(710, 371)
-        Me.cursor_clickl_btn.Name = "cursor_clickl_btn"
-        Me.cursor_clickl_btn.Size = New System.Drawing.Size(102, 32)
-        Me.cursor_clickl_btn.TabIndex = 17
-        Me.cursor_clickl_btn.Text = "Cursor click"
-        Me.cursor_clickl_btn.UseVisualStyleBackColor = True
-        '
-        'cursor_x_TextBox
-        '
-        Me.cursor_x_TextBox.Location = New System.Drawing.Point(574, 375)
-        Me.cursor_x_TextBox.Name = "cursor_x_TextBox"
-        Me.cursor_x_TextBox.Size = New System.Drawing.Size(43, 27)
-        Me.cursor_x_TextBox.TabIndex = 18
-        '
-        'cursor_y_TextBox
-        '
-        Me.cursor_y_TextBox.Location = New System.Drawing.Point(650, 375)
-        Me.cursor_y_TextBox.Name = "cursor_y_TextBox"
-        Me.cursor_y_TextBox.Size = New System.Drawing.Size(45, 27)
-        Me.cursor_y_TextBox.TabIndex = 19
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(549, 378)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(22, 19)
-        Me.Label1.TabIndex = 20
-        Me.Label1.Text = "X:"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(623, 378)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(21, 19)
-        Me.Label2.TabIndex = 21
-        Me.Label2.Text = "Y:"
-        '
-        'hide_btn
-        '
-        Me.hide_btn.Location = New System.Drawing.Point(12, 420)
-        Me.hide_btn.Name = "hide_btn"
-        Me.hide_btn.Size = New System.Drawing.Size(77, 29)
-        Me.hide_btn.TabIndex = 22
-        Me.hide_btn.Text = "Hide"
-        Me.hide_btn.UseVisualStyleBackColor = True
-        '
-        'show_btn
-        '
-        Me.show_btn.Location = New System.Drawing.Point(95, 420)
-        Me.show_btn.Name = "show_btn"
-        Me.show_btn.Size = New System.Drawing.Size(77, 29)
-        Me.show_btn.TabIndex = 23
-        Me.show_btn.Text = "Show"
-        Me.show_btn.UseVisualStyleBackColor = True
-        '
-        'chromedriver_ListBox
-        '
-        Me.chromedriver_ListBox.FormattingEnabled = True
-        Me.chromedriver_ListBox.HorizontalScrollbar = True
-        Me.chromedriver_ListBox.ItemHeight = 19
-        Me.chromedriver_ListBox.Location = New System.Drawing.Point(178, 420)
-        Me.chromedriver_ListBox.Name = "chromedriver_ListBox"
-        Me.chromedriver_ListBox.Size = New System.Drawing.Size(341, 118)
-        Me.chromedriver_ListBox.TabIndex = 24
-        '
-        'crawl_post_btn
-        '
-        Me.crawl_post_btn.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.crawl_post_btn.Location = New System.Drawing.Point(398, 819)
-        Me.crawl_post_btn.Name = "crawl_post_btn"
-        Me.crawl_post_btn.Size = New System.Drawing.Size(121, 60)
-        Me.crawl_post_btn.TabIndex = 25
-        Me.crawl_post_btn.Text = "Crawl post"
-        Me.crawl_post_btn.UseVisualStyleBackColor = False
-        '
-        'block_user_btn
-        '
-        Me.block_user_btn.Location = New System.Drawing.Point(12, 455)
-        Me.block_user_btn.Name = "block_user_btn"
-        Me.block_user_btn.Size = New System.Drawing.Size(77, 28)
-        Me.block_user_btn.TabIndex = 26
-        Me.block_user_btn.Text = "BlkUsr"
-        Me.block_user_btn.UseVisualStyleBackColor = True
-        '
-        'clr_post_btn
-        '
-        Me.clr_post_btn.ForeColor = System.Drawing.Color.Black
-        Me.clr_post_btn.Location = New System.Drawing.Point(12, 562)
-        Me.clr_post_btn.Name = "clr_post_btn"
-        Me.clr_post_btn.Size = New System.Drawing.Size(160, 29)
-        Me.clr_post_btn.TabIndex = 27
-        Me.clr_post_btn.Text = "Clear"
-        Me.clr_post_btn.UseVisualStyleBackColor = True
         '
         'group_name_TextBox
         '
@@ -301,53 +144,6 @@ Partial Class Form1
         Me.Label3.Size = New System.Drawing.Size(80, 19)
         Me.Label3.TabIndex = 28
         Me.Label3.Text = "群組名稱 : "
-        '
-        'invoke_edge
-        '
-        Me.invoke_edge.Location = New System.Drawing.Point(12, 885)
-        Me.invoke_edge.Name = "invoke_edge"
-        Me.invoke_edge.Size = New System.Drawing.Size(77, 38)
-        Me.invoke_edge.TabIndex = 29
-        Me.invoke_edge.Text = "Edge"
-        Me.invoke_edge.UseVisualStyleBackColor = True
-        '
-        'invoke_firefox
-        '
-        Me.invoke_firefox.Location = New System.Drawing.Point(95, 885)
-        Me.invoke_firefox.Name = "invoke_firefox"
-        Me.invoke_firefox.Size = New System.Drawing.Size(77, 38)
-        Me.invoke_firefox.TabIndex = 30
-        Me.invoke_firefox.Text = "Firefox"
-        Me.invoke_firefox.UseVisualStyleBackColor = True
-        '
-        'show_log_btn
-        '
-        Me.show_log_btn.BackColor = System.Drawing.SystemColors.Info
-        Me.show_log_btn.Location = New System.Drawing.Point(12, 489)
-        Me.show_log_btn.Name = "show_log_btn"
-        Me.show_log_btn.Size = New System.Drawing.Size(160, 28)
-        Me.show_log_btn.TabIndex = 31
-        Me.show_log_btn.Text = "Show Logs"
-        Me.show_log_btn.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(818, 371)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(94, 29)
-        Me.Button2.TabIndex = 32
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'show_script_editor_btn
-        '
-        Me.show_script_editor_btn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.show_script_editor_btn.Location = New System.Drawing.Point(12, 523)
-        Me.show_script_editor_btn.Name = "show_script_editor_btn"
-        Me.show_script_editor_btn.Size = New System.Drawing.Size(160, 29)
-        Me.show_script_editor_btn.TabIndex = 33
-        Me.show_script_editor_btn.Text = "Script Editor"
-        Me.show_script_editor_btn.UseVisualStyleBackColor = False
         '
         'script_ListView
         '
@@ -420,10 +216,18 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_submit_post_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_click_img_video_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_clear_content_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_send_content_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_click_leave_msg_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Label1)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_delay_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.img_CheckedListBox)
         Me.cmd_GroupBox.Controls.Add(Me.Label13)
         Me.cmd_GroupBox.Controls.Add(Me.wait_random_second_NumericUpDown)
         Me.cmd_GroupBox.Controls.Add(Me.Label12)
+        Me.cmd_GroupBox.Controls.Add(Me.content_RichTextBox)
         Me.cmd_GroupBox.Controls.Add(Me.wait_second_NumericUpDown)
         Me.cmd_GroupBox.Controls.Add(Me.Label11)
         Me.cmd_GroupBox.Controls.Add(Me.wait_minute_NumericUpDown)
@@ -453,10 +257,55 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.driver_close_bnt)
         Me.cmd_GroupBox.Location = New System.Drawing.Point(12, 12)
         Me.cmd_GroupBox.Name = "cmd_GroupBox"
-        Me.cmd_GroupBox.Size = New System.Drawing.Size(912, 334)
+        Me.cmd_GroupBox.Size = New System.Drawing.Size(912, 813)
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
+        '
+        'Insert_click_img_video_btn
+        '
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 588)
+        Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
+        Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_click_img_video_btn.TabIndex = 74
+        Me.Insert_click_img_video_btn.Text = "按 相片/影片-插入"
+        Me.Insert_click_img_video_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_clear_content_btn
+        '
+        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(7, 553)
+        Me.Insert_clear_content_btn.Name = "Insert_clear_content_btn"
+        Me.Insert_clear_content_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_clear_content_btn.TabIndex = 73
+        Me.Insert_clear_content_btn.Text = "清空內容-插入"
+        Me.Insert_clear_content_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_send_content_btn
+        '
+        Me.Insert_send_content_btn.Location = New System.Drawing.Point(7, 518)
+        Me.Insert_send_content_btn.Name = "Insert_send_content_btn"
+        Me.Insert_send_content_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_send_content_btn.TabIndex = 72
+        Me.Insert_send_content_btn.Text = "內容-插入"
+        Me.Insert_send_content_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_click_leave_msg_btn
+        '
+        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(6, 341)
+        Me.Insert_click_leave_msg_btn.Name = "Insert_click_leave_msg_btn"
+        Me.Insert_click_leave_msg_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_click_leave_msg_btn.TabIndex = 71
+        Me.Insert_click_leave_msg_btn.Text = "按 留個言吧-插入"
+        Me.Insert_click_leave_msg_btn.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(7, 319)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(122, 19)
+        Me.Label1.TabIndex = 44
+        Me.Label1.Text = "(群組/個人)發帖 :"
         '
         'Insert_delay_btn
         '
@@ -751,36 +600,22 @@ Partial Class Form1
         Me.Label5.TabIndex = 43
         Me.Label5.Text = "設備類型 :"
         '
+        'Insert_submit_post_btn
+        '
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 770)
+        Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
+        Me.Insert_submit_post_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_submit_post_btn.TabIndex = 75
+        Me.Insert_submit_post_btn.Text = "按 發布-插入"
+        Me.Insert_submit_post_btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1886, 937)
+        Me.ClientSize = New System.Drawing.Size(1886, 849)
         Me.Controls.Add(Me.cmd_GroupBox)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.show_script_editor_btn)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.show_log_btn)
-        Me.Controls.Add(Me.invoke_firefox)
-        Me.Controls.Add(Me.invoke_edge)
-        Me.Controls.Add(Me.clr_post_btn)
-        Me.Controls.Add(Me.block_user_btn)
-        Me.Controls.Add(Me.crawl_post_btn)
-        Me.Controls.Add(Me.chromedriver_ListBox)
-        Me.Controls.Add(Me.show_btn)
-        Me.Controls.Add(Me.hide_btn)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.cursor_y_TextBox)
-        Me.Controls.Add(Me.cursor_x_TextBox)
-        Me.Controls.Add(Me.cursor_clickl_btn)
-        Me.Controls.Add(Me.img_CheckedListBox)
-        Me.Controls.Add(Me.url_lbl)
-        Me.Controls.Add(Me.target_url_TextBox)
-        Me.Controls.Add(Me.reply_comment_bnt)
-        Me.Controls.Add(Me.invoke_chrome_btn)
-        Me.Controls.Add(Me.content_RichTextBox)
-        Me.Controls.Add(Me.write_a_post_btn)
         Me.Name = "Form1"
         Me.Text = "Main Form"
         Me.GroupBox1.ResumeLayout(False)
@@ -796,40 +631,17 @@ Partial Class Form1
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents write_a_post_btn As Button
     Friend WithEvents content_RichTextBox As RichTextBox
-    Friend WithEvents invoke_chrome_btn As Button
     Friend WithEvents driver_close_bnt As Button
-    Friend WithEvents reply_comment_bnt As Button
-    Friend WithEvents target_url_TextBox As TextBox
-    Friend WithEvents url_lbl As Label
     Friend WithEvents curr_url_lbl As Label
     Friend WithEvents curr_url_TextBox As TextBox
     Friend WithEvents img_CheckedListBox As CheckedListBox
-    Friend WithEvents cursor_clickl_btn As Button
-    Friend WithEvents cursor_x_TextBox As TextBox
-    Friend WithEvents cursor_y_TextBox As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents cursor_position_lbl As Label
     Friend WithEvents Insert_login_Button As Button
-    Friend WithEvents hide_btn As Button
-    Friend WithEvents show_btn As Button
-    Friend WithEvents chromedriver_ListBox As ListBox
-    Friend WithEvents crawl_post_btn As Button
-    Friend WithEvents block_user_btn As Button
-    Friend WithEvents clr_post_btn As Button
     Friend WithEvents group_name_TextBox As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents invoke_edge As Button
-    Friend WithEvents invoke_firefox As Button
-    Friend WithEvents show_log_btn As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents show_script_editor_btn As Button
     Friend WithEvents script_ListView As ListView
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label4 As Label
@@ -869,4 +681,10 @@ Partial Class Form1
     Friend WithEvents wait_hour_NumericUpDown As NumericUpDown
     Friend WithEvents For_Test_GroupBox As GroupBox
     Friend WithEvents Clear_script_btn As Button
+    Friend WithEvents Insert_click_img_video_btn As Button
+    Friend WithEvents Insert_clear_content_btn As Button
+    Friend WithEvents Insert_send_content_btn As Button
+    Friend WithEvents Insert_click_leave_msg_btn As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Insert_submit_post_btn As Button
 End Class
