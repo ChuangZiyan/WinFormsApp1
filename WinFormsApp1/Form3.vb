@@ -32,7 +32,6 @@ Public Class ScriptEditor_Form
 
 
             Case "quit_chrome"
-                Form1.quit_chrome()
                 print_to_output("quit chrome")
             Case "login_fb"
                 If cmd_array.Length = 3 Then

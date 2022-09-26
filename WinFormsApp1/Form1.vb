@@ -401,10 +401,14 @@ Public Class Form1
 
     End Sub
 
-    Public Sub quit_chrome()
-        chromeDriver.Quit()
-    End Sub
-
+    Public Function Quit_chromedriver()
+        Try
+            chromeDriver.Quit()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
 
     Private Sub Reply_comment_bnt_Click(sender As Object, e As EventArgs)
@@ -752,6 +756,8 @@ Public Class Form1
             Select Case action
                 Case "開啟"
                     result = Open_Browser(brower, devicetype, profile)
+                Case "關閉"
+                    result = Quit_chromedriver()
                 Case "登入"
                     Dim auth() As String = content.Split(";")
                     result = Login_fb(auth(0), auth(1))
@@ -974,5 +980,9 @@ Public Class Form1
 
     Private Sub Insert_submit_post_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_post_btn.Click
         Insert_to_script("點擊", "發佈")
+    End Sub
+
+    Private Sub Insert_close_driver_btn_Click(sender As Object, e As EventArgs) Handles Insert_close_driver_btn.Click
+        Insert_to_script("關閉", "瀏覽器")
     End Sub
 End Class

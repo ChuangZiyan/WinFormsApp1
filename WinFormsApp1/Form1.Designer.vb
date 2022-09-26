@@ -32,11 +32,13 @@ Partial Class Form1
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.For_Test_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
         Me.Clear_script_btn = New System.Windows.Forms.Button()
         Me.Run_script_btn = New System.Windows.Forms.Button()
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Insert_submit_post_btn = New System.Windows.Forms.Button()
         Me.Insert_click_img_video_btn = New System.Windows.Forms.Button()
         Me.Insert_clear_content_btn = New System.Windows.Forms.Button()
         Me.Insert_send_content_btn = New System.Windows.Forms.Button()
@@ -74,7 +76,7 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Insert_submit_post_btn = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.For_Test_GroupBox.SuspendLayout()
         Me.cmd_GroupBox.SuspendLayout()
@@ -97,7 +99,7 @@ Partial Class Form1
         'driver_close_bnt
         '
         Me.driver_close_bnt.BackColor = System.Drawing.Color.LightCoral
-        Me.driver_close_bnt.Location = New System.Drawing.Point(694, 134)
+        Me.driver_close_bnt.Location = New System.Drawing.Point(796, 134)
         Me.driver_close_bnt.Name = "driver_close_bnt"
         Me.driver_close_bnt.Size = New System.Drawing.Size(94, 29)
         Me.driver_close_bnt.TabIndex = 3
@@ -167,14 +169,24 @@ Partial Class Form1
         '
         'For_Test_GroupBox
         '
+        Me.For_Test_GroupBox.Controls.Add(Me.Insert_close_driver_btn)
         Me.For_Test_GroupBox.Controls.Add(Me.Clear_script_btn)
         Me.For_Test_GroupBox.Controls.Add(Me.Run_script_btn)
         Me.For_Test_GroupBox.Location = New System.Drawing.Point(18, 545)
         Me.For_Test_GroupBox.Name = "For_Test_GroupBox"
-        Me.For_Test_GroupBox.Size = New System.Drawing.Size(336, 107)
+        Me.For_Test_GroupBox.Size = New System.Drawing.Size(920, 107)
         Me.For_Test_GroupBox.TabIndex = 44
         Me.For_Test_GroupBox.TabStop = False
         Me.For_Test_GroupBox.Text = "測試用功能"
+        '
+        'Insert_close_driver_btn
+        '
+        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(206, 26)
+        Me.Insert_close_driver_btn.Name = "Insert_close_driver_btn"
+        Me.Insert_close_driver_btn.Size = New System.Drawing.Size(130, 29)
+        Me.Insert_close_driver_btn.TabIndex = 44
+        Me.Insert_close_driver_btn.Text = "關閉瀏覽器-插入"
+        Me.Insert_close_driver_btn.UseVisualStyleBackColor = True
         '
         'Clear_script_btn
         '
@@ -216,6 +228,7 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Label2)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_submit_post_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_click_img_video_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_clear_content_btn)
@@ -261,6 +274,15 @@ Partial Class Form1
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
+        '
+        'Insert_submit_post_btn
+        '
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 770)
+        Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
+        Me.Insert_submit_post_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_submit_post_btn.TabIndex = 75
+        Me.Insert_submit_post_btn.Text = "按 發布-插入"
+        Me.Insert_submit_post_btn.UseVisualStyleBackColor = True
         '
         'Insert_click_img_video_btn
         '
@@ -391,7 +413,7 @@ Partial Class Form1
         '
         'Insert_open_browser_btn
         '
-        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(794, 134)
+        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(696, 134)
         Me.Insert_open_browser_btn.Name = "Insert_open_browser_btn"
         Me.Insert_open_browser_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_open_browser_btn.TabIndex = 60
@@ -600,14 +622,14 @@ Partial Class Form1
         Me.Label5.TabIndex = 43
         Me.Label5.Text = "設備類型 :"
         '
-        'Insert_submit_post_btn
+        'Label2
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 770)
-        Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
-        Me.Insert_submit_post_btn.Size = New System.Drawing.Size(372, 29)
-        Me.Insert_submit_post_btn.TabIndex = 75
-        Me.Insert_submit_post_btn.Text = "按 發布-插入"
-        Me.Insert_submit_post_btn.UseVisualStyleBackColor = True
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(413, 319)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(126, 19)
+        Me.Label2.TabIndex = 76
+        Me.Label2.Text = "(回應/留言) 帖子 :"
         '
         'Form1
         '
@@ -687,4 +709,6 @@ Partial Class Form1
     Friend WithEvents Insert_click_leave_msg_btn As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Insert_submit_post_btn As Button
+    Friend WithEvents Insert_close_driver_btn As Button
+    Friend WithEvents Label2 As Label
 End Class
