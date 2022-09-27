@@ -38,6 +38,7 @@ Partial Class Form1
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Insert_submit_comment_btn = New System.Windows.Forms.Button()
         Me.Insert_comment_upload_img_btn = New System.Windows.Forms.Button()
         Me.reply_img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Insert_reply_comment_btn = New System.Windows.Forms.Button()
@@ -82,6 +83,7 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.Insert_empty_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.For_Test_GroupBox.SuspendLayout()
         Me.cmd_GroupBox.SuspendLayout()
@@ -134,7 +136,7 @@ Partial Class Form1
         Me.img_CheckedListBox.HorizontalScrollbar = True
         Me.img_CheckedListBox.Location = New System.Drawing.Point(6, 588)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
-        Me.img_CheckedListBox.Size = New System.Drawing.Size(372, 136)
+        Me.img_CheckedListBox.Size = New System.Drawing.Size(372, 114)
         Me.img_CheckedListBox.TabIndex = 15
         '
         'group_name_TextBox
@@ -168,7 +170,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.script_ListView)
         Me.GroupBox1.Location = New System.Drawing.Point(930, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(944, 813)
+        Me.GroupBox1.Size = New System.Drawing.Size(944, 822)
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
@@ -234,6 +236,8 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_empty_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_submit_comment_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_comment_upload_img_btn)
         Me.cmd_GroupBox.Controls.Add(Me.reply_img_CheckedListBox)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_reply_comment_btn)
@@ -281,14 +285,23 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.driver_close_bnt)
         Me.cmd_GroupBox.Location = New System.Drawing.Point(12, 12)
         Me.cmd_GroupBox.Name = "cmd_GroupBox"
-        Me.cmd_GroupBox.Size = New System.Drawing.Size(912, 813)
+        Me.cmd_GroupBox.Size = New System.Drawing.Size(912, 822)
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
         '
+        'Insert_submit_comment_btn
+        '
+        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(413, 611)
+        Me.Insert_submit_comment_btn.Name = "Insert_submit_comment_btn"
+        Me.Insert_submit_comment_btn.Size = New System.Drawing.Size(371, 29)
+        Me.Insert_submit_comment_btn.TabIndex = 82
+        Me.Insert_submit_comment_btn.Text = "送出-插入"
+        Me.Insert_submit_comment_btn.UseVisualStyleBackColor = True
+        '
         'Insert_comment_upload_img_btn
         '
-        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(413, 620)
+        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(412, 576)
         Me.Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
         Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_comment_upload_img_btn.TabIndex = 81
@@ -302,7 +315,7 @@ Partial Class Form1
         Me.reply_img_CheckedListBox.HorizontalScrollbar = True
         Me.reply_img_CheckedListBox.Location = New System.Drawing.Point(413, 478)
         Me.reply_img_CheckedListBox.Name = "reply_img_CheckedListBox"
-        Me.reply_img_CheckedListBox.Size = New System.Drawing.Size(372, 136)
+        Me.reply_img_CheckedListBox.Size = New System.Drawing.Size(372, 92)
         Me.reply_img_CheckedListBox.TabIndex = 80
         '
         'Insert_reply_comment_btn
@@ -328,7 +341,7 @@ Partial Class Form1
         Me.Insert_click_reply_btn.Name = "Insert_click_reply_btn"
         Me.Insert_click_reply_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_click_reply_btn.TabIndex = 77
-        Me.Insert_click_reply_btn.Text = "按 回覆-插入"
+        Me.Insert_click_reply_btn.Text = "按 回覆/留言-插入"
         Me.Insert_click_reply_btn.UseVisualStyleBackColor = True
         '
         'Label2
@@ -342,7 +355,7 @@ Partial Class Form1
         '
         'Insert_submit_post_btn
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 770)
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 742)
         Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
         Me.Insert_submit_post_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_submit_post_btn.TabIndex = 75
@@ -351,7 +364,7 @@ Partial Class Form1
         '
         'Insert_click_img_video_btn
         '
-        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 730)
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 707)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
         Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
@@ -687,11 +700,20 @@ Partial Class Form1
         Me.Label5.TabIndex = 43
         Me.Label5.Text = "設備類型 :"
         '
+        'Insert_empty_btn
+        '
+        Me.Insert_empty_btn.Location = New System.Drawing.Point(412, 742)
+        Me.Insert_empty_btn.Name = "Insert_empty_btn"
+        Me.Insert_empty_btn.Size = New System.Drawing.Size(370, 29)
+        Me.Insert_empty_btn.TabIndex = 83
+        Me.Insert_empty_btn.Text = "空白-插入(還沒做)"
+        Me.Insert_empty_btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1886, 849)
+        Me.ClientSize = New System.Drawing.Size(1886, 843)
         Me.Controls.Add(Me.cmd_GroupBox)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "Form1"
@@ -772,4 +794,6 @@ Partial Class Form1
     Friend WithEvents Insert_reply_comment_btn As Button
     Friend WithEvents reply_content_RichTextBox As RichTextBox
     Friend WithEvents Insert_click_reply_btn As Button
+    Friend WithEvents Insert_submit_comment_btn As Button
+    Friend WithEvents Insert_empty_btn As Button
 End Class

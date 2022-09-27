@@ -327,6 +327,18 @@ Public Class Form1
     End Sub
 
 
+    Dim current_checked As Integer
+    Private Sub reply_img_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles reply_img_CheckedListBox.SelectedIndexChanged
+        reply_img_CheckedListBox.SetItemChecked(current_checked, False)
+        For i = 0 To reply_img_CheckedListBox.Items.Count - 1
+            'We ask if this item is checked or not
+            If reply_img_CheckedListBox.GetItemChecked(i) Then
+                current_checked = i
+            End If
+        Next
+
+    End Sub
+
     Private Sub IsInternetConnected()
         If Not My.Computer.Network.Ping("google.com") Then
             MsgBox("Network is unreachable")
@@ -653,8 +665,12 @@ Public Class Form1
                     result = Clear_post_content()
                 Case "上載"
                     result = Tring_to_upload_img(content)
-                Case "回應"
+                Case "回應:上載"
+                    result = Upload_reply_img(content)
+                Case "回應:內容"
                     result = Send_reply_comment(content)
+                Case "回應:送出"
+                    result = Submit_reply_comment()
             End Select
 
             If result = True Then ' record the result
@@ -685,7 +701,7 @@ Public Class Form1
                 Return Click_leave_message()
             Case "發佈"
                 Return click_by_aria_label("發佈")
-            Case "回覆"
+            Case "回覆/留言"
                 Return Click_reply()
         End Select
 
@@ -715,7 +731,15 @@ Public Class Form1
 
     Private Function Click_reply()
         Try
-            chromeDriver.FindElements(By.CssSelector("div.jg3vgc78.cgu29s5g.lq84ybu9.hf30pyar.r227ecj6 > ul > li:nth-child(2) > div")).ElementAt(0).Click()
+
+            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
+                Debug.WriteLine("reply comment")
+                chromeDriver.FindElements(By.CssSelector("div.jg3vgc78.cgu29s5g.lq84ybu9.hf30pyar.r227ecj6 > ul > li:nth-child(2) > div")).ElementAt(0).Click()
+            Else
+                Debug.WriteLine("left comment")
+                Return click_by_aria_label("留言")
+            End If
+
             Return True
         Catch ex As Exception
             Return False
@@ -724,8 +748,14 @@ Public Class Form1
 
     Private Function Send_reply_comment(content)
         Try
+            Dim msgbox_ele As Object
+            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
+            Else
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
+            End If
+
             Dim str_arr() As String = content.Split(vbLf)
-            Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
             For Each line As String In str_arr
                 line = line.Replace(vbCr, "").Replace(vbLf, "")
                 msgbox_ele.SendKeys(line)
@@ -741,6 +771,55 @@ Public Class Form1
         End Try
 
     End Function
+
+    Private Function Upload_reply_img(img)
+        Try
+            Dim comment_img_input As Object
+            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
+                comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("replay_comment_img_input")))
+            Else
+                comment_img_input = chromeDriver.FindElement(By.CssSelector("div.pmpvxvll.e9r0l795 > ul > li:nth-child(3) > input"))
+            End If
+
+            comment_img_input.SendKeys(img)
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+
+    End Function
+
+    Private Function Submit_reply_comment()
+        Try
+
+            Dim msgbox_ele As Object
+            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
+            Else
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
+            End If
+
+            For i = 0 To 100
+
+                Try
+                    chromeDriver.FindElement(By.ClassName("uiScaledImageContainer")) ' wait until upload success
+                    msgbox_ele.SendKeys(Keys.Enter)
+                    Return True
+                Catch ex As Exception
+                    Thread.Sleep(100)
+                End Try
+
+            Next
+
+            Return False
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
 
     Private Function Write_post_send_content(content)
         Try
@@ -941,11 +1020,11 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_click_reply_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_reply_btn.Click
-        Insert_to_script("點擊", "回覆")
+        Insert_to_script("點擊", "回覆/留言")
     End Sub
 
     Private Sub Insert_reply_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_reply_comment_btn.Click
-        Insert_to_script("回應", reply_content_RichTextBox.Text)
+        Insert_to_script("回應:內容", reply_content_RichTextBox.Text)
     End Sub
 
     Private Sub Insert_comment_upload_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_comment_upload_img_btn.Click
@@ -953,37 +1032,24 @@ Public Class Form1
 
         'get selected img path into string 
         If reply_img_CheckedListBox.CheckedItems.Count <> 0 Then
-            For i = 0 To reply_img_CheckedListBox.CheckedItems.Count - 1
-                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
-                Debug.WriteLine(reply_img_CheckedListBox.Items(i).ToString)
-                If img_path_str = "" Then
-                    img_path_str = reply_img_CheckedListBox.Items(i).ToString
-                Else
-                    img_path_str = img_path_str & vbLf & reply_img_CheckedListBox.Items(i).ToString
+
+            For i = 0 To reply_img_CheckedListBox.Items.Count - 1
+                'We ask if this item is checked or not
+                If reply_img_CheckedListBox.GetItemChecked(i) Then
+                    img_path_str = reply_img_CheckedListBox.Items(i).ToString()
                 End If
             Next
-            Insert_to_script("回覆:上載", img_path_str)
+
+            Insert_to_script("回應:上載", img_path_str)
         Else
             MsgBox("未勾選任何檔案")
         End If
     End Sub
 
-    Private Sub reply_img_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles reply_img_CheckedListBox.SelectedIndexChanged
-
-        Dim checked_index As Integer
-        For Each index In reply_img_CheckedListBox.CheckedIndices
-            checked_index = index
-        Next
-
-        Debug.WriteLine(checked_index)
 
 
-        Dim itm As Integer
-        For itm = 0 To reply_img_CheckedListBox.Items.Count - 1
-            If itm <> checked_index Then
-                reply_img_CheckedListBox.SetItemChecked(itm, False)
-            End If
 
-        Next
+    Private Sub Insert_submit_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_comment_btn.Click
+        Insert_to_script("回應:送出", "送出")
     End Sub
 End Class
