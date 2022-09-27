@@ -40,6 +40,23 @@ Public Class Form1
 
     'Dim webDriverWait As WebDriverWait
 
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Render_eventlog_listview()
+
+
+        Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
+        css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
+
+        Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
+        m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
+
+        render_img_listbox()
+        'Form2.Visible = True
+
+    End Sub
+
+
+
     Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
         If chrome_RadioButton.Checked = True Then
             Open_Chrome()
@@ -135,33 +152,6 @@ Public Class Form1
     End Sub
 
 
-
-    Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
-        Dim fb_email = fb_account_TextBox.Text
-        Dim fb_passwd = fb_password_TextBox.Text
-
-        If fb_email = "" OrElse fb_passwd = "" Then
-            MsgBox("帳號與密碼不可為空")
-        Else
-            Insert_to_script("登入", fb_email + ";" + fb_passwd)
-        End If
-
-
-
-    End Sub
-
-    Private Sub Insert_navigate_to_url_btn_Click(sender As Object, e As EventArgs) Handles Insert_navigate_to_url_btn.Click
-
-        Dim pattern As String
-        pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
-        If Regex.IsMatch(curr_url_TextBox.Text, pattern) Then
-            Insert_to_script("前往", curr_url_TextBox.Text)
-        Else
-            MsgBox("網址格式錯誤")
-        End If
-
-    End Sub
-
     Public Function Navigate_GoToUrl(url As String)
         Try
             chromeDriver.Navigate.GoToUrl(url)
@@ -187,96 +177,6 @@ Public Class Form1
         End Try
 
     End Sub
-
-    Private Sub Write_post_Click(myURL)
-
-        Dim img_path_str As String = ""
-
-        'Write_log("Post to " + myURL)
-        'get selected img path into string 
-        If img_CheckedListBox.CheckedItems.Count <> 0 Then
-            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
-                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
-                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
-                If img_path_str = "" Then
-                    img_path_str = img_CheckedListBox.Items(i).ToString
-                Else
-                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
-                End If
-
-            Next
-        End If
-
-        If myURL.Contains("groups") Then ' If post in group
-            'chromeDriver.Navigate.GoToUrl(myURL)
-
-            If click_by_span_text("留個言吧……") = False Then
-                Exit Sub
-            End If
-            If img_path_str <> "" Then
-                Tring_to_upload_img(img_path_str)
-            End If
-
-
-            Try
-                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
-                msgbox_ele.SendKeys(content_RichTextBox.Text)
-                'Write_log("sendkey to div[aria-label$='留個言吧......']")
-            Catch ex As Exception
-                'Write_err_log("sendkey to div[aria-label$='留個言吧......']")
-                Exit Sub
-            End Try
-
-            'chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......'] > div > div > div")).SendKeys(content_RichTextBox.Text)
-
-            'Dim msgBox = chromeDriver.FindElement(By.CssSelector("._1mf._1mj"))
-
-
-            'chromeDriver.ExecuteJavaScript(js_code)
-            '### submit post ###
-            'click_by_span_text("發佈")
-
-
-        Else ' 
-            'Dim btn_eles = chromeDriver.FindElements(By.CssSelector("div.oajrlxb2.g5ia77u1.mtkw9kbi.tlpljxtp.qensuy8j.ppp5ayq2.goun2846.ccm00jje.s44p3ltw.mk2mc5f4.rt8b4zig.n8ej3o3l.agehan2d.sk4xxmp2.rq0escxv.nhd2j8a9.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.l9j0dhe7.i1ao9s8h.esuyzwwr.f1sip0of.du4w35lb.btwxx1t3.abiwlrkh.p8dawk7l.lzcic4wl.bp9cbjyn.ue3kfks5.pw54ja7n.uo3d90p7.l82x9zwi.j83agx80.rj1gh0hx.buofh1pr.g5gj957u.taijpn5t.idt9hxom.cxgpxx05.dflh9lhu.sj5x9vvc.scb9dxdr"))
-            'btn_eles.ElementAt(1).Click()
-            Dim fail_over = False
-            Dim msgbox_ele As Object
-
-            If click_by_span_text("相片／影片") = False Then
-                Exit Sub
-            End If
-
-            Try
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
-                msgbox_ele.SendKeys(content_RichTextBox.Text)
-                'Write_log("sendkey to div[aria-label$='在想些什麼？']")
-            Catch ex As Exception
-                'Write_err_log("sendkey to div[aria-label$='在想些什麼？']")
-                Exit Sub
-            End Try
-
-            Dim img_upload_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("homepage_post_img_input")))
-
-            'Dim img_upload_input = chromeDriver.FindElement(By.CssSelector("div.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.dflh9lhu.scb9dxdr.aahdfvyu.tvmbv18p.gbw9n0fl.fneq0qzw > input"))
-            'imgupload_ele.SendKeys("C:\Users\Yan\Desktop\testimg.png")
-            'img_upload_input.SendKeys("C:\Users\Yan\Desktop\testimg.png")
-
-            'Debug.WriteLine(img_path_str)
-            If img_path_str <> "" Then
-                img_upload_input.SendKeys(img_path_str)
-            End If
-
-
-            '### submit post ###
-            'chromeDriver.FindElement(By.CssSelector("div.k4urcfbm.discj3wi.dati1w0a.hv4rvrfc.i1fnvgqd.j83agx80.rq0escxv.bp9cbjyn > input")).Click()
-
-        End If
-
-
-
-    End Sub
-
 
 
 
@@ -426,21 +326,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Render_eventlog_listview()
 
-
-        Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
-        css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
-
-
-        Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
-        m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
-
-        render_img_listbox()
-        'Form2.Visible = True
-
-    End Sub
     Private Sub IsInternetConnected()
         If Not My.Computer.Network.Ping("google.com") Then
             MsgBox("Network is unreachable")
@@ -455,6 +341,7 @@ Public Class Form1
         For Each file As String In files
             'Debug.WriteLine(file)
             img_CheckedListBox.Items.Add(file)
+            reply_img_CheckedListBox.Items.Add(file)
         Next
 
 
@@ -576,10 +463,6 @@ Public Class Form1
             Return False
         End Try
     End Function
-
-    Private Sub show_log_btn_Click(sender As Object, e As EventArgs)
-        Form2.Visible = True
-    End Sub
 
     Private Sub Insert_to_script(action As String, content As String)
         Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url_TextBox.Text + "," + action + "," + content + ","
@@ -770,6 +653,8 @@ Public Class Form1
                     result = Clear_post_content()
                 Case "上載"
                     result = Tring_to_upload_img(content)
+                Case "回應"
+                    result = Send_reply_comment(content)
             End Select
 
             If result = True Then ' record the result
@@ -800,6 +685,8 @@ Public Class Form1
                 Return Click_leave_message()
             Case "發佈"
                 Return click_by_aria_label("發佈")
+            Case "回覆"
+                Return Click_reply()
         End Select
 
         Return False
@@ -825,8 +712,33 @@ Public Class Form1
 
     End Function
 
-    Private Function Click_post()
-        Return click_by_span_text("發佈")
+
+    Private Function Click_reply()
+        Try
+            chromeDriver.FindElements(By.CssSelector("div.jg3vgc78.cgu29s5g.lq84ybu9.hf30pyar.r227ecj6 > ul > li:nth-child(2) > div")).ElementAt(0).Click()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Private Function Send_reply_comment(content)
+        Try
+            Dim str_arr() As String = content.Split(vbLf)
+            Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
+            For Each line As String In str_arr
+                line = line.Replace(vbCr, "").Replace(vbLf, "")
+                msgbox_ele.SendKeys(line)
+                Thread.Sleep(100)
+                msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
+            Next
+
+            Return True
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
 
     End Function
 
@@ -909,6 +821,14 @@ Public Class Form1
 
     End Function
 
+    Private Function Upload_img_to_reply(img_str)
+
+        Debug.WriteLine(img_CheckedListBox.Items(0).ToString())
+        Dim comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("replay_comment_img_input")))
+        comment_img_input.SendKeys(img_CheckedListBox.Items(0).ToString())
+
+    End Function
+
 
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
         Try
@@ -918,6 +838,30 @@ Public Class Form1
         End Try
     End Sub
 
+
+    Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
+        Dim fb_email = fb_account_TextBox.Text
+        Dim fb_passwd = fb_password_TextBox.Text
+
+        If fb_email = "" OrElse fb_passwd = "" Then
+            MsgBox("帳號與密碼不可為空")
+        Else
+            Insert_to_script("登入", fb_email + ";" + fb_passwd)
+        End If
+
+    End Sub
+
+    Private Sub Insert_navigate_to_url_btn_Click(sender As Object, e As EventArgs) Handles Insert_navigate_to_url_btn.Click
+
+        Dim pattern As String
+        pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+        If Regex.IsMatch(curr_url_TextBox.Text, pattern) Then
+            Insert_to_script("前往", curr_url_TextBox.Text)
+        Else
+            MsgBox("網址格式錯誤")
+        End If
+
+    End Sub
 
     Private Sub Insert_delay_btn_Click(sender As Object, e As EventArgs) Handles Insert_delay_btn.Click
 
@@ -970,7 +914,6 @@ Public Class Form1
     Private Sub Insert_click_img_video_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_img_video_btn.Click
         Dim img_path_str As String = ""
 
-        'Write_log("Post to " + myURL)
         'get selected img path into string 
         If img_CheckedListBox.CheckedItems.Count <> 0 Then
             For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
@@ -995,5 +938,52 @@ Public Class Form1
 
     Private Sub Insert_close_driver_btn_Click(sender As Object, e As EventArgs) Handles Insert_close_driver_btn.Click
         Insert_to_script("關閉", "瀏覽器")
+    End Sub
+
+    Private Sub Insert_click_reply_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_reply_btn.Click
+        Insert_to_script("點擊", "回覆")
+    End Sub
+
+    Private Sub Insert_reply_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_reply_comment_btn.Click
+        Insert_to_script("回應", reply_content_RichTextBox.Text)
+    End Sub
+
+    Private Sub Insert_comment_upload_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_comment_upload_img_btn.Click
+        Dim img_path_str As String = ""
+
+        'get selected img path into string 
+        If reply_img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To reply_img_CheckedListBox.CheckedItems.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+                Debug.WriteLine(reply_img_CheckedListBox.Items(i).ToString)
+                If img_path_str = "" Then
+                    img_path_str = reply_img_CheckedListBox.Items(i).ToString
+                Else
+                    img_path_str = img_path_str & vbLf & reply_img_CheckedListBox.Items(i).ToString
+                End If
+            Next
+            Insert_to_script("回覆:上載", img_path_str)
+        Else
+            MsgBox("未勾選任何檔案")
+        End If
+    End Sub
+
+    Private Sub reply_img_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles reply_img_CheckedListBox.SelectedIndexChanged
+
+        Dim checked_index As Integer
+        For Each index In reply_img_CheckedListBox.CheckedIndices
+            checked_index = index
+        Next
+
+        Debug.WriteLine(checked_index)
+
+
+        Dim itm As Integer
+        For itm = 0 To reply_img_CheckedListBox.Items.Count - 1
+            If itm <> checked_index Then
+                reply_img_CheckedListBox.SetItemChecked(itm, False)
+            End If
+
+        Next
     End Sub
 End Class

@@ -38,6 +38,12 @@ Partial Class Form1
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Insert_comment_upload_img_btn = New System.Windows.Forms.Button()
+        Me.reply_img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
+        Me.Insert_reply_comment_btn = New System.Windows.Forms.Button()
+        Me.reply_content_RichTextBox = New System.Windows.Forms.RichTextBox()
+        Me.Insert_click_reply_btn = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Insert_submit_post_btn = New System.Windows.Forms.Button()
         Me.Insert_click_img_video_btn = New System.Windows.Forms.Button()
         Me.Insert_clear_content_btn = New System.Windows.Forms.Button()
@@ -76,7 +82,6 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.For_Test_GroupBox.SuspendLayout()
         Me.cmd_GroupBox.SuspendLayout()
@@ -124,9 +129,10 @@ Partial Class Form1
         '
         'img_CheckedListBox
         '
+        Me.img_CheckedListBox.CheckOnClick = True
         Me.img_CheckedListBox.FormattingEnabled = True
         Me.img_CheckedListBox.HorizontalScrollbar = True
-        Me.img_CheckedListBox.Location = New System.Drawing.Point(7, 628)
+        Me.img_CheckedListBox.Location = New System.Drawing.Point(6, 588)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
         Me.img_CheckedListBox.Size = New System.Drawing.Size(372, 136)
         Me.img_CheckedListBox.TabIndex = 15
@@ -228,6 +234,11 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_comment_upload_img_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.reply_img_CheckedListBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_reply_comment_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.reply_content_RichTextBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_click_reply_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Label2)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_submit_post_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_click_img_video_btn)
@@ -275,6 +286,60 @@ Partial Class Form1
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
         '
+        'Insert_comment_upload_img_btn
+        '
+        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(413, 620)
+        Me.Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
+        Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_comment_upload_img_btn.TabIndex = 81
+        Me.Insert_comment_upload_img_btn.Text = "圖片-插入"
+        Me.Insert_comment_upload_img_btn.UseVisualStyleBackColor = True
+        '
+        'reply_img_CheckedListBox
+        '
+        Me.reply_img_CheckedListBox.CheckOnClick = True
+        Me.reply_img_CheckedListBox.FormattingEnabled = True
+        Me.reply_img_CheckedListBox.HorizontalScrollbar = True
+        Me.reply_img_CheckedListBox.Location = New System.Drawing.Point(413, 478)
+        Me.reply_img_CheckedListBox.Name = "reply_img_CheckedListBox"
+        Me.reply_img_CheckedListBox.Size = New System.Drawing.Size(372, 136)
+        Me.reply_img_CheckedListBox.TabIndex = 80
+        '
+        'Insert_reply_comment_btn
+        '
+        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(413, 443)
+        Me.Insert_reply_comment_btn.Name = "Insert_reply_comment_btn"
+        Me.Insert_reply_comment_btn.Size = New System.Drawing.Size(371, 29)
+        Me.Insert_reply_comment_btn.TabIndex = 79
+        Me.Insert_reply_comment_btn.Text = "回覆內容-插入"
+        Me.Insert_reply_comment_btn.UseVisualStyleBackColor = True
+        '
+        'reply_content_RichTextBox
+        '
+        Me.reply_content_RichTextBox.Location = New System.Drawing.Point(413, 376)
+        Me.reply_content_RichTextBox.Name = "reply_content_RichTextBox"
+        Me.reply_content_RichTextBox.Size = New System.Drawing.Size(371, 61)
+        Me.reply_content_RichTextBox.TabIndex = 78
+        Me.reply_content_RichTextBox.Text = ""
+        '
+        'Insert_click_reply_btn
+        '
+        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(413, 341)
+        Me.Insert_click_reply_btn.Name = "Insert_click_reply_btn"
+        Me.Insert_click_reply_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_click_reply_btn.TabIndex = 77
+        Me.Insert_click_reply_btn.Text = "按 回覆-插入"
+        Me.Insert_click_reply_btn.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(413, 319)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(126, 19)
+        Me.Label2.TabIndex = 76
+        Me.Label2.Text = "(回應/留言) 帖子 :"
+        '
         'Insert_submit_post_btn
         '
         Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 770)
@@ -286,11 +351,11 @@ Partial Class Form1
         '
         'Insert_click_img_video_btn
         '
-        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 588)
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 730)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
         Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
-        Me.Insert_click_img_video_btn.Text = "按 相片/影片-插入"
+        Me.Insert_click_img_video_btn.Text = "圖片-插入"
         Me.Insert_click_img_video_btn.UseVisualStyleBackColor = True
         '
         'Insert_clear_content_btn
@@ -622,15 +687,6 @@ Partial Class Form1
         Me.Label5.TabIndex = 43
         Me.Label5.Text = "設備類型 :"
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(413, 319)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(126, 19)
-        Me.Label2.TabIndex = 76
-        Me.Label2.Text = "(回應/留言) 帖子 :"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -711,4 +767,9 @@ Partial Class Form1
     Friend WithEvents Insert_submit_post_btn As Button
     Friend WithEvents Insert_close_driver_btn As Button
     Friend WithEvents Label2 As Label
+    Friend WithEvents Insert_comment_upload_img_btn As Button
+    Friend WithEvents reply_img_CheckedListBox As CheckedListBox
+    Friend WithEvents Insert_reply_comment_btn As Button
+    Friend WithEvents reply_content_RichTextBox As RichTextBox
+    Friend WithEvents Insert_click_reply_btn As Button
 End Class
