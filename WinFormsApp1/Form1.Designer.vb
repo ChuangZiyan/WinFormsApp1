@@ -38,6 +38,15 @@ Partial Class Form1
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Emoji_haha_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Emoji_sad_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Emoji_wow_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Emoji_angry_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Emoji_care_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Emoji_love_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Emoji_like_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Insert_empty_btn = New System.Windows.Forms.Button()
         Me.Insert_submit_comment_btn = New System.Windows.Forms.Button()
         Me.Insert_comment_upload_img_btn = New System.Windows.Forms.Button()
         Me.reply_img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
@@ -83,7 +92,7 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Insert_empty_btn = New System.Windows.Forms.Button()
+        Me.Insert_emoji_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.For_Test_GroupBox.SuspendLayout()
         Me.cmd_GroupBox.SuspendLayout()
@@ -134,9 +143,9 @@ Partial Class Form1
         Me.img_CheckedListBox.CheckOnClick = True
         Me.img_CheckedListBox.FormattingEnabled = True
         Me.img_CheckedListBox.HorizontalScrollbar = True
-        Me.img_CheckedListBox.Location = New System.Drawing.Point(6, 588)
+        Me.img_CheckedListBox.Location = New System.Drawing.Point(7, 588)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
-        Me.img_CheckedListBox.Size = New System.Drawing.Size(372, 114)
+        Me.img_CheckedListBox.Size = New System.Drawing.Size(372, 136)
         Me.img_CheckedListBox.TabIndex = 15
         '
         'group_name_TextBox
@@ -159,7 +168,7 @@ Partial Class Form1
         '
         Me.script_ListView.Location = New System.Drawing.Point(18, 61)
         Me.script_ListView.Name = "script_ListView"
-        Me.script_ListView.Size = New System.Drawing.Size(920, 478)
+        Me.script_ListView.Size = New System.Drawing.Size(809, 478)
         Me.script_ListView.TabIndex = 36
         Me.script_ListView.UseCompatibleStateImageBehavior = False
         '
@@ -170,7 +179,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.script_ListView)
         Me.GroupBox1.Location = New System.Drawing.Point(930, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(944, 822)
+        Me.GroupBox1.Size = New System.Drawing.Size(844, 852)
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
@@ -182,7 +191,7 @@ Partial Class Form1
         Me.For_Test_GroupBox.Controls.Add(Me.Run_script_btn)
         Me.For_Test_GroupBox.Location = New System.Drawing.Point(18, 545)
         Me.For_Test_GroupBox.Name = "For_Test_GroupBox"
-        Me.For_Test_GroupBox.Size = New System.Drawing.Size(920, 107)
+        Me.For_Test_GroupBox.Size = New System.Drawing.Size(809, 107)
         Me.For_Test_GroupBox.TabIndex = 44
         Me.For_Test_GroupBox.TabStop = False
         Me.For_Test_GroupBox.Text = "測試用功能"
@@ -236,6 +245,15 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_emoji_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.Emoji_haha_CheckBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Emoji_sad_CheckBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Emoji_wow_CheckBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Emoji_angry_CheckBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Emoji_care_CheckBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Emoji_love_CheckBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Emoji_like_CheckBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Label14)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_empty_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_submit_comment_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_comment_upload_img_btn)
@@ -285,10 +303,98 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.driver_close_bnt)
         Me.cmd_GroupBox.Location = New System.Drawing.Point(12, 12)
         Me.cmd_GroupBox.Name = "cmd_GroupBox"
-        Me.cmd_GroupBox.Size = New System.Drawing.Size(912, 822)
+        Me.cmd_GroupBox.Size = New System.Drawing.Size(912, 852)
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
+        '
+        'Emoji_haha_CheckBox
+        '
+        Me.Emoji_haha_CheckBox.AutoSize = True
+        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(544, 704)
+        Me.Emoji_haha_CheckBox.Name = "Emoji_haha_CheckBox"
+        Me.Emoji_haha_CheckBox.Size = New System.Drawing.Size(61, 23)
+        Me.Emoji_haha_CheckBox.TabIndex = 91
+        Me.Emoji_haha_CheckBox.Text = "哈哈"
+        Me.Emoji_haha_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Emoji_sad_CheckBox
+        '
+        Me.Emoji_sad_CheckBox.AutoSize = True
+        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(477, 704)
+        Me.Emoji_sad_CheckBox.Name = "Emoji_sad_CheckBox"
+        Me.Emoji_sad_CheckBox.Size = New System.Drawing.Size(61, 23)
+        Me.Emoji_sad_CheckBox.TabIndex = 90
+        Me.Emoji_sad_CheckBox.Text = "難過"
+        Me.Emoji_sad_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Emoji_wow_CheckBox
+        '
+        Me.Emoji_wow_CheckBox.AutoSize = True
+        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(417, 704)
+        Me.Emoji_wow_CheckBox.Name = "Emoji_wow_CheckBox"
+        Me.Emoji_wow_CheckBox.Size = New System.Drawing.Size(61, 23)
+        Me.Emoji_wow_CheckBox.TabIndex = 89
+        Me.Emoji_wow_CheckBox.Text = "驚訝"
+        Me.Emoji_wow_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Emoji_angry_CheckBox
+        '
+        Me.Emoji_angry_CheckBox.AutoSize = True
+        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(611, 675)
+        Me.Emoji_angry_CheckBox.Name = "Emoji_angry_CheckBox"
+        Me.Emoji_angry_CheckBox.Size = New System.Drawing.Size(61, 23)
+        Me.Emoji_angry_CheckBox.TabIndex = 88
+        Me.Emoji_angry_CheckBox.Text = "生氣"
+        Me.Emoji_angry_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Emoji_care_CheckBox
+        '
+        Me.Emoji_care_CheckBox.AutoSize = True
+        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(544, 675)
+        Me.Emoji_care_CheckBox.Name = "Emoji_care_CheckBox"
+        Me.Emoji_care_CheckBox.Size = New System.Drawing.Size(61, 23)
+        Me.Emoji_care_CheckBox.TabIndex = 87
+        Me.Emoji_care_CheckBox.Text = "加油"
+        Me.Emoji_care_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Emoji_love_CheckBox
+        '
+        Me.Emoji_love_CheckBox.AutoSize = True
+        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(477, 675)
+        Me.Emoji_love_CheckBox.Name = "Emoji_love_CheckBox"
+        Me.Emoji_love_CheckBox.Size = New System.Drawing.Size(61, 23)
+        Me.Emoji_love_CheckBox.TabIndex = 86
+        Me.Emoji_love_CheckBox.Text = "愛心"
+        Me.Emoji_love_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Emoji_like_CheckBox
+        '
+        Me.Emoji_like_CheckBox.AutoSize = True
+        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(417, 675)
+        Me.Emoji_like_CheckBox.Name = "Emoji_like_CheckBox"
+        Me.Emoji_like_CheckBox.Size = New System.Drawing.Size(61, 23)
+        Me.Emoji_like_CheckBox.TabIndex = 85
+        Me.Emoji_like_CheckBox.Text = "讚好"
+        Me.Emoji_like_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(412, 653)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(76, 19)
+        Me.Label14.TabIndex = 84
+        Me.Label14.Text = "選擇按讚 :"
+        '
+        'Insert_empty_btn
+        '
+        Me.Insert_empty_btn.Location = New System.Drawing.Point(413, 768)
+        Me.Insert_empty_btn.Name = "Insert_empty_btn"
+        Me.Insert_empty_btn.Size = New System.Drawing.Size(370, 29)
+        Me.Insert_empty_btn.TabIndex = 83
+        Me.Insert_empty_btn.Text = "空白-插入(還沒做)"
+        Me.Insert_empty_btn.UseVisualStyleBackColor = True
         '
         'Insert_submit_comment_btn
         '
@@ -301,7 +407,7 @@ Partial Class Form1
         '
         'Insert_comment_upload_img_btn
         '
-        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(412, 576)
+        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(413, 576)
         Me.Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
         Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_comment_upload_img_btn.TabIndex = 81
@@ -355,7 +461,7 @@ Partial Class Form1
         '
         'Insert_submit_post_btn
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 742)
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 768)
         Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
         Me.Insert_submit_post_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_submit_post_btn.TabIndex = 75
@@ -364,7 +470,7 @@ Partial Class Form1
         '
         'Insert_click_img_video_btn
         '
-        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 707)
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 733)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
         Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
@@ -700,20 +806,20 @@ Partial Class Form1
         Me.Label5.TabIndex = 43
         Me.Label5.Text = "設備類型 :"
         '
-        'Insert_empty_btn
+        'Insert_emoji_btn
         '
-        Me.Insert_empty_btn.Location = New System.Drawing.Point(412, 742)
-        Me.Insert_empty_btn.Name = "Insert_empty_btn"
-        Me.Insert_empty_btn.Size = New System.Drawing.Size(370, 29)
-        Me.Insert_empty_btn.TabIndex = 83
-        Me.Insert_empty_btn.Text = "空白-插入(還沒做)"
-        Me.Insert_empty_btn.UseVisualStyleBackColor = True
+        Me.Insert_emoji_btn.Location = New System.Drawing.Point(413, 733)
+        Me.Insert_emoji_btn.Name = "Insert_emoji_btn"
+        Me.Insert_emoji_btn.Size = New System.Drawing.Size(369, 29)
+        Me.Insert_emoji_btn.TabIndex = 92
+        Me.Insert_emoji_btn.Text = "插入"
+        Me.Insert_emoji_btn.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1886, 843)
+        Me.ClientSize = New System.Drawing.Size(1786, 876)
         Me.Controls.Add(Me.cmd_GroupBox)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "Form1"
@@ -796,4 +902,13 @@ Partial Class Form1
     Friend WithEvents Insert_click_reply_btn As Button
     Friend WithEvents Insert_submit_comment_btn As Button
     Friend WithEvents Insert_empty_btn As Button
+    Friend WithEvents Emoji_sad_CheckBox As CheckBox
+    Friend WithEvents Emoji_wow_CheckBox As CheckBox
+    Friend WithEvents Emoji_angry_CheckBox As CheckBox
+    Friend WithEvents Emoji_care_CheckBox As CheckBox
+    Friend WithEvents Emoji_love_CheckBox As CheckBox
+    Friend WithEvents Emoji_like_CheckBox As CheckBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Emoji_haha_CheckBox As CheckBox
+    Friend WithEvents Insert_emoji_btn As Button
 End Class

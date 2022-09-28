@@ -16,6 +16,7 @@ Imports System.Net.NetworkInformation
 Imports System.IO.File
 Imports System.IO
 Imports System.Text.RegularExpressions
+Imports System.Threading.Tasks.Task
 
 Public Class Form1
 
@@ -40,9 +41,11 @@ Public Class Form1
 
     'Dim webDriverWait As WebDriverWait
 
+
+
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Render_eventlog_listview()
-
 
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
@@ -54,7 +57,9 @@ Public Class Form1
         'Form2.Visible = True
 
     End Sub
-
+    Public Shared Async Function Delay_msec(msec As Integer) As Task
+        Await Task.Delay(msec)
+    End Function
 
 
     Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
@@ -68,9 +73,9 @@ Public Class Form1
     End Sub
 
     Private Function Open_Browser(browser As String, devicetype As String, profile As String)
-        Debug.WriteLine(browser)
-        Debug.WriteLine(devicetype)
-        Debug.WriteLine(profile)
+        'Debug.WriteLine(browser)
+        'Debug.WriteLine(devicetype)
+        'Debug.WriteLine(profile)
         If browser = "Chrome" Then
             Try
                 Dim driverManager = New DriverManager()
@@ -604,6 +609,7 @@ Public Class Form1
 
     End Sub
 
+
     Dim current_state = 0
     Private Sub collapse_btn_Click(sender As Object, e As EventArgs) Handles collapse_btn.Click
         If current_state = 0 Then
@@ -624,7 +630,7 @@ Public Class Form1
 
     '####################### Function script for selenium executing ##############################################################
 
-    Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
+    Private Async Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
         For Each item As ListViewItem In script_ListView.Items
             '3 : browser type
             '4 : device type
@@ -652,7 +658,8 @@ Public Class Form1
                     result = Navigate_GoToUrl(content)
                 Case "等待"
                     Try
-                        Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
+                        'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
+                        Await Delay_msec(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
                         result = True
                     Catch ex As Exception
                         result = False
@@ -727,7 +734,6 @@ Public Class Form1
         Return False
 
     End Function
-
 
     Private Function Click_reply()
         Try
@@ -819,7 +825,6 @@ Public Class Form1
             Return False
         End Try
     End Function
-
 
     Private Function Write_post_send_content(content)
         Try
@@ -1045,8 +1050,6 @@ Public Class Form1
             MsgBox("未勾選任何檔案")
         End If
     End Sub
-
-
 
 
     Private Sub Insert_submit_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_comment_btn.Click
