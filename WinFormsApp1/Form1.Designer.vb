@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.driver_close_bnt = New System.Windows.Forms.Button()
         Me.curr_url_lbl = New System.Windows.Forms.Label()
@@ -31,13 +32,31 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.stop_script_btn = New System.Windows.Forms.Button()
+        Me.CheckBox_loop_run = New System.Windows.Forms.CheckBox()
+        Me.Run_script_btn = New System.Windows.Forms.Button()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.NumericUpDown_script_end_second = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDown_script_end_minute = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDown_script_end_hour = New System.Windows.Forms.NumericUpDown()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.NumericUpDown_script_start_second = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDown_script_start_minute = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDown_script_start_hour = New System.Windows.Forms.NumericUpDown()
+        Me.CheckBox_script_end = New System.Windows.Forms.CheckBox()
+        Me.CheckBox_script_start = New System.Windows.Forms.CheckBox()
         Me.For_Test_GroupBox = New System.Windows.Forms.GroupBox()
         Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
         Me.Clear_script_btn = New System.Windows.Forms.Button()
-        Me.Run_script_btn = New System.Windows.Forms.Button()
+        Me.Test_Run_script_btn = New System.Windows.Forms.Button()
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Insert_emoji_btn = New System.Windows.Forms.Button()
         Me.Emoji_haha_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Emoji_sad_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Emoji_wow_CheckBox = New System.Windows.Forms.CheckBox()
@@ -92,8 +111,14 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Insert_emoji_btn = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
+        CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown_script_end_hour, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown_script_start_second, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown_script_start_minute, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown_script_start_hour, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.For_Test_GroupBox.SuspendLayout()
         Me.cmd_GroupBox.SuspendLayout()
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,12 +193,29 @@ Partial Class Form1
         '
         Me.script_ListView.Location = New System.Drawing.Point(18, 61)
         Me.script_ListView.Name = "script_ListView"
-        Me.script_ListView.Size = New System.Drawing.Size(809, 478)
+        Me.script_ListView.Size = New System.Drawing.Size(809, 563)
         Me.script_ListView.TabIndex = 36
         Me.script_ListView.UseCompatibleStateImageBehavior = False
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.stop_script_btn)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_loop_run)
+        Me.GroupBox1.Controls.Add(Me.Run_script_btn)
+        Me.GroupBox1.Controls.Add(Me.Label18)
+        Me.GroupBox1.Controls.Add(Me.Label19)
+        Me.GroupBox1.Controls.Add(Me.Label20)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown_script_end_second)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown_script_end_minute)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown_script_end_hour)
+        Me.GroupBox1.Controls.Add(Me.Label17)
+        Me.GroupBox1.Controls.Add(Me.Label16)
+        Me.GroupBox1.Controls.Add(Me.Label15)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown_script_start_second)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown_script_start_minute)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown_script_start_hour)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_script_end)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_script_start)
         Me.GroupBox1.Controls.Add(Me.For_Test_GroupBox)
         Me.GroupBox1.Controls.Add(Me.collapse_btn)
         Me.GroupBox1.Controls.Add(Me.script_ListView)
@@ -184,21 +226,172 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
         '
+        'stop_script_btn
+        '
+        Me.stop_script_btn.Location = New System.Drawing.Point(184, 768)
+        Me.stop_script_btn.Name = "stop_script_btn"
+        Me.stop_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.stop_script_btn.TabIndex = 60
+        Me.stop_script_btn.Text = "暫停腳本"
+        Me.stop_script_btn.UseVisualStyleBackColor = True
+        '
+        'CheckBox_loop_run
+        '
+        Me.CheckBox_loop_run.AutoSize = True
+        Me.CheckBox_loop_run.Location = New System.Drawing.Point(17, 772)
+        Me.CheckBox_loop_run.Name = "CheckBox_loop_run"
+        Me.CheckBox_loop_run.Size = New System.Drawing.Size(61, 23)
+        Me.CheckBox_loop_run.TabIndex = 59
+        Me.CheckBox_loop_run.Text = "循環"
+        Me.CheckBox_loop_run.UseVisualStyleBackColor = True
+        '
+        'Run_script_btn
+        '
+        Me.Run_script_btn.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.Run_script_btn.Location = New System.Drawing.Point(84, 768)
+        Me.Run_script_btn.Name = "Run_script_btn"
+        Me.Run_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Run_script_btn.TabIndex = 45
+        Me.Run_script_btn.Text = "執行腳本"
+        Me.Run_script_btn.UseVisualStyleBackColor = False
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(422, 686)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(30, 19)
+        Me.Label18.TabIndex = 58
+        Me.Label18.Text = "/秒"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(218, 686)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(30, 19)
+        Me.Label19.TabIndex = 57
+        Me.Label19.Text = "/時"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(320, 686)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(30, 19)
+        Me.Label20.TabIndex = 56
+        Me.Label20.Text = "/分"
+        '
+        'NumericUpDown_script_end_second
+        '
+        Me.NumericUpDown_script_end_second.Location = New System.Drawing.Point(356, 684)
+        Me.NumericUpDown_script_end_second.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.NumericUpDown_script_end_second.Name = "NumericUpDown_script_end_second"
+        Me.NumericUpDown_script_end_second.Size = New System.Drawing.Size(60, 27)
+        Me.NumericUpDown_script_end_second.TabIndex = 55
+        '
+        'NumericUpDown_script_end_minute
+        '
+        Me.NumericUpDown_script_end_minute.Location = New System.Drawing.Point(254, 684)
+        Me.NumericUpDown_script_end_minute.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.NumericUpDown_script_end_minute.Name = "NumericUpDown_script_end_minute"
+        Me.NumericUpDown_script_end_minute.Size = New System.Drawing.Size(60, 27)
+        Me.NumericUpDown_script_end_minute.TabIndex = 54
+        '
+        'NumericUpDown_script_end_hour
+        '
+        Me.NumericUpDown_script_end_hour.Location = New System.Drawing.Point(152, 684)
+        Me.NumericUpDown_script_end_hour.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
+        Me.NumericUpDown_script_end_hour.Name = "NumericUpDown_script_end_hour"
+        Me.NumericUpDown_script_end_hour.Size = New System.Drawing.Size(60, 27)
+        Me.NumericUpDown_script_end_hour.TabIndex = 53
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(422, 650)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(30, 19)
+        Me.Label17.TabIndex = 52
+        Me.Label17.Text = "/秒"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(218, 650)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(30, 19)
+        Me.Label16.TabIndex = 51
+        Me.Label16.Text = "/時"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(320, 650)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(30, 19)
+        Me.Label15.TabIndex = 50
+        Me.Label15.Text = "/分"
+        '
+        'NumericUpDown_script_start_second
+        '
+        Me.NumericUpDown_script_start_second.Location = New System.Drawing.Point(356, 648)
+        Me.NumericUpDown_script_start_second.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.NumericUpDown_script_start_second.Name = "NumericUpDown_script_start_second"
+        Me.NumericUpDown_script_start_second.Size = New System.Drawing.Size(60, 27)
+        Me.NumericUpDown_script_start_second.TabIndex = 49
+        '
+        'NumericUpDown_script_start_minute
+        '
+        Me.NumericUpDown_script_start_minute.Location = New System.Drawing.Point(254, 648)
+        Me.NumericUpDown_script_start_minute.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.NumericUpDown_script_start_minute.Name = "NumericUpDown_script_start_minute"
+        Me.NumericUpDown_script_start_minute.Size = New System.Drawing.Size(60, 27)
+        Me.NumericUpDown_script_start_minute.TabIndex = 48
+        '
+        'NumericUpDown_script_start_hour
+        '
+        Me.NumericUpDown_script_start_hour.Location = New System.Drawing.Point(152, 648)
+        Me.NumericUpDown_script_start_hour.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
+        Me.NumericUpDown_script_start_hour.Name = "NumericUpDown_script_start_hour"
+        Me.NumericUpDown_script_start_hour.Size = New System.Drawing.Size(60, 27)
+        Me.NumericUpDown_script_start_hour.TabIndex = 47
+        '
+        'CheckBox_script_end
+        '
+        Me.CheckBox_script_end.AutoSize = True
+        Me.CheckBox_script_end.Location = New System.Drawing.Point(18, 688)
+        Me.CheckBox_script_end.Name = "CheckBox_script_end"
+        Me.CheckBox_script_end.Size = New System.Drawing.Size(128, 23)
+        Me.CheckBox_script_end.TabIndex = 46
+        Me.CheckBox_script_end.Text = "腳本暫停時間 :"
+        Me.CheckBox_script_end.UseVisualStyleBackColor = True
+        '
+        'CheckBox_script_start
+        '
+        Me.CheckBox_script_start.AutoSize = True
+        Me.CheckBox_script_start.Location = New System.Drawing.Point(18, 649)
+        Me.CheckBox_script_start.Name = "CheckBox_script_start"
+        Me.CheckBox_script_start.Size = New System.Drawing.Size(128, 23)
+        Me.CheckBox_script_start.TabIndex = 45
+        Me.CheckBox_script_start.Text = "腳本執行時間 :"
+        Me.CheckBox_script_start.UseVisualStyleBackColor = True
+        '
         'For_Test_GroupBox
         '
         Me.For_Test_GroupBox.Controls.Add(Me.Insert_close_driver_btn)
         Me.For_Test_GroupBox.Controls.Add(Me.Clear_script_btn)
-        Me.For_Test_GroupBox.Controls.Add(Me.Run_script_btn)
-        Me.For_Test_GroupBox.Location = New System.Drawing.Point(18, 545)
+        Me.For_Test_GroupBox.Controls.Add(Me.Test_Run_script_btn)
+        Me.For_Test_GroupBox.Location = New System.Drawing.Point(422, 768)
         Me.For_Test_GroupBox.Name = "For_Test_GroupBox"
-        Me.For_Test_GroupBox.Size = New System.Drawing.Size(809, 107)
+        Me.For_Test_GroupBox.Size = New System.Drawing.Size(355, 78)
         Me.For_Test_GroupBox.TabIndex = 44
         Me.For_Test_GroupBox.TabStop = False
         Me.For_Test_GroupBox.Text = "測試用功能"
         '
         'Insert_close_driver_btn
         '
-        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(206, 26)
+        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(207, 24)
         Me.Insert_close_driver_btn.Name = "Insert_close_driver_btn"
         Me.Insert_close_driver_btn.Size = New System.Drawing.Size(130, 29)
         Me.Insert_close_driver_btn.TabIndex = 44
@@ -208,22 +401,22 @@ Partial Class Form1
         'Clear_script_btn
         '
         Me.Clear_script_btn.BackColor = System.Drawing.Color.LightCoral
-        Me.Clear_script_btn.Location = New System.Drawing.Point(106, 26)
+        Me.Clear_script_btn.Location = New System.Drawing.Point(107, 25)
         Me.Clear_script_btn.Name = "Clear_script_btn"
         Me.Clear_script_btn.Size = New System.Drawing.Size(94, 29)
         Me.Clear_script_btn.TabIndex = 43
         Me.Clear_script_btn.Text = "清除腳本"
         Me.Clear_script_btn.UseVisualStyleBackColor = False
         '
-        'Run_script_btn
+        'Test_Run_script_btn
         '
-        Me.Run_script_btn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.Run_script_btn.Location = New System.Drawing.Point(6, 26)
-        Me.Run_script_btn.Name = "Run_script_btn"
-        Me.Run_script_btn.Size = New System.Drawing.Size(94, 29)
-        Me.Run_script_btn.TabIndex = 42
-        Me.Run_script_btn.Text = "測試腳本"
-        Me.Run_script_btn.UseVisualStyleBackColor = False
+        Me.Test_Run_script_btn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.Test_Run_script_btn.Location = New System.Drawing.Point(6, 25)
+        Me.Test_Run_script_btn.Name = "Test_Run_script_btn"
+        Me.Test_Run_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Test_Run_script_btn.TabIndex = 42
+        Me.Test_Run_script_btn.Text = "測試腳本"
+        Me.Test_Run_script_btn.UseVisualStyleBackColor = False
         '
         'collapse_btn
         '
@@ -307,6 +500,15 @@ Partial Class Form1
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
+        '
+        'Insert_emoji_btn
+        '
+        Me.Insert_emoji_btn.Location = New System.Drawing.Point(413, 733)
+        Me.Insert_emoji_btn.Name = "Insert_emoji_btn"
+        Me.Insert_emoji_btn.Size = New System.Drawing.Size(369, 29)
+        Me.Insert_emoji_btn.TabIndex = 92
+        Me.Insert_emoji_btn.Text = "插入"
+        Me.Insert_emoji_btn.UseVisualStyleBackColor = True
         '
         'Emoji_haha_CheckBox
         '
@@ -393,7 +595,7 @@ Partial Class Form1
         Me.Insert_empty_btn.Name = "Insert_empty_btn"
         Me.Insert_empty_btn.Size = New System.Drawing.Size(370, 29)
         Me.Insert_empty_btn.TabIndex = 83
-        Me.Insert_empty_btn.Text = "空白-插入(還沒做)"
+        Me.Insert_empty_btn.Text = "空白-插入"
         Me.Insert_empty_btn.UseVisualStyleBackColor = True
         '
         'Insert_submit_comment_btn
@@ -806,14 +1008,10 @@ Partial Class Form1
         Me.Label5.TabIndex = 43
         Me.Label5.Text = "設備類型 :"
         '
-        'Insert_emoji_btn
+        'Timer1
         '
-        Me.Insert_emoji_btn.Location = New System.Drawing.Point(413, 733)
-        Me.Insert_emoji_btn.Name = "Insert_emoji_btn"
-        Me.Insert_emoji_btn.Size = New System.Drawing.Size(369, 29)
-        Me.Insert_emoji_btn.TabIndex = 92
-        Me.Insert_emoji_btn.Text = "插入"
-        Me.Insert_emoji_btn.UseVisualStyleBackColor = True
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
         '
         'Form1
         '
@@ -825,6 +1023,13 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Main Form"
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown_script_end_hour, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown_script_start_second, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown_script_start_minute, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown_script_start_hour, System.ComponentModel.ISupportInitialize).EndInit()
         Me.For_Test_GroupBox.ResumeLayout(False)
         Me.cmd_GroupBox.ResumeLayout(False)
         Me.cmd_GroupBox.PerformLayout()
@@ -874,7 +1079,7 @@ Partial Class Form1
     Friend WithEvents collapse_btn As Button
     Friend WithEvents Insert_navigate_to_url_btn As Button
     Friend WithEvents Insert_open_browser_btn As Button
-    Friend WithEvents Run_script_btn As Button
+    Friend WithEvents Test_Run_script_btn As Button
     Friend WithEvents Label9 As Label
     Friend WithEvents Insert_delay_btn As Button
     Friend WithEvents Label13 As Label
@@ -911,4 +1116,22 @@ Partial Class Form1
     Friend WithEvents Label14 As Label
     Friend WithEvents Emoji_haha_CheckBox As CheckBox
     Friend WithEvents Insert_emoji_btn As Button
+    Friend WithEvents CheckBox_script_end As CheckBox
+    Friend WithEvents CheckBox_script_start As CheckBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents NumericUpDown_script_end_second As NumericUpDown
+    Friend WithEvents NumericUpDown_script_end_minute As NumericUpDown
+    Friend WithEvents NumericUpDown_script_end_hour As NumericUpDown
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents NumericUpDown_script_start_second As NumericUpDown
+    Friend WithEvents NumericUpDown_script_start_minute As NumericUpDown
+    Friend WithEvents NumericUpDown_script_start_hour As NumericUpDown
+    Friend WithEvents CheckBox_loop_run As CheckBox
+    Friend WithEvents Run_script_btn As Button
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents stop_script_btn As Button
 End Class

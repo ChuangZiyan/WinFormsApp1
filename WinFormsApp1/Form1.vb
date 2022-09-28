@@ -452,7 +452,7 @@ Public Class Form1
         Catch ex As Exception
             'Write_err_log("Click: " + str)
             IsInternetConnected()
-            'Debug.WriteLine(ex)
+            Debug.WriteLine(ex)
             Return False
         End Try
     End Function
@@ -482,7 +482,14 @@ Public Class Form1
     End Function
 
     Private Sub Insert_to_script(action As String, content As String)
-        Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url_TextBox.Text + "," + action + "," + content + ","
+        Dim myline As String
+
+        If action = "" And content = "" Then
+            myline = ",,分隔行,,,,,,"
+        Else
+            myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url_TextBox.Text + "," + action + "," + content + ","
+        End If
+
         EventlogListview_AddNewItem(myline)
     End Sub
 
@@ -630,7 +637,65 @@ Public Class Form1
 
     '####################### Function script for selenium executing ##############################################################
 
-    Private Async Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
+
+
+    '############# Main Routing ###################################################
+
+    Dim Flag_start_script = False
+    Dim loop_run = False
+    Dim start_time As String
+    Dim end_time As String
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Debug.WriteLine(Date.Now.ToString("HH:mm:ss"))
+
+        If Flag_start_script Then
+            Dummy_run_script()
+            Flag_start_script = False
+        End If
+
+    End Sub
+
+    Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
+
+        loop_run = CheckBox_loop_run.Checked
+        Debug.WriteLine("Loop Run : " & loop_run)
+
+        If CheckBox_script_start.Checked = True Then
+            Flag_start_script = False
+            start_time = NumericUpDown_script_start_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_second.Value.ToString.PadLeft(2, "0")
+            Debug.WriteLine("start time : " + start_time)
+        Else
+            Flag_start_script = True
+        End If
+
+        If CheckBox_script_end.Checked = True Then
+            end_time = NumericUpDown_script_end_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_end_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_end_second.Value.ToString.PadLeft(2, "0")
+            Debug.WriteLine("end time : " + end_time)
+        End If
+
+
+    End Sub
+
+    Private Sub stop_script_btn_Click(sender As Object, e As EventArgs) Handles stop_script_btn.Click
+        loop_run = False
+    End Sub
+
+    Private Async Sub Dummy_run_script()
+
+        While True
+            Debug.WriteLine("*************************Running script *************************************")
+            Await Delay(1000)
+            If Not loop_run Then
+                Exit While
+            End If
+
+        End While
+
+    End Sub
+
+
+    Private Async Sub Test_Run_script_btn_Click(sender As Object, e As EventArgs) Handles Test_Run_script_btn.Click
         For Each item As ListViewItem In script_ListView.Items
             '3 : browser type
             '4 : device type
@@ -640,6 +705,10 @@ Public Class Form1
             '8 : parameter and content
             '9 : result
             'Debug.WriteLine(item.SubItems.Item(3).Text + "   " + item.SubItems.Item(4).Text)
+            If item.SubItems.Item(7).Text = "" Then
+                Continue For
+            End If
+
             Dim brower = item.SubItems.Item(3).Text
             Dim devicetype = item.SubItems.Item(4).Text
             Dim profile = item.SubItems.Item(5).Text
@@ -678,6 +747,9 @@ Public Class Form1
                     result = Send_reply_comment(content)
                 Case "回應:送出"
                     result = Submit_reply_comment()
+                Case "回應:按讚"
+                    result = Click_reply_random_emoji(content)
+
             End Select
 
             If result = True Then ' record the result
@@ -688,6 +760,54 @@ Public Class Form1
 
         Next
     End Sub
+
+
+    Private Function Click_reply_random_emoji(Emoji_str)
+        If Emoji_str = "" Then
+            Debug.WriteLine("Empty")
+            Return False
+        End If
+
+        Dim Emoji_arr() As String = Split(Trim(Emoji_str))
+        Dim Used_emoji = ""
+
+        If Emoji_arr.Length <> 0 Then
+            Dim rnd_num As New Random()
+            Dim random = rnd_num.Next(0, Emoji_arr.Length)
+            'Debug.WriteLine("rand number : " & random)
+            Debug.WriteLine("emoji:" + Emoji_arr(random))
+            Used_emoji = Emoji_arr(random)
+        End If
+
+        Dim searchBtn As IWebElement = chromeDriver.FindElement(By.XPath("//span[text()='讚']"))
+        Dim actionProvider As Actions = New Actions(chromeDriver)
+        actionProvider.ClickAndHold(searchBtn).Build().Perform()
+        Thread.Sleep(1000)
+
+        Select Case Used_emoji
+            Case "讚好"
+                Return click_by_aria_label("讚")
+            Case "愛心"
+                Return click_by_aria_label("大心")
+            Case "加油"
+                Return click_by_aria_label("加油")
+            Case "生氣"
+                Return click_by_aria_label("怒")
+            Case "驚訝"
+                Return click_by_aria_label("哇")
+            Case "難過"
+                Return click_by_aria_label("嗚")
+            Case "哈哈"
+                Return click_by_aria_label("哈")
+
+        End Select
+
+        Return False
+
+    End Function
+
+
+
 
     Private Function Login_fb(fb_email As String, fb_passwd As String)
         Try
@@ -1055,4 +1175,50 @@ Public Class Form1
     Private Sub Insert_submit_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_comment_btn.Click
         Insert_to_script("回應:送出", "送出")
     End Sub
+
+    Private Sub Insert_emoji_btn_Click(sender As Object, e As EventArgs) Handles Insert_emoji_btn.Click
+        Dim Emoji_list As String = ""
+
+
+        If Emoji_like_CheckBox.Checked Then
+            Emoji_list += "讚好 "
+        End If
+
+        If Emoji_love_CheckBox.Checked Then
+            Emoji_list += "愛心 "
+        End If
+
+        If Emoji_wow_CheckBox.Checked Then
+            Emoji_list += "驚訝 "
+        End If
+
+        If Emoji_haha_CheckBox.Checked Then
+            Emoji_list += "哈哈 "
+        End If
+
+        If Emoji_sad_CheckBox.Checked Then
+            Emoji_list += "難過 "
+        End If
+
+        If Emoji_care_CheckBox.Checked Then
+            Emoji_list += "加油 "
+        End If
+
+        If Emoji_angry_CheckBox.Checked Then
+            Emoji_list += "生氣 "
+        End If
+
+        If Emoji_list = "" Then
+            MsgBox("未勾選任何心情")
+        Else
+            Insert_to_script("回應:按讚", Emoji_list)
+        End If
+
+
+    End Sub
+
+    Private Sub Insert_empty_btn_Click(sender As Object, e As EventArgs) Handles Insert_empty_btn.Click
+        Insert_to_script("", "")
+    End Sub
+
 End Class
