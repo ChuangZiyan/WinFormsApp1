@@ -32,7 +32,12 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.stop_script_btn = New System.Windows.Forms.Button()
+        Me.load_script_btn = New System.Windows.Forms.Button()
+        Me.save_script_btn = New System.Windows.Forms.Button()
+        Me.Clear_script_btn = New System.Windows.Forms.Button()
+        Me.Open_file_dialog_btn = New System.Windows.Forms.Button()
+        Me.TextBox_script_file_path = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
         Me.CheckBox_loop_run = New System.Windows.Forms.CheckBox()
         Me.Run_script_btn = New System.Windows.Forms.Button()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -51,8 +56,8 @@ Partial Class Form1
         Me.CheckBox_script_start = New System.Windows.Forms.CheckBox()
         Me.For_Test_GroupBox = New System.Windows.Forms.GroupBox()
         Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
-        Me.Clear_script_btn = New System.Windows.Forms.Button()
         Me.Test_Run_script_btn = New System.Windows.Forms.Button()
+        Me.stop_script_btn = New System.Windows.Forms.Button()
         Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
@@ -112,6 +117,7 @@ Partial Class Form1
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,7 +205,12 @@ Partial Class Form1
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.stop_script_btn)
+        Me.GroupBox1.Controls.Add(Me.load_script_btn)
+        Me.GroupBox1.Controls.Add(Me.save_script_btn)
+        Me.GroupBox1.Controls.Add(Me.Clear_script_btn)
+        Me.GroupBox1.Controls.Add(Me.Open_file_dialog_btn)
+        Me.GroupBox1.Controls.Add(Me.TextBox_script_file_path)
+        Me.GroupBox1.Controls.Add(Me.Label21)
         Me.GroupBox1.Controls.Add(Me.CheckBox_loop_run)
         Me.GroupBox1.Controls.Add(Me.Run_script_btn)
         Me.GroupBox1.Controls.Add(Me.Label18)
@@ -226,19 +237,64 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
         '
-        'stop_script_btn
+        'load_script_btn
         '
-        Me.stop_script_btn.Location = New System.Drawing.Point(184, 768)
-        Me.stop_script_btn.Name = "stop_script_btn"
-        Me.stop_script_btn.Size = New System.Drawing.Size(94, 29)
-        Me.stop_script_btn.TabIndex = 60
-        Me.stop_script_btn.Text = "暫停腳本"
-        Me.stop_script_btn.UseVisualStyleBackColor = True
+        Me.load_script_btn.Enabled = False
+        Me.load_script_btn.Location = New System.Drawing.Point(558, 726)
+        Me.load_script_btn.Name = "load_script_btn"
+        Me.load_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.load_script_btn.TabIndex = 65
+        Me.load_script_btn.Text = "載入"
+        Me.load_script_btn.UseVisualStyleBackColor = True
+        '
+        'save_script_btn
+        '
+        Me.save_script_btn.Location = New System.Drawing.Point(658, 726)
+        Me.save_script_btn.Name = "save_script_btn"
+        Me.save_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.save_script_btn.TabIndex = 64
+        Me.save_script_btn.Text = "另存"
+        Me.save_script_btn.UseVisualStyleBackColor = True
+        '
+        'Clear_script_btn
+        '
+        Me.Clear_script_btn.BackColor = System.Drawing.Color.LightCoral
+        Me.Clear_script_btn.Location = New System.Drawing.Point(404, 776)
+        Me.Clear_script_btn.Name = "Clear_script_btn"
+        Me.Clear_script_btn.Size = New System.Drawing.Size(194, 29)
+        Me.Clear_script_btn.TabIndex = 43
+        Me.Clear_script_btn.Text = "清除腳本"
+        Me.Clear_script_btn.UseVisualStyleBackColor = False
+        '
+        'Open_file_dialog_btn
+        '
+        Me.Open_file_dialog_btn.Location = New System.Drawing.Point(458, 726)
+        Me.Open_file_dialog_btn.Name = "Open_file_dialog_btn"
+        Me.Open_file_dialog_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Open_file_dialog_btn.TabIndex = 63
+        Me.Open_file_dialog_btn.Text = "選擇檔案"
+        Me.Open_file_dialog_btn.UseVisualStyleBackColor = True
+        '
+        'TextBox_script_file_path
+        '
+        Me.TextBox_script_file_path.Location = New System.Drawing.Point(89, 728)
+        Me.TextBox_script_file_path.Name = "TextBox_script_file_path"
+        Me.TextBox_script_file_path.Size = New System.Drawing.Size(363, 27)
+        Me.TextBox_script_file_path.TabIndex = 62
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(37, 731)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(46, 19)
+        Me.Label21.TabIndex = 61
+        Me.Label21.Text = "路徑 :"
         '
         'CheckBox_loop_run
         '
         Me.CheckBox_loop_run.AutoSize = True
-        Me.CheckBox_loop_run.Location = New System.Drawing.Point(17, 772)
+        Me.CheckBox_loop_run.Location = New System.Drawing.Point(18, 782)
         Me.CheckBox_loop_run.Name = "CheckBox_loop_run"
         Me.CheckBox_loop_run.Size = New System.Drawing.Size(61, 23)
         Me.CheckBox_loop_run.TabIndex = 59
@@ -248,9 +304,9 @@ Partial Class Form1
         'Run_script_btn
         '
         Me.Run_script_btn.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.Run_script_btn.Location = New System.Drawing.Point(84, 768)
+        Me.Run_script_btn.Location = New System.Drawing.Point(90, 776)
         Me.Run_script_btn.Name = "Run_script_btn"
-        Me.Run_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Run_script_btn.Size = New System.Drawing.Size(308, 29)
         Me.Run_script_btn.TabIndex = 45
         Me.Run_script_btn.Text = "執行腳本"
         Me.Run_script_btn.UseVisualStyleBackColor = False
@@ -380,9 +436,9 @@ Partial Class Form1
         'For_Test_GroupBox
         '
         Me.For_Test_GroupBox.Controls.Add(Me.Insert_close_driver_btn)
-        Me.For_Test_GroupBox.Controls.Add(Me.Clear_script_btn)
         Me.For_Test_GroupBox.Controls.Add(Me.Test_Run_script_btn)
-        Me.For_Test_GroupBox.Location = New System.Drawing.Point(422, 768)
+        Me.For_Test_GroupBox.Controls.Add(Me.stop_script_btn)
+        Me.For_Test_GroupBox.Location = New System.Drawing.Point(472, 633)
         Me.For_Test_GroupBox.Name = "For_Test_GroupBox"
         Me.For_Test_GroupBox.Size = New System.Drawing.Size(355, 78)
         Me.For_Test_GroupBox.TabIndex = 44
@@ -398,16 +454,6 @@ Partial Class Form1
         Me.Insert_close_driver_btn.Text = "關閉瀏覽器-插入"
         Me.Insert_close_driver_btn.UseVisualStyleBackColor = True
         '
-        'Clear_script_btn
-        '
-        Me.Clear_script_btn.BackColor = System.Drawing.Color.LightCoral
-        Me.Clear_script_btn.Location = New System.Drawing.Point(107, 25)
-        Me.Clear_script_btn.Name = "Clear_script_btn"
-        Me.Clear_script_btn.Size = New System.Drawing.Size(94, 29)
-        Me.Clear_script_btn.TabIndex = 43
-        Me.Clear_script_btn.Text = "清除腳本"
-        Me.Clear_script_btn.UseVisualStyleBackColor = False
-        '
         'Test_Run_script_btn
         '
         Me.Test_Run_script_btn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
@@ -418,9 +464,18 @@ Partial Class Form1
         Me.Test_Run_script_btn.Text = "測試腳本"
         Me.Test_Run_script_btn.UseVisualStyleBackColor = False
         '
+        'stop_script_btn
+        '
+        Me.stop_script_btn.Location = New System.Drawing.Point(106, 24)
+        Me.stop_script_btn.Name = "stop_script_btn"
+        Me.stop_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.stop_script_btn.TabIndex = 60
+        Me.stop_script_btn.Text = "暫停腳本"
+        Me.stop_script_btn.UseVisualStyleBackColor = True
+        '
         'collapse_btn
         '
-        Me.collapse_btn.Location = New System.Drawing.Point(18, 23)
+        Me.collapse_btn.Location = New System.Drawing.Point(715, 23)
         Me.collapse_btn.Name = "collapse_btn"
         Me.collapse_btn.Size = New System.Drawing.Size(94, 29)
         Me.collapse_btn.TabIndex = 41
@@ -1134,4 +1189,10 @@ Partial Class Form1
     Friend WithEvents Run_script_btn As Button
     Friend WithEvents Timer1 As Timer
     Friend WithEvents stop_script_btn As Button
+    Friend WithEvents Label21 As Label
+    Friend WithEvents save_script_btn As Button
+    Friend WithEvents Open_file_dialog_btn As Button
+    Friend WithEvents TextBox_script_file_path As TextBox
+    Friend WithEvents load_script_btn As Button
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

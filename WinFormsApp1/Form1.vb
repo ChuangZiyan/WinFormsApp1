@@ -634,6 +634,10 @@ Public Class Form1
 
 
 
+    Private Sub export_script()
+
+    End Sub
+
 
     '####################### Function script for selenium executing ##############################################################
 
@@ -645,13 +649,28 @@ Public Class Form1
     Dim loop_run = False
     Dim start_time As String
     Dim end_time As String
+    Dim script_running = False
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        Debug.WriteLine(Date.Now.ToString("HH:mm:ss"))
+        'Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
+        'Debug.WriteLine("start : " + start_time)
+        'Debug.WriteLine("End : " + end_time)
+
+        Dim TimeNow = Date.Now.ToString("HH:mm:ss")
+
+        If start_time = TimeNow Then
+            Flag_start_script = True
+        End If
+
+        If end_time = TimeNow Then
+            script_running = False
+        End If
 
         If Flag_start_script Then
-            Dummy_run_script()
+            Debug.WriteLine("start run")
+            script_running = True
             Flag_start_script = False
+            Run_script_controller()
         End If
 
     End Sub
@@ -678,25 +697,116 @@ Public Class Form1
     End Sub
 
     Private Sub stop_script_btn_Click(sender As Object, e As EventArgs) Handles stop_script_btn.Click
+        script_running = False
         loop_run = False
     End Sub
 
-    Private Async Sub Dummy_run_script()
+    Private Async Sub Run_script_controller()
+        Dim i = 1
 
         While True
-            Debug.WriteLine("*************************Running script *************************************")
-            Await Delay(1000)
+            For Each item As ListViewItem In script_ListView.Items
+                item.SubItems.Item(9).Text = ""
+            Next
+            Await Run_script(i)
+            i += 1
             If Not loop_run Then
                 Exit While
             End If
 
         End While
+        start_time = 0
+        end_time = 0
 
     End Sub
 
 
+    Private Async Function Run_script(i As Integer) As Task
+        Debug.WriteLine("**************** Run : " & i & "********************")
+        Dim j = 1
+        For Each item As ListViewItem In script_ListView.Items
+            Debug.WriteLine("****************Sub Run : " & j & "********************")
+            j += 1
+            'Continue For
+            If script_running = False Then
+                Debug.WriteLine("running false")
+                loop_run = False
+                Exit Function
+            End If
+
+            '3 : browser type
+            '4 : device type
+            '5 : profile
+            '6 : url
+            '7 : action ... click sendkey or navigate
+            '8 : parameter and content
+            '9 : result
+            'Debug.WriteLine(item.SubItems.Item(3).Text + "   " + item.SubItems.Item(4).Text)
+            If item.SubItems.Item(7).Text = "" Then
+                Continue For
+            End If
+
+            Dim brower = item.SubItems.Item(3).Text
+            Dim devicetype = item.SubItems.Item(4).Text
+            Dim profile = item.SubItems.Item(5).Text
+            Dim action = item.SubItems.Item(7).Text
+            Dim content = item.SubItems.Item(8).Text
+            Dim result As Boolean
+            Select Case action
+                Case "開啟"
+                    result = Open_Browser(brower, devicetype, content)
+                Case "關閉"
+                    result = Quit_chromedriver()
+                Case "登入"
+                    Dim auth() As String = content.Split(";")
+                    result = Login_fb(auth(0), auth(1))
+                Case "前往"
+                    result = Navigate_GoToUrl(content)
+                Case "等待"
+                    Try
+                        'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
+                        Await Delay_msec(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
+                        result = True
+                    Catch ex As Exception
+                        result = False
+                    End Try
+                Case "點擊"
+                    result = Click_element_by_feature(content)
+                Case "發送"
+                    result = Write_post_send_content(content)
+                Case "清空"
+                    result = Clear_post_content()
+                Case "上載"
+                    result = Tring_to_upload_img(content)
+                Case "回應:上載"
+                    result = Upload_reply_img(content)
+                Case "回應:內容"
+                    result = Send_reply_comment(content)
+                Case "回應:送出"
+                    result = Submit_reply_comment()
+                Case "回應:按讚"
+                    result = Click_reply_random_emoji(content)
+
+            End Select
+
+            If result = True Then ' record the result
+                item.SubItems.Item(9).Text = "成功"
+            ElseIf result = False Then
+                item.SubItems.Item(9).Text = "失敗"
+            End If
+
+        Next
+
+        Await Delay_msec(1000)
+    End Function
+
     Private Async Sub Test_Run_script_btn_Click(sender As Object, e As EventArgs) Handles Test_Run_script_btn.Click
         For Each item As ListViewItem In script_ListView.Items
+
+            If script_running = False Then
+                Exit Sub
+            End If
+
             '3 : browser type
             '4 : device type
             '5 : profile
@@ -1221,4 +1331,44 @@ Public Class Form1
         Insert_to_script("", "")
     End Sub
 
+    Private Sub Open_file_dialog_btn_Click(sender As Object, e As EventArgs) Handles Open_file_dialog_btn.Click
+        Dim fd As OpenFileDialog = New OpenFileDialog()
+        Dim strFileName As String
+
+        fd.Title = "Open File Dialog"
+        fd.InitialDirectory = "C:\"
+        fd.Filter = "txt files (*.txt)|"
+        fd.FilterIndex = 2
+        fd.RestoreDirectory = True
+
+        If fd.ShowDialog() = DialogResult.OK Then
+            strFileName = fd.FileName
+            Debug.WriteLine(strFileName)
+            TextBox_script_file_path.Text = strFileName
+        End If
+    End Sub
+
+    Private Sub save_script_btn_Click(sender As Object, e As EventArgs) Handles save_script_btn.Click
+        Dim script_txt = ""
+        For Each item As ListViewItem In script_ListView.Items
+            'Debug.WriteLine(item.SubItems.Count)
+            Dim tmp_str = ""
+            For i = 1 To item.SubItems.Count - 1
+                tmp_str += item.SubItems.Item(i).Text + ","
+            Next
+            script_txt += tmp_str.TrimEnd(CChar(",")) & vbCrLf
+            'Debug.WriteLine(mytext_str)
+
+        Next
+
+        SaveFileDialog1.Filter = "txt files (*.txt)|"
+        SaveFileDialog1.FilterIndex = 2
+        SaveFileDialog1.RestoreDirectory = True
+
+        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
+            Debug.WriteLine(script_txt)
+            WriteAllText(SaveFileDialog1.FileName, script_txt)
+        End If
+
+    End Sub
 End Class
