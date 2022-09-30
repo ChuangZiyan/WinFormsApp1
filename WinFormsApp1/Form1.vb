@@ -23,8 +23,6 @@ Public Class Form1
     ReadOnly fileContents As String = ReadAllText("C:\selenium_file\fb_auth.txt")
 
 
-    Dim log_path = My.Computer.FileSystem.CurrentDirectory + "\logs"
-
     Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
 
@@ -182,7 +180,6 @@ Public Class Form1
         End Try
 
     End Sub
-
 
 
     Private Sub Get_Groups_Click(sender As Object, e As EventArgs)
@@ -584,37 +581,8 @@ Public Class Form1
         script_ListView.Columns.Add("內容", 200)
         script_ListView.Columns.Add("執行結果", 100)
 
-
-        If Not System.IO.Directory.Exists(log_path) Then
-            System.IO.Directory.CreateDirectory(log_path)
-        End If
-
-        If Not My.Computer.FileSystem.FileExists(log_path + "\selenium_log_temp.txt") Then
-            Dim log_file_temp As System.IO.StreamWriter
-            log_file_temp = My.Computer.FileSystem.OpenTextFileWriter(log_path + "\selenium_log_temp.txt", True)
-            log_file_temp.Write("")
-            log_file_temp.Close()
-        End If
-
-        Update_eventlog_listview()
     End Sub
 
-    Public Sub Update_eventlog_listview()
-        script_ListView.Items.Clear()
-        Dim log_lines = IO.File.ReadAllLines(log_path + "\selenium_log_temp.txt").Reverse()
-        Dim curr_row As Integer = 0
-        Dim index As Integer = IO.File.ReadAllLines(log_path + "\selenium_log_temp.txt").Length
-        For Each line In log_lines
-            Dim splittedLine() As String = line.Split(",")
-            script_ListView.Items.Add(index.ToString)
-            For Each log In splittedLine
-                script_ListView.Items(curr_row).SubItems.Add(log)
-            Next
-            curr_row += 1
-            index -= 1
-        Next
-
-    End Sub
 
 
     Dim current_state = 0
@@ -632,11 +600,6 @@ Public Class Form1
         End If
     End Sub
 
-
-
-    Private Sub export_script()
-
-    End Sub
 
 
     '####################### Function script for selenium executing ##############################################################
@@ -915,9 +878,6 @@ Public Class Form1
         Return False
 
     End Function
-
-
-
 
     Private Function Login_fb(fb_email As String, fb_passwd As String)
         Try
@@ -1348,14 +1308,37 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub load_script_btn_Click(sender As Object, e As EventArgs) Handles load_script_btn.Click
+        script_ListView.Items.Clear()
+        Dim log_lines = IO.File.ReadAllLines(TextBox_script_file_path.Text)
+        Dim curr_row As Integer = 0
+        Dim index As Integer = IO.File.ReadAllLines(TextBox_script_file_path.Text).Length
+        For Each line In log_lines
+            Dim splittedLine() As String = line.Split(",")
+            script_ListView.Items.Add(index.ToString)
+            For Each log In splittedLine
+                script_ListView.Items(curr_row).SubItems.Add(log)
+                If splittedLine.Length = 9 Then
+                    script_ListView.Items(curr_row).SubItems.Add("")
+                End If
+            Next
+            curr_row += 1
+            index -= 1
+        Next
+    End Sub
+
     Private Sub save_script_btn_Click(sender As Object, e As EventArgs) Handles save_script_btn.Click
         Dim script_txt = ""
         For Each item As ListViewItem In script_ListView.Items
-            'Debug.WriteLine(item.SubItems.Count)
+            Debug.WriteLine(item.SubItems.Count)
             Dim tmp_str = ""
             For i = 1 To item.SubItems.Count - 1
                 tmp_str += item.SubItems.Item(i).Text + ","
+                'tmp_str += ","
             Next
+            If item.SubItems.Count = 9 Then
+                tmp_str += ","
+            End If
             script_txt += tmp_str.TrimEnd(CChar(",")) & vbCrLf
             'Debug.WriteLine(mytext_str)
 
@@ -1371,4 +1354,5 @@ Public Class Form1
         End If
 
     End Sub
+
 End Class
