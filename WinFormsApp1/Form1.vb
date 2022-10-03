@@ -88,6 +88,7 @@ Public Class Form1
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
                 used_dev_model = devicetype
+                used_browser = "Chrome"
                 If devicetype <> "PC" Then
                     options.EnableMobileEmulation(used_dev_model)
                 End If
@@ -480,15 +481,17 @@ Public Class Form1
 
     Private Sub Insert_to_script(action As String, content As String)
 
-        If pc_RadioButton.Checked = False Then
-            If pixel5_RadioButton.Checked Then
-                used_dev_model = "Pixel 5"
-            ElseIf i12pro_RadioButton.Checked Then
-                used_dev_model = "iPhone 12 Pro"
-            ElseIf ipadair_RadioButton.Checked Then
-                used_dev_model = "iPad Air"
-            End If
+
+        If pixel5_RadioButton.Checked Then
+            used_dev_model = "Pixel 5"
+        ElseIf i12pro_RadioButton.Checked Then
+            used_dev_model = "iPhone 12 Pro"
+        ElseIf ipadair_RadioButton.Checked Then
+            used_dev_model = "iPad Air"
+        ElseIf pc_RadioButton.Checked Then
+            used_dev_model = "PC"
         End If
+
 
 
         Dim myline As String
@@ -640,8 +643,6 @@ Public Class Form1
             'Debug.WriteLine(item.SubItems.Item(3).Text + "   " + item.SubItems.Item(4).Text)
             If item.SubItems.Item(4).Text = "" Then
                 Continue For
-            ElseIf item.SubItems.Item(3).Text <> "" AndAlso item.SubItems.Item(3).Text <> used_chrome_profile Then
-                Continue For
             End If
 
             Dim brower = item.SubItems.Item(1).Text
@@ -656,7 +657,14 @@ Public Class Form1
 
             Select Case action
                 Case "開啟"
-                    boolean_result = Open_Browser(brower, devicetype, content)
+                    Debug.WriteLine("profile : " + profile)
+                    Debug.WriteLine("used: " + used_chrome_profile)
+                    If item.SubItems.Item(3).Text <> "" AndAlso profile <> used_chrome_profile Then
+                        boolean_result = Open_Browser(brower, devicetype, content)
+                    Else
+                        boolean_result = False
+                    End If
+
                 Case "關閉"
                     boolean_result = Quit_chromedriver()
                 Case "登入"
