@@ -58,7 +58,6 @@ Partial Class Form1
         Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
         Me.Test_Run_script_btn = New System.Windows.Forms.Button()
         Me.stop_script_btn = New System.Windows.Forms.Button()
-        Me.collapse_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.Insert_emoji_btn = New System.Windows.Forms.Button()
@@ -118,6 +117,7 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,9 +197,10 @@ Partial Class Form1
         '
         'script_ListView
         '
-        Me.script_ListView.Location = New System.Drawing.Point(18, 61)
+        Me.script_ListView.Location = New System.Drawing.Point(18, 26)
+        Me.script_ListView.MultiSelect = False
         Me.script_ListView.Name = "script_ListView"
-        Me.script_ListView.Size = New System.Drawing.Size(809, 563)
+        Me.script_ListView.Size = New System.Drawing.Size(809, 598)
         Me.script_ListView.TabIndex = 36
         Me.script_ListView.UseCompatibleStateImageBehavior = False
         '
@@ -228,7 +229,6 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.CheckBox_script_end)
         Me.GroupBox1.Controls.Add(Me.CheckBox_script_start)
         Me.GroupBox1.Controls.Add(Me.For_Test_GroupBox)
-        Me.GroupBox1.Controls.Add(Me.collapse_btn)
         Me.GroupBox1.Controls.Add(Me.script_ListView)
         Me.GroupBox1.Location = New System.Drawing.Point(930, 12)
         Me.GroupBox1.Name = "GroupBox1"
@@ -239,7 +239,6 @@ Partial Class Form1
         '
         'load_script_btn
         '
-        Me.load_script_btn.Enabled = False
         Me.load_script_btn.Location = New System.Drawing.Point(558, 726)
         Me.load_script_btn.Name = "load_script_btn"
         Me.load_script_btn.Size = New System.Drawing.Size(94, 29)
@@ -473,15 +472,6 @@ Partial Class Form1
         Me.stop_script_btn.Text = "暫停腳本"
         Me.stop_script_btn.UseVisualStyleBackColor = True
         '
-        'collapse_btn
-        '
-        Me.collapse_btn.Location = New System.Drawing.Point(715, 23)
-        Me.collapse_btn.Name = "collapse_btn"
-        Me.collapse_btn.Size = New System.Drawing.Size(94, 29)
-        Me.collapse_btn.TabIndex = 41
-        Me.collapse_btn.Text = "展開/收合"
-        Me.collapse_btn.UseVisualStyleBackColor = True
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -493,6 +483,7 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Button1)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_emoji_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Emoji_haha_CheckBox)
         Me.cmd_GroupBox.Controls.Add(Me.Emoji_sad_CheckBox)
@@ -1068,6 +1059,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(781, 60)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(94, 29)
+        Me.Button1.TabIndex = 93
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -1131,7 +1131,6 @@ Partial Class Form1
     Friend WithEvents open_browser_Button As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents collapse_btn As Button
     Friend WithEvents Insert_navigate_to_url_btn As Button
     Friend WithEvents Insert_open_browser_btn As Button
     Friend WithEvents Test_Run_script_btn As Button
@@ -1195,4 +1194,5 @@ Partial Class Form1
     Friend WithEvents TextBox_script_file_path As TextBox
     Friend WithEvents load_script_btn As Button
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents Button1 As Button
 End Class

@@ -34,8 +34,8 @@ Public Class Form1
 
 
     Dim used_browser As String = ""
-    Dim dev_model As String = "PC"
-    Dim chrome_profile As String = ""
+    Dim used_dev_model As String = "PC"
+    Dim used_chrome_profile As String = ""
 
     'Dim webDriverWait As WebDriverWait
 
@@ -43,7 +43,7 @@ Public Class Form1
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Render_eventlog_listview()
+
 
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
@@ -51,6 +51,7 @@ Public Class Form1
         Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
+        Render_eventlog_listview()
         render_img_listbox()
         'Form2.Visible = True
 
@@ -83,12 +84,12 @@ Public Class Form1
                 Dim options = New Chrome.ChromeOptions()
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
-                    chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
+                    used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-                dev_model = devicetype
+                used_dev_model = devicetype
                 If devicetype <> "PC" Then
-                    options.EnableMobileEmulation(dev_model)
+                    options.EnableMobileEmulation(used_dev_model)
                 End If
                 chromeDriver = New ChromeDriver(serv, options)
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
@@ -120,18 +121,18 @@ Public Class Form1
         If profile <> "" Then
             options.AddArguments("--user-data-dir=" + profile)
             Debug.WriteLine(profile)
-            chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
+            used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
         End If
         options.AddArguments("--disable-notifications", "--disable-popup-blocking")
         If pc_RadioButton.Checked = False Then
             If pixel5_RadioButton.Checked Then
-                dev_model = "Pixel 5"
+                used_dev_model = "Pixel 5"
             ElseIf i12pro_RadioButton.Checked Then
-                dev_model = "iPhone 12 Pro"
+                used_dev_model = "iPhone 12 Pro"
             ElseIf ipadair_RadioButton.Checked Then
-                dev_model = "iPad Air"
+                used_dev_model = "iPad Air"
             End If
-            options.EnableMobileEmulation(dev_model)
+            options.EnableMobileEmulation(used_dev_model)
         End If
 
 
@@ -479,43 +480,30 @@ Public Class Form1
     End Function
 
     Private Sub Insert_to_script(action As String, content As String)
+
+        If pc_RadioButton.Checked = False Then
+            If pixel5_RadioButton.Checked Then
+                used_dev_model = "Pixel 5"
+            ElseIf i12pro_RadioButton.Checked Then
+                used_dev_model = "iPhone 12 Pro"
+            ElseIf ipadair_RadioButton.Checked Then
+                used_dev_model = "iPad Air"
+            End If
+        End If
+
+
         Dim myline As String
 
         If action = "" And content = "" Then
-            myline = ",,分隔行,,,,,,"
+            myline = "分隔行,,,,,,"
         Else
-            myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url_TextBox.Text + "," + action + "," + content + ","
+            myline = used_browser + "," + used_dev_model + "," + used_chrome_profile + "," + action + "," + content + ","
         End If
 
         EventlogListview_AddNewItem(myline)
     End Sub
 
-    Public Sub Write_log(action As String, content As String)
 
-
-        Dim curr_url = "N/A"
-        Try
-            curr_url = chromeDriver.Url.Replace(",", "")
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-        Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url + "," + action + "," + content + ",成功"
-        EventlogListview_AddNewItem(myline)
-        Log_to_file(myline)
-    End Sub
-
-    Public Sub Write_err_log(action As String, content As String)
-        Dim curr_url = "N/A"
-        Try
-            curr_url = chromeDriver.Url.Replace(",", "")
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-        Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url + "," + action + "," + content + ",失敗"
-        EventlogListview_AddNewItem(myline)
-        Log_to_file(myline)
-    End Sub
 
     Public Sub EventlogListview_AddNewItem(content)
         Dim curr_row = script_ListView.Items.Count
@@ -527,80 +515,21 @@ Public Class Form1
         Next
     End Sub
 
-    Public Sub Log_to_file(content As String)
-        Dim thisDate As String = Date.Today.ToString("dd-MM-yyyy")
-        Dim log_path = My.Computer.FileSystem.CurrentDirectory + "\logs\" + thisDate
-        If Not System.IO.Directory.Exists(log_path) Then
-            System.IO.Directory.CreateDirectory(log_path)
-        End If
-
-        Dim filename_counter As Integer = 1
-
-        Dim max_file_line As Integer = 10
-
-        While True 'check file exist or higher than max line
-            If Not My.Computer.FileSystem.FileExists(log_path + "\selenium_log." & filename_counter & ".txt") Then
-                Exit While
-            End If
-            Dim lineCount = ReadAllLines(log_path + "\selenium_log." & filename_counter & ".txt").Length
-            'Debug.WriteLine(lineCount)
-            If lineCount > max_file_line Then
-                filename_counter += 1
-            Else
-                Exit While
-            End If
-        End While
-
-
-        Dim log_file As System.IO.StreamWriter
-        log_file = My.Computer.FileSystem.OpenTextFileWriter(log_path + "\selenium_log." & filename_counter & ".txt", True)
-        log_file.WriteLine(content)
-        log_file.Close()
-
-
-        'write to buffer
-        Dim log_file_temp As System.IO.StreamWriter
-        log_file_temp = My.Computer.FileSystem.OpenTextFileWriter(My.Computer.FileSystem.CurrentDirectory + "\logs\selenium_log_temp.txt", True)
-        log_file_temp.WriteLine(content)
-        log_file_temp.Close()
-    End Sub
-
-
     Private Sub Render_eventlog_listview()
         script_ListView.View = View.Details
         script_ListView.GridLines = True
         script_ListView.FullRowSelect = True
-        script_ListView.Columns.Add("編號", 0)
-        script_ListView.Columns.Add("日期", 0)
-        script_ListView.Columns.Add("時間", 0)
-        script_ListView.Columns.Add("瀏覽器", 100)
-        script_ListView.Columns.Add("設備", 100)
+        script_ListView.Columns.Add("#", 30)
+        script_ListView.Columns.Add("瀏覽器", 80)
+        script_ListView.Columns.Add("設備", 120)
         script_ListView.Columns.Add("名稱", 100)
-        script_ListView.Columns.Add("網址", 100)
         script_ListView.Columns.Add("執行動作", 100)
-        script_ListView.Columns.Add("內容", 200)
-        script_ListView.Columns.Add("執行結果", 100)
+        script_ListView.Columns.Add("內容", 300)
+        script_ListView.Columns.Add("執行結果", 70)
 
     End Sub
-
-
 
     Dim current_state = 0
-    Private Sub collapse_btn_Click(sender As Object, e As EventArgs) Handles collapse_btn.Click
-        If current_state = 0 Then
-            script_ListView.Columns(0).Width = 50
-            script_ListView.Columns(1).Width = 100
-            script_ListView.Columns(2).Width = 80
-            current_state = 1
-        Else
-            script_ListView.Columns(0).Width = 0
-            script_ListView.Columns(1).Width = 0
-            script_ListView.Columns(2).Width = 0
-            current_state = 0
-        End If
-    End Sub
-
-
 
     '####################### Function script for selenium executing ##############################################################
 
@@ -669,7 +598,7 @@ Public Class Form1
 
         While True
             For Each item As ListViewItem In script_ListView.Items
-                item.SubItems.Item(9).Text = ""
+                item.SubItems.Item(6).Text = ""
             Next
             Await Run_script(i)
             i += 1
@@ -685,14 +614,19 @@ Public Class Form1
 
 
     Private Async Function Run_script(i As Integer) As Task
-        Debug.WriteLine("**************** Run : " & i & "********************")
+        'Debug.WriteLine("**************** Run : " & i & "********************")
         Dim j = 1
         For Each item As ListViewItem In script_ListView.Items
-            Debug.WriteLine("****************Sub Run : " & j & "********************")
+            Restore_ListViewItems_BackColor()
+            item.BackColor = Color.SteelBlue
+            item.ForeColor = Color.White
+            item.EnsureVisible()
+
+            'Debug.WriteLine("****************Sub Run : " & j & "********************")
             j += 1
             'Continue For
             If script_running = False Then
-                Debug.WriteLine("running false")
+                'Debug.WriteLine("running false")
                 loop_run = False
                 Exit Function
             End If
@@ -705,57 +639,65 @@ Public Class Form1
             '8 : parameter and content
             '9 : result
             'Debug.WriteLine(item.SubItems.Item(3).Text + "   " + item.SubItems.Item(4).Text)
-            If item.SubItems.Item(7).Text = "" Then
+            If item.SubItems.Item(4).Text = "" Then
+                Continue For
+            ElseIf item.SubItems.Item(3).Text <> "" AndAlso item.SubItems.Item(3).Text = used_chrome_profile Then
                 Continue For
             End If
 
-            Dim brower = item.SubItems.Item(3).Text
-            Dim devicetype = item.SubItems.Item(4).Text
-            Dim profile = item.SubItems.Item(5).Text
-            Dim action = item.SubItems.Item(7).Text
-            Dim content = item.SubItems.Item(8).Text
-            Dim result As Boolean
+            Dim brower = item.SubItems.Item(1).Text
+            Dim devicetype = item.SubItems.Item(2).Text
+            Dim profile = item.SubItems.Item(3).Text
+            Dim action = item.SubItems.Item(4).Text
+            Dim content = item.SubItems.Item(5).Text
+            Dim execute_result = item.SubItems.Item(6)
+            Dim boolean_result As Boolean
+
+
+
             Select Case action
                 Case "開啟"
-                    result = Open_Browser(brower, devicetype, content)
+                    boolean_result = Open_Browser(brower, devicetype, content)
                 Case "關閉"
-                    result = Quit_chromedriver()
+                    boolean_result = Quit_chromedriver()
                 Case "登入"
                     Dim auth() As String = content.Split(";")
-                    result = Login_fb(auth(0), auth(1))
+                    boolean_result = Login_fb(auth(0), auth(1))
                 Case "前往"
-                    result = Navigate_GoToUrl(content)
+                    boolean_result = Navigate_GoToUrl(content)
                 Case "等待"
                     Try
                         'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
-                        Await Delay_msec(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
-                        result = True
+                        Await Delay_msec(Convert.ToInt64(content) * 1000)
+                        boolean_result = True
                     Catch ex As Exception
-                        result = False
+                        boolean_result = False
                     End Try
                 Case "點擊"
-                    result = Click_element_by_feature(content)
+                    boolean_result = Click_element_by_feature(content)
                 Case "發送"
-                    result = Write_post_send_content(content)
+                    boolean_result = Write_post_send_content(content)
                 Case "清空"
-                    result = Clear_post_content()
+                    boolean_result = Clear_post_content()
                 Case "上載"
-                    result = Tring_to_upload_img(content)
+                    boolean_result = Tring_to_upload_img(content)
                 Case "回應:上載"
-                    result = Upload_reply_img(content)
+                    boolean_result = Upload_reply_img(content)
                 Case "回應:內容"
-                    result = Send_reply_comment(content)
+                    boolean_result = Send_reply_comment(content)
                 Case "回應:送出"
-                    result = Submit_reply_comment()
+                    boolean_result = Submit_reply_comment()
                 Case "回應:按讚"
-                    result = Click_reply_random_emoji(content)
+                    boolean_result = Click_reply_random_emoji(content)
 
             End Select
 
-            If result = True Then ' record the result
-                item.SubItems.Item(9).Text = "成功"
-            ElseIf result = False Then
-                item.SubItems.Item(9).Text = "失敗"
+            If boolean_result = True Then ' record the result
+
+                item.SubItems.Item(6).Text = ("成功")
+            ElseIf boolean_result = False Then
+
+                item.SubItems.Item(6).Text = ("失敗")
             End If
 
         Next
@@ -763,81 +705,18 @@ Public Class Form1
         Await Delay_msec(1000)
     End Function
 
-    Private Async Sub Test_Run_script_btn_Click(sender As Object, e As EventArgs) Handles Test_Run_script_btn.Click
+
+    Private Sub Restore_ListViewItems_BackColor()
         For Each item As ListViewItem In script_ListView.Items
-
-            If script_running = False Then
-                Exit Sub
-            End If
-
-            '3 : browser type
-            '4 : device type
-            '5 : profile
-            '6 : url
-            '7 : action ... click sendkey or navigate
-            '8 : parameter and content
-            '9 : result
-            'Debug.WriteLine(item.SubItems.Item(3).Text + "   " + item.SubItems.Item(4).Text)
-            If item.SubItems.Item(7).Text = "" Then
-                Continue For
-            End If
-
-            Dim brower = item.SubItems.Item(3).Text
-            Dim devicetype = item.SubItems.Item(4).Text
-            Dim profile = item.SubItems.Item(5).Text
-            Dim action = item.SubItems.Item(7).Text
-            Dim content = item.SubItems.Item(8).Text
-            Dim result As Boolean
-            Select Case action
-                Case "開啟"
-                    result = Open_Browser(brower, devicetype, content)
-                Case "關閉"
-                    result = Quit_chromedriver()
-                Case "登入"
-                    Dim auth() As String = content.Split(";")
-                    result = Login_fb(auth(0), auth(1))
-                Case "前往"
-                    result = Navigate_GoToUrl(content)
-                Case "等待"
-                    Try
-                        'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
-                        Await Delay_msec(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
-                        result = True
-                    Catch ex As Exception
-                        result = False
-                    End Try
-                Case "點擊"
-                    result = Click_element_by_feature(content)
-                Case "發送"
-                    result = Write_post_send_content(content)
-                Case "清空"
-                    result = Clear_post_content()
-                Case "上載"
-                    result = Tring_to_upload_img(content)
-                Case "回應:上載"
-                    result = Upload_reply_img(content)
-                Case "回應:內容"
-                    result = Send_reply_comment(content)
-                Case "回應:送出"
-                    result = Submit_reply_comment()
-                Case "回應:按讚"
-                    result = Click_reply_random_emoji(content)
-
-            End Select
-
-            If result = True Then ' record the result
-                item.SubItems.Item(9).Text = "成功"
-            ElseIf result = False Then
-                item.SubItems.Item(9).Text = "失敗"
-            End If
-
+            item.BackColor = Color.White
+            item.ForeColor = Color.Black
         Next
-    End Sub
 
+    End Sub
 
     Private Function Click_reply_random_emoji(Emoji_str)
         If Emoji_str = "" Then
-            Debug.WriteLine("Empty")
+            'Debug.WriteLine("Empty")
             Return False
         End If
 
@@ -847,8 +726,6 @@ Public Class Form1
         If Emoji_arr.Length <> 0 Then
             Dim rnd_num As New Random()
             Dim random = rnd_num.Next(0, Emoji_arr.Length)
-            'Debug.WriteLine("rand number : " & random)
-            Debug.WriteLine("emoji:" + Emoji_arr(random))
             Used_emoji = Emoji_arr(random)
         End If
 
@@ -1095,14 +972,6 @@ Public Class Form1
 
     End Function
 
-    Private Function Upload_img_to_reply(img_str)
-
-        Debug.WriteLine(img_CheckedListBox.Items(0).ToString())
-        Dim comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("replay_comment_img_input")))
-        comment_img_input.SendKeys(img_CheckedListBox.Items(0).ToString())
-
-    End Function
-
 
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
         Try
@@ -1111,7 +980,6 @@ Public Class Form1
             MsgBox("未偵測到Chrome")
         End Try
     End Sub
-
 
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
         Dim fb_email = fb_account_TextBox.Text
@@ -1164,7 +1032,7 @@ Public Class Form1
         If chrome_RadioButton.Checked = True Then
             used_browser = "Chrome"
             Dim myprofile = profile_path_TextBox.Text
-            chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
+            used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
         ElseIf firefox_RadioButton.Checked = True Then
             used_browser = "Firefox"
         ElseIf edge_RadioButton.Checked = True Then
@@ -1296,7 +1164,7 @@ Public Class Form1
         Dim strFileName As String
 
         fd.Title = "Open File Dialog"
-        fd.InitialDirectory = "C:\"
+        'fd.InitialDirectory = "C:\"
         fd.Filter = "txt files (*.txt)|"
         fd.FilterIndex = 2
         fd.RestoreDirectory = True
@@ -1309,47 +1177,50 @@ Public Class Form1
     End Sub
 
     Private Sub load_script_btn_Click(sender As Object, e As EventArgs) Handles load_script_btn.Click
-        script_ListView.Items.Clear()
-        Dim log_lines = IO.File.ReadAllLines(TextBox_script_file_path.Text)
-        Dim curr_row As Integer = 0
-        Dim index As Integer = IO.File.ReadAllLines(TextBox_script_file_path.Text).Length
-        For Each line In log_lines
-            Dim splittedLine() As String = line.Split(",")
-            script_ListView.Items.Add(index.ToString)
-            For Each log In splittedLine
-                script_ListView.Items(curr_row).SubItems.Add(log)
-                If splittedLine.Length = 9 Then
-                    script_ListView.Items(curr_row).SubItems.Add("")
-                End If
+        Try
+            script_ListView.Items.Clear()
+            Dim log_lines = IO.File.ReadAllLines(TextBox_script_file_path.Text)
+            Dim curr_row As Integer = 0
+            Dim index = 1
+            For Each line In log_lines
+                Dim splittedLine() As String = line.Split(",")
+                script_ListView.Items.Add(index.ToString)
+                For Each cmd In splittedLine
+                    script_ListView.Items(curr_row).SubItems.Add(cmd)
+                Next
+                curr_row += 1
+                index += 1
             Next
-            curr_row += 1
-            index -= 1
-        Next
+
+        Catch ex As Exception
+            MsgBox("載入失敗，檔案無效或不存在")
+        End Try
+
     End Sub
 
     Private Sub save_script_btn_Click(sender As Object, e As EventArgs) Handles save_script_btn.Click
         Dim script_txt = ""
+        Dim cmd_arrlist As ArrayList = New ArrayList()
         For Each item As ListViewItem In script_ListView.Items
-            Debug.WriteLine(item.SubItems.Count)
+
             Dim tmp_str = ""
             For i = 1 To item.SubItems.Count - 1
-                tmp_str += item.SubItems.Item(i).Text + ","
-                'tmp_str += ","
+                cmd_arrlist.Add(item.SubItems.Item(i).Text)
             Next
-            If item.SubItems.Count = 9 Then
-                tmp_str += ","
-            End If
-            script_txt += tmp_str.TrimEnd(CChar(",")) & vbCrLf
-            'Debug.WriteLine(mytext_str)
+            cmd_arrlist(5) = ""
+            tmp_str = String.Join(",", cmd_arrlist.ToArray())
+            cmd_arrlist.Clear()
+            script_txt += tmp_str & vbCrLf
 
         Next
 
         SaveFileDialog1.Filter = "txt files (*.txt)|"
+        SaveFileDialog1.DefaultExt = "txt"
         SaveFileDialog1.FilterIndex = 2
         SaveFileDialog1.RestoreDirectory = True
 
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            Debug.WriteLine(script_txt)
+            'Debug.WriteLine(script_txt)
             WriteAllText(SaveFileDialog1.FileName, script_txt)
         End If
 
