@@ -492,8 +492,6 @@ Public Class Form1
             used_dev_model = "PC"
         End If
 
-
-
         Dim myline As String
 
         If action = "" And content = "" Then
@@ -653,13 +651,12 @@ Public Class Form1
             Dim execute_result = item.SubItems.Item(6)
             Dim boolean_result As Boolean
 
-
-
             Select Case action
                 Case "開啟"
-                    Debug.WriteLine("profile : " + profile)
-                    Debug.WriteLine("used: " + used_chrome_profile)
-                    If item.SubItems.Item(3).Text <> "" AndAlso profile <> used_chrome_profile Then
+                    'Debug.WriteLine("profile : " + profile)
+                    'Debug.WriteLine("used : " + used_chrome_profile)
+                    'Debug.WriteLine("text : " + profile)
+                    If profile = "" Or profile <> used_chrome_profile Then
                         boolean_result = Open_Browser(brower, devicetype, content)
                     Else
                         boolean_result = False
