@@ -117,7 +117,6 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -483,7 +482,6 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
-        Me.cmd_GroupBox.Controls.Add(Me.Button1)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_emoji_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Emoji_haha_CheckBox)
         Me.cmd_GroupBox.Controls.Add(Me.Emoji_sad_CheckBox)
@@ -1059,15 +1057,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(781, 60)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(94, 29)
-        Me.Button1.TabIndex = 93
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -1194,5 +1183,4 @@ Partial Class Form1
     Friend WithEvents TextBox_script_file_path As TextBox
     Friend WithEvents load_script_btn As Button
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
-    Friend WithEvents Button1 As Button
 End Class

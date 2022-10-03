@@ -159,7 +159,6 @@ Public Class Form1
     Public Function Navigate_GoToUrl(url As String)
         Try
             chromeDriver.Navigate.GoToUrl(url)
-            chromeDriver.Navigate.GoToUrl(url)
             Return True
         Catch ex As Exception
             Return False
