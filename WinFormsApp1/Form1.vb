@@ -640,7 +640,7 @@ Public Class Form1
             'Debug.WriteLine(item.SubItems.Item(3).Text + "   " + item.SubItems.Item(4).Text)
             If item.SubItems.Item(4).Text = "" Then
                 Continue For
-            ElseIf item.SubItems.Item(3).Text <> "" AndAlso item.SubItems.Item(3).Text = used_chrome_profile Then
+            ElseIf item.SubItems.Item(3).Text <> "" AndAlso item.SubItems.Item(3).Text <> used_chrome_profile Then
                 Continue For
             End If
 
