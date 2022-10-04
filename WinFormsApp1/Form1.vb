@@ -36,7 +36,7 @@ Public Class Form1
     Dim used_browser As String = ""
     Dim used_dev_model As String = "PC"
     Dim used_chrome_profile As String = ""
-
+    Dim running_chrome_profile As String = ""
     'Dim webDriverWait As WebDriverWait
 
 
@@ -63,7 +63,18 @@ Public Class Form1
 
     Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
         If chrome_RadioButton.Checked = True Then
-            Open_Chrome()
+
+            If pc_RadioButton.Checked = False Then
+                If pixel5_RadioButton.Checked Then
+                    used_dev_model = "Pixel 5"
+                ElseIf i12pro_RadioButton.Checked Then
+                    used_dev_model = "iPhone 12 Pro"
+                ElseIf ipadair_RadioButton.Checked Then
+                    used_dev_model = "iPad Air"
+                End If
+
+            End If
+            Open_Browser("Chrome", used_dev_model, profile_path_TextBox.Text)
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
         ElseIf edge_RadioButton.Checked = True Then
@@ -80,11 +91,12 @@ Public Class Form1
                 Dim driverManager = New DriverManager()
                 driverManager.SetUpDriver(New ChromeConfig())
                 Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
-                'serv.HideCommandPromptWindow = True 'hide cmd
+                serv.HideCommandPromptWindow = True 'hide cmd
                 Dim options = New Chrome.ChromeOptions()
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
                     used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
+                    running_chrome_profile = used_chrome_profile
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
                 used_dev_model = devicetype
@@ -108,40 +120,6 @@ Public Class Form1
 
         Return False
     End Function
-
-    Private Sub Open_Chrome()
-        used_browser = "Chrome"
-
-        Dim driverManager = New DriverManager()
-        driverManager.SetUpDriver(New ChromeConfig())
-
-        Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
-        serv.HideCommandPromptWindow = True 'hide cmd
-
-        Dim options = New Chrome.ChromeOptions()
-        Dim profile = profile_path_TextBox.Text
-        If profile <> "" Then
-            options.AddArguments("--user-data-dir=" + profile)
-            Debug.WriteLine(profile)
-            used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
-        End If
-        options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-        If pc_RadioButton.Checked = False Then
-            If pixel5_RadioButton.Checked Then
-                used_dev_model = "Pixel 5"
-            ElseIf i12pro_RadioButton.Checked Then
-                used_dev_model = "iPhone 12 Pro"
-            ElseIf ipadair_RadioButton.Checked Then
-                used_dev_model = "iPad Air"
-            End If
-            options.EnableMobileEmulation(used_dev_model)
-        End If
-
-
-        chromeDriver = New ChromeDriver(serv, options)
-        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-
-    End Sub
 
     Private Sub Open_Firefox()
         used_browser = "Firefox"
@@ -288,7 +266,10 @@ Public Class Form1
 
     Private Sub Driver_close_Click(sender As Object, e As EventArgs) Handles driver_close_bnt.Click
         'driver_close_bnt.Enabled = False
-
+        used_browser = ""
+        used_dev_model = "PC"
+        used_chrome_profile = ""
+        running_chrome_profile = ""
         Try
             chromeDriver.Quit()
         Catch ex As Exception
@@ -526,7 +507,7 @@ Public Class Form1
         script_ListView.Columns.Add("名稱", 100)
         script_ListView.Columns.Add("執行動作", 100)
         script_ListView.Columns.Add("內容", 300)
-        script_ListView.Columns.Add("執行結果", 70)
+        script_ListView.Columns.Add("執行結果", 75)
 
     End Sub
 
@@ -571,19 +552,19 @@ Public Class Form1
     Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
 
         loop_run = CheckBox_loop_run.Checked
-        Debug.WriteLine("Loop Run : " & loop_run)
+        'Debug.WriteLine("Loop Run : " & loop_run)
 
         If CheckBox_script_start.Checked = True Then
             Flag_start_script = False
             start_time = NumericUpDown_script_start_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_second.Value.ToString.PadLeft(2, "0")
-            Debug.WriteLine("start time : " + start_time)
+            'Debug.WriteLine("start time : " + start_time)
         Else
             Flag_start_script = True
         End If
 
         If CheckBox_script_end.Checked = True Then
             end_time = NumericUpDown_script_end_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_end_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_end_second.Value.ToString.PadLeft(2, "0")
-            Debug.WriteLine("end time : " + end_time)
+            'Debug.WriteLine("end time : " + end_time)
         End If
 
 
@@ -656,14 +637,15 @@ Public Class Form1
                 Case "開啟"
                     'Debug.WriteLine("profile : " + profile)
                     'Debug.WriteLine("used : " + used_chrome_profile)
-                    'Debug.WriteLine("text : " + profile)
-                    boolean_result = Open_Browser(brower, devicetype, content)
-
-                    'If profile = "" Or profile <> used_chrome_profile Then
+                    'Debug.WriteLine("running : " + running_chrome_profile)
                     'boolean_result = Open_Browser(brower, devicetype, content)
-                    'Else
-                    'boolean_result = False
-                    'End If
+
+                    If profile = "" Or profile <> running_chrome_profile Then
+                        boolean_result = Open_Browser(brower, devicetype, content)
+                    Else
+                        Debug.WriteLine("open browser reuturn false")
+                        boolean_result = False
+                    End If
 
                 Case "關閉"
                     boolean_result = Quit_chromedriver()
@@ -675,9 +657,19 @@ Public Class Form1
                 Case "等待"
                     Try
                         'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
-                        Await Delay_msec(Convert.ToInt64(content) * 1000)
+                        'Debug.WriteLine(content)
+                        Dim sec = Get_random_sec_frome_content(content)
+                        Dim counter = sec
+                        Debug.WriteLine(sec)
+                        For i = 0 To sec
+                            item.SubItems.Item(6).Text = (counter.ToString())
+                            Await Delay_msec(1000)
+                            counter -= 1
+                        Next
+                        'Await Delay_msec(sec * 1000)
                         boolean_result = True
                     Catch ex As Exception
+                        Debug.WriteLine(ex)
                         boolean_result = False
                     End Try
                 Case "點擊"
@@ -710,6 +702,22 @@ Public Class Form1
         Next
 
         Await Delay_msec(1000)
+    End Function
+
+    Private Shared Function Get_random_sec_frome_content(content)
+        Dim base_sec = content.Split("±")(0).Replace("秒", "")
+        Dim rnd_sec = "0"
+        If content.Contains("±"c) Then
+            Debug.WriteLine("gen random")
+            rnd_sec = content.Split("±")(1).Replace("秒", "")
+        End If
+        Dim rnd_num As New Random()
+        Dim random_sec = rnd_num.Next(-CInt(rnd_sec), CInt(rnd_sec))
+        Dim total_sec = CInt(base_sec) + random_sec
+        If total_sec < 0 Then
+            total_sec = 1
+        End If
+        Return total_sec
     End Function
 
 
@@ -1018,20 +1026,25 @@ Public Class Form1
         Dim hour = wait_hour_NumericUpDown.Value
         Dim minute = wait_minute_NumericUpDown.Value
         Dim second = wait_second_NumericUpDown.Value
-        Dim random_sec = rnd_num.Next(-wait_random_second_NumericUpDown.Value, wait_random_second_NumericUpDown.Value)
 
-        Dim total_second = hour * 3600 + minute * 60 + second + random_sec
+        'Dim random_sec = rnd_num.Next(-wait_random_second_NumericUpDown.Value, wait_random_second_NumericUpDown.Value)
 
-        Debug.WriteLine(total_second)
-        If total_second > 0 Then
-            Insert_to_script("等待", total_second)
-        Else 'if generated the negative number give default second
-            Insert_to_script("等待", "1")
+        Dim total_second = hour * 3600 + minute * 60 + second
+        If wait_random_second_NumericUpDown.Value > 0 Then
+            Insert_to_script("等待", total_second.ToString() + "±" + wait_random_second_NumericUpDown.Value.ToString() + "秒")
+        ElseIf total_second > 1 Then
+            Insert_to_script("等待", total_second.ToString() + "秒")
+        Else
+            Insert_to_script("等待", "1秒")
         End If
 
     End Sub
 
     Private Sub Clear_script_btn_Click(sender As Object, e As EventArgs) Handles Clear_script_btn.Click
+        used_browser = ""
+        used_dev_model = "PC"
+        used_chrome_profile = ""
+        running_chrome_profile = ""
         script_ListView.Items.Clear()
     End Sub
 
