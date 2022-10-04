@@ -661,7 +661,7 @@ Public Class Form1
                         Dim sec = Get_random_sec_frome_content(content)
                         Dim counter = sec
                         Debug.WriteLine(sec)
-                        For i = 0 To sec
+                        For i = 1 To sec
                             item.SubItems.Item(6).Text = (counter.ToString())
                             Await Delay_msec(1000)
                             counter -= 1
@@ -1246,4 +1246,45 @@ Public Class Form1
 
     End Sub
 
+    Private Sub script_ListView_Click(sender As Object, e As EventArgs) Handles script_ListView.Click
+        Dim browser = script_ListView.Items(script_ListView.FocusedItem.Index).SubItems(1).Text
+        Dim devtype = script_ListView.Items(script_ListView.FocusedItem.Index).SubItems(2).Text
+        Dim action = script_ListView.Items(script_ListView.FocusedItem.Index).SubItems(4).Text
+        Dim content = script_ListView.Items(script_ListView.FocusedItem.Index).SubItems(5).Text
+
+        Select Case browser
+            Case "Chrome"
+                chrome_RadioButton.Checked = True
+            Case "Firefox"
+                firefox_RadioButton.Checked = True
+            Case "Edge"
+                edge_RadioButton.Checked = True
+        End Select
+
+        Select Case devtype
+            Case "PC"
+                pc_RadioButton.Checked = True
+            Case "Pixel 5"
+                pixel5_RadioButton.Checked = True
+            Case "iPhone 12 Pro"
+                i12pro_RadioButton.Checked = True
+            Case "iPad Air"
+                ipadair_RadioButton.Checked = True
+
+        End Select
+
+
+        Select Case action
+            Case "前往"
+                curr_url_TextBox.Text = content
+            Case "開啟"
+                profile_path_TextBox.Text = content
+            Case "登入"
+                Dim account_passwd = content.Split(";")
+                fb_account_TextBox.Text = account_passwd(0)
+                fb_password_TextBox.Text = account_passwd(1)
+        End Select
+
+        Debug.WriteLine("")
+    End Sub
 End Class
