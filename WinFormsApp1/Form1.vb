@@ -80,7 +80,7 @@ Public Class Form1
                 Dim driverManager = New DriverManager()
                 driverManager.SetUpDriver(New ChromeConfig())
                 Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
-                serv.HideCommandPromptWindow = True 'hide cmd
+                'serv.HideCommandPromptWindow = True 'hide cmd
                 Dim options = New Chrome.ChromeOptions()
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
@@ -96,6 +96,7 @@ Public Class Form1
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                 Return True
             Catch ex As Exception
+                Debug.WriteLine(ex)
                 Return False
             End Try
 
@@ -656,11 +657,13 @@ Public Class Form1
                     'Debug.WriteLine("profile : " + profile)
                     'Debug.WriteLine("used : " + used_chrome_profile)
                     'Debug.WriteLine("text : " + profile)
-                    If profile = "" Or profile <> used_chrome_profile Then
-                        boolean_result = Open_Browser(brower, devicetype, content)
-                    Else
-                        boolean_result = False
-                    End If
+                    boolean_result = Open_Browser(brower, devicetype, content)
+
+                    'If profile = "" Or profile <> used_chrome_profile Then
+                    'boolean_result = Open_Browser(brower, devicetype, content)
+                    'Else
+                    'boolean_result = False
+                    'End If
 
                 Case "關閉"
                     boolean_result = Quit_chromedriver()
