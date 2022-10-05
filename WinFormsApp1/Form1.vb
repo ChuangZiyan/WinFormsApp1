@@ -666,13 +666,13 @@ Public Class Form1
                     Await Delay_msec(1000)
                 Case "前往"
 
-                    If content.Contains(" "c) Then
-                        content = content.Split(" ")(1)
+                    If content.Contains(";"c) Then
+                        content = content.Split(";")(1)
                     End If
 
                     boolean_result = Navigate_GoToUrl(content)
                     If content.Contains("facebook.com/groups") Then
-                        item.SubItems.Item(5).Text = Get_current_group_name() + " " + content
+                        item.SubItems.Item(5).Text = Get_current_group_name() + ";" + content
                     End If
                 Case "等待"
                     Try
@@ -1033,7 +1033,14 @@ Public Class Form1
         Dim pattern As String
         pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
         If Regex.IsMatch(curr_url_TextBox.Text, pattern) Then
-            Insert_to_script("前往", curr_url_TextBox.Text)
+            Dim content As String
+            If group_name_TextBox.Text <> "" Then
+                content = group_name_TextBox.Text + ";" + curr_url_TextBox.Text
+            Else
+                content = curr_url_TextBox.Text
+            End If
+
+            Insert_to_script("前往", content)
         Else
             MsgBox("網址格式錯誤")
         End If
@@ -1272,6 +1279,12 @@ Public Class Form1
         Dim action = script_ListView.Items(script_ListView.FocusedItem.Index).SubItems(4).Text
         Dim content = script_ListView.Items(script_ListView.FocusedItem.Index).SubItems(5).Text
 
+        fb_account_TextBox.Text = ""
+        fb_password_TextBox.Text = ""
+        group_name_TextBox.Text = ""
+        curr_url_TextBox.Text = ""
+
+
         Select Case browser
             Case "Chrome"
                 chrome_RadioButton.Checked = True
@@ -1296,10 +1309,14 @@ Public Class Form1
 
         Select Case action
             Case "前往"
-                If content.Contains(" "c) Then
-                    content = content.Split(" ")(1)
+                If content.Contains(";"c) Then
+                    group_name_TextBox.Text = content.Split(";")(0)
+                    content = content.Split(";")(1)
+                Else
+                    group_name_TextBox.Text = ""
                 End If
                 curr_url_TextBox.Text = content
+
             Case "開啟"
                 profile_path_TextBox.Text = content
             Case "登入"
