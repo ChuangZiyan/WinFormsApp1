@@ -148,18 +148,24 @@ Public Class Form1
 
 
     Private Sub get_groupname_Button_Click(sender As Object, e As EventArgs) Handles get_groupname_Button.Click
-        Try
-            If chromeDriver.Url.Contains("groups") AndAlso IsElementPresent(css_selector_config_obj.Item("group_name_a")) Then
-                group_name_TextBox.Text = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_name_a"))).GetAttribute("innerHTML")
-            Else
-                Debug.WriteLine("cant get group name")
-            End If
 
-        Catch ex As Exception
-            MsgBox("未偵測到Chrome")
-        End Try
+        Dim group_name = Get_current_group_name()
+        If group_name <> "" Then
+            group_name_TextBox.Text = group_name
+        Else
+            MsgBox("無法取得群組名稱")
+        End If
 
     End Sub
+
+    Private Function Get_current_group_name()
+        Try
+            Dim group_name = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_name_a"))).GetAttribute("innerHTML")
+            Return group_name
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
 
 
     Private Sub Get_Groups_Click(sender As Object, e As EventArgs)
@@ -281,6 +287,10 @@ Public Class Form1
     Public Function Quit_chromedriver()
         Try
             chromeDriver.Quit()
+            used_browser = ""
+            used_dev_model = "PC"
+            used_chrome_profile = ""
+            running_chrome_profile = ""
             Return True
         Catch ex As Exception
             Return False
@@ -651,9 +661,19 @@ Public Class Form1
                     boolean_result = Quit_chromedriver()
                 Case "登入"
                     Dim auth() As String = content.Split(";")
-                    boolean_result = Login_fb(auth(0), auth(1))
+                    Dim account_passwd = content.Split(" ")
+                    boolean_result = Login_fb(account_passwd(0).Split(":")(1), account_passwd(1).Split(":")(1))
+                    Await Delay_msec(1000)
                 Case "前往"
+
+                    If content.Contains(" "c) Then
+                        content = content.Split(" ")(1)
+                    End If
+
                     boolean_result = Navigate_GoToUrl(content)
+                    If content.Contains("facebook.com/groups") Then
+                        item.SubItems.Item(5).Text = Get_current_group_name() + " " + content
+                    End If
                 Case "等待"
                     Try
                         'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
@@ -1003,7 +1023,7 @@ Public Class Form1
         If fb_email = "" OrElse fb_passwd = "" Then
             MsgBox("帳號與密碼不可為空")
         Else
-            Insert_to_script("登入", fb_email + ";" + fb_passwd)
+            Insert_to_script("登入", "帳號:" + fb_email + " 密碼:" + fb_passwd)
         End If
 
     End Sub
@@ -1276,15 +1296,17 @@ Public Class Form1
 
         Select Case action
             Case "前往"
+                If content.Contains(" "c) Then
+                    content = content.Split(" ")(1)
+                End If
                 curr_url_TextBox.Text = content
             Case "開啟"
                 profile_path_TextBox.Text = content
             Case "登入"
-                Dim account_passwd = content.Split(";")
-                fb_account_TextBox.Text = account_passwd(0)
-                fb_password_TextBox.Text = account_passwd(1)
+                Dim account_passwd = content.Split(" ")
+                fb_account_TextBox.Text = account_passwd(0).Split(":")(1)
+                fb_password_TextBox.Text = account_passwd(1).Split(":")(1)
         End Select
 
-        Debug.WriteLine("")
     End Sub
 End Class
