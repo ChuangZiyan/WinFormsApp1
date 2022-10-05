@@ -32,6 +32,10 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.MoveDown_selected_item_btn = New System.Windows.Forms.Button()
+        Me.Move_up_selected_item_btn = New System.Windows.Forms.Button()
+        Me.stop_script_btn = New System.Windows.Forms.Button()
+        Me.Delete_selected_item_btn = New System.Windows.Forms.Button()
         Me.load_script_btn = New System.Windows.Forms.Button()
         Me.save_script_btn = New System.Windows.Forms.Button()
         Me.Clear_script_btn = New System.Windows.Forms.Button()
@@ -54,10 +58,7 @@ Partial Class Form1
         Me.NumericUpDown_script_start_hour = New System.Windows.Forms.NumericUpDown()
         Me.CheckBox_script_end = New System.Windows.Forms.CheckBox()
         Me.CheckBox_script_start = New System.Windows.Forms.CheckBox()
-        Me.For_Test_GroupBox = New System.Windows.Forms.GroupBox()
         Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
-        Me.Test_Run_script_btn = New System.Windows.Forms.Button()
-        Me.stop_script_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.Insert_emoji_btn = New System.Windows.Forms.Button()
@@ -124,7 +125,6 @@ Partial Class Form1
         CType(Me.NumericUpDown_script_start_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_start_minute, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_start_hour, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.For_Test_GroupBox.SuspendLayout()
         Me.cmd_GroupBox.SuspendLayout()
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,7 +145,7 @@ Partial Class Form1
         'driver_close_bnt
         '
         Me.driver_close_bnt.BackColor = System.Drawing.Color.LightCoral
-        Me.driver_close_bnt.Location = New System.Drawing.Point(796, 134)
+        Me.driver_close_bnt.Location = New System.Drawing.Point(694, 25)
         Me.driver_close_bnt.Name = "driver_close_bnt"
         Me.driver_close_bnt.Size = New System.Drawing.Size(94, 29)
         Me.driver_close_bnt.TabIndex = 3
@@ -196,15 +196,19 @@ Partial Class Form1
         '
         'script_ListView
         '
-        Me.script_ListView.Location = New System.Drawing.Point(18, 26)
+        Me.script_ListView.Location = New System.Drawing.Point(18, 57)
         Me.script_ListView.MultiSelect = False
         Me.script_ListView.Name = "script_ListView"
-        Me.script_ListView.Size = New System.Drawing.Size(809, 598)
+        Me.script_ListView.Size = New System.Drawing.Size(882, 567)
         Me.script_ListView.TabIndex = 36
         Me.script_ListView.UseCompatibleStateImageBehavior = False
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.MoveDown_selected_item_btn)
+        Me.GroupBox1.Controls.Add(Me.Move_up_selected_item_btn)
+        Me.GroupBox1.Controls.Add(Me.stop_script_btn)
+        Me.GroupBox1.Controls.Add(Me.Delete_selected_item_btn)
         Me.GroupBox1.Controls.Add(Me.load_script_btn)
         Me.GroupBox1.Controls.Add(Me.save_script_btn)
         Me.GroupBox1.Controls.Add(Me.Clear_script_btn)
@@ -227,14 +231,51 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.NumericUpDown_script_start_hour)
         Me.GroupBox1.Controls.Add(Me.CheckBox_script_end)
         Me.GroupBox1.Controls.Add(Me.CheckBox_script_start)
-        Me.GroupBox1.Controls.Add(Me.For_Test_GroupBox)
         Me.GroupBox1.Controls.Add(Me.script_ListView)
-        Me.GroupBox1.Location = New System.Drawing.Point(930, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(840, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(844, 852)
+        Me.GroupBox1.Size = New System.Drawing.Size(912, 852)
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
+        '
+        'MoveDown_selected_item_btn
+        '
+        Me.MoveDown_selected_item_btn.Location = New System.Drawing.Point(118, 22)
+        Me.MoveDown_selected_item_btn.Name = "MoveDown_selected_item_btn"
+        Me.MoveDown_selected_item_btn.Size = New System.Drawing.Size(94, 29)
+        Me.MoveDown_selected_item_btn.TabIndex = 68
+        Me.MoveDown_selected_item_btn.Text = "下移"
+        Me.MoveDown_selected_item_btn.UseVisualStyleBackColor = True
+        '
+        'Move_up_selected_item_btn
+        '
+        Me.Move_up_selected_item_btn.Location = New System.Drawing.Point(18, 22)
+        Me.Move_up_selected_item_btn.Name = "Move_up_selected_item_btn"
+        Me.Move_up_selected_item_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Move_up_selected_item_btn.TabIndex = 67
+        Me.Move_up_selected_item_btn.Text = "上移"
+        Me.Move_up_selected_item_btn.UseVisualStyleBackColor = True
+        '
+        'stop_script_btn
+        '
+        Me.stop_script_btn.BackColor = System.Drawing.Color.LightSalmon
+        Me.stop_script_btn.Location = New System.Drawing.Point(458, 776)
+        Me.stop_script_btn.Name = "stop_script_btn"
+        Me.stop_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.stop_script_btn.TabIndex = 60
+        Me.stop_script_btn.Text = "暫停腳本"
+        Me.stop_script_btn.UseVisualStyleBackColor = False
+        '
+        'Delete_selected_item_btn
+        '
+        Me.Delete_selected_item_btn.BackColor = System.Drawing.Color.LightCoral
+        Me.Delete_selected_item_btn.Location = New System.Drawing.Point(218, 22)
+        Me.Delete_selected_item_btn.Name = "Delete_selected_item_btn"
+        Me.Delete_selected_item_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Delete_selected_item_btn.TabIndex = 66
+        Me.Delete_selected_item_btn.Text = "刪除"
+        Me.Delete_selected_item_btn.UseVisualStyleBackColor = False
         '
         'load_script_btn
         '
@@ -257,9 +298,9 @@ Partial Class Form1
         'Clear_script_btn
         '
         Me.Clear_script_btn.BackColor = System.Drawing.Color.LightCoral
-        Me.Clear_script_btn.Location = New System.Drawing.Point(404, 776)
+        Me.Clear_script_btn.Location = New System.Drawing.Point(803, 25)
         Me.Clear_script_btn.Name = "Clear_script_btn"
-        Me.Clear_script_btn.Size = New System.Drawing.Size(194, 29)
+        Me.Clear_script_btn.Size = New System.Drawing.Size(97, 29)
         Me.Clear_script_btn.TabIndex = 43
         Me.Clear_script_btn.Text = "清除腳本"
         Me.Clear_script_btn.UseVisualStyleBackColor = False
@@ -302,9 +343,9 @@ Partial Class Form1
         'Run_script_btn
         '
         Me.Run_script_btn.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.Run_script_btn.Location = New System.Drawing.Point(90, 776)
+        Me.Run_script_btn.Location = New System.Drawing.Point(89, 776)
         Me.Run_script_btn.Name = "Run_script_btn"
-        Me.Run_script_btn.Size = New System.Drawing.Size(308, 29)
+        Me.Run_script_btn.Size = New System.Drawing.Size(363, 29)
         Me.Run_script_btn.TabIndex = 45
         Me.Run_script_btn.Text = "執行腳本"
         Me.Run_script_btn.UseVisualStyleBackColor = False
@@ -431,45 +472,14 @@ Partial Class Form1
         Me.CheckBox_script_start.Text = "腳本執行時間 :"
         Me.CheckBox_script_start.UseVisualStyleBackColor = True
         '
-        'For_Test_GroupBox
-        '
-        Me.For_Test_GroupBox.Controls.Add(Me.Insert_close_driver_btn)
-        Me.For_Test_GroupBox.Controls.Add(Me.Test_Run_script_btn)
-        Me.For_Test_GroupBox.Controls.Add(Me.stop_script_btn)
-        Me.For_Test_GroupBox.Location = New System.Drawing.Point(472, 633)
-        Me.For_Test_GroupBox.Name = "For_Test_GroupBox"
-        Me.For_Test_GroupBox.Size = New System.Drawing.Size(355, 78)
-        Me.For_Test_GroupBox.TabIndex = 44
-        Me.For_Test_GroupBox.TabStop = False
-        Me.For_Test_GroupBox.Text = "測試用功能"
-        '
         'Insert_close_driver_btn
         '
-        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(207, 24)
+        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(696, 132)
         Me.Insert_close_driver_btn.Name = "Insert_close_driver_btn"
-        Me.Insert_close_driver_btn.Size = New System.Drawing.Size(130, 29)
+        Me.Insert_close_driver_btn.Size = New System.Drawing.Size(92, 29)
         Me.Insert_close_driver_btn.TabIndex = 44
-        Me.Insert_close_driver_btn.Text = "關閉瀏覽器-插入"
+        Me.Insert_close_driver_btn.Text = "關閉-插入"
         Me.Insert_close_driver_btn.UseVisualStyleBackColor = True
-        '
-        'Test_Run_script_btn
-        '
-        Me.Test_Run_script_btn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.Test_Run_script_btn.Location = New System.Drawing.Point(6, 25)
-        Me.Test_Run_script_btn.Name = "Test_Run_script_btn"
-        Me.Test_Run_script_btn.Size = New System.Drawing.Size(94, 29)
-        Me.Test_Run_script_btn.TabIndex = 42
-        Me.Test_Run_script_btn.Text = "測試腳本"
-        Me.Test_Run_script_btn.UseVisualStyleBackColor = False
-        '
-        'stop_script_btn
-        '
-        Me.stop_script_btn.Location = New System.Drawing.Point(106, 24)
-        Me.stop_script_btn.Name = "stop_script_btn"
-        Me.stop_script_btn.Size = New System.Drawing.Size(94, 29)
-        Me.stop_script_btn.TabIndex = 60
-        Me.stop_script_btn.Text = "暫停腳本"
-        Me.stop_script_btn.UseVisualStyleBackColor = True
         '
         'Label4
         '
@@ -482,6 +492,7 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Insert_close_driver_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_emoji_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Emoji_haha_CheckBox)
         Me.cmd_GroupBox.Controls.Add(Me.Emoji_sad_CheckBox)
@@ -508,6 +519,7 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.Insert_delay_btn)
         Me.cmd_GroupBox.Controls.Add(Me.img_CheckedListBox)
         Me.cmd_GroupBox.Controls.Add(Me.Label13)
+        Me.cmd_GroupBox.Controls.Add(Me.driver_close_bnt)
         Me.cmd_GroupBox.Controls.Add(Me.wait_random_second_NumericUpDown)
         Me.cmd_GroupBox.Controls.Add(Me.Label12)
         Me.cmd_GroupBox.Controls.Add(Me.content_RichTextBox)
@@ -537,10 +549,9 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.Label4)
         Me.cmd_GroupBox.Controls.Add(Me.curr_url_lbl)
         Me.cmd_GroupBox.Controls.Add(Me.curr_url_TextBox)
-        Me.cmd_GroupBox.Controls.Add(Me.driver_close_bnt)
         Me.cmd_GroupBox.Location = New System.Drawing.Point(12, 12)
         Me.cmd_GroupBox.Name = "cmd_GroupBox"
-        Me.cmd_GroupBox.Size = New System.Drawing.Size(912, 852)
+        Me.cmd_GroupBox.Size = New System.Drawing.Size(822, 852)
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
@@ -843,20 +854,20 @@ Partial Class Form1
         '
         'Insert_open_browser_btn
         '
-        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(696, 134)
+        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(596, 132)
         Me.Insert_open_browser_btn.Name = "Insert_open_browser_btn"
         Me.Insert_open_browser_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_open_browser_btn.TabIndex = 60
-        Me.Insert_open_browser_btn.Text = "插入至腳本"
+        Me.Insert_open_browser_btn.Text = "開啟-插入"
         Me.Insert_open_browser_btn.UseVisualStyleBackColor = True
         '
         'Insert_navigate_to_url_btn
         '
         Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(694, 231)
         Me.Insert_navigate_to_url_btn.Name = "Insert_navigate_to_url_btn"
-        Me.Insert_navigate_to_url_btn.Size = New System.Drawing.Size(115, 29)
+        Me.Insert_navigate_to_url_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_navigate_to_url_btn.TabIndex = 59
-        Me.Insert_navigate_to_url_btn.Text = "前往網址-插入"
+        Me.Insert_navigate_to_url_btn.Text = "前往-插入"
         Me.Insert_navigate_to_url_btn.UseVisualStyleBackColor = True
         '
         'GroupBox3
@@ -867,7 +878,7 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.ipadair_RadioButton)
         Me.GroupBox3.Location = New System.Drawing.Point(107, 68)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(583, 50)
+        Me.GroupBox3.Size = New System.Drawing.Size(473, 50)
         Me.GroupBox3.TabIndex = 58
         Me.GroupBox3.TabStop = False
         '
@@ -923,7 +934,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.chrome_RadioButton)
         Me.GroupBox2.Location = New System.Drawing.Point(107, 11)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(583, 51)
+        Me.GroupBox2.Size = New System.Drawing.Size(473, 51)
         Me.GroupBox2.TabIndex = 57
         Me.GroupBox2.TabStop = False
         '
@@ -979,7 +990,7 @@ Partial Class Form1
         '
         'open_browser_Button
         '
-        Me.open_browser_Button.Location = New System.Drawing.Point(596, 134)
+        Me.open_browser_Button.Location = New System.Drawing.Point(596, 25)
         Me.open_browser_Button.Name = "open_browser_Button"
         Me.open_browser_Button.Size = New System.Drawing.Size(94, 29)
         Me.open_browser_Button.TabIndex = 54
@@ -1061,7 +1072,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1786, 876)
+        Me.ClientSize = New System.Drawing.Size(1767, 876)
         Me.Controls.Add(Me.cmd_GroupBox)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "Form1"
@@ -1074,7 +1085,6 @@ Partial Class Form1
         CType(Me.NumericUpDown_script_start_second, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown_script_start_minute, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown_script_start_hour, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.For_Test_GroupBox.ResumeLayout(False)
         Me.cmd_GroupBox.ResumeLayout(False)
         Me.cmd_GroupBox.PerformLayout()
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1122,7 +1132,6 @@ Partial Class Form1
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Insert_navigate_to_url_btn As Button
     Friend WithEvents Insert_open_browser_btn As Button
-    Friend WithEvents Test_Run_script_btn As Button
     Friend WithEvents Label9 As Label
     Friend WithEvents Insert_delay_btn As Button
     Friend WithEvents Label13 As Label
@@ -1133,7 +1142,6 @@ Partial Class Form1
     Friend WithEvents wait_minute_NumericUpDown As NumericUpDown
     Friend WithEvents Label10 As Label
     Friend WithEvents wait_hour_NumericUpDown As NumericUpDown
-    Friend WithEvents For_Test_GroupBox As GroupBox
     Friend WithEvents Clear_script_btn As Button
     Friend WithEvents Insert_click_img_video_btn As Button
     Friend WithEvents Insert_clear_content_btn As Button
@@ -1183,4 +1191,7 @@ Partial Class Form1
     Friend WithEvents TextBox_script_file_path As TextBox
     Friend WithEvents load_script_btn As Button
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents Delete_selected_item_btn As Button
+    Friend WithEvents Move_up_selected_item_btn As Button
+    Friend WithEvents MoveDown_selected_item_btn As Button
 End Class

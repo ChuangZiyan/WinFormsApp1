@@ -355,7 +355,6 @@ Public Class Form1
     End Sub
 
 
-
     Private Sub cursor_Click(sender As Object, e As EventArgs)
 
         'Dim myele = chromeDriver.FindElement(By.CssSelector("._6ltj > a"))
@@ -516,7 +515,7 @@ Public Class Form1
         script_ListView.Columns.Add("設備", 120)
         script_ListView.Columns.Add("名稱", 100)
         script_ListView.Columns.Add("執行動作", 100)
-        script_ListView.Columns.Add("內容", 300)
+        script_ListView.Columns.Add("內容", 370)
         script_ListView.Columns.Add("執行結果", 75)
 
     End Sub
@@ -604,9 +603,7 @@ Public Class Form1
 
     End Sub
 
-
     Private Async Function Run_script(i As Integer) As Task
-        'Debug.WriteLine("**************** Run : " & i & "********************")
         Dim j = 1
         For Each item As ListViewItem In script_ListView.Items
             Restore_ListViewItems_BackColor()
@@ -614,7 +611,6 @@ Public Class Form1
             item.ForeColor = Color.White
             item.EnsureVisible()
 
-            'Debug.WriteLine("****************Sub Run : " & j & "********************")
             j += 1
             'Continue For
             If script_running = False Then
@@ -630,7 +626,6 @@ Public Class Form1
             '7 : action ... click sendkey or navigate
             '8 : parameter and content
             '9 : result
-            'Debug.WriteLine(item.SubItems.Item(3).Text + "   " + item.SubItems.Item(4).Text)
             If item.SubItems.Item(4).Text = "" Then
                 Continue For
             End If
@@ -645,10 +640,6 @@ Public Class Form1
 
             Select Case action
                 Case "開啟"
-                    'Debug.WriteLine("profile : " + profile)
-                    'Debug.WriteLine("used : " + used_chrome_profile)
-                    'Debug.WriteLine("running : " + running_chrome_profile)
-                    'boolean_result = Open_Browser(brower, devicetype, content)
 
                     If profile = "" Or profile <> running_chrome_profile Then
                         boolean_result = Open_Browser(brower, devicetype, content)
@@ -1326,4 +1317,58 @@ Public Class Form1
         End Select
 
     End Sub
+
+    Private Sub Rearrange_scriptlistview_number()
+        Dim index = 1
+        For Each item As ListViewItem In script_ListView.Items
+            item.SubItems.Item(0).Text = index.ToString()
+            index += 1
+        Next
+
+    End Sub
+
+    Private Sub Delete_selected_item_btn_Click(sender As Object, e As EventArgs) Handles Delete_selected_item_btn.Click
+        For i As Integer = script_ListView.SelectedIndices.Count - 1 To 0 Step -1
+            script_ListView.Items.RemoveAt(script_ListView.SelectedIndices(i))
+        Next
+        Rearrange_scriptlistview_number()
+    End Sub
+
+
+    Private Sub Move_up_selected_item_btnClick(sender As Object, e As EventArgs) Handles Move_up_selected_item_btn.Click
+        If script_ListView.SelectedIndices.Count > 0 Then
+            For i = 0 To script_ListView.SelectedIndices.Count - 1
+                Dim index = script_ListView.SelectedIndices(i)
+                If index > 0 Then
+                    If script_ListView.SelectedIndices.Contains(index - 1) Then
+                        Continue For
+                    End If
+                    Dim temp As ListViewItem = script_ListView.Items(index)
+                    script_ListView.Items.RemoveAt(index)
+                    script_ListView.Items.Insert(index - 1, temp)
+                    script_ListView.Items(index - 1).Focused = True
+                End If
+            Next
+        End If
+        Rearrange_scriptlistview_number()
+    End Sub
+
+    Private Sub MoveDown_selected_item_btn_Click(sender As Object, e As EventArgs) Handles MoveDown_selected_item_btn.Click
+        If script_ListView.SelectedIndices.Count > 0 Then
+            For i = script_ListView.SelectedIndices.Count - 1 To 0 Step -1
+                Dim index = script_ListView.SelectedIndices(i)
+                If index < script_ListView.Items.Count - 1 Then
+                    If script_ListView.SelectedIndices.Contains(index + 1) Then
+                        Continue For
+                    End If
+                    Dim temp As ListViewItem = script_ListView.Items(index)
+                    script_ListView.Items.RemoveAt(index)
+                    script_ListView.Items.Insert(index + 1, temp)
+                    script_ListView.Items(index + 1).Focused = True
+                End If
+            Next
+        End If
+        Rearrange_scriptlistview_number()
+    End Sub
+
 End Class
