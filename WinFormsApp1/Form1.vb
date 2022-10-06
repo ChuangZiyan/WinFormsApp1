@@ -47,11 +47,44 @@ Public Class Form1
         Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
-        Render_eventlog_listview()
-        render_img_listbox()
+        Render_Script_listview()
+        Render_img_listbox()
+        Render_TextFile_listbox()
         'Form2.Visible = True
 
     End Sub
+
+    Private Sub Render_img_listbox()
+        Dim files() As String = IO.Directory.GetFiles("C:\selenium_file\my_img") ' your img folder
+
+        For Each file As String In files
+            'Debug.WriteLine(file)
+            img_CheckedListBox.Items.Add(file)
+            reply_img_CheckedListBox.Items.Add(file)
+        Next
+
+    End Sub
+
+    Private Sub Render_TextFile_listbox()
+        Dim mypath = "C:\selenium_file\inventory\text"
+        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+
+        For Each dir As String In dirs
+            'Debug.WriteLine(dir)
+            Dim files() As String = IO.Directory.GetFiles(dir)
+            For Each file As String In files
+                'Debug.WriteLine(file)
+                If Path.GetExtension(file) = ".txt" Then
+                    Text_File_CheckedListBox.Items.Add(file)
+                End If
+
+            Next
+
+        Next
+
+    End Sub
+
+
     Public Shared Async Function Delay_msec(msec As Integer) As Task
         Await Task.Delay(msec)
     End Function
@@ -313,18 +346,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub render_img_listbox()
-        Dim files() As String = IO.Directory.GetFiles("C:\selenium_file\my_img") ' your img folder
-
-        For Each file As String In files
-            'Debug.WriteLine(file)
-            img_CheckedListBox.Items.Add(file)
-            reply_img_CheckedListBox.Items.Add(file)
-        Next
-
-
-    End Sub
-
 
     Private Sub cursor_Click(sender As Object, e As EventArgs)
 
@@ -477,7 +498,7 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub Render_eventlog_listview()
+    Private Sub Render_Script_listview()
         script_ListView.View = View.Details
         script_ListView.GridLines = True
         script_ListView.FullRowSelect = True
@@ -632,9 +653,9 @@ Public Class Form1
                     End If
 
                     boolean_result = Navigate_GoToUrl(content)
-                    If content.Contains("facebook.com/groups") Then
-                        item.SubItems.Item(5).Text = Get_current_group_name() + ";" + content
-                    End If
+                    'If content.Contains("facebook.com/groups") Then
+                    'item.SubItems.Item(5).Text = Get_current_group_name() + ";" + content
+                    'End If
                 Case "等待"
                     Try
                         'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
@@ -1341,4 +1362,14 @@ Public Class Form1
         Rearrange_scriptlistview_number()
     End Sub
 
+    Private Sub Text_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.Click
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Text_File_CheckedListBox.SelectedItems
+            Debug.WriteLine(itemChecked)
+            Txt_file_path = itemChecked
+        Next
+
+        content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
+
+    End Sub
 End Class
