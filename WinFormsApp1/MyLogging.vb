@@ -1,6 +1,13 @@
 ﻿Imports Microsoft.VisualBasic
+Imports System.IO.File
+Public Class MyLogging
 
-Public Class my_event_logger
+    Public Function SayHello()
+        Debug.WriteLine("hello")
+        Return 0
+    End Function
+
+
     Public Sub Log_to_file(content As String)
         Dim thisDate As String = Date.Today.ToString("dd-MM-yyyy")
         Dim log_path = My.Computer.FileSystem.CurrentDirectory + "\logs\" + thisDate
@@ -37,33 +44,9 @@ Public Class my_event_logger
         log_file_temp = My.Computer.FileSystem.OpenTextFileWriter(My.Computer.FileSystem.CurrentDirectory + "\logs\selenium_log_temp.txt", True)
         log_file_temp.WriteLine(content)
         log_file_temp.Close()
+
+
     End Sub
 
-    Public Sub Write_log(action As String, content As String)
-
-
-        Dim curr_url = "N/A"
-        Try
-            curr_url = chromeDriver.Url.Replace(",", "")
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-        Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url + "," + action + "," + content + ",成功"
-        EventlogListview_AddNewItem(myline)
-        Log_to_file(myline)
-    End Sub
-
-    Public Sub Write_err_log(action As String, content As String)
-        Dim curr_url = "N/A"
-        Try
-            curr_url = chromeDriver.Url.Replace(",", "")
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-        Dim myline = Date.Now.ToString("yyyy/MM/dd") + "," + Date.Now.ToString("HH:mm:ss") + "," + used_browser + "," + dev_model + "," + chrome_profile + "," + curr_url + "," + action + "," + content + ",失敗"
-        EventlogListview_AddNewItem(myline)
-        Log_to_file(myline)
-    End Sub
 
 End Class

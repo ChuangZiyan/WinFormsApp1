@@ -17,11 +17,11 @@ Imports System.IO.File
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports System.Threading.Tasks.Task
+Imports WinFormsApp1.MyLogging
 
 Public Class Form1
 
-    ReadOnly fileContents As String = ReadAllText("C:\selenium_file\fb_auth.txt")
-
+    Dim logging = New MyLogging()
 
     Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
@@ -39,11 +39,7 @@ Public Class Form1
     Dim running_chrome_profile As String = ""
     'Dim webDriverWait As WebDriverWait
 
-
-
-
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-
 
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
@@ -166,7 +162,6 @@ Public Class Form1
             Return ""
         End Try
     End Function
-
 
     Private Sub Get_Groups_Click(sender As Object, e As EventArgs)
 
@@ -296,30 +291,6 @@ Public Class Form1
             Return False
         End Try
     End Function
-
-
-    Private Sub Reply_comment_bnt_Click(sender As Object, e As EventArgs)
-
-        'chromeDriver.Navigate.GoToUrl(target_url_TextBox.Text)
-        Thread.Sleep(1000)
-
-        Dim str_arr() As String = content_RichTextBox.Text.Split(vbLf)
-        Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
-        For Each line As String In str_arr
-            line = line.Replace(vbCr, "").Replace(vbLf, "")
-            msgbox_ele.SendKeys(line)
-            Thread.Sleep(100)
-            msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
-            Thread.Sleep(100)
-        Next
-
-        If img_CheckedListBox.CheckedItems.Count <> 0 Then
-            Debug.WriteLine(img_CheckedListBox.Items(0).ToString())
-            Dim comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("replay_comment_img_input")))
-            comment_img_input.SendKeys(img_CheckedListBox.Items(0).ToString())
-        End If
-
-    End Sub
 
 
     Dim current_checked As Integer
@@ -575,7 +546,6 @@ Public Class Form1
             end_time = NumericUpDown_script_end_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_end_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_end_second.Value.ToString.PadLeft(2, "0")
             'Debug.WriteLine("end time : " + end_time)
         End If
-
 
     End Sub
 
