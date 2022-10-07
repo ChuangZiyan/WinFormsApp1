@@ -50,7 +50,6 @@ Public Class Form1
         Render_Script_listview()
         Render_img_listbox()
         Render_TextFile_listbox()
-        'Form2.Visible = True
 
     End Sub
 
@@ -83,6 +82,160 @@ Public Class Form1
         Next
 
     End Sub
+
+    Private Sub stop_script_btn_Click(sender As Object, e As EventArgs) Handles stop_script_btn.Click
+        script_running = False
+        loop_run = False
+    End Sub
+
+    Private Async Sub Run_script_controller()
+        Dim i = 1
+
+        While True
+            For Each item As ListViewItem In script_ListView.Items
+                item.SubItems.Item(6).Text = ""
+            Next
+            Await Run_script(i)
+            i += 1
+            If Not loop_run Then
+                Exit While
+            End If
+
+        End While
+        start_time = 0
+        end_time = 0
+
+    End Sub
+
+    Private Async Function Run_script(i As Integer) As Task
+        Dim rnd_num As New Random()
+        Dim j = 1
+        For Each item As ListViewItem In script_ListView.Items
+            Restore_ListViewItems_BackColor()
+            item.BackColor = Color.SteelBlue
+            item.ForeColor = Color.White
+            item.EnsureVisible()
+
+            j += 1
+            'Continue For
+            If script_running = False Then
+                'Debug.WriteLine("running false")
+                loop_run = False
+                Exit Function
+            End If
+
+            '3 : browser type
+            '4 : device type
+            '5 : profile
+            '6 : url
+            '7 : action ... click sendkey or navigate
+            '8 : parameter and content
+            '9 : result
+            If item.SubItems.Item(4).Text = "" Then
+                Continue For
+            End If
+
+
+
+            Dim brower = item.SubItems.Item(1).Text
+            Dim devicetype = item.SubItems.Item(2).Text
+            Dim profile = item.SubItems.Item(3).Text
+            Dim action = item.SubItems.Item(4).Text
+            Dim content = item.SubItems.Item(5).Text
+            Dim execute_result = item.SubItems.Item(6)
+            Dim boolean_result As Boolean
+
+            Select Case action
+                Case "開啟"
+
+                    If profile = "" Or profile <> running_chrome_profile Then
+                        boolean_result = Open_Browser(brower, devicetype, content)
+                    Else
+                        Debug.WriteLine("open browser reuturn false")
+                        boolean_result = False
+                    End If
+
+                Case "關閉"
+                    boolean_result = Quit_chromedriver()
+                Case "登入"
+                    Dim auth() As String = content.Split(";")
+                    Dim account_passwd = content.Split(" ")
+                    boolean_result = Login_fb(account_passwd(0).Split(":")(1), account_passwd(1).Split(":")(1))
+                    Await Delay_msec(1000)
+                Case "前往"
+
+                    If content.Contains(";"c) Then
+                        content = content.Split(";")(1)
+                    End If
+
+                    boolean_result = Navigate_GoToUrl(content)
+                    'If content.Contains("facebook.com/groups") Then
+                    'item.SubItems.Item(5).Text = Get_current_group_name() + ";" + content
+                    'End If
+                Case "等待"
+                    Try
+                        'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
+                        'Debug.WriteLine(content)
+                        Dim sec = Get_random_sec_frome_content(content)
+                        Dim counter = sec
+                        Debug.WriteLine(sec)
+                        For i = 1 To sec
+                            item.SubItems.Item(6).Text = (counter.ToString())
+                            Await Delay_msec(1000)
+                            counter -= 1
+                        Next
+                        'Await Delay_msec(sec * 1000)
+                        boolean_result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
+                Case "點擊"
+                    boolean_result = Click_element_by_feature(content)
+                Case "發送"
+                    boolean_result = Write_post_send_content(content)
+                Case "發送:隨機"
+                    If content = "全部隨機" Then
+                        Dim allTextFile = Text_File_CheckedListBox.Items
+                        Dim rnd = rnd_num.Next(0, allTextFile.Count)
+                        'Debug.WriteLine("TEXT : " + allTextFile(rnd))
+                        boolean_result = Write_post_send_content(File.ReadAllText(allTextFile(rnd)))
+                    Else
+                        Dim TextFiles = content.Split(";")
+                        Dim rnd = rnd_num.Next(0, TextFiles.Length)
+                        'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
+                        boolean_result = Write_post_send_content(File.ReadAllText(TextFiles(rnd)))
+                    End If
+
+                Case "清空"
+                    boolean_result = Clear_post_content()
+                Case "上載"
+                    boolean_result = Tring_to_upload_img(content)
+                Case "回應:上載"
+                    boolean_result = Upload_reply_img(content)
+                Case "回應:內容"
+                    boolean_result = Send_reply_comment(content)
+                Case "回應:送出"
+                    boolean_result = Submit_reply_comment()
+                Case "回應:按讚"
+                    boolean_result = Click_reply_random_emoji(content)
+
+            End Select
+
+            If boolean_result = True Then ' record the result
+
+                item.SubItems.Item(6).Text = ("成功")
+            ElseIf boolean_result = False Then
+
+                item.SubItems.Item(6).Text = ("失敗")
+            End If
+
+        Next
+
+        Await Delay_msec(1000)
+    End Function
+
+
 
 
     Public Shared Async Function Delay_msec(msec As Integer) As Task
@@ -374,15 +527,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub hide_btn_Click(sender As Object, e As EventArgs)
-        MsgBox(My.Computer.FileSystem.CurrentDirectory)
-        IO.File.SetAttributes(My.Computer.FileSystem.CurrentDirectory + "\Chrome", IO.FileAttributes.Hidden)
-    End Sub
-
-    Private Sub show_btn_Click(sender As Object, e As EventArgs)
-        IO.File.SetAttributes(My.Computer.FileSystem.CurrentDirectory + "\Chrome", IO.FileAttributes.System)
-    End Sub
-
     Private Sub crawl_post_btn_Click(sender As Object, e As EventArgs)
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New ChromeConfig())
@@ -420,7 +564,6 @@ Public Class Form1
             Thread.Sleep(500)
             'submit
             'click_by_aria_label("確認")
-
         Next
 
     End Sub
@@ -507,7 +650,7 @@ Public Class Form1
         script_ListView.Columns.Add("設備", 120)
         script_ListView.Columns.Add("名稱", 100)
         script_ListView.Columns.Add("執行動作", 100)
-        script_ListView.Columns.Add("內容", 370)
+        script_ListView.Columns.Add("內容", 280)
         script_ListView.Columns.Add("執行結果", 75)
 
     End Sub
@@ -569,142 +712,6 @@ Public Class Form1
         End If
 
     End Sub
-
-    Private Sub stop_script_btn_Click(sender As Object, e As EventArgs) Handles stop_script_btn.Click
-        script_running = False
-        loop_run = False
-    End Sub
-
-    Private Async Sub Run_script_controller()
-        Dim i = 1
-
-        While True
-            For Each item As ListViewItem In script_ListView.Items
-                item.SubItems.Item(6).Text = ""
-            Next
-            Await Run_script(i)
-            i += 1
-            If Not loop_run Then
-                Exit While
-            End If
-
-        End While
-        start_time = 0
-        end_time = 0
-
-    End Sub
-
-    Private Async Function Run_script(i As Integer) As Task
-        Dim j = 1
-        For Each item As ListViewItem In script_ListView.Items
-            Restore_ListViewItems_BackColor()
-            item.BackColor = Color.SteelBlue
-            item.ForeColor = Color.White
-            item.EnsureVisible()
-
-            j += 1
-            'Continue For
-            If script_running = False Then
-                'Debug.WriteLine("running false")
-                loop_run = False
-                Exit Function
-            End If
-
-            '3 : browser type
-            '4 : device type
-            '5 : profile
-            '6 : url
-            '7 : action ... click sendkey or navigate
-            '8 : parameter and content
-            '9 : result
-            If item.SubItems.Item(4).Text = "" Then
-                Continue For
-            End If
-
-            Dim brower = item.SubItems.Item(1).Text
-            Dim devicetype = item.SubItems.Item(2).Text
-            Dim profile = item.SubItems.Item(3).Text
-            Dim action = item.SubItems.Item(4).Text
-            Dim content = item.SubItems.Item(5).Text
-            Dim execute_result = item.SubItems.Item(6)
-            Dim boolean_result As Boolean
-
-            Select Case action
-                Case "開啟"
-
-                    If profile = "" Or profile <> running_chrome_profile Then
-                        boolean_result = Open_Browser(brower, devicetype, content)
-                    Else
-                        Debug.WriteLine("open browser reuturn false")
-                        boolean_result = False
-                    End If
-
-                Case "關閉"
-                    boolean_result = Quit_chromedriver()
-                Case "登入"
-                    Dim auth() As String = content.Split(";")
-                    Dim account_passwd = content.Split(" ")
-                    boolean_result = Login_fb(account_passwd(0).Split(":")(1), account_passwd(1).Split(":")(1))
-                    Await Delay_msec(1000)
-                Case "前往"
-
-                    If content.Contains(";"c) Then
-                        content = content.Split(";")(1)
-                    End If
-
-                    boolean_result = Navigate_GoToUrl(content)
-                    'If content.Contains("facebook.com/groups") Then
-                    'item.SubItems.Item(5).Text = Get_current_group_name() + ";" + content
-                    'End If
-                Case "等待"
-                    Try
-                        'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
-                        'Debug.WriteLine(content)
-                        Dim sec = Get_random_sec_frome_content(content)
-                        Dim counter = sec
-                        Debug.WriteLine(sec)
-                        For i = 1 To sec
-                            item.SubItems.Item(6).Text = (counter.ToString())
-                            Await Delay_msec(1000)
-                            counter -= 1
-                        Next
-                        'Await Delay_msec(sec * 1000)
-                        boolean_result = True
-                    Catch ex As Exception
-                        Debug.WriteLine(ex)
-                        boolean_result = False
-                    End Try
-                Case "點擊"
-                    boolean_result = Click_element_by_feature(content)
-                Case "發送"
-                    boolean_result = Write_post_send_content(content)
-                Case "清空"
-                    boolean_result = Clear_post_content()
-                Case "上載"
-                    boolean_result = Tring_to_upload_img(content)
-                Case "回應:上載"
-                    boolean_result = Upload_reply_img(content)
-                Case "回應:內容"
-                    boolean_result = Send_reply_comment(content)
-                Case "回應:送出"
-                    boolean_result = Submit_reply_comment()
-                Case "回應:按讚"
-                    boolean_result = Click_reply_random_emoji(content)
-
-            End Select
-
-            If boolean_result = True Then ' record the result
-
-                item.SubItems.Item(6).Text = ("成功")
-            ElseIf boolean_result = False Then
-
-                item.SubItems.Item(6).Text = ("失敗")
-            End If
-
-        Next
-
-        Await Delay_msec(1000)
-    End Function
 
     Private Shared Function Get_random_sec_frome_content(content)
         Dim base_sec = content.Split("±")(0).Replace("秒", "")
@@ -997,6 +1004,9 @@ Public Class Form1
             MsgBox("未偵測到Chrome")
         End Try
     End Sub
+
+
+
 
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
         Dim fb_email = fb_account_TextBox.Text
@@ -1364,12 +1374,30 @@ Public Class Form1
 
     Private Sub Text_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.Click
         Dim Txt_file_path As String = ""
-        For Each itemChecked In Text_File_CheckedListBox.SelectedItems
-            Debug.WriteLine(itemChecked)
-            Txt_file_path = itemChecked
+        For Each itemSeleted In Text_File_CheckedListBox.SelectedItems
+            'Debug.WriteLine(itemSeleted)
+            Txt_file_path = itemSeleted
         Next
 
         content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
 
     End Sub
+
+    Private Sub Insert_send_Random_content_TextFile_btn_Click(sender As Object, e As EventArgs) Handles Insert_send_Random_content_TextFile_btn.Click
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Text_File_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_file_path += itemChecked + ";"
+        Next
+
+        If Txt_file_path = "" Then
+            Insert_to_script("發送:隨機", "全部隨機")
+        Else
+            Insert_to_script("發送:隨機", Txt_file_path.TrimEnd(";"))
+        End If
+
+    End Sub
+
+
+
 End Class

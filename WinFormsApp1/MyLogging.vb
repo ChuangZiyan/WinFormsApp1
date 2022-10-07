@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.VisualBasic
 Imports System.IO.File
+Imports WinFormsApp1.Form1
 Public Class MyLogging
 
     Public Function SayHello()
@@ -8,42 +9,33 @@ Public Class MyLogging
     End Function
 
 
-    Public Sub Log_to_file(content As String)
+    Public Function Get_NewLogFile_dir()
+        Dim thisDate As String = Date.Today.ToString("dd-MM-yyyy")
+        Dim thisTime As String = Date.Now.ToString("HH-mm-ss")
+        Dim log_path = My.Computer.FileSystem.CurrentDirectory + "\logs\" + thisDate
+        If Not System.IO.Directory.Exists(log_path) Then
+            System.IO.Directory.CreateDirectory(log_path)
+        End If
+
+    End Function
+
+    Public Sub Log_to_file(newFile As Boolean, content As String)
+
         Dim thisDate As String = Date.Today.ToString("dd-MM-yyyy")
         Dim log_path = My.Computer.FileSystem.CurrentDirectory + "\logs\" + thisDate
         If Not System.IO.Directory.Exists(log_path) Then
             System.IO.Directory.CreateDirectory(log_path)
         End If
 
-        Dim filename_counter As Integer = 1
+        If newFile Then
+            Debug.WriteLine("write into new file")
+        Else
+            Dim log_file As System.IO.StreamWriter
+            log_file = My.Computer.FileSystem.OpenTextFileWriter(log_path + "\selenium_log.txt", True)
+            log_file.WriteLine(content)
+            log_file.Close()
 
-        Dim max_file_line As Integer = 10
-
-        While True 'check file exist or higher than max line
-            If Not My.Computer.FileSystem.FileExists(log_path + "\selenium_log." & filename_counter & ".txt") Then
-                Exit While
-            End If
-            Dim lineCount = ReadAllLines(log_path + "\selenium_log." & filename_counter & ".txt").Length
-            'Debug.WriteLine(lineCount)
-            If lineCount > max_file_line Then
-                filename_counter += 1
-            Else
-                Exit While
-            End If
-        End While
-
-
-        Dim log_file As System.IO.StreamWriter
-        log_file = My.Computer.FileSystem.OpenTextFileWriter(log_path + "\selenium_log." & filename_counter & ".txt", True)
-        log_file.WriteLine(content)
-        log_file.Close()
-
-
-        'write to buffer
-        Dim log_file_temp As System.IO.StreamWriter
-        log_file_temp = My.Computer.FileSystem.OpenTextFileWriter(My.Computer.FileSystem.CurrentDirectory + "\logs\selenium_log_temp.txt", True)
-        log_file_temp.WriteLine(content)
-        log_file_temp.Close()
+        End If
 
 
     End Sub
