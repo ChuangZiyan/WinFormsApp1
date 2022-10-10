@@ -32,6 +32,7 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Record_script_result_checkbox = New System.Windows.Forms.CheckBox()
         Me.MoveDown_selected_item_btn = New System.Windows.Forms.Button()
         Me.Move_up_selected_item_btn = New System.Windows.Forms.Button()
         Me.stop_script_btn = New System.Windows.Forms.Button()
@@ -61,6 +62,7 @@ Partial Class Form1
         Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Chrome_Profile_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Insert_send_Random_content_TextFile_btn = New System.Windows.Forms.Button()
         Me.Text_File_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Insert_emoji_btn = New System.Windows.Forms.Button()
@@ -114,7 +116,6 @@ Partial Class Form1
         Me.Label8 = New System.Windows.Forms.Label()
         Me.fb_password_TextBox = New System.Windows.Forms.TextBox()
         Me.fb_account_TextBox = New System.Windows.Forms.TextBox()
-        Me.profile_path_TextBox = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -207,6 +208,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Record_script_result_checkbox)
         Me.GroupBox1.Controls.Add(Me.MoveDown_selected_item_btn)
         Me.GroupBox1.Controls.Add(Me.Move_up_selected_item_btn)
         Me.GroupBox1.Controls.Add(Me.stop_script_btn)
@@ -241,6 +243,16 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
         '
+        'Record_script_result_checkbox
+        '
+        Me.Record_script_result_checkbox.AutoSize = True
+        Me.Record_script_result_checkbox.Location = New System.Drawing.Point(85, 776)
+        Me.Record_script_result_checkbox.Name = "Record_script_result_checkbox"
+        Me.Record_script_result_checkbox.Size = New System.Drawing.Size(91, 23)
+        Me.Record_script_result_checkbox.TabIndex = 69
+        Me.Record_script_result_checkbox.Text = "紀錄執行"
+        Me.Record_script_result_checkbox.UseVisualStyleBackColor = True
+        '
         'MoveDown_selected_item_btn
         '
         Me.MoveDown_selected_item_btn.Location = New System.Drawing.Point(118, 22)
@@ -262,7 +274,7 @@ Partial Class Form1
         'stop_script_btn
         '
         Me.stop_script_btn.BackColor = System.Drawing.Color.LightSalmon
-        Me.stop_script_btn.Location = New System.Drawing.Point(458, 776)
+        Me.stop_script_btn.Location = New System.Drawing.Point(458, 772)
         Me.stop_script_btn.Name = "stop_script_btn"
         Me.stop_script_btn.Size = New System.Drawing.Size(94, 29)
         Me.stop_script_btn.TabIndex = 60
@@ -335,7 +347,7 @@ Partial Class Form1
         'CheckBox_loop_run
         '
         Me.CheckBox_loop_run.AutoSize = True
-        Me.CheckBox_loop_run.Location = New System.Drawing.Point(18, 782)
+        Me.CheckBox_loop_run.Location = New System.Drawing.Point(18, 776)
         Me.CheckBox_loop_run.Name = "CheckBox_loop_run"
         Me.CheckBox_loop_run.Size = New System.Drawing.Size(61, 23)
         Me.CheckBox_loop_run.TabIndex = 59
@@ -345,9 +357,9 @@ Partial Class Form1
         'Run_script_btn
         '
         Me.Run_script_btn.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.Run_script_btn.Location = New System.Drawing.Point(89, 776)
+        Me.Run_script_btn.Location = New System.Drawing.Point(182, 774)
         Me.Run_script_btn.Name = "Run_script_btn"
-        Me.Run_script_btn.Size = New System.Drawing.Size(363, 29)
+        Me.Run_script_btn.Size = New System.Drawing.Size(270, 29)
         Me.Run_script_btn.TabIndex = 45
         Me.Run_script_btn.Text = "執行腳本"
         Me.Run_script_btn.UseVisualStyleBackColor = False
@@ -494,6 +506,7 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Chrome_Profile_ComboBox)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_send_Random_content_TextFile_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Text_File_CheckedListBox)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_close_driver_btn)
@@ -544,7 +557,6 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.Label8)
         Me.cmd_GroupBox.Controls.Add(Me.fb_password_TextBox)
         Me.cmd_GroupBox.Controls.Add(Me.fb_account_TextBox)
-        Me.cmd_GroupBox.Controls.Add(Me.profile_path_TextBox)
         Me.cmd_GroupBox.Controls.Add(Me.Label7)
         Me.cmd_GroupBox.Controls.Add(Me.Label6)
         Me.cmd_GroupBox.Controls.Add(Me.group_name_TextBox)
@@ -559,6 +571,14 @@ Partial Class Form1
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
+        '
+        'Chrome_Profile_ComboBox
+        '
+        Me.Chrome_Profile_ComboBox.FormattingEnabled = True
+        Me.Chrome_Profile_ComboBox.Location = New System.Drawing.Point(107, 132)
+        Me.Chrome_Profile_ComboBox.Name = "Chrome_Profile_ComboBox"
+        Me.Chrome_Profile_ComboBox.Size = New System.Drawing.Size(473, 27)
+        Me.Chrome_Profile_ComboBox.TabIndex = 96
         '
         'Insert_send_Random_content_TextFile_btn
         '
@@ -1051,13 +1071,6 @@ Partial Class Form1
         Me.fb_account_TextBox.Size = New System.Drawing.Size(200, 27)
         Me.fb_account_TextBox.TabIndex = 50
         '
-        'profile_path_TextBox
-        '
-        Me.profile_path_TextBox.Location = New System.Drawing.Point(107, 134)
-        Me.profile_path_TextBox.Name = "profile_path_TextBox"
-        Me.profile_path_TextBox.Size = New System.Drawing.Size(473, 27)
-        Me.profile_path_TextBox.TabIndex = 49
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
@@ -1136,7 +1149,6 @@ Partial Class Form1
     Friend WithEvents Label8 As Label
     Friend WithEvents fb_password_TextBox As TextBox
     Friend WithEvents fb_account_TextBox As TextBox
-    Friend WithEvents profile_path_TextBox As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents edge_RadioButton As RadioButton
@@ -1218,4 +1230,6 @@ Partial Class Form1
     Friend WithEvents MoveDown_selected_item_btn As Button
     Friend WithEvents Text_File_CheckedListBox As CheckedListBox
     Friend WithEvents Insert_send_Random_content_TextFile_btn As Button
+    Friend WithEvents Record_script_result_checkbox As CheckBox
+    Friend WithEvents Chrome_Profile_ComboBox As ComboBox
 End Class

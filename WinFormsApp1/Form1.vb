@@ -22,6 +22,7 @@ Imports WinFormsApp1.MyLogging
 Public Class Form1
 
     Dim logging = New MyLogging()
+    Dim FormInit = New FormInit()
 
     Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
@@ -47,41 +48,12 @@ Public Class Form1
         Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
-        Render_Script_listview()
-        Render_img_listbox()
-        Render_TextFile_listbox()
-
+        FormInit.Render_Script_listview()
+        FormInit.Render_img_listbox()
+        FormInit.Render_TextFile_listbox()
+        FormInit.Render_profile_combobox()
     End Sub
 
-    Private Sub Render_img_listbox()
-        Dim files() As String = IO.Directory.GetFiles("C:\selenium_file\my_img") ' your img folder
-
-        For Each file As String In files
-            'Debug.WriteLine(file)
-            img_CheckedListBox.Items.Add(file)
-            reply_img_CheckedListBox.Items.Add(file)
-        Next
-
-    End Sub
-
-    Private Sub Render_TextFile_listbox()
-        Dim mypath = "C:\selenium_file\inventory\text"
-        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
-
-        For Each dir As String In dirs
-            'Debug.WriteLine(dir)
-            Dim files() As String = IO.Directory.GetFiles(dir)
-            For Each file As String In files
-                'Debug.WriteLine(file)
-                If Path.GetExtension(file) = ".txt" Then
-                    Text_File_CheckedListBox.Items.Add(file)
-                End If
-
-            Next
-
-        Next
-
-    End Sub
 
     Private Sub stop_script_btn_Click(sender As Object, e As EventArgs) Handles stop_script_btn.Click
         script_running = False
@@ -108,6 +80,13 @@ Public Class Form1
     End Sub
 
     Private Async Function Run_script(i As Integer) As Task
+        'Debug.WriteLine(logging.Get_NewLogFile_dir())
+        Dim record_script = False
+        Dim log_file_path As String = ""
+        If Record_script_result_checkbox.Checked = True Then
+            log_file_path = logging.Get_NewLogFile_dir()
+            record_script = True
+        End If
         Dim rnd_num As New Random()
         Dim j = 1
         For Each item As ListViewItem In script_ListView.Items
@@ -229,13 +208,14 @@ Public Class Form1
 
                 item.SubItems.Item(6).Text = ("失敗")
             End If
+            If record_script Then
+                logging.Write_to_file(log_file_path, brower + "," + devicetype + "," + action + "," + content + "," + item.SubItems.Item(6).Text)
+            End If
 
         Next
 
         Await Delay_msec(1000)
     End Function
-
-
 
 
     Public Shared Async Function Delay_msec(msec As Integer) As Task
@@ -256,12 +236,30 @@ Public Class Form1
                 End If
 
             End If
-            Open_Browser("Chrome", used_dev_model, profile_path_TextBox.Text)
+
+            If Chrome_Profile_ComboBox.SelectedItem IsNot Nothing Then
+                Open_Browser("Chrome", used_dev_model, Chrome_Profile_ComboBox.SelectedItem.ToString)
+            Else
+                Open_Browser("Chrome", used_dev_model, "")
+            End If
+
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
         ElseIf edge_RadioButton.Checked = True Then
             Open_Edge()
         End If
+
+        If curr_url_TextBox.Text <> "" Then
+            Dim pattern As String
+            pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+            If Regex.IsMatch(curr_url_TextBox.Text, pattern) Then
+                Navigate_GoToUrl(curr_url_TextBox.Text)
+            Else
+                MsgBox("網址格式錯誤")
+            End If
+
+        End If
+
     End Sub
 
     Private Function Open_Browser(browser As String, devicetype As String, profile As String)
@@ -641,19 +639,6 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub Render_Script_listview()
-        script_ListView.View = View.Details
-        script_ListView.GridLines = True
-        script_ListView.FullRowSelect = True
-        script_ListView.Columns.Add("#", 30)
-        script_ListView.Columns.Add("瀏覽器", 80)
-        script_ListView.Columns.Add("設備", 120)
-        script_ListView.Columns.Add("名稱", 100)
-        script_ListView.Columns.Add("執行動作", 100)
-        script_ListView.Columns.Add("內容", 280)
-        script_ListView.Columns.Add("執行結果", 75)
-
-    End Sub
 
     Dim current_state = 0
 
@@ -1006,8 +991,6 @@ Public Class Form1
     End Sub
 
 
-
-
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
         Dim fb_email = fb_account_TextBox.Text
         Dim fb_passwd = fb_password_TextBox.Text
@@ -1068,16 +1051,22 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_open_browser_btn_Click(sender As Object, e As EventArgs) Handles Insert_open_browser_btn.Click
+
+        Dim myprofile = ""
+
         If chrome_RadioButton.Checked = True Then
             used_browser = "Chrome"
-            Dim myprofile = profile_path_TextBox.Text
-            used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
+            If Chrome_Profile_ComboBox.SelectedItem IsNot Nothing Then
+                myprofile = Chrome_Profile_ComboBox.SelectedItem.ToString
+                Debug.WriteLine(myprofile)
+                used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
+            End If
         ElseIf firefox_RadioButton.Checked = True Then
             used_browser = "Firefox"
         ElseIf edge_RadioButton.Checked = True Then
             used_browser = "Edge"
         End If
-        Insert_to_script("開啟", profile_path_TextBox.Text)
+        Insert_to_script("開啟", myprofile)
     End Sub
 
     Private Sub Insert_click_leave_msg_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_leave_msg_btn.Click
@@ -1309,12 +1298,28 @@ Public Class Form1
                 End If
                 curr_url_TextBox.Text = content
 
-            Case "開啟"
-                profile_path_TextBox.Text = content
+                'Case "開啟"
+                'profile_path_TextBox.Text = content
             Case "登入"
                 Dim account_passwd = content.Split(" ")
                 fb_account_TextBox.Text = account_passwd(0).Split(":")(1)
                 fb_password_TextBox.Text = account_passwd(1).Split(":")(1)
+            Case "等待"
+                Dim total_sec As Integer = 0
+                If content.Contains("±"c) Then 'if have random second
+                    total_sec = CInt(content.Split("±")(0))
+                    wait_random_second_NumericUpDown.Value = CInt(content.Split("±")(1).Replace("秒", ""))
+
+                Else
+                    total_sec = CInt(content.Split("±")(0).Replace("秒", ""))
+                End If
+
+                wait_hour_NumericUpDown.Value = Int(total_sec / 3600)
+                total_sec -= wait_hour_NumericUpDown.Value * 3600
+                wait_minute_NumericUpDown.Value = Int(total_sec / 60)
+                total_sec -= wait_minute_NumericUpDown.Value * 60
+                wait_second_NumericUpDown.Value = total_sec
+
         End Select
 
     End Sub
@@ -1397,7 +1402,6 @@ Public Class Form1
         End If
 
     End Sub
-
 
 
 End Class
