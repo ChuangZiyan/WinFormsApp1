@@ -949,11 +949,9 @@ Public Class Form1
         Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
         Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
 
-        If ele1 = False AndAlso ele2 = False Then
-            If click_by_aria_label("相片／影片") = False Then
-                Return False
-            End If
-        End If
+        click_by_aria_label("相片／影片")
+
+
 
         Dim upload_img_input As Object
 
