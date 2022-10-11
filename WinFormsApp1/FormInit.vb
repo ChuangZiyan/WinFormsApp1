@@ -30,7 +30,6 @@ Public Class FormInit
     End Sub
 
 
-
     Public Sub Render_TextFile_listbox()
         Dim mypath = "C:\selenium_file\inventory\text"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
@@ -59,6 +58,16 @@ Public Class FormInit
             Form1.reply_img_CheckedListBox.Items.Add(file)
         Next
 
+    End Sub
+
+    Public Sub Render_DevList_combobox()
+        Dim EmulatedDevices() As String = {"iPhone SE", "iPhone XR", "Pixel 5", "Samsung Galaxy S8+", "Samsung Galaxy S20 Ultra", "iPad Air",
+            "iPad Mini", "Surface Pro 7", "Surface Duo", "Galaxy Fold", "Nest Hub", "Nest Hub Max"}
+
+        For Each dev In EmulatedDevices
+            Form1.EmulatedDevice_ComboBox.Items.Add(dev)
+        Next
+        'DeviceType_ComboBox
     End Sub
 
 End Class

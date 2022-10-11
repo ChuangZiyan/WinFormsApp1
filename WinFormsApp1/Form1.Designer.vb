@@ -62,6 +62,7 @@ Partial Class Form1
         Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.EmulatedDevice_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Chrome_Profile_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Insert_send_Random_content_TextFile_btn = New System.Windows.Forms.Button()
         Me.Text_File_CheckedListBox = New System.Windows.Forms.CheckedListBox()
@@ -100,11 +101,6 @@ Partial Class Form1
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Insert_open_browser_btn = New System.Windows.Forms.Button()
         Me.Insert_navigate_to_url_btn = New System.Windows.Forms.Button()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.pc_RadioButton = New System.Windows.Forms.RadioButton()
-        Me.i12pro_RadioButton = New System.Windows.Forms.RadioButton()
-        Me.pixel5_RadioButton = New System.Windows.Forms.RadioButton()
-        Me.ipadair_RadioButton = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.edge_RadioButton = New System.Windows.Forms.RadioButton()
         Me.firefox_RadioButton = New System.Windows.Forms.RadioButton()
@@ -133,13 +129,12 @@ Partial Class Form1
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_hour_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
         '
-        Me.content_RichTextBox.Location = New System.Drawing.Point(275, 376)
+        Me.content_RichTextBox.Location = New System.Drawing.Point(275, 347)
         Me.content_RichTextBox.Name = "content_RichTextBox"
         Me.content_RichTextBox.Size = New System.Drawing.Size(255, 202)
         Me.content_RichTextBox.TabIndex = 1
@@ -158,7 +153,7 @@ Partial Class Form1
         'curr_url_lbl
         '
         Me.curr_url_lbl.AutoSize = True
-        Me.curr_url_lbl.Location = New System.Drawing.Point(51, 236)
+        Me.curr_url_lbl.Location = New System.Drawing.Point(51, 205)
         Me.curr_url_lbl.Name = "curr_url_lbl"
         Me.curr_url_lbl.Size = New System.Drawing.Size(46, 19)
         Me.curr_url_lbl.TabIndex = 10
@@ -166,7 +161,7 @@ Partial Class Form1
         '
         'curr_url_TextBox
         '
-        Me.curr_url_TextBox.Location = New System.Drawing.Point(107, 233)
+        Me.curr_url_TextBox.Location = New System.Drawing.Point(107, 202)
         Me.curr_url_TextBox.Name = "curr_url_TextBox"
         Me.curr_url_TextBox.Size = New System.Drawing.Size(473, 27)
         Me.curr_url_TextBox.TabIndex = 11
@@ -176,14 +171,14 @@ Partial Class Form1
         Me.img_CheckedListBox.CheckOnClick = True
         Me.img_CheckedListBox.FormattingEnabled = True
         Me.img_CheckedListBox.HorizontalScrollbar = True
-        Me.img_CheckedListBox.Location = New System.Drawing.Point(7, 648)
+        Me.img_CheckedListBox.Location = New System.Drawing.Point(7, 619)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
         Me.img_CheckedListBox.Size = New System.Drawing.Size(262, 136)
         Me.img_CheckedListBox.TabIndex = 15
         '
         'group_name_TextBox
         '
-        Me.group_name_TextBox.Location = New System.Drawing.Point(107, 200)
+        Me.group_name_TextBox.Location = New System.Drawing.Point(107, 169)
         Me.group_name_TextBox.Name = "group_name_TextBox"
         Me.group_name_TextBox.Size = New System.Drawing.Size(473, 27)
         Me.group_name_TextBox.TabIndex = 27
@@ -191,7 +186,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(21, 203)
+        Me.Label3.Location = New System.Drawing.Point(21, 172)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(80, 19)
         Me.Label3.TabIndex = 28
@@ -488,7 +483,7 @@ Partial Class Form1
         '
         'Insert_close_driver_btn
         '
-        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(696, 132)
+        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(696, 101)
         Me.Insert_close_driver_btn.Name = "Insert_close_driver_btn"
         Me.Insert_close_driver_btn.Size = New System.Drawing.Size(92, 29)
         Me.Insert_close_driver_btn.TabIndex = 44
@@ -506,6 +501,7 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.EmulatedDevice_ComboBox)
         Me.cmd_GroupBox.Controls.Add(Me.Chrome_Profile_ComboBox)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_send_Random_content_TextFile_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Text_File_CheckedListBox)
@@ -548,7 +544,6 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.Label9)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_open_browser_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_navigate_to_url_btn)
-        Me.cmd_GroupBox.Controls.Add(Me.GroupBox3)
         Me.cmd_GroupBox.Controls.Add(Me.GroupBox2)
         Me.cmd_GroupBox.Controls.Add(Me.Get_url_btn)
         Me.cmd_GroupBox.Controls.Add(Me.get_groupname_Button)
@@ -572,17 +567,25 @@ Partial Class Form1
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
         '
+        'EmulatedDevice_ComboBox
+        '
+        Me.EmulatedDevice_ComboBox.FormattingEnabled = True
+        Me.EmulatedDevice_ComboBox.Location = New System.Drawing.Point(107, 68)
+        Me.EmulatedDevice_ComboBox.Name = "EmulatedDevice_ComboBox"
+        Me.EmulatedDevice_ComboBox.Size = New System.Drawing.Size(473, 27)
+        Me.EmulatedDevice_ComboBox.TabIndex = 97
+        '
         'Chrome_Profile_ComboBox
         '
         Me.Chrome_Profile_ComboBox.FormattingEnabled = True
-        Me.Chrome_Profile_ComboBox.Location = New System.Drawing.Point(107, 132)
+        Me.Chrome_Profile_ComboBox.Location = New System.Drawing.Point(107, 103)
         Me.Chrome_Profile_ComboBox.Name = "Chrome_Profile_ComboBox"
         Me.Chrome_Profile_ComboBox.Size = New System.Drawing.Size(473, 27)
         Me.Chrome_Profile_ComboBox.TabIndex = 96
         '
         'Insert_send_Random_content_TextFile_btn
         '
-        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(7, 584)
+        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(7, 555)
         Me.Insert_send_Random_content_TextFile_btn.Name = "Insert_send_Random_content_TextFile_btn"
         Me.Insert_send_Random_content_TextFile_btn.Size = New System.Drawing.Size(262, 29)
         Me.Insert_send_Random_content_TextFile_btn.TabIndex = 95
@@ -593,14 +596,14 @@ Partial Class Form1
         '
         Me.Text_File_CheckedListBox.FormattingEnabled = True
         Me.Text_File_CheckedListBox.HorizontalScrollbar = True
-        Me.Text_File_CheckedListBox.Location = New System.Drawing.Point(7, 376)
+        Me.Text_File_CheckedListBox.Location = New System.Drawing.Point(7, 347)
         Me.Text_File_CheckedListBox.Name = "Text_File_CheckedListBox"
         Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(262, 202)
         Me.Text_File_CheckedListBox.TabIndex = 93
         '
         'Insert_emoji_btn
         '
-        Me.Insert_emoji_btn.Location = New System.Drawing.Point(541, 733)
+        Me.Insert_emoji_btn.Location = New System.Drawing.Point(541, 704)
         Me.Insert_emoji_btn.Name = "Insert_emoji_btn"
         Me.Insert_emoji_btn.Size = New System.Drawing.Size(369, 29)
         Me.Insert_emoji_btn.TabIndex = 92
@@ -610,7 +613,7 @@ Partial Class Form1
         'Emoji_haha_CheckBox
         '
         Me.Emoji_haha_CheckBox.AutoSize = True
-        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(672, 704)
+        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(672, 675)
         Me.Emoji_haha_CheckBox.Name = "Emoji_haha_CheckBox"
         Me.Emoji_haha_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_haha_CheckBox.TabIndex = 91
@@ -620,7 +623,7 @@ Partial Class Form1
         'Emoji_sad_CheckBox
         '
         Me.Emoji_sad_CheckBox.AutoSize = True
-        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(605, 704)
+        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(605, 675)
         Me.Emoji_sad_CheckBox.Name = "Emoji_sad_CheckBox"
         Me.Emoji_sad_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_sad_CheckBox.TabIndex = 90
@@ -630,7 +633,7 @@ Partial Class Form1
         'Emoji_wow_CheckBox
         '
         Me.Emoji_wow_CheckBox.AutoSize = True
-        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(545, 704)
+        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(545, 675)
         Me.Emoji_wow_CheckBox.Name = "Emoji_wow_CheckBox"
         Me.Emoji_wow_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_wow_CheckBox.TabIndex = 89
@@ -640,7 +643,7 @@ Partial Class Form1
         'Emoji_angry_CheckBox
         '
         Me.Emoji_angry_CheckBox.AutoSize = True
-        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(739, 675)
+        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(739, 646)
         Me.Emoji_angry_CheckBox.Name = "Emoji_angry_CheckBox"
         Me.Emoji_angry_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_angry_CheckBox.TabIndex = 88
@@ -650,7 +653,7 @@ Partial Class Form1
         'Emoji_care_CheckBox
         '
         Me.Emoji_care_CheckBox.AutoSize = True
-        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(672, 675)
+        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(672, 646)
         Me.Emoji_care_CheckBox.Name = "Emoji_care_CheckBox"
         Me.Emoji_care_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_care_CheckBox.TabIndex = 87
@@ -660,7 +663,7 @@ Partial Class Form1
         'Emoji_love_CheckBox
         '
         Me.Emoji_love_CheckBox.AutoSize = True
-        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(605, 675)
+        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(605, 646)
         Me.Emoji_love_CheckBox.Name = "Emoji_love_CheckBox"
         Me.Emoji_love_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_love_CheckBox.TabIndex = 86
@@ -670,7 +673,7 @@ Partial Class Form1
         'Emoji_like_CheckBox
         '
         Me.Emoji_like_CheckBox.AutoSize = True
-        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(545, 675)
+        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(545, 646)
         Me.Emoji_like_CheckBox.Name = "Emoji_like_CheckBox"
         Me.Emoji_like_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_like_CheckBox.TabIndex = 85
@@ -680,7 +683,7 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(540, 653)
+        Me.Label14.Location = New System.Drawing.Point(540, 624)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(76, 19)
         Me.Label14.TabIndex = 84
@@ -688,7 +691,7 @@ Partial Class Form1
         '
         'Insert_empty_btn
         '
-        Me.Insert_empty_btn.Location = New System.Drawing.Point(541, 768)
+        Me.Insert_empty_btn.Location = New System.Drawing.Point(541, 739)
         Me.Insert_empty_btn.Name = "Insert_empty_btn"
         Me.Insert_empty_btn.Size = New System.Drawing.Size(370, 29)
         Me.Insert_empty_btn.TabIndex = 83
@@ -697,7 +700,7 @@ Partial Class Form1
         '
         'Insert_submit_comment_btn
         '
-        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(541, 611)
+        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(541, 582)
         Me.Insert_submit_comment_btn.Name = "Insert_submit_comment_btn"
         Me.Insert_submit_comment_btn.Size = New System.Drawing.Size(371, 29)
         Me.Insert_submit_comment_btn.TabIndex = 82
@@ -706,7 +709,7 @@ Partial Class Form1
         '
         'Insert_comment_upload_img_btn
         '
-        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(541, 576)
+        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(541, 547)
         Me.Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
         Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_comment_upload_img_btn.TabIndex = 81
@@ -718,14 +721,14 @@ Partial Class Form1
         Me.reply_img_CheckedListBox.CheckOnClick = True
         Me.reply_img_CheckedListBox.FormattingEnabled = True
         Me.reply_img_CheckedListBox.HorizontalScrollbar = True
-        Me.reply_img_CheckedListBox.Location = New System.Drawing.Point(541, 478)
+        Me.reply_img_CheckedListBox.Location = New System.Drawing.Point(541, 449)
         Me.reply_img_CheckedListBox.Name = "reply_img_CheckedListBox"
         Me.reply_img_CheckedListBox.Size = New System.Drawing.Size(372, 92)
         Me.reply_img_CheckedListBox.TabIndex = 80
         '
         'Insert_reply_comment_btn
         '
-        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(541, 443)
+        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(541, 414)
         Me.Insert_reply_comment_btn.Name = "Insert_reply_comment_btn"
         Me.Insert_reply_comment_btn.Size = New System.Drawing.Size(371, 29)
         Me.Insert_reply_comment_btn.TabIndex = 79
@@ -734,7 +737,7 @@ Partial Class Form1
         '
         'reply_content_RichTextBox
         '
-        Me.reply_content_RichTextBox.Location = New System.Drawing.Point(541, 376)
+        Me.reply_content_RichTextBox.Location = New System.Drawing.Point(541, 347)
         Me.reply_content_RichTextBox.Name = "reply_content_RichTextBox"
         Me.reply_content_RichTextBox.Size = New System.Drawing.Size(371, 61)
         Me.reply_content_RichTextBox.TabIndex = 78
@@ -742,7 +745,7 @@ Partial Class Form1
         '
         'Insert_click_reply_btn
         '
-        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(541, 341)
+        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(541, 312)
         Me.Insert_click_reply_btn.Name = "Insert_click_reply_btn"
         Me.Insert_click_reply_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_click_reply_btn.TabIndex = 77
@@ -752,7 +755,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(541, 319)
+        Me.Label2.Location = New System.Drawing.Point(541, 290)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(126, 19)
         Me.Label2.TabIndex = 76
@@ -760,7 +763,7 @@ Partial Class Form1
         '
         'Insert_submit_post_btn
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 825)
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(7, 796)
         Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
         Me.Insert_submit_post_btn.Size = New System.Drawing.Size(262, 29)
         Me.Insert_submit_post_btn.TabIndex = 75
@@ -769,7 +772,7 @@ Partial Class Form1
         '
         'Insert_click_img_video_btn
         '
-        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 790)
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(7, 761)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
         Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(262, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
@@ -778,7 +781,7 @@ Partial Class Form1
         '
         'Insert_clear_content_btn
         '
-        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(275, 341)
+        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(275, 312)
         Me.Insert_clear_content_btn.Name = "Insert_clear_content_btn"
         Me.Insert_clear_content_btn.Size = New System.Drawing.Size(255, 29)
         Me.Insert_clear_content_btn.TabIndex = 73
@@ -787,7 +790,7 @@ Partial Class Form1
         '
         'Insert_send_content_btn
         '
-        Me.Insert_send_content_btn.Location = New System.Drawing.Point(275, 584)
+        Me.Insert_send_content_btn.Location = New System.Drawing.Point(275, 555)
         Me.Insert_send_content_btn.Name = "Insert_send_content_btn"
         Me.Insert_send_content_btn.Size = New System.Drawing.Size(255, 29)
         Me.Insert_send_content_btn.TabIndex = 72
@@ -796,7 +799,7 @@ Partial Class Form1
         '
         'Insert_click_leave_msg_btn
         '
-        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(6, 341)
+        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(6, 312)
         Me.Insert_click_leave_msg_btn.Name = "Insert_click_leave_msg_btn"
         Me.Insert_click_leave_msg_btn.Size = New System.Drawing.Size(263, 29)
         Me.Insert_click_leave_msg_btn.TabIndex = 71
@@ -806,7 +809,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(7, 319)
+        Me.Label1.Location = New System.Drawing.Point(7, 290)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(122, 19)
         Me.Label1.TabIndex = 44
@@ -814,7 +817,7 @@ Partial Class Form1
         '
         'Insert_delay_btn
         '
-        Me.Insert_delay_btn.Location = New System.Drawing.Point(596, 263)
+        Me.Insert_delay_btn.Location = New System.Drawing.Point(596, 232)
         Me.Insert_delay_btn.Name = "Insert_delay_btn"
         Me.Insert_delay_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_delay_btn.TabIndex = 70
@@ -824,7 +827,7 @@ Partial Class Form1
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(503, 268)
+        Me.Label13.Location = New System.Drawing.Point(503, 237)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(77, 19)
         Me.Label13.TabIndex = 69
@@ -832,7 +835,7 @@ Partial Class Form1
         '
         'wait_random_second_NumericUpDown
         '
-        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(413, 266)
+        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(413, 235)
         Me.wait_random_second_NumericUpDown.Name = "wait_random_second_NumericUpDown"
         Me.wait_random_second_NumericUpDown.Size = New System.Drawing.Size(84, 27)
         Me.wait_random_second_NumericUpDown.TabIndex = 68
@@ -840,7 +843,7 @@ Partial Class Form1
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(377, 268)
+        Me.Label12.Location = New System.Drawing.Point(377, 237)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(30, 19)
         Me.Label12.TabIndex = 67
@@ -848,7 +851,7 @@ Partial Class Form1
         '
         'wait_second_NumericUpDown
         '
-        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(311, 266)
+        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(311, 235)
         Me.wait_second_NumericUpDown.Name = "wait_second_NumericUpDown"
         Me.wait_second_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_second_NumericUpDown.TabIndex = 66
@@ -856,7 +859,7 @@ Partial Class Form1
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(275, 268)
+        Me.Label11.Location = New System.Drawing.Point(275, 237)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(30, 19)
         Me.Label11.TabIndex = 65
@@ -864,7 +867,7 @@ Partial Class Form1
         '
         'wait_minute_NumericUpDown
         '
-        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(209, 266)
+        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(209, 235)
         Me.wait_minute_NumericUpDown.Name = "wait_minute_NumericUpDown"
         Me.wait_minute_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_minute_NumericUpDown.TabIndex = 64
@@ -872,7 +875,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(173, 268)
+        Me.Label10.Location = New System.Drawing.Point(173, 237)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(30, 19)
         Me.Label10.TabIndex = 63
@@ -880,7 +883,7 @@ Partial Class Form1
         '
         'wait_hour_NumericUpDown
         '
-        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(107, 266)
+        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(107, 235)
         Me.wait_hour_NumericUpDown.Name = "wait_hour_NumericUpDown"
         Me.wait_hour_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_hour_NumericUpDown.TabIndex = 62
@@ -888,7 +891,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(21, 268)
+        Me.Label9.Location = New System.Drawing.Point(21, 237)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(76, 19)
         Me.Label9.TabIndex = 61
@@ -896,7 +899,7 @@ Partial Class Form1
         '
         'Insert_open_browser_btn
         '
-        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(596, 132)
+        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(596, 101)
         Me.Insert_open_browser_btn.Name = "Insert_open_browser_btn"
         Me.Insert_open_browser_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_open_browser_btn.TabIndex = 60
@@ -905,69 +908,12 @@ Partial Class Form1
         '
         'Insert_navigate_to_url_btn
         '
-        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(694, 231)
+        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(694, 200)
         Me.Insert_navigate_to_url_btn.Name = "Insert_navigate_to_url_btn"
         Me.Insert_navigate_to_url_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_navigate_to_url_btn.TabIndex = 59
         Me.Insert_navigate_to_url_btn.Text = "前往-插入"
         Me.Insert_navigate_to_url_btn.UseVisualStyleBackColor = True
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.pc_RadioButton)
-        Me.GroupBox3.Controls.Add(Me.i12pro_RadioButton)
-        Me.GroupBox3.Controls.Add(Me.pixel5_RadioButton)
-        Me.GroupBox3.Controls.Add(Me.ipadair_RadioButton)
-        Me.GroupBox3.Location = New System.Drawing.Point(107, 68)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(473, 50)
-        Me.GroupBox3.TabIndex = 58
-        Me.GroupBox3.TabStop = False
-        '
-        'pc_RadioButton
-        '
-        Me.pc_RadioButton.AutoSize = True
-        Me.pc_RadioButton.Checked = True
-        Me.pc_RadioButton.Location = New System.Drawing.Point(6, 24)
-        Me.pc_RadioButton.Name = "pc_RadioButton"
-        Me.pc_RadioButton.Size = New System.Drawing.Size(49, 23)
-        Me.pc_RadioButton.TabIndex = 0
-        Me.pc_RadioButton.TabStop = True
-        Me.pc_RadioButton.Text = "PC"
-        Me.pc_RadioButton.UseVisualStyleBackColor = True
-        '
-        'i12pro_RadioButton
-        '
-        Me.i12pro_RadioButton.AutoSize = True
-        Me.i12pro_RadioButton.Location = New System.Drawing.Point(61, 24)
-        Me.i12pro_RadioButton.Name = "i12pro_RadioButton"
-        Me.i12pro_RadioButton.Size = New System.Drawing.Size(128, 23)
-        Me.i12pro_RadioButton.TabIndex = 2
-        Me.i12pro_RadioButton.TabStop = True
-        Me.i12pro_RadioButton.Text = "iPhone 12 Pro"
-        Me.i12pro_RadioButton.UseVisualStyleBackColor = True
-        '
-        'pixel5_RadioButton
-        '
-        Me.pixel5_RadioButton.AutoSize = True
-        Me.pixel5_RadioButton.Location = New System.Drawing.Point(195, 24)
-        Me.pixel5_RadioButton.Name = "pixel5_RadioButton"
-        Me.pixel5_RadioButton.Size = New System.Drawing.Size(75, 23)
-        Me.pixel5_RadioButton.TabIndex = 1
-        Me.pixel5_RadioButton.TabStop = True
-        Me.pixel5_RadioButton.Text = "Pixel 5"
-        Me.pixel5_RadioButton.UseVisualStyleBackColor = True
-        '
-        'ipadair_RadioButton
-        '
-        Me.ipadair_RadioButton.AutoSize = True
-        Me.ipadair_RadioButton.Location = New System.Drawing.Point(276, 24)
-        Me.ipadair_RadioButton.Name = "ipadair_RadioButton"
-        Me.ipadair_RadioButton.Size = New System.Drawing.Size(85, 23)
-        Me.ipadair_RadioButton.TabIndex = 3
-        Me.ipadair_RadioButton.TabStop = True
-        Me.ipadair_RadioButton.Text = "iPad Air"
-        Me.ipadair_RadioButton.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
@@ -1014,7 +960,7 @@ Partial Class Form1
         '
         'Get_url_btn
         '
-        Me.Get_url_btn.Location = New System.Drawing.Point(596, 231)
+        Me.Get_url_btn.Location = New System.Drawing.Point(596, 200)
         Me.Get_url_btn.Name = "Get_url_btn"
         Me.Get_url_btn.Size = New System.Drawing.Size(94, 29)
         Me.Get_url_btn.TabIndex = 56
@@ -1023,7 +969,7 @@ Partial Class Form1
         '
         'get_groupname_Button
         '
-        Me.get_groupname_Button.Location = New System.Drawing.Point(596, 200)
+        Me.get_groupname_Button.Location = New System.Drawing.Point(596, 169)
         Me.get_groupname_Button.Name = "get_groupname_Button"
         Me.get_groupname_Button.Size = New System.Drawing.Size(94, 29)
         Me.get_groupname_Button.TabIndex = 55
@@ -1041,7 +987,7 @@ Partial Class Form1
         '
         'Insert_login_Button
         '
-        Me.Insert_login_Button.Location = New System.Drawing.Point(596, 165)
+        Me.Insert_login_Button.Location = New System.Drawing.Point(596, 134)
         Me.Insert_login_Button.Name = "Insert_login_Button"
         Me.Insert_login_Button.Size = New System.Drawing.Size(94, 29)
         Me.Insert_login_Button.TabIndex = 53
@@ -1051,7 +997,7 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(324, 170)
+        Me.Label8.Location = New System.Drawing.Point(324, 139)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(50, 19)
         Me.Label8.TabIndex = 52
@@ -1059,14 +1005,14 @@ Partial Class Form1
         '
         'fb_password_TextBox
         '
-        Me.fb_password_TextBox.Location = New System.Drawing.Point(380, 167)
+        Me.fb_password_TextBox.Location = New System.Drawing.Point(380, 136)
         Me.fb_password_TextBox.Name = "fb_password_TextBox"
         Me.fb_password_TextBox.Size = New System.Drawing.Size(200, 27)
         Me.fb_password_TextBox.TabIndex = 51
         '
         'fb_account_TextBox
         '
-        Me.fb_account_TextBox.Location = New System.Drawing.Point(107, 167)
+        Me.fb_account_TextBox.Location = New System.Drawing.Point(107, 136)
         Me.fb_account_TextBox.Name = "fb_account_TextBox"
         Me.fb_account_TextBox.Size = New System.Drawing.Size(200, 27)
         Me.fb_account_TextBox.TabIndex = 50
@@ -1074,7 +1020,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(51, 170)
+        Me.Label7.Location = New System.Drawing.Point(51, 139)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(50, 19)
         Me.Label7.TabIndex = 48
@@ -1083,7 +1029,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(36, 137)
+        Me.Label6.Location = New System.Drawing.Point(36, 106)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(61, 19)
         Me.Label6.TabIndex = 47
@@ -1092,7 +1038,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(21, 92)
+        Me.Label5.Location = New System.Drawing.Point(25, 71)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(76, 19)
         Me.Label5.TabIndex = 43
@@ -1126,8 +1072,6 @@ Partial Class Form1
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_hour_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
@@ -1154,16 +1098,11 @@ Partial Class Form1
     Friend WithEvents edge_RadioButton As RadioButton
     Friend WithEvents firefox_RadioButton As RadioButton
     Friend WithEvents chrome_RadioButton As RadioButton
-    Friend WithEvents ipadair_RadioButton As RadioButton
     Friend WithEvents Label5 As Label
-    Friend WithEvents i12pro_RadioButton As RadioButton
-    Friend WithEvents pixel5_RadioButton As RadioButton
-    Friend WithEvents pc_RadioButton As RadioButton
     Friend WithEvents Get_url_btn As Button
     Friend WithEvents get_groupname_Button As Button
     Friend WithEvents open_browser_Button As Button
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Insert_navigate_to_url_btn As Button
     Friend WithEvents Insert_open_browser_btn As Button
     Friend WithEvents Label9 As Label
@@ -1232,4 +1171,5 @@ Partial Class Form1
     Friend WithEvents Insert_send_Random_content_TextFile_btn As Button
     Friend WithEvents Record_script_result_checkbox As CheckBox
     Friend WithEvents Chrome_Profile_ComboBox As ComboBox
+    Friend WithEvents EmulatedDevice_ComboBox As ComboBox
 End Class

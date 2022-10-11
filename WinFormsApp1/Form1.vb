@@ -52,6 +52,7 @@ Public Class Form1
         FormInit.Render_img_listbox()
         FormInit.Render_TextFile_listbox()
         FormInit.Render_profile_combobox()
+        FormInit.Render_DevList_combobox()
     End Sub
 
 
@@ -226,16 +227,13 @@ Public Class Form1
     Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
         If chrome_RadioButton.Checked = True Then
 
-            If pc_RadioButton.Checked = False Then
-                If pixel5_RadioButton.Checked Then
-                    used_dev_model = "Pixel 5"
-                ElseIf i12pro_RadioButton.Checked Then
-                    used_dev_model = "iPhone 12 Pro"
-                ElseIf ipadair_RadioButton.Checked Then
-                    used_dev_model = "iPad Air"
-                End If
-
+            If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
+                used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
+            Else
+                used_dev_model = "PC"
             End If
+
+
 
             If Chrome_Profile_ComboBox.SelectedItem IsNot Nothing Then
                 Open_Browser("Chrome", used_dev_model, Chrome_Profile_ComboBox.SelectedItem.ToString)
@@ -606,13 +604,9 @@ Public Class Form1
     Private Sub Insert_to_script(action As String, content As String)
 
 
-        If pixel5_RadioButton.Checked Then
-            used_dev_model = "Pixel 5"
-        ElseIf i12pro_RadioButton.Checked Then
-            used_dev_model = "iPhone 12 Pro"
-        ElseIf ipadair_RadioButton.Checked Then
-            used_dev_model = "iPad Air"
-        ElseIf pc_RadioButton.Checked Then
+        If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
+            used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
+        Else
             used_dev_model = "PC"
         End If
 
@@ -1271,18 +1265,6 @@ Public Class Form1
                 firefox_RadioButton.Checked = True
             Case "Edge"
                 edge_RadioButton.Checked = True
-        End Select
-
-        Select Case devtype
-            Case "PC"
-                pc_RadioButton.Checked = True
-            Case "Pixel 5"
-                pixel5_RadioButton.Checked = True
-            Case "iPhone 12 Pro"
-                i12pro_RadioButton.Checked = True
-            Case "iPad Air"
-                ipadair_RadioButton.Checked = True
-
         End Select
 
 
