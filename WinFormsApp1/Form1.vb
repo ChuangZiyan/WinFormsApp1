@@ -30,6 +30,8 @@ Public Class Form1
     Dim cursor_x As Integer = 0
     Dim cursor_y As Integer = 0
 
+    Dim rnd_num As New Random()
+
     Dim css_selector_config_obj As Newtonsoft.Json.Linq.JObject
     Dim m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
@@ -50,9 +52,14 @@ Public Class Form1
 
         FormInit.Render_Script_listview()
         FormInit.Render_img_listbox()
+        FormInit.Render_TextFolder_listbox()
+        FormInit.Render_ImageFolder_listbox()
+        'FormInit.Render_Reply_img_listbox()
         FormInit.Render_TextFile_listbox()
         FormInit.Render_profile_combobox()
         FormInit.Render_DevList_combobox()
+
+
     End Sub
 
 
@@ -88,7 +95,7 @@ Public Class Form1
             log_file_path = logging.Get_NewLogFile_dir()
             record_script = True
         End If
-        Dim rnd_num As New Random()
+        'Dim rnd_num As New Random()
         Dim j = 1
         For Each item As ListViewItem In script_ListView.Items
             Restore_ListViewItems_BackColor()
@@ -186,7 +193,8 @@ Public Class Form1
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
                         boolean_result = Write_post_send_content(File.ReadAllText(TextFiles(rnd)))
                     End If
-
+                Case "發送上載:隨機配對"
+                    boolean_result = Post_Random_Match_TextAndImage(content)
                 Case "清空"
                     boolean_result = Clear_post_content()
                 Case "上載"
@@ -896,6 +904,44 @@ Public Class Form1
         End Try
     End Function
 
+    Private Function Post_Random_Match_TextAndImage(content)
+        Dim TextFolder = content.Split("%20")(0).TrimEnd(";")
+        'Debug.WriteLine(TextFolder)
+        Dim ImageFolder = content.Split("%20")(1).TrimEnd(";")
+        'Debug.WriteLine(ImageFolder)
+
+        Dim Txtfiles() As String = IO.Directory.GetFiles(TextFolder)
+        Dim TextFile_ArrayList = New ArrayList()
+        For Each file As String In Txtfiles
+            'Debug.WriteLine(file)
+            TextFile_ArrayList.Add(file)
+        Next
+        Dim rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
+        Debug.WriteLine("Text : " + TextFile_ArrayList(rnd))
+
+        If Write_post_send_content(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
+            Return False
+        End If
+
+        Dim Imgfiles() As String = IO.Directory.GetFiles(ImageFolder)
+        Dim ImgageFile_ArrayList = New ArrayList()
+        For Each file As String In Imgfiles
+            'Debug.WriteLine(file)
+            ImgageFile_ArrayList.Add(file)
+        Next
+
+        rnd = rnd_num.Next(0, ImgageFile_ArrayList.Count)
+        Debug.WriteLine("Image : " + ImgageFile_ArrayList(rnd))
+
+        If Tring_to_upload_img(ImgageFile_ArrayList(rnd)) = False Then
+            Return False
+        End If
+
+        Return True
+
+    End Function
+
+
     Private Function Write_post_send_content(content)
         Try
             Dim myURL = chromeDriver.Url
@@ -1048,8 +1094,10 @@ Public Class Form1
 
         If chrome_RadioButton.Checked = True Then
             used_browser = "Chrome"
+            myprofile = Chrome_Profile_ComboBox.Text
             If Chrome_Profile_ComboBox.SelectedItem IsNot Nothing Then
-                myprofile = Chrome_Profile_ComboBox.SelectedItem.ToString
+                'myprofile = Chrome_Profile_ComboBox.SelectedItem.ToString
+                myprofile = Chrome_Profile_ComboBox.Text
                 Debug.WriteLine(myprofile)
                 used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
             End If
@@ -1379,6 +1427,25 @@ Public Class Form1
             Insert_to_script("發送:隨機", "全部隨機")
         Else
             Insert_to_script("發送:隨機", Txt_file_path.TrimEnd(";"))
+        End If
+
+    End Sub
+
+    Private Sub Insert_random_matching_text_and_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_random_matching_text_and_img_btn.Click
+        Dim Txt_Folder_path As String = ""
+        For Each itemChecked In TextFolder_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_Folder_path += itemChecked + ";"
+        Next
+
+        Dim Img_Folder_path As String = ""
+        For Each itemChecked In ImageFolder_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Img_Folder_path += itemChecked + ";"
+        Next
+
+        If Txt_Folder_path <> "" And Img_Folder_path <> "" Then
+            Insert_to_script("發送上載:隨機配對", Txt_Folder_path + "%20" + Img_Folder_path)
         End If
 
     End Sub

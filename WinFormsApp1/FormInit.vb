@@ -70,4 +70,26 @@ Public Class FormInit
         'DeviceType_ComboBox
     End Sub
 
+
+    Public Sub Render_TextFolder_listbox()
+        Dim mypath = "C:\selenium_file\inventory\text"
+        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+
+        For Each dir As String In dirs
+            Form1.TextFolder_CheckedListBox.Items.Add(dir)
+        Next
+
+    End Sub
+
+    Public Sub Render_ImageFolder_listbox()
+        Dim mypath = "C:\selenium_file\inventory\image"
+        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+
+        For Each dir As String In dirs
+            Form1.ImageFolder_CheckedListBox.Items.Add(dir)
+        Next
+
+    End Sub
+
+
 End Class
