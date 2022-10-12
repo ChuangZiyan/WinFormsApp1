@@ -64,9 +64,11 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TextFolder_ListBox = New System.Windows.Forms.ListBox()
+        Me.ImageFolder_ListBox = New System.Windows.Forms.ListBox()
+        Me.Set_Matching_btn = New System.Windows.Forms.Button()
+        Me.Match_Condition_ListView = New System.Windows.Forms.ListView()
         Me.Insert_random_matching_text_and_img_btn = New System.Windows.Forms.Button()
-        Me.ImageFolder_CheckedListBox = New System.Windows.Forms.CheckedListBox()
-        Me.TextFolder_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.open_imgdir_in_explorer_btn = New System.Windows.Forms.Button()
         Me.Insert_send_content_btn = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -77,7 +79,6 @@ Partial Class Form1
         Me.Insert_click_img_video_btn = New System.Windows.Forms.Button()
         Me.Insert_submit_post_btn = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Insert_click_reply_btn = New System.Windows.Forms.Button()
         Me.reply_content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.Insert_reply_comment_btn = New System.Windows.Forms.Button()
@@ -146,7 +147,7 @@ Partial Class Form1
         '
         Me.content_RichTextBox.Location = New System.Drawing.Point(629, 51)
         Me.content_RichTextBox.Name = "content_RichTextBox"
-        Me.content_RichTextBox.Size = New System.Drawing.Size(244, 305)
+        Me.content_RichTextBox.Size = New System.Drawing.Size(244, 260)
         Me.content_RichTextBox.TabIndex = 1
         Me.content_RichTextBox.Text = ""
         '
@@ -183,7 +184,7 @@ Partial Class Form1
         Me.img_CheckedListBox.HorizontalScrollbar = True
         Me.img_CheckedListBox.Location = New System.Drawing.Point(316, 16)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
-        Me.img_CheckedListBox.Size = New System.Drawing.Size(300, 202)
+        Me.img_CheckedListBox.Size = New System.Drawing.Size(300, 114)
         Me.img_CheckedListBox.TabIndex = 15
         '
         'group_name_TextBox
@@ -564,9 +565,11 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.TextFolder_ListBox)
+        Me.TabPage1.Controls.Add(Me.ImageFolder_ListBox)
+        Me.TabPage1.Controls.Add(Me.Set_Matching_btn)
+        Me.TabPage1.Controls.Add(Me.Match_Condition_ListView)
         Me.TabPage1.Controls.Add(Me.Insert_random_matching_text_and_img_btn)
-        Me.TabPage1.Controls.Add(Me.ImageFolder_CheckedListBox)
-        Me.TabPage1.Controls.Add(Me.TextFolder_CheckedListBox)
         Me.TabPage1.Controls.Add(Me.open_imgdir_in_explorer_btn)
         Me.TabPage1.Controls.Add(Me.Insert_send_content_btn)
         Me.TabPage1.Controls.Add(Me.Button1)
@@ -586,47 +589,62 @@ Partial Class Form1
         Me.TabPage1.Text = "(群組/個人)發帖"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'TextFolder_ListBox
+        '
+        Me.TextFolder_ListBox.FormattingEnabled = True
+        Me.TextFolder_ListBox.ItemHeight = 19
+        Me.TextFolder_ListBox.Location = New System.Drawing.Point(6, 171)
+        Me.TextFolder_ListBox.Name = "TextFolder_ListBox"
+        Me.TextFolder_ListBox.Size = New System.Drawing.Size(302, 194)
+        Me.TextFolder_ListBox.TabIndex = 104
+        '
+        'ImageFolder_ListBox
+        '
+        Me.ImageFolder_ListBox.FormattingEnabled = True
+        Me.ImageFolder_ListBox.ItemHeight = 19
+        Me.ImageFolder_ListBox.Location = New System.Drawing.Point(316, 171)
+        Me.ImageFolder_ListBox.Name = "ImageFolder_ListBox"
+        Me.ImageFolder_ListBox.Size = New System.Drawing.Size(299, 194)
+        Me.ImageFolder_ListBox.TabIndex = 103
+        '
+        'Set_Matching_btn
+        '
+        Me.Set_Matching_btn.Location = New System.Drawing.Point(315, 379)
+        Me.Set_Matching_btn.Name = "Set_Matching_btn"
+        Me.Set_Matching_btn.Size = New System.Drawing.Size(299, 29)
+        Me.Set_Matching_btn.TabIndex = 102
+        Me.Set_Matching_btn.Text = "↓設定配對條件↓"
+        Me.Set_Matching_btn.UseVisualStyleBackColor = True
+        '
+        'Match_Condition_ListView
+        '
+        Me.Match_Condition_ListView.Location = New System.Drawing.Point(6, 413)
+        Me.Match_Condition_ListView.Name = "Match_Condition_ListView"
+        Me.Match_Condition_ListView.Size = New System.Drawing.Size(608, 121)
+        Me.Match_Condition_ListView.TabIndex = 101
+        Me.Match_Condition_ListView.UseCompatibleStateImageBehavior = False
+        '
         'Insert_random_matching_text_and_img_btn
         '
-        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(314, 477)
+        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(629, 422)
         Me.Insert_random_matching_text_and_img_btn.Name = "Insert_random_matching_text_and_img_btn"
-        Me.Insert_random_matching_text_and_img_btn.Size = New System.Drawing.Size(300, 29)
+        Me.Insert_random_matching_text_and_img_btn.Size = New System.Drawing.Size(244, 29)
         Me.Insert_random_matching_text_and_img_btn.TabIndex = 100
         Me.Insert_random_matching_text_and_img_btn.Text = "隨機配對文字圖片 - 插入"
         Me.Insert_random_matching_text_and_img_btn.UseVisualStyleBackColor = True
         '
-        'ImageFolder_CheckedListBox
-        '
-        Me.ImageFolder_CheckedListBox.CheckOnClick = True
-        Me.ImageFolder_CheckedListBox.FormattingEnabled = True
-        Me.ImageFolder_CheckedListBox.HorizontalScrollbar = True
-        Me.ImageFolder_CheckedListBox.Location = New System.Drawing.Point(314, 269)
-        Me.ImageFolder_CheckedListBox.Name = "ImageFolder_CheckedListBox"
-        Me.ImageFolder_CheckedListBox.Size = New System.Drawing.Size(300, 202)
-        Me.ImageFolder_CheckedListBox.TabIndex = 99
-        '
-        'TextFolder_CheckedListBox
-        '
-        Me.TextFolder_CheckedListBox.CheckOnClick = True
-        Me.TextFolder_CheckedListBox.FormattingEnabled = True
-        Me.TextFolder_CheckedListBox.HorizontalScrollbar = True
-        Me.TextFolder_CheckedListBox.Location = New System.Drawing.Point(6, 269)
-        Me.TextFolder_CheckedListBox.Name = "TextFolder_CheckedListBox"
-        Me.TextFolder_CheckedListBox.Size = New System.Drawing.Size(302, 202)
-        Me.TextFolder_CheckedListBox.TabIndex = 98
-        '
         'open_imgdir_in_explorer_btn
         '
-        Me.open_imgdir_in_explorer_btn.Location = New System.Drawing.Point(6, 477)
+        Me.open_imgdir_in_explorer_btn.Location = New System.Drawing.Point(6, 378)
         Me.open_imgdir_in_explorer_btn.Name = "open_imgdir_in_explorer_btn"
-        Me.open_imgdir_in_explorer_btn.Size = New System.Drawing.Size(302, 29)
+        Me.open_imgdir_in_explorer_btn.Size = New System.Drawing.Size(303, 29)
         Me.open_imgdir_in_explorer_btn.TabIndex = 97
         Me.open_imgdir_in_explorer_btn.Text = "打開庫存資料夾"
         Me.open_imgdir_in_explorer_btn.UseVisualStyleBackColor = True
         '
         'Insert_send_content_btn
         '
-        Me.Insert_send_content_btn.Location = New System.Drawing.Point(629, 408)
+        Me.Insert_send_content_btn.Location = New System.Drawing.Point(629, 352)
         Me.Insert_send_content_btn.Name = "Insert_send_content_btn"
         Me.Insert_send_content_btn.Size = New System.Drawing.Size(244, 29)
         Me.Insert_send_content_btn.TabIndex = 72
@@ -635,7 +653,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(629, 373)
+        Me.Button1.Location = New System.Drawing.Point(629, 317)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(244, 29)
         Me.Button1.TabIndex = 96
@@ -644,7 +662,7 @@ Partial Class Form1
         '
         'Insert_clear_content_btn
         '
-        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(629, 443)
+        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(629, 387)
         Me.Insert_clear_content_btn.Name = "Insert_clear_content_btn"
         Me.Insert_clear_content_btn.Size = New System.Drawing.Size(244, 29)
         Me.Insert_clear_content_btn.TabIndex = 73
@@ -666,12 +684,12 @@ Partial Class Form1
         Me.Text_File_CheckedListBox.HorizontalScrollbar = True
         Me.Text_File_CheckedListBox.Location = New System.Drawing.Point(6, 16)
         Me.Text_File_CheckedListBox.Name = "Text_File_CheckedListBox"
-        Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(302, 202)
+        Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(302, 114)
         Me.Text_File_CheckedListBox.TabIndex = 93
         '
         'Insert_send_Random_content_TextFile_btn
         '
-        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(6, 224)
+        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(6, 136)
         Me.Insert_send_Random_content_TextFile_btn.Name = "Insert_send_Random_content_TextFile_btn"
         Me.Insert_send_Random_content_TextFile_btn.Size = New System.Drawing.Size(302, 29)
         Me.Insert_send_Random_content_TextFile_btn.TabIndex = 95
@@ -680,7 +698,7 @@ Partial Class Form1
         '
         'Insert_click_img_video_btn
         '
-        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(315, 224)
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(316, 136)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
         Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(299, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
@@ -689,7 +707,7 @@ Partial Class Form1
         '
         'Insert_submit_post_btn
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(629, 478)
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(629, 505)
         Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
         Me.Insert_submit_post_btn.Size = New System.Drawing.Size(244, 29)
         Me.Insert_submit_post_btn.TabIndex = 75
@@ -698,7 +716,6 @@ Partial Class Form1
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Label2)
         Me.TabPage2.Controls.Add(Me.Insert_click_reply_btn)
         Me.TabPage2.Controls.Add(Me.reply_content_RichTextBox)
         Me.TabPage2.Controls.Add(Me.Insert_reply_comment_btn)
@@ -722,18 +739,9 @@ Partial Class Form1
         Me.TabPage2.Text = "(回應/留言)帖子"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(23, 15)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(126, 19)
-        Me.Label2.TabIndex = 76
-        Me.Label2.Text = "(回應/留言) 帖子 :"
-        '
         'Insert_click_reply_btn
         '
-        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(23, 37)
+        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(6, 15)
         Me.Insert_click_reply_btn.Name = "Insert_click_reply_btn"
         Me.Insert_click_reply_btn.Size = New System.Drawing.Size(372, 29)
         Me.Insert_click_reply_btn.TabIndex = 77
@@ -742,15 +750,15 @@ Partial Class Form1
         '
         'reply_content_RichTextBox
         '
-        Me.reply_content_RichTextBox.Location = New System.Drawing.Point(23, 72)
+        Me.reply_content_RichTextBox.Location = New System.Drawing.Point(6, 60)
         Me.reply_content_RichTextBox.Name = "reply_content_RichTextBox"
-        Me.reply_content_RichTextBox.Size = New System.Drawing.Size(371, 61)
+        Me.reply_content_RichTextBox.Size = New System.Drawing.Size(371, 179)
         Me.reply_content_RichTextBox.TabIndex = 78
         Me.reply_content_RichTextBox.Text = ""
         '
         'Insert_reply_comment_btn
         '
-        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(23, 139)
+        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(7, 280)
         Me.Insert_reply_comment_btn.Name = "Insert_reply_comment_btn"
         Me.Insert_reply_comment_btn.Size = New System.Drawing.Size(371, 29)
         Me.Insert_reply_comment_btn.TabIndex = 79
@@ -759,7 +767,7 @@ Partial Class Form1
         '
         'Insert_emoji_btn
         '
-        Me.Insert_emoji_btn.Location = New System.Drawing.Point(23, 429)
+        Me.Insert_emoji_btn.Location = New System.Drawing.Point(406, 451)
         Me.Insert_emoji_btn.Name = "Insert_emoji_btn"
         Me.Insert_emoji_btn.Size = New System.Drawing.Size(369, 29)
         Me.Insert_emoji_btn.TabIndex = 92
@@ -771,15 +779,15 @@ Partial Class Form1
         Me.reply_img_CheckedListBox.CheckOnClick = True
         Me.reply_img_CheckedListBox.FormattingEnabled = True
         Me.reply_img_CheckedListBox.HorizontalScrollbar = True
-        Me.reply_img_CheckedListBox.Location = New System.Drawing.Point(23, 174)
+        Me.reply_img_CheckedListBox.Location = New System.Drawing.Point(405, 15)
         Me.reply_img_CheckedListBox.Name = "reply_img_CheckedListBox"
-        Me.reply_img_CheckedListBox.Size = New System.Drawing.Size(372, 92)
+        Me.reply_img_CheckedListBox.Size = New System.Drawing.Size(384, 224)
         Me.reply_img_CheckedListBox.TabIndex = 80
         '
         'Emoji_haha_CheckBox
         '
         Me.Emoji_haha_CheckBox.AutoSize = True
-        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(154, 400)
+        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(537, 422)
         Me.Emoji_haha_CheckBox.Name = "Emoji_haha_CheckBox"
         Me.Emoji_haha_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_haha_CheckBox.TabIndex = 91
@@ -788,9 +796,9 @@ Partial Class Form1
         '
         'Insert_comment_upload_img_btn
         '
-        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(23, 272)
+        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(405, 245)
         Me.Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
-        Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(384, 29)
         Me.Insert_comment_upload_img_btn.TabIndex = 81
         Me.Insert_comment_upload_img_btn.Text = "圖片-插入"
         Me.Insert_comment_upload_img_btn.UseVisualStyleBackColor = True
@@ -798,7 +806,7 @@ Partial Class Form1
         'Emoji_sad_CheckBox
         '
         Me.Emoji_sad_CheckBox.AutoSize = True
-        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(87, 400)
+        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(470, 422)
         Me.Emoji_sad_CheckBox.Name = "Emoji_sad_CheckBox"
         Me.Emoji_sad_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_sad_CheckBox.TabIndex = 90
@@ -807,9 +815,9 @@ Partial Class Form1
         '
         'Insert_submit_comment_btn
         '
-        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(23, 307)
+        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(405, 280)
         Me.Insert_submit_comment_btn.Name = "Insert_submit_comment_btn"
-        Me.Insert_submit_comment_btn.Size = New System.Drawing.Size(371, 29)
+        Me.Insert_submit_comment_btn.Size = New System.Drawing.Size(384, 29)
         Me.Insert_submit_comment_btn.TabIndex = 82
         Me.Insert_submit_comment_btn.Text = "送出-插入"
         Me.Insert_submit_comment_btn.UseVisualStyleBackColor = True
@@ -817,7 +825,7 @@ Partial Class Form1
         'Emoji_wow_CheckBox
         '
         Me.Emoji_wow_CheckBox.AutoSize = True
-        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(27, 400)
+        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(410, 422)
         Me.Emoji_wow_CheckBox.Name = "Emoji_wow_CheckBox"
         Me.Emoji_wow_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_wow_CheckBox.TabIndex = 89
@@ -827,7 +835,7 @@ Partial Class Form1
         'Emoji_angry_CheckBox
         '
         Me.Emoji_angry_CheckBox.AutoSize = True
-        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(221, 371)
+        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(604, 393)
         Me.Emoji_angry_CheckBox.Name = "Emoji_angry_CheckBox"
         Me.Emoji_angry_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_angry_CheckBox.TabIndex = 88
@@ -837,7 +845,7 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(22, 349)
+        Me.Label14.Location = New System.Drawing.Point(405, 371)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(76, 19)
         Me.Label14.TabIndex = 84
@@ -846,7 +854,7 @@ Partial Class Form1
         'Emoji_care_CheckBox
         '
         Me.Emoji_care_CheckBox.AutoSize = True
-        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(154, 371)
+        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(537, 393)
         Me.Emoji_care_CheckBox.Name = "Emoji_care_CheckBox"
         Me.Emoji_care_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_care_CheckBox.TabIndex = 87
@@ -856,7 +864,7 @@ Partial Class Form1
         'Emoji_like_CheckBox
         '
         Me.Emoji_like_CheckBox.AutoSize = True
-        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(27, 371)
+        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(410, 393)
         Me.Emoji_like_CheckBox.Name = "Emoji_like_CheckBox"
         Me.Emoji_like_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_like_CheckBox.TabIndex = 85
@@ -866,7 +874,7 @@ Partial Class Form1
         'Emoji_love_CheckBox
         '
         Me.Emoji_love_CheckBox.AutoSize = True
-        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(87, 371)
+        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(470, 393)
         Me.Emoji_love_CheckBox.Name = "Emoji_love_CheckBox"
         Me.Emoji_love_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_love_CheckBox.TabIndex = 86
@@ -1209,7 +1217,6 @@ Partial Class Form1
     Friend WithEvents Insert_click_leave_msg_btn As Button
     Friend WithEvents Insert_submit_post_btn As Button
     Friend WithEvents Insert_close_driver_btn As Button
-    Friend WithEvents Label2 As Label
     Friend WithEvents Insert_comment_upload_img_btn As Button
     Friend WithEvents reply_img_CheckedListBox As CheckedListBox
     Friend WithEvents Insert_reply_comment_btn As Button
@@ -1262,8 +1269,10 @@ Partial Class Form1
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Button1 As Button
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents open_imgdir_in_explorer_btn As Button
-    Friend WithEvents ImageFolder_CheckedListBox As CheckedListBox
-    Friend WithEvents TextFolder_CheckedListBox As CheckedListBox
     Friend WithEvents Insert_random_matching_text_and_img_btn As Button
+    Friend WithEvents Set_Matching_btn As Button
+    Friend WithEvents Match_Condition_ListView As ListView
+    Friend WithEvents open_imgdir_in_explorer_btn As Button
+    Friend WithEvents ImageFolder_ListBox As ListBox
+    Friend WithEvents TextFolder_ListBox As ListBox
 End Class

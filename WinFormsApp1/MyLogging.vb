@@ -29,7 +29,6 @@ Public Class MyLogging
         log_file = My.Computer.FileSystem.OpenTextFileWriter(file_path, True)
         log_file.WriteLine(thisDate + "," + thisTime + "," + content)
         log_file.Close()
-
     End Sub
 
 

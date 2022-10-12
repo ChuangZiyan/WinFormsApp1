@@ -51,6 +51,7 @@ Public Class Form1
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
         FormInit.Render_Script_listview()
+        FormInit.Render_Maching_condition_listview()
         FormInit.Render_img_listbox()
         FormInit.Render_TextFolder_listbox()
         FormInit.Render_ImageFolder_listbox()
@@ -1431,24 +1432,22 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Insert_random_matching_text_and_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_random_matching_text_and_img_btn.Click
-        Dim Txt_Folder_path As String = ""
-        For Each itemChecked In TextFolder_CheckedListBox.CheckedItems
-            'Debug.WriteLine(itemChecked)
-            Txt_Folder_path += itemChecked + ";"
-        Next
 
-        Dim Img_Folder_path As String = ""
-        For Each itemChecked In ImageFolder_CheckedListBox.CheckedItems
-            'Debug.WriteLine(itemChecked)
-            Img_Folder_path += itemChecked + ";"
-        Next
+    Private Sub Set_Matching_btn_Click(sender As Object, e As EventArgs) Handles Set_Matching_btn.Click
 
-        If Txt_Folder_path <> "" And Img_Folder_path <> "" Then
-            Insert_to_script("發送上載:隨機配對", Txt_Folder_path + "%20" + Img_Folder_path)
+        If TextFolder_ListBox.SelectedIndex >= 0 And ImageFolder_ListBox.SelectedIndex >= 0 Then
+            Match_Condition_ListView.Items.Add(TextFolder_ListBox.SelectedItem.ToString()).SubItems.Add(ImageFolder_ListBox.SelectedItem.ToString())
+        Else
+            MsgBox("必須選取資料夾")
         End If
 
     End Sub
 
+    Private Sub Insert_random_matching_text_and_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_random_matching_text_and_img_btn.Click
 
+        For Each item As ListViewItem In Match_Condition_ListView.Items
+            MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
+        Next
+
+    End Sub
 End Class

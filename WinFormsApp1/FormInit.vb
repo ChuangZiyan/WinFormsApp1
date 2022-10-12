@@ -19,6 +19,17 @@ Public Class FormInit
 
     End Sub
 
+
+    Public Sub Render_Maching_condition_listview()
+        Form1.Match_Condition_ListView.View = View.Details
+        Form1.Match_Condition_ListView.GridLines = True
+        Form1.Match_Condition_ListView.FullRowSelect = True
+        Form1.Match_Condition_ListView.Columns.Add("文字檔案夾", 300)
+        Form1.Match_Condition_ListView.Columns.Add("相片檔案夾", 300)
+
+
+    End Sub
+
     Public Sub Render_profile_combobox()
         Dim mypath = "C:\selenium_file\my_profile"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
@@ -76,7 +87,7 @@ Public Class FormInit
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
 
         For Each dir As String In dirs
-            Form1.TextFolder_CheckedListBox.Items.Add(dir)
+            Form1.TextFolder_ListBox.Items.Add(dir)
         Next
 
     End Sub
@@ -86,7 +97,7 @@ Public Class FormInit
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
 
         For Each dir As String In dirs
-            Form1.ImageFolder_CheckedListBox.Items.Add(dir)
+            Form1.ImageFolder_ListBox.Items.Add(dir)
         Next
 
     End Sub
