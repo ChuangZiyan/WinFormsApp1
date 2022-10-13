@@ -125,6 +125,7 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -565,6 +566,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Clear_Conditions_Listview)
         Me.TabPage1.Controls.Add(Me.TextFolder_ListBox)
         Me.TabPage1.Controls.Add(Me.ImageFolder_ListBox)
         Me.TabPage1.Controls.Add(Me.Set_Matching_btn)
@@ -611,7 +613,7 @@ Partial Class Form1
         '
         Me.Set_Matching_btn.Location = New System.Drawing.Point(315, 379)
         Me.Set_Matching_btn.Name = "Set_Matching_btn"
-        Me.Set_Matching_btn.Size = New System.Drawing.Size(299, 29)
+        Me.Set_Matching_btn.Size = New System.Drawing.Size(153, 29)
         Me.Set_Matching_btn.TabIndex = 102
         Me.Set_Matching_btn.Text = "↓設定配對條件↓"
         Me.Set_Matching_btn.UseVisualStyleBackColor = True
@@ -1140,6 +1142,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Clear_Conditions_Listview
+        '
+        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(474, 379)
+        Me.Clear_Conditions_Listview.Name = "Clear_Conditions_Listview"
+        Me.Clear_Conditions_Listview.Size = New System.Drawing.Size(140, 29)
+        Me.Clear_Conditions_Listview.TabIndex = 105
+        Me.Clear_Conditions_Listview.Text = "清除配對條件"
+        Me.Clear_Conditions_Listview.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -1275,4 +1286,5 @@ Partial Class Form1
     Friend WithEvents open_imgdir_in_explorer_btn As Button
     Friend WithEvents ImageFolder_ListBox As ListBox
     Friend WithEvents TextFolder_ListBox As ListBox
+    Friend WithEvents Clear_Conditions_Listview As Button
 End Class

@@ -105,7 +105,6 @@ Public Class Form1
             item.EnsureVisible()
 
             j += 1
-            'Continue For
             If script_running = False Then
                 'Debug.WriteLine("running false")
                 loop_run = False
@@ -906,23 +905,36 @@ Public Class Form1
     End Function
 
     Private Function Post_Random_Match_TextAndImage(content)
-        Dim TextFolder = content.Split("%20")(0).TrimEnd(";")
-        'Debug.WriteLine(TextFolder)
-        Dim ImageFolder = content.Split("%20")(1).TrimEnd(";")
-        'Debug.WriteLine(ImageFolder)
+        'Debug.WriteLine(content)
+        Dim AllConditions() As String = content.Split(";")
+
+        'For Each cond In AllConditions
+        'Debug.WriteLine("Line : " + cond)
+        'Next
+        Dim rnd = rnd_num.Next(0, AllConditions.Length)
+
+        'Debug.WriteLine(AllConditions(rnd))
+
+
+        Dim TextFolder = AllConditions(rnd).Split("%20")(0)
+        Dim ImageFolder = AllConditions(rnd).Split("%20")(1)
 
         Dim Txtfiles() As String = IO.Directory.GetFiles(TextFolder)
         Dim TextFile_ArrayList = New ArrayList()
         For Each file As String In Txtfiles
             'Debug.WriteLine(file)
-            TextFile_ArrayList.Add(file)
+            If Path.GetExtension(file) = ".txt" Then
+                TextFile_ArrayList.Add(file)
+            End If
+
         Next
-        Dim rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
-        Debug.WriteLine("Text : " + TextFile_ArrayList(rnd))
+
+        rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
 
         If Write_post_send_content(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
             Return False
         End If
+
 
         Dim Imgfiles() As String = IO.Directory.GetFiles(ImageFolder)
         Dim ImgageFile_ArrayList = New ArrayList()
@@ -932,7 +944,7 @@ Public Class Form1
         Next
 
         rnd = rnd_num.Next(0, ImgageFile_ArrayList.Count)
-        Debug.WriteLine("Image : " + ImgageFile_ArrayList(rnd))
+        'Debug.WriteLine("Image : " + ImgageFile_ArrayList(rnd))
 
         If Tring_to_upload_img(ImgageFile_ArrayList(rnd)) = False Then
             Return False
@@ -987,36 +999,22 @@ Public Class Form1
 
     Private Function Tring_to_upload_img(img_path_str)
 
-        Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
-        Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
+        'Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
+        'Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
 
         click_by_aria_label("相片／影片")
 
-
-
         Dim upload_img_input As Object
 
-        If IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString) Then
-            Try
-                upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
-                upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-                Return True
-            Catch ex As Exception
-                Return False
-            End Try
 
-        Else
-            Try
-                upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_2").ToString))
-                upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-                Return True
-            Catch ex As Exception
-                Return False
-            End Try
+        Try
+            upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
+            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
 
-        End If
-
-        Return False
 
     End Function
 
@@ -1444,10 +1442,21 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_random_matching_text_and_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_random_matching_text_and_img_btn.Click
-
+        Dim Content As String = ""
         For Each item As ListViewItem In Match_Condition_ListView.Items
-            MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
+            'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
+            Content += item.SubItems(0).Text + "%20" + item.SubItems(1).Text + ";"
         Next
+        'MsgBox(Content)
+        If Content = "" Then
+            MsgBox("無任何配對條件")
+        Else
+            Insert_to_script("發送上載:隨機配對", Content.TrimEnd(";"c))
+        End If
 
+    End Sub
+
+    Private Sub Clear_Conditions_Listview_Click(sender As Object, e As EventArgs) Handles Clear_Conditions_Listview.Click
+        Match_Condition_ListView.Items.Clear()
     End Sub
 End Class
