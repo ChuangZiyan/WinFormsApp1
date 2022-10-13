@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualBasic
 Imports System.IO.File
-Imports WinFormsApp1.Form1
-Public Class MyLogging
+
+Module MyLogging
 
     Public Function SayHello()
         Debug.WriteLine("hello")
@@ -32,4 +32,4 @@ Public Class MyLogging
     End Sub
 
 
-End Class
+End Module

@@ -1,8 +1,8 @@
 ﻿Imports System.IO
-Imports WinFormsApp1.Form1
 
 
-Public Class FormInit
+
+Module FormInit
 
 
     Public Sub Render_Script_listview()
@@ -103,4 +103,4 @@ Public Class FormInit
     End Sub
 
 
-End Class
+End Module

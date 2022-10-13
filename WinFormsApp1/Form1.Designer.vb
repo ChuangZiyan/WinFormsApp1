@@ -64,6 +64,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TextFolder_ListBox = New System.Windows.Forms.ListBox()
         Me.ImageFolder_ListBox = New System.Windows.Forms.ListBox()
         Me.Set_Matching_btn = New System.Windows.Forms.Button()
@@ -125,7 +126,6 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -590,6 +590,15 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "(群組/個人)發帖"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Clear_Conditions_Listview
+        '
+        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(474, 379)
+        Me.Clear_Conditions_Listview.Name = "Clear_Conditions_Listview"
+        Me.Clear_Conditions_Listview.Size = New System.Drawing.Size(140, 29)
+        Me.Clear_Conditions_Listview.TabIndex = 105
+        Me.Clear_Conditions_Listview.Text = "清除配對條件"
+        Me.Clear_Conditions_Listview.UseVisualStyleBackColor = True
         '
         'TextFolder_ListBox
         '
@@ -1141,15 +1150,6 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
-        '
-        'Clear_Conditions_Listview
-        '
-        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(474, 379)
-        Me.Clear_Conditions_Listview.Name = "Clear_Conditions_Listview"
-        Me.Clear_Conditions_Listview.Size = New System.Drawing.Size(140, 29)
-        Me.Clear_Conditions_Listview.TabIndex = 105
-        Me.Clear_Conditions_Listview.Text = "清除配對條件"
-        Me.Clear_Conditions_Listview.UseVisualStyleBackColor = True
         '
         'Form1
         '

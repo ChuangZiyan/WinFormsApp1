@@ -21,14 +21,8 @@ Imports WinFormsApp1.MyLogging
 
 Public Class Form1
 
-    Dim logging = New MyLogging()
-    Dim FormInit = New FormInit()
-
     Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
-
-    Dim cursor_x As Integer = 0
-    Dim cursor_y As Integer = 0
 
     Dim rnd_num As New Random()
 
@@ -93,7 +87,7 @@ Public Class Form1
         Dim record_script = False
         Dim log_file_path As String = ""
         If Record_script_result_checkbox.Checked = True Then
-            log_file_path = logging.Get_NewLogFile_dir()
+            log_file_path = MyLogging.Get_NewLogFile_dir()
             record_script = True
         End If
         'Dim rnd_num As New Random()
@@ -218,7 +212,7 @@ Public Class Form1
                 item.SubItems.Item(6).Text = ("失敗")
             End If
             If record_script Then
-                logging.Write_to_file(log_file_path, brower + "," + devicetype + "," + action + "," + content + "," + item.SubItems.Item(6).Text)
+                MyLogging.Write_to_file(log_file_path, brower + "," + devicetype + "," + action + "," + content + "," + item.SubItems.Item(6).Text)
             End If
 
         Next
@@ -514,10 +508,10 @@ Public Class Form1
         Dim act = New Actions(chromeDriver)
         'cursor_x = cursor_x_TextBox.Text
         'cursor_y = cursor_y_TextBox.Text
-        act.MoveByOffset(cursor_x, cursor_y).Build.Perform()
-        act.Click.Perform()
-        Debug.WriteLine(cursor_x & "," & cursor_y)
-        act.MoveByOffset(-cursor_x, -cursor_y).Build.Perform()
+        'act.MoveByOffset(cursor_x, cursor_y).Build.Perform()
+        'act.Click.Perform()
+        'Debug.WriteLine(cursor_x & "," & cursor_y)
+        'act.MoveByOffset(-cursor_x, -cursor_y).Build.Perform()
 
         'Thread.Sleep(3000)
         'act.MoveToElement(login_btn).Perform()
@@ -1351,57 +1345,19 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Rearrange_scriptlistview_number()
-        Dim index = 1
-        For Each item As ListViewItem In script_ListView.Items
-            item.SubItems.Item(0).Text = index.ToString()
-            index += 1
-        Next
 
-    End Sub
 
     Private Sub Delete_selected_item_btn_Click(sender As Object, e As EventArgs) Handles Delete_selected_item_btn.Click
-        For i As Integer = script_ListView.SelectedIndices.Count - 1 To 0 Step -1
-            script_ListView.Items.RemoveAt(script_ListView.SelectedIndices(i))
-        Next
-        Rearrange_scriptlistview_number()
+        FormComponentController.Delete_ScriptListView_selected_item()
     End Sub
 
-
-    Private Sub Move_up_selected_item_btnClick(sender As Object, e As EventArgs) Handles Move_up_selected_item_btn.Click
-        If script_ListView.SelectedIndices.Count > 0 Then
-            For i = 0 To script_ListView.SelectedIndices.Count - 1
-                Dim index = script_ListView.SelectedIndices(i)
-                If index > 0 Then
-                    If script_ListView.SelectedIndices.Contains(index - 1) Then
-                        Continue For
-                    End If
-                    Dim temp As ListViewItem = script_ListView.Items(index)
-                    script_ListView.Items.RemoveAt(index)
-                    script_ListView.Items.Insert(index - 1, temp)
-                    script_ListView.Items(index - 1).Focused = True
-                End If
-            Next
-        End If
-        Rearrange_scriptlistview_number()
+    Private Sub Move_up_selected_item_btn_Click(sender As Object, e As EventArgs) Handles Move_up_selected_item_btn.Click
+        FormComponentController.Move_up_ScriptListView_selected_item()
     End Sub
+
 
     Private Sub MoveDown_selected_item_btn_Click(sender As Object, e As EventArgs) Handles MoveDown_selected_item_btn.Click
-        If script_ListView.SelectedIndices.Count > 0 Then
-            For i = script_ListView.SelectedIndices.Count - 1 To 0 Step -1
-                Dim index = script_ListView.SelectedIndices(i)
-                If index < script_ListView.Items.Count - 1 Then
-                    If script_ListView.SelectedIndices.Contains(index + 1) Then
-                        Continue For
-                    End If
-                    Dim temp As ListViewItem = script_ListView.Items(index)
-                    script_ListView.Items.RemoveAt(index)
-                    script_ListView.Items.Insert(index + 1, temp)
-                    script_ListView.Items(index + 1).Focused = True
-                End If
-            Next
-        End If
-        Rearrange_scriptlistview_number()
+        FormComponentController.MoveDown_ScriptListView_selected_item()
     End Sub
 
     Private Sub Text_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.Click
@@ -1459,4 +1415,6 @@ Public Class Form1
     Private Sub Clear_Conditions_Listview_Click(sender As Object, e As EventArgs) Handles Clear_Conditions_Listview.Click
         Match_Condition_ListView.Items.Clear()
     End Sub
+
+
 End Class
