@@ -38,7 +38,7 @@ Partial Class Form1
         Me.stop_script_btn = New System.Windows.Forms.Button()
         Me.Delete_selected_item_btn = New System.Windows.Forms.Button()
         Me.load_script_btn = New System.Windows.Forms.Button()
-        Me.save_script_btn = New System.Windows.Forms.Button()
+        Me.SaveAs_script_btn = New System.Windows.Forms.Button()
         Me.Clear_script_btn = New System.Windows.Forms.Button()
         Me.Open_file_dialog_btn = New System.Windows.Forms.Button()
         Me.TextBox_script_file_path = New System.Windows.Forms.TextBox()
@@ -64,39 +64,40 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
-        Me.TextFolder_ListBox = New System.Windows.Forms.ListBox()
-        Me.ImageFolder_ListBox = New System.Windows.Forms.ListBox()
-        Me.Set_Matching_btn = New System.Windows.Forms.Button()
-        Me.Match_Condition_ListView = New System.Windows.Forms.ListView()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Insert_random_matching_text_and_img_btn = New System.Windows.Forms.Button()
-        Me.open_imgdir_in_explorer_btn = New System.Windows.Forms.Button()
-        Me.Insert_send_content_btn = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Insert_clear_content_btn = New System.Windows.Forms.Button()
         Me.Insert_click_leave_msg_btn = New System.Windows.Forms.Button()
-        Me.Text_File_CheckedListBox = New System.Windows.Forms.CheckedListBox()
+        Me.Insert_send_content_btn = New System.Windows.Forms.Button()
         Me.Insert_send_Random_content_TextFile_btn = New System.Windows.Forms.Button()
         Me.Insert_click_img_video_btn = New System.Windows.Forms.Button()
+        Me.Insert_clear_content_btn = New System.Windows.Forms.Button()
         Me.Insert_submit_post_btn = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Insert_click_reply_btn = New System.Windows.Forms.Button()
-        Me.reply_content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.Insert_reply_comment_btn = New System.Windows.Forms.Button()
-        Me.Insert_emoji_btn = New System.Windows.Forms.Button()
-        Me.reply_img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
-        Me.Emoji_haha_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Insert_Reply_Random_TxtFile_btn = New System.Windows.Forms.Button()
         Me.Insert_comment_upload_img_btn = New System.Windows.Forms.Button()
-        Me.Emoji_sad_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Insert_Reply_Random_Match_btn = New System.Windows.Forms.Button()
         Me.Insert_submit_comment_btn = New System.Windows.Forms.Button()
+        Me.Insert_emoji_btn = New System.Windows.Forms.Button()
+        Me.Emoji_haha_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Emoji_sad_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Emoji_wow_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Emoji_angry_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Emoji_care_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Emoji_like_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Emoji_love_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
+        Me.SaveAs_RichBox_Content_btn = New System.Windows.Forms.Button()
         Me.EmulatedDevice_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.TextFolder_ListBox = New System.Windows.Forms.ListBox()
+        Me.Set_Matching_btn = New System.Windows.Forms.Button()
+        Me.ImageFolder_ListBox = New System.Windows.Forms.ListBox()
+        Me.Match_Condition_ListView = New System.Windows.Forms.ListView()
         Me.Chrome_Profile_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Open_dir_in_explorer_btn = New System.Windows.Forms.Button()
         Me.Insert_delay_btn = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.wait_random_second_NumericUpDown = New System.Windows.Forms.NumericUpDown()
@@ -105,6 +106,7 @@ Partial Class Form1
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Insert_empty_btn = New System.Windows.Forms.Button()
         Me.wait_minute_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Text_File_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -136,7 +138,9 @@ Partial Class Form1
         Me.cmd_GroupBox.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.FlowLayoutPanel1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.FlowLayoutPanel2.SuspendLayout()
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,11 +150,12 @@ Partial Class Form1
         '
         'content_RichTextBox
         '
-        Me.content_RichTextBox.Location = New System.Drawing.Point(629, 51)
+        Me.content_RichTextBox.Location = New System.Drawing.Point(314, 290)
         Me.content_RichTextBox.Name = "content_RichTextBox"
-        Me.content_RichTextBox.Size = New System.Drawing.Size(244, 260)
+        Me.content_RichTextBox.Size = New System.Drawing.Size(300, 265)
         Me.content_RichTextBox.TabIndex = 1
         Me.content_RichTextBox.Text = ""
+        Me.content_RichTextBox.WordWrap = False
         '
         'driver_close_bnt
         '
@@ -183,9 +188,9 @@ Partial Class Form1
         Me.img_CheckedListBox.CheckOnClick = True
         Me.img_CheckedListBox.FormattingEnabled = True
         Me.img_CheckedListBox.HorizontalScrollbar = True
-        Me.img_CheckedListBox.Location = New System.Drawing.Point(316, 16)
+        Me.img_CheckedListBox.Location = New System.Drawing.Point(6, 454)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
-        Me.img_CheckedListBox.Size = New System.Drawing.Size(300, 114)
+        Me.img_CheckedListBox.Size = New System.Drawing.Size(300, 136)
         Me.img_CheckedListBox.TabIndex = 15
         '
         'group_name_TextBox
@@ -221,7 +226,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.stop_script_btn)
         Me.GroupBox1.Controls.Add(Me.Delete_selected_item_btn)
         Me.GroupBox1.Controls.Add(Me.load_script_btn)
-        Me.GroupBox1.Controls.Add(Me.save_script_btn)
+        Me.GroupBox1.Controls.Add(Me.SaveAs_script_btn)
         Me.GroupBox1.Controls.Add(Me.Clear_script_btn)
         Me.GroupBox1.Controls.Add(Me.Open_file_dialog_btn)
         Me.GroupBox1.Controls.Add(Me.TextBox_script_file_path)
@@ -262,7 +267,7 @@ Partial Class Form1
         '
         'MoveDown_selected_item_btn
         '
-        Me.MoveDown_selected_item_btn.Location = New System.Drawing.Point(118, 22)
+        Me.MoveDown_selected_item_btn.Location = New System.Drawing.Point(106, 22)
         Me.MoveDown_selected_item_btn.Name = "MoveDown_selected_item_btn"
         Me.MoveDown_selected_item_btn.Size = New System.Drawing.Size(94, 29)
         Me.MoveDown_selected_item_btn.TabIndex = 68
@@ -271,7 +276,7 @@ Partial Class Form1
         '
         'Move_up_selected_item_btn
         '
-        Me.Move_up_selected_item_btn.Location = New System.Drawing.Point(18, 22)
+        Me.Move_up_selected_item_btn.Location = New System.Drawing.Point(6, 22)
         Me.Move_up_selected_item_btn.Name = "Move_up_selected_item_btn"
         Me.Move_up_selected_item_btn.Size = New System.Drawing.Size(94, 29)
         Me.Move_up_selected_item_btn.TabIndex = 67
@@ -291,7 +296,7 @@ Partial Class Form1
         'Delete_selected_item_btn
         '
         Me.Delete_selected_item_btn.BackColor = System.Drawing.Color.LightCoral
-        Me.Delete_selected_item_btn.Location = New System.Drawing.Point(218, 22)
+        Me.Delete_selected_item_btn.Location = New System.Drawing.Point(206, 22)
         Me.Delete_selected_item_btn.Name = "Delete_selected_item_btn"
         Me.Delete_selected_item_btn.Size = New System.Drawing.Size(94, 29)
         Me.Delete_selected_item_btn.TabIndex = 66
@@ -307,14 +312,14 @@ Partial Class Form1
         Me.load_script_btn.Text = "載入"
         Me.load_script_btn.UseVisualStyleBackColor = True
         '
-        'save_script_btn
+        'SaveAs_script_btn
         '
-        Me.save_script_btn.Location = New System.Drawing.Point(658, 726)
-        Me.save_script_btn.Name = "save_script_btn"
-        Me.save_script_btn.Size = New System.Drawing.Size(94, 29)
-        Me.save_script_btn.TabIndex = 64
-        Me.save_script_btn.Text = "另存"
-        Me.save_script_btn.UseVisualStyleBackColor = True
+        Me.SaveAs_script_btn.Location = New System.Drawing.Point(658, 726)
+        Me.SaveAs_script_btn.Name = "SaveAs_script_btn"
+        Me.SaveAs_script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.SaveAs_script_btn.TabIndex = 64
+        Me.SaveAs_script_btn.Text = "另存"
+        Me.SaveAs_script_btn.UseVisualStyleBackColor = True
         '
         'Clear_script_btn
         '
@@ -514,8 +519,16 @@ Partial Class Form1
         'cmd_GroupBox
         '
         Me.cmd_GroupBox.Controls.Add(Me.TabControl1)
+        Me.cmd_GroupBox.Controls.Add(Me.content_RichTextBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Clear_Conditions_Listview)
+        Me.cmd_GroupBox.Controls.Add(Me.SaveAs_RichBox_Content_btn)
         Me.cmd_GroupBox.Controls.Add(Me.EmulatedDevice_ComboBox)
+        Me.cmd_GroupBox.Controls.Add(Me.TextFolder_ListBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Set_Matching_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.ImageFolder_ListBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Match_Condition_ListView)
         Me.cmd_GroupBox.Controls.Add(Me.Chrome_Profile_ComboBox)
+        Me.cmd_GroupBox.Controls.Add(Me.Open_dir_in_explorer_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_close_driver_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_delay_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Label13)
@@ -525,7 +538,9 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.wait_second_NumericUpDown)
         Me.cmd_GroupBox.Controls.Add(Me.Label11)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_empty_btn)
+        Me.cmd_GroupBox.Controls.Add(Me.img_CheckedListBox)
         Me.cmd_GroupBox.Controls.Add(Me.wait_minute_NumericUpDown)
+        Me.cmd_GroupBox.Controls.Add(Me.Text_File_CheckedListBox)
         Me.cmd_GroupBox.Controls.Add(Me.Label10)
         Me.cmd_GroupBox.Controls.Add(Me.wait_hour_NumericUpDown)
         Me.cmd_GroupBox.Controls.Add(Me.Label9)
@@ -558,184 +573,106 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(21, 285)
+        Me.TabControl1.Location = New System.Drawing.Point(623, 288)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(896, 578)
+        Me.TabControl1.Size = New System.Drawing.Size(292, 564)
         Me.TabControl1.TabIndex = 98
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.Clear_Conditions_Listview)
-        Me.TabPage1.Controls.Add(Me.TextFolder_ListBox)
-        Me.TabPage1.Controls.Add(Me.ImageFolder_ListBox)
-        Me.TabPage1.Controls.Add(Me.Set_Matching_btn)
-        Me.TabPage1.Controls.Add(Me.Match_Condition_ListView)
-        Me.TabPage1.Controls.Add(Me.Insert_random_matching_text_and_img_btn)
-        Me.TabPage1.Controls.Add(Me.open_imgdir_in_explorer_btn)
-        Me.TabPage1.Controls.Add(Me.Insert_send_content_btn)
-        Me.TabPage1.Controls.Add(Me.Button1)
-        Me.TabPage1.Controls.Add(Me.Insert_clear_content_btn)
-        Me.TabPage1.Controls.Add(Me.Insert_click_leave_msg_btn)
-        Me.TabPage1.Controls.Add(Me.Text_File_CheckedListBox)
-        Me.TabPage1.Controls.Add(Me.Insert_send_Random_content_TextFile_btn)
-        Me.TabPage1.Controls.Add(Me.img_CheckedListBox)
-        Me.TabPage1.Controls.Add(Me.Insert_click_img_video_btn)
-        Me.TabPage1.Controls.Add(Me.Insert_submit_post_btn)
-        Me.TabPage1.Controls.Add(Me.content_RichTextBox)
+        Me.TabPage1.Controls.Add(Me.FlowLayoutPanel1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 28)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(888, 546)
+        Me.TabPage1.Size = New System.Drawing.Size(284, 532)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "(群組/個人)發帖"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Clear_Conditions_Listview
+        'FlowLayoutPanel1
         '
-        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(474, 379)
-        Me.Clear_Conditions_Listview.Name = "Clear_Conditions_Listview"
-        Me.Clear_Conditions_Listview.Size = New System.Drawing.Size(140, 29)
-        Me.Clear_Conditions_Listview.TabIndex = 105
-        Me.Clear_Conditions_Listview.Text = "清除配對條件"
-        Me.Clear_Conditions_Listview.UseVisualStyleBackColor = True
-        '
-        'TextFolder_ListBox
-        '
-        Me.TextFolder_ListBox.FormattingEnabled = True
-        Me.TextFolder_ListBox.ItemHeight = 19
-        Me.TextFolder_ListBox.Location = New System.Drawing.Point(6, 171)
-        Me.TextFolder_ListBox.Name = "TextFolder_ListBox"
-        Me.TextFolder_ListBox.Size = New System.Drawing.Size(302, 194)
-        Me.TextFolder_ListBox.TabIndex = 104
-        '
-        'ImageFolder_ListBox
-        '
-        Me.ImageFolder_ListBox.FormattingEnabled = True
-        Me.ImageFolder_ListBox.ItemHeight = 19
-        Me.ImageFolder_ListBox.Location = New System.Drawing.Point(316, 171)
-        Me.ImageFolder_ListBox.Name = "ImageFolder_ListBox"
-        Me.ImageFolder_ListBox.Size = New System.Drawing.Size(299, 194)
-        Me.ImageFolder_ListBox.TabIndex = 103
-        '
-        'Set_Matching_btn
-        '
-        Me.Set_Matching_btn.Location = New System.Drawing.Point(315, 379)
-        Me.Set_Matching_btn.Name = "Set_Matching_btn"
-        Me.Set_Matching_btn.Size = New System.Drawing.Size(153, 29)
-        Me.Set_Matching_btn.TabIndex = 102
-        Me.Set_Matching_btn.Text = "↓設定配對條件↓"
-        Me.Set_Matching_btn.UseVisualStyleBackColor = True
-        '
-        'Match_Condition_ListView
-        '
-        Me.Match_Condition_ListView.Location = New System.Drawing.Point(6, 413)
-        Me.Match_Condition_ListView.Name = "Match_Condition_ListView"
-        Me.Match_Condition_ListView.Size = New System.Drawing.Size(608, 121)
-        Me.Match_Condition_ListView.TabIndex = 101
-        Me.Match_Condition_ListView.UseCompatibleStateImageBehavior = False
+        Me.FlowLayoutPanel1.Controls.Add(Me.Insert_random_matching_text_and_img_btn)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Insert_click_leave_msg_btn)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Insert_send_content_btn)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Insert_send_Random_content_TextFile_btn)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Insert_click_img_video_btn)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Insert_clear_content_btn)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Insert_submit_post_btn)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(6, 6)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(272, 302)
+        Me.FlowLayoutPanel1.TabIndex = 101
         '
         'Insert_random_matching_text_and_img_btn
         '
-        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(629, 422)
+        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(3, 3)
         Me.Insert_random_matching_text_and_img_btn.Name = "Insert_random_matching_text_and_img_btn"
-        Me.Insert_random_matching_text_and_img_btn.Size = New System.Drawing.Size(244, 29)
+        Me.Insert_random_matching_text_and_img_btn.Size = New System.Drawing.Size(263, 29)
         Me.Insert_random_matching_text_and_img_btn.TabIndex = 100
         Me.Insert_random_matching_text_and_img_btn.Text = "隨機配對文字圖片 - 插入"
         Me.Insert_random_matching_text_and_img_btn.UseVisualStyleBackColor = True
         '
-        'open_imgdir_in_explorer_btn
-        '
-        Me.open_imgdir_in_explorer_btn.Location = New System.Drawing.Point(6, 378)
-        Me.open_imgdir_in_explorer_btn.Name = "open_imgdir_in_explorer_btn"
-        Me.open_imgdir_in_explorer_btn.Size = New System.Drawing.Size(303, 29)
-        Me.open_imgdir_in_explorer_btn.TabIndex = 97
-        Me.open_imgdir_in_explorer_btn.Text = "打開庫存資料夾"
-        Me.open_imgdir_in_explorer_btn.UseVisualStyleBackColor = True
-        '
-        'Insert_send_content_btn
-        '
-        Me.Insert_send_content_btn.Location = New System.Drawing.Point(629, 352)
-        Me.Insert_send_content_btn.Name = "Insert_send_content_btn"
-        Me.Insert_send_content_btn.Size = New System.Drawing.Size(244, 29)
-        Me.Insert_send_content_btn.TabIndex = 72
-        Me.Insert_send_content_btn.Text = "內容-插入"
-        Me.Insert_send_content_btn.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(629, 317)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(244, 29)
-        Me.Button1.TabIndex = 96
-        Me.Button1.Text = "儲存內容"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Insert_clear_content_btn
-        '
-        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(629, 387)
-        Me.Insert_clear_content_btn.Name = "Insert_clear_content_btn"
-        Me.Insert_clear_content_btn.Size = New System.Drawing.Size(244, 29)
-        Me.Insert_clear_content_btn.TabIndex = 73
-        Me.Insert_clear_content_btn.Text = "清空內容-插入"
-        Me.Insert_clear_content_btn.UseVisualStyleBackColor = True
-        '
         'Insert_click_leave_msg_btn
         '
-        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(629, 16)
+        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(3, 38)
         Me.Insert_click_leave_msg_btn.Name = "Insert_click_leave_msg_btn"
-        Me.Insert_click_leave_msg_btn.Size = New System.Drawing.Size(244, 29)
+        Me.Insert_click_leave_msg_btn.Size = New System.Drawing.Size(263, 29)
         Me.Insert_click_leave_msg_btn.TabIndex = 71
         Me.Insert_click_leave_msg_btn.Text = "按 留個言吧-插入"
         Me.Insert_click_leave_msg_btn.UseVisualStyleBackColor = True
         '
-        'Text_File_CheckedListBox
+        'Insert_send_content_btn
         '
-        Me.Text_File_CheckedListBox.FormattingEnabled = True
-        Me.Text_File_CheckedListBox.HorizontalScrollbar = True
-        Me.Text_File_CheckedListBox.Location = New System.Drawing.Point(6, 16)
-        Me.Text_File_CheckedListBox.Name = "Text_File_CheckedListBox"
-        Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(302, 114)
-        Me.Text_File_CheckedListBox.TabIndex = 93
+        Me.Insert_send_content_btn.Location = New System.Drawing.Point(3, 73)
+        Me.Insert_send_content_btn.Name = "Insert_send_content_btn"
+        Me.Insert_send_content_btn.Size = New System.Drawing.Size(263, 29)
+        Me.Insert_send_content_btn.TabIndex = 72
+        Me.Insert_send_content_btn.Text = "內容-插入"
+        Me.Insert_send_content_btn.UseVisualStyleBackColor = True
         '
         'Insert_send_Random_content_TextFile_btn
         '
-        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(6, 136)
+        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(3, 108)
         Me.Insert_send_Random_content_TextFile_btn.Name = "Insert_send_Random_content_TextFile_btn"
-        Me.Insert_send_Random_content_TextFile_btn.Size = New System.Drawing.Size(302, 29)
+        Me.Insert_send_Random_content_TextFile_btn.Size = New System.Drawing.Size(263, 29)
         Me.Insert_send_Random_content_TextFile_btn.TabIndex = 95
         Me.Insert_send_Random_content_TextFile_btn.Text = "隨機文檔-插入"
         Me.Insert_send_Random_content_TextFile_btn.UseVisualStyleBackColor = True
         '
         'Insert_click_img_video_btn
         '
-        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(316, 136)
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(3, 143)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
-        Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(299, 29)
+        Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(263, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
         Me.Insert_click_img_video_btn.Text = "圖片-插入"
         Me.Insert_click_img_video_btn.UseVisualStyleBackColor = True
         '
+        'Insert_clear_content_btn
+        '
+        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(3, 178)
+        Me.Insert_clear_content_btn.Name = "Insert_clear_content_btn"
+        Me.Insert_clear_content_btn.Size = New System.Drawing.Size(263, 29)
+        Me.Insert_clear_content_btn.TabIndex = 73
+        Me.Insert_clear_content_btn.Text = "清空內容-插入"
+        Me.Insert_clear_content_btn.UseVisualStyleBackColor = True
+        '
         'Insert_submit_post_btn
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(629, 505)
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(3, 213)
         Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
-        Me.Insert_submit_post_btn.Size = New System.Drawing.Size(244, 29)
+        Me.Insert_submit_post_btn.Size = New System.Drawing.Size(263, 29)
         Me.Insert_submit_post_btn.TabIndex = 75
         Me.Insert_submit_post_btn.Text = "按 發布-插入"
         Me.Insert_submit_post_btn.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Insert_click_reply_btn)
-        Me.TabPage2.Controls.Add(Me.reply_content_RichTextBox)
-        Me.TabPage2.Controls.Add(Me.Insert_reply_comment_btn)
+        Me.TabPage2.Controls.Add(Me.FlowLayoutPanel2)
         Me.TabPage2.Controls.Add(Me.Insert_emoji_btn)
-        Me.TabPage2.Controls.Add(Me.reply_img_CheckedListBox)
         Me.TabPage2.Controls.Add(Me.Emoji_haha_CheckBox)
-        Me.TabPage2.Controls.Add(Me.Insert_comment_upload_img_btn)
         Me.TabPage2.Controls.Add(Me.Emoji_sad_CheckBox)
-        Me.TabPage2.Controls.Add(Me.Insert_submit_comment_btn)
         Me.TabPage2.Controls.Add(Me.Emoji_wow_CheckBox)
         Me.TabPage2.Controls.Add(Me.Emoji_angry_CheckBox)
         Me.TabPage2.Controls.Add(Me.Label14)
@@ -745,98 +682,111 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 28)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(888, 546)
+        Me.TabPage2.Size = New System.Drawing.Size(284, 532)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "(回應/留言)帖子"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'FlowLayoutPanel2
+        '
+        Me.FlowLayoutPanel2.Controls.Add(Me.Insert_click_reply_btn)
+        Me.FlowLayoutPanel2.Controls.Add(Me.Insert_reply_comment_btn)
+        Me.FlowLayoutPanel2.Controls.Add(Me.Insert_Reply_Random_TxtFile_btn)
+        Me.FlowLayoutPanel2.Controls.Add(Me.Insert_comment_upload_img_btn)
+        Me.FlowLayoutPanel2.Controls.Add(Me.Insert_Reply_Random_Match_btn)
+        Me.FlowLayoutPanel2.Controls.Add(Me.Insert_submit_comment_btn)
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(6, 6)
+        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(272, 302)
+        Me.FlowLayoutPanel2.TabIndex = 95
+        '
         'Insert_click_reply_btn
         '
-        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(6, 15)
+        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(3, 3)
         Me.Insert_click_reply_btn.Name = "Insert_click_reply_btn"
-        Me.Insert_click_reply_btn.Size = New System.Drawing.Size(372, 29)
+        Me.Insert_click_reply_btn.Size = New System.Drawing.Size(263, 29)
         Me.Insert_click_reply_btn.TabIndex = 77
         Me.Insert_click_reply_btn.Text = "按 回覆/留言-插入"
         Me.Insert_click_reply_btn.UseVisualStyleBackColor = True
         '
-        'reply_content_RichTextBox
-        '
-        Me.reply_content_RichTextBox.Location = New System.Drawing.Point(6, 60)
-        Me.reply_content_RichTextBox.Name = "reply_content_RichTextBox"
-        Me.reply_content_RichTextBox.Size = New System.Drawing.Size(371, 179)
-        Me.reply_content_RichTextBox.TabIndex = 78
-        Me.reply_content_RichTextBox.Text = ""
-        '
         'Insert_reply_comment_btn
         '
-        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(7, 280)
+        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(3, 38)
         Me.Insert_reply_comment_btn.Name = "Insert_reply_comment_btn"
-        Me.Insert_reply_comment_btn.Size = New System.Drawing.Size(371, 29)
+        Me.Insert_reply_comment_btn.Size = New System.Drawing.Size(263, 29)
         Me.Insert_reply_comment_btn.TabIndex = 79
         Me.Insert_reply_comment_btn.Text = "回覆內容-插入"
         Me.Insert_reply_comment_btn.UseVisualStyleBackColor = True
         '
+        'Insert_Reply_Random_TxtFile_btn
+        '
+        Me.Insert_Reply_Random_TxtFile_btn.Location = New System.Drawing.Point(3, 73)
+        Me.Insert_Reply_Random_TxtFile_btn.Name = "Insert_Reply_Random_TxtFile_btn"
+        Me.Insert_Reply_Random_TxtFile_btn.Size = New System.Drawing.Size(263, 29)
+        Me.Insert_Reply_Random_TxtFile_btn.TabIndex = 93
+        Me.Insert_Reply_Random_TxtFile_btn.Text = "回覆隨機檔案 - 插入"
+        Me.Insert_Reply_Random_TxtFile_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_comment_upload_img_btn
+        '
+        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(3, 108)
+        Me.Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
+        Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(263, 29)
+        Me.Insert_comment_upload_img_btn.TabIndex = 81
+        Me.Insert_comment_upload_img_btn.Text = "圖片-插入"
+        Me.Insert_comment_upload_img_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Reply_Random_Match_btn
+        '
+        Me.Insert_Reply_Random_Match_btn.Location = New System.Drawing.Point(3, 143)
+        Me.Insert_Reply_Random_Match_btn.Name = "Insert_Reply_Random_Match_btn"
+        Me.Insert_Reply_Random_Match_btn.Size = New System.Drawing.Size(263, 29)
+        Me.Insert_Reply_Random_Match_btn.TabIndex = 94
+        Me.Insert_Reply_Random_Match_btn.Text = "回復隨機配對 - 插入"
+        Me.Insert_Reply_Random_Match_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_submit_comment_btn
+        '
+        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(3, 178)
+        Me.Insert_submit_comment_btn.Name = "Insert_submit_comment_btn"
+        Me.Insert_submit_comment_btn.Size = New System.Drawing.Size(263, 29)
+        Me.Insert_submit_comment_btn.TabIndex = 82
+        Me.Insert_submit_comment_btn.Text = "送出-插入"
+        Me.Insert_submit_comment_btn.UseVisualStyleBackColor = True
+        '
         'Insert_emoji_btn
         '
-        Me.Insert_emoji_btn.Location = New System.Drawing.Point(406, 451)
+        Me.Insert_emoji_btn.Location = New System.Drawing.Point(7, 391)
         Me.Insert_emoji_btn.Name = "Insert_emoji_btn"
-        Me.Insert_emoji_btn.Size = New System.Drawing.Size(369, 29)
+        Me.Insert_emoji_btn.Size = New System.Drawing.Size(265, 29)
         Me.Insert_emoji_btn.TabIndex = 92
         Me.Insert_emoji_btn.Text = "插入"
         Me.Insert_emoji_btn.UseVisualStyleBackColor = True
         '
-        'reply_img_CheckedListBox
-        '
-        Me.reply_img_CheckedListBox.CheckOnClick = True
-        Me.reply_img_CheckedListBox.FormattingEnabled = True
-        Me.reply_img_CheckedListBox.HorizontalScrollbar = True
-        Me.reply_img_CheckedListBox.Location = New System.Drawing.Point(405, 15)
-        Me.reply_img_CheckedListBox.Name = "reply_img_CheckedListBox"
-        Me.reply_img_CheckedListBox.Size = New System.Drawing.Size(384, 224)
-        Me.reply_img_CheckedListBox.TabIndex = 80
-        '
         'Emoji_haha_CheckBox
         '
         Me.Emoji_haha_CheckBox.AutoSize = True
-        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(537, 422)
+        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(136, 362)
         Me.Emoji_haha_CheckBox.Name = "Emoji_haha_CheckBox"
         Me.Emoji_haha_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_haha_CheckBox.TabIndex = 91
         Me.Emoji_haha_CheckBox.Text = "哈哈"
         Me.Emoji_haha_CheckBox.UseVisualStyleBackColor = True
         '
-        'Insert_comment_upload_img_btn
-        '
-        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(405, 245)
-        Me.Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
-        Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(384, 29)
-        Me.Insert_comment_upload_img_btn.TabIndex = 81
-        Me.Insert_comment_upload_img_btn.Text = "圖片-插入"
-        Me.Insert_comment_upload_img_btn.UseVisualStyleBackColor = True
-        '
         'Emoji_sad_CheckBox
         '
         Me.Emoji_sad_CheckBox.AutoSize = True
-        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(470, 422)
+        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(72, 362)
         Me.Emoji_sad_CheckBox.Name = "Emoji_sad_CheckBox"
         Me.Emoji_sad_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_sad_CheckBox.TabIndex = 90
         Me.Emoji_sad_CheckBox.Text = "難過"
         Me.Emoji_sad_CheckBox.UseVisualStyleBackColor = True
         '
-        'Insert_submit_comment_btn
-        '
-        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(405, 280)
-        Me.Insert_submit_comment_btn.Name = "Insert_submit_comment_btn"
-        Me.Insert_submit_comment_btn.Size = New System.Drawing.Size(384, 29)
-        Me.Insert_submit_comment_btn.TabIndex = 82
-        Me.Insert_submit_comment_btn.Text = "送出-插入"
-        Me.Insert_submit_comment_btn.UseVisualStyleBackColor = True
-        '
         'Emoji_wow_CheckBox
         '
         Me.Emoji_wow_CheckBox.AutoSize = True
-        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(410, 422)
+        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(11, 362)
         Me.Emoji_wow_CheckBox.Name = "Emoji_wow_CheckBox"
         Me.Emoji_wow_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_wow_CheckBox.TabIndex = 89
@@ -846,7 +796,7 @@ Partial Class Form1
         'Emoji_angry_CheckBox
         '
         Me.Emoji_angry_CheckBox.AutoSize = True
-        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(604, 393)
+        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(199, 333)
         Me.Emoji_angry_CheckBox.Name = "Emoji_angry_CheckBox"
         Me.Emoji_angry_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_angry_CheckBox.TabIndex = 88
@@ -856,7 +806,7 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(405, 371)
+        Me.Label14.Location = New System.Drawing.Point(6, 311)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(76, 19)
         Me.Label14.TabIndex = 84
@@ -865,7 +815,7 @@ Partial Class Form1
         'Emoji_care_CheckBox
         '
         Me.Emoji_care_CheckBox.AutoSize = True
-        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(537, 393)
+        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(136, 333)
         Me.Emoji_care_CheckBox.Name = "Emoji_care_CheckBox"
         Me.Emoji_care_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_care_CheckBox.TabIndex = 87
@@ -875,7 +825,7 @@ Partial Class Form1
         'Emoji_like_CheckBox
         '
         Me.Emoji_like_CheckBox.AutoSize = True
-        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(410, 393)
+        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(11, 333)
         Me.Emoji_like_CheckBox.Name = "Emoji_like_CheckBox"
         Me.Emoji_like_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_like_CheckBox.TabIndex = 85
@@ -885,12 +835,30 @@ Partial Class Form1
         'Emoji_love_CheckBox
         '
         Me.Emoji_love_CheckBox.AutoSize = True
-        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(470, 393)
+        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(72, 333)
         Me.Emoji_love_CheckBox.Name = "Emoji_love_CheckBox"
         Me.Emoji_love_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_love_CheckBox.TabIndex = 86
         Me.Emoji_love_CheckBox.Text = "愛心"
         Me.Emoji_love_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Clear_Conditions_Listview
+        '
+        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(464, 696)
+        Me.Clear_Conditions_Listview.Name = "Clear_Conditions_Listview"
+        Me.Clear_Conditions_Listview.Size = New System.Drawing.Size(150, 29)
+        Me.Clear_Conditions_Listview.TabIndex = 105
+        Me.Clear_Conditions_Listview.Text = "清除配對條件"
+        Me.Clear_Conditions_Listview.UseVisualStyleBackColor = True
+        '
+        'SaveAs_RichBox_Content_btn
+        '
+        Me.SaveAs_RichBox_Content_btn.Location = New System.Drawing.Point(314, 561)
+        Me.SaveAs_RichBox_Content_btn.Name = "SaveAs_RichBox_Content_btn"
+        Me.SaveAs_RichBox_Content_btn.Size = New System.Drawing.Size(303, 29)
+        Me.SaveAs_RichBox_Content_btn.TabIndex = 96
+        Me.SaveAs_RichBox_Content_btn.Text = "儲存內容"
+        Me.SaveAs_RichBox_Content_btn.UseVisualStyleBackColor = True
         '
         'EmulatedDevice_ComboBox
         '
@@ -900,6 +868,41 @@ Partial Class Form1
         Me.EmulatedDevice_ComboBox.Size = New System.Drawing.Size(473, 27)
         Me.EmulatedDevice_ComboBox.TabIndex = 97
         '
+        'TextFolder_ListBox
+        '
+        Me.TextFolder_ListBox.FormattingEnabled = True
+        Me.TextFolder_ListBox.ItemHeight = 19
+        Me.TextFolder_ListBox.Location = New System.Drawing.Point(6, 610)
+        Me.TextFolder_ListBox.Name = "TextFolder_ListBox"
+        Me.TextFolder_ListBox.Size = New System.Drawing.Size(300, 80)
+        Me.TextFolder_ListBox.TabIndex = 104
+        '
+        'Set_Matching_btn
+        '
+        Me.Set_Matching_btn.Location = New System.Drawing.Point(314, 696)
+        Me.Set_Matching_btn.Name = "Set_Matching_btn"
+        Me.Set_Matching_btn.Size = New System.Drawing.Size(150, 29)
+        Me.Set_Matching_btn.TabIndex = 102
+        Me.Set_Matching_btn.Text = "↓設定配對條件↓"
+        Me.Set_Matching_btn.UseVisualStyleBackColor = True
+        '
+        'ImageFolder_ListBox
+        '
+        Me.ImageFolder_ListBox.FormattingEnabled = True
+        Me.ImageFolder_ListBox.ItemHeight = 19
+        Me.ImageFolder_ListBox.Location = New System.Drawing.Point(314, 611)
+        Me.ImageFolder_ListBox.Name = "ImageFolder_ListBox"
+        Me.ImageFolder_ListBox.Size = New System.Drawing.Size(300, 80)
+        Me.ImageFolder_ListBox.TabIndex = 103
+        '
+        'Match_Condition_ListView
+        '
+        Me.Match_Condition_ListView.Location = New System.Drawing.Point(6, 732)
+        Me.Match_Condition_ListView.Name = "Match_Condition_ListView"
+        Me.Match_Condition_ListView.Size = New System.Drawing.Size(608, 121)
+        Me.Match_Condition_ListView.TabIndex = 101
+        Me.Match_Condition_ListView.UseCompatibleStateImageBehavior = False
+        '
         'Chrome_Profile_ComboBox
         '
         Me.Chrome_Profile_ComboBox.FormattingEnabled = True
@@ -907,6 +910,15 @@ Partial Class Form1
         Me.Chrome_Profile_ComboBox.Name = "Chrome_Profile_ComboBox"
         Me.Chrome_Profile_ComboBox.Size = New System.Drawing.Size(473, 27)
         Me.Chrome_Profile_ComboBox.TabIndex = 96
+        '
+        'Open_dir_in_explorer_btn
+        '
+        Me.Open_dir_in_explorer_btn.Location = New System.Drawing.Point(6, 696)
+        Me.Open_dir_in_explorer_btn.Name = "Open_dir_in_explorer_btn"
+        Me.Open_dir_in_explorer_btn.Size = New System.Drawing.Size(301, 29)
+        Me.Open_dir_in_explorer_btn.TabIndex = 97
+        Me.Open_dir_in_explorer_btn.Text = "打開庫存資料夾"
+        Me.Open_dir_in_explorer_btn.UseVisualStyleBackColor = True
         '
         'Insert_delay_btn
         '
@@ -973,6 +985,16 @@ Partial Class Form1
         Me.wait_minute_NumericUpDown.Name = "wait_minute_NumericUpDown"
         Me.wait_minute_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_minute_NumericUpDown.TabIndex = 64
+        '
+        'Text_File_CheckedListBox
+        '
+        Me.Text_File_CheckedListBox.CheckOnClick = True
+        Me.Text_File_CheckedListBox.FormattingEnabled = True
+        Me.Text_File_CheckedListBox.HorizontalScrollbar = True
+        Me.Text_File_CheckedListBox.Location = New System.Drawing.Point(6, 290)
+        Me.Text_File_CheckedListBox.Name = "Text_File_CheckedListBox"
+        Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(300, 158)
+        Me.Text_File_CheckedListBox.TabIndex = 93
         '
         'Label10
         '
@@ -1155,7 +1177,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1767, 893)
+        Me.ClientSize = New System.Drawing.Size(1767, 906)
         Me.Controls.Add(Me.cmd_GroupBox)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "Form1"
@@ -1172,8 +1194,10 @@ Partial Class Form1
         Me.cmd_GroupBox.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.FlowLayoutPanel2.ResumeLayout(False)
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1222,28 +1246,8 @@ Partial Class Form1
     Friend WithEvents Label10 As Label
     Friend WithEvents wait_hour_NumericUpDown As NumericUpDown
     Friend WithEvents Clear_script_btn As Button
-    Friend WithEvents Insert_click_img_video_btn As Button
-    Friend WithEvents Insert_clear_content_btn As Button
-    Friend WithEvents Insert_send_content_btn As Button
-    Friend WithEvents Insert_click_leave_msg_btn As Button
-    Friend WithEvents Insert_submit_post_btn As Button
     Friend WithEvents Insert_close_driver_btn As Button
-    Friend WithEvents Insert_comment_upload_img_btn As Button
-    Friend WithEvents reply_img_CheckedListBox As CheckedListBox
-    Friend WithEvents Insert_reply_comment_btn As Button
-    Friend WithEvents reply_content_RichTextBox As RichTextBox
-    Friend WithEvents Insert_click_reply_btn As Button
-    Friend WithEvents Insert_submit_comment_btn As Button
     Friend WithEvents Insert_empty_btn As Button
-    Friend WithEvents Emoji_sad_CheckBox As CheckBox
-    Friend WithEvents Emoji_wow_CheckBox As CheckBox
-    Friend WithEvents Emoji_angry_CheckBox As CheckBox
-    Friend WithEvents Emoji_care_CheckBox As CheckBox
-    Friend WithEvents Emoji_love_CheckBox As CheckBox
-    Friend WithEvents Emoji_like_CheckBox As CheckBox
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Emoji_haha_CheckBox As CheckBox
-    Friend WithEvents Insert_emoji_btn As Button
     Friend WithEvents CheckBox_script_end As CheckBox
     Friend WithEvents CheckBox_script_start As CheckBox
     Friend WithEvents Label18 As Label
@@ -1263,7 +1267,7 @@ Partial Class Form1
     Friend WithEvents Timer1 As Timer
     Friend WithEvents stop_script_btn As Button
     Friend WithEvents Label21 As Label
-    Friend WithEvents save_script_btn As Button
+    Friend WithEvents SaveAs_script_btn As Button
     Friend WithEvents Open_file_dialog_btn As Button
     Friend WithEvents TextBox_script_file_path As TextBox
     Friend WithEvents load_script_btn As Button
@@ -1272,19 +1276,41 @@ Partial Class Form1
     Friend WithEvents Move_up_selected_item_btn As Button
     Friend WithEvents MoveDown_selected_item_btn As Button
     Friend WithEvents Text_File_CheckedListBox As CheckedListBox
-    Friend WithEvents Insert_send_Random_content_TextFile_btn As Button
     Friend WithEvents Record_script_result_checkbox As CheckBox
     Friend WithEvents Chrome_Profile_ComboBox As ComboBox
     Friend WithEvents EmulatedDevice_ComboBox As ComboBox
-    Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents Button1 As Button
-    Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents Insert_random_matching_text_and_img_btn As Button
+    Friend WithEvents SaveAs_RichBox_Content_btn As Button
     Friend WithEvents Set_Matching_btn As Button
     Friend WithEvents Match_Condition_ListView As ListView
-    Friend WithEvents open_imgdir_in_explorer_btn As Button
+    Friend WithEvents Open_dir_in_explorer_btn As Button
     Friend WithEvents ImageFolder_ListBox As ListBox
     Friend WithEvents TextFolder_ListBox As ListBox
     Friend WithEvents Clear_Conditions_Listview As Button
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents Insert_click_leave_msg_btn As Button
+    Friend WithEvents Insert_send_content_btn As Button
+    Friend WithEvents Insert_send_Random_content_TextFile_btn As Button
+    Friend WithEvents Insert_click_img_video_btn As Button
+    Friend WithEvents Insert_clear_content_btn As Button
+    Friend WithEvents Insert_submit_post_btn As Button
+    Friend WithEvents Insert_random_matching_text_and_img_btn As Button
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents Insert_emoji_btn As Button
+    Friend WithEvents Emoji_haha_CheckBox As CheckBox
+    Friend WithEvents Emoji_sad_CheckBox As CheckBox
+    Friend WithEvents Emoji_wow_CheckBox As CheckBox
+    Friend WithEvents Emoji_angry_CheckBox As CheckBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Emoji_care_CheckBox As CheckBox
+    Friend WithEvents Emoji_like_CheckBox As CheckBox
+    Friend WithEvents Emoji_love_CheckBox As CheckBox
+    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
+    Friend WithEvents Insert_click_reply_btn As Button
+    Friend WithEvents Insert_reply_comment_btn As Button
+    Friend WithEvents Insert_Reply_Random_TxtFile_btn As Button
+    Friend WithEvents Insert_comment_upload_img_btn As Button
+    Friend WithEvents Insert_Reply_Random_Match_btn As Button
+    Friend WithEvents Insert_submit_comment_btn As Button
 End Class

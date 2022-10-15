@@ -66,7 +66,6 @@ Module FormInit
         For Each file As String In files
             'Debug.WriteLine(file)
             Form1.img_CheckedListBox.Items.Add(file)
-            Form1.reply_img_CheckedListBox.Items.Add(file)
         Next
 
     End Sub

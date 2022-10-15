@@ -197,6 +197,21 @@ Public Class Form1
                     boolean_result = Upload_reply_img(content)
                 Case "回應:內容"
                     boolean_result = Send_reply_comment(content)
+                Case "回應:隨機"
+                    If content = "全部隨機" Then
+                        Dim allTextFile = Text_File_CheckedListBox.Items
+                        Dim rnd = rnd_num.Next(0, allTextFile.Count)
+                        'Debug.WriteLine("TEXT : " + allTextFile(rnd))
+                        boolean_result = Send_reply_comment(File.ReadAllText(allTextFile(rnd)))
+                    Else
+                        Dim TextFiles = content.Split(";")
+                        Dim rnd = rnd_num.Next(0, TextFiles.Length)
+                        'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
+                        boolean_result = Send_reply_comment(File.ReadAllText(TextFiles(rnd)))
+                    End If
+                Case "回應:隨機配對"
+                    boolean_result = Reply_Random_Match_TextAndImage(content)
+
                 Case "回應:送出"
                     boolean_result = Submit_reply_comment()
                 Case "回應:按讚"
@@ -234,14 +249,7 @@ Public Class Form1
             Else
                 used_dev_model = "PC"
             End If
-
-
-
-            If Chrome_Profile_ComboBox.SelectedItem IsNot Nothing Then
-                Open_Browser("Chrome", used_dev_model, Chrome_Profile_ComboBox.SelectedItem.ToString)
-            Else
-                Open_Browser("Chrome", used_dev_model, "")
-            End If
+            Open_Browser("Chrome", used_dev_model, Chrome_Profile_ComboBox.Text)
 
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
@@ -478,11 +486,11 @@ Public Class Form1
 
 
     Dim current_checked As Integer
-    Private Sub reply_img_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles reply_img_CheckedListBox.SelectedIndexChanged
-        reply_img_CheckedListBox.SetItemChecked(current_checked, False)
-        For i = 0 To reply_img_CheckedListBox.Items.Count - 1
+    Private Sub reply_img_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+        img_CheckedListBox.SetItemChecked(current_checked, False)
+        For i = 0 To img_CheckedListBox.Items.Count - 1
             'We ask if this item is checked or not
-            If reply_img_CheckedListBox.GetItemChecked(i) Then
+            If img_CheckedListBox.GetItemChecked(i) Then
                 current_checked = i
             End If
         Next
@@ -854,9 +862,9 @@ Public Class Form1
         Try
             Dim comment_img_input As Object
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("replay_comment_img_input")))
+                comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("reply_comment_img_input")))
             Else
-                comment_img_input = chromeDriver.FindElement(By.CssSelector("div.pmpvxvll.e9r0l795 > ul > li:nth-child(3) > input"))
+                comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("reply_post_img_input")))
             End If
 
             comment_img_input.SendKeys(img)
@@ -868,6 +876,54 @@ Public Class Form1
 
 
     End Function
+
+    Private Function Reply_Random_Match_TextAndImage(content)
+        'Debug.WriteLine(content)
+        Dim AllConditions() As String = content.Split(";")
+        Dim rnd = rnd_num.Next(0, AllConditions.Length)
+
+        'Debug.WriteLine(AllConditions(rnd))
+
+
+        Dim TextFolder = AllConditions(rnd).Split("%20")(0)
+        Dim ImageFolder = AllConditions(rnd).Split("%20")(1)
+
+        Dim Txtfiles() As String = IO.Directory.GetFiles(TextFolder)
+        Dim TextFile_ArrayList = New ArrayList()
+        For Each file As String In Txtfiles
+            'Debug.WriteLine(file)
+            If Path.GetExtension(file) = ".txt" Then
+                TextFile_ArrayList.Add(file)
+            End If
+        Next
+
+        rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
+
+        If Send_reply_comment(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then ' send text 
+            Return False
+        End If
+
+
+        Dim Imgfiles() As String = IO.Directory.GetFiles(ImageFolder)
+        Dim ImgageFile_ArrayList = New ArrayList()
+        For Each file As String In Imgfiles
+            'Debug.WriteLine(file)
+            ImgageFile_ArrayList.Add(file)
+        Next
+
+        rnd = rnd_num.Next(0, ImgageFile_ArrayList.Count)
+        'Debug.WriteLine("Image : " + ImgageFile_ArrayList(rnd))
+
+        If Upload_reply_img(ImgageFile_ArrayList(rnd)) = False Then   'upload img
+            Return False
+        End If
+
+        Return True
+
+    End Function
+
+
+
 
     Private Function Submit_reply_comment()
         Try
@@ -897,6 +953,7 @@ Public Class Form1
             Return False
         End Try
     End Function
+
 
     Private Function Post_Random_Match_TextAndImage(content)
         'Debug.WriteLine(content)
@@ -1088,12 +1145,7 @@ Public Class Form1
         If chrome_RadioButton.Checked = True Then
             used_browser = "Chrome"
             myprofile = Chrome_Profile_ComboBox.Text
-            If Chrome_Profile_ComboBox.SelectedItem IsNot Nothing Then
-                'myprofile = Chrome_Profile_ComboBox.SelectedItem.ToString
-                myprofile = Chrome_Profile_ComboBox.Text
-                Debug.WriteLine(myprofile)
-                used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
-            End If
+            used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
         ElseIf firefox_RadioButton.Checked = True Then
             used_browser = "Firefox"
         ElseIf edge_RadioButton.Checked = True Then
@@ -1148,19 +1200,19 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_reply_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_reply_comment_btn.Click
-        Insert_to_script("回應:內容", reply_content_RichTextBox.Text)
+        Insert_to_script("回應:內容", content_RichTextBox.Text)
     End Sub
 
     Private Sub Insert_comment_upload_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_comment_upload_img_btn.Click
         Dim img_path_str As String = ""
 
         'get selected img path into string 
-        If reply_img_CheckedListBox.CheckedItems.Count <> 0 Then
+        If img_CheckedListBox.CheckedItems.Count <> 0 Then
 
-            For i = 0 To reply_img_CheckedListBox.Items.Count - 1
+            For i = 0 To img_CheckedListBox.Items.Count - 1
                 'We ask if this item is checked or not
-                If reply_img_CheckedListBox.GetItemChecked(i) Then
-                    img_path_str = reply_img_CheckedListBox.Items(i).ToString()
+                If img_CheckedListBox.GetItemChecked(i) Then
+                    img_path_str = img_CheckedListBox.Items(i).ToString()
                 End If
             Next
 
@@ -1169,7 +1221,6 @@ Public Class Form1
             MsgBox("未勾選任何檔案")
         End If
     End Sub
-
 
     Private Sub Insert_submit_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_comment_btn.Click
         Insert_to_script("回應:送出", "送出")
@@ -1259,31 +1310,8 @@ Public Class Form1
 
     End Sub
 
-    Private Sub save_script_btn_Click(sender As Object, e As EventArgs) Handles save_script_btn.Click
-        Dim script_txt = ""
-        Dim cmd_arrlist As ArrayList = New ArrayList()
-        For Each item As ListViewItem In script_ListView.Items
-
-            Dim tmp_str = ""
-            For i = 1 To item.SubItems.Count - 1
-                cmd_arrlist.Add(item.SubItems.Item(i).Text)
-            Next
-            cmd_arrlist(5) = ""
-            tmp_str = String.Join(",", cmd_arrlist.ToArray())
-            cmd_arrlist.Clear()
-            script_txt += tmp_str & vbCrLf
-
-        Next
-
-        SaveFileDialog1.Filter = "txt files (*.txt)|"
-        SaveFileDialog1.DefaultExt = "txt"
-        SaveFileDialog1.FilterIndex = 2
-        SaveFileDialog1.RestoreDirectory = True
-
-        If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            'Debug.WriteLine(script_txt)
-            WriteAllText(SaveFileDialog1.FileName, script_txt)
-        End If
+    Private Sub SaveAs_script_btn_Click(sender As Object, e As EventArgs) Handles saveAs_script_btn.Click
+        FormComponentController.Save_Script_Content()
 
     End Sub
 
@@ -1346,7 +1374,6 @@ Public Class Form1
     End Sub
 
 
-
     Private Sub Delete_selected_item_btn_Click(sender As Object, e As EventArgs) Handles Delete_selected_item_btn.Click
         FormComponentController.Delete_ScriptListView_selected_item()
     End Sub
@@ -1386,7 +1413,6 @@ Public Class Form1
 
     End Sub
 
-
     Private Sub Set_Matching_btn_Click(sender As Object, e As EventArgs) Handles Set_Matching_btn.Click
 
         If TextFolder_ListBox.SelectedIndex >= 0 And ImageFolder_ListBox.SelectedIndex >= 0 Then
@@ -1416,5 +1442,41 @@ Public Class Form1
         Match_Condition_ListView.Items.Clear()
     End Sub
 
+    Private Sub Insert_Reply_Random_TxtFile_btn_Click(sender As Object, e As EventArgs) Handles Insert_Reply_Random_TxtFile_btn.Click
 
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Text_File_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_file_path += itemChecked + ";"
+        Next
+
+        If Txt_file_path = "" Then
+            Insert_to_script("回應:隨機", "全部隨機")
+        Else
+            Insert_to_script("回應:隨機", Txt_file_path.TrimEnd(";"))
+        End If
+
+    End Sub
+
+    Private Sub Insert_Reply_Random_Match_btn_Click(sender As Object, e As EventArgs) Handles Insert_Reply_Random_Match_btn.Click
+        Dim Content As String = ""
+        For Each item As ListViewItem In Match_Condition_ListView.Items
+            'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
+            Content += item.SubItems(0).Text + "%20" + item.SubItems(1).Text + ";"
+        Next
+        'MsgBox(Content)
+        If Content = "" Then
+            MsgBox("無任何配對條件")
+        Else
+            Insert_to_script("回應:隨機配對", Content.TrimEnd(";"c))
+        End If
+    End Sub
+
+    Private Sub SaveAs_RichBox_Content_btn_Click(sender As Object, e As EventArgs) Handles SaveAs_RichBox_Content_btn.Click
+        FormComponentController.Save_RichBox_Content()
+    End Sub
+
+    Private Sub Open_dir_in_explorer_btn_Click(sender As Object, e As EventArgs) Handles Open_dir_in_explorer_btn.Click
+        FormComponentController.Reveal_Selected_In_File_Explorer()
+    End Sub
 End Class
