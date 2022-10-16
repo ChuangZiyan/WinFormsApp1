@@ -1,5 +1,8 @@
 ﻿Imports System.IO
 Imports System.IO.File
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
+Imports WinFormsApp1.JsonProfileInfo
 Module FormComponentController
 
     Public Sub Delete_ScriptListView_selected_item()
@@ -180,6 +183,39 @@ Module FormComponentController
 
         End If
 
+
+    End Sub
+
+
+    Public Sub Save_Account_Info()
+        Dim Profile_Path = Form1.Chrome_Profile_ComboBox.Text
+        Debug.WriteLine(Profile_Path)
+        If Profile_Path = "" Then
+            MsgBox("未選擇任何Profile")
+            Exit Sub
+        End If
+
+        Dim jsonObject = New JsonProfileInfo()
+        jsonObject.Account = Form1.fb_account_TextBox.Text
+        jsonObject.Password = Form1.fb_password_TextBox.Text
+        jsonObject.Remark = Form1.Remark_TextBox.Text
+
+        Dim jsonString = JsonConvert.SerializeObject(jsonObject)
+
+        Debug.WriteLine(jsonString)
+        Try
+
+            Dim myfile As System.IO.StreamWriter
+            myfile = My.Computer.FileSystem.OpenTextFileWriter(Profile_Path + "\ProfileInfo.txt", False) 'True : append   'False : overwrite
+            myfile.WriteLine(jsonString)
+            myfile.Close()
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗，路徑錯誤或者其他錯誤")
+        End Try
+
+        MsgBox("已儲存到 : " + Profile_Path + "\ProfileInfo.txt")
 
     End Sub
 

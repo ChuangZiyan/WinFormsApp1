@@ -1479,4 +1479,23 @@ Public Class Form1
     Private Sub Open_dir_in_explorer_btn_Click(sender As Object, e As EventArgs) Handles Open_dir_in_explorer_btn.Click
         FormComponentController.Reveal_Selected_In_File_Explorer()
     End Sub
+
+    Private Sub Save_Account_Passwd_btn_Click(sender As Object, e As EventArgs) Handles Save_Account_Passwd_btn.Click
+        FormComponentController.Save_Account_Info()
+    End Sub
+
+    Private Sub Chrome_Profile_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Chrome_Profile_ComboBox.SelectedIndexChanged
+        Dim myfile = Chrome_Profile_ComboBox.Text + "\ProfileInfo.txt"
+        Debug.WriteLine(myfile)
+        If My.Computer.FileSystem.FileExists(myfile) Then
+            Dim JsonString As String = System.IO.File.ReadAllText(myfile)
+            Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
+            Profile_JsonObject = JsonConvert.DeserializeObject(JsonString)
+
+            fb_account_TextBox.Text = Profile_JsonObject.Item("Account")
+            fb_password_TextBox.Text = Profile_JsonObject.Item("Password")
+            Remark_TextBox.Text = Profile_JsonObject.Item("Remark")
+        End If
+
+    End Sub
 End Class
