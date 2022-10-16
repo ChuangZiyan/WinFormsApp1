@@ -62,9 +62,11 @@ Partial Class Form1
         Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
-        Me.Remark_TextBox = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Save_Account_Passwd_btn = New System.Windows.Forms.Button()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Text_File_CheckedListBox = New System.Windows.Forms.CheckedListBox()
+        Me.TextFolder_ListBox = New System.Windows.Forms.ListBox()
+        Me.Set_Matching_btn = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
@@ -92,15 +94,23 @@ Partial Class Form1
         Me.Emoji_care_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Emoji_like_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Emoji_love_CheckBox = New System.Windows.Forms.CheckBox()
-        Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
-        Me.SaveAs_RichBox_Content_btn = New System.Windows.Forms.Button()
-        Me.EmulatedDevice_ComboBox = New System.Windows.Forms.ComboBox()
-        Me.TextFolder_ListBox = New System.Windows.Forms.ListBox()
-        Me.Set_Matching_btn = New System.Windows.Forms.Button()
         Me.ImageFolder_ListBox = New System.Windows.Forms.ListBox()
+        Me.SaveAs_RichBox_Content_btn = New System.Windows.Forms.Button()
         Me.Match_Condition_ListView = New System.Windows.Forms.ListView()
-        Me.Chrome_Profile_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Open_dir_in_explorer_btn = New System.Windows.Forms.Button()
+        Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Click_by_location_test_btn = New System.Windows.Forms.Button()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Remark_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Save_Account_Passwd_btn = New System.Windows.Forms.Button()
+        Me.EmulatedDevice_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Chrome_Profile_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Insert_delay_btn = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.wait_random_second_NumericUpDown = New System.Windows.Forms.NumericUpDown()
@@ -109,7 +119,6 @@ Partial Class Form1
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Insert_empty_btn = New System.Windows.Forms.Button()
         Me.wait_minute_NumericUpDown = New System.Windows.Forms.NumericUpDown()
-        Me.Text_File_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -131,6 +140,28 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,21 +170,26 @@ Partial Class Form1
         CType(Me.NumericUpDown_script_start_minute, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_start_hour, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.cmd_GroupBox.SuspendLayout()
+        Me.TabControl2.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_hour_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
         '
-        Me.content_RichTextBox.Location = New System.Drawing.Point(314, 312)
+        Me.content_RichTextBox.Location = New System.Drawing.Point(311, 6)
         Me.content_RichTextBox.Name = "content_RichTextBox"
         Me.content_RichTextBox.Size = New System.Drawing.Size(300, 243)
         Me.content_RichTextBox.TabIndex = 1
@@ -191,7 +227,7 @@ Partial Class Form1
         Me.img_CheckedListBox.CheckOnClick = True
         Me.img_CheckedListBox.FormattingEnabled = True
         Me.img_CheckedListBox.HorizontalScrollbar = True
-        Me.img_CheckedListBox.Location = New System.Drawing.Point(6, 454)
+        Me.img_CheckedListBox.Location = New System.Drawing.Point(3, 148)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
         Me.img_CheckedListBox.Size = New System.Drawing.Size(300, 136)
         Me.img_CheckedListBox.TabIndex = 15
@@ -251,9 +287,9 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.CheckBox_script_end)
         Me.GroupBox1.Controls.Add(Me.CheckBox_script_start)
         Me.GroupBox1.Controls.Add(Me.script_ListView)
-        Me.GroupBox1.Location = New System.Drawing.Point(944, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(959, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(808, 869)
+        Me.GroupBox1.Size = New System.Drawing.Size(815, 886)
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
@@ -521,20 +557,12 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.TabControl2)
         Me.cmd_GroupBox.Controls.Add(Me.Remark_TextBox)
         Me.cmd_GroupBox.Controls.Add(Me.Label1)
         Me.cmd_GroupBox.Controls.Add(Me.Save_Account_Passwd_btn)
-        Me.cmd_GroupBox.Controls.Add(Me.TabControl1)
-        Me.cmd_GroupBox.Controls.Add(Me.content_RichTextBox)
-        Me.cmd_GroupBox.Controls.Add(Me.Clear_Conditions_Listview)
-        Me.cmd_GroupBox.Controls.Add(Me.SaveAs_RichBox_Content_btn)
         Me.cmd_GroupBox.Controls.Add(Me.EmulatedDevice_ComboBox)
-        Me.cmd_GroupBox.Controls.Add(Me.TextFolder_ListBox)
-        Me.cmd_GroupBox.Controls.Add(Me.Set_Matching_btn)
-        Me.cmd_GroupBox.Controls.Add(Me.ImageFolder_ListBox)
-        Me.cmd_GroupBox.Controls.Add(Me.Match_Condition_ListView)
         Me.cmd_GroupBox.Controls.Add(Me.Chrome_Profile_ComboBox)
-        Me.cmd_GroupBox.Controls.Add(Me.Open_dir_in_explorer_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_close_driver_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_delay_btn)
         Me.cmd_GroupBox.Controls.Add(Me.Label13)
@@ -544,9 +572,7 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.wait_second_NumericUpDown)
         Me.cmd_GroupBox.Controls.Add(Me.Label11)
         Me.cmd_GroupBox.Controls.Add(Me.Insert_empty_btn)
-        Me.cmd_GroupBox.Controls.Add(Me.img_CheckedListBox)
         Me.cmd_GroupBox.Controls.Add(Me.wait_minute_NumericUpDown)
-        Me.cmd_GroupBox.Controls.Add(Me.Text_File_CheckedListBox)
         Me.cmd_GroupBox.Controls.Add(Me.Label10)
         Me.cmd_GroupBox.Controls.Add(Me.wait_hour_NumericUpDown)
         Me.cmd_GroupBox.Controls.Add(Me.Label9)
@@ -570,44 +596,78 @@ Partial Class Form1
         Me.cmd_GroupBox.Controls.Add(Me.curr_url_TextBox)
         Me.cmd_GroupBox.Location = New System.Drawing.Point(12, 12)
         Me.cmd_GroupBox.Name = "cmd_GroupBox"
-        Me.cmd_GroupBox.Size = New System.Drawing.Size(926, 869)
+        Me.cmd_GroupBox.Size = New System.Drawing.Size(941, 886)
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
         '
-        'Remark_TextBox
+        'TabControl2
         '
-        Me.Remark_TextBox.Location = New System.Drawing.Point(107, 167)
-        Me.Remark_TextBox.Name = "Remark_TextBox"
-        Me.Remark_TextBox.Size = New System.Drawing.Size(473, 27)
-        Me.Remark_TextBox.TabIndex = 108
+        Me.TabControl2.Controls.Add(Me.TabPage3)
+        Me.TabControl2.Controls.Add(Me.TabPage4)
+        Me.TabControl2.Location = New System.Drawing.Point(6, 297)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(926, 581)
+        Me.TabControl2.TabIndex = 109
         '
-        'Label1
+        'TabPage3
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(51, 170)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(46, 19)
-        Me.Label1.TabIndex = 107
-        Me.Label1.Text = "備註 :"
+        Me.TabPage3.Controls.Add(Me.Text_File_CheckedListBox)
+        Me.TabPage3.Controls.Add(Me.TextFolder_ListBox)
+        Me.TabPage3.Controls.Add(Me.Set_Matching_btn)
+        Me.TabPage3.Controls.Add(Me.TabControl1)
+        Me.TabPage3.Controls.Add(Me.ImageFolder_ListBox)
+        Me.TabPage3.Controls.Add(Me.img_CheckedListBox)
+        Me.TabPage3.Controls.Add(Me.SaveAs_RichBox_Content_btn)
+        Me.TabPage3.Controls.Add(Me.content_RichTextBox)
+        Me.TabPage3.Controls.Add(Me.Match_Condition_ListView)
+        Me.TabPage3.Controls.Add(Me.Open_dir_in_explorer_btn)
+        Me.TabPage3.Controls.Add(Me.Clear_Conditions_Listview)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(918, 549)
+        Me.TabPage3.TabIndex = 0
+        Me.TabPage3.Text = "發文發圖"
+        Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'Save_Account_Passwd_btn
+        'Text_File_CheckedListBox
         '
-        Me.Save_Account_Passwd_btn.Location = New System.Drawing.Point(596, 134)
-        Me.Save_Account_Passwd_btn.Name = "Save_Account_Passwd_btn"
-        Me.Save_Account_Passwd_btn.Size = New System.Drawing.Size(94, 29)
-        Me.Save_Account_Passwd_btn.TabIndex = 106
-        Me.Save_Account_Passwd_btn.Text = "儲存"
-        Me.Save_Account_Passwd_btn.UseVisualStyleBackColor = True
+        Me.Text_File_CheckedListBox.CheckOnClick = True
+        Me.Text_File_CheckedListBox.FormattingEnabled = True
+        Me.Text_File_CheckedListBox.HorizontalScrollbar = True
+        Me.Text_File_CheckedListBox.Location = New System.Drawing.Point(3, 6)
+        Me.Text_File_CheckedListBox.Name = "Text_File_CheckedListBox"
+        Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(300, 136)
+        Me.Text_File_CheckedListBox.TabIndex = 93
+        '
+        'TextFolder_ListBox
+        '
+        Me.TextFolder_ListBox.FormattingEnabled = True
+        Me.TextFolder_ListBox.ItemHeight = 19
+        Me.TextFolder_ListBox.Location = New System.Drawing.Point(3, 290)
+        Me.TextFolder_ListBox.Name = "TextFolder_ListBox"
+        Me.TextFolder_ListBox.Size = New System.Drawing.Size(300, 80)
+        Me.TextFolder_ListBox.TabIndex = 104
+        '
+        'Set_Matching_btn
+        '
+        Me.Set_Matching_btn.Location = New System.Drawing.Point(311, 376)
+        Me.Set_Matching_btn.Name = "Set_Matching_btn"
+        Me.Set_Matching_btn.Size = New System.Drawing.Size(150, 29)
+        Me.Set_Matching_btn.TabIndex = 102
+        Me.Set_Matching_btn.Text = "↓設定配對條件↓"
+        Me.Set_Matching_btn.UseVisualStyleBackColor = True
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(623, 312)
+        Me.TabControl1.Location = New System.Drawing.Point(620, 6)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(292, 541)
+        Me.TabControl1.Size = New System.Drawing.Size(292, 529)
         Me.TabControl1.TabIndex = 98
         '
         'TabPage1
@@ -616,7 +676,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 28)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(284, 509)
+        Me.TabPage1.Size = New System.Drawing.Size(284, 497)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "(群組/個人)發帖"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -713,7 +773,7 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 28)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(284, 509)
+        Me.TabPage2.Size = New System.Drawing.Size(284, 497)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "(回應/留言)帖子"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -873,23 +933,136 @@ Partial Class Form1
         Me.Emoji_love_CheckBox.Text = "愛心"
         Me.Emoji_love_CheckBox.UseVisualStyleBackColor = True
         '
+        'ImageFolder_ListBox
+        '
+        Me.ImageFolder_ListBox.FormattingEnabled = True
+        Me.ImageFolder_ListBox.ItemHeight = 19
+        Me.ImageFolder_ListBox.Location = New System.Drawing.Point(311, 290)
+        Me.ImageFolder_ListBox.Name = "ImageFolder_ListBox"
+        Me.ImageFolder_ListBox.Size = New System.Drawing.Size(300, 80)
+        Me.ImageFolder_ListBox.TabIndex = 103
+        '
+        'SaveAs_RichBox_Content_btn
+        '
+        Me.SaveAs_RichBox_Content_btn.Location = New System.Drawing.Point(311, 255)
+        Me.SaveAs_RichBox_Content_btn.Name = "SaveAs_RichBox_Content_btn"
+        Me.SaveAs_RichBox_Content_btn.Size = New System.Drawing.Size(303, 29)
+        Me.SaveAs_RichBox_Content_btn.TabIndex = 96
+        Me.SaveAs_RichBox_Content_btn.Text = "儲存內容"
+        Me.SaveAs_RichBox_Content_btn.UseVisualStyleBackColor = True
+        '
+        'Match_Condition_ListView
+        '
+        Me.Match_Condition_ListView.Location = New System.Drawing.Point(3, 412)
+        Me.Match_Condition_ListView.Name = "Match_Condition_ListView"
+        Me.Match_Condition_ListView.Size = New System.Drawing.Size(608, 121)
+        Me.Match_Condition_ListView.TabIndex = 101
+        Me.Match_Condition_ListView.UseCompatibleStateImageBehavior = False
+        '
+        'Open_dir_in_explorer_btn
+        '
+        Me.Open_dir_in_explorer_btn.Location = New System.Drawing.Point(3, 376)
+        Me.Open_dir_in_explorer_btn.Name = "Open_dir_in_explorer_btn"
+        Me.Open_dir_in_explorer_btn.Size = New System.Drawing.Size(301, 29)
+        Me.Open_dir_in_explorer_btn.TabIndex = 97
+        Me.Open_dir_in_explorer_btn.Text = "打開庫存資料夾"
+        Me.Open_dir_in_explorer_btn.UseVisualStyleBackColor = True
+        '
         'Clear_Conditions_Listview
         '
-        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(464, 696)
+        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(461, 376)
         Me.Clear_Conditions_Listview.Name = "Clear_Conditions_Listview"
         Me.Clear_Conditions_Listview.Size = New System.Drawing.Size(150, 29)
         Me.Clear_Conditions_Listview.TabIndex = 105
         Me.Clear_Conditions_Listview.Text = "清除配對條件"
         Me.Clear_Conditions_Listview.UseVisualStyleBackColor = True
         '
-        'SaveAs_RichBox_Content_btn
+        'TabPage4
         '
-        Me.SaveAs_RichBox_Content_btn.Location = New System.Drawing.Point(314, 561)
-        Me.SaveAs_RichBox_Content_btn.Name = "SaveAs_RichBox_Content_btn"
-        Me.SaveAs_RichBox_Content_btn.Size = New System.Drawing.Size(303, 29)
-        Me.SaveAs_RichBox_Content_btn.TabIndex = 96
-        Me.SaveAs_RichBox_Content_btn.Text = "儲存內容"
-        Me.SaveAs_RichBox_Content_btn.UseVisualStyleBackColor = True
+        Me.TabPage4.Controls.Add(Me.GroupBox4)
+        Me.TabPage4.Controls.Add(Me.GroupBox3)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(918, 549)
+        Me.TabPage4.TabIndex = 1
+        Me.TabPage4.Text = "滑鼠鍵盤事件"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'Click_by_location_test_btn
+        '
+        Me.Click_by_location_test_btn.Location = New System.Drawing.Point(222, 30)
+        Me.Click_by_location_test_btn.Name = "Click_by_location_test_btn"
+        Me.Click_by_location_test_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Click_by_location_test_btn.TabIndex = 5
+        Me.Click_by_location_test_btn.Text = "點擊測試"
+        Me.Click_by_location_test_btn.UseVisualStyleBackColor = True
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(166, 32)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(50, 27)
+        Me.TextBox2.TabIndex = 4
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(80, 32)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(50, 27)
+        Me.TextBox1.TabIndex = 3
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(136, 40)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(24, 19)
+        Me.Label23.TabIndex = 2
+        Me.Label23.Text = "y :"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(51, 40)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(23, 19)
+        Me.Label22.TabIndex = 1
+        Me.Label22.Text = "x :"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(6, 40)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(39, 19)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "座標"
+        '
+        'Remark_TextBox
+        '
+        Me.Remark_TextBox.Location = New System.Drawing.Point(107, 167)
+        Me.Remark_TextBox.Name = "Remark_TextBox"
+        Me.Remark_TextBox.Size = New System.Drawing.Size(473, 27)
+        Me.Remark_TextBox.TabIndex = 108
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(51, 170)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(46, 19)
+        Me.Label1.TabIndex = 107
+        Me.Label1.Text = "備註 :"
+        '
+        'Save_Account_Passwd_btn
+        '
+        Me.Save_Account_Passwd_btn.Location = New System.Drawing.Point(596, 134)
+        Me.Save_Account_Passwd_btn.Name = "Save_Account_Passwd_btn"
+        Me.Save_Account_Passwd_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Save_Account_Passwd_btn.TabIndex = 106
+        Me.Save_Account_Passwd_btn.Text = "儲存"
+        Me.Save_Account_Passwd_btn.UseVisualStyleBackColor = True
         '
         'EmulatedDevice_ComboBox
         '
@@ -899,41 +1072,6 @@ Partial Class Form1
         Me.EmulatedDevice_ComboBox.Size = New System.Drawing.Size(473, 27)
         Me.EmulatedDevice_ComboBox.TabIndex = 97
         '
-        'TextFolder_ListBox
-        '
-        Me.TextFolder_ListBox.FormattingEnabled = True
-        Me.TextFolder_ListBox.ItemHeight = 19
-        Me.TextFolder_ListBox.Location = New System.Drawing.Point(6, 610)
-        Me.TextFolder_ListBox.Name = "TextFolder_ListBox"
-        Me.TextFolder_ListBox.Size = New System.Drawing.Size(300, 80)
-        Me.TextFolder_ListBox.TabIndex = 104
-        '
-        'Set_Matching_btn
-        '
-        Me.Set_Matching_btn.Location = New System.Drawing.Point(314, 696)
-        Me.Set_Matching_btn.Name = "Set_Matching_btn"
-        Me.Set_Matching_btn.Size = New System.Drawing.Size(150, 29)
-        Me.Set_Matching_btn.TabIndex = 102
-        Me.Set_Matching_btn.Text = "↓設定配對條件↓"
-        Me.Set_Matching_btn.UseVisualStyleBackColor = True
-        '
-        'ImageFolder_ListBox
-        '
-        Me.ImageFolder_ListBox.FormattingEnabled = True
-        Me.ImageFolder_ListBox.ItemHeight = 19
-        Me.ImageFolder_ListBox.Location = New System.Drawing.Point(314, 611)
-        Me.ImageFolder_ListBox.Name = "ImageFolder_ListBox"
-        Me.ImageFolder_ListBox.Size = New System.Drawing.Size(300, 80)
-        Me.ImageFolder_ListBox.TabIndex = 103
-        '
-        'Match_Condition_ListView
-        '
-        Me.Match_Condition_ListView.Location = New System.Drawing.Point(6, 732)
-        Me.Match_Condition_ListView.Name = "Match_Condition_ListView"
-        Me.Match_Condition_ListView.Size = New System.Drawing.Size(608, 121)
-        Me.Match_Condition_ListView.TabIndex = 101
-        Me.Match_Condition_ListView.UseCompatibleStateImageBehavior = False
-        '
         'Chrome_Profile_ComboBox
         '
         Me.Chrome_Profile_ComboBox.FormattingEnabled = True
@@ -941,15 +1079,6 @@ Partial Class Form1
         Me.Chrome_Profile_ComboBox.Name = "Chrome_Profile_ComboBox"
         Me.Chrome_Profile_ComboBox.Size = New System.Drawing.Size(473, 27)
         Me.Chrome_Profile_ComboBox.TabIndex = 96
-        '
-        'Open_dir_in_explorer_btn
-        '
-        Me.Open_dir_in_explorer_btn.Location = New System.Drawing.Point(6, 696)
-        Me.Open_dir_in_explorer_btn.Name = "Open_dir_in_explorer_btn"
-        Me.Open_dir_in_explorer_btn.Size = New System.Drawing.Size(301, 29)
-        Me.Open_dir_in_explorer_btn.TabIndex = 97
-        Me.Open_dir_in_explorer_btn.Text = "打開庫存資料夾"
-        Me.Open_dir_in_explorer_btn.UseVisualStyleBackColor = True
         '
         'Insert_delay_btn
         '
@@ -1016,16 +1145,6 @@ Partial Class Form1
         Me.wait_minute_NumericUpDown.Name = "wait_minute_NumericUpDown"
         Me.wait_minute_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_minute_NumericUpDown.TabIndex = 64
-        '
-        'Text_File_CheckedListBox
-        '
-        Me.Text_File_CheckedListBox.CheckOnClick = True
-        Me.Text_File_CheckedListBox.FormattingEnabled = True
-        Me.Text_File_CheckedListBox.HorizontalScrollbar = True
-        Me.Text_File_CheckedListBox.Location = New System.Drawing.Point(6, 312)
-        Me.Text_File_CheckedListBox.Name = "Text_File_CheckedListBox"
-        Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(300, 136)
-        Me.Text_File_CheckedListBox.TabIndex = 93
         '
         'Label10
         '
@@ -1204,11 +1323,224 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(6, 65)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(151, 29)
+        Me.Button1.TabIndex = 6
+        Me.Button1.Text = "左鍵點擊 - 插入"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(166, 65)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(150, 29)
+        Me.Button2.TabIndex = 7
+        Me.Button2.Text = "右鍵點擊 - 插入"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.Button4)
+        Me.GroupBox3.Controls.Add(Me.Button3)
+        Me.GroupBox3.Controls.Add(Me.TextBox4)
+        Me.GroupBox3.Controls.Add(Me.TextBox3)
+        Me.GroupBox3.Controls.Add(Me.Label2)
+        Me.GroupBox3.Controls.Add(Me.Button2)
+        Me.GroupBox3.Controls.Add(Me.Label22)
+        Me.GroupBox3.Controls.Add(Me.Button1)
+        Me.GroupBox3.Controls.Add(Me.Label23)
+        Me.GroupBox3.Controls.Add(Me.Click_by_location_test_btn)
+        Me.GroupBox3.Controls.Add(Me.TextBox1)
+        Me.GroupBox3.Controls.Add(Me.TextBox2)
+        Me.GroupBox3.Location = New System.Drawing.Point(15, 16)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(897, 258)
+        Me.GroupBox3.TabIndex = 8
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "滑鼠事件"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.Button10)
+        Me.GroupBox4.Controls.Add(Me.Button9)
+        Me.GroupBox4.Controls.Add(Me.Button8)
+        Me.GroupBox4.Controls.Add(Me.Button7)
+        Me.GroupBox4.Controls.Add(Me.TextBox8)
+        Me.GroupBox4.Controls.Add(Me.TextBox7)
+        Me.GroupBox4.Controls.Add(Me.Label27)
+        Me.GroupBox4.Controls.Add(Me.Label26)
+        Me.GroupBox4.Controls.Add(Me.Button6)
+        Me.GroupBox4.Controls.Add(Me.Button5)
+        Me.GroupBox4.Controls.Add(Me.Label25)
+        Me.GroupBox4.Controls.Add(Me.TextBox6)
+        Me.GroupBox4.Controls.Add(Me.Label24)
+        Me.GroupBox4.Controls.Add(Me.TextBox5)
+        Me.GroupBox4.Location = New System.Drawing.Point(15, 280)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(897, 252)
+        Me.GroupBox4.TabIndex = 9
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "鍵盤事件"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(6, 127)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(125, 27)
+        Me.TextBox3.TabIndex = 8
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(6, 176)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(125, 27)
+        Me.TextBox4.TabIndex = 9
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(137, 125)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(179, 29)
+        Me.Button3.TabIndex = 10
+        Me.Button3.Text = "滑鼠滾輪向上 - 插入"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(137, 174)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(179, 29)
+        Me.Button4.TabIndex = 11
+        Me.Button4.Text = "滑鼠滾輪向下 - 插入"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'TextBox5
+        '
+        Me.TextBox5.Location = New System.Drawing.Point(92, 35)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(125, 27)
+        Me.TextBox5.TabIndex = 0
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(6, 43)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(50, 19)
+        Me.Label24.TabIndex = 1
+        Me.Label24.Text = "按鍵 : "
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(6, 79)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(80, 19)
+        Me.Label25.TabIndex = 3
+        Me.Label25.Text = "組合按鍵 : "
+        '
+        'TextBox6
+        '
+        Me.TextBox6.Location = New System.Drawing.Point(92, 71)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(125, 27)
+        Me.TextBox6.TabIndex = 2
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(223, 33)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(94, 29)
+        Me.Button5.TabIndex = 4
+        Me.Button5.Text = "插入"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(223, 69)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(94, 29)
+        Me.Button6.TabIndex = 5
+        Me.Button6.Text = "插入"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(6, 140)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(50, 19)
+        Me.Label26.TabIndex = 6
+        Me.Label26.Text = "路徑 : "
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(6, 184)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(50, 19)
+        Me.Label27.TabIndex = 7
+        Me.Label27.Text = "路徑 : "
+        '
+        'TextBox7
+        '
+        Me.TextBox7.Location = New System.Drawing.Point(92, 132)
+        Me.TextBox7.Name = "TextBox7"
+        Me.TextBox7.Size = New System.Drawing.Size(434, 27)
+        Me.TextBox7.TabIndex = 8
+        '
+        'TextBox8
+        '
+        Me.TextBox8.Location = New System.Drawing.Point(92, 176)
+        Me.TextBox8.Name = "TextBox8"
+        Me.TextBox8.Size = New System.Drawing.Size(434, 27)
+        Me.TextBox8.TabIndex = 9
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(532, 132)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(94, 29)
+        Me.Button7.TabIndex = 10
+        Me.Button7.Text = "選擇檔案"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(532, 174)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(94, 29)
+        Me.Button8.TabIndex = 11
+        Me.Button8.Text = "選擇檔案"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'Button9
+        '
+        Me.Button9.Location = New System.Drawing.Point(632, 132)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(155, 29)
+        Me.Button9.TabIndex = 12
+        Me.Button9.Text = "複製圖片位置 - 插入"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
+        'Button10
+        '
+        Me.Button10.Location = New System.Drawing.Point(632, 174)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(155, 29)
+        Me.Button10.TabIndex = 13
+        Me.Button10.Text = "複製文字位置 - 插入"
+        Me.Button10.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1767, 906)
+        Me.ClientSize = New System.Drawing.Size(1786, 908)
         Me.Controls.Add(Me.cmd_GroupBox)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "Form1"
@@ -1223,18 +1555,25 @@ Partial Class Form1
         CType(Me.NumericUpDown_script_start_hour, System.ComponentModel.ISupportInitialize).EndInit()
         Me.cmd_GroupBox.ResumeLayout(False)
         Me.cmd_GroupBox.PerformLayout()
+        Me.TabControl2.ResumeLayout(False)
+        Me.TabPage3.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.FlowLayoutPanel2.ResumeLayout(False)
+        Me.TabPage4.ResumeLayout(False)
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_hour_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1347,4 +1686,35 @@ Partial Class Form1
     Friend WithEvents Save_Account_Passwd_btn As Button
     Friend WithEvents Remark_TextBox As TextBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents TabControl2 As TabControl
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label23 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Click_by_location_test_btn As Button
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents Button10 As Button
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Button7 As Button
+    Friend WithEvents TextBox8 As TextBox
+    Friend WithEvents TextBox7 As TextBox
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label26 As Label
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Label25 As Label
+    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents Label24 As Label
+    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
 End Class
