@@ -64,7 +64,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Selected_PictureBox = New System.Windows.Forms.PictureBox()
         Me.Text_File_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.TextFolder_ListBox = New System.Windows.Forms.ListBox()
         Me.Set_Matching_btn = New System.Windows.Forms.Button()
@@ -173,7 +173,7 @@ Partial Class Form1
         Me.cmd_GroupBox.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Selected_PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -613,7 +613,7 @@ Partial Class Form1
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.PictureBox1)
+        Me.TabPage3.Controls.Add(Me.Selected_PictureBox)
         Me.TabPage3.Controls.Add(Me.Text_File_CheckedListBox)
         Me.TabPage3.Controls.Add(Me.TextFolder_ListBox)
         Me.TabPage3.Controls.Add(Me.Set_Matching_btn)
@@ -633,13 +633,14 @@ Partial Class Form1
         Me.TabPage3.Text = "發文發圖"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'Selected_PictureBox
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(624, 372)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(284, 161)
-        Me.PictureBox1.TabIndex = 106
-        Me.PictureBox1.TabStop = False
+        Me.Selected_PictureBox.Location = New System.Drawing.Point(624, 372)
+        Me.Selected_PictureBox.Name = "Selected_PictureBox"
+        Me.Selected_PictureBox.Size = New System.Drawing.Size(284, 161)
+        Me.Selected_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Selected_PictureBox.TabIndex = 106
+        Me.Selected_PictureBox.TabStop = False
         '
         'Text_File_CheckedListBox
         '
@@ -1570,7 +1571,7 @@ Partial Class Form1
         Me.cmd_GroupBox.PerformLayout()
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Selected_PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
@@ -1728,6 +1729,6 @@ Partial Class Form1
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Insert_Upload_Random_Image_btn As Button
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Selected_PictureBox As PictureBox
     Friend WithEvents Insert_Reply_Random_Image_btn As Button
 End Class

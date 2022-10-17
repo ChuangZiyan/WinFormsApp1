@@ -1230,7 +1230,7 @@ Public Class Form1
         Dim img_path_str As String = ""
 
         'get selected img path into string 
-        If img_CheckedListBox.CheckedItems.Count <> 0 Then
+        If img_CheckedListBox.CheckedItems.Count = 1 Then
 
             For i = 0 To img_CheckedListBox.Items.Count - 1
                 'We ask if this item is checked or not
@@ -1240,6 +1240,8 @@ Public Class Form1
             Next
 
             Insert_to_script("回應:上載", img_path_str)
+        ElseIf img_CheckedListBox.CheckedItems.Count > 1 Then
+            MsgBox("回覆最多只能一張圖")
         Else
             MsgBox("未勾選任何檔案")
         End If
@@ -1410,7 +1412,7 @@ Public Class Form1
         FormComponentController.MoveDown_ScriptListView_selected_item()
     End Sub
 
-    Private Sub Text_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.Click
+    Private Sub aText_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.Click
         Dim Txt_file_path As String = ""
         For Each itemSeleted In Text_File_CheckedListBox.SelectedItems
             'Debug.WriteLine(itemSeleted)
@@ -1420,6 +1422,20 @@ Public Class Form1
         content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
 
     End Sub
+
+    Private Sub img_CheckedListBox_Click(sender As Object, e As EventArgs) Handles img_CheckedListBox.Click
+        Dim Img_file_path As String = ""
+        For Each itemSeleted In img_CheckedListBox.SelectedItems
+            Debug.WriteLine(itemSeleted)
+            Img_file_path = itemSeleted
+        Next
+
+        'content_RichTextBox.Text = File.ReadAllText(Img_file_path)
+        Dim myimg = Image.FromFile(Img_file_path)
+        Selected_PictureBox.Image = myimg
+    End Sub
+
+
 
     Private Sub Insert_send_Random_content_TextFile_btn_Click(sender As Object, e As EventArgs) Handles Insert_send_Random_content_TextFile_btn.Click
         Dim Txt_file_path As String = ""
@@ -1523,4 +1539,5 @@ Public Class Form1
             Insert_to_script("回應:上載隨機", Image_file_path.TrimEnd(";"))
         End If
     End Sub
+
 End Class
