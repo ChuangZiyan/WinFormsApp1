@@ -116,8 +116,6 @@ Public Class Form1
                 Continue For
             End If
 
-
-
             Dim brower = item.SubItems.Item(1).Text
             Dim devicetype = item.SubItems.Item(2).Text
             Dim profile = item.SubItems.Item(3).Text
@@ -148,15 +146,10 @@ Public Class Form1
                     If content.Contains(";"c) Then
                         content = content.Split(";")(1)
                     End If
-
                     boolean_result = Navigate_GoToUrl(content)
-                    'If content.Contains("facebook.com/groups") Then
-                    'item.SubItems.Item(5).Text = Get_current_group_name() + ";" + content
-                    'End If
                 Case "等待"
                     Try
-                        'Thread.Sleep(Convert.ToInt64(item.SubItems.Item(8).Text) * 1000)
-                        'Debug.WriteLine(content)
+
                         Dim sec = Get_random_sec_frome_content(content)
                         Dim counter = sec
                         Debug.WriteLine(sec)
@@ -193,8 +186,29 @@ Public Class Form1
                     boolean_result = Clear_post_content()
                 Case "上載"
                     boolean_result = Tring_to_upload_img(content)
+                Case "上載:隨機"
+                    If content = "全部隨機" Then
+                        Dim allImageFile = img_CheckedListBox.Items
+                        Dim rnd = rnd_num.Next(0, allImageFile.Count)
+                        boolean_result = Tring_to_upload_img(allImageFile(rnd))
+                    Else
+                        Dim ImageFiles = content.Split(";")
+                        Dim rnd = rnd_num.Next(0, ImageFiles.Length)
+                        boolean_result = Tring_to_upload_img(ImageFiles(rnd))
+                    End If
+
                 Case "回應:上載"
                     boolean_result = Upload_reply_img(content)
+                Case "回應:上載隨機"
+                    If content = "全部隨機" Then
+                        Dim allImageFile = img_CheckedListBox.Items
+                        Dim rnd = rnd_num.Next(0, allImageFile.Count)
+                        boolean_result = Upload_reply_img(allImageFile(rnd))
+                    Else
+                        Dim ImageFiles = content.Split(";")
+                        Dim rnd = rnd_num.Next(0, ImageFiles.Length)
+                        boolean_result = Upload_reply_img(ImageFiles(rnd))
+                    End If
                 Case "回應:內容"
                     boolean_result = Send_reply_comment(content)
                 Case "回應:隨機"
@@ -231,7 +245,6 @@ Public Class Form1
             End If
 
         Next
-
         Await Delay_msec(1000)
     End Function
 
@@ -239,7 +252,6 @@ Public Class Form1
     Public Shared Async Function Delay_msec(msec As Integer) As Task
         Await Task.Delay(msec)
     End Function
-
 
     Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
         If chrome_RadioButton.Checked = True Then
@@ -323,7 +335,6 @@ Public Class Form1
         Dim edgeDrvier = New EdgeDriver()
     End Sub
 
-
     Public Function Navigate_GoToUrl(url As String)
         Try
             chromeDriver.Navigate.GoToUrl(url)
@@ -333,7 +344,6 @@ Public Class Form1
         End Try
 
     End Function
-
 
     Private Sub get_groupname_Button_Click(sender As Object, e As EventArgs) Handles get_groupname_Button.Click
 
@@ -922,9 +932,6 @@ Public Class Form1
 
     End Function
 
-
-
-
     Private Function Submit_reply_comment()
         Try
 
@@ -1187,6 +1194,22 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Insert_Upload_Random_Image_btn_Click(sender As Object, e As EventArgs) Handles Insert_Upload_Random_Image_btn.Click
+        Dim Image_file_path As String = ""
+        For Each itemChecked In img_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Image_file_path += itemChecked + ";"
+        Next
+
+        If Image_file_path = "" Then
+            Insert_to_script("上載:隨機", "全部隨機")
+        Else
+            Insert_to_script("上載:隨機", Image_file_path.TrimEnd(";"))
+        End If
+
+    End Sub
+
+
     Private Sub Insert_submit_post_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_post_btn.Click
         Insert_to_script("點擊", "發佈")
     End Sub
@@ -1310,7 +1333,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub SaveAs_script_btn_Click(sender As Object, e As EventArgs) Handles saveAs_script_btn.Click
+    Private Sub SaveAs_script_btn_Click(sender As Object, e As EventArgs) Handles SaveAs_script_btn.Click
         FormComponentController.Save_Script_Content()
 
     End Sub
@@ -1485,18 +1508,19 @@ Public Class Form1
     End Sub
 
     Private Sub Chrome_Profile_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Chrome_Profile_ComboBox.SelectedIndexChanged
-        Dim myfile = Chrome_Profile_ComboBox.Text + "\ProfileInfo.txt"
-        Debug.WriteLine(myfile)
-        If My.Computer.FileSystem.FileExists(myfile) Then
-            Dim JsonString As String = System.IO.File.ReadAllText(myfile)
-            Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
-            Profile_JsonObject = JsonConvert.DeserializeObject(JsonString)
-
-            fb_account_TextBox.Text = Profile_JsonObject.Item("Account")
-            fb_password_TextBox.Text = Profile_JsonObject.Item("Password")
-            Remark_TextBox.Text = Profile_JsonObject.Item("Remark")
-        End If
-
+        FormComponentController.Chrome_Profile_ComboBox_SelectedIndexChanged()
     End Sub
 
+    Private Sub Insert_Reply_Random_Image_btn_Click(sender As Object, e As EventArgs) Handles Insert_Reply_Random_Image_btn.Click
+        Dim Image_file_path As String = ""
+        For Each itemChecked In img_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Image_file_path += itemChecked + ";"
+        Next
+        If Image_file_path = "" Then
+            Insert_to_script("回應:上載隨機", "全部隨機")
+        Else
+            Insert_to_script("回應:上載隨機", Image_file_path.TrimEnd(";"))
+        End If
+    End Sub
 End Class

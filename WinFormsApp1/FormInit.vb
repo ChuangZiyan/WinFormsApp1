@@ -1,9 +1,6 @@
 ﻿Imports System.IO
 
-
-
 Module FormInit
-
 
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
@@ -18,7 +15,6 @@ Module FormInit
         Form1.script_ListView.Columns.Add("執行結果", 75)
 
     End Sub
-
 
     Public Sub Render_Maching_condition_listview()
         Form1.Match_Condition_ListView.View = View.Details
@@ -40,7 +36,6 @@ Module FormInit
 
     End Sub
 
-
     Public Sub Render_TextFile_listbox()
         Dim mypath = "C:\selenium_file\inventory\text"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
@@ -61,11 +56,22 @@ Module FormInit
     End Sub
 
     Public Sub Render_img_listbox()
-        Dim files() As String = IO.Directory.GetFiles("C:\selenium_file\my_img") ' your img folder
 
-        For Each file As String In files
-            'Debug.WriteLine(file)
-            Form1.img_CheckedListBox.Items.Add(file)
+        Dim mypath = "C:\selenium_file\inventory\image"
+        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+
+        Dim allow_img_extentions As String() = {".jpg", ".jpeg", ".png"}
+        For Each dir As String In dirs
+            'Debug.WriteLine(dir)
+            Dim files() As String = IO.Directory.GetFiles(dir)
+            For Each file As String In files
+                'Debug.WriteLine(file)
+                If allow_img_extentions.Contains(Path.GetExtension(file)) Then
+                    Form1.img_CheckedListBox.Items.Add(file)
+                End If
+
+            Next
+
         Next
 
     End Sub
@@ -79,7 +85,6 @@ Module FormInit
         Next
         'DeviceType_ComboBox
     End Sub
-
 
     Public Sub Render_TextFolder_listbox()
         Dim mypath = "C:\selenium_file\inventory\text"

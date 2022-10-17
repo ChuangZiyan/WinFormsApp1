@@ -57,8 +57,6 @@ Module FormComponentController
 
     End Sub
 
-
-
     Public Sub Save_Script_Content()
         Dim script_txt = ""
         Dim cmd_arrlist As ArrayList = New ArrayList()
@@ -97,7 +95,6 @@ Module FormComponentController
             WriteAllText(Form1.SaveFileDialog1.FileName, Form1.content_RichTextBox.Text)
         End If
     End Sub
-
 
     Public Sub Reveal_Selected_In_File_Explorer()
         Dim Current_selected_Item As String = ""
@@ -186,7 +183,6 @@ Module FormComponentController
 
     End Sub
 
-
     Public Sub Save_Account_Info()
         Dim Profile_Path = Form1.Chrome_Profile_ComboBox.Text
         Debug.WriteLine(Profile_Path)
@@ -219,5 +215,22 @@ Module FormComponentController
 
     End Sub
 
+    Public Sub Chrome_Profile_ComboBox_SelectedIndexChanged()
+        Dim myfile = Form1.Chrome_Profile_ComboBox.Text + "\ProfileInfo.txt"
+        Debug.WriteLine(myfile)
+        If My.Computer.FileSystem.FileExists(myfile) Then
+            Dim JsonString As String = System.IO.File.ReadAllText(myfile)
+            Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
+            Profile_JsonObject = JsonConvert.DeserializeObject(JsonString)
+
+            Form1.fb_account_TextBox.Text = Profile_JsonObject.Item("Account")
+            Form1.fb_password_TextBox.Text = Profile_JsonObject.Item("Password")
+            Form1.Remark_TextBox.Text = Profile_JsonObject.Item("Remark")
+        Else
+            Form1.fb_account_TextBox.Text = ""
+            Form1.fb_password_TextBox.Text = ""
+            Form1.Remark_TextBox.Text = ""
+        End If
+    End Sub
 
 End Module
