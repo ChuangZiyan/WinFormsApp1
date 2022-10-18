@@ -1,4 +1,5 @@
 {
-	"span-create-post-person": "What's on your mind",
-	"span-create-post-group": "Write something..."
+	"span-create-post-personal": "on your mind",
+	"span-create-post-group": "Write something...",
+	"aria-label-Leave-a-comment": "Leave a comment"
 }

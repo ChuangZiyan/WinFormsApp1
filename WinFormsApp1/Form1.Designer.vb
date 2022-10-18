@@ -635,6 +635,7 @@ Partial Class Form1
         '
         'Selected_PictureBox
         '
+        Me.Selected_PictureBox.BackColor = System.Drawing.Color.Transparent
         Me.Selected_PictureBox.Location = New System.Drawing.Point(624, 372)
         Me.Selected_PictureBox.Name = "Selected_PictureBox"
         Me.Selected_PictureBox.Size = New System.Drawing.Size(284, 161)

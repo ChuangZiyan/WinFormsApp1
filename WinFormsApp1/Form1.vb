@@ -41,12 +41,6 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        Select Case used_lang
-            Case "zh-TW"
-                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-TW.json"))
-            Case "en-US"
-                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
-        End Select
 
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
@@ -296,6 +290,16 @@ Public Class Form1
         'Debug.WriteLine(browser)
         'Debug.WriteLine(devicetype)
         'Debug.WriteLine(profile)
+
+        used_lang = Remark_TextBox.Text
+
+        Select Case used_lang
+            Case "zh-TW"
+                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-TW.json"))
+            Case "en-US"
+                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
+        End Select
+
         If browser = "Chrome" Then
             Try
                 Dim driverManager = New DriverManager()
@@ -694,7 +698,6 @@ Public Class Form1
         End If
 
         If Flag_start_script Then
-            Debug.WriteLine("start run")
             script_running = True
             Flag_start_script = False
             Run_script_controller()
@@ -822,8 +825,9 @@ Public Class Form1
             If myURL.Contains("groups") Then ' If post in group
                 chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("span-create-post-group").ToString + "')]")).Click()
             Else ' personal page
-                Debug.WriteLine("lang : " + langConverter.Item("span-create-post-person").ToString())
-                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("span-create-post-person").ToString() + "')]")).Click()
+                Debug.WriteLine("lang : " + langConverter.Item("span-create-post-personal").ToString())
+                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("span-create-post-personal").ToString + "')]")).Click()
+
             End If
             Return True
 
@@ -840,11 +844,9 @@ Public Class Form1
         Try
 
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                Debug.WriteLine("reply comment")
                 chromeDriver.FindElements(By.CssSelector("div.jg3vgc78.cgu29s5g.lq84ybu9.hf30pyar.r227ecj6 > ul > li:nth-child(2) > div")).ElementAt(0).Click()
             Else
-                Debug.WriteLine("left comment")
-                Return click_by_aria_label("留言")
+                Return click_by_aria_label(langConverter.Item("aria-label-Leave-a-comment").ToString())
             End If
 
             Return True

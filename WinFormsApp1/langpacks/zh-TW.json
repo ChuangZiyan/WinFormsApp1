@@ -1,4 +1,5 @@
 {
-	"span-create-post-person": "在想些什麼？",
-	"span-create-post-group": "留個言吧……"
+	"span-create-post-personal": "在想些什麼？",
+	"span-create-post-group": "留個言吧……",
+	"aria-label-Leave-a-comment": "留言"
 }
