@@ -233,4 +233,34 @@ Module FormComponentController
         End If
     End Sub
 
+
+    Public Sub Img_CheckedListBox_Click()
+        Dim Img_file_path As String = ""
+        Dim allowed_video_extentions As String() = {".mp4", ".mk4"}
+        For Each itemSeleted In Form1.img_CheckedListBox.SelectedItems
+            Debug.WriteLine(itemSeleted)
+            Img_file_path = itemSeleted
+        Next
+
+        If allowed_video_extentions.Contains(Path.GetExtension(Img_file_path)) Then ' if video
+            Debug.WriteLine("it's video")
+            Form1.Selected_PictureBox.Cursor = Cursors.Hand
+            Form1.Selected_PictureBox.Image = Image.FromFile(My.Computer.FileSystem.CurrentDirectory + "\images\PlayVideo.jpg")
+        Else
+            Form1.Selected_PictureBox.Cursor = Cursors.Default
+            Form1.Selected_PictureBox.Image = Image.FromFile(Img_file_path) ' image 
+        End If
+    End Sub
+
+    Public Sub Selected_PictureBox_Click()
+        Dim allowed_video_extentions As String() = {".mp4", ".mk4"}
+        For Each itemSeleted In Form1.img_CheckedListBox.SelectedItems
+            If allowed_video_extentions.Contains(Path.GetExtension(itemSeleted)) Then ' if video
+                Dim result As DialogResult = MessageBox.Show("是否播放影片?", "確認訊息", MessageBoxButtons.YesNo)
+                If result = DialogResult.Yes Then
+                    Process.Start("explorer.exe", itemSeleted)
+                End If
+            End If
+        Next
+    End Sub
 End Module

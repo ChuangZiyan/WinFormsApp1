@@ -59,14 +59,15 @@ Module FormInit
 
         Dim mypath = "C:\selenium_file\inventory\image"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+        'image/*,image/heif,image/heic,video/*,video/mp4,video/x-m4v,video/x-matroska,.mkv
+        Dim allowed_extentions As String() = {".jpg", ".jpeg", ".png", ".mp4", ".mk4"}
 
-        Dim allow_img_extentions As String() = {".jpg", ".jpeg", ".png"}
         For Each dir As String In dirs
             'Debug.WriteLine(dir)
             Dim files() As String = IO.Directory.GetFiles(dir)
             For Each file As String In files
                 'Debug.WriteLine(file)
-                If allow_img_extentions.Contains(Path.GetExtension(file)) Then
+                If allowed_extentions.Contains(Path.GetExtension(file)) Then
                     Form1.img_CheckedListBox.Items.Add(file)
                 End If
 

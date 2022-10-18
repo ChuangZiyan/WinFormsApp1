@@ -36,7 +36,17 @@ Public Class Form1
     Dim running_chrome_profile As String = ""
     'Dim webDriverWait As WebDriverWait
 
+    Dim langConverter As Newtonsoft.Json.Linq.JObject
+    Dim used_lang = "zh-TW"
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        Select Case used_lang
+            Case "zh-TW"
+                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-TW.json"))
+            Case "en-US"
+                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
+        End Select
 
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
@@ -44,12 +54,12 @@ Public Class Form1
         Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
+
         FormInit.Render_Script_listview()
         FormInit.Render_Maching_condition_listview()
         FormInit.Render_img_listbox()
         FormInit.Render_TextFolder_listbox()
         FormInit.Render_ImageFolder_listbox()
-        'FormInit.Render_Reply_img_listbox()
         FormInit.Render_TextFile_listbox()
         FormInit.Render_profile_combobox()
         FormInit.Render_DevList_combobox()
@@ -810,9 +820,10 @@ Public Class Form1
         Try
             Dim myURL = chromeDriver.Url
             If myURL.Contains("groups") Then ' If post in group
-                chromeDriver.FindElement(By.XPath("//span[contains(text(),'留個言吧……')]")).Click()
+                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("span-create-post-group").ToString + "')]")).Click()
             Else ' personal page
-                chromeDriver.FindElement(By.XPath("//span[contains(text(),'在想些什麼？')]")).Click()
+                Debug.WriteLine("lang : " + langConverter.Item("span-create-post-person").ToString())
+                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("span-create-post-person").ToString() + "')]")).Click()
             End If
             Return True
 
@@ -1424,18 +1435,8 @@ Public Class Form1
     End Sub
 
     Private Sub img_CheckedListBox_Click(sender As Object, e As EventArgs) Handles img_CheckedListBox.Click
-        Dim Img_file_path As String = ""
-        For Each itemSeleted In img_CheckedListBox.SelectedItems
-            Debug.WriteLine(itemSeleted)
-            Img_file_path = itemSeleted
-        Next
-
-        'content_RichTextBox.Text = File.ReadAllText(Img_file_path)
-        Dim myimg = Image.FromFile(Img_file_path)
-        Selected_PictureBox.Image = myimg
+        FormComponentController.Img_CheckedListBox_Click()
     End Sub
-
-
 
     Private Sub Insert_send_Random_content_TextFile_btn_Click(sender As Object, e As EventArgs) Handles Insert_send_Random_content_TextFile_btn.Click
         Dim Txt_file_path As String = ""
@@ -1540,4 +1541,7 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Selected_PictureBox_Click(sender As Object, e As EventArgs) Handles Selected_PictureBox.Click
+        FormComponentController.Selected_PictureBox_Click()
+    End Sub
 End Class
