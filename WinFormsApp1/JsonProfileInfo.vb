@@ -5,6 +5,7 @@ Public Class JsonProfileInfo
 
     Public Property Account As String
     Public Property Password As String
+    Public Property LanguagePack As String
     Public Property Remark As String
 
 End Class

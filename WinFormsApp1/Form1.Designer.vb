@@ -62,6 +62,7 @@ Partial Class Form1
         Me.Insert_close_driver_btn = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.Lang_Packs_ComboBox = New System.Windows.Forms.ComboBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Selected_PictureBox = New System.Windows.Forms.PictureBox()
@@ -557,6 +558,7 @@ Partial Class Form1
         '
         'cmd_GroupBox
         '
+        Me.cmd_GroupBox.Controls.Add(Me.Lang_Packs_ComboBox)
         Me.cmd_GroupBox.Controls.Add(Me.TabControl2)
         Me.cmd_GroupBox.Controls.Add(Me.Remark_TextBox)
         Me.cmd_GroupBox.Controls.Add(Me.Label1)
@@ -600,6 +602,14 @@ Partial Class Form1
         Me.cmd_GroupBox.TabIndex = 43
         Me.cmd_GroupBox.TabStop = False
         Me.cmd_GroupBox.Text = "命令 :"
+        '
+        'Lang_Packs_ComboBox
+        '
+        Me.Lang_Packs_ComboBox.FormattingEnabled = True
+        Me.Lang_Packs_ComboBox.Location = New System.Drawing.Point(479, 103)
+        Me.Lang_Packs_ComboBox.Name = "Lang_Packs_ComboBox"
+        Me.Lang_Packs_ComboBox.Size = New System.Drawing.Size(101, 27)
+        Me.Lang_Packs_ComboBox.TabIndex = 110
         '
         'TabControl2
         '
@@ -656,6 +666,7 @@ Partial Class Form1
         'TextFolder_ListBox
         '
         Me.TextFolder_ListBox.FormattingEnabled = True
+        Me.TextFolder_ListBox.HorizontalScrollbar = True
         Me.TextFolder_ListBox.ItemHeight = 19
         Me.TextFolder_ListBox.Location = New System.Drawing.Point(3, 290)
         Me.TextFolder_ListBox.Name = "TextFolder_ListBox"
@@ -951,6 +962,7 @@ Partial Class Form1
         'ImageFolder_ListBox
         '
         Me.ImageFolder_ListBox.FormattingEnabled = True
+        Me.ImageFolder_ListBox.HorizontalScrollbar = True
         Me.ImageFolder_ListBox.ItemHeight = 19
         Me.ImageFolder_ListBox.Location = New System.Drawing.Point(311, 290)
         Me.ImageFolder_ListBox.Name = "ImageFolder_ListBox"
@@ -1305,7 +1317,7 @@ Partial Class Form1
         Me.Chrome_Profile_ComboBox.FormattingEnabled = True
         Me.Chrome_Profile_ComboBox.Location = New System.Drawing.Point(107, 103)
         Me.Chrome_Profile_ComboBox.Name = "Chrome_Profile_ComboBox"
-        Me.Chrome_Profile_ComboBox.Size = New System.Drawing.Size(473, 27)
+        Me.Chrome_Profile_ComboBox.Size = New System.Drawing.Size(366, 27)
         Me.Chrome_Profile_ComboBox.TabIndex = 96
         '
         'Insert_delay_btn
@@ -1732,4 +1744,5 @@ Partial Class Form1
     Friend WithEvents Insert_Upload_Random_Image_btn As Button
     Friend WithEvents Selected_PictureBox As PictureBox
     Friend WithEvents Insert_Reply_Random_Image_btn As Button
+    Friend WithEvents Lang_Packs_ComboBox As ComboBox
 End Class

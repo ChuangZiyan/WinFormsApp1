@@ -1,5 +1,7 @@
 {
-	"span-create-post-personal": "on your mind",
-	"span-create-post-group": "Write something...",
+	"Whats_On_Your_Mind": "on your mind",
+	"Write_Something": "Write something...",
+	"Photo_Video": "Photo/Video",
+	"Post": "Post",
 	"aria-label-Leave-a-comment": "Leave a comment"
 }

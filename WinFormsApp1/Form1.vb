@@ -48,7 +48,7 @@ Public Class Form1
         Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
-
+        FormInit.Property_Folder_Init()
         FormInit.Render_Script_listview()
         FormInit.Render_Maching_condition_listview()
         FormInit.Render_img_listbox()
@@ -56,6 +56,7 @@ Public Class Form1
         FormInit.Render_ImageFolder_listbox()
         FormInit.Render_TextFile_listbox()
         FormInit.Render_profile_combobox()
+        FormInit.Render_Lang_Packs_ComboBox()
         FormInit.Render_DevList_combobox()
 
 
@@ -258,6 +259,7 @@ Public Class Form1
     End Function
 
     Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
+
         If chrome_RadioButton.Checked = True Then
 
             If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
@@ -272,6 +274,9 @@ Public Class Form1
         ElseIf edge_RadioButton.Checked = True Then
             Open_Edge()
         End If
+
+
+
 
         If curr_url_TextBox.Text <> "" Then
             Dim pattern As String
@@ -290,8 +295,10 @@ Public Class Form1
         'Debug.WriteLine(browser)
         'Debug.WriteLine(devicetype)
         'Debug.WriteLine(profile)
-
-        used_lang = Remark_TextBox.Text
+        If Lang_Packs_ComboBox.SelectedIndex >= 0 Then
+            used_lang = Lang_Packs_ComboBox.Text
+            Debug.WriteLine("Lang : " + used_lang)
+        End If
 
         Select Case used_lang
             Case "zh-TW"
@@ -823,10 +830,10 @@ Public Class Form1
         Try
             Dim myURL = chromeDriver.Url
             If myURL.Contains("groups") Then ' If post in group
-                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("span-create-post-group").ToString + "')]")).Click()
+                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("Write_Something").ToString + "')]")).Click()
             Else ' personal page
-                Debug.WriteLine("lang : " + langConverter.Item("span-create-post-personal").ToString())
-                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("span-create-post-personal").ToString + "')]")).Click()
+                Debug.WriteLine("Whats_On_Your_Mind : " + langConverter.Item("Whats_On_Your_Mind").ToString())
+                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("Whats_On_Your_Mind").ToString + "')]")).Click()
 
             End If
             Return True
@@ -1030,10 +1037,11 @@ Public Class Form1
         Try
             Dim myURL = chromeDriver.Url
             If myURL.Contains("groups") Then ' If post in group
-                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
+                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + langConverter.Item("Write_Something").ToString() + "']"))
                 msgbox_ele.SendKeys(content)
             Else ' personal page
-                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
+                Debug.WriteLine("lang : " + langConverter.Item("Whats_On_Your_Mind").ToString)
+                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label*='" + langConverter.Item("Whats_On_Your_Mind").ToString + "']"))
                 msgbox_ele.SendKeys(content)
             End If
             Return True
@@ -1054,10 +1062,10 @@ Public Class Form1
             Dim msgbox_ele As Object
 
             If myURL.Contains("groups") Then ' If post in group
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='留個言吧......']"))
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + langConverter.Item("Write_Something").ToString() + "']"))
 
             Else ' personal page
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='在想些什麼？']"))
+                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + langConverter.Item("Whats_On_Your_Mind").ToString + "']"))
             End If
             msgbox_ele.SendKeys(Keys.LeftControl + "a")
             msgbox_ele.SendKeys(Keys.Delete)
@@ -1073,7 +1081,7 @@ Public Class Form1
         'Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
         'Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
 
-        click_by_aria_label("相片／影片")
+        click_by_aria_label(langConverter.Item("Photo_Video"))
 
         Dim upload_img_input As Object
 

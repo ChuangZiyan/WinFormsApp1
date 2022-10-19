@@ -194,11 +194,12 @@ Module FormComponentController
         Dim jsonObject = New JsonProfileInfo()
         jsonObject.Account = Form1.fb_account_TextBox.Text
         jsonObject.Password = Form1.fb_password_TextBox.Text
+        jsonObject.LanguagePack = Form1.Lang_Packs_ComboBox.Text
         jsonObject.Remark = Form1.Remark_TextBox.Text
 
         Dim jsonString = JsonConvert.SerializeObject(jsonObject)
 
-        Debug.WriteLine(jsonString)
+        'Debug.WriteLine(jsonString)
         Try
 
             Dim myfile As System.IO.StreamWriter
@@ -225,10 +226,12 @@ Module FormComponentController
 
             Form1.fb_account_TextBox.Text = Profile_JsonObject.Item("Account")
             Form1.fb_password_TextBox.Text = Profile_JsonObject.Item("Password")
+            Form1.Lang_Packs_ComboBox.SelectedIndex = Form1.Lang_Packs_ComboBox.FindStringExact(Profile_JsonObject.Item("LanguagePack"))
             Form1.Remark_TextBox.Text = Profile_JsonObject.Item("Remark")
         Else
             Form1.fb_account_TextBox.Text = ""
             Form1.fb_password_TextBox.Text = ""
+            Form1.Lang_Packs_ComboBox.SelectedIndex = -1
             Form1.Remark_TextBox.Text = ""
         End If
     End Sub

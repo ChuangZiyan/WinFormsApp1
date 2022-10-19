@@ -2,6 +2,8 @@
 
 Module FormInit
 
+    Dim curr_path = My.Computer.FileSystem.CurrentDirectory + "\property\"
+
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
         Form1.script_ListView.GridLines = True
@@ -26,8 +28,34 @@ Module FormInit
 
     End Sub
 
+    Public Sub Render_Lang_Packs_ComboBox()
+        Dim lang_packs As String() = {"en-US", "zh-TW"}
+        For Each lang In lang_packs
+            Form1.Lang_Packs_ComboBox.Items.Add(lang)
+        Next
+    End Sub
+
+    Public Sub Property_Folder_Init()
+        Dim txt_path = My.Computer.FileSystem.CurrentDirectory + "\property\resources\texts"
+        If Not System.IO.Directory.Exists(txt_path) Then
+            System.IO.Directory.CreateDirectory(txt_path)
+        End If
+
+        Dim img_path = My.Computer.FileSystem.CurrentDirectory + "\property\resources\images"
+        If Not System.IO.Directory.Exists(img_path) Then
+            System.IO.Directory.CreateDirectory(img_path)
+        End If
+
+        Dim profile_path = My.Computer.FileSystem.CurrentDirectory + "\property\profiles"
+        If Not System.IO.Directory.Exists(profile_path) Then
+            System.IO.Directory.CreateDirectory(profile_path)
+        End If
+
+    End Sub
+
+
     Public Sub Render_profile_combobox()
-        Dim mypath = "C:\selenium_file\my_profile"
+        Dim mypath = curr_path + "profiles"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
         For Each dir As String In dirs
             'Debug.WriteLine(dir)
@@ -37,7 +65,7 @@ Module FormInit
     End Sub
 
     Public Sub Render_TextFile_listbox()
-        Dim mypath = "C:\selenium_file\inventory\text"
+        Dim mypath = curr_path + "resources\texts"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
 
         For Each dir As String In dirs
@@ -56,8 +84,10 @@ Module FormInit
     End Sub
 
     Public Sub Render_img_listbox()
-
-        Dim mypath = "C:\selenium_file\inventory\image"
+        Dim mypath = curr_path + "resources\images"
+        If Not System.IO.Directory.Exists(mypath) Then
+            System.IO.Directory.CreateDirectory(mypath)
+        End If
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
         'image/*,image/heif,image/heic,video/*,video/mp4,video/x-m4v,video/x-matroska,.mkv
         Dim allowed_extentions As String() = {".jpg", ".jpeg", ".png", ".mp4", ".mk4"}
@@ -88,7 +118,7 @@ Module FormInit
     End Sub
 
     Public Sub Render_TextFolder_listbox()
-        Dim mypath = "C:\selenium_file\inventory\text"
+        Dim mypath = curr_path + "resources\texts"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
 
         For Each dir As String In dirs
@@ -98,7 +128,7 @@ Module FormInit
     End Sub
 
     Public Sub Render_ImageFolder_listbox()
-        Dim mypath = "C:\selenium_file\inventory\image"
+        Dim mypath = curr_path + "resources\images"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
 
         For Each dir As String In dirs
