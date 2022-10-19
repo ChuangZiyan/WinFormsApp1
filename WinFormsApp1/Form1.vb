@@ -131,6 +131,10 @@ Public Class Form1
 
             Select Case action
                 Case "開啟"
+                    If content.Contains(";"c) Then
+                        used_lang = content.Split(";")(1)
+                        content = content.Split(";")(0)
+                    End If
 
                     If profile = "" Or profile <> running_chrome_profile Then
                         boolean_result = Open_Browser(brower, devicetype, content)
@@ -1179,7 +1183,12 @@ Public Class Form1
         ElseIf edge_RadioButton.Checked = True Then
             used_browser = "Edge"
         End If
-        Insert_to_script("開啟", myprofile)
+        If Lang_Packs_ComboBox.SelectedIndex >= 0 Then
+            Insert_to_script("開啟", myprofile + ";" + Lang_Packs_ComboBox.Text)
+        Else
+            Insert_to_script("開啟", myprofile)
+        End If
+
     End Sub
 
     Private Sub Insert_click_leave_msg_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_leave_msg_btn.Click
