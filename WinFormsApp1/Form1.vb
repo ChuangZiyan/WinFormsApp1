@@ -783,19 +783,19 @@ Public Class Form1
 
         Select Case Used_emoji
             Case "讚好"
-                Return click_by_aria_label("讚")
+                Return click_by_aria_label(langConverter.Item("Like"))
             Case "愛心"
-                Return click_by_aria_label("大心")
+                Return click_by_aria_label(langConverter.Item("Love"))
             Case "加油"
-                Return click_by_aria_label("加油")
+                Return click_by_aria_label(langConverter.Item("Care"))
             Case "生氣"
-                Return click_by_aria_label("怒")
+                Return click_by_aria_label(langConverter.Item("Angry"))
             Case "驚訝"
-                Return click_by_aria_label("哇")
+                Return click_by_aria_label(langConverter.Item("Wow"))
             Case "難過"
-                Return click_by_aria_label("嗚")
+                Return click_by_aria_label(langConverter.Item("Sad"))
             Case "哈哈"
-                Return click_by_aria_label("哈")
+                Return click_by_aria_label(langConverter.Item("Haha"))
 
         End Select
 
