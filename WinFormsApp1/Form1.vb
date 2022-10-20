@@ -298,10 +298,7 @@ Public Class Form1
         'Debug.WriteLine(browser)
         'Debug.WriteLine(devicetype)
         'Debug.WriteLine(profile)
-        If Lang_Packs_ComboBox.SelectedIndex >= 0 Then
-            used_lang = Lang_Packs_ComboBox.Text
-            Debug.WriteLine("Lang : " + used_lang)
-        End If
+
 
         Select Case used_lang
             Case "zh-TW"
@@ -309,6 +306,9 @@ Public Class Form1
             Case "en-US"
                 langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
         End Select
+
+
+        Debug.WriteLine(langConverter.Item("Create_Post"))
 
         If browser = "Chrome" Then
             Try
