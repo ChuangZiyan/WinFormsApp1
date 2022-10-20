@@ -1,6 +1,5 @@
 {
-	"Whats_On_Your_Mind": "on your mind",
-	"Write_Something": "Write something...",
+	"Create_Post": [ "on your mind", "Write something..." ],
 	"Photo_Video": "Photo/Video",
 	"Post": "Post",
 	"Like": "Like",

@@ -59,7 +59,6 @@ Public Class Form1
         FormInit.Render_Lang_Packs_ComboBox()
         FormInit.Render_DevList_combobox()
 
-
     End Sub
 
 
@@ -636,9 +635,19 @@ Public Class Form1
         End Try
     End Function
 
-    Function IsElementPresent(locatorKey As String) As Boolean
+    Function IsElementPresentByCssSelector(locatorKey As String) As Boolean
         Try
             chromeDriver.FindElement(By.CssSelector(locatorKey))
+            Return True
+        Catch ex As Exception
+            'Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
+    Function IsElementPresentByXpath(locatorXpath As String) As Boolean
+        Try
+            chromeDriver.FindElement(By.XPath(locatorXpath))
             Return True
         Catch ex As Exception
             'Debug.WriteLine(ex)
@@ -832,18 +841,21 @@ Public Class Form1
     Private Function Click_leave_message()
 
         Try
-            Dim myURL = chromeDriver.Url
-            If myURL.Contains("groups") Then ' If post in group
-                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("Write_Something").ToString + "')]")).Click()
-            Else ' personal page
-                Debug.WriteLine("Whats_On_Your_Mind : " + langConverter.Item("Whats_On_Your_Mind").ToString())
-                chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + langConverter.Item("Whats_On_Your_Mind").ToString + "')]")).Click()
 
-            End If
-            Return True
-
+            Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
+            'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
+            For Each pattern In str_patterns
+                Debug.WriteLine("try : " + pattern.ToString())
+                If IsElementPresentByXpath("//span[contains(text(),'" + pattern.ToString() + "')]") Then
+                    Debug.WriteLine("pattern : " + pattern.ToString())
+                    chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + pattern.ToString() + "')]")).Click()
+                    Return True
+                End If
+            Next
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
         Catch ex As Exception
-
+            Debug.WriteLine(ex)
             Return False
         End Try
 
@@ -1039,16 +1051,20 @@ Public Class Form1
 
     Private Function Write_post_send_content(content)
         Try
-            Dim myURL = chromeDriver.Url
-            If myURL.Contains("groups") Then ' If post in group
-                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + langConverter.Item("Write_Something").ToString() + "']"))
-                msgbox_ele.SendKeys(content)
-            Else ' personal page
-                Debug.WriteLine("lang : " + langConverter.Item("Whats_On_Your_Mind").ToString)
-                Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label*='" + langConverter.Item("Whats_On_Your_Mind").ToString + "']"))
-                msgbox_ele.SendKeys(content)
-            End If
-            Return True
+            Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
+            'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3)
+            For Each pattern In str_patterns
+                Debug.WriteLine("try : " + pattern.ToString())
+                Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
+                If IsElementPresentByXpath(xpath) Then
+                    Debug.WriteLine("pattern : " + pattern.ToString())
+                    Dim msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
+                    msgbox_ele.SendKeys(content)
+                    Return True
+                End If
+            Next
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
 
         Catch ex As Exception
 
@@ -1062,17 +1078,22 @@ Public Class Form1
 
     Private Function Clear_post_content()
         Try
-            Dim myURL = chromeDriver.Url
             Dim msgbox_ele As Object
-
-            If myURL.Contains("groups") Then ' If post in group
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + langConverter.Item("Write_Something").ToString() + "']"))
-
-            Else ' personal page
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + langConverter.Item("Whats_On_Your_Mind").ToString + "']"))
-            End If
-            msgbox_ele.SendKeys(Keys.LeftControl + "a")
-            msgbox_ele.SendKeys(Keys.Delete)
+            Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
+            'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3)
+            For Each pattern In str_patterns
+                'Debug.WriteLine("try : " + pattern.ToString())
+                Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
+                If IsElementPresentByXpath(xpath) Then
+                    'Debug.WriteLine("pattern : " + pattern.ToString())
+                    msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
+                    msgbox_ele.SendKeys(Keys.LeftControl + "a")
+                    msgbox_ele.SendKeys(Keys.Delete)
+                    Return True
+                End If
+            Next
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
         Catch ex As Exception
             Return False
