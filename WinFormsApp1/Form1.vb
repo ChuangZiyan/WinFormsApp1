@@ -26,18 +26,18 @@ Public Class Form1
 
     Dim rnd_num As New Random()
 
-    Dim css_selector_config_obj As Newtonsoft.Json.Linq.JObject
-    Dim m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
+    Public css_selector_config_obj As Newtonsoft.Json.Linq.JObject
+    Public m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
 
-    Dim used_browser As String = ""
-    Dim used_dev_model As String = "PC"
-    Dim used_chrome_profile As String = ""
-    Dim running_chrome_profile As String = ""
+    Public used_browser As String = ""
+    Public used_dev_model As String = "PC"
+    Public used_chrome_profile As String = ""
+    Public running_chrome_profile As String = ""
     'Dim webDriverWait As WebDriverWait
 
-    Dim langConverter As Newtonsoft.Json.Linq.JObject
-    Dim used_lang = "zh-TW"
+    Public langConverter As Newtonsoft.Json.Linq.JObject
+    Public used_lang = "zh-TW"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -56,6 +56,7 @@ Public Class Form1
         FormInit.Render_ImageFolder_listbox()
         FormInit.Render_TextFile_listbox()
         FormInit.Render_profile_combobox()
+        FormInit.Render_profile_CheckedListBox()
         FormInit.Render_Lang_Packs_ComboBox()
         FormInit.Render_DevList_combobox()
 
@@ -130,10 +131,6 @@ Public Class Form1
 
             Select Case action
                 Case "開啟"
-                    If content.Contains(";"c) Then
-                        used_lang = content.Split(";")(1)
-                        content = content.Split(";")(0)
-                    End If
 
                     If profile = "" Or profile <> running_chrome_profile Then
                         boolean_result = Open_Browser(brower, devicetype, content)
@@ -297,7 +294,30 @@ Public Class Form1
     Private Function Open_Browser(browser As String, devicetype As String, profile As String)
         'Debug.WriteLine(browser)
         'Debug.WriteLine(devicetype)
-        'Debug.WriteLine(profile)
+        Debug.WriteLine(profile)
+        If profile = "全部隨機" Then
+            Dim allProfileItem = Profile_CheckedListBox.Items
+            Dim rnd = rnd_num.Next(0, allProfileItem.Count)
+            profile = allProfileItem(rnd)
+        Else
+            Dim ProfileItem = profile.Split(";")
+            Dim rnd = rnd_num.Next(0, ProfileItem.Length)
+            profile = ProfileItem(rnd)
+
+        End If
+
+        Debug.WriteLine("profile : " + profile)
+
+
+        If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
+            Dim JsonString As String = System.IO.File.ReadAllText(profile + "\ProfileInfo.txt")
+            Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
+            Profile_JsonObject = JsonConvert.DeserializeObject(JsonString)
+            Dim lang = Profile_JsonObject.Item("LanguagePack").ToString()
+            used_lang = lang
+            Debug.WriteLine("lang : " + lang)
+        End If
+
 
 
         Select Case used_lang
@@ -655,25 +675,6 @@ Public Class Form1
         End Try
     End Function
 
-    Private Sub Insert_to_script(action As String, content As String)
-
-
-        If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
-            used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
-        Else
-            used_dev_model = "PC"
-        End If
-
-        Dim myline As String
-
-        If action = "" And content = "" Then
-            myline = "分隔行,,,,,,"
-        Else
-            myline = used_browser + "," + used_dev_model + "," + used_chrome_profile + "," + action + "," + content + ","
-        End If
-
-        EventlogListview_AddNewItem(myline)
-    End Sub
 
 
 
@@ -1133,54 +1134,15 @@ Public Class Form1
 
 
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
-        Dim fb_email = fb_account_TextBox.Text
-        Dim fb_passwd = fb_password_TextBox.Text
-
-        If fb_email = "" OrElse fb_passwd = "" Then
-            MsgBox("帳號與密碼不可為空")
-        Else
-            Insert_to_script("登入", "帳號:" + fb_email + " 密碼:" + fb_passwd)
-        End If
-
+        Insert_Login()
     End Sub
 
     Private Sub Insert_navigate_to_url_btn_Click(sender As Object, e As EventArgs) Handles Insert_navigate_to_url_btn.Click
-
-        Dim pattern As String
-        pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
-        If Regex.IsMatch(curr_url_TextBox.Text, pattern) Then
-            Dim content As String
-            If group_name_TextBox.Text <> "" Then
-                content = group_name_TextBox.Text + ";" + curr_url_TextBox.Text
-            Else
-                content = curr_url_TextBox.Text
-            End If
-
-            Insert_to_script("前往", content)
-        Else
-            MsgBox("網址格式錯誤")
-        End If
-
+        Insert_navigate_to_url()
     End Sub
 
     Private Sub Insert_delay_btn_Click(sender As Object, e As EventArgs) Handles Insert_delay_btn.Click
-
-        Dim rnd_num As New Random()
-        Dim hour = wait_hour_NumericUpDown.Value
-        Dim minute = wait_minute_NumericUpDown.Value
-        Dim second = wait_second_NumericUpDown.Value
-
-        'Dim random_sec = rnd_num.Next(-wait_random_second_NumericUpDown.Value, wait_random_second_NumericUpDown.Value)
-
-        Dim total_second = hour * 3600 + minute * 60 + second
-        If wait_random_second_NumericUpDown.Value > 0 Then
-            Insert_to_script("等待", total_second.ToString() + "±" + wait_random_second_NumericUpDown.Value.ToString() + "秒")
-        ElseIf total_second > 1 Then
-            Insert_to_script("等待", total_second.ToString() + "秒")
-        Else
-            Insert_to_script("等待", "1秒")
-        End If
-
+        Insert_delay()
     End Sub
 
     Private Sub Clear_script_btn_Click(sender As Object, e As EventArgs) Handles Clear_script_btn.Click
@@ -1192,24 +1154,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_open_browser_btn_Click(sender As Object, e As EventArgs) Handles Insert_open_browser_btn.Click
-
-        Dim myprofile = ""
-
-        If chrome_RadioButton.Checked = True Then
-            used_browser = "Chrome"
-            myprofile = Chrome_Profile_ComboBox.Text
-            used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
-        ElseIf firefox_RadioButton.Checked = True Then
-            used_browser = "Firefox"
-        ElseIf edge_RadioButton.Checked = True Then
-            used_browser = "Edge"
-        End If
-        If Lang_Packs_ComboBox.SelectedIndex >= 0 Then
-            Insert_to_script("開啟", myprofile + ";" + Lang_Packs_ComboBox.Text)
-        Else
-            Insert_to_script("開啟", myprofile)
-        End If
-
+        Insert_open_browser()
     End Sub
 
     Private Sub Insert_click_leave_msg_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_leave_msg_btn.Click
@@ -1225,39 +1170,11 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_click_img_video_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_img_video_btn.Click
-        Dim img_path_str As String = ""
-
-        'get selected img path into string 
-        If img_CheckedListBox.CheckedItems.Count <> 0 Then
-            For i = 0 To img_CheckedListBox.CheckedItems.Count - 1
-                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
-                Debug.WriteLine(img_CheckedListBox.Items(i).ToString)
-                If img_path_str = "" Then
-                    img_path_str = img_CheckedListBox.Items(i).ToString
-                Else
-                    img_path_str = img_path_str & vbLf & img_CheckedListBox.Items(i).ToString
-                End If
-            Next
-            Insert_to_script("上載", img_path_str)
-        Else
-            MsgBox("未勾選任何檔案")
-        End If
-
+        Insert_click_img_video()
     End Sub
 
     Private Sub Insert_Upload_Random_Image_btn_Click(sender As Object, e As EventArgs) Handles Insert_Upload_Random_Image_btn.Click
-        Dim Image_file_path As String = ""
-        For Each itemChecked In img_CheckedListBox.CheckedItems
-            'Debug.WriteLine(itemChecked)
-            Image_file_path += itemChecked + ";"
-        Next
-
-        If Image_file_path = "" Then
-            Insert_to_script("上載:隨機", "全部隨機")
-        Else
-            Insert_to_script("上載:隨機", Image_file_path.TrimEnd(";"))
-        End If
-
+        Insert_Upload_Random_Image()
     End Sub
 
 
@@ -1278,24 +1195,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_comment_upload_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_comment_upload_img_btn.Click
-        Dim img_path_str As String = ""
-
-        'get selected img path into string 
-        If img_CheckedListBox.CheckedItems.Count = 1 Then
-
-            For i = 0 To img_CheckedListBox.Items.Count - 1
-                'We ask if this item is checked or not
-                If img_CheckedListBox.GetItemChecked(i) Then
-                    img_path_str = img_CheckedListBox.Items(i).ToString()
-                End If
-            Next
-
-            Insert_to_script("回應:上載", img_path_str)
-        ElseIf img_CheckedListBox.CheckedItems.Count > 1 Then
-            MsgBox("回覆最多只能一張圖")
-        Else
-            MsgBox("未勾選任何檔案")
-        End If
+        Insert_comment_upload_img()
     End Sub
 
     Private Sub Insert_submit_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_comment_btn.Click
@@ -1303,44 +1203,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_emoji_btn_Click(sender As Object, e As EventArgs) Handles Insert_emoji_btn.Click
-        Dim Emoji_list As String = ""
-
-
-        If Emoji_like_CheckBox.Checked Then
-            Emoji_list += "讚好 "
-        End If
-
-        If Emoji_love_CheckBox.Checked Then
-            Emoji_list += "愛心 "
-        End If
-
-        If Emoji_wow_CheckBox.Checked Then
-            Emoji_list += "驚訝 "
-        End If
-
-        If Emoji_haha_CheckBox.Checked Then
-            Emoji_list += "哈哈 "
-        End If
-
-        If Emoji_sad_CheckBox.Checked Then
-            Emoji_list += "難過 "
-        End If
-
-        If Emoji_care_CheckBox.Checked Then
-            Emoji_list += "加油 "
-        End If
-
-        If Emoji_angry_CheckBox.Checked Then
-            Emoji_list += "生氣 "
-        End If
-
-        If Emoji_list = "" Then
-            MsgBox("未勾選任何心情")
-        Else
-            Insert_to_script("回應:按讚", Emoji_list)
-        End If
-
-
+        Insert_emoji()
     End Sub
 
     Private Sub Insert_empty_btn_Click(sender As Object, e As EventArgs) Handles Insert_empty_btn.Click
@@ -1479,18 +1342,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_send_Random_content_TextFile_btn_Click(sender As Object, e As EventArgs) Handles Insert_send_Random_content_TextFile_btn.Click
-        Dim Txt_file_path As String = ""
-        For Each itemChecked In Text_File_CheckedListBox.CheckedItems
-            'Debug.WriteLine(itemChecked)
-            Txt_file_path += itemChecked + ";"
-        Next
-
-        If Txt_file_path = "" Then
-            Insert_to_script("發送:隨機", "全部隨機")
-        Else
-            Insert_to_script("發送:隨機", Txt_file_path.TrimEnd(";"))
-        End If
-
+        Insert_send_Random_content_TextFile()
     End Sub
 
     Private Sub Set_Matching_btn_Click(sender As Object, e As EventArgs) Handles Set_Matching_btn.Click
@@ -1504,18 +1356,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_random_matching_text_and_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_random_matching_text_and_img_btn.Click
-        Dim Content As String = ""
-        For Each item As ListViewItem In Match_Condition_ListView.Items
-            'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
-            Content += item.SubItems(0).Text + "%20" + item.SubItems(1).Text + ";"
-        Next
-        'MsgBox(Content)
-        If Content = "" Then
-            MsgBox("無任何配對條件")
-        Else
-            Insert_to_script("發送上載:隨機配對", Content.TrimEnd(";"c))
-        End If
-
+        Insert_random_matching_text_and_img()
     End Sub
 
     Private Sub Clear_Conditions_Listview_Click(sender As Object, e As EventArgs) Handles Clear_Conditions_Listview.Click
@@ -1523,33 +1364,15 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_Reply_Random_TxtFile_btn_Click(sender As Object, e As EventArgs) Handles Insert_Reply_Random_TxtFile_btn.Click
-
-        Dim Txt_file_path As String = ""
-        For Each itemChecked In Text_File_CheckedListBox.CheckedItems
-            'Debug.WriteLine(itemChecked)
-            Txt_file_path += itemChecked + ";"
-        Next
-
-        If Txt_file_path = "" Then
-            Insert_to_script("回應:隨機", "全部隨機")
-        Else
-            Insert_to_script("回應:隨機", Txt_file_path.TrimEnd(";"))
-        End If
-
+        Insert_Reply_Random_TxtFile()
     End Sub
 
     Private Sub Insert_Reply_Random_Match_btn_Click(sender As Object, e As EventArgs) Handles Insert_Reply_Random_Match_btn.Click
-        Dim Content As String = ""
-        For Each item As ListViewItem In Match_Condition_ListView.Items
-            'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
-            Content += item.SubItems(0).Text + "%20" + item.SubItems(1).Text + ";"
-        Next
-        'MsgBox(Content)
-        If Content = "" Then
-            MsgBox("無任何配對條件")
-        Else
-            Insert_to_script("回應:隨機配對", Content.TrimEnd(";"c))
-        End If
+        Insert_Reply_Random_Match()
+    End Sub
+
+    Private Sub Insert_Reply_Random_Image_btn_Click(sender As Object, e As EventArgs) Handles Insert_Reply_Random_Image_btn.Click
+        Insert_Reply_Random_Image()
     End Sub
 
     Private Sub SaveAs_RichBox_Content_btn_Click(sender As Object, e As EventArgs) Handles SaveAs_RichBox_Content_btn.Click
@@ -1568,20 +1391,8 @@ Public Class Form1
         FormComponentController.Chrome_Profile_ComboBox_SelectedIndexChanged()
     End Sub
 
-    Private Sub Insert_Reply_Random_Image_btn_Click(sender As Object, e As EventArgs) Handles Insert_Reply_Random_Image_btn.Click
-        Dim Image_file_path As String = ""
-        For Each itemChecked In img_CheckedListBox.CheckedItems
-            'Debug.WriteLine(itemChecked)
-            Image_file_path += itemChecked + ";"
-        Next
-        If Image_file_path = "" Then
-            Insert_to_script("回應:上載隨機", "全部隨機")
-        Else
-            Insert_to_script("回應:上載隨機", Image_file_path.TrimEnd(";"))
-        End If
-    End Sub
-
     Private Sub Selected_PictureBox_Click(sender As Object, e As EventArgs) Handles Selected_PictureBox.Click
         FormComponentController.Selected_PictureBox_Click()
     End Sub
+
 End Class

@@ -64,6 +64,16 @@ Module FormInit
 
     End Sub
 
+    Public Sub Render_profile_CheckedListBox()
+        Dim mypath = curr_path + "profiles"
+        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+        For Each dir As String In dirs
+            'Debug.WriteLine(dir)
+            Form1.Profile_CheckedListBox.Items.Add(dir)
+        Next
+
+    End Sub
+
     Public Sub Render_TextFile_listbox()
         Dim mypath = curr_path + "resources\texts"
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
