@@ -55,7 +55,6 @@ Public Class Form1
         FormInit.Render_TextFolder_listbox()
         FormInit.Render_ImageFolder_listbox()
         FormInit.Render_TextFile_listbox()
-        FormInit.Render_profile_combobox()
         FormInit.Render_profile_CheckedListBox()
         FormInit.Render_Lang_Packs_ComboBox()
         FormInit.Render_DevList_combobox()
@@ -267,7 +266,14 @@ Public Class Form1
             Else
                 used_dev_model = "PC"
             End If
-            Open_Browser("Chrome", used_dev_model, Chrome_Profile_ComboBox.Text)
+
+            Dim myprofile = ""
+            For Each itemSeleted In Profile_CheckedListBox.SelectedItems
+                Debug.WriteLine(itemSeleted)
+                myprofile = itemSeleted
+            Next
+
+            Open_Browser("Chrome", used_dev_model, myprofile)
 
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
@@ -1387,12 +1393,12 @@ Public Class Form1
         FormComponentController.Save_Account_Info()
     End Sub
 
-    Private Sub Chrome_Profile_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Chrome_Profile_ComboBox.SelectedIndexChanged
-        FormComponentController.Chrome_Profile_ComboBox_SelectedIndexChanged()
-    End Sub
 
     Private Sub Selected_PictureBox_Click(sender As Object, e As EventArgs) Handles Selected_PictureBox.Click
         FormComponentController.Selected_PictureBox_Click()
     End Sub
 
+    Private Sub Profile_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Profile_CheckedListBox.SelectedIndexChanged
+        FormComponentController.Profile_CheckedListBox_SelectedIndexChanged()
+    End Sub
 End Class

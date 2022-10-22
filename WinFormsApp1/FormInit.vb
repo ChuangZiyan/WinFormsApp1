@@ -54,15 +54,6 @@ Module FormInit
     End Sub
 
 
-    Public Sub Render_profile_combobox()
-        Dim mypath = curr_path + "profiles"
-        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
-        For Each dir As String In dirs
-            'Debug.WriteLine(dir)
-            Form1.Chrome_Profile_ComboBox.Items.Add(dir)
-        Next
-
-    End Sub
 
     Public Sub Render_profile_CheckedListBox()
         Dim mypath = curr_path + "profiles"

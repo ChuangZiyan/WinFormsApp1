@@ -73,10 +73,14 @@ Module ScriptInsertion
     End Sub
     Public Sub Insert_open_browser()
         Dim myprofile As String = ""
-
         If Form1.chrome_RadioButton.Checked = True Then
             Form1.used_browser = "Chrome"
-            myprofile = Form1.Chrome_Profile_ComboBox.Text
+
+            For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
+                Debug.WriteLine(itemSeleted)
+                myprofile = itemSeleted
+            Next
+
             Form1.used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
         ElseIf Form1.firefox_RadioButton.Checked = True Then
             Form1.used_browser = "Firefox"

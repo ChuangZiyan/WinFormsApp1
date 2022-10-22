@@ -184,7 +184,13 @@ Module FormComponentController
     End Sub
 
     Public Sub Save_Account_Info()
-        Dim Profile_Path = Form1.Chrome_Profile_ComboBox.Text
+        Dim Profile_Path = ""
+
+        For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
+            Debug.WriteLine(itemSeleted)
+            Profile_Path = itemSeleted
+        Next
+
         Debug.WriteLine(Profile_Path)
         If Profile_Path = "" Then
             MsgBox("未選擇任何Profile")
@@ -216,8 +222,19 @@ Module FormComponentController
 
     End Sub
 
-    Public Sub Chrome_Profile_ComboBox_SelectedIndexChanged()
-        Dim myfile = Form1.Chrome_Profile_ComboBox.Text + "\ProfileInfo.txt"
+    Public Sub Profile_CheckedListBox_SelectedIndexChanged()
+
+
+
+        Dim myfile = ""
+
+
+        For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
+            Debug.WriteLine(itemSeleted)
+            myfile = itemSeleted + "\ProfileInfo.txt"
+        Next
+
+
         Debug.WriteLine(myfile)
         If My.Computer.FileSystem.FileExists(myfile) Then
             Dim JsonString As String = System.IO.File.ReadAllText(myfile)
