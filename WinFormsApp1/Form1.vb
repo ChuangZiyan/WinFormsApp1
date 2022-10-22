@@ -273,6 +273,8 @@ Public Class Form1
                 myprofile = itemSeleted
             Next
 
+
+
             Open_Browser("Chrome", used_dev_model, myprofile)
 
         ElseIf firefox_RadioButton.Checked = True Then
@@ -1400,5 +1402,13 @@ Public Class Form1
 
     Private Sub Profile_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Profile_CheckedListBox.SelectedIndexChanged
         FormComponentController.Profile_CheckedListBox_SelectedIndexChanged()
+    End Sub
+
+    Private Sub Insert_To_Queuing_Click(sender As Object, e As EventArgs) Handles Insert_To_Queuing.Click
+        FormComponentController.Insert_To_Queuing()
+    End Sub
+
+    Private Sub Insert_Queue_To_script_Click(sender As Object, e As EventArgs) Handles Insert_Queue_To_script.Click
+        Insert_to_script("打開", "佇列迴圈")
     End Sub
 End Class

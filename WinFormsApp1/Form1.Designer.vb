@@ -64,8 +64,9 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Profile_Queue_ListBox = New System.Windows.Forms.ListBox()
+        Me.Clear_Profile_Queue = New System.Windows.Forms.Button()
         Me.Insert_Queue_To_script = New System.Windows.Forms.Button()
-        Me.ListView1 = New System.Windows.Forms.ListView()
         Me.Insert_To_Queuing = New System.Windows.Forms.Button()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Profile_CheckedListBox = New System.Windows.Forms.CheckedListBox()
@@ -585,8 +586,9 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Profile_Queue_ListBox)
+        Me.TabPage5.Controls.Add(Me.Clear_Profile_Queue)
         Me.TabPage5.Controls.Add(Me.Insert_Queue_To_script)
-        Me.TabPage5.Controls.Add(Me.ListView1)
         Me.TabPage5.Controls.Add(Me.Insert_To_Queuing)
         Me.TabPage5.Controls.Add(Me.Label28)
         Me.TabPage5.Controls.Add(Me.Profile_CheckedListBox)
@@ -633,22 +635,33 @@ Partial Class Form1
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'Profile_Queue_ListBox
+        '
+        Me.Profile_Queue_ListBox.FormattingEnabled = True
+        Me.Profile_Queue_ListBox.HorizontalScrollbar = True
+        Me.Profile_Queue_ListBox.ItemHeight = 19
+        Me.Profile_Queue_ListBox.Location = New System.Drawing.Point(119, 264)
+        Me.Profile_Queue_ListBox.Name = "Profile_Queue_ListBox"
+        Me.Profile_Queue_ListBox.Size = New System.Drawing.Size(534, 137)
+        Me.Profile_Queue_ListBox.TabIndex = 117
+        '
+        'Clear_Profile_Queue
+        '
+        Me.Clear_Profile_Queue.Location = New System.Drawing.Point(758, 226)
+        Me.Clear_Profile_Queue.Name = "Clear_Profile_Queue"
+        Me.Clear_Profile_Queue.Size = New System.Drawing.Size(94, 29)
+        Me.Clear_Profile_Queue.TabIndex = 116
+        Me.Clear_Profile_Queue.Text = "清除佇列"
+        Me.Clear_Profile_Queue.UseVisualStyleBackColor = True
+        '
         'Insert_Queue_To_script
         '
-        Me.Insert_Queue_To_script.Location = New System.Drawing.Point(659, 353)
+        Me.Insert_Queue_To_script.Location = New System.Drawing.Point(659, 372)
         Me.Insert_Queue_To_script.Name = "Insert_Queue_To_script"
         Me.Insert_Queue_To_script.Size = New System.Drawing.Size(94, 29)
         Me.Insert_Queue_To_script.TabIndex = 115
         Me.Insert_Queue_To_script.Text = "佇列 - 插入"
         Me.Insert_Queue_To_script.UseVisualStyleBackColor = True
-        '
-        'ListView1
-        '
-        Me.ListView1.Location = New System.Drawing.Point(119, 261)
-        Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(534, 121)
-        Me.ListView1.TabIndex = 114
-        Me.ListView1.UseCompatibleStateImageBehavior = False
         '
         'Insert_To_Queuing
         '
@@ -670,6 +683,7 @@ Partial Class Form1
         '
         'Profile_CheckedListBox
         '
+        Me.Profile_CheckedListBox.CheckOnClick = True
         Me.Profile_CheckedListBox.FormattingEnabled = True
         Me.Profile_CheckedListBox.HorizontalScrollbar = True
         Me.Profile_CheckedListBox.Location = New System.Drawing.Point(119, 119)
@@ -1806,6 +1820,7 @@ Partial Class Form1
     Friend WithEvents Profile_CheckedListBox As CheckedListBox
     Friend WithEvents Label28 As Label
     Friend WithEvents Insert_Queue_To_script As Button
-    Friend WithEvents ListView1 As ListView
     Friend WithEvents Insert_To_Queuing As Button
+    Friend WithEvents Clear_Profile_Queue As Button
+    Friend WithEvents Profile_Queue_ListBox As ListBox
 End Class

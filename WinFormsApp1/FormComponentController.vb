@@ -283,4 +283,24 @@ Module FormComponentController
             End If
         Next
     End Sub
+
+
+
+    Public Sub Insert_To_Queuing()
+        Dim Profile_Item = ""
+        For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
+            Debug.WriteLine(itemSeleted)
+            Profile_Item = itemSeleted
+        Next
+
+        If Profile_Item <> "" Then
+            'Form1.Profile_Queue_ListView.Items.Add(Profile_Item)
+            Form1.Profile_Queue_ListBox.Items.Add(Profile_Item)
+        Else
+            MsgBox("未選取任何Profile")
+        End If
+
+    End Sub
+
+
 End Module

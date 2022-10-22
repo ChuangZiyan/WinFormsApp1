@@ -73,26 +73,34 @@ Module ScriptInsertion
     End Sub
     Public Sub Insert_open_browser()
         Dim myprofile As String = ""
+        For Each itemChecked In Form1.Profile_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            myprofile += itemChecked + ";"
+        Next
+        myprofile = myprofile.Trim(";"c)
+
         If Form1.chrome_RadioButton.Checked = True Then
             Form1.used_browser = "Chrome"
+            Dim profile_nickname = ""
 
-            For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
-                Debug.WriteLine(itemSeleted)
-                myprofile = itemSeleted
-            Next
+            If myprofile.Contains(";"c) Then
+                Dim profile_arr As String() = myprofile.Split(";"c)
+                For Each nickname In profile_arr
+                    profile_nickname += nickname.Split("\")(UBound(nickname.Split("\"))) + " "
+                Next
+                profile_nickname.Trim(" ")
+            Else
+                profile_nickname = myprofile.Split("\")(UBound(myprofile.Split("\"))).Trim(";")
+            End If
 
-            Form1.used_chrome_profile = myprofile.Split("\")(UBound(myprofile.Split("\")))
+            Form1.used_chrome_profile = profile_nickname
+
         ElseIf Form1.firefox_RadioButton.Checked = True Then
             Form1.used_browser = "Firefox"
         ElseIf Form1.edge_RadioButton.Checked = True Then
             Form1.used_browser = "Edge"
         End If
 
-
-        For Each itemChecked In Form1.Profile_CheckedListBox.CheckedItems
-            'Debug.WriteLine(itemChecked)
-            myprofile += itemChecked + ";"
-        Next
 
         If myprofile = "" Then
             Insert_to_script("開啟", "全部隨機")
@@ -264,8 +272,6 @@ Module ScriptInsertion
             Insert_to_script("發送上載:隨機配對", Content.TrimEnd(";"c))
         End If
     End Sub
-
-
 
 
 
