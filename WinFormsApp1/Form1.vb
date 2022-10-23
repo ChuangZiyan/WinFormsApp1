@@ -39,6 +39,9 @@ Public Class Form1
     Public langConverter As Newtonsoft.Json.Linq.JObject
     Public used_lang = "zh-TW"
 
+
+    Public Profile_Queue() As String
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
 
@@ -95,14 +98,14 @@ Public Class Form1
             record_script = True
         End If
         'Dim rnd_num As New Random()
-        Dim j = 1
+
         For Each item As ListViewItem In script_ListView.Items
             Restore_ListViewItems_BackColor()
             item.BackColor = Color.SteelBlue
             item.ForeColor = Color.White
             item.EnsureVisible()
 
-            j += 1
+
             If script_running = False Then
                 'Debug.WriteLine("running false")
                 loop_run = False
@@ -130,12 +133,21 @@ Public Class Form1
 
             Select Case action
                 Case "開啟"
-
                     If profile = "" Or profile <> running_chrome_profile Then
                         boolean_result = Open_Browser(brower, devicetype, content)
                     Else
-                        Debug.WriteLine("open browser reuturn false")
                         boolean_result = False
+                    End If
+                Case "開啟:佇列"
+                    If i = 1 Then
+                        Profile_Queue = content.Split(";")
+                    End If
+                    Debug.WriteLine("Profile= : " + Profile_Queue(i - 1))
+                    item.SubItems.Item(3).Text = Profile_Queue(i - 1).Split("\")(UBound(Profile_Queue(i - 1).Split("\")))
+                    boolean_result = Open_Browser(brower, devicetype, Profile_Queue(i - 1))
+
+                    If Profile_Queue.Count = i Then
+                        loop_run = False
                     End If
 
                 Case "關閉"
@@ -156,7 +168,6 @@ Public Class Form1
 
                         Dim sec = Get_random_sec_frome_content(content)
                         Dim counter = sec
-                        Debug.WriteLine(sec)
                         For i = 1 To sec
                             item.SubItems.Item(6).Text = (counter.ToString())
                             Await Delay_msec(1000)
@@ -269,10 +280,9 @@ Public Class Form1
 
             Dim myprofile = ""
             For Each itemSeleted In Profile_CheckedListBox.SelectedItems
-                Debug.WriteLine(itemSeleted)
+                'Debug.WriteLine(itemSeleted)
                 myprofile = itemSeleted
             Next
-
 
 
             Open_Browser("Chrome", used_dev_model, myprofile)
@@ -300,8 +310,8 @@ Public Class Form1
     End Sub
 
     Private Function Open_Browser(browser As String, devicetype As String, profile As String)
-        'Debug.WriteLine(browser)
-        'Debug.WriteLine(devicetype)
+        Debug.WriteLine(browser)
+        Debug.WriteLine(devicetype)
         Debug.WriteLine(profile)
         If profile = "全部隨機" Then
             Dim allProfileItem = Profile_CheckedListBox.Items
@@ -314,8 +324,7 @@ Public Class Form1
 
         End If
 
-        Debug.WriteLine("profile : " + profile)
-
+        'Debug.WriteLine("profile : " + profile)
 
         If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
             Dim JsonString As String = System.IO.File.ReadAllText(profile + "\ProfileInfo.txt")
@@ -336,7 +345,7 @@ Public Class Form1
         End Select
 
 
-        Debug.WriteLine(langConverter.Item("Create_Post"))
+        'Debug.WriteLine(langConverter.Item("Create_Post"))
 
         If browser = "Chrome" Then
             Try
@@ -1409,6 +1418,16 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_Queue_To_script_Click(sender As Object, e As EventArgs) Handles Insert_Queue_To_script.Click
-        Insert_to_script("打開", "佇列迴圈")
+        Dim Content As String = ""
+        For Each item In Profile_Queue_ListBox.Items
+            'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
+            Content += item + ";"
+        Next
+        used_browser = "Chrome"
+        Insert_to_script("開啟:佇列", Content.Trim(";"c))
+    End Sub
+
+    Private Sub Clear_Profile_Queue_Click(sender As Object, e As EventArgs) Handles Clear_Profile_Queue.Click
+        Profile_Queue_ListBox.Items.Clear()
     End Sub
 End Class
