@@ -130,7 +130,7 @@ Public Class Form1
             Dim content = item.SubItems.Item(5).Text
             Dim execute_result = item.SubItems.Item(6)
             Dim boolean_result As Boolean
-
+            item.SubItems.Item(3).Text = used_chrome_profile
             Select Case action
                 Case "開啟"
                     If profile = "" Or profile <> running_chrome_profile Then
@@ -143,7 +143,8 @@ Public Class Form1
                         Profile_Queue = content.Split(";")
                     End If
                     Debug.WriteLine("Profile= : " + Profile_Queue(i - 1))
-                    item.SubItems.Item(3).Text = Profile_Queue(i - 1).Split("\")(UBound(Profile_Queue(i - 1).Split("\")))
+                    used_chrome_profile = Profile_Queue(i - 1).Split("\")(UBound(Profile_Queue(i - 1).Split("\")))
+                    item.SubItems.Item(3).Text = used_chrome_profile
                     boolean_result = Open_Browser(brower, devicetype, Profile_Queue(i - 1))
 
                     If Profile_Queue.Count = i Then
@@ -247,12 +248,10 @@ Public Class Form1
                     boolean_result = Click_reply_random_emoji(content)
 
             End Select
-
             If boolean_result = True Then ' record the result
 
                 item.SubItems.Item(6).Text = ("成功")
             ElseIf boolean_result = False Then
-
                 item.SubItems.Item(6).Text = ("失敗")
             End If
             If record_script Then
@@ -1423,8 +1422,14 @@ Public Class Form1
             'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
             Content += item + ";"
         Next
-        used_browser = "Chrome"
-        Insert_to_script("開啟:佇列", Content.Trim(";"c))
+
+        If Content = "" Then
+            MsgBox("佇列為空")
+        Else
+            used_browser = "Chrome"
+            Insert_to_script("開啟:佇列", Content.Trim(";"c))
+        End If
+
     End Sub
 
     Private Sub Clear_Profile_Queue_Click(sender As Object, e As EventArgs) Handles Clear_Profile_Queue.Click
