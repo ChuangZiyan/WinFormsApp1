@@ -314,9 +314,7 @@ Public Class Form1
     End Sub
 
     Private Function Open_Browser(browser As String, devicetype As String, profile As String)
-        Debug.WriteLine(browser)
-        Debug.WriteLine(devicetype)
-        Debug.WriteLine(profile)
+
         If profile = "全部隨機" Then
             Dim allProfileItem = Profile_CheckedListBox.Items
             Dim rnd = rnd_num.Next(0, allProfileItem.Count)
@@ -371,6 +369,9 @@ Public Class Form1
                 End If
                 chromeDriver = New ChromeDriver(serv, options)
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+                ' Refresh Profile Items
+                Profile_CheckedListBox.Items.Clear()
+                Render_profile_CheckedListBox()
                 Return True
             Catch ex As Exception
                 Debug.WriteLine(ex)
@@ -1347,20 +1348,20 @@ Public Class Form1
         FormComponentController.MoveDown_ScriptListView_selected_item()
     End Sub
 
-    Private Sub aText_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.Click
+    Private Sub aText_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.ItemCheck
         Dim Txt_file_path As String = ""
         For Each itemSeleted In Text_File_CheckedListBox.SelectedItems
             'Debug.WriteLine(itemSeleted)
             Txt_file_path = itemSeleted
         Next
 
-        If Txt_file_path <> "" Then
-            content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
-        End If
+        'If Txt_file_path <> "" Then
+        content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
+        'End If
 
     End Sub
 
-    Private Sub img_CheckedListBox_Click(sender As Object, e As EventArgs) Handles img_CheckedListBox.Click
+    Private Sub img_CheckedListBox_Click(sender As Object, e As EventArgs) Handles img_CheckedListBox.ItemCheck
         FormComponentController.Img_CheckedListBox_Click()
     End Sub
 
@@ -1417,6 +1418,12 @@ Public Class Form1
 
     Private Sub Profile_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Profile_CheckedListBox.SelectedIndexChanged
         FormComponentController.Profile_CheckedListBox_SelectedIndexChanged()
+    End Sub
+
+    Private Sub Profile_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Profile_CheckedListBox.ItemCheck
+        For Each itemChecked In Profile_CheckedListBox.CheckedItems
+            Profile_TextBox.Text = itemChecked
+        Next
     End Sub
 
     Private Sub Insert_To_Queuing_Click(sender As Object, e As EventArgs) Handles Insert_To_Queuing.Click
