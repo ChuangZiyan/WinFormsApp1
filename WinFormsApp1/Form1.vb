@@ -1348,16 +1348,8 @@ Public Class Form1
         FormComponentController.MoveDown_ScriptListView_selected_item()
     End Sub
 
-    Private Sub aText_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.ItemCheck
-        Dim Txt_file_path As String = ""
-        For Each itemSeleted In Text_File_CheckedListBox.SelectedItems
-            'Debug.WriteLine(itemSeleted)
-            Txt_file_path = itemSeleted
-        Next
-
-        'If Txt_file_path <> "" Then
-        content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
-        'End If
+    Private Sub Text_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.ItemCheck
+        FormComponentController.Text_File_CheckedListBox_Click()
 
     End Sub
 
@@ -1420,12 +1412,6 @@ Public Class Form1
         FormComponentController.Profile_CheckedListBox_SelectedIndexChanged()
     End Sub
 
-    Private Sub Profile_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Profile_CheckedListBox.ItemCheck
-        For Each itemChecked In Profile_CheckedListBox.CheckedItems
-            Profile_TextBox.Text = itemChecked
-        Next
-    End Sub
-
     Private Sub Insert_To_Queuing_Click(sender As Object, e As EventArgs) Handles Insert_To_Queuing.Click
         FormComponentController.Insert_To_Queuing()
     End Sub
@@ -1457,5 +1443,17 @@ Public Class Form1
 
     Private Sub Delete_Profile_From_Queue_btn_Click(sender As Object, e As EventArgs) Handles Delete_Profile_From_Queue_btn.Click
         FormComponentController.Delete_Profile_From_Queue()
+    End Sub
+
+    Private Sub Open_Folder_with_TextFile_textbox_btn_Click(sender As Object, e As EventArgs) Handles Open_Folder_with_TextFile_textbox_btn.Click
+        FormComponentController.Open_Folder_with_TextFile_textbox()
+    End Sub
+
+    Private Sub Open_Folder_with_Image_textbox_btn_Click(sender As Object, e As EventArgs) Handles Open_Folder_with_Image_textbox_btn.Click
+        FormComponentController.Open_Folder_with_Image_textbox()
+    End Sub
+
+    Private Sub Refresh_All_ListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_All_ListBox_btn.Click
+        FormComponentController.Refresh_All_ListBox()
     End Sub
 End Class

@@ -2,7 +2,7 @@
 
 Module FormInit
 
-    Dim curr_path = My.Computer.FileSystem.CurrentDirectory + "\"
+    Public curr_path = My.Computer.FileSystem.CurrentDirectory + "\"
 
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details

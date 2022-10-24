@@ -106,6 +106,12 @@ Partial Class Form1
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Open_Folder_with_Image_textbox_btn = New System.Windows.Forms.Button()
+        Me.ImageFolder_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Open_Folder_with_TextFile_textbox_btn = New System.Windows.Forms.Button()
+        Me.TextFileFolder_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.Selected_PictureBox = New System.Windows.Forms.PictureBox()
         Me.Text_File_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.TextFolder_ListBox = New System.Windows.Forms.ListBox()
@@ -173,6 +179,7 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Refresh_All_ListBox_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,7 +209,7 @@ Partial Class Form1
         '
         Me.content_RichTextBox.Location = New System.Drawing.Point(365, 6)
         Me.content_RichTextBox.Name = "content_RichTextBox"
-        Me.content_RichTextBox.Size = New System.Drawing.Size(300, 211)
+        Me.content_RichTextBox.Size = New System.Drawing.Size(300, 203)
         Me.content_RichTextBox.TabIndex = 1
         Me.content_RichTextBox.Text = ""
         Me.content_RichTextBox.WordWrap = False
@@ -240,7 +247,7 @@ Partial Class Form1
         Me.img_CheckedListBox.HorizontalScrollbar = True
         Me.img_CheckedListBox.Location = New System.Drawing.Point(6, 263)
         Me.img_CheckedListBox.Name = "img_CheckedListBox"
-        Me.img_CheckedListBox.Size = New System.Drawing.Size(350, 246)
+        Me.img_CheckedListBox.Size = New System.Drawing.Size(350, 202)
         Me.img_CheckedListBox.TabIndex = 15
         '
         'group_name_TextBox
@@ -1003,6 +1010,13 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Refresh_All_ListBox_btn)
+        Me.TabPage3.Controls.Add(Me.Open_Folder_with_Image_textbox_btn)
+        Me.TabPage3.Controls.Add(Me.ImageFolder_TextBox)
+        Me.TabPage3.Controls.Add(Me.Label30)
+        Me.TabPage3.Controls.Add(Me.Open_Folder_with_TextFile_textbox_btn)
+        Me.TabPage3.Controls.Add(Me.TextFileFolder_TextBox)
+        Me.TabPage3.Controls.Add(Me.Label29)
         Me.TabPage3.Controls.Add(Me.Selected_PictureBox)
         Me.TabPage3.Controls.Add(Me.Text_File_CheckedListBox)
         Me.TabPage3.Controls.Add(Me.TextFolder_ListBox)
@@ -1023,13 +1037,63 @@ Partial Class Form1
         Me.TabPage3.Text = "發文發圖"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'Open_Folder_with_Image_textbox_btn
+        '
+        Me.Open_Folder_with_Image_textbox_btn.Location = New System.Drawing.Point(262, 471)
+        Me.Open_Folder_with_Image_textbox_btn.Name = "Open_Folder_with_Image_textbox_btn"
+        Me.Open_Folder_with_Image_textbox_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Open_Folder_with_Image_textbox_btn.TabIndex = 112
+        Me.Open_Folder_with_Image_textbox_btn.Text = "打開"
+        Me.Open_Folder_with_Image_textbox_btn.UseVisualStyleBackColor = True
+        '
+        'ImageFolder_TextBox
+        '
+        Me.ImageFolder_TextBox.Location = New System.Drawing.Point(73, 471)
+        Me.ImageFolder_TextBox.Name = "ImageFolder_TextBox"
+        Me.ImageFolder_TextBox.Size = New System.Drawing.Size(183, 27)
+        Me.ImageFolder_TextBox.TabIndex = 111
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(6, 474)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(61, 19)
+        Me.Label30.TabIndex = 110
+        Me.Label30.Text = "資料夾 :"
+        '
+        'Open_Folder_with_TextFile_textbox_btn
+        '
+        Me.Open_Folder_with_TextFile_textbox_btn.Location = New System.Drawing.Point(262, 214)
+        Me.Open_Folder_with_TextFile_textbox_btn.Name = "Open_Folder_with_TextFile_textbox_btn"
+        Me.Open_Folder_with_TextFile_textbox_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Open_Folder_with_TextFile_textbox_btn.TabIndex = 109
+        Me.Open_Folder_with_TextFile_textbox_btn.Text = "打開"
+        Me.Open_Folder_with_TextFile_textbox_btn.UseVisualStyleBackColor = True
+        '
+        'TextFileFolder_TextBox
+        '
+        Me.TextFileFolder_TextBox.Location = New System.Drawing.Point(73, 214)
+        Me.TextFileFolder_TextBox.Name = "TextFileFolder_TextBox"
+        Me.TextFileFolder_TextBox.Size = New System.Drawing.Size(183, 27)
+        Me.TextFileFolder_TextBox.TabIndex = 108
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(6, 217)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(61, 19)
+        Me.Label29.TabIndex = 107
+        Me.Label29.Text = "資料夾 :"
+        '
         'Selected_PictureBox
         '
         Me.Selected_PictureBox.BackColor = System.Drawing.Color.Transparent
         Me.Selected_PictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Selected_PictureBox.Location = New System.Drawing.Point(365, 263)
         Me.Selected_PictureBox.Name = "Selected_PictureBox"
-        Me.Selected_PictureBox.Size = New System.Drawing.Size(296, 247)
+        Me.Selected_PictureBox.Size = New System.Drawing.Size(296, 237)
         Me.Selected_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Selected_PictureBox.TabIndex = 106
         Me.Selected_PictureBox.TabStop = False
@@ -1041,7 +1105,7 @@ Partial Class Form1
         Me.Text_File_CheckedListBox.HorizontalScrollbar = True
         Me.Text_File_CheckedListBox.Location = New System.Drawing.Point(6, 6)
         Me.Text_File_CheckedListBox.Name = "Text_File_CheckedListBox"
-        Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(350, 246)
+        Me.Text_File_CheckedListBox.Size = New System.Drawing.Size(350, 202)
         Me.Text_File_CheckedListBox.TabIndex = 93
         '
         'TextFolder_ListBox
@@ -1070,7 +1134,7 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(667, 6)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(245, 808)
+        Me.TabControl1.Size = New System.Drawing.Size(245, 769)
         Me.TabControl1.TabIndex = 98
         '
         'TabPage1
@@ -1086,7 +1150,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 28)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(237, 776)
+        Me.TabPage1.Size = New System.Drawing.Size(237, 737)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "(群組/個人)發帖"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -1352,7 +1416,7 @@ Partial Class Form1
         '
         'SaveAs_RichBox_Content_btn
         '
-        Me.SaveAs_RichBox_Content_btn.Location = New System.Drawing.Point(365, 223)
+        Me.SaveAs_RichBox_Content_btn.Location = New System.Drawing.Point(365, 212)
         Me.SaveAs_RichBox_Content_btn.Name = "SaveAs_RichBox_Content_btn"
         Me.SaveAs_RichBox_Content_btn.Size = New System.Drawing.Size(300, 29)
         Me.SaveAs_RichBox_Content_btn.TabIndex = 96
@@ -1665,6 +1729,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Refresh_All_ListBox_btn
+        '
+        Me.Refresh_All_ListBox_btn.Location = New System.Drawing.Point(667, 781)
+        Me.Refresh_All_ListBox_btn.Name = "Refresh_All_ListBox_btn"
+        Me.Refresh_All_ListBox_btn.Size = New System.Drawing.Size(241, 29)
+        Me.Refresh_All_ListBox_btn.TabIndex = 113
+        Me.Refresh_All_ListBox_btn.Text = "重新整理"
+        Me.Refresh_All_ListBox_btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -1693,6 +1766,7 @@ Partial Class Form1
         CType(Me.wait_minute_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_hour_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         CType(Me.Selected_PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
@@ -1857,4 +1931,11 @@ Partial Class Form1
     Friend WithEvents Profile_TextBox As TextBox
     Friend WithEvents Delete_Profile_From_Queue_btn As Button
     Friend WithEvents Selected_All_Profile_btn As Button
+    Friend WithEvents Open_Folder_with_TextFile_textbox_btn As Button
+    Friend WithEvents TextFileFolder_TextBox As TextBox
+    Friend WithEvents Label29 As Label
+    Friend WithEvents Open_Folder_with_Image_textbox_btn As Button
+    Friend WithEvents ImageFolder_TextBox As TextBox
+    Friend WithEvents Label30 As Label
+    Friend WithEvents Refresh_All_ListBox_btn As Button
 End Class

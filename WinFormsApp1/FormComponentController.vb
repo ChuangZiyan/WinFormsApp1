@@ -130,14 +130,14 @@ Module FormComponentController
             Selected_Counter += 1
         End If
 
-        Debug.WriteLine("Seleted Counter : " & Selected_Counter)
+        'Debug.WriteLine("Seleted Counter : " & Selected_Counter)
 
         If Selected_Counter = 1 Then
             Debug.WriteLine("Seleted : " + Current_selected_Item)
             If Current_selected_Item.Contains("%20") Then
                 Dim paths() = Current_selected_Item.Split("%20")
-                Debug.WriteLine(paths(0))
-                Debug.WriteLine(paths(1))
+                'Debug.WriteLine(paths(0))
+                'Debug.WriteLine(paths(1))
                 Process.Start("explorer.exe", paths(0))
                 Process.Start("explorer.exe", paths(1))
             Else
@@ -225,9 +225,11 @@ Module FormComponentController
     Public Sub Profile_CheckedListBox_SelectedIndexChanged()
 
         Dim myfile = ""
-        For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
-            Debug.WriteLine(itemSeleted)
-            myfile = itemSeleted + "\ProfileInfo.txt"
+        For Each itemSelected In Form1.Profile_CheckedListBox.SelectedItems
+            'Debug.WriteLine(itemSeleted)
+            myfile = itemSelected + "\ProfileInfo.txt"
+            Form1.Profile_TextBox.Text = itemSelected
+
         Next
 
         Debug.WriteLine(myfile)
@@ -248,6 +250,17 @@ Module FormComponentController
         End If
     End Sub
 
+    Public Sub Text_File_CheckedListBox_Click()
+        Dim Txt_file_path As String = ""
+        For Each itemSeleted In Form1.Text_File_CheckedListBox.SelectedItems
+            Txt_file_path = itemSeleted
+        Next
+        Form1.content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
+
+        Dim temp_arr = Txt_file_path.Split("\")
+        Form1.TextFileFolder_TextBox.Text = temp_arr(temp_arr.Length - 2)
+
+    End Sub
 
     Public Sub Img_CheckedListBox_Click()
         Dim Img_file_path As String = ""
@@ -257,6 +270,8 @@ Module FormComponentController
             Img_file_path = itemSeleted
         Next
 
+        Dim temp_arr = Img_file_path.Split("\")
+        Form1.ImageFolder_TextBox.Text = temp_arr(temp_arr.Length - 2)
 
         If allowed_video_extentions.Contains(Path.GetExtension(Img_file_path)) Then ' if video
             'Debug.WriteLine("it's video")
@@ -266,8 +281,6 @@ Module FormComponentController
             Form1.Selected_PictureBox.Cursor = Cursors.Default
             Form1.Selected_PictureBox.Image = Image.FromFile(Img_file_path) ' image 
         End If
-
-
 
     End Sub
 
@@ -283,26 +296,12 @@ Module FormComponentController
         Next
     End Sub
 
-
     Public Sub Insert_To_Queuing()
-        'Dim Profile_Item = ""
-
-        'For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
-        'Debug.WriteLine(itemSeleted)
-        'Profile_Item = itemSeleted
-        'Next
 
         For Each itemChecked In Form1.Profile_CheckedListBox.CheckedItems
             'Debug.WriteLine(itemChecked)
             Form1.Profile_Queue_ListBox.Items.Add(itemChecked)
         Next
-
-        'If Profile_Item <> "" Then
-        'Form1.Profile_Queue_ListView.Items.Add(Profile_Item)
-        'Form1.Profile_Queue_ListBox.Items.Add(Profile_Item)
-        'Else
-        'MsgBox("未選取任何Profile")
-        'End If
 
     End Sub
 
@@ -314,6 +313,46 @@ Module FormComponentController
 
     Public Sub Delete_Profile_From_Queue()
         Form1.Profile_Queue_ListBox.Items.Remove(Form1.Profile_Queue_ListBox.SelectedItem)
+    End Sub
+
+    Public Sub Refresh_All_ListBox()
+        Form1.img_CheckedListBox.Items.Clear()
+        Form1.TextFolder_ListBox.Items.Clear()
+        Form1.ImageFolder_ListBox.Items.Clear()
+        Form1.Text_File_CheckedListBox.Items.Clear()
+
+
+        FormInit.Render_img_listbox()
+        FormInit.Render_TextFolder_listbox()
+        FormInit.Render_ImageFolder_listbox()
+        FormInit.Render_TextFile_listbox()
+
+    End Sub
+
+    Public Sub Open_Folder_with_TextFile_textbox()
+        If Form1.TextFileFolder_TextBox.Text = "" Then
+            MsgBox("資料夾名稱不可為空白")
+            Exit Sub
+        End If
+
+        Dim mypath As String = FormInit.curr_path + "resources\texts\" + Form1.TextFileFolder_TextBox.Text
+        If Not System.IO.Directory.Exists(mypath) Then
+            System.IO.Directory.CreateDirectory(mypath)
+        End If
+        Process.Start("explorer.exe", mypath)
+    End Sub
+
+    Public Sub Open_Folder_with_Image_textbox()
+        If Form1.ImageFolder_TextBox.Text = "" Then
+            MsgBox("資料夾名稱不可為空白")
+            Exit Sub
+        End If
+
+        Dim mypath As String = FormInit.curr_path + "resources\images\" + Form1.ImageFolder_TextBox.Text
+        If Not System.IO.Directory.Exists(mypath) Then
+            System.IO.Directory.CreateDirectory(mypath)
+        End If
+        Process.Start("explorer.exe", mypath)
     End Sub
 
 End Module
