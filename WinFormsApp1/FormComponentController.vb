@@ -224,16 +224,11 @@ Module FormComponentController
 
     Public Sub Profile_CheckedListBox_SelectedIndexChanged()
 
-
-
         Dim myfile = ""
-
-
         For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
             Debug.WriteLine(itemSeleted)
             myfile = itemSeleted + "\ProfileInfo.txt"
         Next
-
 
         Debug.WriteLine(myfile)
         If My.Computer.FileSystem.FileExists(myfile) Then
@@ -258,18 +253,23 @@ Module FormComponentController
         Dim Img_file_path As String = ""
         Dim allowed_video_extentions As String() = {".mp4", ".mk4"}
         For Each itemSeleted In Form1.img_CheckedListBox.SelectedItems
-            Debug.WriteLine(itemSeleted)
+            'Debug.WriteLine(itemSeleted)
             Img_file_path = itemSeleted
         Next
 
-        If allowed_video_extentions.Contains(Path.GetExtension(Img_file_path)) Then ' if video
-            Debug.WriteLine("it's video")
-            Form1.Selected_PictureBox.Cursor = Cursors.Hand
-            Form1.Selected_PictureBox.Image = Image.FromFile(My.Computer.FileSystem.CurrentDirectory + "\images\PlayVideo.jpg")
-        Else
-            Form1.Selected_PictureBox.Cursor = Cursors.Default
-            Form1.Selected_PictureBox.Image = Image.FromFile(Img_file_path) ' image 
+        If Img_file_path <> "" Then
+            If allowed_video_extentions.Contains(Path.GetExtension(Img_file_path)) Then ' if video
+                'Debug.WriteLine("it's video")
+                Form1.Selected_PictureBox.Cursor = Cursors.Hand
+                Form1.Selected_PictureBox.Image = Image.FromFile(My.Computer.FileSystem.CurrentDirectory + "\images\PlayVideo.jpg")
+            Else
+                Form1.Selected_PictureBox.Cursor = Cursors.Default
+                Form1.Selected_PictureBox.Image = Image.FromFile(Img_file_path) ' image 
+            End If
+
         End If
+
+
     End Sub
 
     Public Sub Selected_PictureBox_Click()
@@ -285,22 +285,36 @@ Module FormComponentController
     End Sub
 
 
-
     Public Sub Insert_To_Queuing()
-        Dim Profile_Item = ""
-        For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
-            Debug.WriteLine(itemSeleted)
-            Profile_Item = itemSeleted
+        'Dim Profile_Item = ""
+
+        'For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
+        'Debug.WriteLine(itemSeleted)
+        'Profile_Item = itemSeleted
+        'Next
+
+        For Each itemChecked In Form1.Profile_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Form1.Profile_Queue_ListBox.Items.Add(itemChecked)
         Next
 
-        If Profile_Item <> "" Then
-            'Form1.Profile_Queue_ListView.Items.Add(Profile_Item)
-            Form1.Profile_Queue_ListBox.Items.Add(Profile_Item)
-        Else
-            MsgBox("未選取任何Profile")
-        End If
+        'If Profile_Item <> "" Then
+        'Form1.Profile_Queue_ListView.Items.Add(Profile_Item)
+        'Form1.Profile_Queue_ListBox.Items.Add(Profile_Item)
+        'Else
+        'MsgBox("未選取任何Profile")
+        'End If
 
     End Sub
 
+    Public Sub Selected_All_Profile()
+        For i As Integer = 0 To Form1.Profile_CheckedListBox.Items.Count - 1
+            Form1.Profile_CheckedListBox.SetItemChecked(i, True)
+        Next
+    End Sub
+
+    Public Sub Delete_Profile_From_Queue()
+        Form1.Profile_Queue_ListBox.Items.Remove(Form1.Profile_Queue_ListBox.SelectedItem)
+    End Sub
 
 End Module

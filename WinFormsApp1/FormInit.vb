@@ -2,7 +2,7 @@
 
 Module FormInit
 
-    Dim curr_path = My.Computer.FileSystem.CurrentDirectory + "\property\"
+    Dim curr_path = My.Computer.FileSystem.CurrentDirectory + "\"
 
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
@@ -36,17 +36,17 @@ Module FormInit
     End Sub
 
     Public Sub Property_Folder_Init()
-        Dim txt_path = My.Computer.FileSystem.CurrentDirectory + "\property\resources\texts"
+        Dim txt_path = My.Computer.FileSystem.CurrentDirectory + "\resources\texts"
         If Not System.IO.Directory.Exists(txt_path) Then
             System.IO.Directory.CreateDirectory(txt_path)
         End If
 
-        Dim img_path = My.Computer.FileSystem.CurrentDirectory + "\property\resources\images"
+        Dim img_path = My.Computer.FileSystem.CurrentDirectory + "\resources\images"
         If Not System.IO.Directory.Exists(img_path) Then
             System.IO.Directory.CreateDirectory(img_path)
         End If
 
-        Dim profile_path = My.Computer.FileSystem.CurrentDirectory + "\property\profiles"
+        Dim profile_path = My.Computer.FileSystem.CurrentDirectory + "\profiles"
         If Not System.IO.Directory.Exists(profile_path) Then
             System.IO.Directory.CreateDirectory(profile_path)
         End If

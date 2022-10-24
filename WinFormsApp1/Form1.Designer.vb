@@ -64,6 +64,9 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Delete_Profile_From_Queue_btn = New System.Windows.Forms.Button()
+        Me.Selected_All_Profile_btn = New System.Windows.Forms.Button()
+        Me.Profile_TextBox = New System.Windows.Forms.TextBox()
         Me.Profile_Queue_ListBox = New System.Windows.Forms.ListBox()
         Me.Clear_Profile_Queue = New System.Windows.Forms.Button()
         Me.Insert_Queue_To_script = New System.Windows.Forms.Button()
@@ -547,7 +550,7 @@ Partial Class Form1
         '
         'Insert_close_driver_btn
         '
-        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(757, 119)
+        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(758, 114)
         Me.Insert_close_driver_btn.Name = "Insert_close_driver_btn"
         Me.Insert_close_driver_btn.Size = New System.Drawing.Size(92, 29)
         Me.Insert_close_driver_btn.TabIndex = 44
@@ -586,6 +589,9 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Delete_Profile_From_Queue_btn)
+        Me.TabPage5.Controls.Add(Me.Selected_All_Profile_btn)
+        Me.TabPage5.Controls.Add(Me.Profile_TextBox)
         Me.TabPage5.Controls.Add(Me.Profile_Queue_ListBox)
         Me.TabPage5.Controls.Add(Me.Clear_Profile_Queue)
         Me.TabPage5.Controls.Add(Me.Insert_Queue_To_script)
@@ -635,19 +641,44 @@ Partial Class Form1
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'Delete_Profile_From_Queue_btn
+        '
+        Me.Delete_Profile_From_Queue_btn.Location = New System.Drawing.Point(659, 297)
+        Me.Delete_Profile_From_Queue_btn.Name = "Delete_Profile_From_Queue_btn"
+        Me.Delete_Profile_From_Queue_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Delete_Profile_From_Queue_btn.TabIndex = 120
+        Me.Delete_Profile_From_Queue_btn.Text = "刪除所選"
+        Me.Delete_Profile_From_Queue_btn.UseVisualStyleBackColor = True
+        '
+        'Selected_All_Profile_btn
+        '
+        Me.Selected_All_Profile_btn.Location = New System.Drawing.Point(659, 149)
+        Me.Selected_All_Profile_btn.Name = "Selected_All_Profile_btn"
+        Me.Selected_All_Profile_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Selected_All_Profile_btn.TabIndex = 119
+        Me.Selected_All_Profile_btn.Text = "全選"
+        Me.Selected_All_Profile_btn.UseVisualStyleBackColor = True
+        '
+        'Profile_TextBox
+        '
+        Me.Profile_TextBox.Location = New System.Drawing.Point(119, 116)
+        Me.Profile_TextBox.Name = "Profile_TextBox"
+        Me.Profile_TextBox.Size = New System.Drawing.Size(534, 27)
+        Me.Profile_TextBox.TabIndex = 118
+        '
         'Profile_Queue_ListBox
         '
         Me.Profile_Queue_ListBox.FormattingEnabled = True
         Me.Profile_Queue_ListBox.HorizontalScrollbar = True
         Me.Profile_Queue_ListBox.ItemHeight = 19
-        Me.Profile_Queue_ListBox.Location = New System.Drawing.Point(119, 264)
+        Me.Profile_Queue_ListBox.Location = New System.Drawing.Point(119, 297)
         Me.Profile_Queue_ListBox.Name = "Profile_Queue_ListBox"
         Me.Profile_Queue_ListBox.Size = New System.Drawing.Size(534, 137)
         Me.Profile_Queue_ListBox.TabIndex = 117
         '
         'Clear_Profile_Queue
         '
-        Me.Clear_Profile_Queue.Location = New System.Drawing.Point(758, 226)
+        Me.Clear_Profile_Queue.Location = New System.Drawing.Point(758, 297)
         Me.Clear_Profile_Queue.Name = "Clear_Profile_Queue"
         Me.Clear_Profile_Queue.Size = New System.Drawing.Size(94, 29)
         Me.Clear_Profile_Queue.TabIndex = 116
@@ -656,7 +687,7 @@ Partial Class Form1
         '
         'Insert_Queue_To_script
         '
-        Me.Insert_Queue_To_script.Location = New System.Drawing.Point(659, 372)
+        Me.Insert_Queue_To_script.Location = New System.Drawing.Point(659, 405)
         Me.Insert_Queue_To_script.Name = "Insert_Queue_To_script"
         Me.Insert_Queue_To_script.Size = New System.Drawing.Size(94, 29)
         Me.Insert_Queue_To_script.TabIndex = 115
@@ -665,11 +696,11 @@ Partial Class Form1
         '
         'Insert_To_Queuing
         '
-        Me.Insert_To_Queuing.Location = New System.Drawing.Point(660, 226)
+        Me.Insert_To_Queuing.Location = New System.Drawing.Point(759, 149)
         Me.Insert_To_Queuing.Name = "Insert_To_Queuing"
-        Me.Insert_To_Queuing.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_To_Queuing.Size = New System.Drawing.Size(91, 29)
         Me.Insert_To_Queuing.TabIndex = 113
-        Me.Insert_To_Queuing.Text = "插入至佇列"
+        Me.Insert_To_Queuing.Text = "加入佇列"
         Me.Insert_To_Queuing.UseVisualStyleBackColor = True
         '
         'Label28
@@ -686,7 +717,7 @@ Partial Class Form1
         Me.Profile_CheckedListBox.CheckOnClick = True
         Me.Profile_CheckedListBox.FormattingEnabled = True
         Me.Profile_CheckedListBox.HorizontalScrollbar = True
-        Me.Profile_CheckedListBox.Location = New System.Drawing.Point(119, 119)
+        Me.Profile_CheckedListBox.Location = New System.Drawing.Point(119, 152)
         Me.Profile_CheckedListBox.Name = "Profile_CheckedListBox"
         Me.Profile_CheckedListBox.Size = New System.Drawing.Size(534, 136)
         Me.Profile_CheckedListBox.TabIndex = 111
@@ -947,7 +978,7 @@ Partial Class Form1
         '
         'Insert_open_browser_btn
         '
-        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(659, 119)
+        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(659, 114)
         Me.Insert_open_browser_btn.Name = "Insert_open_browser_btn"
         Me.Insert_open_browser_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_open_browser_btn.TabIndex = 60
@@ -1823,4 +1854,7 @@ Partial Class Form1
     Friend WithEvents Insert_To_Queuing As Button
     Friend WithEvents Clear_Profile_Queue As Button
     Friend WithEvents Profile_Queue_ListBox As ListBox
+    Friend WithEvents Profile_TextBox As TextBox
+    Friend WithEvents Delete_Profile_From_Queue_btn As Button
+    Friend WithEvents Selected_All_Profile_btn As Button
 End Class

@@ -278,10 +278,15 @@ Public Class Form1
             End If
 
             Dim myprofile = ""
-            For Each itemSeleted In Profile_CheckedListBox.SelectedItems
-                'Debug.WriteLine(itemSeleted)
-                myprofile = itemSeleted
-            Next
+            If Profile_TextBox.Text <> "" Then
+                myprofile = Profile_TextBox.Text
+            Else
+                For Each itemSeleted In Profile_CheckedListBox.SelectedItems
+                    'Debug.WriteLine(itemSeleted)
+                    myprofile = itemSeleted
+                Next
+            End If
+
 
 
             Open_Browser("Chrome", used_dev_model, myprofile)
@@ -1349,7 +1354,9 @@ Public Class Form1
             Txt_file_path = itemSeleted
         Next
 
-        content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
+        If Txt_file_path <> "" Then
+            content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
+        End If
 
     End Sub
 
@@ -1434,5 +1441,14 @@ Public Class Form1
 
     Private Sub Clear_Profile_Queue_Click(sender As Object, e As EventArgs) Handles Clear_Profile_Queue.Click
         Profile_Queue_ListBox.Items.Clear()
+    End Sub
+
+    Private Sub Selected_All_Profile_btn_Click(sender As Object, e As EventArgs) Handles Selected_All_Profile_btn.Click
+
+        FormComponentController.Selected_All_Profile()
+    End Sub
+
+    Private Sub Delete_Profile_From_Queue_btn_Click(sender As Object, e As EventArgs) Handles Delete_Profile_From_Queue_btn.Click
+        FormComponentController.Delete_Profile_From_Queue()
     End Sub
 End Class
