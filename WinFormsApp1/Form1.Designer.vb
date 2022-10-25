@@ -106,6 +106,7 @@ Partial Class Form1
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Refresh_All_ListBox_btn = New System.Windows.Forms.Button()
         Me.Open_Folder_with_Image_textbox_btn = New System.Windows.Forms.Button()
         Me.ImageFolder_TextBox = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
@@ -179,7 +180,7 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Refresh_All_ListBox_btn = New System.Windows.Forms.Button()
+        Me.Insert_random_matching_text_and_all_img_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1037,6 +1038,15 @@ Partial Class Form1
         Me.TabPage3.Text = "發文發圖"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'Refresh_All_ListBox_btn
+        '
+        Me.Refresh_All_ListBox_btn.Location = New System.Drawing.Point(667, 781)
+        Me.Refresh_All_ListBox_btn.Name = "Refresh_All_ListBox_btn"
+        Me.Refresh_All_ListBox_btn.Size = New System.Drawing.Size(241, 29)
+        Me.Refresh_All_ListBox_btn.TabIndex = 113
+        Me.Refresh_All_ListBox_btn.Text = "重新整理"
+        Me.Refresh_All_ListBox_btn.UseVisualStyleBackColor = True
+        '
         'Open_Folder_with_Image_textbox_btn
         '
         Me.Open_Folder_with_Image_textbox_btn.Location = New System.Drawing.Point(262, 471)
@@ -1139,6 +1149,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Insert_random_matching_text_and_all_img_btn)
         Me.TabPage1.Controls.Add(Me.Insert_Upload_Random_Image_btn)
         Me.TabPage1.Controls.Add(Me.Insert_send_content_btn)
         Me.TabPage1.Controls.Add(Me.Insert_submit_post_btn)
@@ -1175,7 +1186,7 @@ Partial Class Form1
         '
         'Insert_submit_post_btn
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(6, 251)
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(6, 286)
         Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
         Me.Insert_submit_post_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_submit_post_btn.TabIndex = 75
@@ -1248,7 +1259,7 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 28)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(237, 776)
+        Me.TabPage2.Size = New System.Drawing.Size(237, 737)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "(回應/留言)帖子"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1729,14 +1740,14 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Refresh_All_ListBox_btn
+        'Insert_random_matching_text_and_all_img_btn
         '
-        Me.Refresh_All_ListBox_btn.Location = New System.Drawing.Point(667, 781)
-        Me.Refresh_All_ListBox_btn.Name = "Refresh_All_ListBox_btn"
-        Me.Refresh_All_ListBox_btn.Size = New System.Drawing.Size(241, 29)
-        Me.Refresh_All_ListBox_btn.TabIndex = 113
-        Me.Refresh_All_ListBox_btn.Text = "重新整理"
-        Me.Refresh_All_ListBox_btn.UseVisualStyleBackColor = True
+        Me.Insert_random_matching_text_and_all_img_btn.Location = New System.Drawing.Point(6, 251)
+        Me.Insert_random_matching_text_and_all_img_btn.Name = "Insert_random_matching_text_and_all_img_btn"
+        Me.Insert_random_matching_text_and_all_img_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_random_matching_text_and_all_img_btn.TabIndex = 101
+        Me.Insert_random_matching_text_and_all_img_btn.Text = "隨機配對文字全部圖片 - 插入"
+        Me.Insert_random_matching_text_and_all_img_btn.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -1938,4 +1949,5 @@ Partial Class Form1
     Friend WithEvents ImageFolder_TextBox As TextBox
     Friend WithEvents Label30 As Label
     Friend WithEvents Refresh_All_ListBox_btn As Button
+    Friend WithEvents Insert_random_matching_text_and_all_img_btn As Button
 End Class

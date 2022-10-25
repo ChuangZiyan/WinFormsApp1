@@ -279,6 +279,24 @@ Module ScriptInsertion
         End If
     End Sub
 
+    Public Sub Insert_Queue_To_script()
+        Dim Content As String = ""
+        For Each item In Form1.Profile_Queue_ListBox.Items
+            'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
+            Content += item + ";"
+        Next
 
+        If Content = "" Then
+            MsgBox("佇列為空")
+        Else
+            Form1.used_browser = "Chrome"
+            Insert_to_script("開啟:佇列", Content.Trim(";"c))
+        End If
+
+    End Sub
+
+    Public Sub Insert_random_matching_text_and_all_img()
+
+    End Sub
 
 End Module

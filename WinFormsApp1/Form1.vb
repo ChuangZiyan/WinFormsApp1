@@ -352,7 +352,8 @@ Public Class Form1
         If browser = "Chrome" Then
             Try
                 Dim driverManager = New DriverManager()
-                driverManager.SetUpDriver(New ChromeConfig())
+                driverManager.SetUpDriver(New ChromeConfig(), "106.0.5249.61") 'Use specify version.
+                'driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
                 Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
                 serv.HideCommandPromptWindow = True 'hide cmd
                 Dim options = New Chrome.ChromeOptions()
@@ -1422,19 +1423,11 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_Queue_To_script_Click(sender As Object, e As EventArgs) Handles Insert_Queue_To_script.Click
-        Dim Content As String = ""
-        For Each item In Profile_Queue_ListBox.Items
-            'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
-            Content += item + ";"
-        Next
+        ScriptInsertion.Insert_Queue_To_script()
+    End Sub
 
-        If Content = "" Then
-            MsgBox("佇列為空")
-        Else
-            used_browser = "Chrome"
-            Insert_to_script("開啟:佇列", Content.Trim(";"c))
-        End If
-
+    Private Sub Insert_random_matching_text_and_all_img_btn_Click(sender As Object, e As EventArgs) Handles Insert_random_matching_text_and_all_img_btn.Click
+        ScriptInsertion.Insert_random_matching_text_and_all_img()
     End Sub
 
     Private Sub Clear_Profile_Queue_Click(sender As Object, e As EventArgs) Handles Clear_Profile_Queue.Click
@@ -1461,4 +1454,5 @@ Public Class Form1
     Private Sub Refresh_All_ListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_All_ListBox_btn.Click
         FormComponentController.Refresh_All_ListBox()
     End Sub
+
 End Class
