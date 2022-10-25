@@ -808,28 +808,33 @@ Public Class Form1
             Used_emoji = Emoji_arr(random)
         End If
 
-        Dim searchBtn As IWebElement = chromeDriver.FindElement(By.XPath("//span[text()='讚']"))
-        Dim actionProvider As Actions = New Actions(chromeDriver)
-        actionProvider.ClickAndHold(searchBtn).Build().Perform()
-        Thread.Sleep(1000)
+        Try
+            Dim searchBtn As IWebElement = chromeDriver.FindElement(By.XPath("//span[text()='" + langConverter.Item("Like").ToString() + "']"))
+            Dim actionProvider As Actions = New Actions(chromeDriver)
+            actionProvider.ClickAndHold(searchBtn).Build().Perform()
+            Thread.Sleep(1000)
 
-        Select Case Used_emoji
-            Case "讚好"
-                Return click_by_aria_label(langConverter.Item("Like"))
-            Case "愛心"
-                Return click_by_aria_label(langConverter.Item("Love"))
-            Case "加油"
-                Return click_by_aria_label(langConverter.Item("Care"))
-            Case "生氣"
-                Return click_by_aria_label(langConverter.Item("Angry"))
-            Case "驚訝"
-                Return click_by_aria_label(langConverter.Item("Wow"))
-            Case "難過"
-                Return click_by_aria_label(langConverter.Item("Sad"))
-            Case "哈哈"
-                Return click_by_aria_label(langConverter.Item("Haha"))
+            Select Case Used_emoji
+                Case "讚好"
+                    Return click_by_aria_label(langConverter.Item("Like").ToString())
+                Case "愛心"
+                    Return click_by_aria_label(langConverter.Item("Love").ToString())
+                Case "加油"
+                    Return click_by_aria_label(langConverter.Item("Care").ToString())
+                Case "生氣"
+                    Return click_by_aria_label(langConverter.Item("Angry").ToString())
+                Case "驚訝"
+                    Return click_by_aria_label(langConverter.Item("Wow").ToString())
+                Case "難過"
+                    Return click_by_aria_label(langConverter.Item("Sad").ToString())
+                Case "哈哈"
+                    Return click_by_aria_label(langConverter.Item("Haha"))
 
-        End Select
+            End Select
+
+        Catch ex As Exception
+            Return False
+        End Try
 
         Return False
 
