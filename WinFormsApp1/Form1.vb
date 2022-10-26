@@ -22,7 +22,7 @@ Imports WebDriverManager.Helpers
 
 Public Class Form1
 
-    Const Version = "1.0.221026.2"
+    Const Version = "1.0.221026.3"
 
 
     Dim chromeDriver As IWebDriver
@@ -350,6 +350,8 @@ Public Class Form1
                 langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-TW.json"))
             Case "zh-HK"
                 langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-HK.json"))
+            Case "zh-CN"
+                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-CN.json"))
             Case "en-US"
                 langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
         End Select
