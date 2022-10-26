@@ -45,7 +45,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-
+        Me.Text = "Main Form - 1.0.221026.1"
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
 
