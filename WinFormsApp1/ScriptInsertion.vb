@@ -296,7 +296,17 @@ Module ScriptInsertion
     End Sub
 
     Public Sub Insert_random_matching_text_and_all_img()
-
+        Dim Content As String = ""
+        For Each item As ListViewItem In Form1.Match_Condition_ListView.Items
+            'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
+            Content += item.SubItems(0).Text + "%20" + item.SubItems(1).Text + ";"
+        Next
+        'MsgBox(Content)
+        If Content = "" Then
+            MsgBox("無任何配對條件")
+        Else
+            Insert_to_script("發送上載:隨機配對多圖", Content.TrimEnd(";"c))
+        End If
     End Sub
 
 End Module

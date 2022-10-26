@@ -18,6 +18,7 @@ Imports System.IO
 Imports System.Text.RegularExpressions
 Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
+Imports WebDriverManager.Helpers
 
 Public Class Form1
 
@@ -198,6 +199,8 @@ Public Class Form1
                     End If
                 Case "發送上載:隨機配對"
                     boolean_result = Post_Random_Match_TextAndImage(content)
+                Case "發送上載:隨機配對多圖"
+                    boolean_result = Post_Random_Match_TextAndImageFolder(content)
                 Case "清空"
                     boolean_result = Clear_post_content()
                 Case "上載"
@@ -352,8 +355,9 @@ Public Class Form1
         If browser = "Chrome" Then
             Try
                 Dim driverManager = New DriverManager()
-                driverManager.SetUpDriver(New ChromeConfig(), "106.0.5249.61") 'Use specify version.
+                'driverManager.SetUpDriver(New ChromeConfig(), "106.0.5249.61") 'Use specify version.
                 'driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
+                driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
                 Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
                 serv.HideCommandPromptWindow = True 'hide cmd
                 Dim options = New Chrome.ChromeOptions()
@@ -371,6 +375,7 @@ Public Class Form1
                 chromeDriver = New ChromeDriver(serv, options)
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                 ' Refresh Profile Items
+
                 Profile_CheckedListBox.Items.Clear()
                 Render_profile_CheckedListBox()
                 Return True
@@ -785,7 +790,6 @@ Public Class Form1
         Return total_sec
     End Function
 
-
     Private Sub Restore_ListViewItems_BackColor()
         For Each item As ListViewItem In script_ListView.Items
             item.BackColor = Color.White
@@ -829,7 +833,7 @@ Public Class Form1
                 Case "難過"
                     Return click_by_aria_label(langConverter.Item("Sad").ToString())
                 Case "哈哈"
-                    Return click_by_aria_label(langConverter.Item("Haha"))
+                    Return click_by_aria_label(langConverter.Item("Haha").ToString())
 
             End Select
 
@@ -1026,18 +1030,11 @@ Public Class Form1
         End Try
     End Function
 
-
     Private Function Post_Random_Match_TextAndImage(content)
         'Debug.WriteLine(content)
         Dim AllConditions() As String = content.Split(";")
 
-        'For Each cond In AllConditions
-        'Debug.WriteLine("Line : " + cond)
-        'Next
         Dim rnd = rnd_num.Next(0, AllConditions.Length)
-
-        'Debug.WriteLine(AllConditions(rnd))
-
 
         Dim TextFolder = AllConditions(rnd).Split("%20")(0)
         Dim ImageFolder = AllConditions(rnd).Split("%20")(1)
@@ -1077,6 +1074,46 @@ Public Class Form1
 
     End Function
 
+    Private Function Post_Random_Match_TextAndImageFolder(content)
+        Dim AllConditions() As String = content.Split(";")
+
+        Dim rnd = rnd_num.Next(0, AllConditions.Length)
+
+        Dim TextFolder = AllConditions(rnd).Split("%20")(0)
+        Dim ImageFolder = AllConditions(rnd).Split("%20")(1)
+
+        Dim Txtfiles() As String = IO.Directory.GetFiles(TextFolder)
+        Dim TextFile_ArrayList = New ArrayList()
+        For Each file As String In Txtfiles
+            'Debug.WriteLine(file)
+            If Path.GetExtension(file) = ".txt" Then
+                TextFile_ArrayList.Add(file)
+            End If
+
+        Next
+
+        rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
+
+        If Write_post_send_content(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
+            Return False
+        End If
+
+        Dim Imgfiles() As String = IO.Directory.GetFiles(ImageFolder)
+        Dim img_path_str As String = ""
+        For Each file As String In Imgfiles
+            If img_path_str = "" Then
+                img_path_str = file
+            Else
+                img_path_str = img_path_str & vbLf & file
+            End If
+        Next
+
+        If Tring_to_upload_img(img_path_str) = False Then
+            Return False
+        End If
+
+        Return True
+    End Function
 
     Private Function Write_post_send_content(content)
         Try
@@ -1151,7 +1188,6 @@ Public Class Form1
 
     End Function
 
-
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
         Try
             curr_url_TextBox.Text = chromeDriver.Url
@@ -1159,7 +1195,6 @@ Public Class Form1
             MsgBox("未偵測到Chrome")
         End Try
     End Sub
-
 
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
         Insert_Login()
