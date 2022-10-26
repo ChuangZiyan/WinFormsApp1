@@ -181,8 +181,7 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.Driver_Version_Textbox = New System.Windows.Forms.TextBox()
+        Me.Uncheck_All_Profile_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -599,8 +598,7 @@ Partial Class Form1
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.Driver_Version_Textbox)
-        Me.TabPage5.Controls.Add(Me.Label31)
+        Me.TabPage5.Controls.Add(Me.Uncheck_All_Profile_btn)
         Me.TabPage5.Controls.Add(Me.Delete_Profile_From_Queue_btn)
         Me.TabPage5.Controls.Add(Me.Selected_All_Profile_btn)
         Me.TabPage5.Controls.Add(Me.Profile_TextBox)
@@ -708,7 +706,7 @@ Partial Class Form1
         '
         'Insert_To_Queuing
         '
-        Me.Insert_To_Queuing.Location = New System.Drawing.Point(759, 149)
+        Me.Insert_To_Queuing.Location = New System.Drawing.Point(758, 149)
         Me.Insert_To_Queuing.Name = "Insert_To_Queuing"
         Me.Insert_To_Queuing.Size = New System.Drawing.Size(91, 29)
         Me.Insert_To_Queuing.TabIndex = 113
@@ -781,7 +779,7 @@ Partial Class Form1
         Me.EmulatedDevice_ComboBox.FormattingEnabled = True
         Me.EmulatedDevice_ComboBox.Location = New System.Drawing.Point(119, 73)
         Me.EmulatedDevice_ComboBox.Name = "EmulatedDevice_ComboBox"
-        Me.EmulatedDevice_ComboBox.Size = New System.Drawing.Size(332, 27)
+        Me.EmulatedDevice_ComboBox.Size = New System.Drawing.Size(362, 27)
         Me.EmulatedDevice_ComboBox.TabIndex = 97
         '
         'Label6
@@ -927,7 +925,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.chrome_RadioButton)
         Me.GroupBox2.Location = New System.Drawing.Point(119, 16)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(332, 51)
+        Me.GroupBox2.Size = New System.Drawing.Size(534, 51)
         Me.GroupBox2.TabIndex = 57
         Me.GroupBox2.TabStop = False
         '
@@ -1753,21 +1751,14 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Label31
+        'Uncheck_All_Profile_btn
         '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(457, 35)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(76, 19)
-        Me.Label31.TabIndex = 121
-        Me.Label31.Text = "驅動版本 :"
-        '
-        'Driver_Version_Textbox
-        '
-        Me.Driver_Version_Textbox.Location = New System.Drawing.Point(539, 30)
-        Me.Driver_Version_Textbox.Name = "Driver_Version_Textbox"
-        Me.Driver_Version_Textbox.Size = New System.Drawing.Size(114, 27)
-        Me.Driver_Version_Textbox.TabIndex = 122
+        Me.Uncheck_All_Profile_btn.Location = New System.Drawing.Point(660, 184)
+        Me.Uncheck_All_Profile_btn.Name = "Uncheck_All_Profile_btn"
+        Me.Uncheck_All_Profile_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Uncheck_All_Profile_btn.TabIndex = 121
+        Me.Uncheck_All_Profile_btn.Text = "取消全選"
+        Me.Uncheck_All_Profile_btn.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -1970,6 +1961,5 @@ Partial Class Form1
     Friend WithEvents Label30 As Label
     Friend WithEvents Refresh_All_ListBox_btn As Button
     Friend WithEvents Insert_random_matching_text_and_all_img_btn As Button
-    Friend WithEvents Driver_Version_Textbox As TextBox
-    Friend WithEvents Label31 As Label
+    Friend WithEvents Uncheck_All_Profile_btn As Button
 End Class

@@ -22,6 +22,9 @@ Imports WebDriverManager.Helpers
 
 Public Class Form1
 
+    Const Version = "1.0.221026.2"
+
+
     Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
 
@@ -45,7 +48,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        Me.Text = "Main Form - 1.0.221026.1"
+        Me.Text = "Main Form - " + Version
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
 
@@ -345,6 +348,8 @@ Public Class Form1
         Select Case used_lang
             Case "zh-TW"
                 langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-TW.json"))
+            Case "zh-HK"
+                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-HK.json"))
             Case "en-US"
                 langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
         End Select
@@ -1471,7 +1476,10 @@ Public Class Form1
 
     Private Sub Selected_All_Profile_btn_Click(sender As Object, e As EventArgs) Handles Selected_All_Profile_btn.Click
 
-        FormComponentController.Selected_All_Profile()
+        FormComponentController.Set_Selected_All_Profile(True)
+    End Sub
+    Private Sub Uncheck_All_Profile_btn_Click(sender As Object, e As EventArgs) Handles Uncheck_All_Profile_btn.Click
+        FormComponentController.Set_Selected_All_Profile(False)
     End Sub
 
     Private Sub Delete_Profile_From_Queue_btn_Click(sender As Object, e As EventArgs) Handles Delete_Profile_From_Queue_btn.Click
@@ -1489,5 +1497,6 @@ Public Class Form1
     Private Sub Refresh_All_ListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_All_ListBox_btn.Click
         FormComponentController.Refresh_All_ListBox()
     End Sub
+
 
 End Class

@@ -305,9 +305,9 @@ Module FormComponentController
 
     End Sub
 
-    Public Sub Selected_All_Profile()
+    Public Sub Set_Selected_All_Profile(checked As Boolean)
         For i As Integer = 0 To Form1.Profile_CheckedListBox.Items.Count - 1
-            Form1.Profile_CheckedListBox.SetItemChecked(i, True)
+            Form1.Profile_CheckedListBox.SetItemChecked(i, checked)
         Next
     End Sub
 

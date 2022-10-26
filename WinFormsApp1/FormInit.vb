@@ -29,9 +29,15 @@ Module FormInit
     End Sub
 
     Public Sub Render_Lang_Packs_ComboBox()
-        Dim lang_packs As String() = {"en-US", "zh-TW"}
-        For Each lang In lang_packs
-            Form1.Lang_Packs_ComboBox.Items.Add(lang)
+
+        Dim files() As String = IO.Directory.GetFiles(curr_path + "langpacks")
+        For Each file As String In files
+            'Debug.WriteLine(file)
+            If Path.GetExtension(file) = ".json" Then
+                Dim lang = Path.GetFileNameWithoutExtension(file)
+                Form1.Lang_Packs_ComboBox.Items.Add(lang)
+            End If
+
         Next
     End Sub
 
