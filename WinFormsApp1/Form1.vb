@@ -22,7 +22,7 @@ Imports WebDriverManager.Helpers
 
 Public Class Form1
 
-    Const Version = "1.0.221026.3"
+    Const Version = "1.0.221027.1"
 
 
     Dim chromeDriver As IWebDriver
@@ -252,6 +252,9 @@ Public Class Form1
                     boolean_result = Submit_reply_comment()
                 Case "回應:按讚"
                     boolean_result = Click_reply_random_emoji(content)
+                Case "捲動頁面"
+                    Dim Offset As String() = content.Split(";")
+                    boolean_result = ScrollPage_By_Offset(Offset(0), Offset(1))
 
             End Select
             If boolean_result = True Then ' record the result
@@ -1203,6 +1206,16 @@ Public Class Form1
         End Try
     End Sub
 
+    Private Function ScrollPage_By_Offset(x As String, y As String)
+
+        Try
+            chromeDriver.ExecuteJavaScript("window.scrollTo(" + x + ", " + y + ");")
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+
     Private Sub Insert_Login_Button_Click(sender As Object, e As EventArgs) Handles Insert_login_Button.Click
         Insert_Login()
     End Sub
@@ -1500,5 +1513,8 @@ Public Class Form1
         FormComponentController.Refresh_All_ListBox()
     End Sub
 
+    Private Sub Insert_ScrollBy_Offset_btn_Click(sender As Object, e As EventArgs) Handles Insert_ScrollBy_Offset_btn.Click
+        Insert_to_script("捲動頁面", ScrollBy_X_Offset_NumericUpDown.Value & ";" & ScrollBy_Y_Offset_NumericUpDown.Value)
+    End Sub
 
 End Class

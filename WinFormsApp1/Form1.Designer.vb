@@ -64,6 +64,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Uncheck_All_Profile_btn = New System.Windows.Forms.Button()
         Me.Delete_Profile_From_Queue_btn = New System.Windows.Forms.Button()
         Me.Selected_All_Profile_btn = New System.Windows.Forms.Button()
         Me.Profile_TextBox = New System.Windows.Forms.TextBox()
@@ -167,10 +168,11 @@ Partial Class Form1
         Me.Label24 = New System.Windows.Forms.Label()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.ScrollBy_Y_Offset_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.ScrollBy_X_Offset_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Insert_ScrollBy_Offset_btn = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -181,7 +183,6 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Uncheck_All_Profile_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,6 +206,8 @@ Partial Class Form1
         Me.TabPage4.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -650,6 +653,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Uncheck_All_Profile_btn
+        '
+        Me.Uncheck_All_Profile_btn.Location = New System.Drawing.Point(660, 184)
+        Me.Uncheck_All_Profile_btn.Name = "Uncheck_All_Profile_btn"
+        Me.Uncheck_All_Profile_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Uncheck_All_Profile_btn.TabIndex = 121
+        Me.Uncheck_All_Profile_btn.Text = "取消全選"
+        Me.Uncheck_All_Profile_btn.UseVisualStyleBackColor = True
         '
         'Delete_Profile_From_Queue_btn
         '
@@ -1626,10 +1638,11 @@ Partial Class Form1
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.Button4)
-        Me.GroupBox3.Controls.Add(Me.Button3)
-        Me.GroupBox3.Controls.Add(Me.TextBox4)
-        Me.GroupBox3.Controls.Add(Me.TextBox3)
+        Me.GroupBox3.Controls.Add(Me.Label32)
+        Me.GroupBox3.Controls.Add(Me.Label31)
+        Me.GroupBox3.Controls.Add(Me.ScrollBy_Y_Offset_NumericUpDown)
+        Me.GroupBox3.Controls.Add(Me.ScrollBy_X_Offset_NumericUpDown)
+        Me.GroupBox3.Controls.Add(Me.Insert_ScrollBy_Offset_btn)
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.Button2)
         Me.GroupBox3.Controls.Add(Me.Label22)
@@ -1645,37 +1658,50 @@ Partial Class Form1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "滑鼠事件"
         '
-        'Button4
+        'Label32
         '
-        Me.Button4.Location = New System.Drawing.Point(137, 174)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(179, 29)
-        Me.Button4.TabIndex = 11
-        Me.Button4.Text = "滑鼠滾輪向下 - 插入"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(136, 119)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(24, 19)
+        Me.Label32.TabIndex = 15
+        Me.Label32.Text = "y :"
         '
-        'Button3
+        'Label31
         '
-        Me.Button3.Location = New System.Drawing.Point(137, 125)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(179, 29)
-        Me.Button3.TabIndex = 10
-        Me.Button3.Text = "滑鼠滾輪向上 - 插入"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(11, 119)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(23, 19)
+        Me.Label31.TabIndex = 14
+        Me.Label31.Text = "x :"
         '
-        'TextBox4
+        'ScrollBy_Y_Offset_NumericUpDown
         '
-        Me.TextBox4.Location = New System.Drawing.Point(6, 176)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(125, 27)
-        Me.TextBox4.TabIndex = 9
+        Me.ScrollBy_Y_Offset_NumericUpDown.Increment = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.ScrollBy_Y_Offset_NumericUpDown.Location = New System.Drawing.Point(166, 117)
+        Me.ScrollBy_Y_Offset_NumericUpDown.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.ScrollBy_Y_Offset_NumericUpDown.Name = "ScrollBy_Y_Offset_NumericUpDown"
+        Me.ScrollBy_Y_Offset_NumericUpDown.Size = New System.Drawing.Size(90, 27)
+        Me.ScrollBy_Y_Offset_NumericUpDown.TabIndex = 13
         '
-        'TextBox3
+        'ScrollBy_X_Offset_NumericUpDown
         '
-        Me.TextBox3.Location = New System.Drawing.Point(6, 127)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(125, 27)
-        Me.TextBox3.TabIndex = 8
+        Me.ScrollBy_X_Offset_NumericUpDown.Increment = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.ScrollBy_X_Offset_NumericUpDown.Location = New System.Drawing.Point(40, 117)
+        Me.ScrollBy_X_Offset_NumericUpDown.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.ScrollBy_X_Offset_NumericUpDown.Name = "ScrollBy_X_Offset_NumericUpDown"
+        Me.ScrollBy_X_Offset_NumericUpDown.Size = New System.Drawing.Size(90, 27)
+        Me.ScrollBy_X_Offset_NumericUpDown.TabIndex = 12
+        '
+        'Insert_ScrollBy_Offset_btn
+        '
+        Me.Insert_ScrollBy_Offset_btn.Location = New System.Drawing.Point(262, 115)
+        Me.Insert_ScrollBy_Offset_btn.Name = "Insert_ScrollBy_Offset_btn"
+        Me.Insert_ScrollBy_Offset_btn.Size = New System.Drawing.Size(179, 29)
+        Me.Insert_ScrollBy_Offset_btn.TabIndex = 10
+        Me.Insert_ScrollBy_Offset_btn.Text = "滾輪捲動 - 插入"
+        Me.Insert_ScrollBy_Offset_btn.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -1688,9 +1714,9 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(166, 65)
+        Me.Button2.Location = New System.Drawing.Point(452, 30)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(150, 29)
+        Me.Button2.Size = New System.Drawing.Size(130, 29)
         Me.Button2.TabIndex = 7
         Me.Button2.Text = "右鍵點擊 - 插入"
         Me.Button2.UseVisualStyleBackColor = True
@@ -1706,9 +1732,9 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(6, 65)
+        Me.Button1.Location = New System.Drawing.Point(322, 30)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(151, 29)
+        Me.Button1.Size = New System.Drawing.Size(124, 29)
         Me.Button1.TabIndex = 6
         Me.Button1.Text = "左鍵點擊 - 插入"
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -1751,15 +1777,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Uncheck_All_Profile_btn
-        '
-        Me.Uncheck_All_Profile_btn.Location = New System.Drawing.Point(660, 184)
-        Me.Uncheck_All_Profile_btn.Name = "Uncheck_All_Profile_btn"
-        Me.Uncheck_All_Profile_btn.Size = New System.Drawing.Size(94, 29)
-        Me.Uncheck_All_Profile_btn.TabIndex = 121
-        Me.Uncheck_All_Profile_btn.Text = "取消全選"
-        Me.Uncheck_All_Profile_btn.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -1799,6 +1816,8 @@ Partial Class Form1
         Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1933,10 +1952,7 @@ Partial Class Form1
     Friend WithEvents Label24 As Label
     Friend WithEvents TextBox5 As TextBox
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Insert_ScrollBy_Offset_btn As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Insert_Upload_Random_Image_btn As Button
@@ -1962,4 +1978,8 @@ Partial Class Form1
     Friend WithEvents Refresh_All_ListBox_btn As Button
     Friend WithEvents Insert_random_matching_text_and_all_img_btn As Button
     Friend WithEvents Uncheck_All_Profile_btn As Button
+    Friend WithEvents ScrollBy_Y_Offset_NumericUpDown As NumericUpDown
+    Friend WithEvents ScrollBy_X_Offset_NumericUpDown As NumericUpDown
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Label31 As Label
 End Class
