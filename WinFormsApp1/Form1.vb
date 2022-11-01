@@ -1217,8 +1217,17 @@ Public Class Form1
             Navigate_GoToUrl("https://www.facebook.com/messages/t/" + Room_Id)
 
             Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate"))
-            Text_input.SendKeys(message)
-            Text_input.SendKeys(Keys.Return)
+
+            Dim str_arr() As String = message.Split(vbLf)
+            For Each line As String In str_arr
+                line = line.Replace(vbCr, "").Replace(vbLf, "")
+                Text_input.SendKeys(line)
+                Thread.Sleep(100)
+                Text_input.SendKeys(Keys.LeftShift + Keys.Return)
+            Next
+
+
+            'Text_input.SendKeys(Keys.Return)
             Return True
         Catch ex As Exception
             Return False
