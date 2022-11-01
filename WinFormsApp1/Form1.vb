@@ -255,6 +255,11 @@ Public Class Form1
                 Case "捲動頁面"
                     Dim Offset As String() = content.Split(";")
                     boolean_result = ScrollPage_By_Offset(Offset(0), Offset(1))
+                Case "聊天"
+                    Dim Target = content.Split(";")(0)
+                    Dim Text = content.Split(";")(1)
+
+                    boolean_result = Messager_Contact(Target, Text)
 
             End Select
             If boolean_result = True Then ' record the result
@@ -1206,6 +1211,25 @@ Public Class Form1
         End Try
     End Sub
 
+    Function Messager_Contact(Room_Id As String, message As String)
+
+        Try
+            Navigate_GoToUrl("https://www.facebook.com/messages/t/" + Room_Id)
+
+            Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate"))
+            Text_input.SendKeys(message)
+            Text_input.SendKeys(Keys.Return)
+            Return True
+        Catch ex As Exception
+            Return False
+            Debug.WriteLine(ex)
+        End Try
+
+
+
+    End Function
+
+
     Private Function ScrollPage_By_Offset(x As String, y As String)
 
         Try
@@ -1259,7 +1283,6 @@ Public Class Form1
     Private Sub Insert_Upload_Random_Image_btn_Click(sender As Object, e As EventArgs) Handles Insert_Upload_Random_Image_btn.Click
         Insert_Upload_Random_Image()
     End Sub
-
 
     Private Sub Insert_submit_post_btn_Click(sender As Object, e As EventArgs) Handles Insert_submit_post_btn.Click
         Insert_to_script("點擊", "發佈")
@@ -1395,7 +1418,6 @@ Public Class Form1
 
     End Sub
 
-
     Private Sub Delete_selected_item_btn_Click(sender As Object, e As EventArgs) Handles Delete_selected_item_btn.Click
         FormComponentController.Delete_ScriptListView_selected_item()
     End Sub
@@ -1403,7 +1425,6 @@ Public Class Form1
     Private Sub Move_up_selected_item_btn_Click(sender As Object, e As EventArgs) Handles Move_up_selected_item_btn.Click
         FormComponentController.Move_up_ScriptListView_selected_item()
     End Sub
-
 
     Private Sub MoveDown_selected_item_btn_Click(sender As Object, e As EventArgs) Handles MoveDown_selected_item_btn.Click
         FormComponentController.MoveDown_ScriptListView_selected_item()
@@ -1464,7 +1485,6 @@ Public Class Form1
         FormComponentController.Save_Account_Info()
     End Sub
 
-
     Private Sub Selected_PictureBox_Click(sender As Object, e As EventArgs) Handles Selected_PictureBox.Click
         FormComponentController.Selected_PictureBox_Click()
     End Sub
@@ -1490,7 +1510,6 @@ Public Class Form1
     End Sub
 
     Private Sub Selected_All_Profile_btn_Click(sender As Object, e As EventArgs) Handles Selected_All_Profile_btn.Click
-
         FormComponentController.Set_Selected_All_Profile(True)
     End Sub
     Private Sub Uncheck_All_Profile_btn_Click(sender As Object, e As EventArgs) Handles Uncheck_All_Profile_btn.Click
@@ -1517,4 +1536,7 @@ Public Class Form1
         Insert_to_script("捲動頁面", ScrollBy_X_Offset_NumericUpDown.Value & ";" & ScrollBy_Y_Offset_NumericUpDown.Value)
     End Sub
 
+    Private Sub Insert_Messager_Contact_btn_Click(sender As Object, e As EventArgs) Handles Insert_Messager_Contact_btn.Click
+        ScriptInsertion.Insert_Messager_Contact()
+    End Sub
 End Class

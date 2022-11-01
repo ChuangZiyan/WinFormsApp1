@@ -181,6 +181,12 @@ Partial Class Form1
         Me.Click_by_location_test_btn = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.Insert_Messager_Contact_btn = New System.Windows.Forms.Button()
+        Me.Messager_Content_RichTextBox = New System.Windows.Forms.RichTextBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
@@ -208,6 +214,7 @@ Partial Class Form1
         Me.GroupBox3.SuspendLayout()
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage6.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -593,6 +600,7 @@ Partial Class Form1
         Me.TabControl2.Controls.Add(Me.TabPage5)
         Me.TabControl2.Controls.Add(Me.TabPage3)
         Me.TabControl2.Controls.Add(Me.TabPage4)
+        Me.TabControl2.Controls.Add(Me.TabPage6)
         Me.TabControl2.Location = New System.Drawing.Point(6, 26)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -1772,6 +1780,62 @@ Partial Class Form1
         Me.TextBox2.Size = New System.Drawing.Size(50, 27)
         Me.TextBox2.TabIndex = 4
         '
+        'TabPage6
+        '
+        Me.TabPage6.Controls.Add(Me.Insert_Messager_Contact_btn)
+        Me.TabPage6.Controls.Add(Me.Messager_Content_RichTextBox)
+        Me.TabPage6.Controls.Add(Me.Label34)
+        Me.TabPage6.Controls.Add(Me.Label33)
+        Me.TabPage6.Controls.Add(Me.Messager_Name_TextBox)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Size = New System.Drawing.Size(918, 820)
+        Me.TabPage6.TabIndex = 3
+        Me.TabPage6.Text = "聊天室"
+        Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'Insert_Messager_Contact_btn
+        '
+        Me.Insert_Messager_Contact_btn.Location = New System.Drawing.Point(474, 251)
+        Me.Insert_Messager_Contact_btn.Name = "Insert_Messager_Contact_btn"
+        Me.Insert_Messager_Contact_btn.Size = New System.Drawing.Size(184, 29)
+        Me.Insert_Messager_Contact_btn.TabIndex = 4
+        Me.Insert_Messager_Contact_btn.Text = "聊天室傳送訊息 - 插入"
+        Me.Insert_Messager_Contact_btn.UseVisualStyleBackColor = True
+        '
+        'Messager_Content_RichTextBox
+        '
+        Me.Messager_Content_RichTextBox.Location = New System.Drawing.Point(99, 70)
+        Me.Messager_Content_RichTextBox.Name = "Messager_Content_RichTextBox"
+        Me.Messager_Content_RichTextBox.Size = New System.Drawing.Size(369, 210)
+        Me.Messager_Content_RichTextBox.TabIndex = 3
+        Me.Messager_Content_RichTextBox.Text = ""
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(43, 73)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(50, 19)
+        Me.Label34.TabIndex = 2
+        Me.Label34.Text = "訊息 : "
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(17, 32)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(76, 19)
+        Me.Label33.TabIndex = 1
+        Me.Label33.Text = "聯絡人ID :"
+        '
+        'Messager_Name_TextBox
+        '
+        Me.Messager_Name_TextBox.Location = New System.Drawing.Point(99, 29)
+        Me.Messager_Name_TextBox.Name = "Messager_Name_TextBox"
+        Me.Messager_Name_TextBox.Size = New System.Drawing.Size(369, 27)
+        Me.Messager_Name_TextBox.TabIndex = 0
+        '
         'Timer1
         '
         Me.Timer1.Enabled = True
@@ -1818,6 +1882,8 @@ Partial Class Form1
         Me.GroupBox3.PerformLayout()
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage6.ResumeLayout(False)
+        Me.TabPage6.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1982,4 +2048,10 @@ Partial Class Form1
     Friend WithEvents ScrollBy_X_Offset_NumericUpDown As NumericUpDown
     Friend WithEvents Label32 As Label
     Friend WithEvents Label31 As Label
+    Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents Insert_Messager_Contact_btn As Button
+    Friend WithEvents Messager_Content_RichTextBox As RichTextBox
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label33 As Label
+    Friend WithEvents Messager_Name_TextBox As TextBox
 End Class

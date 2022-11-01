@@ -309,4 +309,15 @@ Module ScriptInsertion
         End If
     End Sub
 
+
+    Public Sub Insert_Messager_Contact()
+
+        If Form1.Messager_Name_TextBox.Text = "" Or Form1.Messager_Content_RichTextBox.Text = "" Then
+            MsgBox("聯絡人或者內容不能為空")
+        Else
+            Insert_to_script("聊天", Form1.Messager_Name_TextBox.Text + ";" + Form1.Messager_Content_RichTextBox.Text)
+        End If
+
+    End Sub
+
 End Module
