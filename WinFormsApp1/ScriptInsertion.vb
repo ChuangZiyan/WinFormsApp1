@@ -52,8 +52,6 @@ Module ScriptInsertion
         End If
     End Sub
 
-
-
     Public Sub Insert_delay()
         Dim rnd_num As New Random()
         Dim hour = Form1.wait_hour_NumericUpDown.Value

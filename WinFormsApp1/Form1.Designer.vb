@@ -32,6 +32,8 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Script_Config_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label35 = New System.Windows.Forms.Label()
         Me.Record_script_result_checkbox = New System.Windows.Forms.CheckBox()
         Me.MoveDown_selected_item_btn = New System.Windows.Forms.Button()
         Me.Move_up_selected_item_btn = New System.Windows.Forms.Button()
@@ -64,6 +66,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Delete_Selected_Profile_Folder_btn = New System.Windows.Forms.Button()
         Me.Uncheck_All_Profile_btn = New System.Windows.Forms.Button()
         Me.Delete_Profile_From_Queue_btn = New System.Windows.Forms.Button()
         Me.Selected_All_Profile_btn = New System.Windows.Forms.Button()
@@ -187,6 +190,9 @@ Partial Class Form1
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
+        Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.Get_Groups_List_btn = New System.Windows.Forms.Button()
+        Me.Groups_ListView = New System.Windows.Forms.ListView()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
@@ -215,6 +221,7 @@ Partial Class Form1
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage6.SuspendLayout()
+        Me.GroupList.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -289,6 +296,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Script_Config_ComboBox)
+        Me.GroupBox1.Controls.Add(Me.Label35)
         Me.GroupBox1.Controls.Add(Me.Record_script_result_checkbox)
         Me.GroupBox1.Controls.Add(Me.MoveDown_selected_item_btn)
         Me.GroupBox1.Controls.Add(Me.Move_up_selected_item_btn)
@@ -324,10 +333,27 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
         '
+        'Script_Config_ComboBox
+        '
+        Me.Script_Config_ComboBox.FormattingEnabled = True
+        Me.Script_Config_ComboBox.Location = New System.Drawing.Point(89, 727)
+        Me.Script_Config_ComboBox.Name = "Script_Config_ComboBox"
+        Me.Script_Config_ComboBox.Size = New System.Drawing.Size(663, 27)
+        Me.Script_Config_ComboBox.TabIndex = 123
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(7, 730)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(76, 19)
+        Me.Label35.TabIndex = 122
+        Me.Label35.Text = "常用腳本 :"
+        '
         'Record_script_result_checkbox
         '
         Me.Record_script_result_checkbox.AutoSize = True
-        Me.Record_script_result_checkbox.Location = New System.Drawing.Point(85, 776)
+        Me.Record_script_result_checkbox.Location = New System.Drawing.Point(85, 815)
         Me.Record_script_result_checkbox.Name = "Record_script_result_checkbox"
         Me.Record_script_result_checkbox.Size = New System.Drawing.Size(91, 23)
         Me.Record_script_result_checkbox.TabIndex = 69
@@ -355,7 +381,7 @@ Partial Class Form1
         'stop_script_btn
         '
         Me.stop_script_btn.BackColor = System.Drawing.Color.LightSalmon
-        Me.stop_script_btn.Location = New System.Drawing.Point(458, 772)
+        Me.stop_script_btn.Location = New System.Drawing.Point(458, 811)
         Me.stop_script_btn.Name = "stop_script_btn"
         Me.stop_script_btn.Size = New System.Drawing.Size(94, 29)
         Me.stop_script_btn.TabIndex = 60
@@ -374,7 +400,7 @@ Partial Class Form1
         '
         'load_script_btn
         '
-        Me.load_script_btn.Location = New System.Drawing.Point(558, 726)
+        Me.load_script_btn.Location = New System.Drawing.Point(558, 765)
         Me.load_script_btn.Name = "load_script_btn"
         Me.load_script_btn.Size = New System.Drawing.Size(94, 29)
         Me.load_script_btn.TabIndex = 65
@@ -383,7 +409,7 @@ Partial Class Form1
         '
         'SaveAs_script_btn
         '
-        Me.SaveAs_script_btn.Location = New System.Drawing.Point(658, 726)
+        Me.SaveAs_script_btn.Location = New System.Drawing.Point(658, 765)
         Me.SaveAs_script_btn.Name = "SaveAs_script_btn"
         Me.SaveAs_script_btn.Size = New System.Drawing.Size(94, 29)
         Me.SaveAs_script_btn.TabIndex = 64
@@ -402,7 +428,7 @@ Partial Class Form1
         '
         'Open_file_dialog_btn
         '
-        Me.Open_file_dialog_btn.Location = New System.Drawing.Point(458, 726)
+        Me.Open_file_dialog_btn.Location = New System.Drawing.Point(458, 765)
         Me.Open_file_dialog_btn.Name = "Open_file_dialog_btn"
         Me.Open_file_dialog_btn.Size = New System.Drawing.Size(94, 29)
         Me.Open_file_dialog_btn.TabIndex = 63
@@ -411,7 +437,7 @@ Partial Class Form1
         '
         'TextBox_script_file_path
         '
-        Me.TextBox_script_file_path.Location = New System.Drawing.Point(89, 728)
+        Me.TextBox_script_file_path.Location = New System.Drawing.Point(89, 767)
         Me.TextBox_script_file_path.Name = "TextBox_script_file_path"
         Me.TextBox_script_file_path.Size = New System.Drawing.Size(363, 27)
         Me.TextBox_script_file_path.TabIndex = 62
@@ -419,7 +445,7 @@ Partial Class Form1
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(37, 731)
+        Me.Label21.Location = New System.Drawing.Point(37, 770)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(46, 19)
         Me.Label21.TabIndex = 61
@@ -428,7 +454,7 @@ Partial Class Form1
         'CheckBox_loop_run
         '
         Me.CheckBox_loop_run.AutoSize = True
-        Me.CheckBox_loop_run.Location = New System.Drawing.Point(18, 776)
+        Me.CheckBox_loop_run.Location = New System.Drawing.Point(18, 815)
         Me.CheckBox_loop_run.Name = "CheckBox_loop_run"
         Me.CheckBox_loop_run.Size = New System.Drawing.Size(61, 23)
         Me.CheckBox_loop_run.TabIndex = 59
@@ -438,7 +464,7 @@ Partial Class Form1
         'Run_script_btn
         '
         Me.Run_script_btn.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.Run_script_btn.Location = New System.Drawing.Point(182, 774)
+        Me.Run_script_btn.Location = New System.Drawing.Point(182, 813)
         Me.Run_script_btn.Name = "Run_script_btn"
         Me.Run_script_btn.Size = New System.Drawing.Size(270, 29)
         Me.Run_script_btn.TabIndex = 45
@@ -601,6 +627,7 @@ Partial Class Form1
         Me.TabControl2.Controls.Add(Me.TabPage3)
         Me.TabControl2.Controls.Add(Me.TabPage4)
         Me.TabControl2.Controls.Add(Me.TabPage6)
+        Me.TabControl2.Controls.Add(Me.GroupList)
         Me.TabControl2.Location = New System.Drawing.Point(6, 26)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -609,6 +636,7 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Delete_Selected_Profile_Folder_btn)
         Me.TabPage5.Controls.Add(Me.Uncheck_All_Profile_btn)
         Me.TabPage5.Controls.Add(Me.Delete_Profile_From_Queue_btn)
         Me.TabPage5.Controls.Add(Me.Selected_All_Profile_btn)
@@ -661,6 +689,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Delete_Selected_Profile_Folder_btn
+        '
+        Me.Delete_Selected_Profile_Folder_btn.Location = New System.Drawing.Point(758, 184)
+        Me.Delete_Selected_Profile_Folder_btn.Name = "Delete_Selected_Profile_Folder_btn"
+        Me.Delete_Selected_Profile_Folder_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Delete_Selected_Profile_Folder_btn.TabIndex = 122
+        Me.Delete_Selected_Profile_Folder_btn.Text = "刪除"
+        Me.Delete_Selected_Profile_Folder_btn.UseVisualStyleBackColor = True
         '
         'Uncheck_All_Profile_btn
         '
@@ -1836,6 +1873,34 @@ Partial Class Form1
         Me.Messager_Name_TextBox.Size = New System.Drawing.Size(369, 27)
         Me.Messager_Name_TextBox.TabIndex = 0
         '
+        'GroupList
+        '
+        Me.GroupList.Controls.Add(Me.Get_Groups_List_btn)
+        Me.GroupList.Controls.Add(Me.Groups_ListView)
+        Me.GroupList.Location = New System.Drawing.Point(4, 28)
+        Me.GroupList.Name = "GroupList"
+        Me.GroupList.Size = New System.Drawing.Size(918, 820)
+        Me.GroupList.TabIndex = 4
+        Me.GroupList.Text = "社團列表"
+        Me.GroupList.UseVisualStyleBackColor = True
+        '
+        'Get_Groups_List_btn
+        '
+        Me.Get_Groups_List_btn.Location = New System.Drawing.Point(20, 24)
+        Me.Get_Groups_List_btn.Name = "Get_Groups_List_btn"
+        Me.Get_Groups_List_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Get_Groups_List_btn.TabIndex = 1
+        Me.Get_Groups_List_btn.Text = "取社團列表"
+        Me.Get_Groups_List_btn.UseVisualStyleBackColor = True
+        '
+        'Groups_ListView
+        '
+        Me.Groups_ListView.Location = New System.Drawing.Point(20, 59)
+        Me.Groups_ListView.Name = "Groups_ListView"
+        Me.Groups_ListView.Size = New System.Drawing.Size(879, 729)
+        Me.Groups_ListView.TabIndex = 0
+        Me.Groups_ListView.UseCompatibleStateImageBehavior = False
+        '
         'Timer1
         '
         Me.Timer1.Enabled = True
@@ -1884,6 +1949,7 @@ Partial Class Form1
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
         Me.TabPage6.PerformLayout()
+        Me.GroupList.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2054,4 +2120,10 @@ Partial Class Form1
     Friend WithEvents Label34 As Label
     Friend WithEvents Label33 As Label
     Friend WithEvents Messager_Name_TextBox As TextBox
+    Friend WithEvents Script_Config_ComboBox As ComboBox
+    Friend WithEvents Label35 As Label
+    Friend WithEvents Delete_Selected_Profile_Folder_btn As Button
+    Friend WithEvents GroupList As TabPage
+    Friend WithEvents Get_Groups_List_btn As Button
+    Friend WithEvents Groups_ListView As ListView
 End Class

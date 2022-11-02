@@ -143,4 +143,13 @@ Module FormInit
     End Sub
 
 
+    Public Sub Render_Groups_Listview()
+        Form1.Groups_ListView.View = View.Details
+        Form1.Groups_ListView.GridLines = True
+        Form1.Groups_ListView.FullRowSelect = True
+        Form1.Groups_ListView.Columns.Add("社團名稱", 200)
+        Form1.Groups_ListView.Columns.Add("網址", 800)
+    End Sub
+
+
 End Module

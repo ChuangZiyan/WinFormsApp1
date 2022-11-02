@@ -355,4 +355,23 @@ Module FormComponentController
         Process.Start("explorer.exe", mypath)
     End Sub
 
+    Public Sub Delete_Selected_Profile_Folder()
+
+        For Each itemSelected In Form1.Profile_CheckedListBox.SelectedItems
+
+            If Directory.Exists(itemSelected) Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除此資料夾?", "確認訊息", MessageBoxButtons.YesNo)
+                If result = DialogResult.Yes Then
+                    Debug.WriteLine("Delete : " + itemSelected)
+                    'Delete a Directory
+                    Directory.Delete(itemSelected, True)
+                    Form1.Profile_CheckedListBox.Items.Clear()
+                    Render_profile_CheckedListBox()
+                    Exit Sub
+                End If
+
+            End If
+        Next
+    End Sub
+
 End Module

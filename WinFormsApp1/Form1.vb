@@ -65,6 +65,7 @@ Public Class Form1
         FormInit.Render_profile_CheckedListBox()
         FormInit.Render_Lang_Packs_ComboBox()
         FormInit.Render_DevList_combobox()
+        FormInit.Render_Groups_Listview()
 
     End Sub
 
@@ -1547,5 +1548,9 @@ Public Class Form1
 
     Private Sub Insert_Messager_Contact_btn_Click(sender As Object, e As EventArgs) Handles Insert_Messager_Contact_btn.Click
         ScriptInsertion.Insert_Messager_Contact()
+    End Sub
+
+    Private Sub Delete_Selected_Profile_Folder_btn_Click(sender As Object, e As EventArgs)
+        FormComponentController.Delete_Selected_Profile_Folder()
     End Sub
 End Class
