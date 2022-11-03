@@ -79,7 +79,11 @@ Module FormInit
             For Each file As String In files
                 'Debug.WriteLine(file)
                 If Path.GetExtension(file) = ".txt" Then
-                    Form1.Text_File_CheckedListBox.Items.Add(file)
+                    Debug.WriteLine("file : " + file)
+                    Dim split As String() = file.Split("\")
+                    Dim parentFolder As String = split(split.Length - 2)
+                    'Debug.WriteLine(parentFolder)
+                    Form1.Text_File_CheckedListBox.Items.Add(parentFolder + "\" + Path.GetFileName(file))
                 End If
 
             Next
@@ -147,7 +151,7 @@ Module FormInit
         Form1.Groups_ListView.View = View.Details
         Form1.Groups_ListView.GridLines = True
         Form1.Groups_ListView.FullRowSelect = True
-        Form1.Groups_ListView.Columns.Add("社團名稱", 200)
+        Form1.Groups_ListView.Columns.Add("社團名稱", 300)
         Form1.Groups_ListView.Columns.Add("網址", 800)
     End Sub
 

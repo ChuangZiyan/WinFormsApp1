@@ -255,7 +255,7 @@ Module FormComponentController
         For Each itemSeleted In Form1.Text_File_CheckedListBox.SelectedItems
             Txt_file_path = itemSeleted
         Next
-        Form1.content_RichTextBox.Text = File.ReadAllText(Txt_file_path)
+        Form1.content_RichTextBox.Text = File.ReadAllText(curr_path + "resources\texts\" + Txt_file_path)
 
         Dim temp_arr = Txt_file_path.Split("\")
         Form1.TextFileFolder_TextBox.Text = temp_arr(temp_arr.Length - 2)

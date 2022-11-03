@@ -1553,4 +1553,39 @@ Public Class Form1
     Private Sub Delete_Selected_Profile_Folder_btn_Click(sender As Object, e As EventArgs)
         FormComponentController.Delete_Selected_Profile_Folder()
     End Sub
+
+    Private Async Sub Get_Groups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_Groups_List_btn.Click
+        chromeDriver.Navigate.GoToUrl("https://www.facebook.com/groups/feed/")
+        Try 'if there are more groups, load the groups via button clicked
+            chromeDriver.FindElement(By.XPath("//span[contains(text(),'查看更多')]")).Click()
+            Await Delay_msec(1000)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
+        Dim scroll_x_value = 2000
+        Dim pre_counter As Integer = 0
+
+
+        While True
+            scroll_x_value += 1000
+            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span")).Count
+            If my_counter = pre_counter Then
+                Exit While
+            End If
+
+            chromeDriver.ExecuteJavaScript("document.getElementsByClassName(""xb57i2i x1q594ok x5lxg6s x78zum5 xdt5ytf x6ikm8r x1ja2u2z x1pq812k x1rohswg xfk6m8 x1yqm8si xjx87ck x1l7klhg x1iyjqo2 xs83m0k x2lwn1j xx8ngbg xwo3gff x1oyok0e x1odjw0f x1e4zzel x1n2onr6 xq1qtft"")[0].scroll(0," & scroll_x_value & ")")
+            pre_counter = my_counter
+            Await Delay_msec(1000)
+        End While
+
+        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span"))
+        Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.x1sxyh0.xurb0ha > a"))
+        'Debug.WriteLine(group_name_classes.Count)
+        For i As Integer = 0 To group_name_classes.Count - 1
+            Debug.WriteLine(group_name_classes.ElementAt(i))
+            Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
+            Groups_ListView.Items(i).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
+        Next
+    End Sub
 End Class
