@@ -1550,9 +1550,7 @@ Public Class Form1
         ScriptInsertion.Insert_Messager_Contact()
     End Sub
 
-    Private Sub Delete_Selected_Profile_Folder_btn_Click(sender As Object, e As EventArgs)
-        FormComponentController.Delete_Selected_Profile_Folder()
-    End Sub
+
 
     Private Async Sub Get_Groups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_Groups_List_btn.Click
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/groups/feed/")
@@ -1587,5 +1585,9 @@ Public Class Form1
             Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
             Groups_ListView.Items(i).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
         Next
+    End Sub
+
+    Private Sub Delete_Selected_Profile_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_Selected_Profile_Folder_btn.Click
+        FormComponentController.Delete_Selected_Profile_Folder()
     End Sub
 End Class
