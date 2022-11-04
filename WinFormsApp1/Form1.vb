@@ -194,12 +194,12 @@ Public Class Form1
                         Dim allTextFile = Text_File_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allTextFile.Count)
                         'Debug.WriteLine("TEXT : " + allTextFile(rnd))
-                        boolean_result = Write_post_send_content(File.ReadAllText(allTextFile(rnd)))
+                        boolean_result = Write_post_send_content(File.ReadAllText(text_folder_path + allTextFile(rnd)))
                     Else
                         Dim TextFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, TextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = Write_post_send_content(File.ReadAllText(TextFiles(rnd)))
+                        boolean_result = Write_post_send_content(File.ReadAllText(text_folder_path + TextFiles(rnd)))
                     End If
                 Case "發送上載:隨機配對"
                     boolean_result = Post_Random_Match_TextAndImage(content)
@@ -213,11 +213,11 @@ Public Class Form1
                     If content = "全部隨機" Then
                         Dim allImageFile = img_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = Tring_to_upload_img(allImageFile(rnd))
+                        boolean_result = Tring_to_upload_img(image_folder_path + allImageFile(rnd))
                     Else
                         Dim ImageFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = Tring_to_upload_img(ImageFiles(rnd))
+                        boolean_result = Tring_to_upload_img(image_folder_path + ImageFiles(rnd))
                     End If
 
                 Case "回應:上載"
@@ -239,12 +239,12 @@ Public Class Form1
                         Dim allTextFile = Text_File_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allTextFile.Count)
                         'Debug.WriteLine("TEXT : " + allTextFile(rnd))
-                        boolean_result = Send_reply_comment(File.ReadAllText(allTextFile(rnd)))
+                        boolean_result = Send_reply_comment(File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd)))
                     Else
                         Dim TextFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, TextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = Send_reply_comment(File.ReadAllText(TextFiles(rnd)))
+                        boolean_result = Send_reply_comment(File.ReadAllText(curr_path + "resources\texts\" + TextFiles(rnd)))
                     End If
                 Case "回應:隨機配對"
                     boolean_result = Reply_Random_Match_TextAndImage(content)
@@ -962,7 +962,7 @@ Public Class Form1
                 comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("reply_post_img_input")))
             End If
 
-            comment_img_input.SendKeys(img)
+            comment_img_input.SendKeys(image_folder_path + img)
 
             Return True
         Catch ex As Exception
@@ -1137,10 +1137,10 @@ Public Class Form1
             'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
             chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3)
             For Each pattern In str_patterns
-                Debug.WriteLine("try : " + pattern.ToString())
+                'Debug.WriteLine("try : " + pattern.ToString())
                 Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
                 If IsElementPresentByXpath(xpath) Then
-                    Debug.WriteLine("pattern : " + pattern.ToString())
+                    'Debug.WriteLine("pattern : " + pattern.ToString())
                     Dim msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
                     msgbox_ele.SendKeys(content)
                     Return True
@@ -1550,8 +1550,6 @@ Public Class Form1
         ScriptInsertion.Insert_Messager_Contact()
     End Sub
 
-
-
     Private Async Sub Get_Groups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_Groups_List_btn.Click
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/groups/feed/")
         Try 'if there are more groups, load the groups via button clicked
@@ -1590,4 +1588,5 @@ Public Class Form1
     Private Sub Delete_Selected_Profile_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_Selected_Profile_Folder_btn.Click
         FormComponentController.Delete_Selected_Profile_Folder()
     End Sub
+
 End Class

@@ -3,6 +3,8 @@
 Module FormInit
 
     Public curr_path = My.Computer.FileSystem.CurrentDirectory + "\"
+    Public text_folder_path = curr_path + "resources\texts\"
+    Public image_folder_path = curr_path + "resources\images\"
 
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
@@ -70,8 +72,7 @@ Module FormInit
     End Sub
 
     Public Sub Render_TextFile_listbox()
-        Dim mypath = curr_path + "resources\texts"
-        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+        Dim dirs() As String = IO.Directory.GetDirectories(text_folder_path)
 
         For Each dir As String In dirs
             'Debug.WriteLine(dir)
@@ -93,11 +94,10 @@ Module FormInit
     End Sub
 
     Public Sub Render_img_listbox()
-        Dim mypath = curr_path + "resources\images"
-        If Not System.IO.Directory.Exists(mypath) Then
-            System.IO.Directory.CreateDirectory(mypath)
+        If Not System.IO.Directory.Exists(image_folder_path) Then
+            System.IO.Directory.CreateDirectory(image_folder_path)
         End If
-        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+        Dim dirs() As String = IO.Directory.GetDirectories(image_folder_path)
         'image/*,image/heif,image/heic,video/*,video/mp4,video/x-m4v,video/x-matroska,.mkv
         Dim allowed_extentions As String() = {".jpg", ".jpeg", ".png", ".mp4", ".mk4"}
 
@@ -107,7 +107,9 @@ Module FormInit
             For Each file As String In files
                 'Debug.WriteLine(file)
                 If allowed_extentions.Contains(Path.GetExtension(file)) Then
-                    Form1.img_CheckedListBox.Items.Add(file)
+                    Dim split As String() = file.Split("\")
+                    Dim parentFolder As String = split(split.Length - 2)
+                    Form1.img_CheckedListBox.Items.Add(parentFolder + "\" + Path.GetFileName(file))
                 End If
 
             Next
@@ -127,8 +129,7 @@ Module FormInit
     End Sub
 
     Public Sub Render_TextFolder_listbox()
-        Dim mypath = curr_path + "resources\texts"
-        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+        Dim dirs() As String = IO.Directory.GetDirectories(text_folder_path)
 
         For Each dir As String In dirs
             Form1.TextFolder_ListBox.Items.Add(dir)
@@ -137,8 +138,7 @@ Module FormInit
     End Sub
 
     Public Sub Render_ImageFolder_listbox()
-        Dim mypath = curr_path + "resources\images"
-        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
+        Dim dirs() As String = IO.Directory.GetDirectories(image_folder_path)
 
         For Each dir As String In dirs
             Form1.ImageFolder_ListBox.Items.Add(dir)

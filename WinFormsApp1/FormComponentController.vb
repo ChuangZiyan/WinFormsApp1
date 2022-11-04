@@ -273,13 +273,13 @@ Module FormComponentController
         Dim temp_arr = Img_file_path.Split("\")
         Form1.ImageFolder_TextBox.Text = temp_arr(temp_arr.Length - 2)
 
-        If allowed_video_extentions.Contains(Path.GetExtension(Img_file_path)) Then ' if video
+        If allowed_video_extentions.Contains(Path.GetExtension(image_folder_path + Img_file_path)) Then ' if video
             'Debug.WriteLine("it's video")
             Form1.Selected_PictureBox.Cursor = Cursors.Hand
             Form1.Selected_PictureBox.Image = Image.FromFile(My.Computer.FileSystem.CurrentDirectory + "\images\PlayVideo.jpg")
         Else
             Form1.Selected_PictureBox.Cursor = Cursors.Default
-            Form1.Selected_PictureBox.Image = Image.FromFile(Img_file_path) ' image 
+            Form1.Selected_PictureBox.Image = Image.FromFile(image_folder_path + Img_file_path) ' image 
         End If
 
     End Sub
@@ -290,7 +290,7 @@ Module FormComponentController
             If allowed_video_extentions.Contains(Path.GetExtension(itemSeleted)) Then ' if video
                 Dim result As DialogResult = MessageBox.Show("是否播放影片?", "確認訊息", MessageBoxButtons.YesNo)
                 If result = DialogResult.Yes Then
-                    Process.Start("explorer.exe", itemSeleted)
+                    Process.Start("explorer.exe", image_folder_path + itemSeleted)
                 End If
             End If
         Next

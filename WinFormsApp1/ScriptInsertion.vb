@@ -122,9 +122,9 @@ Module ScriptInsertion
                 'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
                 Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
                 If img_path_str = "" Then
-                    img_path_str = Form1.img_CheckedListBox.Items(i).ToString
+                    img_path_str = image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
                 Else
-                    img_path_str = img_path_str & vbLf & Form1.img_CheckedListBox.Items(i).ToString
+                    img_path_str = img_path_str & vbLf & image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
                 End If
             Next
             Insert_to_script("上載", img_path_str)
