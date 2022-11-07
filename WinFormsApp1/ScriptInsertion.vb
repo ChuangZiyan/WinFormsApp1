@@ -13,8 +13,8 @@ Module ScriptInsertion
 
         Dim myline As String
 
-        If action = "" And content = "" Then
-            myline = "分隔行,,,,,,"
+        If action = "" Then
+            myline = content + ",,,,,,"
         Else
             myline = Form1.used_browser + "," + Form1.used_dev_model + "," + Form1.used_chrome_profile + "," + action + "," + content + ","
         End If
@@ -71,13 +71,14 @@ Module ScriptInsertion
     End Sub
     Public Sub Insert_open_browser()
         Dim myprofile As String = ""
+        Dim profile_dir = FormInit.curr_path
 
-        If Form1.Profile_TextBox.Text <> "" Then
-            myprofile = Form1.Profile_TextBox.Text
+        If Form1.Profile_TextBox.Text <> "" And Form1.Profile_Name_ComboBox.Text <> "" Then
+            myprofile = Form1.Profile_TextBox.Text + "\" + Form1.Profile_Name_ComboBox.Text
         Else
             For Each itemChecked In Form1.Profile_CheckedListBox.CheckedItems
                 'Debug.WriteLine(itemChecked)
-                myprofile += itemChecked + ";"
+                myprofile += profile_dir + itemChecked + ";"
             Next
             myprofile = myprofile.Trim(";"c)
 
@@ -279,9 +280,10 @@ Module ScriptInsertion
 
     Public Sub Insert_Queue_To_script()
         Dim Content As String = ""
+        Dim profile_dir = FormInit.curr_path
         For Each item In Form1.Profile_Queue_ListBox.Items
             'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
-            Content += item + ";"
+            Content += profile_dir + item + ";"
         Next
 
         If Content = "" Then

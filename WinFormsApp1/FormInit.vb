@@ -66,7 +66,9 @@ Module FormInit
         Dim dirs() As String = IO.Directory.GetDirectories(mypath)
         For Each dir As String In dirs
             'Debug.WriteLine(dir)
-            Form1.Profile_CheckedListBox.Items.Add(dir)
+            Dim split As String() = dir.Split("\")
+            Dim profile_name As String = split(split.Length - 2) + "\" + split(split.Length - 1)
+            Form1.Profile_CheckedListBox.Items.Add(profile_name)
         Next
 
     End Sub
@@ -80,7 +82,7 @@ Module FormInit
             For Each file As String In files
                 'Debug.WriteLine(file)
                 If Path.GetExtension(file) = ".txt" Then
-                    Debug.WriteLine("file : " + file)
+                    'Debug.WriteLine("file : " + file)
                     Dim split As String() = file.Split("\")
                     Dim parentFolder As String = split(split.Length - 2)
                     'Debug.WriteLine(parentFolder)
@@ -146,7 +148,6 @@ Module FormInit
 
     End Sub
 
-
     Public Sub Render_Groups_Listview()
         Form1.Groups_ListView.View = View.Details
         Form1.Groups_ListView.GridLines = True
@@ -155,5 +156,10 @@ Module FormInit
         Form1.Groups_ListView.Columns.Add("網址", 800)
     End Sub
 
+    Public Sub Render_ProfileName_ComboBox_Item()
+        For i As Integer = 1 To 100
+            Form1.Profile_Name_ComboBox.Items.Add(i.ToString().PadLeft(3, "0"))
+        Next
+    End Sub
 
 End Module

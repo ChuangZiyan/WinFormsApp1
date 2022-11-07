@@ -66,6 +66,12 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.Profile_Name_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Block_Text_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
         Me.Delete_Selected_Profile_Folder_btn = New System.Windows.Forms.Button()
         Me.Uncheck_All_Profile_btn = New System.Windows.Forms.Button()
         Me.Delete_Profile_From_Queue_btn = New System.Windows.Forms.Button()
@@ -87,7 +93,6 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Insert_delay_btn = New System.Windows.Forms.Button()
         Me.fb_account_TextBox = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.fb_password_TextBox = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.wait_random_second_NumericUpDown = New System.Windows.Forms.NumericUpDown()
@@ -236,9 +241,9 @@ Partial Class Form1
         'driver_close_bnt
         '
         Me.driver_close_bnt.BackColor = System.Drawing.Color.LightCoral
-        Me.driver_close_bnt.Location = New System.Drawing.Point(758, 30)
+        Me.driver_close_bnt.Location = New System.Drawing.Point(750, 79)
         Me.driver_close_bnt.Name = "driver_close_bnt"
-        Me.driver_close_bnt.Size = New System.Drawing.Size(94, 29)
+        Me.driver_close_bnt.Size = New System.Drawing.Size(145, 29)
         Me.driver_close_bnt.TabIndex = 3
         Me.driver_close_bnt.Text = "關閉瀏覽器"
         Me.driver_close_bnt.UseVisualStyleBackColor = False
@@ -246,7 +251,7 @@ Partial Class Form1
         'curr_url_lbl
         '
         Me.curr_url_lbl.AutoSize = True
-        Me.curr_url_lbl.Location = New System.Drawing.Point(63, 542)
+        Me.curr_url_lbl.Location = New System.Drawing.Point(63, 617)
         Me.curr_url_lbl.Name = "curr_url_lbl"
         Me.curr_url_lbl.Size = New System.Drawing.Size(46, 19)
         Me.curr_url_lbl.TabIndex = 10
@@ -254,9 +259,9 @@ Partial Class Form1
         '
         'curr_url_TextBox
         '
-        Me.curr_url_TextBox.Location = New System.Drawing.Point(119, 539)
+        Me.curr_url_TextBox.Location = New System.Drawing.Point(119, 614)
         Me.curr_url_TextBox.Name = "curr_url_TextBox"
-        Me.curr_url_TextBox.Size = New System.Drawing.Size(534, 27)
+        Me.curr_url_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.curr_url_TextBox.TabIndex = 11
         '
         'img_CheckedListBox
@@ -271,15 +276,15 @@ Partial Class Form1
         '
         'group_name_TextBox
         '
-        Me.group_name_TextBox.Location = New System.Drawing.Point(119, 506)
+        Me.group_name_TextBox.Location = New System.Drawing.Point(119, 582)
         Me.group_name_TextBox.Name = "group_name_TextBox"
-        Me.group_name_TextBox.Size = New System.Drawing.Size(534, 27)
+        Me.group_name_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.group_name_TextBox.TabIndex = 27
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(33, 509)
+        Me.Label3.Location = New System.Drawing.Point(33, 585)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(80, 19)
         Me.Label3.TabIndex = 28
@@ -595,9 +600,9 @@ Partial Class Form1
         '
         'Insert_close_driver_btn
         '
-        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(758, 114)
+        Me.Insert_close_driver_btn.Location = New System.Drawing.Point(752, 114)
         Me.Insert_close_driver_btn.Name = "Insert_close_driver_btn"
-        Me.Insert_close_driver_btn.Size = New System.Drawing.Size(92, 29)
+        Me.Insert_close_driver_btn.Size = New System.Drawing.Size(143, 29)
         Me.Insert_close_driver_btn.TabIndex = 44
         Me.Insert_close_driver_btn.Text = "關閉-插入"
         Me.Insert_close_driver_btn.UseVisualStyleBackColor = True
@@ -636,6 +641,12 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Label38)
+        Me.TabPage5.Controls.Add(Me.Profile_Name_ComboBox)
+        Me.TabPage5.Controls.Add(Me.Label37)
+        Me.TabPage5.Controls.Add(Me.Block_Text_TextBox)
+        Me.TabPage5.Controls.Add(Me.Label13)
+        Me.TabPage5.Controls.Add(Me.Label36)
         Me.TabPage5.Controls.Add(Me.Delete_Selected_Profile_Folder_btn)
         Me.TabPage5.Controls.Add(Me.Uncheck_All_Profile_btn)
         Me.TabPage5.Controls.Add(Me.Delete_Profile_From_Queue_btn)
@@ -663,7 +674,6 @@ Partial Class Form1
         Me.TabPage5.Controls.Add(Me.Label7)
         Me.TabPage5.Controls.Add(Me.Insert_delay_btn)
         Me.TabPage5.Controls.Add(Me.fb_account_TextBox)
-        Me.TabPage5.Controls.Add(Me.Label13)
         Me.TabPage5.Controls.Add(Me.fb_password_TextBox)
         Me.TabPage5.Controls.Add(Me.driver_close_bnt)
         Me.TabPage5.Controls.Add(Me.Label8)
@@ -690,38 +700,89 @@ Partial Class Form1
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(439, 119)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(46, 19)
+        Me.Label38.TabIndex = 128
+        Me.Label38.Text = "名稱 :"
+        '
+        'Profile_Name_ComboBox
+        '
+        Me.Profile_Name_ComboBox.FormattingEnabled = True
+        Me.Profile_Name_ComboBox.Location = New System.Drawing.Point(491, 116)
+        Me.Profile_Name_ComboBox.Name = "Profile_Name_ComboBox"
+        Me.Profile_Name_ComboBox.Size = New System.Drawing.Size(111, 27)
+        Me.Profile_Name_ComboBox.TabIndex = 127
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(59, 554)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(54, 19)
+        Me.Label37.TabIndex = 126
+        Me.Label37.Text = "文字  : "
+        '
+        'Block_Text_TextBox
+        '
+        Me.Block_Text_TextBox.Location = New System.Drawing.Point(119, 551)
+        Me.Block_Text_TextBox.Name = "Block_Text_TextBox"
+        Me.Block_Text_TextBox.Size = New System.Drawing.Size(314, 27)
+        Me.Block_Text_TextBox.TabIndex = 125
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(400, 520)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(30, 19)
+        Me.Label13.TabIndex = 124
+        Me.Label13.Text = "/秒"
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(40, 520)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(73, 19)
+        Me.Label36.TabIndex = 123
+        Me.Label36.Text = "隨機+/- : "
+        '
         'Delete_Selected_Profile_Folder_btn
         '
-        Me.Delete_Selected_Profile_Folder_btn.Location = New System.Drawing.Point(758, 184)
+        Me.Delete_Selected_Profile_Folder_btn.Location = New System.Drawing.Point(439, 347)
         Me.Delete_Selected_Profile_Folder_btn.Name = "Delete_Selected_Profile_Folder_btn"
-        Me.Delete_Selected_Profile_Folder_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Delete_Selected_Profile_Folder_btn.Size = New System.Drawing.Size(163, 29)
         Me.Delete_Selected_Profile_Folder_btn.TabIndex = 122
-        Me.Delete_Selected_Profile_Folder_btn.Text = "刪除"
+        Me.Delete_Selected_Profile_Folder_btn.Text = "刪除資料夾"
         Me.Delete_Selected_Profile_Folder_btn.UseVisualStyleBackColor = True
         '
         'Uncheck_All_Profile_btn
         '
-        Me.Uncheck_All_Profile_btn.Location = New System.Drawing.Point(660, 184)
+        Me.Uncheck_All_Profile_btn.Location = New System.Drawing.Point(439, 187)
         Me.Uncheck_All_Profile_btn.Name = "Uncheck_All_Profile_btn"
-        Me.Uncheck_All_Profile_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Uncheck_All_Profile_btn.Size = New System.Drawing.Size(163, 29)
         Me.Uncheck_All_Profile_btn.TabIndex = 121
         Me.Uncheck_All_Profile_btn.Text = "取消全選"
         Me.Uncheck_All_Profile_btn.UseVisualStyleBackColor = True
         '
         'Delete_Profile_From_Queue_btn
         '
-        Me.Delete_Profile_From_Queue_btn.Location = New System.Drawing.Point(659, 297)
+        Me.Delete_Profile_From_Queue_btn.Location = New System.Drawing.Point(757, 614)
         Me.Delete_Profile_From_Queue_btn.Name = "Delete_Profile_From_Queue_btn"
-        Me.Delete_Profile_From_Queue_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Delete_Profile_From_Queue_btn.Size = New System.Drawing.Size(138, 29)
         Me.Delete_Profile_From_Queue_btn.TabIndex = 120
         Me.Delete_Profile_From_Queue_btn.Text = "刪除所選"
         Me.Delete_Profile_From_Queue_btn.UseVisualStyleBackColor = True
         '
         'Selected_All_Profile_btn
         '
-        Me.Selected_All_Profile_btn.Location = New System.Drawing.Point(659, 149)
+        Me.Selected_All_Profile_btn.Location = New System.Drawing.Point(439, 152)
         Me.Selected_All_Profile_btn.Name = "Selected_All_Profile_btn"
-        Me.Selected_All_Profile_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Selected_All_Profile_btn.Size = New System.Drawing.Size(163, 29)
         Me.Selected_All_Profile_btn.TabIndex = 119
         Me.Selected_All_Profile_btn.Text = "全選"
         Me.Selected_All_Profile_btn.UseVisualStyleBackColor = True
@@ -730,7 +791,7 @@ Partial Class Form1
         '
         Me.Profile_TextBox.Location = New System.Drawing.Point(119, 116)
         Me.Profile_TextBox.Name = "Profile_TextBox"
-        Me.Profile_TextBox.Size = New System.Drawing.Size(534, 27)
+        Me.Profile_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.Profile_TextBox.TabIndex = 118
         '
         'Profile_Queue_ListBox
@@ -738,34 +799,34 @@ Partial Class Form1
         Me.Profile_Queue_ListBox.FormattingEnabled = True
         Me.Profile_Queue_ListBox.HorizontalScrollbar = True
         Me.Profile_Queue_ListBox.ItemHeight = 19
-        Me.Profile_Queue_ListBox.Location = New System.Drawing.Point(119, 297)
+        Me.Profile_Queue_ListBox.Location = New System.Drawing.Point(608, 152)
         Me.Profile_Queue_ListBox.Name = "Profile_Queue_ListBox"
-        Me.Profile_Queue_ListBox.Size = New System.Drawing.Size(534, 137)
+        Me.Profile_Queue_ListBox.Size = New System.Drawing.Size(287, 460)
         Me.Profile_Queue_ListBox.TabIndex = 117
         '
         'Clear_Profile_Queue
         '
-        Me.Clear_Profile_Queue.Location = New System.Drawing.Point(758, 297)
+        Me.Clear_Profile_Queue.Location = New System.Drawing.Point(757, 649)
         Me.Clear_Profile_Queue.Name = "Clear_Profile_Queue"
-        Me.Clear_Profile_Queue.Size = New System.Drawing.Size(94, 29)
+        Me.Clear_Profile_Queue.Size = New System.Drawing.Size(138, 29)
         Me.Clear_Profile_Queue.TabIndex = 116
         Me.Clear_Profile_Queue.Text = "清除佇列"
         Me.Clear_Profile_Queue.UseVisualStyleBackColor = True
         '
         'Insert_Queue_To_script
         '
-        Me.Insert_Queue_To_script.Location = New System.Drawing.Point(659, 405)
+        Me.Insert_Queue_To_script.Location = New System.Drawing.Point(608, 614)
         Me.Insert_Queue_To_script.Name = "Insert_Queue_To_script"
-        Me.Insert_Queue_To_script.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_Queue_To_script.Size = New System.Drawing.Size(138, 29)
         Me.Insert_Queue_To_script.TabIndex = 115
         Me.Insert_Queue_To_script.Text = "佇列 - 插入"
         Me.Insert_Queue_To_script.UseVisualStyleBackColor = True
         '
         'Insert_To_Queuing
         '
-        Me.Insert_To_Queuing.Location = New System.Drawing.Point(758, 149)
+        Me.Insert_To_Queuing.Location = New System.Drawing.Point(439, 222)
         Me.Insert_To_Queuing.Name = "Insert_To_Queuing"
-        Me.Insert_To_Queuing.Size = New System.Drawing.Size(91, 29)
+        Me.Insert_To_Queuing.Size = New System.Drawing.Size(163, 29)
         Me.Insert_To_Queuing.TabIndex = 113
         Me.Insert_To_Queuing.Text = "加入佇列"
         Me.Insert_To_Queuing.UseVisualStyleBackColor = True
@@ -773,7 +834,7 @@ Partial Class Form1
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(487, 76)
+        Me.Label28.Location = New System.Drawing.Point(439, 76)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(46, 19)
         Me.Label28.TabIndex = 112
@@ -786,28 +847,28 @@ Partial Class Form1
         Me.Profile_CheckedListBox.HorizontalScrollbar = True
         Me.Profile_CheckedListBox.Location = New System.Drawing.Point(119, 152)
         Me.Profile_CheckedListBox.Name = "Profile_CheckedListBox"
-        Me.Profile_CheckedListBox.Size = New System.Drawing.Size(534, 136)
+        Me.Profile_CheckedListBox.Size = New System.Drawing.Size(314, 224)
         Me.Profile_CheckedListBox.TabIndex = 111
         '
         'Lang_Packs_ComboBox
         '
         Me.Lang_Packs_ComboBox.FormattingEnabled = True
-        Me.Lang_Packs_ComboBox.Location = New System.Drawing.Point(539, 73)
+        Me.Lang_Packs_ComboBox.Location = New System.Drawing.Point(491, 73)
         Me.Lang_Packs_ComboBox.Name = "Lang_Packs_ComboBox"
-        Me.Lang_Packs_ComboBox.Size = New System.Drawing.Size(114, 27)
+        Me.Lang_Packs_ComboBox.Size = New System.Drawing.Size(111, 27)
         Me.Lang_Packs_ComboBox.TabIndex = 110
         '
         'Remark_TextBox
         '
-        Me.Remark_TextBox.Location = New System.Drawing.Point(119, 475)
+        Me.Remark_TextBox.Location = New System.Drawing.Point(119, 448)
         Me.Remark_TextBox.Name = "Remark_TextBox"
-        Me.Remark_TextBox.Size = New System.Drawing.Size(534, 27)
+        Me.Remark_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.Remark_TextBox.TabIndex = 108
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(63, 478)
+        Me.Label1.Location = New System.Drawing.Point(63, 452)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(46, 19)
         Me.Label1.TabIndex = 107
@@ -824,9 +885,9 @@ Partial Class Form1
         '
         'Save_Account_Passwd_btn
         '
-        Me.Save_Account_Passwd_btn.Location = New System.Drawing.Point(659, 442)
+        Me.Save_Account_Passwd_btn.Location = New System.Drawing.Point(439, 415)
         Me.Save_Account_Passwd_btn.Name = "Save_Account_Passwd_btn"
-        Me.Save_Account_Passwd_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Save_Account_Passwd_btn.Size = New System.Drawing.Size(163, 29)
         Me.Save_Account_Passwd_btn.TabIndex = 106
         Me.Save_Account_Passwd_btn.Text = "儲存"
         Me.Save_Account_Passwd_btn.UseVisualStyleBackColor = True
@@ -836,7 +897,7 @@ Partial Class Form1
         Me.EmulatedDevice_ComboBox.FormattingEnabled = True
         Me.EmulatedDevice_ComboBox.Location = New System.Drawing.Point(119, 73)
         Me.EmulatedDevice_ComboBox.Name = "EmulatedDevice_ComboBox"
-        Me.EmulatedDevice_ComboBox.Size = New System.Drawing.Size(362, 27)
+        Me.EmulatedDevice_ComboBox.Size = New System.Drawing.Size(314, 27)
         Me.EmulatedDevice_ComboBox.TabIndex = 97
         '
         'Label6
@@ -851,7 +912,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(63, 447)
+        Me.Label7.Location = New System.Drawing.Point(63, 385)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(50, 19)
         Me.Label7.TabIndex = 48
@@ -859,40 +920,31 @@ Partial Class Form1
         '
         'Insert_delay_btn
         '
-        Me.Insert_delay_btn.Location = New System.Drawing.Point(660, 564)
+        Me.Insert_delay_btn.Location = New System.Drawing.Point(439, 515)
         Me.Insert_delay_btn.Name = "Insert_delay_btn"
-        Me.Insert_delay_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_delay_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_delay_btn.TabIndex = 70
-        Me.Insert_delay_btn.Text = "插入"
+        Me.Insert_delay_btn.Text = "等待-插入"
         Me.Insert_delay_btn.UseVisualStyleBackColor = True
         '
         'fb_account_TextBox
         '
-        Me.fb_account_TextBox.Location = New System.Drawing.Point(119, 444)
+        Me.fb_account_TextBox.Location = New System.Drawing.Point(119, 382)
         Me.fb_account_TextBox.Name = "fb_account_TextBox"
-        Me.fb_account_TextBox.Size = New System.Drawing.Size(211, 27)
+        Me.fb_account_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.fb_account_TextBox.TabIndex = 50
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(515, 574)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(77, 19)
-        Me.Label13.TabIndex = 69
-        Me.Label13.Text = "隨機+/-秒"
         '
         'fb_password_TextBox
         '
-        Me.fb_password_TextBox.Location = New System.Drawing.Point(392, 444)
+        Me.fb_password_TextBox.Location = New System.Drawing.Point(119, 415)
         Me.fb_password_TextBox.Name = "fb_password_TextBox"
-        Me.fb_password_TextBox.Size = New System.Drawing.Size(261, 27)
+        Me.fb_password_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.fb_password_TextBox.TabIndex = 51
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(336, 447)
+        Me.Label8.Location = New System.Drawing.Point(63, 418)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(50, 19)
         Me.Label8.TabIndex = 52
@@ -900,16 +952,16 @@ Partial Class Form1
         '
         'wait_random_second_NumericUpDown
         '
-        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(425, 572)
+        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(119, 518)
         Me.wait_random_second_NumericUpDown.Name = "wait_random_second_NumericUpDown"
-        Me.wait_random_second_NumericUpDown.Size = New System.Drawing.Size(84, 27)
+        Me.wait_random_second_NumericUpDown.Size = New System.Drawing.Size(264, 27)
         Me.wait_random_second_NumericUpDown.TabIndex = 68
         '
         'Insert_login_Button
         '
-        Me.Insert_login_Button.Location = New System.Drawing.Point(758, 442)
+        Me.Insert_login_Button.Location = New System.Drawing.Point(439, 447)
         Me.Insert_login_Button.Name = "Insert_login_Button"
-        Me.Insert_login_Button.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_login_Button.Size = New System.Drawing.Size(163, 29)
         Me.Insert_login_Button.TabIndex = 53
         Me.Insert_login_Button.Text = "登入-插入"
         Me.Insert_login_Button.UseVisualStyleBackColor = True
@@ -917,7 +969,7 @@ Partial Class Form1
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(389, 574)
+        Me.Label12.Location = New System.Drawing.Point(400, 487)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(30, 19)
         Me.Label12.TabIndex = 67
@@ -925,25 +977,25 @@ Partial Class Form1
         '
         'open_browser_Button
         '
-        Me.open_browser_Button.Location = New System.Drawing.Point(660, 30)
+        Me.open_browser_Button.Location = New System.Drawing.Point(608, 79)
         Me.open_browser_Button.Name = "open_browser_Button"
-        Me.open_browser_Button.Size = New System.Drawing.Size(94, 29)
+        Me.open_browser_Button.Size = New System.Drawing.Size(138, 29)
         Me.open_browser_Button.TabIndex = 54
         Me.open_browser_Button.Text = "開啟瀏覽器"
         Me.open_browser_Button.UseVisualStyleBackColor = True
         '
         'wait_second_NumericUpDown
         '
-        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(323, 572)
+        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(323, 485)
         Me.wait_second_NumericUpDown.Name = "wait_second_NumericUpDown"
         Me.wait_second_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_second_NumericUpDown.TabIndex = 66
         '
         'get_groupname_Button
         '
-        Me.get_groupname_Button.Location = New System.Drawing.Point(660, 501)
+        Me.get_groupname_Button.Location = New System.Drawing.Point(439, 580)
         Me.get_groupname_Button.Name = "get_groupname_Button"
-        Me.get_groupname_Button.Size = New System.Drawing.Size(94, 29)
+        Me.get_groupname_Button.Size = New System.Drawing.Size(163, 29)
         Me.get_groupname_Button.TabIndex = 55
         Me.get_groupname_Button.Text = "獲取名稱"
         Me.get_groupname_Button.UseVisualStyleBackColor = True
@@ -951,7 +1003,7 @@ Partial Class Form1
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(287, 574)
+        Me.Label11.Location = New System.Drawing.Point(287, 487)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(30, 19)
         Me.Label11.TabIndex = 65
@@ -959,18 +1011,18 @@ Partial Class Form1
         '
         'Get_url_btn
         '
-        Me.Get_url_btn.Location = New System.Drawing.Point(660, 532)
+        Me.Get_url_btn.Location = New System.Drawing.Point(439, 612)
         Me.Get_url_btn.Name = "Get_url_btn"
-        Me.Get_url_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Get_url_btn.Size = New System.Drawing.Size(163, 29)
         Me.Get_url_btn.TabIndex = 56
         Me.Get_url_btn.Text = "獲取網址"
         Me.Get_url_btn.UseVisualStyleBackColor = True
         '
         'Insert_empty_btn
         '
-        Me.Insert_empty_btn.Location = New System.Drawing.Point(758, 564)
+        Me.Insert_empty_btn.Location = New System.Drawing.Point(439, 551)
         Me.Insert_empty_btn.Name = "Insert_empty_btn"
-        Me.Insert_empty_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_empty_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_empty_btn.TabIndex = 83
         Me.Insert_empty_btn.Text = "空白-插入"
         Me.Insert_empty_btn.UseVisualStyleBackColor = True
@@ -982,7 +1034,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.chrome_RadioButton)
         Me.GroupBox2.Location = New System.Drawing.Point(119, 16)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(534, 51)
+        Me.GroupBox2.Size = New System.Drawing.Size(314, 51)
         Me.GroupBox2.TabIndex = 57
         Me.GroupBox2.TabStop = False
         '
@@ -1020,16 +1072,16 @@ Partial Class Form1
         '
         'wait_minute_NumericUpDown
         '
-        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(221, 572)
+        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(221, 485)
         Me.wait_minute_NumericUpDown.Name = "wait_minute_NumericUpDown"
         Me.wait_minute_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_minute_NumericUpDown.TabIndex = 64
         '
         'Insert_navigate_to_url_btn
         '
-        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(758, 532)
+        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(439, 647)
         Me.Insert_navigate_to_url_btn.Name = "Insert_navigate_to_url_btn"
-        Me.Insert_navigate_to_url_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_navigate_to_url_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_navigate_to_url_btn.TabIndex = 59
         Me.Insert_navigate_to_url_btn.Text = "前往-插入"
         Me.Insert_navigate_to_url_btn.UseVisualStyleBackColor = True
@@ -1037,7 +1089,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(185, 574)
+        Me.Label10.Location = New System.Drawing.Point(185, 487)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(30, 19)
         Me.Label10.TabIndex = 63
@@ -1045,16 +1097,16 @@ Partial Class Form1
         '
         'Insert_open_browser_btn
         '
-        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(659, 114)
+        Me.Insert_open_browser_btn.Location = New System.Drawing.Point(608, 114)
         Me.Insert_open_browser_btn.Name = "Insert_open_browser_btn"
-        Me.Insert_open_browser_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_open_browser_btn.Size = New System.Drawing.Size(138, 29)
         Me.Insert_open_browser_btn.TabIndex = 60
         Me.Insert_open_browser_btn.Text = "開啟-插入"
         Me.Insert_open_browser_btn.UseVisualStyleBackColor = True
         '
         'wait_hour_NumericUpDown
         '
-        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(119, 572)
+        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(119, 485)
         Me.wait_hour_NumericUpDown.Name = "wait_hour_NumericUpDown"
         Me.wait_hour_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_hour_NumericUpDown.TabIndex = 62
@@ -1062,7 +1114,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(33, 574)
+        Me.Label9.Location = New System.Drawing.Point(33, 487)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(76, 19)
         Me.Label9.TabIndex = 61
@@ -1983,7 +2035,6 @@ Partial Class Form1
     Friend WithEvents Insert_open_browser_btn As Button
     Friend WithEvents Label9 As Label
     Friend WithEvents Insert_delay_btn As Button
-    Friend WithEvents Label13 As Label
     Friend WithEvents wait_random_second_NumericUpDown As NumericUpDown
     Friend WithEvents Label12 As Label
     Friend WithEvents wait_second_NumericUpDown As NumericUpDown
@@ -2126,4 +2177,10 @@ Partial Class Form1
     Friend WithEvents GroupList As TabPage
     Friend WithEvents Get_Groups_List_btn As Button
     Friend WithEvents Groups_ListView As ListView
+    Friend WithEvents Label37 As Label
+    Friend WithEvents Block_Text_TextBox As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label36 As Label
+    Friend WithEvents Label38 As Label
+    Friend WithEvents Profile_Name_ComboBox As ComboBox
 End Class

@@ -55,6 +55,11 @@ Public Class Form1
         Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
         m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
+        'Default String : 
+        Profile_TextBox.Text = FormInit.curr_path + "profiles"
+        Block_Text_TextBox.Text = "分隔行"
+        curr_url_TextBox.Text = "https://www.facebook.com/"
+
         FormInit.Property_Folder_Init()
         FormInit.Render_Script_listview()
         FormInit.Render_Maching_condition_listview()
@@ -66,6 +71,7 @@ Public Class Form1
         FormInit.Render_Lang_Packs_ComboBox()
         FormInit.Render_DevList_combobox()
         FormInit.Render_Groups_Listview()
+        FormInit.Render_ProfileName_ComboBox_Item()
 
     End Sub
 
@@ -293,8 +299,8 @@ Public Class Form1
             End If
 
             Dim myprofile = ""
-            If Profile_TextBox.Text <> "" Then
-                myprofile = Profile_TextBox.Text
+            If Profile_TextBox.Text <> "" And Profile_Name_ComboBox.Text <> "" Then
+                myprofile = Profile_TextBox.Text + "\" + Profile_Name_ComboBox.Text
             Else
                 For Each itemSeleted In Profile_CheckedListBox.SelectedItems
                     'Debug.WriteLine(itemSeleted)
@@ -311,7 +317,6 @@ Public Class Form1
         ElseIf edge_RadioButton.Checked = True Then
             Open_Edge()
         End If
-
 
 
 
@@ -1323,7 +1328,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_empty_btn_Click(sender As Object, e As EventArgs) Handles Insert_empty_btn.Click
-        Insert_to_script("", "")
+        Insert_to_script("", Block_Text_TextBox.Text)
     End Sub
 
     Private Sub Open_file_dialog_btn_Click(sender As Object, e As EventArgs) Handles Open_file_dialog_btn.Click

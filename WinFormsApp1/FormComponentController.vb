@@ -228,11 +228,11 @@ Module FormComponentController
         For Each itemSelected In Form1.Profile_CheckedListBox.SelectedItems
             'Debug.WriteLine(itemSeleted)
             myfile = itemSelected + "\ProfileInfo.txt"
-            Form1.Profile_TextBox.Text = itemSelected
-
+            'Form1.Profile_TextBox.Text = FormInit.curr_path
+            'Form1.Profile_Name_ComboBox.Text = itemSelected.Split("\")(1)
         Next
 
-        Debug.WriteLine(myfile)
+        'Debug.WriteLine("myfile " + myfile)
         If My.Computer.FileSystem.FileExists(myfile) Then
             Dim JsonString As String = System.IO.File.ReadAllText(myfile)
             Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
