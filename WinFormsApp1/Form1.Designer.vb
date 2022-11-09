@@ -32,6 +32,8 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Continute_Script_btn = New System.Windows.Forms.Button()
+        Me.Insert_Script_Start_TIme_btn = New System.Windows.Forms.Button()
         Me.Script_Config_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Record_script_result_checkbox = New System.Windows.Forms.CheckBox()
@@ -293,7 +295,6 @@ Partial Class Form1
         'script_ListView
         '
         Me.script_ListView.Location = New System.Drawing.Point(6, 57)
-        Me.script_ListView.MultiSelect = False
         Me.script_ListView.Name = "script_ListView"
         Me.script_ListView.Size = New System.Drawing.Size(796, 567)
         Me.script_ListView.TabIndex = 36
@@ -301,6 +302,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Continute_Script_btn)
+        Me.GroupBox1.Controls.Add(Me.Insert_Script_Start_TIme_btn)
         Me.GroupBox1.Controls.Add(Me.Script_Config_ComboBox)
         Me.GroupBox1.Controls.Add(Me.Label35)
         Me.GroupBox1.Controls.Add(Me.Record_script_result_checkbox)
@@ -337,6 +340,24 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
+        '
+        'Continute_Script_btn
+        '
+        Me.Continute_Script_btn.Location = New System.Drawing.Point(558, 809)
+        Me.Continute_Script_btn.Name = "Continute_Script_btn"
+        Me.Continute_Script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Continute_Script_btn.TabIndex = 126
+        Me.Continute_Script_btn.Text = "繼續腳本"
+        Me.Continute_Script_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Script_Start_TIme_btn
+        '
+        Me.Insert_Script_Start_TIme_btn.Location = New System.Drawing.Point(458, 645)
+        Me.Insert_Script_Start_TIme_btn.Name = "Insert_Script_Start_TIme_btn"
+        Me.Insert_Script_Start_TIme_btn.Size = New System.Drawing.Size(132, 29)
+        Me.Insert_Script_Start_TIme_btn.TabIndex = 124
+        Me.Insert_Script_Start_TIme_btn.Text = "開始 - 插入"
+        Me.Insert_Script_Start_TIme_btn.UseVisualStyleBackColor = True
         '
         'Script_Config_ComboBox
         '
@@ -2183,4 +2204,6 @@ Partial Class Form1
     Friend WithEvents Label36 As Label
     Friend WithEvents Label38 As Label
     Friend WithEvents Profile_Name_ComboBox As ComboBox
+    Friend WithEvents Insert_Script_Start_TIme_btn As Button
+    Friend WithEvents Continute_Script_btn As Button
 End Class

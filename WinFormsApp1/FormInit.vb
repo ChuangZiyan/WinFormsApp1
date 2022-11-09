@@ -5,6 +5,7 @@ Module FormInit
     Public curr_path = My.Computer.FileSystem.CurrentDirectory + "\"
     Public text_folder_path = curr_path + "resources\texts\"
     Public image_folder_path = curr_path + "resources\images\"
+    Public save_script_folder_path = curr_path + "myscript\"
 
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
@@ -57,6 +58,10 @@ Module FormInit
         Dim profile_path = My.Computer.FileSystem.CurrentDirectory + "\profiles"
         If Not System.IO.Directory.Exists(profile_path) Then
             System.IO.Directory.CreateDirectory(profile_path)
+        End If
+
+        If Not System.IO.Directory.Exists(save_script_folder_path) Then
+            System.IO.Directory.CreateDirectory(save_script_folder_path)
         End If
 
     End Sub
@@ -161,5 +166,26 @@ Module FormInit
             Form1.Profile_Name_ComboBox.Items.Add(i.ToString().PadLeft(3, "0"))
         Next
     End Sub
+
+    Public Sub Render_My_Script_ComboBox()
+
+        Dim files() As String = IO.Directory.GetFiles(save_script_folder_path)
+        For Each file As String In files
+            'Debug.WriteLine(file)
+            If Path.GetExtension(file) = ".txt" Then
+                'Debug.WriteLine("file : " + file)
+                'Dim split As String() = file.Split("\")
+                'Dim parentFolder As String = split(split.Length - 2)
+                'Debug.WriteLine(parentFolder)
+                Form1.Script_Config_ComboBox.Items.Add(Path.GetFileName(file))
+            End If
+
+        Next
+
+
+
+        'Script_Config_ComboBox
+    End Sub
+
 
 End Module

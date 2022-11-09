@@ -72,13 +72,19 @@ Public Class Form1
         FormInit.Render_DevList_combobox()
         FormInit.Render_Groups_Listview()
         FormInit.Render_ProfileName_ComboBox_Item()
+        FormInit.Render_My_Script_ComboBox()
 
     End Sub
 
 
-    Private Sub stop_script_btn_Click(sender As Object, e As EventArgs) Handles stop_script_btn.Click
-        script_running = False
-        loop_run = False
+    Private Sub Pause_script_btn_Click(sender As Object, e As EventArgs) Handles stop_script_btn.Click
+        'script_running = False
+        'loop_run = False
+        Pause_Script = True
+    End Sub
+
+    Private Sub Continute_Script_btn_Click(sender As Object, e As EventArgs) Handles Continute_Script_btn.Click
+        Pause_Script = False
     End Sub
 
     Private Async Sub Run_script_controller()
@@ -123,6 +129,15 @@ Public Class Form1
                 Exit Function
             End If
 
+            If Pause_Script = True Then ' Pause script
+                While True
+                    Await Delay_msec(1000)
+                    If Pause_Script = False Then
+                        Exit While
+                    End If
+                End While
+            End If
+
             '3 : browser type
             '4 : device type
             '5 : profile
@@ -143,6 +158,10 @@ Public Class Form1
             Dim boolean_result As Boolean
             item.SubItems.Item(3).Text = used_chrome_profile
             Select Case action
+                Case "開始"
+                    Continue_time = content
+                    Pause_Script = True
+                    boolean_result = True
                 Case "開啟"
                     If profile = "" Or profile <> running_chrome_profile Then
                         boolean_result = Open_Browser(brower, devicetype, content)
@@ -171,7 +190,7 @@ Public Class Form1
                     Await Delay_msec(1000)
                 Case "前往"
 
-                    If content.Contains(";"c) Then
+                        If content.Contains(";"c) Then
                         content = content.Split(";")(1)
                     End If
                     boolean_result = Navigate_GoToUrl(content)
@@ -751,6 +770,8 @@ Public Class Form1
     Dim start_time As String
     Dim end_time As String
     Dim script_running = False
+    Dim Pause_Script = False
+    Dim Continue_time = ""
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         'Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
@@ -758,6 +779,10 @@ Public Class Form1
         'Debug.WriteLine("End : " + end_time)
 
         Dim TimeNow = Date.Now.ToString("HH:mm:ss")
+
+        If Continue_time = TimeNow Then
+            Pause_Script = False
+        End If
 
         If start_time = TimeNow Then
             Flag_start_script = True
@@ -1594,4 +1619,13 @@ Public Class Form1
         FormComponentController.Delete_Selected_Profile_Folder()
     End Sub
 
+    Private Sub Insert_Script_Start_TIme_btn_Click(sender As Object, e As EventArgs) Handles Insert_Script_Start_TIme_btn.Click
+        start_time = NumericUpDown_script_start_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_second.Value.ToString.PadLeft(2, "0")
+        Insert_to_script("開始", start_time)
+    End Sub
+
+    Private Sub Script_Config_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Script_Config_ComboBox.SelectedIndexChanged
+        FormComponentController.Script_Config_ComboBox_SelectedIndexChanged()
+    End Sub
 End Class
+0

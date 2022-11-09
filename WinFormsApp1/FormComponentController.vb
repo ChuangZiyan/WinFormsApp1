@@ -374,4 +374,27 @@ Module FormComponentController
         Next
     End Sub
 
+
+    Public Sub Script_Config_ComboBox_SelectedIndexChanged()
+
+        Try
+            Form1.script_ListView.Items.Clear()
+            Dim log_lines = IO.File.ReadAllLines(save_script_folder_path + Form1.Script_Config_ComboBox.Text)
+            Dim curr_row As Integer = 0
+            Dim index = 1
+            For Each line In log_lines
+                Dim splittedLine() As String = line.Split(",")
+                Form1.script_ListView.Items.Add(index.ToString)
+                For Each cmd In splittedLine
+                    Form1.script_ListView.Items(curr_row).SubItems.Add(cmd)
+                Next
+                curr_row += 1
+                index += 1
+            Next
+
+        Catch ex As Exception
+            MsgBox("載入失敗，檔案無效或不存在")
+        End Try
+    End Sub
+
 End Module
