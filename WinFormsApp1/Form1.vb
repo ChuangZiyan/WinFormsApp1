@@ -1628,4 +1628,3 @@ Public Class Form1
         FormComponentController.Script_Config_ComboBox_SelectedIndexChanged()
     End Sub
 End Class
-0
