@@ -229,7 +229,7 @@ Module FormComponentController
             'Debug.WriteLine(itemSeleted)
             myfile = itemSelected + "\ProfileInfo.txt"
             'Form1.Profile_TextBox.Text = FormInit.curr_path
-            'Form1.Profile_Name_ComboBox.Text = itemSelected.Split("\")(1)
+            Form1.Profile_Name_ComboBox.Text = itemSelected.Split("\")(1)
         Next
 
         'Debug.WriteLine("myfile " + myfile)
