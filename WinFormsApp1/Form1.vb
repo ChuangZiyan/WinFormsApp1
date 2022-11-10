@@ -22,7 +22,7 @@ Imports WebDriverManager.Helpers
 
 Public Class Form1
 
-    Const Version = "1.0.221027.1"
+    'Const Version = "1.0.221027.1"
 
 
     Dim chromeDriver As IWebDriver
@@ -48,7 +48,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        Me.Text = "Main Form - " + Version
+        'Me.Text = "Main Form - " + Version
         Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
         css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
 
@@ -87,6 +87,7 @@ Public Class Form1
         Pause_Script = False
     End Sub
 
+    Dim profile_index = 0
     Private Async Sub Run_script_controller()
         Dim i = 1
 
@@ -95,19 +96,25 @@ Public Class Form1
                 item.SubItems.Item(6).Text = ""
             Next
             Await Run_script(i)
-            i += 1
+
+
             If Not loop_run Then
                 Exit While
             End If
-
+            i += 1
+            profile_index += 1
         End While
         start_time = 0
         end_time = 0
 
     End Sub
 
+
+
     Private Async Function Run_script(i As Integer) As Task
         'Debug.WriteLine(logging.Get_NewLogFile_dir())
+
+        Debug.WriteLine("======================================== " & profile_index & "       ================================================")
         Dim record_script = False
         Dim log_file_path As String = ""
         If Record_script_result_checkbox.Checked = True Then
@@ -169,16 +176,25 @@ Public Class Form1
                         boolean_result = False
                     End If
                 Case "開啟:佇列"
+                    loop_run = True
                     If i = 1 Then
                         Profile_Queue = content.Split(";")
                     End If
-                    Debug.WriteLine("Profile= : " + Profile_Queue(i - 1))
-                    used_chrome_profile = Profile_Queue(i - 1).Split("\")(UBound(Profile_Queue(i - 1).Split("\")))
+                    Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
+                    used_chrome_profile = Profile_Queue(profile_index).Split("\")(UBound(Profile_Queue(profile_index).Split("\")))
                     item.SubItems.Item(3).Text = used_chrome_profile
-                    boolean_result = Open_Browser(brower, devicetype, Profile_Queue(i - 1))
+                    boolean_result = Open_Browser(brower, devicetype, Profile_Queue(profile_index))
 
-                    If Profile_Queue.Count = i Then
-                        loop_run = False
+
+                    If Profile_Queue.Count - 1 = profile_index Then
+
+                        If CheckBox_loop_run.Checked = False Then
+                            profile_index = 0
+                            loop_run = False
+                        Else
+                            profile_index = 0
+                        End If
+
                     End If
 
                 Case "關閉"
@@ -190,7 +206,7 @@ Public Class Form1
                     Await Delay_msec(1000)
                 Case "前往"
 
-                        If content.Contains(";"c) Then
+                    If content.Contains(";"c) Then
                         content = content.Split(";")(1)
                     End If
                     boolean_result = Navigate_GoToUrl(content)
@@ -767,18 +783,34 @@ Public Class Form1
 
     Dim Flag_start_script = False
     Dim loop_run = False
-    Dim start_time As String
-    Dim end_time As String
+    Dim start_time As String = "0"
+    Dim end_time As String = "0"
     Dim script_running = False
     Dim Pause_Script = False
     Dim Continue_time = ""
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        'Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
-        'Debug.WriteLine("start : " + start_time)
-        'Debug.WriteLine("End : " + end_time)
-
         Dim TimeNow = Date.Now.ToString("HH:mm:ss")
+        Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
+        'Debug.WriteLine("start : " + start_time)
+        Debug.WriteLine("End : " + end_time)
+
+
+
+        If end_time <> "0" Then
+            Dim TimeEnd_Arr = end_time.Split(":")
+            Dim TimeNow_Arr = TimeNow.Split(":")
+            Dim hours_flag = CInt(TimeNow_Arr(0)) - CInt(TimeEnd_Arr(0))
+            Dim minutes_flag = CInt(TimeNow_Arr(1)) - CInt(TimeEnd_Arr(1))
+            Dim secs_flag = CInt(TimeNow_Arr(2)) - CInt(TimeEnd_Arr(2))
+
+            Debug.WriteLine(hours_flag & "," & minutes_flag & "," & secs_flag)
+            If hours_flag >= 0 And minutes_flag >= 0 And secs_flag >= 0 Then
+                script_running = False
+            End If
+
+        End If
+
 
         If Continue_time = TimeNow Then
             Pause_Script = False
@@ -788,9 +820,9 @@ Public Class Form1
             Flag_start_script = True
         End If
 
-        If end_time = TimeNow Then
-            script_running = False
-        End If
+        'If end_time = TimeNow Then
+        'script_running = False
+        'End If
 
         If Flag_start_script Then
             script_running = True
