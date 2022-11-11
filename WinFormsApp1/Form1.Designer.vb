@@ -202,6 +202,7 @@ Partial Class Form1
         Me.Groups_ListView = New System.Windows.Forms.ListView()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Delete_Conditions_Listview_item_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1143,6 +1144,7 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Delete_Conditions_Listview_item_btn)
         Me.TabPage3.Controls.Add(Me.Refresh_All_ListBox_btn)
         Me.TabPage3.Controls.Add(Me.Open_Folder_with_Image_textbox_btn)
         Me.TabPage3.Controls.Add(Me.ImageFolder_TextBox)
@@ -1257,12 +1259,12 @@ Partial Class Form1
         Me.TextFolder_ListBox.ItemHeight = 19
         Me.TextFolder_ListBox.Location = New System.Drawing.Point(7, 530)
         Me.TextFolder_ListBox.Name = "TextFolder_ListBox"
-        Me.TextFolder_ListBox.Size = New System.Drawing.Size(325, 118)
+        Me.TextFolder_ListBox.Size = New System.Drawing.Size(325, 99)
         Me.TextFolder_ListBox.TabIndex = 104
         '
         'Set_Matching_btn
         '
-        Me.Set_Matching_btn.Location = New System.Drawing.Point(338, 654)
+        Me.Set_Matching_btn.Location = New System.Drawing.Point(6, 635)
         Me.Set_Matching_btn.Name = "Set_Matching_btn"
         Me.Set_Matching_btn.Size = New System.Drawing.Size(154, 29)
         Me.Set_Matching_btn.TabIndex = 102
@@ -1563,7 +1565,7 @@ Partial Class Form1
         Me.ImageFolder_ListBox.ItemHeight = 19
         Me.ImageFolder_ListBox.Location = New System.Drawing.Point(338, 530)
         Me.ImageFolder_ListBox.Name = "ImageFolder_ListBox"
-        Me.ImageFolder_ListBox.Size = New System.Drawing.Size(322, 118)
+        Me.ImageFolder_ListBox.Size = New System.Drawing.Size(322, 99)
         Me.ImageFolder_ListBox.TabIndex = 103
         '
         'SaveAs_RichBox_Content_btn
@@ -1577,15 +1579,15 @@ Partial Class Form1
         '
         'Match_Condition_ListView
         '
-        Me.Match_Condition_ListView.Location = New System.Drawing.Point(6, 689)
+        Me.Match_Condition_ListView.Location = New System.Drawing.Point(6, 670)
         Me.Match_Condition_ListView.Name = "Match_Condition_ListView"
-        Me.Match_Condition_ListView.Size = New System.Drawing.Size(655, 121)
+        Me.Match_Condition_ListView.Size = New System.Drawing.Size(655, 105)
         Me.Match_Condition_ListView.TabIndex = 101
         Me.Match_Condition_ListView.UseCompatibleStateImageBehavior = False
         '
         'Open_dir_in_explorer_btn
         '
-        Me.Open_dir_in_explorer_btn.Location = New System.Drawing.Point(6, 654)
+        Me.Open_dir_in_explorer_btn.Location = New System.Drawing.Point(6, 781)
         Me.Open_dir_in_explorer_btn.Name = "Open_dir_in_explorer_btn"
         Me.Open_dir_in_explorer_btn.Size = New System.Drawing.Size(326, 29)
         Me.Open_dir_in_explorer_btn.TabIndex = 97
@@ -1594,11 +1596,11 @@ Partial Class Form1
         '
         'Clear_Conditions_Listview
         '
-        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(498, 654)
+        Me.Clear_Conditions_Listview.Location = New System.Drawing.Point(497, 634)
         Me.Clear_Conditions_Listview.Name = "Clear_Conditions_Listview"
         Me.Clear_Conditions_Listview.Size = New System.Drawing.Size(163, 29)
         Me.Clear_Conditions_Listview.TabIndex = 105
-        Me.Clear_Conditions_Listview.Text = "清除配對條件"
+        Me.Clear_Conditions_Listview.Text = "清除全部配對條件"
         Me.Clear_Conditions_Listview.UseVisualStyleBackColor = True
         '
         'TabPage4
@@ -1979,6 +1981,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Delete_Conditions_Listview_item_btn
+        '
+        Me.Delete_Conditions_Listview_item_btn.Location = New System.Drawing.Point(169, 634)
+        Me.Delete_Conditions_Listview_item_btn.Name = "Delete_Conditions_Listview_item_btn"
+        Me.Delete_Conditions_Listview_item_btn.Size = New System.Drawing.Size(163, 29)
+        Me.Delete_Conditions_Listview_item_btn.TabIndex = 114
+        Me.Delete_Conditions_Listview_item_btn.Text = "刪除所選配對條件"
+        Me.Delete_Conditions_Listview_item_btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -2206,4 +2217,5 @@ Partial Class Form1
     Friend WithEvents Profile_Name_ComboBox As ComboBox
     Friend WithEvents Insert_Script_Start_TIme_btn As Button
     Friend WithEvents Continute_Script_btn As Button
+    Friend WithEvents Delete_Conditions_Listview_item_btn As Button
 End Class

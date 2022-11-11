@@ -791,11 +791,9 @@ Public Class Form1
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim TimeNow = Date.Now.ToString("HH:mm:ss")
-        Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
+        'Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
         'Debug.WriteLine("start : " + start_time)
-        Debug.WriteLine("End : " + end_time)
-
-
+        'Debug.WriteLine("End : " + end_time)
 
         If end_time <> "0" Then
             Dim TimeEnd_Arr = end_time.Split(":")
@@ -804,7 +802,7 @@ Public Class Form1
             Dim minutes_flag = CInt(TimeNow_Arr(1)) - CInt(TimeEnd_Arr(1))
             Dim secs_flag = CInt(TimeNow_Arr(2)) - CInt(TimeEnd_Arr(2))
 
-            Debug.WriteLine(hours_flag & "," & minutes_flag & "," & secs_flag)
+            'Debug.WriteLine(hours_flag & "," & minutes_flag & "," & secs_flag)
             If hours_flag >= 0 And minutes_flag >= 0 And secs_flag >= 0 Then
                 script_running = False
             End If
@@ -1659,4 +1657,11 @@ Public Class Form1
     Private Sub Script_Config_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Script_Config_ComboBox.SelectedIndexChanged
         FormComponentController.Script_Config_ComboBox_SelectedIndexChanged()
     End Sub
+
+    Private Sub Delete_Conditions_Listview_item_btn_Click(sender As Object, e As EventArgs) Handles Delete_Conditions_Listview_item_btn.Click
+        For i As Integer = Match_Condition_ListView.SelectedIndices.Count - 1 To 0 Step -1
+            Match_Condition_ListView.Items.RemoveAt(Match_Condition_ListView.SelectedIndices(i))
+        Next
+    End Sub
+
 End Class

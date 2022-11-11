@@ -139,7 +139,9 @@ Module FormInit
         Dim dirs() As String = IO.Directory.GetDirectories(text_folder_path)
 
         For Each dir As String In dirs
-            Form1.TextFolder_ListBox.Items.Add(dir)
+            Dim split As String() = dir.Split("\")
+            Dim parentFolder As String = split(split.Length - 1)
+            Form1.TextFolder_ListBox.Items.Add(parentFolder)
         Next
 
     End Sub
@@ -148,7 +150,9 @@ Module FormInit
         Dim dirs() As String = IO.Directory.GetDirectories(image_folder_path)
 
         For Each dir As String In dirs
-            Form1.ImageFolder_ListBox.Items.Add(dir)
+            Dim split As String() = dir.Split("\")
+            Dim parentFolder As String = split(split.Length - 1)
+            Form1.ImageFolder_ListBox.Items.Add(parentFolder)
         Next
 
     End Sub

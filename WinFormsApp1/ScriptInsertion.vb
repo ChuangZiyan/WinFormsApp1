@@ -268,7 +268,7 @@ Module ScriptInsertion
         Dim Content As String = ""
         For Each item As ListViewItem In Form1.Match_Condition_ListView.Items
             'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
-            Content += item.SubItems(0).Text + "%20" + item.SubItems(1).Text + ";"
+            Content += text_folder_path + item.SubItems(0).Text + "%20" + image_folder_path + item.SubItems(1).Text + ";"
         Next
         'MsgBox(Content)
         If Content = "" Then
@@ -299,7 +299,7 @@ Module ScriptInsertion
         Dim Content As String = ""
         For Each item As ListViewItem In Form1.Match_Condition_ListView.Items
             'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
-            Content += item.SubItems(0).Text + "%20" + item.SubItems(1).Text + ";"
+            Content += text_folder_path + item.SubItems(0).Text + "%20" + image_folder_path + item.SubItems(1).Text + ";"
         Next
         'MsgBox(Content)
         If Content = "" Then

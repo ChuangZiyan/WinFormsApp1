@@ -126,7 +126,7 @@ Module FormComponentController
 
 
         If Form1.Match_Condition_ListView.SelectedItems.Count > 0 Then
-            Current_selected_Item = Form1.Match_Condition_ListView.SelectedItems(0).Text + "%20" + Form1.Match_Condition_ListView.SelectedItems(0).SubItems(1).Text
+            Current_selected_Item = text_folder_path + Form1.Match_Condition_ListView.SelectedItems(0).Text + "%20" + image_folder_path + Form1.Match_Condition_ListView.SelectedItems(0).SubItems(1).Text
             Selected_Counter += 1
         End If
 
