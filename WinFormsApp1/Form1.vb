@@ -90,7 +90,7 @@ Public Class Form1
     Dim profile_index = 0
     Private Async Sub Run_script_controller()
         Dim i = 1
-
+        Debug.WriteLine("Run_script_controller~~~~~~~~~~~~~~")
         While True
             For Each item As ListViewItem In script_ListView.Items
                 item.SubItems.Item(6).Text = ""
@@ -102,7 +102,7 @@ Public Class Form1
                 Exit While
             End If
             i += 1
-            profile_index += 1
+
         End While
         start_time = 0
         end_time = 0
@@ -115,6 +115,7 @@ Public Class Form1
         'Debug.WriteLine(logging.Get_NewLogFile_dir())
 
         Debug.WriteLine("======================================== " & profile_index & "       ================================================")
+        Debug.WriteLine("======================================== " & i & "       ================================================")
         Dim record_script = False
         Dim log_file_path As String = ""
         If Record_script_result_checkbox.Checked = True Then
@@ -185,17 +186,22 @@ Public Class Form1
                     item.SubItems.Item(3).Text = used_chrome_profile
                     boolean_result = Open_Browser(brower, devicetype, Profile_Queue(profile_index))
 
+                    Debug.WriteLine("ProfleQ: " & Profile_Queue.Count)
 
                     If Profile_Queue.Count - 1 = profile_index Then
 
                         If CheckBox_loop_run.Checked = False Then
+                            Debug.WriteLine("set profile index 0 ")
                             profile_index = 0
                             loop_run = False
                         Else
+                            Debug.WriteLine("set profile index 0 ")
                             profile_index = 0
                         End If
-
+                    Else
+                        profile_index += 1
                     End If
+
 
                 Case "關閉"
                     boolean_result = Quit_chromedriver()
