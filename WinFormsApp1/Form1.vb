@@ -1097,19 +1097,9 @@ Public Class Form1
                 msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
             End If
 
-            For i = 0 To 100
+            msgbox_ele.SendKeys(Keys.Enter)
+            Return True
 
-                Try
-                    chromeDriver.FindElement(By.ClassName("uiScaledImageContainer")) ' wait until upload success
-                    msgbox_ele.SendKeys(Keys.Enter)
-                    Return True
-                Catch ex As Exception
-                    Thread.Sleep(100)
-                End Try
-
-            Next
-
-            Return False
         Catch ex As Exception
             Debug.WriteLine(ex)
             Return False
