@@ -990,12 +990,15 @@ Public Class Form1
     End Function
 
     Private Function Send_reply_comment(content)
+        'Dim msgbox_ele As Object
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
         Try
             Dim msgbox_ele As Object
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
                 msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
             Else
                 msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
+                'msgbox_ele = chromeDriver.FindElement(By.CssSelector("div:nth-child(1) > div > div > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(4) > div > div > div.x1jx94hy.x12nagc > div.x1pi30zi.xjkvuk6.x1swvt13.x1iorvi4 > div > div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x4uap5 > div:nth-child(1) > form > div > div > div.xi81zsa.xo1l8bm.xlyipyv.xuxw1ft.x49crj4.x1ed109x.xdl72j9.x1iyjqo2.xs83m0k.x6prxxf.x6ikm8r.x10wlt62.x1y1aw1k.xn6708d.xwib8y2.x1ye3gou > div > div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate > p"))
             End If
 
             Dim str_arr() As String = content.Split(vbLf)
@@ -1005,17 +1008,22 @@ Public Class Form1
                 Thread.Sleep(100)
                 msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
             Next
-
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
 
         Catch ex As Exception
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Debug.WriteLine(ex)
             Return False
         End Try
 
+
+
+
     End Function
 
     Private Function Upload_reply_img(img)
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
         Try
             Dim comment_img_input As Object
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
@@ -1025,7 +1033,7 @@ Public Class Form1
             End If
 
             comment_img_input.SendKeys(image_folder_path + img)
-
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
         Catch ex As Exception
             Return False
