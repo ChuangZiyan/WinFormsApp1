@@ -293,6 +293,7 @@ Public Class Form1
                     boolean_result = Reply_Random_Match_TextAndImage(content)
 
                 Case "回應:送出"
+                    Await Delay_msec(3000)
                     boolean_result = Submit_reply_comment()
                 Case "回應:按讚"
                     boolean_result = Click_reply_random_emoji(content)
