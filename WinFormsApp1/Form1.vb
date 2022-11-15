@@ -264,7 +264,7 @@ Public Class Form1
                     End If
 
                 Case "回應:上載"
-                    boolean_result = Upload_reply_img(content)
+                    boolean_result = Upload_reply_img(image_folder_path + content)
                 Case "回應:上載隨機"
                     If content = "全部隨機" Then
                         Dim allImageFile = img_CheckedListBox.Items
@@ -763,8 +763,6 @@ Public Class Form1
     End Function
 
 
-
-
     Public Sub EventlogListview_AddNewItem(content)
         Dim curr_row = script_ListView.Items.Count
         script_ListView.Items.Insert(curr_row, curr_row + 1.ToString)
@@ -1009,6 +1007,9 @@ Public Class Form1
                 Thread.Sleep(100)
                 msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
             Next
+
+
+
             chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
 
@@ -1024,7 +1025,17 @@ Public Class Form1
     End Function
 
     Private Function Upload_reply_img(img)
+
+        Debug.WriteLine("Copy " + img)
+        Dim myimage = Bitmap.FromFile(img)
+        Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
+        Clipboard.SetImage(myimage)
+        msgbox_ele.SendKeys(Keys.LeftControl + "v")
+
+        Return True
+
         chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
+
         Try
             Dim comment_img_input As Object
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment

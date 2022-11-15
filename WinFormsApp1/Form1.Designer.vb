@@ -117,6 +117,7 @@ Partial Class Form1
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Delete_Conditions_Listview_item_btn = New System.Windows.Forms.Button()
         Me.Refresh_All_ListBox_btn = New System.Windows.Forms.Button()
         Me.Open_Folder_with_Image_textbox_btn = New System.Windows.Forms.Button()
         Me.ImageFolder_TextBox = New System.Windows.Forms.TextBox()
@@ -163,6 +164,8 @@ Partial Class Form1
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.KeyboardKey_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.CombinationKey_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
@@ -171,12 +174,10 @@ Partial Class Form1
         Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Insert_SendCombinationKeyClick_btn = New System.Windows.Forms.Button()
+        Me.Insert_SendKeyClick_btn = New System.Windows.Forms.Button()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -202,7 +203,6 @@ Partial Class Form1
         Me.Groups_ListView = New System.Windows.Forms.ListView()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Delete_Conditions_Listview_item_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1172,6 +1172,15 @@ Partial Class Form1
         Me.TabPage3.Text = "發文發圖"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'Delete_Conditions_Listview_item_btn
+        '
+        Me.Delete_Conditions_Listview_item_btn.Location = New System.Drawing.Point(169, 634)
+        Me.Delete_Conditions_Listview_item_btn.Name = "Delete_Conditions_Listview_item_btn"
+        Me.Delete_Conditions_Listview_item_btn.Size = New System.Drawing.Size(163, 29)
+        Me.Delete_Conditions_Listview_item_btn.TabIndex = 114
+        Me.Delete_Conditions_Listview_item_btn.Text = "刪除所選配對條件"
+        Me.Delete_Conditions_Listview_item_btn.UseVisualStyleBackColor = True
+        '
         'Refresh_All_ListBox_btn
         '
         Me.Refresh_All_ListBox_btn.Location = New System.Drawing.Point(667, 781)
@@ -1617,6 +1626,8 @@ Partial Class Form1
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.KeyboardKey_ComboBox)
+        Me.GroupBox4.Controls.Add(Me.CombinationKey_ComboBox)
         Me.GroupBox4.Controls.Add(Me.Button10)
         Me.GroupBox4.Controls.Add(Me.Button9)
         Me.GroupBox4.Controls.Add(Me.Button8)
@@ -1625,18 +1636,34 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.TextBox7)
         Me.GroupBox4.Controls.Add(Me.Label27)
         Me.GroupBox4.Controls.Add(Me.Label26)
-        Me.GroupBox4.Controls.Add(Me.Button6)
-        Me.GroupBox4.Controls.Add(Me.Button5)
+        Me.GroupBox4.Controls.Add(Me.Insert_SendCombinationKeyClick_btn)
+        Me.GroupBox4.Controls.Add(Me.Insert_SendKeyClick_btn)
         Me.GroupBox4.Controls.Add(Me.Label25)
-        Me.GroupBox4.Controls.Add(Me.TextBox6)
         Me.GroupBox4.Controls.Add(Me.Label24)
-        Me.GroupBox4.Controls.Add(Me.TextBox5)
         Me.GroupBox4.Location = New System.Drawing.Point(15, 280)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(897, 252)
         Me.GroupBox4.TabIndex = 9
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "鍵盤事件"
+        '
+        'KeyboardKey_ComboBox
+        '
+        Me.KeyboardKey_ComboBox.FormattingEnabled = True
+        Me.KeyboardKey_ComboBox.Items.AddRange(New Object() {"ENTER"})
+        Me.KeyboardKey_ComboBox.Location = New System.Drawing.Point(92, 35)
+        Me.KeyboardKey_ComboBox.Name = "KeyboardKey_ComboBox"
+        Me.KeyboardKey_ComboBox.Size = New System.Drawing.Size(125, 27)
+        Me.KeyboardKey_ComboBox.TabIndex = 15
+        '
+        'CombinationKey_ComboBox
+        '
+        Me.CombinationKey_ComboBox.FormattingEnabled = True
+        Me.CombinationKey_ComboBox.Items.AddRange(New Object() {"CTRL+C", "CTRL+V", "CTRL+A"})
+        Me.CombinationKey_ComboBox.Location = New System.Drawing.Point(92, 71)
+        Me.CombinationKey_ComboBox.Name = "CombinationKey_ComboBox"
+        Me.CombinationKey_ComboBox.Size = New System.Drawing.Size(125, 27)
+        Me.CombinationKey_ComboBox.TabIndex = 14
         '
         'Button10
         '
@@ -1706,23 +1733,23 @@ Partial Class Form1
         Me.Label26.TabIndex = 6
         Me.Label26.Text = "路徑 : "
         '
-        'Button6
+        'Insert_SendCombinationKeyClick_btn
         '
-        Me.Button6.Location = New System.Drawing.Point(223, 69)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(94, 29)
-        Me.Button6.TabIndex = 5
-        Me.Button6.Text = "插入"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.Insert_SendCombinationKeyClick_btn.Location = New System.Drawing.Point(223, 69)
+        Me.Insert_SendCombinationKeyClick_btn.Name = "Insert_SendCombinationKeyClick_btn"
+        Me.Insert_SendCombinationKeyClick_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_SendCombinationKeyClick_btn.TabIndex = 5
+        Me.Insert_SendCombinationKeyClick_btn.Text = "插入"
+        Me.Insert_SendCombinationKeyClick_btn.UseVisualStyleBackColor = True
         '
-        'Button5
+        'Insert_SendKeyClick_btn
         '
-        Me.Button5.Location = New System.Drawing.Point(223, 33)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(94, 29)
-        Me.Button5.TabIndex = 4
-        Me.Button5.Text = "插入"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.Insert_SendKeyClick_btn.Location = New System.Drawing.Point(223, 33)
+        Me.Insert_SendKeyClick_btn.Name = "Insert_SendKeyClick_btn"
+        Me.Insert_SendKeyClick_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_SendKeyClick_btn.TabIndex = 4
+        Me.Insert_SendKeyClick_btn.Text = "插入"
+        Me.Insert_SendKeyClick_btn.UseVisualStyleBackColor = True
         '
         'Label25
         '
@@ -1733,13 +1760,6 @@ Partial Class Form1
         Me.Label25.TabIndex = 3
         Me.Label25.Text = "組合按鍵 : "
         '
-        'TextBox6
-        '
-        Me.TextBox6.Location = New System.Drawing.Point(92, 71)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(125, 27)
-        Me.TextBox6.TabIndex = 2
-        '
         'Label24
         '
         Me.Label24.AutoSize = True
@@ -1748,13 +1768,6 @@ Partial Class Form1
         Me.Label24.Size = New System.Drawing.Size(50, 19)
         Me.Label24.TabIndex = 1
         Me.Label24.Text = "按鍵 : "
-        '
-        'TextBox5
-        '
-        Me.TextBox5.Location = New System.Drawing.Point(92, 35)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(125, 27)
-        Me.TextBox5.TabIndex = 0
         '
         'GroupBox3
         '
@@ -1981,15 +1994,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Delete_Conditions_Listview_item_btn
-        '
-        Me.Delete_Conditions_Listview_item_btn.Location = New System.Drawing.Point(169, 634)
-        Me.Delete_Conditions_Listview_item_btn.Name = "Delete_Conditions_Listview_item_btn"
-        Me.Delete_Conditions_Listview_item_btn.Size = New System.Drawing.Size(163, 29)
-        Me.Delete_Conditions_Listview_item_btn.TabIndex = 114
-        Me.Delete_Conditions_Listview_item_btn.Text = "刪除所選配對條件"
-        Me.Delete_Conditions_Listview_item_btn.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -2160,12 +2164,10 @@ Partial Class Form1
     Friend WithEvents TextBox7 As TextBox
     Friend WithEvents Label27 As Label
     Friend WithEvents Label26 As Label
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents Insert_SendCombinationKeyClick_btn As Button
+    Friend WithEvents Insert_SendKeyClick_btn As Button
     Friend WithEvents Label25 As Label
-    Friend WithEvents TextBox6 As TextBox
     Friend WithEvents Label24 As Label
-    Friend WithEvents TextBox5 As TextBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Insert_ScrollBy_Offset_btn As Button
     Friend WithEvents Button2 As Button
@@ -2218,4 +2220,6 @@ Partial Class Form1
     Friend WithEvents Insert_Script_Start_TIme_btn As Button
     Friend WithEvents Continute_Script_btn As Button
     Friend WithEvents Delete_Conditions_Listview_item_btn As Button
+    Friend WithEvents KeyboardKey_ComboBox As ComboBox
+    Friend WithEvents CombinationKey_ComboBox As ComboBox
 End Class
