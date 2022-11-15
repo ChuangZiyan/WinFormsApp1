@@ -269,11 +269,11 @@ Public Class Form1
                     If content = "全部隨機" Then
                         Dim allImageFile = img_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = Upload_reply_img(allImageFile(rnd))
+                        boolean_result = Upload_reply_img(image_folder_path + allImageFile(rnd))
                     Else
                         Dim ImageFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = Upload_reply_img(ImageFiles(rnd))
+                        boolean_result = Upload_reply_img(image_folder_path + ImageFiles(rnd))
                     End If
                 Case "回應:內容"
                     boolean_result = Send_reply_comment(content)
@@ -990,31 +990,36 @@ Public Class Form1
 
     Private Function Send_reply_comment(content)
         'Dim msgbox_ele As Object
-        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
+        'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
         Try
             Dim msgbox_ele As Object
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
                 msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
             Else
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
-                'msgbox_ele = chromeDriver.FindElement(By.CssSelector("div:nth-child(1) > div > div > div > div > div > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(4) > div > div > div.x1jx94hy.x12nagc > div.x1pi30zi.xjkvuk6.x1swvt13.x1iorvi4 > div > div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x4uap5 > div:nth-child(1) > form > div > div > div.xi81zsa.xo1l8bm.xlyipyv.xuxw1ft.x49crj4.x1ed109x.xdl72j9.x1iyjqo2.xs83m0k.x6prxxf.x6ikm8r.x10wlt62.x1y1aw1k.xn6708d.xwib8y2.x1ye3gou > div > div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate > p"))
+                'msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
+                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
             End If
 
-            Dim str_arr() As String = content.Split(vbLf)
-            For Each line As String In str_arr
-                line = line.Replace(vbCr, "").Replace(vbLf, "")
-                msgbox_ele.SendKeys(line)
-                Thread.Sleep(100)
-                msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
-            Next
+
+            Clipboard.SetText(content)
+            msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
+
+
+            'Dim str_arr() As String = content.Split(vbLf)
+            'For Each line As String In str_arr
+            'line = line.Replace(vbCr, "").Replace(vbLf, "")
+            'msgbox_ele.SendKeys(line)
+            'Thread.Sleep(100)
+            'msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
+            'Next
 
 
 
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
 
         Catch ex As Exception
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Debug.WriteLine(ex)
             Return False
         End Try
@@ -1026,14 +1031,22 @@ Public Class Form1
 
     Private Function Upload_reply_img(img)
 
-        Debug.WriteLine("Copy " + img)
-        Dim myimage = Bitmap.FromFile(img)
-        Dim msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
-        Clipboard.SetImage(myimage)
-        msgbox_ele.SendKeys(Keys.LeftControl + "v")
+        Try
+            Debug.WriteLine("Copy " + img)
+            Dim msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
+            Dim myimage = Bitmap.FromFile(img)
+            Clipboard.SetImage(myimage)
+            msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
+            Return True
 
-        Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
 
+
+
+        ' old code keep until stable
         chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
 
         Try
