@@ -315,6 +315,40 @@ Public Class Form1
                     Dim Text = content.Split(";")(1)
 
                     boolean_result = Messager_Contact(Target, Text)
+                Case "關閉程式"
+                    Try
+                        Dim sec = Get_random_sec_frome_content(content)
+                        Dim counter = sec
+                        For i = 1 To sec
+                            item.SubItems.Item(6).Text = (counter.ToString())
+                            Await Delay_msec(1000)
+                            counter -= 1
+                        Next
+                        'Await Delay_msec(sec * 1000)
+                        boolean_result = True
+                        Close()
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
+                Case "關閉電腦"
+                    Try
+                        Dim sec = Get_random_sec_frome_content(content)
+                        Dim counter = sec
+                        For i = 1 To sec
+                            item.SubItems.Item(6).Text = (counter.ToString())
+                            Await Delay_msec(1000)
+                            counter -= 1
+                        Next
+                        'Await Delay_msec(sec * 1000)
+                        boolean_result = True
+                        'shutdown system
+                        Process.Start("shutdown", "-s -t 0")
+                        Close()
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
 
             End Select
             If boolean_result = True Then ' record the result
@@ -1707,4 +1741,11 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub Insert_Exit_Program_btn_Click(sender As Object, e As EventArgs) Handles Insert_Exit_Program_btn.Click
+        ScriptInsertion.Insert_Exit_Program()
+    End Sub
+
+    Private Sub Insert_Shutdown_System_btn_Click(sender As Object, e As EventArgs) Handles Insert_Shutdown_System_btn.Click
+        ScriptInsertion.Insert_Shutdown_System()
+    End Sub
 End Class

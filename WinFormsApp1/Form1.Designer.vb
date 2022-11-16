@@ -68,6 +68,8 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Insert_Shutdown_System_btn = New System.Windows.Forms.Button()
+        Me.Insert_Exit_Program_btn = New System.Windows.Forms.Button()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Profile_Name_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Label37 = New System.Windows.Forms.Label()
@@ -254,7 +256,7 @@ Partial Class Form1
         'curr_url_lbl
         '
         Me.curr_url_lbl.AutoSize = True
-        Me.curr_url_lbl.Location = New System.Drawing.Point(63, 617)
+        Me.curr_url_lbl.Location = New System.Drawing.Point(63, 548)
         Me.curr_url_lbl.Name = "curr_url_lbl"
         Me.curr_url_lbl.Size = New System.Drawing.Size(46, 19)
         Me.curr_url_lbl.TabIndex = 10
@@ -262,7 +264,7 @@ Partial Class Form1
         '
         'curr_url_TextBox
         '
-        Me.curr_url_TextBox.Location = New System.Drawing.Point(119, 614)
+        Me.curr_url_TextBox.Location = New System.Drawing.Point(119, 545)
         Me.curr_url_TextBox.Name = "curr_url_TextBox"
         Me.curr_url_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.curr_url_TextBox.TabIndex = 11
@@ -279,7 +281,7 @@ Partial Class Form1
         '
         'group_name_TextBox
         '
-        Me.group_name_TextBox.Location = New System.Drawing.Point(119, 582)
+        Me.group_name_TextBox.Location = New System.Drawing.Point(119, 513)
         Me.group_name_TextBox.Name = "group_name_TextBox"
         Me.group_name_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.group_name_TextBox.TabIndex = 27
@@ -287,7 +289,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(33, 585)
+        Me.Label3.Location = New System.Drawing.Point(33, 516)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(80, 19)
         Me.Label3.TabIndex = 28
@@ -663,6 +665,8 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Insert_Shutdown_System_btn)
+        Me.TabPage5.Controls.Add(Me.Insert_Exit_Program_btn)
         Me.TabPage5.Controls.Add(Me.Label38)
         Me.TabPage5.Controls.Add(Me.Profile_Name_ComboBox)
         Me.TabPage5.Controls.Add(Me.Label37)
@@ -722,6 +726,24 @@ Partial Class Form1
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'Insert_Shutdown_System_btn
+        '
+        Me.Insert_Shutdown_System_btn.Location = New System.Drawing.Point(439, 719)
+        Me.Insert_Shutdown_System_btn.Name = "Insert_Shutdown_System_btn"
+        Me.Insert_Shutdown_System_btn.Size = New System.Drawing.Size(163, 29)
+        Me.Insert_Shutdown_System_btn.TabIndex = 130
+        Me.Insert_Shutdown_System_btn.Text = "關閉電腦 - 插入"
+        Me.Insert_Shutdown_System_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Exit_Program_btn
+        '
+        Me.Insert_Exit_Program_btn.Location = New System.Drawing.Point(439, 684)
+        Me.Insert_Exit_Program_btn.Name = "Insert_Exit_Program_btn"
+        Me.Insert_Exit_Program_btn.Size = New System.Drawing.Size(163, 29)
+        Me.Insert_Exit_Program_btn.TabIndex = 129
+        Me.Insert_Exit_Program_btn.Text = "關閉程式 - 插入"
+        Me.Insert_Exit_Program_btn.UseVisualStyleBackColor = True
+        '
         'Label38
         '
         Me.Label38.AutoSize = True
@@ -742,7 +764,7 @@ Partial Class Form1
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(59, 554)
+        Me.Label37.Location = New System.Drawing.Point(59, 485)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(54, 19)
         Me.Label37.TabIndex = 126
@@ -750,7 +772,7 @@ Partial Class Form1
         '
         'Block_Text_TextBox
         '
-        Me.Block_Text_TextBox.Location = New System.Drawing.Point(119, 551)
+        Me.Block_Text_TextBox.Location = New System.Drawing.Point(119, 482)
         Me.Block_Text_TextBox.Name = "Block_Text_TextBox"
         Me.Block_Text_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.Block_Text_TextBox.TabIndex = 125
@@ -758,7 +780,7 @@ Partial Class Form1
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(400, 520)
+        Me.Label13.Location = New System.Drawing.Point(400, 688)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(30, 19)
         Me.Label13.TabIndex = 124
@@ -767,7 +789,7 @@ Partial Class Form1
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(40, 520)
+        Me.Label36.Location = New System.Drawing.Point(40, 688)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(73, 19)
         Me.Label36.TabIndex = 123
@@ -942,7 +964,7 @@ Partial Class Form1
         '
         'Insert_delay_btn
         '
-        Me.Insert_delay_btn.Location = New System.Drawing.Point(439, 515)
+        Me.Insert_delay_btn.Location = New System.Drawing.Point(439, 649)
         Me.Insert_delay_btn.Name = "Insert_delay_btn"
         Me.Insert_delay_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_delay_btn.TabIndex = 70
@@ -974,7 +996,7 @@ Partial Class Form1
         '
         'wait_random_second_NumericUpDown
         '
-        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(119, 518)
+        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(119, 686)
         Me.wait_random_second_NumericUpDown.Name = "wait_random_second_NumericUpDown"
         Me.wait_random_second_NumericUpDown.Size = New System.Drawing.Size(264, 27)
         Me.wait_random_second_NumericUpDown.TabIndex = 68
@@ -991,7 +1013,7 @@ Partial Class Form1
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(400, 487)
+        Me.Label12.Location = New System.Drawing.Point(400, 655)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(30, 19)
         Me.Label12.TabIndex = 67
@@ -1008,14 +1030,14 @@ Partial Class Form1
         '
         'wait_second_NumericUpDown
         '
-        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(323, 485)
+        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(323, 653)
         Me.wait_second_NumericUpDown.Name = "wait_second_NumericUpDown"
         Me.wait_second_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_second_NumericUpDown.TabIndex = 66
         '
         'get_groupname_Button
         '
-        Me.get_groupname_Button.Location = New System.Drawing.Point(439, 580)
+        Me.get_groupname_Button.Location = New System.Drawing.Point(439, 511)
         Me.get_groupname_Button.Name = "get_groupname_Button"
         Me.get_groupname_Button.Size = New System.Drawing.Size(163, 29)
         Me.get_groupname_Button.TabIndex = 55
@@ -1025,7 +1047,7 @@ Partial Class Form1
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(287, 487)
+        Me.Label11.Location = New System.Drawing.Point(287, 655)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(30, 19)
         Me.Label11.TabIndex = 65
@@ -1033,7 +1055,7 @@ Partial Class Form1
         '
         'Get_url_btn
         '
-        Me.Get_url_btn.Location = New System.Drawing.Point(439, 612)
+        Me.Get_url_btn.Location = New System.Drawing.Point(439, 543)
         Me.Get_url_btn.Name = "Get_url_btn"
         Me.Get_url_btn.Size = New System.Drawing.Size(163, 29)
         Me.Get_url_btn.TabIndex = 56
@@ -1042,7 +1064,7 @@ Partial Class Form1
         '
         'Insert_empty_btn
         '
-        Me.Insert_empty_btn.Location = New System.Drawing.Point(439, 551)
+        Me.Insert_empty_btn.Location = New System.Drawing.Point(439, 482)
         Me.Insert_empty_btn.Name = "Insert_empty_btn"
         Me.Insert_empty_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_empty_btn.TabIndex = 83
@@ -1094,14 +1116,14 @@ Partial Class Form1
         '
         'wait_minute_NumericUpDown
         '
-        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(221, 485)
+        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(221, 653)
         Me.wait_minute_NumericUpDown.Name = "wait_minute_NumericUpDown"
         Me.wait_minute_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_minute_NumericUpDown.TabIndex = 64
         '
         'Insert_navigate_to_url_btn
         '
-        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(439, 647)
+        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(439, 578)
         Me.Insert_navigate_to_url_btn.Name = "Insert_navigate_to_url_btn"
         Me.Insert_navigate_to_url_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_navigate_to_url_btn.TabIndex = 59
@@ -1111,7 +1133,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(185, 487)
+        Me.Label10.Location = New System.Drawing.Point(185, 655)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(30, 19)
         Me.Label10.TabIndex = 63
@@ -1128,7 +1150,7 @@ Partial Class Form1
         '
         'wait_hour_NumericUpDown
         '
-        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(119, 485)
+        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(119, 653)
         Me.wait_hour_NumericUpDown.Name = "wait_hour_NumericUpDown"
         Me.wait_hour_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_hour_NumericUpDown.TabIndex = 62
@@ -1136,7 +1158,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(33, 487)
+        Me.Label9.Location = New System.Drawing.Point(33, 655)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(76, 19)
         Me.Label9.TabIndex = 61
@@ -2222,4 +2244,6 @@ Partial Class Form1
     Friend WithEvents Delete_Conditions_Listview_item_btn As Button
     Friend WithEvents KeyboardKey_ComboBox As ComboBox
     Friend WithEvents CombinationKey_ComboBox As ComboBox
+    Friend WithEvents Insert_Shutdown_System_btn As Button
+    Friend WithEvents Insert_Exit_Program_btn As Button
 End Class

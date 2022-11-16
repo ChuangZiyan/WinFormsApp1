@@ -53,7 +53,7 @@ Module ScriptInsertion
     End Sub
 
     Public Sub Insert_delay()
-        Dim rnd_num As New Random()
+        'Dim rnd_num As New Random()
         Dim hour = Form1.wait_hour_NumericUpDown.Value
         Dim minute = Form1.wait_minute_NumericUpDown.Value
         Dim second = Form1.wait_second_NumericUpDown.Value
@@ -69,6 +69,44 @@ Module ScriptInsertion
             Insert_to_script("等待", "1秒")
         End If
     End Sub
+
+    Public Sub Insert_Exit_Program()
+        'Dim rnd_num As New Random()
+        Dim hour = Form1.wait_hour_NumericUpDown.Value
+        Dim minute = Form1.wait_minute_NumericUpDown.Value
+        Dim second = Form1.wait_second_NumericUpDown.Value
+
+        'Dim random_sec = rnd_num.Next(-wait_random_second_NumericUpDown.Value, wait_random_second_NumericUpDown.Value)
+
+        Dim total_second = hour * 3600 + minute * 60 + second
+        If Form1.wait_random_second_NumericUpDown.Value > 0 Then
+            Insert_to_script("關閉程式", total_second.ToString() + "±" + Form1.wait_random_second_NumericUpDown.Value.ToString() + "秒")
+        ElseIf total_second > 1 Then
+            Insert_to_script("關閉程式", total_second.ToString() + "秒")
+        Else
+            Insert_to_script("關閉程式", "1秒")
+        End If
+    End Sub
+
+
+    Public Sub Insert_Shutdown_System()
+        'Dim rnd_num As New Random()
+        Dim hour = Form1.wait_hour_NumericUpDown.Value
+        Dim minute = Form1.wait_minute_NumericUpDown.Value
+        Dim second = Form1.wait_second_NumericUpDown.Value
+
+        'Dim random_sec = rnd_num.Next(-wait_random_second_NumericUpDown.Value, wait_random_second_NumericUpDown.Value)
+
+        Dim total_second = hour * 3600 + minute * 60 + second
+        If Form1.wait_random_second_NumericUpDown.Value > 0 Then
+            Insert_to_script("關閉電腦", total_second.ToString() + "±" + Form1.wait_random_second_NumericUpDown.Value.ToString() + "秒")
+        ElseIf total_second > 1 Then
+            Insert_to_script("關閉電腦", total_second.ToString() + "秒")
+        Else
+            Insert_to_script("關閉電腦", "1秒")
+        End If
+    End Sub
+
     Public Sub Insert_open_browser()
         Dim myprofile As String = ""
         Dim profile_dir = FormInit.curr_path
