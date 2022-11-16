@@ -293,8 +293,18 @@ Public Class Form1
                     boolean_result = Reply_Random_Match_TextAndImage(content)
 
                 Case "回應:送出"
-                    Await Delay_msec(3000)
-                    boolean_result = Submit_reply_comment()
+                    'Await Delay_msec(3000)
+                    boolean_result = False
+                    For i = 0 To 10
+                        If IsElementPresentByClass("uiScaledImageContainer") Then
+                            boolean_result = Submit_reply_comment()
+                            Exit For
+                        Else
+                            Await Delay(1000)
+                        End If
+
+                    Next
+
                 Case "回應:按讚"
                     boolean_result = Click_reply_random_emoji(content)
                 Case "捲動頁面"
@@ -762,6 +772,14 @@ Public Class Form1
         End Try
     End Function
 
+    Function IsElementPresentByClass(ClassName As String) As Boolean
+        Try
+            chromeDriver.FindElement(By.ClassName(ClassName))
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
     Public Sub EventlogListview_AddNewItem(content)
         Dim curr_row = script_ListView.Items.Count
