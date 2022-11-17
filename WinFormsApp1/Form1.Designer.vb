@@ -32,6 +32,7 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Reset_Script_btn = New System.Windows.Forms.Button()
         Me.Continute_Script_btn = New System.Windows.Forms.Button()
         Me.Insert_Script_Start_TIme_btn = New System.Windows.Forms.Button()
         Me.Script_Config_ComboBox = New System.Windows.Forms.ComboBox()
@@ -205,6 +206,8 @@ Partial Class Form1
         Me.Groups_ListView = New System.Windows.Forms.ListView()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -232,6 +235,7 @@ Partial Class Form1
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage6.SuspendLayout()
         Me.GroupList.SuspendLayout()
+        CType(Me.ScrollBy_Y_SingleOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -305,6 +309,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Reset_Script_btn)
         Me.GroupBox1.Controls.Add(Me.Continute_Script_btn)
         Me.GroupBox1.Controls.Add(Me.Insert_Script_Start_TIme_btn)
         Me.GroupBox1.Controls.Add(Me.Script_Config_ComboBox)
@@ -343,6 +348,15 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
+        '
+        'Reset_Script_btn
+        '
+        Me.Reset_Script_btn.Location = New System.Drawing.Point(658, 809)
+        Me.Reset_Script_btn.Name = "Reset_Script_btn"
+        Me.Reset_Script_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Reset_Script_btn.TabIndex = 127
+        Me.Reset_Script_btn.Text = "重置腳本"
+        Me.Reset_Script_btn.UseVisualStyleBackColor = True
         '
         'Continute_Script_btn
         '
@@ -1793,6 +1807,8 @@ Partial Class Form1
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.ScrollBy_Y_SingleOffset_NumericUpDown)
+        Me.GroupBox3.Controls.Add(Me.Label39)
         Me.GroupBox3.Controls.Add(Me.Label32)
         Me.GroupBox3.Controls.Add(Me.Label31)
         Me.GroupBox3.Controls.Add(Me.ScrollBy_Y_Offset_NumericUpDown)
@@ -1816,7 +1832,7 @@ Partial Class Form1
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(136, 119)
+        Me.Label32.Location = New System.Drawing.Point(21, 152)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(24, 19)
         Me.Label32.TabIndex = 15
@@ -1825,7 +1841,7 @@ Partial Class Form1
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(11, 119)
+        Me.Label31.Location = New System.Drawing.Point(22, 119)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(23, 19)
         Me.Label31.TabIndex = 14
@@ -1834,7 +1850,7 @@ Partial Class Form1
         'ScrollBy_Y_Offset_NumericUpDown
         '
         Me.ScrollBy_Y_Offset_NumericUpDown.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.ScrollBy_Y_Offset_NumericUpDown.Location = New System.Drawing.Point(166, 117)
+        Me.ScrollBy_Y_Offset_NumericUpDown.Location = New System.Drawing.Point(51, 150)
         Me.ScrollBy_Y_Offset_NumericUpDown.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.ScrollBy_Y_Offset_NumericUpDown.Name = "ScrollBy_Y_Offset_NumericUpDown"
         Me.ScrollBy_Y_Offset_NumericUpDown.Size = New System.Drawing.Size(90, 27)
@@ -1843,7 +1859,7 @@ Partial Class Form1
         'ScrollBy_X_Offset_NumericUpDown
         '
         Me.ScrollBy_X_Offset_NumericUpDown.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.ScrollBy_X_Offset_NumericUpDown.Location = New System.Drawing.Point(40, 117)
+        Me.ScrollBy_X_Offset_NumericUpDown.Location = New System.Drawing.Point(51, 117)
         Me.ScrollBy_X_Offset_NumericUpDown.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         Me.ScrollBy_X_Offset_NumericUpDown.Name = "ScrollBy_X_Offset_NumericUpDown"
         Me.ScrollBy_X_Offset_NumericUpDown.Size = New System.Drawing.Size(90, 27)
@@ -1851,7 +1867,7 @@ Partial Class Form1
         '
         'Insert_ScrollBy_Offset_btn
         '
-        Me.Insert_ScrollBy_Offset_btn.Location = New System.Drawing.Point(262, 115)
+        Me.Insert_ScrollBy_Offset_btn.Location = New System.Drawing.Point(303, 148)
         Me.Insert_ScrollBy_Offset_btn.Name = "Insert_ScrollBy_Offset_btn"
         Me.Insert_ScrollBy_Offset_btn.Size = New System.Drawing.Size(179, 29)
         Me.Insert_ScrollBy_Offset_btn.TabIndex = 10
@@ -2016,6 +2032,22 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(147, 152)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(54, 19)
+        Me.Label39.TabIndex = 18
+        Me.Label39.Text = "y漸進 :"
+        '
+        'ScrollBy_Y_SingleOffset_NumericUpDown
+        '
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Location = New System.Drawing.Point(207, 150)
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Name = "ScrollBy_Y_SingleOffset_NumericUpDown"
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Size = New System.Drawing.Size(90, 27)
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.TabIndex = 19
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -2060,6 +2092,7 @@ Partial Class Form1
         Me.TabPage6.ResumeLayout(False)
         Me.TabPage6.PerformLayout()
         Me.GroupList.ResumeLayout(False)
+        CType(Me.ScrollBy_Y_SingleOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2246,4 +2279,7 @@ Partial Class Form1
     Friend WithEvents CombinationKey_ComboBox As ComboBox
     Friend WithEvents Insert_Shutdown_System_btn As Button
     Friend WithEvents Insert_Exit_Program_btn As Button
+    Friend WithEvents Reset_Script_btn As Button
+    Friend WithEvents Label39 As Label
+    Friend WithEvents ScrollBy_Y_SingleOffset_NumericUpDown As NumericUpDown
 End Class

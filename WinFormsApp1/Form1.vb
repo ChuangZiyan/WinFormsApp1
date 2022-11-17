@@ -87,6 +87,20 @@ Public Class Form1
         Pause_Script = False
     End Sub
 
+    Private Sub Reset_Script_btn_Click(sender As Object, e As EventArgs) Handles Reset_Script_btn.Click
+        Flag_start_script = False
+        loop_run = False
+        start_time = "0"
+        end_time = "0"
+        script_running = False
+        Pause_Script = False
+        Continue_time = ""
+        Restore_ListViewItems_BackColor()
+        For Each item As ListViewItem In script_ListView.Items
+            item.SubItems.Item(6).Text = ("")
+        Next
+    End Sub
+
     Dim profile_index = 0
     Private Async Sub Run_script_controller()
         Dim i = 1
@@ -129,12 +143,6 @@ Public Class Form1
             item.EnsureVisible()
 
 
-            If script_running = False Then
-                'Debug.WriteLine("running false")
-                loop_run = False
-                Exit Function
-            End If
-
             If Pause_Script = True Then ' Pause script
                 While True
                     Await Delay_msec(1000)
@@ -142,6 +150,12 @@ Public Class Form1
                         Exit While
                     End If
                 End While
+            End If
+
+            If script_running = False Then
+                'Debug.WriteLine("running false")
+                loop_run = False
+                Exit Function
             End If
 
             '3 : browser type
@@ -305,7 +319,23 @@ Public Class Form1
                     boolean_result = Click_reply_random_emoji(content)
                 Case "捲動頁面"
                     Dim Offset As String() = content.Split(";")
-                    boolean_result = ScrollPage_By_Offset(Offset(0), Offset(1))
+                    Dim y_offset = CInt(Offset(1).Split(":")(0))
+                    Dim y_single_offset = CInt(Offset(1).Split(":")(1))
+
+                    If y_single_offset > 0 Then
+                        For scroll_offset As Integer = y_single_offset To y_offset Step y_single_offset
+
+                            Debug.WriteLine(scroll_offset)
+                            boolean_result = ScrollPage_By_Offset(Offset(0), CStr(scroll_offset))
+                            Await Delay(1000)
+                        Next
+                    Else
+                        boolean_result = ScrollPage_By_Offset(Offset(0), CStr(y_offset))
+                    End If
+
+
+
+
                 Case "聊天"
                     Dim Target = content.Split(";")(0)
                     Dim Text = content.Split(";")(1)
@@ -821,8 +851,6 @@ Public Class Form1
         Next
     End Sub
 
-
-    Dim current_state = 0
 
     '####################### Function script for selenium executing ##############################################################
 
@@ -1676,7 +1704,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_ScrollBy_Offset_btn_Click(sender As Object, e As EventArgs) Handles Insert_ScrollBy_Offset_btn.Click
-        Insert_to_script("捲動頁面", ScrollBy_X_Offset_NumericUpDown.Value & ";" & ScrollBy_Y_Offset_NumericUpDown.Value)
+        Insert_to_script("捲動頁面", ScrollBy_X_Offset_NumericUpDown.Value & ";" & ScrollBy_Y_Offset_NumericUpDown.Value & ":" & ScrollBy_Y_SingleOffset_NumericUpDown.Value)
     End Sub
 
     Private Sub Insert_Messager_Contact_btn_Click(sender As Object, e As EventArgs) Handles Insert_Messager_Contact_btn.Click
@@ -1744,4 +1772,5 @@ Public Class Form1
     Private Sub Insert_Shutdown_System_btn_Click(sender As Object, e As EventArgs) Handles Insert_Shutdown_System_btn.Click
         ScriptInsertion.Insert_Shutdown_System()
     End Sub
+
 End Class
