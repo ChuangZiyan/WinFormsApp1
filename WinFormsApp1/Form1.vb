@@ -293,17 +293,13 @@ Public Class Form1
                     boolean_result = Reply_Random_Match_TextAndImage(content)
 
                 Case "回應:送出"
-                    'Await Delay_msec(3000)
-                    boolean_result = False
-                    For i = 0 To 10
-                        If IsElementPresentByClass("uiScaledImageContainer") Then
-                            boolean_result = Submit_reply_comment()
-                            Exit For
-                        Else
-                            Await Delay(1000)
-                        End If
 
-                    Next
+                    If IsElementPresentByClass("uiScaledImageContainer") Then
+                        boolean_result = Submit_reply_comment()
+                    Else
+                        boolean_result = False
+                        'Await Delay(1000)
+                    End If
 
                 Case "回應:按讚"
                     boolean_result = Click_reply_random_emoji(content)
