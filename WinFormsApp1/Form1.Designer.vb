@@ -182,6 +182,8 @@ Partial Class Form1
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Label39 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.ScrollBy_Y_Offset_NumericUpDown = New System.Windows.Forms.NumericUpDown()
@@ -206,8 +208,6 @@ Partial Class Form1
         Me.Groups_ListView = New System.Windows.Forms.ListView()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.ScrollBy_Y_SingleOffset_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -231,11 +231,11 @@ Partial Class Form1
         Me.TabPage4.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.ScrollBy_Y_SingleOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage6.SuspendLayout()
         Me.GroupList.SuspendLayout()
-        CType(Me.ScrollBy_Y_SingleOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -1686,7 +1686,7 @@ Partial Class Form1
         'KeyboardKey_ComboBox
         '
         Me.KeyboardKey_ComboBox.FormattingEnabled = True
-        Me.KeyboardKey_ComboBox.Items.AddRange(New Object() {"ENTER"})
+        Me.KeyboardKey_ComboBox.Items.AddRange(New Object() {"ENTER", "ESC"})
         Me.KeyboardKey_ComboBox.Location = New System.Drawing.Point(92, 35)
         Me.KeyboardKey_ComboBox.Name = "KeyboardKey_ComboBox"
         Me.KeyboardKey_ComboBox.Size = New System.Drawing.Size(125, 27)
@@ -1828,6 +1828,23 @@ Partial Class Form1
         Me.GroupBox3.TabIndex = 8
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "滑鼠事件"
+        '
+        'ScrollBy_Y_SingleOffset_NumericUpDown
+        '
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Location = New System.Drawing.Point(207, 150)
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Name = "ScrollBy_Y_SingleOffset_NumericUpDown"
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Size = New System.Drawing.Size(90, 27)
+        Me.ScrollBy_Y_SingleOffset_NumericUpDown.TabIndex = 19
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(147, 152)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(54, 19)
+        Me.Label39.TabIndex = 18
+        Me.Label39.Text = "y漸進 :"
         '
         'Label32
         '
@@ -2032,22 +2049,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Label39
-        '
-        Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(147, 152)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(54, 19)
-        Me.Label39.TabIndex = 18
-        Me.Label39.Text = "y漸進 :"
-        '
-        'ScrollBy_Y_SingleOffset_NumericUpDown
-        '
-        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Location = New System.Drawing.Point(207, 150)
-        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Name = "ScrollBy_Y_SingleOffset_NumericUpDown"
-        Me.ScrollBy_Y_SingleOffset_NumericUpDown.Size = New System.Drawing.Size(90, 27)
-        Me.ScrollBy_Y_SingleOffset_NumericUpDown.TabIndex = 19
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -2087,12 +2088,12 @@ Partial Class Form1
         Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.ScrollBy_Y_SingleOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
         Me.TabPage6.PerformLayout()
         Me.GroupList.ResumeLayout(False)
-        CType(Me.ScrollBy_Y_SingleOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

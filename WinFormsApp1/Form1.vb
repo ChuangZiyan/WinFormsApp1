@@ -332,9 +332,8 @@ Public Class Form1
                     Else
                         boolean_result = ScrollPage_By_Offset(Offset(0), CStr(y_offset))
                     End If
-
-
-
+                Case "發送:按鍵"
+                    boolean_result = SendBrowserKeyAction(content)
 
                 Case "聊天"
                     Dim Target = content.Split(";")(0)
@@ -941,6 +940,25 @@ Public Class Form1
             total_sec = 1
         End If
         Return total_sec
+    End Function
+
+    Private Function SendBrowserKeyAction(key)
+        Dim myKey = Keys.Enter
+        Select Case key
+            Case "ENTER"
+                myKey = Keys.Enter
+            Case "ESC"
+                myKey = Keys.Escape
+        End Select
+
+        Try
+            Dim act = New Actions(chromeDriver)
+            act.SendKeys(myKey).Perform()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
     End Function
 
     Private Sub Restore_ListViewItems_BackColor()
@@ -1773,4 +1791,12 @@ Public Class Form1
         ScriptInsertion.Insert_Shutdown_System()
     End Sub
 
+    Private Sub Insert_SendKeyClick_btn_Click(sender As Object, e As EventArgs) Handles Insert_SendKeyClick_btn.Click
+        If KeyboardKey_ComboBox.Text = "" Then
+            MsgBox("未選擇任何按鍵")
+        Else
+            Insert_to_script("發送:按鍵", KeyboardKey_ComboBox.Text)
+        End If
+
+    End Sub
 End Class
