@@ -28,6 +28,9 @@ Public Class Form1
     Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
 
+
+
+
     Dim rnd_num As New Random()
 
     Public css_selector_config_obj As Newtonsoft.Json.Linq.JObject
@@ -45,6 +48,9 @@ Public Class Form1
 
 
     Public Profile_Queue() As String
+
+    'Dim act = New Actions(chromeDriver)
+    Dim act As Actions
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -324,8 +330,7 @@ Public Class Form1
 
                     If y_single_offset > 0 Then
                         For scroll_offset As Integer = y_single_offset To y_offset Step y_single_offset
-
-                            Debug.WriteLine(scroll_offset)
+                            item.SubItems.Item(6).Text = CStr(scroll_offset)
                             boolean_result = ScrollPage_By_Offset(Offset(0), CStr(scroll_offset))
                             Await Delay(1000)
                         Next
@@ -334,7 +339,9 @@ Public Class Form1
                     End If
                 Case "發送:按鍵"
                     boolean_result = SendBrowserKeyAction(content)
-
+                Case "點擊:座標"
+                    Dim offset() = content.Split(";")
+                    boolean_result = Click_by_Cursor_Offset(offset(0), offset(1))
                 Case "聊天"
                     Dim Target = content.Split(";")(0)
                     Dim Text = content.Split(";")(1)
@@ -503,6 +510,9 @@ Public Class Form1
                 chromeDriver = New ChromeDriver(serv, options)
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                 ' Refresh Profile Items
+
+
+                act = New Actions(chromeDriver)
 
                 Profile_CheckedListBox.Items.Clear()
                 Render_profile_CheckedListBox()
@@ -716,31 +726,31 @@ Public Class Form1
     End Sub
 
 
-    Private Sub cursor_Click(sender As Object, e As EventArgs)
+    Private Function Click_by_Cursor_Offset(x As String, y As String)
 
-        'Dim myele = chromeDriver.FindElement(By.CssSelector("._6ltj > a"))
-        'Dim login_btn = chromeDriver.FindElement(By.Name("login"))
-        'Dim bbb = chromeDriver.FindElement(By.CssSelector("._8esh"))
+        'js code for getting cursor position in brower
+        'document.onclick = Function(e)
+        '{
+        'var x = e.pageX;
+        'var y = e.pageY;
+        'Alert("User clicked at position (" + x + "," + y + ")")
+        '};
 
-        'act.MoveByOffset(0, 0).Build().Perform() ' reset point position
-        Dim act = New Actions(chromeDriver)
-        'cursor_x = cursor_x_TextBox.Text
-        'cursor_y = cursor_y_TextBox.Text
-        'act.MoveByOffset(cursor_x, cursor_y).Build.Perform()
-        'act.Click.Perform()
-        'Debug.WriteLine(cursor_x & "," & cursor_y)
-        'act.MoveByOffset(-cursor_x, -cursor_y).Build.Perform()
+        Try
+            act.MoveByOffset(x, y).Build.Perform()
+            act.Click.Perform()
+            act.MoveByOffset(-x, -y).Build.Perform()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
 
-        'Thread.Sleep(3000)
-        'act.MoveToElement(login_btn).Perform()
-        'Thread.Sleep(2000)
-        'aaa.Click()
-        'act.MoveToElement(myele).Perform()
-        'Thread.Sleep(2000)
-        'act.MoveToElement(bbb).Perform()
-        'Thread.Sleep(1000)
-        'Thread.Sleep(1000)
+    End Function
 
+    Private Sub Click_by_location_test_btn_Click(sender As Object, e As EventArgs) Handles Click_by_location_test_btn.Click
+        Dim cursor_x = CursorX_TextBox.Text
+        Dim cursor_y = CursorY_TextBox.Text
+        Click_by_Cursor_Offset(cursor_x, cursor_y)
     End Sub
 
     Private Sub crawl_post_btn_Click(sender As Object, e As EventArgs)
@@ -942,19 +952,33 @@ Public Class Form1
         Return total_sec
     End Function
 
-    Private Function SendBrowserKeyAction(key)
-        Dim myKey = Keys.Enter
-        Select Case key
+    Private Function SendBrowserKeyAction(pkey As String)
+        Dim key_list() As String = pkey.Split("+")
+
+        Dim firstKey = Keys.Enter
+
+        Select Case key_list(0)
             Case "ENTER"
-                myKey = Keys.Enter
+                firstKey = Keys.Enter
             Case "ESC"
-                myKey = Keys.Escape
+                firstKey = Keys.Escape
+            Case "CTRL"
+                firstKey = Keys.LeftControl
+            Case "ALT"
+                firstKey = Keys.LeftAlt
+
         End Select
 
         Try
-            Dim act = New Actions(chromeDriver)
-            act.SendKeys(myKey).Perform()
+            If key_list.Length > 1 Then
+
+                act.KeyDown(firstKey).SendKeys(key_list(1)).KeyUp(firstKey).Perform()
+            Else
+                act.SendKeys(firstKey).Perform()
+            End If
+
             Return True
+
         Catch ex As Exception
             Return False
         End Try
@@ -1792,11 +1816,24 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_SendKeyClick_btn_Click(sender As Object, e As EventArgs) Handles Insert_SendKeyClick_btn.Click
-        If KeyboardKey_ComboBox.Text = "" Then
-            MsgBox("未選擇任何按鍵")
+        If KeyboardFirstKey_ComboBox.Text <> "" And KeyboardSecondKey_ComboBox.Text <> "" Then
+            Insert_to_script("發送:按鍵", KeyboardFirstKey_ComboBox.Text + "+" + KeyboardSecondKey_ComboBox.Text)
+        ElseIf KeyboardFirstKey_ComboBox.Text <> "" Then
+            Insert_to_script("發送:按鍵", KeyboardFirstKey_ComboBox.Text)
         Else
-            Insert_to_script("發送:按鍵", KeyboardKey_ComboBox.Text)
+            MsgBox("未選擇任何按鍵")
         End If
+
+    End Sub
+
+    Private Sub Insert_Mouse_Click_by_Offset_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Mouse_Click_by_Offset_Btn.Click
+
+        If CursorX_TextBox.Text <> "" And CursorY_TextBox.Text <> "" Then
+            Insert_to_script("點擊:座標", CursorX_TextBox.Text + ";" + CursorY_TextBox.Text)
+        Else
+            MsgBox("座標數據數值不能為空")
+        End If
+
 
     End Sub
 End Class

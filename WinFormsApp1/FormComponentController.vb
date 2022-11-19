@@ -102,24 +102,13 @@ Module FormComponentController
 
         'Get TextFile CheckListBox Selected Item
 
-        If Form1.Text_File_CheckedListBox.SelectedIndex >= 0 Then
-            Current_selected_Item = Form1.Text_File_CheckedListBox.SelectedItem.ToString()
-            Selected_Counter += 1
-        End If
-
-        'Get Image CheckListBox Selected Item
-        If Form1.img_CheckedListBox.SelectedIndex >= 0 Then
-            Current_selected_Item = Form1.img_CheckedListBox.SelectedItem.ToString()
-            Selected_Counter += 1
-        End If
-
         If Form1.TextFolder_ListBox.SelectedIndex >= 0 Then
-            Current_selected_Item = Form1.TextFolder_ListBox.SelectedItem.ToString()
+            Current_selected_Item = text_folder_path + Form1.TextFolder_ListBox.SelectedItem.ToString()
             Selected_Counter += 1
         End If
 
         If Form1.ImageFolder_ListBox.SelectedIndex >= 0 Then
-            Current_selected_Item = Form1.ImageFolder_ListBox.SelectedItem.ToString()
+            Current_selected_Item = image_folder_path + Form1.ImageFolder_ListBox.SelectedItem.ToString()
             Selected_Counter += 1
         End If
 
@@ -159,13 +148,6 @@ Module FormComponentController
     End Sub
 
     Private Sub Deselect_All_Item()
-        If Form1.Text_File_CheckedListBox.SelectedIndex >= 0 Then
-            Form1.Text_File_CheckedListBox.SetSelected(Form1.Text_File_CheckedListBox.SelectedIndex, False)
-        End If
-
-        If Form1.img_CheckedListBox.SelectedIndex >= 0 Then
-            Form1.img_CheckedListBox.SetSelected(Form1.img_CheckedListBox.SelectedIndex, False)
-        End If
 
         If Form1.TextFolder_ListBox.SelectedIndex >= 0 Then
             Form1.TextFolder_ListBox.SetSelected(Form1.TextFolder_ListBox.SelectedIndex, False)
