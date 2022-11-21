@@ -166,6 +166,7 @@ Partial Class Form1
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.KeyboardFirstKey_ComboBox = New System.Windows.Forms.ComboBox()
         Me.KeyboardSecondKey_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Button10 = New System.Windows.Forms.Button()
@@ -200,11 +201,25 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.Button11 = New System.Windows.Forms.Button()
         Me.Get_Groups_List_btn = New System.Windows.Forms.Button()
         Me.Groups_ListView = New System.Windows.Forms.ListView()
+        Me.Searching = New System.Windows.Forms.TabPage()
+        Me.Searching_Keyword_Text_SaveAs_btn = New System.Windows.Forms.Button()
+        Me.Save_Search_Keyword_btn = New System.Windows.Forms.Button()
+        Me.SearchingKeyword_folder_Textbox = New System.Windows.Forms.TextBox()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Reveal_Keyword_Folder_btn = New System.Windows.Forms.Button()
+        Me.Delete_Keyword_Folder_btn = New System.Windows.Forms.Button()
+        Me.Searching_keyword_Text_Textbox = New System.Windows.Forms.TextBox()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Keyword_TextFileName_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label44 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,6 +245,7 @@ Partial Class Form1
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage6.SuspendLayout()
         Me.GroupList.SuspendLayout()
+        Me.Searching.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -665,6 +681,7 @@ Partial Class Form1
         Me.TabControl2.Controls.Add(Me.TabPage4)
         Me.TabControl2.Controls.Add(Me.TabPage6)
         Me.TabControl2.Controls.Add(Me.GroupList)
+        Me.TabControl2.Controls.Add(Me.Searching)
         Me.TabControl2.Location = New System.Drawing.Point(6, 26)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -1665,6 +1682,15 @@ Partial Class Form1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "鍵盤事件"
         '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(193, 38)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(20, 19)
+        Me.Label25.TabIndex = 16
+        Me.Label25.Text = "+"
+        '
         'KeyboardFirstKey_ComboBox
         '
         Me.KeyboardFirstKey_ComboBox.FormattingEnabled = True
@@ -1972,6 +1998,7 @@ Partial Class Form1
         '
         'GroupList
         '
+        Me.GroupList.Controls.Add(Me.Button11)
         Me.GroupList.Controls.Add(Me.Get_Groups_List_btn)
         Me.GroupList.Controls.Add(Me.Groups_ListView)
         Me.GroupList.Location = New System.Drawing.Point(4, 28)
@@ -1980,6 +2007,15 @@ Partial Class Form1
         Me.GroupList.TabIndex = 4
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
+        '
+        'Button11
+        '
+        Me.Button11.Location = New System.Drawing.Point(120, 24)
+        Me.Button11.Name = "Button11"
+        Me.Button11.Size = New System.Drawing.Size(123, 29)
+        Me.Button11.TabIndex = 2
+        Me.Button11.Text = "取m版社團列表"
+        Me.Button11.UseVisualStyleBackColor = True
         '
         'Get_Groups_List_btn
         '
@@ -1998,19 +2034,143 @@ Partial Class Form1
         Me.Groups_ListView.TabIndex = 0
         Me.Groups_ListView.UseCompatibleStateImageBehavior = False
         '
+        'Searching
+        '
+        Me.Searching.Controls.Add(Me.Keyword_TextFileName_TextBox)
+        Me.Searching.Controls.Add(Me.Label44)
+        Me.Searching.Controls.Add(Me.Searching_Keyword_Text_SaveAs_btn)
+        Me.Searching.Controls.Add(Me.Save_Search_Keyword_btn)
+        Me.Searching.Controls.Add(Me.SearchingKeyword_folder_Textbox)
+        Me.Searching.Controls.Add(Me.Label43)
+        Me.Searching.Controls.Add(Me.Reveal_Keyword_Folder_btn)
+        Me.Searching.Controls.Add(Me.Delete_Keyword_Folder_btn)
+        Me.Searching.Controls.Add(Me.Searching_keyword_Text_Textbox)
+        Me.Searching.Controls.Add(Me.Label42)
+        Me.Searching.Controls.Add(Me.Button2)
+        Me.Searching.Controls.Add(Me.Button1)
+        Me.Searching.Controls.Add(Me.Searching_Keyword_CheckedListBox)
+        Me.Searching.Location = New System.Drawing.Point(4, 28)
+        Me.Searching.Name = "Searching"
+        Me.Searching.Size = New System.Drawing.Size(918, 820)
+        Me.Searching.TabIndex = 5
+        Me.Searching.Text = "搜尋"
+        Me.Searching.UseVisualStyleBackColor = True
+        '
+        'Searching_Keyword_Text_SaveAs_btn
+        '
+        Me.Searching_Keyword_Text_SaveAs_btn.Location = New System.Drawing.Point(525, 328)
+        Me.Searching_Keyword_Text_SaveAs_btn.Name = "Searching_Keyword_Text_SaveAs_btn"
+        Me.Searching_Keyword_Text_SaveAs_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Searching_Keyword_Text_SaveAs_btn.TabIndex = 12
+        Me.Searching_Keyword_Text_SaveAs_btn.Text = "另存內容"
+        Me.Searching_Keyword_Text_SaveAs_btn.UseVisualStyleBackColor = True
+        '
+        'Save_Search_Keyword_btn
+        '
+        Me.Save_Search_Keyword_btn.Location = New System.Drawing.Point(367, 328)
+        Me.Save_Search_Keyword_btn.Name = "Save_Search_Keyword_btn"
+        Me.Save_Search_Keyword_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Save_Search_Keyword_btn.TabIndex = 11
+        Me.Save_Search_Keyword_btn.Text = "儲存內容"
+        Me.Save_Search_Keyword_btn.UseVisualStyleBackColor = True
+        '
+        'SearchingKeyword_folder_Textbox
+        '
+        Me.SearchingKeyword_folder_Textbox.Location = New System.Drawing.Point(102, 264)
+        Me.SearchingKeyword_folder_Textbox.Name = "SearchingKeyword_folder_Textbox"
+        Me.SearchingKeyword_folder_Textbox.Size = New System.Drawing.Size(259, 27)
+        Me.SearchingKeyword_folder_Textbox.TabIndex = 10
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(31, 272)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(65, 19)
+        Me.Label43.TabIndex = 9
+        Me.Label43.Text = "資料夾 : "
+        '
+        'Reveal_Keyword_Folder_btn
+        '
+        Me.Reveal_Keyword_Folder_btn.Location = New System.Drawing.Point(367, 262)
+        Me.Reveal_Keyword_Folder_btn.Name = "Reveal_Keyword_Folder_btn"
+        Me.Reveal_Keyword_Folder_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Reveal_Keyword_Folder_btn.TabIndex = 8
+        Me.Reveal_Keyword_Folder_btn.Text = "打開所選資料夾"
+        Me.Reveal_Keyword_Folder_btn.UseVisualStyleBackColor = True
+        '
+        'Delete_Keyword_Folder_btn
+        '
+        Me.Delete_Keyword_Folder_btn.Location = New System.Drawing.Point(367, 227)
+        Me.Delete_Keyword_Folder_btn.Name = "Delete_Keyword_Folder_btn"
+        Me.Delete_Keyword_Folder_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Delete_Keyword_Folder_btn.TabIndex = 7
+        Me.Delete_Keyword_Folder_btn.Text = "刪除所選檔案"
+        Me.Delete_Keyword_Folder_btn.UseVisualStyleBackColor = True
+        '
+        'Searching_keyword_Text_Textbox
+        '
+        Me.Searching_keyword_Text_Textbox.Location = New System.Drawing.Point(102, 330)
+        Me.Searching_keyword_Text_Textbox.Name = "Searching_keyword_Text_Textbox"
+        Me.Searching_keyword_Text_Textbox.Size = New System.Drawing.Size(259, 27)
+        Me.Searching_keyword_Text_Textbox.TabIndex = 5
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(46, 333)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(50, 19)
+        Me.Label42.TabIndex = 4
+        Me.Label42.Text = "內容 : "
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(367, 67)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(152, 29)
+        Me.Button2.TabIndex = 3
+        Me.Button2.Text = "隨機內容搜索 - 插入"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(367, 32)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(152, 29)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "搜索 - 插入"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Searching_Keyword_CheckedListBox
+        '
+        Me.Searching_Keyword_CheckedListBox.CheckOnClick = True
+        Me.Searching_Keyword_CheckedListBox.FormattingEnabled = True
+        Me.Searching_Keyword_CheckedListBox.Location = New System.Drawing.Point(31, 32)
+        Me.Searching_Keyword_CheckedListBox.Name = "Searching_Keyword_CheckedListBox"
+        Me.Searching_Keyword_CheckedListBox.Size = New System.Drawing.Size(330, 224)
+        Me.Searching_Keyword_CheckedListBox.TabIndex = 0
+        '
         'Timer1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Label25
+        'Keyword_TextFileName_TextBox
         '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(193, 38)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(20, 19)
-        Me.Label25.TabIndex = 16
-        Me.Label25.Text = "+"
+        Me.Keyword_TextFileName_TextBox.Location = New System.Drawing.Point(102, 297)
+        Me.Keyword_TextFileName_TextBox.Name = "Keyword_TextFileName_TextBox"
+        Me.Keyword_TextFileName_TextBox.Size = New System.Drawing.Size(259, 27)
+        Me.Keyword_TextFileName_TextBox.TabIndex = 14
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(46, 300)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(50, 19)
+        Me.Label44.TabIndex = 13
+        Me.Label44.Text = "名稱 : "
         '
         'Form1
         '
@@ -2053,6 +2213,8 @@ Partial Class Form1
         Me.TabPage6.ResumeLayout(False)
         Me.TabPage6.PerformLayout()
         Me.GroupList.ResumeLayout(False)
+        Me.Searching.ResumeLayout(False)
+        Me.Searching.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2239,4 +2401,19 @@ Partial Class Form1
     Friend WithEvents Label41 As Label
     Friend WithEvents Label40 As Label
     Friend WithEvents Label25 As Label
+    Friend WithEvents Button11 As Button
+    Friend WithEvents Searching As TabPage
+    Friend WithEvents Searching_Keyword_Text_SaveAs_btn As Button
+    Friend WithEvents Save_Search_Keyword_btn As Button
+    Friend WithEvents SearchingKeyword_folder_Textbox As TextBox
+    Friend WithEvents Label43 As Label
+    Friend WithEvents Reveal_Keyword_Folder_btn As Button
+    Friend WithEvents Delete_Keyword_Folder_btn As Button
+    Friend WithEvents Searching_keyword_Text_Textbox As TextBox
+    Friend WithEvents Label42 As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Searching_Keyword_CheckedListBox As CheckedListBox
+    Friend WithEvents Keyword_TextFileName_TextBox As TextBox
+    Friend WithEvents Label44 As Label
 End Class

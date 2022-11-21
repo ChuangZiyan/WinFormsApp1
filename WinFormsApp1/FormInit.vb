@@ -6,7 +6,7 @@ Module FormInit
     Public text_folder_path = curr_path + "resources\texts\"
     Public image_folder_path = curr_path + "resources\images\"
     Public save_script_folder_path = curr_path + "myscript\"
-
+    Public keyword_Searching_path = curr_path + "keyword\"
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
         Form1.script_ListView.GridLines = True
@@ -62,6 +62,10 @@ Module FormInit
 
         If Not System.IO.Directory.Exists(save_script_folder_path) Then
             System.IO.Directory.CreateDirectory(save_script_folder_path)
+        End If
+
+        If Not System.IO.Directory.Exists(keyword_Searching_path) Then
+            System.IO.Directory.CreateDirectory(keyword_Searching_path)
         End If
 
     End Sub
@@ -189,6 +193,30 @@ Module FormInit
 
 
         'Script_Config_ComboBox
+    End Sub
+
+    Public Sub Render_Keyword_TextFIle()
+        If Not System.IO.Directory.Exists(keyword_Searching_path) Then
+            System.IO.Directory.CreateDirectory(keyword_Searching_path)
+        End If
+        Dim dirs() As String = IO.Directory.GetDirectories(keyword_Searching_path)
+        'image/*,image/heif,image/heic,video/*,video/mp4,video/x-m4v,video/x-matroska,.mkv
+
+        For Each dir As String In dirs
+            'Debug.WriteLine(dir)
+            Dim files() As String = IO.Directory.GetFiles(dir)
+            For Each file As String In files
+                'Debug.WriteLine(file)
+
+                Dim split As String() = file.Split("\")
+                    Dim parentFolder As String = split(split.Length - 2)
+                Form1.Searching_Keyword_CheckedListBox.Items.Add(parentFolder + "\" + Path.GetFileName(file))
+
+
+            Next
+
+        Next
+
     End Sub
 
 

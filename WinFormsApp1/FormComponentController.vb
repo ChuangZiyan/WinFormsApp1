@@ -356,7 +356,6 @@ Module FormComponentController
         Next
     End Sub
 
-
     Public Sub Script_Config_ComboBox_SelectedIndexChanged()
 
         Try
@@ -377,6 +376,92 @@ Module FormComponentController
         Catch ex As Exception
             MsgBox("載入失敗，檔案無效或不存在")
         End Try
+    End Sub
+
+    Public Sub Save_Search_Keyword_btn_Click()
+
+        If Form1.SearchingKeyword_folder_Textbox.Text <> "" Then
+
+            Dim keyword_folder_path = FormInit.keyword_Searching_path + "/" + Form1.SearchingKeyword_folder_Textbox.Text
+            Dim keyword_file_name As String
+
+            If Form1.Keyword_TextFileName_TextBox.Text = "" Then ' auto generate file name
+                keyword_file_name = Date.Now.ToString("yyyyMMddHHmmss")
+                keyword_file_name = "keyword_" + keyword_file_name + ".txt"
+            Else
+                keyword_file_name = Form1.Keyword_TextFileName_TextBox.Text + ".txt"
+            End If
+
+            If Not System.IO.Directory.Exists(keyword_folder_path) Then
+                System.IO.Directory.CreateDirectory(keyword_folder_path)
+            End If
+            WriteAllText(keyword_folder_path + "/" + keyword_file_name, Form1.Searching_keyword_Text_Textbox.Text)
+            Form1.Searching_Keyword_CheckedListBox.Items.Clear()
+            FormInit.Render_Keyword_TextFIle()
+
+        Else
+            MsgBox("資料夾名稱不得為空")
+        End If
+
+    End Sub
+
+
+    Public Sub Searching_Keyword_CheckedListBox_OnClick()
+
+        Dim Txt_file_path As String = ""
+        For Each itemSeleted In Form1.Searching_Keyword_CheckedListBox.SelectedItems
+            Txt_file_path = itemSeleted
+        Next
+        Form1.Searching_keyword_Text_Textbox.Text = File.ReadAllText(FormInit.keyword_Searching_path + Txt_file_path)
+        Dim temp_arr = Txt_file_path.Split("\")
+        Form1.Keyword_TextFileName_TextBox.Text = Path.GetFileNameWithoutExtension(Txt_file_path)
+        Form1.SearchingKeyword_folder_Textbox.Text = temp_arr(temp_arr.Length - 2)
+    End Sub
+
+    Public Sub Searching_Keyword_Text_SaveAs()
+        Dim keyword_txt = Form1.Searching_keyword_Text_Textbox.Text
+        Form1.SaveFileDialog1.Filter = "txt files (*.txt)|"
+        Form1.SaveFileDialog1.DefaultExt = "txt"
+        Form1.SaveFileDialog1.FilterIndex = 2
+        Form1.SaveFileDialog1.RestoreDirectory = True
+
+        If Form1.SaveFileDialog1.ShowDialog = DialogResult.OK Then
+            'Debug.WriteLine(script_txt)
+            WriteAllText(Form1.SaveFileDialog1.FileName, keyword_txt)
+            Form1.Searching_Keyword_CheckedListBox.Items.Clear()
+            FormInit.Render_Keyword_TextFIle()
+        End If
+    End Sub
+
+
+    Public Sub Reveal_Keyword_Folder()
+        If Form1.SearchingKeyword_folder_Textbox.Text = "" Then
+            MsgBox("資料夾名稱不可為空白")
+            Exit Sub
+        End If
+
+        Dim mypath As String = FormInit.keyword_Searching_path + Form1.SearchingKeyword_folder_Textbox.Text
+        If Not System.IO.Directory.Exists(mypath) Then
+            System.IO.Directory.CreateDirectory(mypath)
+        End If
+        Process.Start("explorer.exe", mypath)
+    End Sub
+
+    Public Sub Delete_Keyword_Folder()
+        For Each itemSelected In Form1.Searching_Keyword_CheckedListBox.SelectedItems
+
+            Dim keyword_file = FormInit.keyword_Searching_path + itemSelected
+            If File.Exists(keyword_file) Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除此檔案?", "確認訊息", MessageBoxButtons.YesNo)
+                If result = DialogResult.Yes Then
+                    File.Delete(keyword_file)
+                    Form1.Searching_Keyword_CheckedListBox.Items.Clear()
+                    FormInit.Render_Keyword_TextFIle()
+                    Exit Sub
+                End If
+
+            End If
+        Next
     End Sub
 
 End Module

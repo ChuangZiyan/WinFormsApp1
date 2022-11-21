@@ -79,6 +79,7 @@ Public Class Form1
         FormInit.Render_Groups_Listview()
         FormInit.Render_ProfileName_ComboBox_Item()
         FormInit.Render_My_Script_ComboBox()
+        FormInit.Render_Keyword_TextFIle()
 
     End Sub
 
@@ -1835,5 +1836,25 @@ Public Class Form1
         End If
 
 
+    End Sub
+
+    Private Sub Save_Search_Keyword_btn_Click(sender As Object, e As EventArgs) Handles Save_Search_Keyword_btn.Click
+        FormComponentController.Save_Search_Keyword_btn_Click()
+    End Sub
+
+    Private Sub Searching_Keyword_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Searching_Keyword_CheckedListBox.ItemCheck
+        FormComponentController.Searching_Keyword_CheckedListBox_OnClick()
+    End Sub
+
+    Private Sub Searching_Keyword_Text_SaveAs_btn_Click(sender As Object, e As EventArgs) Handles Searching_Keyword_Text_SaveAs_btn.Click
+        FormComponentController.Searching_Keyword_Text_SaveAs()
+    End Sub
+
+    Private Sub Reveal_Keyword_Folder_btn_Click(sender As Object, e As EventArgs) Handles Reveal_Keyword_Folder_btn.Click
+        FormComponentController.Reveal_Keyword_Folder()
+    End Sub
+
+    Private Sub Delete_Keyword_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_Keyword_Folder_btn.Click
+        FormComponentController.Delete_Keyword_Folder()
     End Sub
 End Class
