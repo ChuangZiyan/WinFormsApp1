@@ -209,7 +209,7 @@ Module FormInit
                 'Debug.WriteLine(file)
 
                 Dim split As String() = file.Split("\")
-                    Dim parentFolder As String = split(split.Length - 2)
+                Dim parentFolder As String = split(split.Length - 2)
                 Form1.Searching_Keyword_CheckedListBox.Items.Add(parentFolder + "\" + Path.GetFileName(file))
 
 

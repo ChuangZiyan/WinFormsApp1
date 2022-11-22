@@ -205,6 +205,9 @@ Partial Class Form1
         Me.Get_Groups_List_btn = New System.Windows.Forms.Button()
         Me.Groups_ListView = New System.Windows.Forms.ListView()
         Me.Searching = New System.Windows.Forms.TabPage()
+        Me.Search_Engine_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Keyword_TextFileName_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label44 = New System.Windows.Forms.Label()
         Me.Searching_Keyword_Text_SaveAs_btn = New System.Windows.Forms.Button()
         Me.Save_Search_Keyword_btn = New System.Windows.Forms.Button()
         Me.SearchingKeyword_folder_Textbox = New System.Windows.Forms.TextBox()
@@ -213,13 +216,12 @@ Partial Class Form1
         Me.Delete_Keyword_Folder_btn = New System.Windows.Forms.Button()
         Me.Searching_keyword_Text_Textbox = New System.Windows.Forms.TextBox()
         Me.Label42 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Insert_Random_Searching_Keyword_btn = New System.Windows.Forms.Button()
+        Me.Insert_Searching_Keyword_btn = New System.Windows.Forms.Button()
         Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Keyword_TextFileName_TextBox = New System.Windows.Forms.TextBox()
-        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2036,6 +2038,8 @@ Partial Class Form1
         '
         'Searching
         '
+        Me.Searching.Controls.Add(Me.Refresh_Searching_Keyword_CheckedListBox_btn)
+        Me.Searching.Controls.Add(Me.Search_Engine_ComboBox)
         Me.Searching.Controls.Add(Me.Keyword_TextFileName_TextBox)
         Me.Searching.Controls.Add(Me.Label44)
         Me.Searching.Controls.Add(Me.Searching_Keyword_Text_SaveAs_btn)
@@ -2046,8 +2050,8 @@ Partial Class Form1
         Me.Searching.Controls.Add(Me.Delete_Keyword_Folder_btn)
         Me.Searching.Controls.Add(Me.Searching_keyword_Text_Textbox)
         Me.Searching.Controls.Add(Me.Label42)
-        Me.Searching.Controls.Add(Me.Button2)
-        Me.Searching.Controls.Add(Me.Button1)
+        Me.Searching.Controls.Add(Me.Insert_Random_Searching_Keyword_btn)
+        Me.Searching.Controls.Add(Me.Insert_Searching_Keyword_btn)
         Me.Searching.Controls.Add(Me.Searching_Keyword_CheckedListBox)
         Me.Searching.Location = New System.Drawing.Point(4, 28)
         Me.Searching.Name = "Searching"
@@ -2055,6 +2059,31 @@ Partial Class Form1
         Me.Searching.TabIndex = 5
         Me.Searching.Text = "搜尋"
         Me.Searching.UseVisualStyleBackColor = True
+        '
+        'Search_Engine_ComboBox
+        '
+        Me.Search_Engine_ComboBox.FormattingEnabled = True
+        Me.Search_Engine_ComboBox.Items.AddRange(New Object() {"Facebook", "Google", "Youtube"})
+        Me.Search_Engine_ComboBox.Location = New System.Drawing.Point(367, 32)
+        Me.Search_Engine_ComboBox.Name = "Search_Engine_ComboBox"
+        Me.Search_Engine_ComboBox.Size = New System.Drawing.Size(152, 27)
+        Me.Search_Engine_ComboBox.TabIndex = 15
+        '
+        'Keyword_TextFileName_TextBox
+        '
+        Me.Keyword_TextFileName_TextBox.Location = New System.Drawing.Point(102, 297)
+        Me.Keyword_TextFileName_TextBox.Name = "Keyword_TextFileName_TextBox"
+        Me.Keyword_TextFileName_TextBox.Size = New System.Drawing.Size(259, 27)
+        Me.Keyword_TextFileName_TextBox.TabIndex = 14
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(46, 300)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(50, 19)
+        Me.Label44.TabIndex = 13
+        Me.Label44.Text = "名稱 : "
         '
         'Searching_Keyword_Text_SaveAs_btn
         '
@@ -2124,23 +2153,23 @@ Partial Class Form1
         Me.Label42.TabIndex = 4
         Me.Label42.Text = "內容 : "
         '
-        'Button2
+        'Insert_Random_Searching_Keyword_btn
         '
-        Me.Button2.Location = New System.Drawing.Point(367, 67)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(152, 29)
-        Me.Button2.TabIndex = 3
-        Me.Button2.Text = "隨機內容搜索 - 插入"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Insert_Random_Searching_Keyword_btn.Location = New System.Drawing.Point(525, 65)
+        Me.Insert_Random_Searching_Keyword_btn.Name = "Insert_Random_Searching_Keyword_btn"
+        Me.Insert_Random_Searching_Keyword_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Insert_Random_Searching_Keyword_btn.TabIndex = 3
+        Me.Insert_Random_Searching_Keyword_btn.Text = "隨機內容搜尋 - 插入"
+        Me.Insert_Random_Searching_Keyword_btn.UseVisualStyleBackColor = True
         '
-        'Button1
+        'Insert_Searching_Keyword_btn
         '
-        Me.Button1.Location = New System.Drawing.Point(367, 32)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(152, 29)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "搜索 - 插入"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Insert_Searching_Keyword_btn.Location = New System.Drawing.Point(525, 30)
+        Me.Insert_Searching_Keyword_btn.Name = "Insert_Searching_Keyword_btn"
+        Me.Insert_Searching_Keyword_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Insert_Searching_Keyword_btn.TabIndex = 2
+        Me.Insert_Searching_Keyword_btn.Text = "搜尋 - 插入"
+        Me.Insert_Searching_Keyword_btn.UseVisualStyleBackColor = True
         '
         'Searching_Keyword_CheckedListBox
         '
@@ -2156,21 +2185,14 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Keyword_TextFileName_TextBox
+        'Refresh_Searching_Keyword_CheckedListBox_btn
         '
-        Me.Keyword_TextFileName_TextBox.Location = New System.Drawing.Point(102, 297)
-        Me.Keyword_TextFileName_TextBox.Name = "Keyword_TextFileName_TextBox"
-        Me.Keyword_TextFileName_TextBox.Size = New System.Drawing.Size(259, 27)
-        Me.Keyword_TextFileName_TextBox.TabIndex = 14
-        '
-        'Label44
-        '
-        Me.Label44.AutoSize = True
-        Me.Label44.Location = New System.Drawing.Point(46, 300)
-        Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(50, 19)
-        Me.Label44.TabIndex = 13
-        Me.Label44.Text = "名稱 : "
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Location = New System.Drawing.Point(367, 192)
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Name = "Refresh_Searching_Keyword_CheckedListBox_btn"
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.TabIndex = 16
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Text = "重新整理"
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -2411,9 +2433,11 @@ Partial Class Form1
     Friend WithEvents Delete_Keyword_Folder_btn As Button
     Friend WithEvents Searching_keyword_Text_Textbox As TextBox
     Friend WithEvents Label42 As Label
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Insert_Random_Searching_Keyword_btn As Button
+    Friend WithEvents Insert_Searching_Keyword_btn As Button
     Friend WithEvents Searching_Keyword_CheckedListBox As CheckedListBox
     Friend WithEvents Keyword_TextFileName_TextBox As TextBox
     Friend WithEvents Label44 As Label
+    Friend WithEvents Search_Engine_ComboBox As ComboBox
+    Friend WithEvents Refresh_Searching_Keyword_CheckedListBox_btn As Button
 End Class

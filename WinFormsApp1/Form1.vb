@@ -131,7 +131,7 @@ Public Class Form1
     End Sub
 
 
-
+    '# Main routing struct #'
     Private Async Function Run_script(i As Integer) As Task
         'Debug.WriteLine(logging.Get_NewLogFile_dir())
 
@@ -346,8 +346,26 @@ Public Class Form1
                 Case "聊天"
                     Dim Target = content.Split(";")(0)
                     Dim Text = content.Split(";")(1)
-
                     boolean_result = Messager_Contact(Target, Text)
+
+                Case "搜尋"
+                    Dim param() = content.Split(";")
+                    boolean_result = Search_Keyword(param(0), param(1))
+                Case "搜尋:隨機"
+
+                    Dim param() = content.Split("%20")
+
+                    If param(1) = "全部隨機" Then
+                        Dim allKeywordTextFile = Searching_Keyword_CheckedListBox.Items
+                        Dim rnd = rnd_num.Next(0, allKeywordTextFile.Count)
+                        boolean_result = Search_Keyword(param(0), File.ReadAllText(FormInit.keyword_Searching_path + allKeywordTextFile(rnd)))
+                    Else
+                        Dim KeywordTextFiles = param(1).Split(";")
+                        Dim rnd = rnd_num.Next(0, KeywordTextFiles.Length)
+                        'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
+                        boolean_result = Search_Keyword(param(0), File.ReadAllText(FormInit.keyword_Searching_path + KeywordTextFiles(rnd)))
+                    End If
+
                 Case "關閉程式"
                     Try
                         Dim sec = Get_random_sec_frome_content(content)
@@ -1856,5 +1874,58 @@ Public Class Form1
 
     Private Sub Delete_Keyword_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_Keyword_Folder_btn.Click
         FormComponentController.Delete_Keyword_Folder()
+    End Sub
+
+    Private Sub Insert_Searching_Keyword_btn_Click(sender As Object, e As EventArgs) Handles Insert_Searching_Keyword_btn.Click
+        If Search_Engine_ComboBox.Text <> "" And Searching_keyword_Text_Textbox.Text <> "" Then
+            Insert_to_script("搜尋", Search_Engine_ComboBox.Text + ";" + Searching_keyword_Text_Textbox.Text)
+        Else
+            MsgBox("搜尋引擎或內容為空")
+        End If
+
+    End Sub
+
+    Private Sub Insert_Random_Searching_Keyword_btn_Click(sender As Object, e As EventArgs) Handles Insert_Random_Searching_Keyword_btn.Click
+
+        If Search_Engine_ComboBox.Text = "" Then
+            MsgBox("搜尋引擎為空")
+            Exit Sub
+        End If
+
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Searching_Keyword_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_file_path += itemChecked + ";"
+        Next
+
+        If Txt_file_path = "" Then
+            Insert_to_script("搜尋:隨機", Search_Engine_ComboBox.Text + "%20全部隨機")
+        Else
+            Insert_to_script("搜尋:隨機", Search_Engine_ComboBox.Text + "%20" + Txt_file_path.TrimEnd(";"))
+        End If
+    End Sub
+
+    Public Function Search_Keyword(engine As String, keyword As String)
+        Try
+            Select Case engine
+                Case "Facebook"
+                    chromeDriver.Navigate.GoToUrl("https://www.facebook.com/search/top/?q=" + keyword)
+                Case "Google"
+                    chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/search?q=" + keyword)
+                Case "Youtube"
+                    chromeDriver.Navigate.GoToUrl("https://www.youtube.com/results?search_query=" + keyword)
+            End Select
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+        Return True
+
+    End Function
+
+    Private Sub Refresh_Searching_Keyword_CheckedListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_Searching_Keyword_CheckedListBox_btn.Click
+        Searching_Keyword_CheckedListBox.Items.Clear()
+        FormInit.Render_Keyword_TextFIle()
     End Sub
 End Class
