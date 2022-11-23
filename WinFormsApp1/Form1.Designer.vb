@@ -32,6 +32,7 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Headless_Mode_Checkbox = New System.Windows.Forms.CheckBox()
         Me.Reset_Script_btn = New System.Windows.Forms.Button()
         Me.Continute_Script_btn = New System.Windows.Forms.Button()
         Me.Insert_Script_Start_TIme_btn = New System.Windows.Forms.Button()
@@ -201,10 +202,11 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
-        Me.Button11 = New System.Windows.Forms.Button()
-        Me.Get_Groups_List_btn = New System.Windows.Forms.Button()
         Me.Groups_ListView = New System.Windows.Forms.ListView()
+        Me.Get_mGroups_List_btn = New System.Windows.Forms.Button()
+        Me.Get_Groups_List_btn = New System.Windows.Forms.Button()
         Me.Searching = New System.Windows.Forms.TabPage()
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn = New System.Windows.Forms.Button()
         Me.Search_Engine_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Keyword_TextFileName_TextBox = New System.Windows.Forms.TextBox()
         Me.Label44 = New System.Windows.Forms.Label()
@@ -221,7 +223,6 @@ Partial Class Form1
         Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Refresh_Searching_Keyword_CheckedListBox_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -321,6 +322,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Headless_Mode_Checkbox)
         Me.GroupBox1.Controls.Add(Me.Reset_Script_btn)
         Me.GroupBox1.Controls.Add(Me.Continute_Script_btn)
         Me.GroupBox1.Controls.Add(Me.Insert_Script_Start_TIme_btn)
@@ -360,6 +362,16 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
+        '
+        'Headless_Mode_Checkbox
+        '
+        Me.Headless_Mode_Checkbox.AutoSize = True
+        Me.Headless_Mode_Checkbox.Location = New System.Drawing.Point(85, 844)
+        Me.Headless_Mode_Checkbox.Name = "Headless_Mode_Checkbox"
+        Me.Headless_Mode_Checkbox.Size = New System.Drawing.Size(91, 23)
+        Me.Headless_Mode_Checkbox.TabIndex = 128
+        Me.Headless_Mode_Checkbox.Text = "隱藏模式"
+        Me.Headless_Mode_Checkbox.UseVisualStyleBackColor = True
         '
         'Reset_Script_btn
         '
@@ -2000,9 +2012,9 @@ Partial Class Form1
         '
         'GroupList
         '
-        Me.GroupList.Controls.Add(Me.Button11)
-        Me.GroupList.Controls.Add(Me.Get_Groups_List_btn)
         Me.GroupList.Controls.Add(Me.Groups_ListView)
+        Me.GroupList.Controls.Add(Me.Get_mGroups_List_btn)
+        Me.GroupList.Controls.Add(Me.Get_Groups_List_btn)
         Me.GroupList.Location = New System.Drawing.Point(4, 28)
         Me.GroupList.Name = "GroupList"
         Me.GroupList.Size = New System.Drawing.Size(918, 820)
@@ -2010,14 +2022,22 @@ Partial Class Form1
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
         '
-        'Button11
+        'Groups_ListView
         '
-        Me.Button11.Location = New System.Drawing.Point(120, 24)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(123, 29)
-        Me.Button11.TabIndex = 2
-        Me.Button11.Text = "取m版社團列表"
-        Me.Button11.UseVisualStyleBackColor = True
+        Me.Groups_ListView.Location = New System.Drawing.Point(20, 59)
+        Me.Groups_ListView.Name = "Groups_ListView"
+        Me.Groups_ListView.Size = New System.Drawing.Size(876, 754)
+        Me.Groups_ListView.TabIndex = 3
+        Me.Groups_ListView.UseCompatibleStateImageBehavior = False
+        '
+        'Get_mGroups_List_btn
+        '
+        Me.Get_mGroups_List_btn.Location = New System.Drawing.Point(120, 24)
+        Me.Get_mGroups_List_btn.Name = "Get_mGroups_List_btn"
+        Me.Get_mGroups_List_btn.Size = New System.Drawing.Size(123, 29)
+        Me.Get_mGroups_List_btn.TabIndex = 2
+        Me.Get_mGroups_List_btn.Text = "取m版社團列表"
+        Me.Get_mGroups_List_btn.UseVisualStyleBackColor = True
         '
         'Get_Groups_List_btn
         '
@@ -2027,14 +2047,6 @@ Partial Class Form1
         Me.Get_Groups_List_btn.TabIndex = 1
         Me.Get_Groups_List_btn.Text = "取社團列表"
         Me.Get_Groups_List_btn.UseVisualStyleBackColor = True
-        '
-        'Groups_ListView
-        '
-        Me.Groups_ListView.Location = New System.Drawing.Point(20, 59)
-        Me.Groups_ListView.Name = "Groups_ListView"
-        Me.Groups_ListView.Size = New System.Drawing.Size(879, 729)
-        Me.Groups_ListView.TabIndex = 0
-        Me.Groups_ListView.UseCompatibleStateImageBehavior = False
         '
         'Searching
         '
@@ -2059,6 +2071,15 @@ Partial Class Form1
         Me.Searching.TabIndex = 5
         Me.Searching.Text = "搜尋"
         Me.Searching.UseVisualStyleBackColor = True
+        '
+        'Refresh_Searching_Keyword_CheckedListBox_btn
+        '
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Location = New System.Drawing.Point(367, 192)
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Name = "Refresh_Searching_Keyword_CheckedListBox_btn"
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.TabIndex = 16
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Text = "重新整理"
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.UseVisualStyleBackColor = True
         '
         'Search_Engine_ComboBox
         '
@@ -2184,15 +2205,6 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
-        '
-        'Refresh_Searching_Keyword_CheckedListBox_btn
-        '
-        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Location = New System.Drawing.Point(367, 192)
-        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Name = "Refresh_Searching_Keyword_CheckedListBox_btn"
-        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Size = New System.Drawing.Size(152, 29)
-        Me.Refresh_Searching_Keyword_CheckedListBox_btn.TabIndex = 16
-        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Text = "重新整理"
-        Me.Refresh_Searching_Keyword_CheckedListBox_btn.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -2403,7 +2415,6 @@ Partial Class Form1
     Friend WithEvents Delete_Selected_Profile_Folder_btn As Button
     Friend WithEvents GroupList As TabPage
     Friend WithEvents Get_Groups_List_btn As Button
-    Friend WithEvents Groups_ListView As ListView
     Friend WithEvents Label37 As Label
     Friend WithEvents Block_Text_TextBox As TextBox
     Friend WithEvents Label13 As Label
@@ -2423,7 +2434,7 @@ Partial Class Form1
     Friend WithEvents Label41 As Label
     Friend WithEvents Label40 As Label
     Friend WithEvents Label25 As Label
-    Friend WithEvents Button11 As Button
+    Friend WithEvents Get_mGroups_List_btn As Button
     Friend WithEvents Searching As TabPage
     Friend WithEvents Searching_Keyword_Text_SaveAs_btn As Button
     Friend WithEvents Save_Search_Keyword_btn As Button
@@ -2440,4 +2451,6 @@ Partial Class Form1
     Friend WithEvents Label44 As Label
     Friend WithEvents Search_Engine_ComboBox As ComboBox
     Friend WithEvents Refresh_Searching_Keyword_CheckedListBox_btn As Button
+    Friend WithEvents Headless_Mode_Checkbox As CheckBox
+    Friend WithEvents Groups_ListView As ListView
 End Class

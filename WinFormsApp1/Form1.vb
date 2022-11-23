@@ -521,6 +521,11 @@ Public Class Form1
                     running_chrome_profile = used_chrome_profile
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+
+                If Headless_Mode_Checkbox.Checked Then
+                    options.AddArguments("--headless", "--disable-gpu")
+                End If
+
                 used_dev_model = devicetype
                 used_browser = "Chrome"
                 If devicetype <> "PC" Then
@@ -569,6 +574,7 @@ Public Class Form1
             chromeDriver.Navigate.GoToUrl(url)
             Return True
         Catch ex As Exception
+            Debug.WriteLine(ex)
             Return False
         End Try
 
@@ -1091,7 +1097,7 @@ Public Class Form1
 
             Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
             'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5)
             For Each pattern In str_patterns
                 Debug.WriteLine("try : " + pattern.ToString())
                 If IsElementPresentByXpath("//span[contains(text(),'" + pattern.ToString() + "')]") Then
@@ -1909,11 +1915,26 @@ Public Class Form1
         Try
             Select Case engine
                 Case "Facebook"
-                    chromeDriver.Navigate.GoToUrl("https://www.facebook.com/search/top/?q=" + keyword)
+                    'chromeDriver.Navigate.GoToUrl("https://www.facebook.com/search/top/?q=" + keyword)
+                    Navigate_GoToUrl("https://www.facebook.com/")
+                    chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']")).Click()
+                    Dim Search_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x9f619.x78zum5.xnnlda6 > div > div > label > input"))
+                    Search_input.Clear()
+                    Search_input.SendKeys(keyword)
+                    Search_input.SendKeys(Keys.Enter)
                 Case "Google"
-                    chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/search?q=" + keyword)
+                    'chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/search?q=" + keyword)
+                    Navigate_GoToUrl("https://www.google.com.tw/")
+                    Dim search_input = chromeDriver.FindElement(By.CssSelector("div.a4bIc > input"))
+                    search_input.SendKeys(keyword)
+                    search_input.SendKeys(Keys.Enter)
                 Case "Youtube"
-                    chromeDriver.Navigate.GoToUrl("https://www.youtube.com/results?search_query=" + keyword)
+                    'chromeDriver.Navigate.GoToUrl("https://www.youtube.com/results?search_query=" + keyword)
+                    Navigate_GoToUrl("https://www.youtube.com/")
+                    Dim Search_input = chromeDriver.FindElement(By.CssSelector("#search-input > input"))
+                    Search_input.Clear()
+                    Search_input.SendKeys(keyword)
+                    Search_input.SendKeys(Keys.Enter)
             End Select
             Return True
         Catch ex As Exception
@@ -1927,5 +1948,39 @@ Public Class Form1
     Private Sub Refresh_Searching_Keyword_CheckedListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_Searching_Keyword_CheckedListBox_btn.Click
         Searching_Keyword_CheckedListBox.Items.Clear()
         FormInit.Render_Keyword_TextFIle()
+    End Sub
+
+    Private Sub Get_mGroups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_mGroups_List_btn.Click
+        Dim curr_row As Integer = 0
+        Dim pre_counter As Integer = 0
+
+        '### Find other groups ###
+        chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/")
+        Thread.Sleep(3000)
+        pre_counter = 0
+        While True ' Scroll to the bottom
+            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("a > ._7hkf._3qn7._61-3._2fyi._3qng")).Count
+            Debug.WriteLine(my_counter)
+            If my_counter = pre_counter Then
+                Exit While
+            End If
+            chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
+            pre_counter = my_counter
+            Thread.Sleep(1000)
+        End While
+
+
+        'Add to the listview
+        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector(".x1jchvi3.x132q4wb.xzsf02u.x117nqv4"))
+        Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("div._7hkf._3qn7._61-3._2fyi._3qng > a"))
+
+        'Debug.WriteLine(group_url_classes.Count)
+        For i As Integer = 0 To group_url_classes.Count - 1
+            'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
+            Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
+            'Groups_ListView.Items.Add("NameGG", 100)
+            Groups_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
+            curr_row += 1
+        Next
     End Sub
 End Class
