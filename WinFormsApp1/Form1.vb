@@ -104,7 +104,8 @@ Public Class Form1
         Continue_time = ""
         Restore_ListViewItems_BackColor()
         For Each item As ListViewItem In script_ListView.Items
-            item.SubItems.Item(6).Text = ("")
+            item.SubItems.Item(3).Text = ""
+            item.SubItems.Item(6).Text = ""
         Next
     End Sub
 
@@ -522,10 +523,6 @@ Public Class Form1
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
 
-                If Headless_Mode_Checkbox.Checked Then
-                    options.AddArguments("--headless", "--disable-gpu")
-                End If
-
                 used_dev_model = devicetype
                 used_browser = "Chrome"
                 If devicetype <> "PC" Then
@@ -534,6 +531,14 @@ Public Class Form1
                 chromeDriver = New ChromeDriver(serv, options)
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                 ' Refresh Profile Items
+
+
+
+                'Minimize windows util headless mode work fine
+                If Headless_Mode_Checkbox.Checked Then
+                    'options.AddArguments("--headless", "--disable-gpu")
+                    chromeDriver.Manage().Window().Minimize()
+                End If
 
 
                 act = New Actions(chromeDriver)
@@ -848,12 +853,16 @@ Public Class Form1
 
     Function IsElementPresentByCssSelector(locatorKey As String) As Boolean
         Try
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
             chromeDriver.FindElement(By.CssSelector(locatorKey))
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
         Catch ex As Exception
             'Debug.WriteLine(ex)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return False
         End Try
+
     End Function
 
     Function IsElementPresentByXpath(locatorXpath As String) As Boolean
@@ -1175,7 +1184,7 @@ Public Class Form1
     Private Function Upload_reply_img(img)
 
         Try
-            Debug.WriteLine("Copy " + img)
+            'Debug.WriteLine("Copy " + img)
             Dim msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
             Dim myimage = Bitmap.FromFile(img)
             Clipboard.SetImage(myimage)
@@ -1260,12 +1269,15 @@ Public Class Form1
 
             Dim msgbox_ele As Object
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
+
+                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='回覆']"))
             Else
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
+
+                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
+                'msgbox_ele = chromeDriver.FindElements(By.CssSelector(".xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
             End If
 
-            msgbox_ele.SendKeys(Keys.Enter)
+            msgbox_ele(0).SendKeys(Keys.Enter)
             Return True
 
         Catch ex As Exception
@@ -1916,6 +1928,12 @@ Public Class Form1
             Select Case engine
                 Case "Facebook"
                     'chromeDriver.Navigate.GoToUrl("https://www.facebook.com/search/top/?q=" + keyword)
+
+                    If IsElementPresentByCssSelector("div.x5yr21d.x1n2onr6.xh8yej3.x1t2pt76.x1plvlek.xryxfnj > div > div > div > div > div > div > label") Then
+                        chromeDriver.FindElement(By.CssSelector("div.x5yr21d.x1n2onr6.xh8yej3.x1t2pt76.x1plvlek.xryxfnj > div > div > div > div > div > div > label")).Click()
+                    End If
+
+
                     Navigate_GoToUrl("https://www.facebook.com/")
                     chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']")).Click()
                     Dim Search_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x9f619.x78zum5.xnnlda6 > div > div > label > input"))
