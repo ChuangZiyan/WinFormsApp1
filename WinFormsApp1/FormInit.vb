@@ -7,6 +7,8 @@ Module FormInit
     Public image_folder_path = curr_path + "resources\images\"
     Public save_script_folder_path = curr_path + "myscript\"
     Public keyword_Searching_path = curr_path + "keyword\"
+    Public configs_dir = curr_path + "configs\"
+
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
         Form1.script_ListView.GridLines = True
@@ -67,6 +69,16 @@ Module FormInit
         If Not System.IO.Directory.Exists(keyword_Searching_path) Then
             System.IO.Directory.CreateDirectory(keyword_Searching_path)
         End If
+
+        If Not System.IO.Directory.Exists(configs_dir) Then
+            System.IO.Directory.CreateDirectory(configs_dir)
+        End If
+
+        'Form1.Groups_ListView.Items.Add("row11111", 100)
+        'Form1.Groups_ListView.Items.Add("row22222", 100)
+        'Form1.Groups_ListView.Items(0).SubItems.Add("www.aaaaaaaaaaaaaaaaaa.com")
+        'Form1.Groups_ListView.Items(1).SubItems.Add("www.bbbbbbbbbbbbbbbbbbbb.com")
+
 
     End Sub
 
@@ -220,4 +232,10 @@ Module FormInit
     End Sub
 
 
+    Public Sub Render_Current_URL_ComboBox()
+        Dim URLs = New String() {"https://www.facebook.com/", "https://www.facebook.com/me/", "https://www.youtube.com/"} 'edit your URL here
+        For Each url In URLs
+            Form1.curr_url_ComboBox.Items.Add(url)
+        Next
+    End Sub
 End Module

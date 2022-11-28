@@ -26,7 +26,6 @@ Partial Class Form1
         Me.content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.driver_close_bnt = New System.Windows.Forms.Button()
         Me.curr_url_lbl = New System.Windows.Forms.Label()
-        Me.curr_url_TextBox = New System.Windows.Forms.TextBox()
         Me.img_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.group_name_TextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -70,6 +69,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.curr_url_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Insert_Shutdown_System_btn = New System.Windows.Forms.Button()
         Me.Insert_Exit_Program_btn = New System.Windows.Forms.Button()
         Me.Label38 = New System.Windows.Forms.Label()
@@ -202,6 +202,14 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.Insert_GroupList_Navigate_ToURL_btn = New System.Windows.Forms.Button()
+        Me.GroupList_GroupURL_Textbox = New System.Windows.Forms.TextBox()
+        Me.GroupList_GroupName_Textbox = New System.Windows.Forms.TextBox()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.GroupList_Replaced_String_TextBox = New System.Windows.Forms.TextBox()
+        Me.GroupList_Replace_String_Btn = New System.Windows.Forms.Button()
+        Me.GroupList_Target_String_TextBox = New System.Windows.Forms.TextBox()
         Me.Groups_ListView = New System.Windows.Forms.ListView()
         Me.Get_mGroups_List_btn = New System.Windows.Forms.Button()
         Me.Get_Groups_List_btn = New System.Windows.Forms.Button()
@@ -223,6 +231,7 @@ Partial Class Form1
         Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Navigation_Tab = New System.Windows.Forms.TabPage()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -278,13 +287,6 @@ Partial Class Form1
         Me.curr_url_lbl.Size = New System.Drawing.Size(46, 19)
         Me.curr_url_lbl.TabIndex = 10
         Me.curr_url_lbl.Text = "網址 :"
-        '
-        'curr_url_TextBox
-        '
-        Me.curr_url_TextBox.Location = New System.Drawing.Point(119, 545)
-        Me.curr_url_TextBox.Name = "curr_url_TextBox"
-        Me.curr_url_TextBox.Size = New System.Drawing.Size(314, 27)
-        Me.curr_url_TextBox.TabIndex = 11
         '
         'img_CheckedListBox
         '
@@ -696,6 +698,7 @@ Partial Class Form1
         Me.TabControl2.Controls.Add(Me.TabPage6)
         Me.TabControl2.Controls.Add(Me.GroupList)
         Me.TabControl2.Controls.Add(Me.Searching)
+        Me.TabControl2.Controls.Add(Me.Navigation_Tab)
         Me.TabControl2.Location = New System.Drawing.Point(6, 26)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -704,6 +707,7 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.curr_url_ComboBox)
         Me.TabPage5.Controls.Add(Me.Insert_Shutdown_System_btn)
         Me.TabPage5.Controls.Add(Me.Insert_Exit_Program_btn)
         Me.TabPage5.Controls.Add(Me.Label38)
@@ -725,7 +729,6 @@ Partial Class Form1
         Me.TabPage5.Controls.Add(Me.Profile_CheckedListBox)
         Me.TabPage5.Controls.Add(Me.Lang_Packs_ComboBox)
         Me.TabPage5.Controls.Add(Me.Label4)
-        Me.TabPage5.Controls.Add(Me.curr_url_TextBox)
         Me.TabPage5.Controls.Add(Me.Remark_TextBox)
         Me.TabPage5.Controls.Add(Me.curr_url_lbl)
         Me.TabPage5.Controls.Add(Me.Label1)
@@ -764,6 +767,14 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'curr_url_ComboBox
+        '
+        Me.curr_url_ComboBox.FormattingEnabled = True
+        Me.curr_url_ComboBox.Location = New System.Drawing.Point(119, 545)
+        Me.curr_url_ComboBox.Name = "curr_url_ComboBox"
+        Me.curr_url_ComboBox.Size = New System.Drawing.Size(314, 27)
+        Me.curr_url_ComboBox.TabIndex = 131
         '
         'Insert_Shutdown_System_btn
         '
@@ -2012,6 +2023,14 @@ Partial Class Form1
         '
         'GroupList
         '
+        Me.GroupList.Controls.Add(Me.Insert_GroupList_Navigate_ToURL_btn)
+        Me.GroupList.Controls.Add(Me.GroupList_GroupURL_Textbox)
+        Me.GroupList.Controls.Add(Me.GroupList_GroupName_Textbox)
+        Me.GroupList.Controls.Add(Me.Label46)
+        Me.GroupList.Controls.Add(Me.Label45)
+        Me.GroupList.Controls.Add(Me.GroupList_Replaced_String_TextBox)
+        Me.GroupList.Controls.Add(Me.GroupList_Replace_String_Btn)
+        Me.GroupList.Controls.Add(Me.GroupList_Target_String_TextBox)
         Me.GroupList.Controls.Add(Me.Groups_ListView)
         Me.GroupList.Controls.Add(Me.Get_mGroups_List_btn)
         Me.GroupList.Controls.Add(Me.Get_Groups_List_btn)
@@ -2022,17 +2041,81 @@ Partial Class Form1
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
         '
+        'Insert_GroupList_Navigate_ToURL_btn
+        '
+        Me.Insert_GroupList_Navigate_ToURL_btn.Location = New System.Drawing.Point(802, 50)
+        Me.Insert_GroupList_Navigate_ToURL_btn.Name = "Insert_GroupList_Navigate_ToURL_btn"
+        Me.Insert_GroupList_Navigate_ToURL_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_GroupList_Navigate_ToURL_btn.TabIndex = 11
+        Me.Insert_GroupList_Navigate_ToURL_btn.Text = "前往 - 插入"
+        Me.Insert_GroupList_Navigate_ToURL_btn.UseVisualStyleBackColor = True
+        '
+        'GroupList_GroupURL_Textbox
+        '
+        Me.GroupList_GroupURL_Textbox.Location = New System.Drawing.Point(463, 52)
+        Me.GroupList_GroupURL_Textbox.Name = "GroupList_GroupURL_Textbox"
+        Me.GroupList_GroupURL_Textbox.Size = New System.Drawing.Size(333, 27)
+        Me.GroupList_GroupURL_Textbox.TabIndex = 10
+        '
+        'GroupList_GroupName_Textbox
+        '
+        Me.GroupList_GroupName_Textbox.Location = New System.Drawing.Point(106, 52)
+        Me.GroupList_GroupName_Textbox.Name = "GroupList_GroupName_Textbox"
+        Me.GroupList_GroupName_Textbox.Size = New System.Drawing.Size(295, 27)
+        Me.GroupList_GroupName_Textbox.TabIndex = 9
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(407, 55)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(50, 19)
+        Me.Label46.TabIndex = 8
+        Me.Label46.Text = "網址 : "
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(20, 55)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(80, 19)
+        Me.Label45.TabIndex = 7
+        Me.Label45.Text = "社團名稱 : "
+        '
+        'GroupList_Replaced_String_TextBox
+        '
+        Me.GroupList_Replaced_String_TextBox.Location = New System.Drawing.Point(635, 9)
+        Me.GroupList_Replaced_String_TextBox.Name = "GroupList_Replaced_String_TextBox"
+        Me.GroupList_Replaced_String_TextBox.Size = New System.Drawing.Size(261, 27)
+        Me.GroupList_Replaced_String_TextBox.TabIndex = 6
+        '
+        'GroupList_Replace_String_Btn
+        '
+        Me.GroupList_Replace_String_Btn.Location = New System.Drawing.Point(535, 7)
+        Me.GroupList_Replace_String_Btn.Name = "GroupList_Replace_String_Btn"
+        Me.GroupList_Replace_String_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.GroupList_Replace_String_Btn.TabIndex = 5
+        Me.GroupList_Replace_String_Btn.Text = "->替換->"
+        Me.GroupList_Replace_String_Btn.UseVisualStyleBackColor = True
+        '
+        'GroupList_Target_String_TextBox
+        '
+        Me.GroupList_Target_String_TextBox.Location = New System.Drawing.Point(278, 9)
+        Me.GroupList_Target_String_TextBox.Name = "GroupList_Target_String_TextBox"
+        Me.GroupList_Target_String_TextBox.Size = New System.Drawing.Size(251, 27)
+        Me.GroupList_Target_String_TextBox.TabIndex = 4
+        '
         'Groups_ListView
         '
-        Me.Groups_ListView.Location = New System.Drawing.Point(20, 59)
+        Me.Groups_ListView.Location = New System.Drawing.Point(20, 91)
         Me.Groups_ListView.Name = "Groups_ListView"
-        Me.Groups_ListView.Size = New System.Drawing.Size(876, 754)
+        Me.Groups_ListView.Size = New System.Drawing.Size(876, 711)
         Me.Groups_ListView.TabIndex = 3
         Me.Groups_ListView.UseCompatibleStateImageBehavior = False
         '
         'Get_mGroups_List_btn
         '
-        Me.Get_mGroups_List_btn.Location = New System.Drawing.Point(120, 24)
+        Me.Get_mGroups_List_btn.Location = New System.Drawing.Point(149, 9)
         Me.Get_mGroups_List_btn.Name = "Get_mGroups_List_btn"
         Me.Get_mGroups_List_btn.Size = New System.Drawing.Size(123, 29)
         Me.Get_mGroups_List_btn.TabIndex = 2
@@ -2041,9 +2124,9 @@ Partial Class Form1
         '
         'Get_Groups_List_btn
         '
-        Me.Get_Groups_List_btn.Location = New System.Drawing.Point(20, 24)
+        Me.Get_Groups_List_btn.Location = New System.Drawing.Point(20, 9)
         Me.Get_Groups_List_btn.Name = "Get_Groups_List_btn"
-        Me.Get_Groups_List_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Get_Groups_List_btn.Size = New System.Drawing.Size(123, 29)
         Me.Get_Groups_List_btn.TabIndex = 1
         Me.Get_Groups_List_btn.Text = "取社團列表"
         Me.Get_Groups_List_btn.UseVisualStyleBackColor = True
@@ -2206,6 +2289,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Navigation_Tab
+        '
+        Me.Navigation_Tab.Location = New System.Drawing.Point(4, 28)
+        Me.Navigation_Tab.Name = "Navigation_Tab"
+        Me.Navigation_Tab.Size = New System.Drawing.Size(918, 820)
+        Me.Navigation_Tab.TabIndex = 6
+        Me.Navigation_Tab.Text = "前往"
+        Me.Navigation_Tab.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -2247,6 +2339,7 @@ Partial Class Form1
         Me.TabPage6.ResumeLayout(False)
         Me.TabPage6.PerformLayout()
         Me.GroupList.ResumeLayout(False)
+        Me.GroupList.PerformLayout()
         Me.Searching.ResumeLayout(False)
         Me.Searching.PerformLayout()
         Me.ResumeLayout(False)
@@ -2255,7 +2348,6 @@ Partial Class Form1
     Friend WithEvents content_RichTextBox As RichTextBox
     Friend WithEvents driver_close_bnt As Button
     Friend WithEvents curr_url_lbl As Label
-    Friend WithEvents curr_url_TextBox As TextBox
     Friend WithEvents img_CheckedListBox As CheckedListBox
     Friend WithEvents cursor_position_lbl As Label
     Friend WithEvents Insert_login_Button As Button
@@ -2453,4 +2545,14 @@ Partial Class Form1
     Friend WithEvents Refresh_Searching_Keyword_CheckedListBox_btn As Button
     Friend WithEvents Headless_Mode_Checkbox As CheckBox
     Friend WithEvents Groups_ListView As ListView
+    Friend WithEvents curr_url_ComboBox As ComboBox
+    Friend WithEvents GroupList_Replaced_String_TextBox As TextBox
+    Friend WithEvents GroupList_Replace_String_Btn As Button
+    Friend WithEvents GroupList_Target_String_TextBox As TextBox
+    Friend WithEvents Insert_GroupList_Navigate_ToURL_btn As Button
+    Friend WithEvents GroupList_GroupURL_Textbox As TextBox
+    Friend WithEvents GroupList_GroupName_Textbox As TextBox
+    Friend WithEvents Label46 As Label
+    Friend WithEvents Label45 As Label
+    Friend WithEvents Navigation_Tab As TabPage
 End Class

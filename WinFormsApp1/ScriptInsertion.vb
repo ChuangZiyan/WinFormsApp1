@@ -38,12 +38,12 @@ Module ScriptInsertion
     Public Sub Insert_navigate_to_url()
         Dim pattern As String
         pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
-        If Regex.IsMatch(Form1.curr_url_TextBox.Text, pattern) Then
+        If Regex.IsMatch(Form1.curr_url_ComboBox.Text, pattern) Then
             Dim content As String
             If Form1.group_name_TextBox.Text <> "" Then
-                content = Form1.group_name_TextBox.Text + ";" + Form1.curr_url_TextBox.Text
+                content = Form1.group_name_TextBox.Text + ";" + Form1.curr_url_ComboBox.Text
             Else
-                content = Form1.curr_url_TextBox.Text
+                content = Form1.curr_url_ComboBox.Text
             End If
 
             Insert_to_script("前往", content)
@@ -356,6 +356,18 @@ Module ScriptInsertion
             Insert_to_script("聊天", Form1.Messager_Name_TextBox.Text + ";" + Form1.Messager_Content_RichTextBox.Text)
         End If
 
+    End Sub
+
+
+    Public Sub Insert_navigate_to_url_in_GroupList()
+        Dim pattern As String
+        pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+        If Regex.IsMatch(Form1.GroupList_GroupURL_Textbox.Text, pattern) Then
+
+            Insert_to_script("前往", Form1.GroupList_GroupURL_Textbox.Text)
+        Else
+            MsgBox("網址格式錯誤")
+        End If
     End Sub
 
 End Module

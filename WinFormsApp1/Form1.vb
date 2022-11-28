@@ -64,7 +64,7 @@ Public Class Form1
         'Default String : 
         Profile_TextBox.Text = FormInit.curr_path + "profiles"
         Block_Text_TextBox.Text = "分隔行"
-        curr_url_TextBox.Text = "https://www.facebook.com/"
+        curr_url_ComboBox.Text = "https://www.facebook.com/"
 
         FormInit.Property_Folder_Init()
         FormInit.Render_Script_listview()
@@ -80,6 +80,7 @@ Public Class Form1
         FormInit.Render_ProfileName_ComboBox_Item()
         FormInit.Render_My_Script_ComboBox()
         FormInit.Render_Keyword_TextFIle()
+        FormInit.Render_Current_URL_ComboBox()
 
     End Sub
 
@@ -454,11 +455,11 @@ Public Class Form1
 
 
 
-        If curr_url_TextBox.Text <> "" Then
+        If curr_url_ComboBox.Text <> "" Then
             Dim pattern As String
             pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
-            If Regex.IsMatch(curr_url_TextBox.Text, pattern) Then
-                Navigate_GoToUrl(curr_url_TextBox.Text)
+            If Regex.IsMatch(curr_url_ComboBox.Text, pattern) Then
+                Navigate_GoToUrl(curr_url_ComboBox.Text)
             Else
                 MsgBox("網址格式錯誤")
             End If
@@ -533,7 +534,6 @@ Public Class Form1
                 ' Refresh Profile Items
 
 
-
                 'Minimize windows util headless mode work fine
                 If Headless_Mode_Checkbox.Checked Then
                     'options.AddArguments("--headless", "--disable-gpu")
@@ -604,107 +604,6 @@ Public Class Form1
             Return ""
         End Try
     End Function
-
-    Private Sub Get_Groups_Click(sender As Object, e As EventArgs)
-
-        chromeDriver.Navigate.GoToUrl("https://www.facebook.com/groups/feed/")
-        Thread.Sleep(3000)
-        Try 'if there are more groups, load the groups via button clicked
-            chromeDriver.FindElement(By.XPath("//span[contains(text(),'查看更多')]")).Click()
-            Thread.Sleep(1000)
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-        End Try
-
-        Dim scroll_x_value = 2000
-        Dim pre_counter As Integer = 0
-
-
-        While True
-            scroll_x_value += 1000
-            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("div.goun2846.mk2mc5f4.ccm00jje.s44p3ltw.rt8b4zig.sk4xxmp2.n8ej3o3l.agehan2d.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.hpfvmrgz.jb3vyjys.qt6c0cv9.l9j0dhe7.du4w35lb.bp9cbjyn.btwxx1t3.dflh9lhu.scb9dxdr.nnctdnn4 > div.goun2846.mk2mc5f4.ccm00jje.s44p3ltw.rt8b4zig.sk4xxmp2.n8ej3o3l.agehan2d.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.hpfvmrgz.jb3vyjys.rz4wbd8a.qt6c0cv9.a8nywdso.du4w35lb.bp9cbjyn.ns4p8fja.btwxx1t3.l9j0dhe7 > div > div > div > div:nth-child(1) > span > span > span")).Count
-            If my_counter = pre_counter Then
-                Exit While
-            End If
-
-            chromeDriver.ExecuteJavaScript("document.getElementsByClassName(""rpm2j7zs k7i0oixp gvuykj2m j83agx80 cbu4d94t ni8dbmo4 du4w35lb q5bimw55 ofs802cu pohlnb88 dkue75c7 mb9wzai9 d8ncny3e buofh1pr g5gj957u tgvbjcpo l56l04vs r57mb794 kh7kg01d eg9m0zos c3g1iek1 l9j0dhe7 k4xni2cv"")[0].scroll(0," & scroll_x_value & ")")
-            pre_counter = my_counter
-            Thread.Sleep(1000)
-        End While
-
-
-        Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("a.oajrlxb2.gs1a9yip.g5ia77u1.mtkw9kbi.tlpljxtp.qensuy8j.ppp5ayq2.goun2846.ccm00jje.s44p3ltw.mk2mc5f4.rt8b4zig.n8ej3o3l.agehan2d.sk4xxmp2.rq0escxv.nhd2j8a9.mg4g778l.pfnyh3mw.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.hpfvmrgz.jb3vyjys.rz4wbd8a.qt6c0cv9.a8nywdso.l9j0dhe7.i1ao9s8h.esuyzwwr.f1sip0of.du4w35lb.btwxx1t3.abiwlrkh.p8dawk7l.lzcic4wl.ue3kfks5.pw54ja7n.uo3d90p7.l82x9zwi.a8c37x1j"))
-        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector("div.goun2846.mk2mc5f4.ccm00jje.s44p3ltw.rt8b4zig.sk4xxmp2.n8ej3o3l.agehan2d.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.hpfvmrgz.jb3vyjys.qt6c0cv9.l9j0dhe7.du4w35lb.bp9cbjyn.btwxx1t3.dflh9lhu.scb9dxdr.nnctdnn4 > div.goun2846.mk2mc5f4.ccm00jje.s44p3ltw.rt8b4zig.sk4xxmp2.n8ej3o3l.agehan2d.rq0escxv.j83agx80.buofh1pr.g5gj957u.i1fnvgqd.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.tgvbjcpo.hpfvmrgz.jb3vyjys.rz4wbd8a.qt6c0cv9.a8nywdso.du4w35lb.bp9cbjyn.ns4p8fja.btwxx1t3.l9j0dhe7 > div > div > div > div:nth-child(1) > span > span > span"))
-        Debug.WriteLine(group_url_classes.Count)
-        For i As Integer = 1 To group_url_classes.Count - 1
-            'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
-            'Group_ListView.Items.Add(group_name_classes.ElementAt(i - 1).GetAttribute("innerHTML"), 100)
-            'Group_ListView.Items(i - 1).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
-        Next
-
-    End Sub
-
-    Private Sub get_groups_from_m_Click(sender As Object, e As EventArgs)
-
-        Dim curr_row As Integer = 0
-
-        '### Find manage groups ###
-        chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/manage/")
-        Thread.Sleep(3000)
-        Dim pre_counter As Integer = 0
-
-        While True 'Scroll to the bottom
-
-            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector(m_css_selector_config_obj.Item("mng_group_name_classes"))).Count
-            If my_counter = pre_counter Then
-                Exit While
-            End If
-            chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
-            pre_counter = my_counter
-
-        End While
-
-
-        'Get manage groups and add to the listview
-        Dim mng_group_name_classes = chromeDriver.FindElements(By.CssSelector(m_css_selector_config_obj.Item("mng_group_name_classes")))
-        Dim mng_group_url_classes = chromeDriver.FindElements(By.CssSelector(m_css_selector_config_obj.Item("mng_group_url_classes")))
-        For i As Integer = 0 To mng_group_name_classes.Count - 1
-            'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
-            'Group_ListView.Items.Add(mng_group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
-            'Group_ListView.Items(curr_row).SubItems.Add(mng_group_url_classes.ElementAt(i).GetAttribute("href"))
-            curr_row += 1
-        Next
-
-
-
-        '### Find other groups ###
-        chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/")
-        Thread.Sleep(3000)
-        pre_counter = 0
-        While True ' Scroll to the bottom
-            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("div._2pip > div > a > div > div._7ymb._3qn7._61-0._2fyi._3qng > div > div._4ik4._4ik5 > div")).Count
-            If my_counter = pre_counter Then
-                Exit While
-            End If
-            chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
-            pre_counter = my_counter
-            Thread.Sleep(1000)
-        End While
-
-
-        'Get other groups and add to the listview
-        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector("div._2pip > div > a > div > div._7ymb._3qn7._61-0._2fyi._3qng > div > div._4ik4._4ik5 > div"))
-        Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("div._7om2 > div > div > div:nth-child(3) > div > div._2pip > div > a"))
-
-        'Debug.WriteLine(group_url_classes.Count)
-        For i As Integer = 0 To group_url_classes.Count - 1
-            'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
-            'Group_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
-            'Group_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
-            curr_row += 1
-        Next
-
-    End Sub
 
 
     Private Sub Driver_close_Click(sender As Object, e As EventArgs) Handles driver_close_bnt.Click
@@ -1446,7 +1345,7 @@ Public Class Form1
 
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
         Try
-            curr_url_TextBox.Text = chromeDriver.Url
+            curr_url_ComboBox.Text = chromeDriver.Url
         Catch ex As Exception
             MsgBox("未偵測到Chrome")
         End Try
@@ -1619,7 +1518,7 @@ Public Class Form1
         fb_account_TextBox.Text = ""
         fb_password_TextBox.Text = ""
         group_name_TextBox.Text = ""
-        curr_url_TextBox.Text = ""
+        curr_url_ComboBox.Text = ""
 
 
         Select Case browser
@@ -1640,7 +1539,7 @@ Public Class Form1
                 Else
                     group_name_TextBox.Text = ""
                 End If
-                curr_url_TextBox.Text = content
+                curr_url_ComboBox.Text = content
 
                 'Case "開啟"
                 'profile_path_TextBox.Text = content
@@ -1791,6 +1690,7 @@ Public Class Form1
     End Sub
 
     Private Async Sub Get_Groups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_Groups_List_btn.Click
+        Groups_ListView.Items.Clear()
         chromeDriver.Navigate.GoToUrl("https://www.facebook.com/groups/feed/")
         Try 'if there are more groups, load the groups via button clicked
             chromeDriver.FindElement(By.XPath("//span[contains(text(),'查看更多')]")).Click()
@@ -1819,7 +1719,7 @@ Public Class Form1
         Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.x1sxyh0.xurb0ha > a"))
         'Debug.WriteLine(group_name_classes.Count)
         For i As Integer = 0 To group_name_classes.Count - 1
-            Debug.WriteLine(group_name_classes.ElementAt(i))
+            'Debug.WriteLine(group_name_classes.ElementAt(i))
             Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
             Groups_ListView.Items(i).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
         Next
@@ -1971,14 +1871,14 @@ Public Class Form1
     Private Sub Get_mGroups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_mGroups_List_btn.Click
         Dim curr_row As Integer = 0
         Dim pre_counter As Integer = 0
-
+        Groups_ListView.Items.Clear()
         '### Find other groups ###
         chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/")
         Thread.Sleep(3000)
         pre_counter = 0
         While True ' Scroll to the bottom
             Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("a > ._7hkf._3qn7._61-3._2fyi._3qng")).Count
-            Debug.WriteLine(my_counter)
+            'Debug.WriteLine(my_counter)
             If my_counter = pre_counter Then
                 Exit While
             End If
@@ -2000,5 +1900,24 @@ Public Class Form1
             Groups_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
             curr_row += 1
         Next
+    End Sub
+
+    Private Sub GroupList_Replace_String_Btn_Click(sender As Object, e As EventArgs) Handles GroupList_Replace_String_Btn.Click
+        For Each item As ListViewItem In Groups_ListView.Items
+            Debug.WriteLine(item.SubItems(1).Text)
+            item.SubItems(1).Text = item.SubItems(1).Text.Replace(GroupList_Target_String_TextBox.Text, GroupList_Replaced_String_TextBox.Text)
+        Next
+    End Sub
+
+    Private Sub Groups_ListView_ItemSelectionChanged(sender As Object, e As EventArgs) Handles Groups_ListView.ItemSelectionChanged
+        For i As Integer = Groups_ListView.SelectedIndices.Count - 1 To 0 Step -1
+            'Debug.WriteLine(Groups_ListView.SelectedItems.Item(0).SubItems(0).Text)
+            GroupList_GroupName_Textbox.Text = Groups_ListView.SelectedItems.Item(0).SubItems(0).Text
+            GroupList_GroupURL_Textbox.Text = Groups_ListView.SelectedItems.Item(0).SubItems(1).Text
+        Next
+    End Sub
+
+    Private Sub Insert_GroupList_Navigate_ToURL_btn_Click(sender As Object, e As EventArgs) Handles Insert_GroupList_Navigate_ToURL_btn.Click
+        ScriptInsertion.Insert_navigate_to_url_in_GroupList()
     End Sub
 End Class
