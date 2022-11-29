@@ -347,7 +347,6 @@ Module ScriptInsertion
         End If
     End Sub
 
-
     Public Sub Insert_Messager_Contact()
 
         If Form1.Messager_Name_TextBox.Text = "" Or Form1.Messager_Content_RichTextBox.Text = "" Then
@@ -357,7 +356,6 @@ Module ScriptInsertion
         End If
 
     End Sub
-
 
     Public Sub Insert_navigate_to_url_in_GroupList()
         Dim pattern As String
@@ -369,5 +367,40 @@ Module ScriptInsertion
             MsgBox("網址格式錯誤")
         End If
     End Sub
+
+    Public Sub Insert_Random_Searching_Keyword()
+        If Form1.Search_Engine_ComboBox.Text = "" Then
+            MsgBox("搜尋引擎為空")
+            Exit Sub
+        End If
+
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Form1.Searching_Keyword_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_file_path += itemChecked + ";"
+        Next
+
+        If Txt_file_path = "" Then
+            Insert_to_script("搜尋:隨機", Form1.Search_Engine_ComboBox.Text + "%20全部隨機")
+        Else
+            Insert_to_script("搜尋:隨機", Form1.Search_Engine_ComboBox.Text + "%20" + Txt_file_path.TrimEnd(";"))
+        End If
+    End Sub
+
+    Public Sub Insert_Random_Navigation_URL()
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Form1.Navigation_URL_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_file_path += itemChecked + ";"
+        Next
+
+        If Txt_file_path = "" Then
+            Insert_to_script("前往:隨機", "全部隨機")
+        Else
+            Insert_to_script("前往:隨機", Txt_file_path.TrimEnd(";"))
+        End If
+    End Sub
+
+
 
 End Module

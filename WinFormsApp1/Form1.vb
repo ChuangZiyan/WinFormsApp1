@@ -80,6 +80,7 @@ Public Class Form1
         FormInit.Render_ProfileName_ComboBox_Item()
         FormInit.Render_My_Script_ComboBox()
         FormInit.Render_Keyword_TextFIle()
+        FormInit.Render_URL_TextFIle()
         FormInit.Render_Current_URL_ComboBox()
 
     End Sub
@@ -230,11 +231,24 @@ Public Class Form1
                     boolean_result = Login_fb(account_passwd(0).Split(":")(1), account_passwd(1).Split(":")(1))
                     Await Delay_msec(1000)
                 Case "前往"
-
                     If content.Contains(";"c) Then
                         content = content.Split(";")(1)
                     End If
                     boolean_result = Navigate_GoToUrl(content)
+
+                Case "前往:隨機"
+
+                    If content = "全部隨機" Then
+                        Dim allURLTextFile = Navigation_URL_CheckedListBox.Items
+                        Dim rnd = rnd_num.Next(0, allURLTextFile.Count)
+                        boolean_result = Navigate_GoToUrl(File.ReadAllText(FormInit.URL_Navigation_path + allURLTextFile(rnd)))
+                    Else
+                        Dim URLTextFiles = content.Split(";")
+                        Dim rnd = rnd_num.Next(0, URLTextFiles.Length)
+                        'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
+                        boolean_result = Navigate_GoToUrl(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
+                    End If
+
                 Case "等待"
                     Try
 
@@ -320,7 +334,7 @@ Public Class Form1
                     If IsElementPresentByClass("uiScaledImageContainer") Then
                         boolean_result = Submit_reply_comment()
                     Else
-                        boolean_result = False
+                        boolean_result = Submit_reply_comment()
                         'Await Delay(1000)
                     End If
 
@@ -1778,20 +1792,40 @@ Public Class Form1
         FormComponentController.Save_Search_Keyword_btn_Click()
     End Sub
 
+    Private Sub Save_Navigation_URL_btn_Click(sender As Object, e As EventArgs) Handles Save_Navigation_URL_btn.Click
+        FormComponentController.Save_Navigation_URL_btn_Click()
+    End Sub
+
     Private Sub Searching_Keyword_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Searching_Keyword_CheckedListBox.ItemCheck
         FormComponentController.Searching_Keyword_CheckedListBox_OnClick()
+    End Sub
+
+    Private Sub Navigation_URL_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Navigation_URL_CheckedListBox.ItemCheck
+        FormComponentController.Navigation_URL_CheckedListBox_OnClick()
     End Sub
 
     Private Sub Searching_Keyword_Text_SaveAs_btn_Click(sender As Object, e As EventArgs) Handles Searching_Keyword_Text_SaveAs_btn.Click
         FormComponentController.Searching_Keyword_Text_SaveAs()
     End Sub
 
+    Private Sub Navigation_URL_Text_SaveAs_btn_Click(sender As Object, e As EventArgs) Handles Navigation_URL_Text_SaveAs_btn.Click
+        FormComponentController.Navigation_URL_Text_SaveAs()
+    End Sub
+
     Private Sub Reveal_Keyword_Folder_btn_Click(sender As Object, e As EventArgs) Handles Reveal_Keyword_Folder_btn.Click
         FormComponentController.Reveal_Keyword_Folder()
     End Sub
 
+    Private Sub Reveal_Navigation_URL_Folder_btn_Click(sender As Object, e As EventArgs) Handles Reveal_Navigation_URL_Folder_btn.Click
+        FormComponentController.Reveal_Navigation_URL_Folder()
+    End Sub
+
     Private Sub Delete_Keyword_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_Keyword_Folder_btn.Click
         FormComponentController.Delete_Keyword_Folder()
+    End Sub
+
+    Private Sub Delete_NavigationURL_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_NavigationURL_Folder_btn.Click
+        FormComponentController.Delete_Navigation_URL_File()
     End Sub
 
     Private Sub Insert_Searching_Keyword_btn_Click(sender As Object, e As EventArgs) Handles Insert_Searching_Keyword_btn.Click
@@ -1804,23 +1838,11 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_Random_Searching_Keyword_btn_Click(sender As Object, e As EventArgs) Handles Insert_Random_Searching_Keyword_btn.Click
+        ScriptInsertion.Insert_Random_Searching_Keyword()
+    End Sub
 
-        If Search_Engine_ComboBox.Text = "" Then
-            MsgBox("搜尋引擎為空")
-            Exit Sub
-        End If
-
-        Dim Txt_file_path As String = ""
-        For Each itemChecked In Searching_Keyword_CheckedListBox.CheckedItems
-            'Debug.WriteLine(itemChecked)
-            Txt_file_path += itemChecked + ";"
-        Next
-
-        If Txt_file_path = "" Then
-            Insert_to_script("搜尋:隨機", Search_Engine_ComboBox.Text + "%20全部隨機")
-        Else
-            Insert_to_script("搜尋:隨機", Search_Engine_ComboBox.Text + "%20" + Txt_file_path.TrimEnd(";"))
-        End If
+    Private Sub Insert_Random_Navigation_URL_btn_Click(sender As Object, e As EventArgs) Handles Insert_Random_Navigation_URL_btn.Click
+        ScriptInsertion.Insert_Random_Navigation_URL()
     End Sub
 
     Public Function Search_Keyword(engine As String, keyword As String)
@@ -1866,6 +1888,11 @@ Public Class Form1
     Private Sub Refresh_Searching_Keyword_CheckedListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_Searching_Keyword_CheckedListBox_btn.Click
         Searching_Keyword_CheckedListBox.Items.Clear()
         FormInit.Render_Keyword_TextFIle()
+    End Sub
+
+    Private Sub Refresh_Navigation_URL_CheckedListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_Navigation_URL_CheckedListBox_btn.Click
+        Navigation_URL_CheckedListBox.Items.Clear()
+        FormInit.Render_URL_TextFIle()
     End Sub
 
     Private Sub Get_mGroups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_mGroups_List_btn.Click
@@ -1920,4 +1947,6 @@ Public Class Form1
     Private Sub Insert_GroupList_Navigate_ToURL_btn_Click(sender As Object, e As EventArgs) Handles Insert_GroupList_Navigate_ToURL_btn.Click
         ScriptInsertion.Insert_navigate_to_url_in_GroupList()
     End Sub
+
+
 End Class

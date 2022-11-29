@@ -405,6 +405,33 @@ Module FormComponentController
 
     End Sub
 
+    Public Sub Save_Navigation_URL_btn_Click()
+
+        If Form1.Navigation_URL_Dir_TextBox.Text <> "" Then
+
+            Dim navigation_url_folder_path = FormInit.URL_Navigation_path + "/" + Form1.Navigation_URL_Dir_TextBox.Text
+            Dim url_file_name As String
+
+            If Form1.Navigation_URL_FIleName_TextBox.Text = "" Then ' auto generate file name
+                url_file_name = Date.Now.ToString("yyyyMMddHHmmss")
+                url_file_name = "url_" + url_file_name + ".txt"
+            Else
+                url_file_name = Form1.Navigation_URL_FIleName_TextBox.Text + ".txt"
+            End If
+
+            If Not System.IO.Directory.Exists(navigation_url_folder_path) Then
+                System.IO.Directory.CreateDirectory(navigation_url_folder_path)
+            End If
+            WriteAllText(navigation_url_folder_path + "/" + url_file_name, Form1.Navigation_URL_FileText_TextBox.Text)
+            Form1.Navigation_URL_CheckedListBox.Items.Clear()
+            FormInit.Render_URL_TextFIle()
+
+        Else
+            MsgBox("資料夾名稱不得為空")
+        End If
+
+    End Sub
+
 
     Public Sub Searching_Keyword_CheckedListBox_OnClick()
 
@@ -416,6 +443,18 @@ Module FormComponentController
         Dim temp_arr = Txt_file_path.Split("\")
         Form1.Keyword_TextFileName_TextBox.Text = Path.GetFileNameWithoutExtension(Txt_file_path)
         Form1.SearchingKeyword_folder_Textbox.Text = temp_arr(temp_arr.Length - 2)
+    End Sub
+
+    Public Sub Navigation_URL_CheckedListBox_OnClick()
+
+        Dim Txt_file_path As String = ""
+        For Each itemSeleted In Form1.Navigation_URL_CheckedListBox.SelectedItems
+            Txt_file_path = itemSeleted
+        Next
+        Form1.Navigation_URL_FileText_TextBox.Text = File.ReadAllText(FormInit.URL_Navigation_path + Txt_file_path)
+        Dim temp_arr = Txt_file_path.Split("\")
+        Form1.Navigation_URL_FIleName_TextBox.Text = Path.GetFileNameWithoutExtension(Txt_file_path)
+        Form1.Navigation_URL_Dir_TextBox.Text = temp_arr(temp_arr.Length - 2)
     End Sub
 
     Public Sub Searching_Keyword_Text_SaveAs()
@@ -433,6 +472,21 @@ Module FormComponentController
         End If
     End Sub
 
+    Public Sub Navigation_URL_Text_SaveAs()
+        Dim url_txt = Form1.Navigation_URL_FileText_TextBox.Text
+        Form1.SaveFileDialog1.Filter = "txt files (*.txt)|"
+        Form1.SaveFileDialog1.DefaultExt = "txt"
+        Form1.SaveFileDialog1.FilterIndex = 2
+        Form1.SaveFileDialog1.RestoreDirectory = True
+
+        If Form1.SaveFileDialog1.ShowDialog = DialogResult.OK Then
+            'Debug.WriteLine(script_txt)
+            WriteAllText(Form1.SaveFileDialog1.FileName, url_txt)
+            Form1.Navigation_URL_CheckedListBox.Items.Clear()
+            FormInit.Render_URL_TextFIle()
+        End If
+    End Sub
+
 
     Public Sub Reveal_Keyword_Folder()
         If Form1.SearchingKeyword_folder_Textbox.Text = "" Then
@@ -441,6 +495,19 @@ Module FormComponentController
         End If
 
         Dim mypath As String = FormInit.keyword_Searching_path + Form1.SearchingKeyword_folder_Textbox.Text
+        If Not System.IO.Directory.Exists(mypath) Then
+            System.IO.Directory.CreateDirectory(mypath)
+        End If
+        Process.Start("explorer.exe", mypath)
+    End Sub
+
+    Public Sub Reveal_Navigation_URL_Folder()
+        If Form1.Navigation_URL_Dir_TextBox.Text = "" Then
+            MsgBox("資料夾名稱不可為空白")
+            Exit Sub
+        End If
+
+        Dim mypath As String = FormInit.URL_Navigation_path + Form1.Navigation_URL_Dir_TextBox.Text
         If Not System.IO.Directory.Exists(mypath) Then
             System.IO.Directory.CreateDirectory(mypath)
         End If
@@ -457,6 +524,23 @@ Module FormComponentController
                     File.Delete(keyword_file)
                     Form1.Searching_Keyword_CheckedListBox.Items.Clear()
                     FormInit.Render_Keyword_TextFIle()
+                    Exit Sub
+                End If
+
+            End If
+        Next
+    End Sub
+
+    Public Sub Delete_Navigation_URL_File()
+        For Each itemSelected In Form1.Navigation_URL_CheckedListBox.SelectedItems
+
+            Dim url_file = FormInit.URL_Navigation_path + itemSelected
+            If File.Exists(url_file) Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除此檔案?", "確認訊息", MessageBoxButtons.YesNo)
+                If result = DialogResult.Yes Then
+                    File.Delete(url_file)
+                    Form1.Navigation_URL_CheckedListBox.Items.Clear()
+                    FormInit.Render_URL_TextFIle()
                     Exit Sub
                 End If
 
