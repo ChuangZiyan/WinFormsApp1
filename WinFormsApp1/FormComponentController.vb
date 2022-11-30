@@ -548,4 +548,20 @@ Module FormComponentController
         Next
     End Sub
 
+
+    Public Sub Auto_Generated_TextFile()
+        Dim Texts() As String = Form1.Auto_GenerateTextFile_RichTextBox.Text.Split(vbLf)
+        Dim file_count = 1
+        For Each txt In Texts
+            Debug.WriteLine("txt = " + txt)
+            If txt <> "" Then
+                WriteAllText(FormInit.auto_generated_textfile_path + CStr(file_count) + ".txt", txt)
+                file_count += 1
+            End If
+
+        Next
+    End Sub
+
+
+
 End Module

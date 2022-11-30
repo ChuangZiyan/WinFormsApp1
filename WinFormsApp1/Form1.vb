@@ -696,28 +696,6 @@ Public Class Form1
         Click_by_Cursor_Offset(cursor_x, cursor_y)
     End Sub
 
-    Private Sub crawl_post_btn_Click(sender As Object, e As EventArgs)
-        Dim driverManager = New DriverManager()
-        driverManager.SetUpDriver(New ChromeConfig())
-
-
-        Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
-        serv.HideCommandPromptWindow = True 'hide cmd
-
-        Dim options = New Chrome.ChromeOptions()
-        options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--headless")
-
-        chromeDriver = New ChromeDriver(serv, options)
-        Thread.Sleep(1000)
-        'chromeDriver.Navigate.GoToUrl(target_url_TextBox.Text)
-        Thread.Sleep(1000)
-
-        Dim content As String = chromeDriver.FindElement(By.CssSelector("._5_jv._58jw > p")).GetAttribute("innerHTML")
-
-        content_RichTextBox.Text = content
-        chromeDriver.Quit()
-
-    End Sub
 
     Private Sub block_user_btn_Click(sender As Object, e As EventArgs)
 
@@ -1948,5 +1926,70 @@ Public Class Form1
         ScriptInsertion.Insert_navigate_to_url_in_GroupList()
     End Sub
 
+    Private Sub Reveal_Auto_Generated_Folder_Btn_Click(sender As Object, e As EventArgs) Handles Reveal_Auto_Generated_Folder_Btn.Click
 
+        Dim mypath As String = FormInit.auto_generated_textfile_path
+        If Not System.IO.Directory.Exists(mypath) Then
+            System.IO.Directory.CreateDirectory(mypath)
+        End If
+        Process.Start("explorer.exe", mypath)
+    End Sub
+
+    Private Sub Auto_Generated_TextFile_Btn_Click(sender As Object, e As EventArgs) Handles Auto_Generated_TextFile_Btn.Click
+        FormComponentController.Auto_Generated_TextFile()
+    End Sub
+
+
+
+    Private Async Sub Crawl_Post_Content_Btn_Click(sender As Object, e As EventArgs) Handles Crawl_Post_Content_Btn.Click
+
+        Crawl_Post_Content_Btn.Enabled = False
+        Crawl_Post_Content_Btn.Text = "抓取中..."
+
+        Dim chromeDriverCrawler As IWebDriver
+
+        Dim driverManager = New DriverManager()
+        driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+        Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
+
+        serv.HideCommandPromptWindow = True 'hide cmd
+
+        Dim options = New Chrome.ChromeOptions()
+
+        options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+
+        If Crawl_Headless_Mode_CheckBox.Checked = True Then
+            options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--headless", "--disable-gpu")
+        Else
+            options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+        End If
+
+        chromeDriverCrawler = New ChromeDriver(serv, options)
+
+        Try
+            chromeDriverCrawler.Navigate.GoToUrl(Crawler_Post_URL_TextBox.Text)
+            If chromeDriverCrawler.Url.Contains("?next=") Then
+                Await Delay_msec(2000) ' waiting for redirection
+                chromeDriverCrawler.Navigate.GoToUrl(Crawler_Post_URL_TextBox.Text)
+            End If
+            'next=
+            Dim css_selector_str = "div[data-testid='post_message'] > p:nth-child(1)"
+
+            If Crawler_Post_URL_TextBox.Text.Contains("m.facebook.com") Then
+                css_selector_str = "div._5rgt._5nk5 > div > p"
+            End If
+
+            Crawler_Post_Content_RichTextBox.Text = chromeDriverCrawler.FindElement(By.CssSelector(css_selector_str)).GetAttribute("innerHTML")
+            chromeDriverCrawler.Quit()
+            Crawl_Post_Content_Btn.Enabled = True
+            Crawl_Post_Content_Btn.Text = "抓取貼文內容"
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            'chromeDriverCrawler.Quit()
+            Crawler_Post_Content_RichTextBox.Text = "抓取失敗,網址錯誤或者其他錯誤"
+            Crawl_Post_Content_Btn.Enabled = True
+            Crawl_Post_Content_Btn.Text = "抓取貼文內容"
+        End Try
+
+    End Sub
 End Class

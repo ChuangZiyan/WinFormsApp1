@@ -243,8 +243,19 @@ Partial Class Form1
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Insert_Random_Navigation_URL_btn = New System.Windows.Forms.Button()
         Me.Navigation_URL_CheckedListBox = New System.Windows.Forms.CheckedListBox()
+        Me.Widget_TabPage = New System.Windows.Forms.TabPage()
+        Me.Auto_Generated_TextFile_Btn = New System.Windows.Forms.Button()
+        Me.Reveal_Auto_Generated_Folder_Btn = New System.Windows.Forms.Button()
+        Me.Auto_GenerateTextFile_RichTextBox = New System.Windows.Forms.RichTextBox()
+        Me.Post_Crawler = New System.Windows.Forms.TabPage()
+        Me.Crawl_Headless_Mode_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Crawl_Post_Content_Btn = New System.Windows.Forms.Button()
+        Me.Crawler_Post_URL_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label50 = New System.Windows.Forms.Label()
+        Me.Crawler_Post_Content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Block_User = New System.Windows.Forms.TabPage()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -272,6 +283,8 @@ Partial Class Form1
         Me.GroupList.SuspendLayout()
         Me.Searching.SuspendLayout()
         Me.Navigation_Tab.SuspendLayout()
+        Me.Widget_TabPage.SuspendLayout()
+        Me.Post_Crawler.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -713,6 +726,9 @@ Partial Class Form1
         Me.TabControl2.Controls.Add(Me.GroupList)
         Me.TabControl2.Controls.Add(Me.Searching)
         Me.TabControl2.Controls.Add(Me.Navigation_Tab)
+        Me.TabControl2.Controls.Add(Me.Widget_TabPage)
+        Me.TabControl2.Controls.Add(Me.Post_Crawler)
+        Me.TabControl2.Controls.Add(Me.Block_User)
         Me.TabControl2.Location = New System.Drawing.Point(6, 26)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -2431,10 +2447,114 @@ Partial Class Form1
         Me.Navigation_URL_CheckedListBox.Size = New System.Drawing.Size(330, 224)
         Me.Navigation_URL_CheckedListBox.TabIndex = 17
         '
+        'Widget_TabPage
+        '
+        Me.Widget_TabPage.Controls.Add(Me.Auto_Generated_TextFile_Btn)
+        Me.Widget_TabPage.Controls.Add(Me.Reveal_Auto_Generated_Folder_Btn)
+        Me.Widget_TabPage.Controls.Add(Me.Auto_GenerateTextFile_RichTextBox)
+        Me.Widget_TabPage.Location = New System.Drawing.Point(4, 28)
+        Me.Widget_TabPage.Name = "Widget_TabPage"
+        Me.Widget_TabPage.Size = New System.Drawing.Size(918, 820)
+        Me.Widget_TabPage.TabIndex = 7
+        Me.Widget_TabPage.Text = "小工具"
+        Me.Widget_TabPage.UseVisualStyleBackColor = True
+        '
+        'Auto_Generated_TextFile_Btn
+        '
+        Me.Auto_Generated_TextFile_Btn.Location = New System.Drawing.Point(114, 745)
+        Me.Auto_Generated_TextFile_Btn.Name = "Auto_Generated_TextFile_Btn"
+        Me.Auto_Generated_TextFile_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Auto_Generated_TextFile_Btn.TabIndex = 2
+        Me.Auto_Generated_TextFile_Btn.Text = "逐項儲存"
+        Me.Auto_Generated_TextFile_Btn.UseVisualStyleBackColor = True
+        '
+        'Reveal_Auto_Generated_Folder_Btn
+        '
+        Me.Reveal_Auto_Generated_Folder_Btn.Location = New System.Drawing.Point(14, 745)
+        Me.Reveal_Auto_Generated_Folder_Btn.Name = "Reveal_Auto_Generated_Folder_Btn"
+        Me.Reveal_Auto_Generated_Folder_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Reveal_Auto_Generated_Folder_Btn.TabIndex = 1
+        Me.Reveal_Auto_Generated_Folder_Btn.Text = "打開資料夾"
+        Me.Reveal_Auto_Generated_Folder_Btn.UseVisualStyleBackColor = True
+        '
+        'Auto_GenerateTextFile_RichTextBox
+        '
+        Me.Auto_GenerateTextFile_RichTextBox.Location = New System.Drawing.Point(14, 16)
+        Me.Auto_GenerateTextFile_RichTextBox.Name = "Auto_GenerateTextFile_RichTextBox"
+        Me.Auto_GenerateTextFile_RichTextBox.Size = New System.Drawing.Size(890, 711)
+        Me.Auto_GenerateTextFile_RichTextBox.TabIndex = 0
+        Me.Auto_GenerateTextFile_RichTextBox.Text = ""
+        '
+        'Post_Crawler
+        '
+        Me.Post_Crawler.Controls.Add(Me.Crawl_Headless_Mode_CheckBox)
+        Me.Post_Crawler.Controls.Add(Me.Crawl_Post_Content_Btn)
+        Me.Post_Crawler.Controls.Add(Me.Crawler_Post_URL_TextBox)
+        Me.Post_Crawler.Controls.Add(Me.Label50)
+        Me.Post_Crawler.Controls.Add(Me.Crawler_Post_Content_RichTextBox)
+        Me.Post_Crawler.Location = New System.Drawing.Point(4, 28)
+        Me.Post_Crawler.Name = "Post_Crawler"
+        Me.Post_Crawler.Size = New System.Drawing.Size(918, 820)
+        Me.Post_Crawler.TabIndex = 8
+        Me.Post_Crawler.Text = "抓取貼文內容"
+        Me.Post_Crawler.UseVisualStyleBackColor = True
+        '
+        'Crawl_Headless_Mode_CheckBox
+        '
+        Me.Crawl_Headless_Mode_CheckBox.AutoSize = True
+        Me.Crawl_Headless_Mode_CheckBox.Location = New System.Drawing.Point(14, 759)
+        Me.Crawl_Headless_Mode_CheckBox.Name = "Crawl_Headless_Mode_CheckBox"
+        Me.Crawl_Headless_Mode_CheckBox.Size = New System.Drawing.Size(91, 23)
+        Me.Crawl_Headless_Mode_CheckBox.TabIndex = 5
+        Me.Crawl_Headless_Mode_CheckBox.Text = "隱藏模式"
+        Me.Crawl_Headless_Mode_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Crawl_Post_Content_Btn
+        '
+        Me.Crawl_Post_Content_Btn.Location = New System.Drawing.Point(111, 755)
+        Me.Crawl_Post_Content_Btn.Name = "Crawl_Post_Content_Btn"
+        Me.Crawl_Post_Content_Btn.Size = New System.Drawing.Size(140, 29)
+        Me.Crawl_Post_Content_Btn.TabIndex = 3
+        Me.Crawl_Post_Content_Btn.Text = "抓取貼文內容"
+        Me.Crawl_Post_Content_Btn.UseVisualStyleBackColor = True
+        '
+        'Crawler_Post_URL_TextBox
+        '
+        Me.Crawler_Post_URL_TextBox.Location = New System.Drawing.Point(100, 718)
+        Me.Crawler_Post_URL_TextBox.Name = "Crawler_Post_URL_TextBox"
+        Me.Crawler_Post_URL_TextBox.Size = New System.Drawing.Size(805, 27)
+        Me.Crawler_Post_URL_TextBox.TabIndex = 2
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.Location = New System.Drawing.Point(14, 721)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(80, 19)
+        Me.Label50.TabIndex = 1
+        Me.Label50.Text = "貼文網址 : "
+        '
+        'Crawler_Post_Content_RichTextBox
+        '
+        Me.Crawler_Post_Content_RichTextBox.Location = New System.Drawing.Point(14, 15)
+        Me.Crawler_Post_Content_RichTextBox.Name = "Crawler_Post_Content_RichTextBox"
+        Me.Crawler_Post_Content_RichTextBox.Size = New System.Drawing.Size(891, 685)
+        Me.Crawler_Post_Content_RichTextBox.TabIndex = 0
+        Me.Crawler_Post_Content_RichTextBox.Text = ""
+        '
         'Timer1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
+        '
+        'Block_User
+        '
+        Me.Block_User.Location = New System.Drawing.Point(4, 28)
+        Me.Block_User.Name = "Block_User"
+        Me.Block_User.Size = New System.Drawing.Size(918, 820)
+        Me.Block_User.TabIndex = 9
+        Me.Block_User.Text = "封鎖人"
+        Me.Block_User.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -2482,6 +2602,9 @@ Partial Class Form1
         Me.Searching.PerformLayout()
         Me.Navigation_Tab.ResumeLayout(False)
         Me.Navigation_Tab.PerformLayout()
+        Me.Widget_TabPage.ResumeLayout(False)
+        Me.Post_Crawler.ResumeLayout(False)
+        Me.Post_Crawler.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2708,4 +2831,15 @@ Partial Class Form1
     Friend WithEvents Label49 As Label
     Friend WithEvents Insert_Random_Navigation_URL_btn As Button
     Friend WithEvents Navigation_URL_CheckedListBox As CheckedListBox
+    Friend WithEvents Widget_TabPage As TabPage
+    Friend WithEvents Auto_GenerateTextFile_RichTextBox As RichTextBox
+    Friend WithEvents Auto_Generated_TextFile_Btn As Button
+    Friend WithEvents Reveal_Auto_Generated_Folder_Btn As Button
+    Friend WithEvents Post_Crawler As TabPage
+    Friend WithEvents Crawler_Post_URL_TextBox As TextBox
+    Friend WithEvents Label50 As Label
+    Friend WithEvents Crawler_Post_Content_RichTextBox As RichTextBox
+    Friend WithEvents Crawl_Headless_Mode_CheckBox As CheckBox
+    Friend WithEvents Crawl_Post_Content_Btn As Button
+    Friend WithEvents Block_User As TabPage
 End Class

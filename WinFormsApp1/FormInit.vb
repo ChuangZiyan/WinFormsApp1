@@ -9,6 +9,7 @@ Module FormInit
     Public keyword_Searching_path = curr_path + "keyword\"
     Public URL_Navigation_path = curr_path + "url\"
     Public configs_dir = curr_path + "configs\"
+    Public auto_generated_textfile_path = curr_path + "auto_generated\"
 
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
@@ -79,11 +80,9 @@ Module FormInit
             System.IO.Directory.CreateDirectory(configs_dir)
         End If
 
-        'Form1.Groups_ListView.Items.Add("row11111", 100)
-        'Form1.Groups_ListView.Items.Add("row22222", 100)
-        'Form1.Groups_ListView.Items(0).SubItems.Add("www.aaaaaaaaaaaaaaaaaa.com")
-        'Form1.Groups_ListView.Items(1).SubItems.Add("www.bbbbbbbbbbbbbbbbbbbb.com")
-
+        If Not System.IO.Directory.Exists(auto_generated_textfile_path) Then
+            System.IO.Directory.CreateDirectory(auto_generated_textfile_path)
+        End If
 
     End Sub
 
