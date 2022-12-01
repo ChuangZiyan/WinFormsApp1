@@ -69,6 +69,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Open_Random_Profile_btn = New System.Windows.Forms.Button()
         Me.curr_url_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Insert_Shutdown_System_btn = New System.Windows.Forms.Button()
         Me.Insert_Exit_Program_btn = New System.Windows.Forms.Button()
@@ -202,14 +203,14 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.GroupList_Replaced_String_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.GroupList_Target_String_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Insert_GroupList_Navigate_ToURL_btn = New System.Windows.Forms.Button()
         Me.GroupList_GroupURL_Textbox = New System.Windows.Forms.TextBox()
         Me.GroupList_GroupName_Textbox = New System.Windows.Forms.TextBox()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.Label45 = New System.Windows.Forms.Label()
-        Me.GroupList_Replaced_String_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList_Replace_String_Btn = New System.Windows.Forms.Button()
-        Me.GroupList_Target_String_TextBox = New System.Windows.Forms.TextBox()
         Me.Groups_ListView = New System.Windows.Forms.ListView()
         Me.Get_mGroups_List_btn = New System.Windows.Forms.Button()
         Me.Get_Groups_List_btn = New System.Windows.Forms.Button()
@@ -244,6 +245,9 @@ Partial Class Form1
         Me.Insert_Random_Navigation_URL_btn = New System.Windows.Forms.Button()
         Me.Navigation_URL_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
+        Me.Delete_Str_from_RTBox_btn = New System.Windows.Forms.Button()
+        Me.Split_NewLine_By_Char_btn = New System.Windows.Forms.Button()
+        Me.Pattern_Str_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Auto_Generated_TextFile_Btn = New System.Windows.Forms.Button()
         Me.Reveal_Auto_Generated_Folder_Btn = New System.Windows.Forms.Button()
         Me.Auto_GenerateTextFile_RichTextBox = New System.Windows.Forms.RichTextBox()
@@ -253,9 +257,9 @@ Partial Class Form1
         Me.Crawler_Post_URL_TextBox = New System.Windows.Forms.TextBox()
         Me.Label50 = New System.Windows.Forms.Label()
         Me.Crawler_Post_Content_RichTextBox = New System.Windows.Forms.RichTextBox()
+        Me.Block_User = New System.Windows.Forms.TabPage()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Block_User = New System.Windows.Forms.TabPage()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -737,6 +741,7 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Open_Random_Profile_btn)
         Me.TabPage5.Controls.Add(Me.curr_url_ComboBox)
         Me.TabPage5.Controls.Add(Me.Insert_Shutdown_System_btn)
         Me.TabPage5.Controls.Add(Me.Insert_Exit_Program_btn)
@@ -797,6 +802,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Open_Random_Profile_btn
+        '
+        Me.Open_Random_Profile_btn.Location = New System.Drawing.Point(439, 257)
+        Me.Open_Random_Profile_btn.Name = "Open_Random_Profile_btn"
+        Me.Open_Random_Profile_btn.Size = New System.Drawing.Size(163, 29)
+        Me.Open_Random_Profile_btn.TabIndex = 132
+        Me.Open_Random_Profile_btn.Text = "隨機開啟瀏覽器"
+        Me.Open_Random_Profile_btn.UseVisualStyleBackColor = True
         '
         'curr_url_ComboBox
         '
@@ -2053,14 +2067,14 @@ Partial Class Form1
         '
         'GroupList
         '
+        Me.GroupList.Controls.Add(Me.GroupList_Replaced_String_ComboBox)
+        Me.GroupList.Controls.Add(Me.GroupList_Target_String_ComboBox)
         Me.GroupList.Controls.Add(Me.Insert_GroupList_Navigate_ToURL_btn)
         Me.GroupList.Controls.Add(Me.GroupList_GroupURL_Textbox)
         Me.GroupList.Controls.Add(Me.GroupList_GroupName_Textbox)
         Me.GroupList.Controls.Add(Me.Label46)
         Me.GroupList.Controls.Add(Me.Label45)
-        Me.GroupList.Controls.Add(Me.GroupList_Replaced_String_TextBox)
         Me.GroupList.Controls.Add(Me.GroupList_Replace_String_Btn)
-        Me.GroupList.Controls.Add(Me.GroupList_Target_String_TextBox)
         Me.GroupList.Controls.Add(Me.Groups_ListView)
         Me.GroupList.Controls.Add(Me.Get_mGroups_List_btn)
         Me.GroupList.Controls.Add(Me.Get_Groups_List_btn)
@@ -2070,6 +2084,24 @@ Partial Class Form1
         Me.GroupList.TabIndex = 4
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
+        '
+        'GroupList_Replaced_String_ComboBox
+        '
+        Me.GroupList_Replaced_String_ComboBox.FormattingEnabled = True
+        Me.GroupList_Replaced_String_ComboBox.Items.AddRange(New Object() {"www.facebook.com"})
+        Me.GroupList_Replaced_String_ComboBox.Location = New System.Drawing.Point(635, 7)
+        Me.GroupList_Replaced_String_ComboBox.Name = "GroupList_Replaced_String_ComboBox"
+        Me.GroupList_Replaced_String_ComboBox.Size = New System.Drawing.Size(261, 27)
+        Me.GroupList_Replaced_String_ComboBox.TabIndex = 13
+        '
+        'GroupList_Target_String_ComboBox
+        '
+        Me.GroupList_Target_String_ComboBox.FormattingEnabled = True
+        Me.GroupList_Target_String_ComboBox.Items.AddRange(New Object() {"m.facebook.com"})
+        Me.GroupList_Target_String_ComboBox.Location = New System.Drawing.Point(278, 9)
+        Me.GroupList_Target_String_ComboBox.Name = "GroupList_Target_String_ComboBox"
+        Me.GroupList_Target_String_ComboBox.Size = New System.Drawing.Size(251, 27)
+        Me.GroupList_Target_String_ComboBox.TabIndex = 12
         '
         'Insert_GroupList_Navigate_ToURL_btn
         '
@@ -2112,13 +2144,6 @@ Partial Class Form1
         Me.Label45.TabIndex = 7
         Me.Label45.Text = "社團名稱 : "
         '
-        'GroupList_Replaced_String_TextBox
-        '
-        Me.GroupList_Replaced_String_TextBox.Location = New System.Drawing.Point(635, 9)
-        Me.GroupList_Replaced_String_TextBox.Name = "GroupList_Replaced_String_TextBox"
-        Me.GroupList_Replaced_String_TextBox.Size = New System.Drawing.Size(261, 27)
-        Me.GroupList_Replaced_String_TextBox.TabIndex = 6
-        '
         'GroupList_Replace_String_Btn
         '
         Me.GroupList_Replace_String_Btn.Location = New System.Drawing.Point(535, 7)
@@ -2127,13 +2152,6 @@ Partial Class Form1
         Me.GroupList_Replace_String_Btn.TabIndex = 5
         Me.GroupList_Replace_String_Btn.Text = "->替換->"
         Me.GroupList_Replace_String_Btn.UseVisualStyleBackColor = True
-        '
-        'GroupList_Target_String_TextBox
-        '
-        Me.GroupList_Target_String_TextBox.Location = New System.Drawing.Point(278, 9)
-        Me.GroupList_Target_String_TextBox.Name = "GroupList_Target_String_TextBox"
-        Me.GroupList_Target_String_TextBox.Size = New System.Drawing.Size(251, 27)
-        Me.GroupList_Target_String_TextBox.TabIndex = 4
         '
         'Groups_ListView
         '
@@ -2449,6 +2467,9 @@ Partial Class Form1
         '
         'Widget_TabPage
         '
+        Me.Widget_TabPage.Controls.Add(Me.Delete_Str_from_RTBox_btn)
+        Me.Widget_TabPage.Controls.Add(Me.Split_NewLine_By_Char_btn)
+        Me.Widget_TabPage.Controls.Add(Me.Pattern_Str_ComboBox)
         Me.Widget_TabPage.Controls.Add(Me.Auto_Generated_TextFile_Btn)
         Me.Widget_TabPage.Controls.Add(Me.Reveal_Auto_Generated_Folder_Btn)
         Me.Widget_TabPage.Controls.Add(Me.Auto_GenerateTextFile_RichTextBox)
@@ -2458,6 +2479,33 @@ Partial Class Form1
         Me.Widget_TabPage.TabIndex = 7
         Me.Widget_TabPage.Text = "小工具"
         Me.Widget_TabPage.UseVisualStyleBackColor = True
+        '
+        'Delete_Str_from_RTBox_btn
+        '
+        Me.Delete_Str_from_RTBox_btn.Location = New System.Drawing.Point(783, 743)
+        Me.Delete_Str_from_RTBox_btn.Name = "Delete_Str_from_RTBox_btn"
+        Me.Delete_Str_from_RTBox_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Delete_Str_from_RTBox_btn.TabIndex = 5
+        Me.Delete_Str_from_RTBox_btn.Text = "刪除"
+        Me.Delete_Str_from_RTBox_btn.UseVisualStyleBackColor = True
+        '
+        'Split_NewLine_By_Char_btn
+        '
+        Me.Split_NewLine_By_Char_btn.Location = New System.Drawing.Point(683, 743)
+        Me.Split_NewLine_By_Char_btn.Name = "Split_NewLine_By_Char_btn"
+        Me.Split_NewLine_By_Char_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Split_NewLine_By_Char_btn.TabIndex = 4
+        Me.Split_NewLine_By_Char_btn.Text = "分行"
+        Me.Split_NewLine_By_Char_btn.UseVisualStyleBackColor = True
+        '
+        'Pattern_Str_ComboBox
+        '
+        Me.Pattern_Str_ComboBox.FormattingEnabled = True
+        Me.Pattern_Str_ComboBox.Items.AddRange(New Object() {"，", "。", ",", "."})
+        Me.Pattern_Str_ComboBox.Location = New System.Drawing.Point(526, 745)
+        Me.Pattern_Str_ComboBox.Name = "Pattern_Str_ComboBox"
+        Me.Pattern_Str_ComboBox.Size = New System.Drawing.Size(151, 27)
+        Me.Pattern_Str_ComboBox.TabIndex = 3
         '
         'Auto_Generated_TextFile_Btn
         '
@@ -2484,6 +2532,7 @@ Partial Class Form1
         Me.Auto_GenerateTextFile_RichTextBox.Size = New System.Drawing.Size(890, 711)
         Me.Auto_GenerateTextFile_RichTextBox.TabIndex = 0
         Me.Auto_GenerateTextFile_RichTextBox.Text = ""
+        Me.Auto_GenerateTextFile_RichTextBox.WordWrap = False
         '
         'Post_Crawler
         '
@@ -2542,11 +2591,6 @@ Partial Class Form1
         Me.Crawler_Post_Content_RichTextBox.TabIndex = 0
         Me.Crawler_Post_Content_RichTextBox.Text = ""
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
-        '
         'Block_User
         '
         Me.Block_User.Location = New System.Drawing.Point(4, 28)
@@ -2555,6 +2599,11 @@ Partial Class Form1
         Me.Block_User.TabIndex = 9
         Me.Block_User.Text = "封鎖人"
         Me.Block_User.UseVisualStyleBackColor = True
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
         '
         'Form1
         '
@@ -2809,9 +2858,7 @@ Partial Class Form1
     Friend WithEvents Headless_Mode_Checkbox As CheckBox
     Friend WithEvents Groups_ListView As ListView
     Friend WithEvents curr_url_ComboBox As ComboBox
-    Friend WithEvents GroupList_Replaced_String_TextBox As TextBox
     Friend WithEvents GroupList_Replace_String_Btn As Button
-    Friend WithEvents GroupList_Target_String_TextBox As TextBox
     Friend WithEvents Insert_GroupList_Navigate_ToURL_btn As Button
     Friend WithEvents GroupList_GroupURL_Textbox As TextBox
     Friend WithEvents GroupList_GroupName_Textbox As TextBox
@@ -2842,4 +2889,10 @@ Partial Class Form1
     Friend WithEvents Crawl_Headless_Mode_CheckBox As CheckBox
     Friend WithEvents Crawl_Post_Content_Btn As Button
     Friend WithEvents Block_User As TabPage
+    Friend WithEvents Open_Random_Profile_btn As Button
+    Friend WithEvents GroupList_Replaced_String_ComboBox As ComboBox
+    Friend WithEvents GroupList_Target_String_ComboBox As ComboBox
+    Friend WithEvents Split_NewLine_By_Char_btn As Button
+    Friend WithEvents Pattern_Str_ComboBox As ComboBox
+    Friend WithEvents Delete_Str_from_RTBox_btn As Button
 End Class

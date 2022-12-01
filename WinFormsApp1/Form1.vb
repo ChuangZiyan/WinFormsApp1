@@ -482,12 +482,43 @@ Public Class Form1
 
     End Sub
 
+
+    Private Sub Open_Random_Profile_btn_Click(sender As Object, e As EventArgs) Handles Open_Random_Profile_btn.Click
+        If chrome_RadioButton.Checked = True Then
+
+            If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
+                used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
+            Else
+                used_dev_model = "PC"
+            End If
+
+            Dim myprofile = ""
+            If Profile_TextBox.Text <> "" And Profile_Name_ComboBox.Text <> "" Then
+                myprofile = Profile_TextBox.Text + "\" + Profile_Name_ComboBox.Text
+            Else
+                For Each itemSeleted In Profile_CheckedListBox.SelectedItems
+                    'Debug.WriteLine(itemSeleted)
+                    myprofile = itemSeleted
+                Next
+            End If
+
+
+            Open_Browser("Chrome", used_dev_model, "全部隨機")
+
+        ElseIf firefox_RadioButton.Checked = True Then
+            Open_Firefox()
+        ElseIf edge_RadioButton.Checked = True Then
+            Open_Edge()
+        End If
+
+    End Sub
+
     Private Function Open_Browser(browser As String, devicetype As String, profile As String)
 
         If profile = "全部隨機" Then
             Dim allProfileItem = Profile_CheckedListBox.Items
             Dim rnd = rnd_num.Next(0, allProfileItem.Count)
-            profile = allProfileItem(rnd)
+            profile = curr_path + allProfileItem(rnd)
         Else
             Dim ProfileItem = profile.Split(";")
             Dim rnd = rnd_num.Next(0, ProfileItem.Length)
@@ -495,7 +526,7 @@ Public Class Form1
 
         End If
 
-        'Debug.WriteLine("profile : " + profile)
+        Debug.WriteLine("profile : " + profile)
 
         If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
             Dim JsonString As String = System.IO.File.ReadAllText(profile + "\ProfileInfo.txt")
@@ -1910,7 +1941,7 @@ Public Class Form1
     Private Sub GroupList_Replace_String_Btn_Click(sender As Object, e As EventArgs) Handles GroupList_Replace_String_Btn.Click
         For Each item As ListViewItem In Groups_ListView.Items
             Debug.WriteLine(item.SubItems(1).Text)
-            item.SubItems(1).Text = item.SubItems(1).Text.Replace(GroupList_Target_String_TextBox.Text, GroupList_Replaced_String_TextBox.Text)
+            item.SubItems(1).Text = item.SubItems(1).Text.Replace(GroupList_Target_String_ComboBox.Text, GroupList_Replaced_String_ComboBox.Text)
         Next
     End Sub
 
@@ -1973,7 +2004,7 @@ Public Class Form1
                 chromeDriverCrawler.Navigate.GoToUrl(Crawler_Post_URL_TextBox.Text)
             End If
             'next=
-            Dim css_selector_str = "div[data-testid='post_message'] > p:nth-child(1)"
+            Dim css_selector_str = "div[data-testid='post_message'] > div"
 
             If Crawler_Post_URL_TextBox.Text.Contains("m.facebook.com") Then
                 css_selector_str = "div._5rgt._5nk5 > div > p"
@@ -1991,5 +2022,22 @@ Public Class Form1
             Crawl_Post_Content_Btn.Text = "抓取貼文內容"
         End Try
 
+    End Sub
+
+    Private Sub Split_NewLine_By_Char_btn_Click(sender As Object, e As EventArgs) Handles Split_NewLine_By_Char_btn.Click
+        If Auto_GenerateTextFile_RichTextBox.Text = "" Then
+            Return
+        End If
+        Dim myRichBoxText() = Auto_GenerateTextFile_RichTextBox.Text.Split(Pattern_Str_ComboBox.Text)
+
+        Auto_GenerateTextFile_RichTextBox.Clear()
+        For Each line In myRichBoxText
+            Auto_GenerateTextFile_RichTextBox.AppendText(line & vbCr)
+        Next
+
+    End Sub
+
+    Private Sub Delete_Str_from_RTBox_btn_Click(sender As Object, e As EventArgs) Handles Delete_Str_from_RTBox_btn.Click
+        Auto_GenerateTextFile_RichTextBox.Text = Auto_GenerateTextFile_RichTextBox.Text.Replace(Pattern_Str_ComboBox.Text, "")
     End Sub
 End Class

@@ -3,6 +3,8 @@
 Module FormInit
 
     Public curr_path = My.Computer.FileSystem.CurrentDirectory + "\"
+
+    Public profile_path = curr_path + "profiles\"
     Public text_folder_path = curr_path + "resources\texts\"
     Public image_folder_path = curr_path + "resources\images\"
     Public save_script_folder_path = curr_path + "myscript\"
@@ -59,7 +61,6 @@ Module FormInit
             System.IO.Directory.CreateDirectory(img_path)
         End If
 
-        Dim profile_path = My.Computer.FileSystem.CurrentDirectory + "\profiles"
         If Not System.IO.Directory.Exists(profile_path) Then
             System.IO.Directory.CreateDirectory(profile_path)
         End If
