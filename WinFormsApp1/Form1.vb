@@ -25,20 +25,14 @@ Public Class Form1
     'Const Version = "1.0.221027.1"
 
 
-    Dim chromeDriver As IWebDriver
+    'Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
-
-
-
 
     Dim rnd_num As New Random()
 
     Public css_selector_config_obj As Newtonsoft.Json.Linq.JObject
     Public m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
-
-    Public used_browser As String = ""
-    Public used_dev_model As String = "PC"
     Public used_chrome_profile As String = ""
     Public running_chrome_profile As String = ""
     'Dim webDriverWait As WebDriverWait
@@ -50,7 +44,10 @@ Public Class Form1
     Public Profile_Queue() As String
 
     'Dim act = New Actions(chromeDriver)
-    Dim act As Actions
+    Public act As Actions
+
+
+    Public myWebDriver As New MyWebDriver()
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -194,7 +191,7 @@ Public Class Form1
                     boolean_result = True
                 Case "開啟"
                     If profile = "" Or profile <> running_chrome_profile Then
-                        boolean_result = Open_Browser(brower, devicetype, content)
+                        boolean_result = myWebDriver.Open_Browser(brower, devicetype, content)
                     Else
                         boolean_result = False
                     End If
@@ -203,12 +200,12 @@ Public Class Form1
                     If i = 1 Then
                         Profile_Queue = content.Split(";")
                     End If
-                    Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
+                    'Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
                     used_chrome_profile = Profile_Queue(profile_index).Split("\")(UBound(Profile_Queue(profile_index).Split("\")))
                     item.SubItems.Item(3).Text = used_chrome_profile
-                    boolean_result = Open_Browser(brower, devicetype, Profile_Queue(profile_index))
+                    boolean_result = myWebDriver.Open_Browser(brower, devicetype, Profile_Queue(profile_index))
 
-                    Debug.WriteLine("ProfleQ: " & Profile_Queue.Count)
+                    'Debug.WriteLine("ProfleQ: " & Profile_Queue.Count)
 
                     If Profile_Queue.Count - 1 = profile_index Then
 
@@ -228,25 +225,25 @@ Public Class Form1
                 Case "登入"
                     Dim auth() As String = content.Split(";")
                     Dim account_passwd = content.Split(" ")
-                    boolean_result = Login_fb(account_passwd(0).Split(":")(1), account_passwd(1).Split(":")(1))
+                    boolean_result = myWebDriver.Login_fb(account_passwd(0).Split(":")(1), account_passwd(1).Split(":")(1))
                     Await Delay_msec(1000)
                 Case "前往"
                     If content.Contains(";"c) Then
                         content = content.Split(";")(1)
                     End If
-                    boolean_result = Navigate_GoToUrl(content)
+                    boolean_result = myWebDriver.Navigate_GoToUrl(content)
 
                 Case "前往:隨機"
 
                     If content = "全部隨機" Then
                         Dim allURLTextFile = Navigation_URL_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allURLTextFile.Count)
-                        boolean_result = Navigate_GoToUrl(File.ReadAllText(FormInit.URL_Navigation_path + allURLTextFile(rnd)))
+                        boolean_result = myWebDriver.Navigate_GoToUrl(File.ReadAllText(FormInit.URL_Navigation_path + allURLTextFile(rnd)))
                     Else
                         Dim URLTextFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, URLTextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = Navigate_GoToUrl(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
+                        boolean_result = myWebDriver.Navigate_GoToUrl(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
                     End If
 
                 Case "等待"
@@ -266,80 +263,80 @@ Public Class Form1
                         boolean_result = False
                     End Try
                 Case "點擊"
-                    boolean_result = Click_element_by_feature(content)
+                    boolean_result = myWebDriver.Click_element_by_feature(content)
                 Case "發送"
-                    boolean_result = Write_post_send_content(content)
+                    boolean_result = myWebDriver.Write_post_send_content(content)
                 Case "發送:隨機"
                     If content = "全部隨機" Then
                         Dim allTextFile = Text_File_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allTextFile.Count)
                         'Debug.WriteLine("TEXT : " + allTextFile(rnd))
-                        boolean_result = Write_post_send_content(File.ReadAllText(text_folder_path + allTextFile(rnd)))
+                        boolean_result = myWebDriver.Write_post_send_content(File.ReadAllText(text_folder_path + allTextFile(rnd)))
                     Else
                         Dim TextFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, TextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = Write_post_send_content(File.ReadAllText(text_folder_path + TextFiles(rnd)))
+                        boolean_result = myWebDriver.Write_post_send_content(File.ReadAllText(text_folder_path + TextFiles(rnd)))
                     End If
                 Case "發送上載:隨機配對"
                     boolean_result = Post_Random_Match_TextAndImage(content)
                 Case "發送上載:隨機配對多圖"
                     boolean_result = Post_Random_Match_TextAndImageFolder(content)
                 Case "清空"
-                    boolean_result = Clear_post_content()
+                    boolean_result = myWebDriver.Clear_post_content()
                 Case "上載"
-                    boolean_result = Tring_to_upload_img(content)
+                    boolean_result = myWebDriver.Tring_to_upload_img(content)
                 Case "上載:隨機"
                     If content = "全部隨機" Then
                         Dim allImageFile = img_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = Tring_to_upload_img(image_folder_path + allImageFile(rnd))
+                        boolean_result = myWebDriver.Tring_to_upload_img(image_folder_path + allImageFile(rnd))
                     Else
                         Dim ImageFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = Tring_to_upload_img(image_folder_path + ImageFiles(rnd))
+                        boolean_result = myWebDriver.Tring_to_upload_img(image_folder_path + ImageFiles(rnd))
                     End If
 
                 Case "回應:上載"
-                    boolean_result = Upload_reply_img(image_folder_path + content)
+                    boolean_result = myWebDriver.Upload_reply_img(image_folder_path + content)
                 Case "回應:上載隨機"
                     If content = "全部隨機" Then
                         Dim allImageFile = img_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = Upload_reply_img(image_folder_path + allImageFile(rnd))
+                        boolean_result = myWebDriver.Upload_reply_img(image_folder_path + allImageFile(rnd))
                     Else
                         Dim ImageFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = Upload_reply_img(image_folder_path + ImageFiles(rnd))
+                        boolean_result = myWebDriver.Upload_reply_img(image_folder_path + ImageFiles(rnd))
                     End If
                 Case "回應:內容"
-                    boolean_result = Send_reply_comment(content)
+                    boolean_result = myWebDriver.Send_reply_comment(content)
                 Case "回應:隨機"
                     If content = "全部隨機" Then
                         Dim allTextFile = Text_File_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allTextFile.Count)
                         'Debug.WriteLine("TEXT : " + allTextFile(rnd))
-                        boolean_result = Send_reply_comment(File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd)))
+                        boolean_result = myWebDriver.Send_reply_comment(File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd)))
                     Else
                         Dim TextFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, TextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = Send_reply_comment(File.ReadAllText(curr_path + "resources\texts\" + TextFiles(rnd)))
+                        boolean_result = myWebDriver.Send_reply_comment(File.ReadAllText(curr_path + "resources\texts\" + TextFiles(rnd)))
                     End If
                 Case "回應:隨機配對"
-                    boolean_result = Reply_Random_Match_TextAndImage(content)
+                    boolean_result = myWebDriver.Reply_Random_Match_TextAndImage(content)
 
                 Case "回應:送出"
 
-                    If IsElementPresentByClass("uiScaledImageContainer") Then
-                        boolean_result = Submit_reply_comment()
+                    If myWebDriver.IsElementPresentByClass("uiScaledImageContainer") Then
+                        boolean_result = myWebDriver.Submit_reply_comment()
                     Else
-                        boolean_result = Submit_reply_comment()
+                        boolean_result = myWebDriver.Submit_reply_comment()
                         'Await Delay(1000)
                     End If
 
                 Case "回應:按讚"
-                    boolean_result = Click_reply_random_emoji(content)
+                    boolean_result = myWebDriver.Click_reply_random_emoji(content)
                 Case "捲動頁面"
                     Dim Offset As String() = content.Split(";")
                     Dim y_offset = CInt(Offset(1).Split(":")(0))
@@ -358,15 +355,15 @@ Public Class Form1
                     boolean_result = SendBrowserKeyAction(content)
                 Case "點擊:座標"
                     Dim offset() = content.Split(";")
-                    boolean_result = Click_by_Cursor_Offset(offset(0), offset(1))
+                    boolean_result = myWebDriver.Click_by_Cursor_Offset(offset(0), offset(1))
                 Case "聊天"
                     Dim Target = content.Split(";")(0)
                     Dim Text = content.Split(";")(1)
-                    boolean_result = Messager_Contact(Target, Text)
+                    boolean_result = myWebDriver.Messager_Contact(Target, Text)
 
                 Case "搜尋"
                     Dim param() = content.Split(";")
-                    boolean_result = Search_Keyword(param(0), param(1))
+                    boolean_result = myWebDriver.Search_Keyword(param(0), param(1))
                 Case "搜尋:隨機"
 
                     Dim param() = content.Split("%20")
@@ -374,12 +371,12 @@ Public Class Form1
                     If param(1) = "全部隨機" Then
                         Dim allKeywordTextFile = Searching_Keyword_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allKeywordTextFile.Count)
-                        boolean_result = Search_Keyword(param(0), File.ReadAllText(FormInit.keyword_Searching_path + allKeywordTextFile(rnd)))
+                        boolean_result = myWebDriver.Search_Keyword(param(0), File.ReadAllText(FormInit.keyword_Searching_path + allKeywordTextFile(rnd)))
                     Else
                         Dim KeywordTextFiles = param(1).Split(";")
                         Dim rnd = rnd_num.Next(0, KeywordTextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = Search_Keyword(param(0), File.ReadAllText(FormInit.keyword_Searching_path + KeywordTextFiles(rnd)))
+                        boolean_result = myWebDriver.Search_Keyword(param(0), File.ReadAllText(FormInit.keyword_Searching_path + KeywordTextFiles(rnd)))
                     End If
 
                 Case "關閉程式"
@@ -439,12 +436,13 @@ Public Class Form1
 
     Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
 
+
         If chrome_RadioButton.Checked = True Then
 
             If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
-                used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
+                myWebDriver.used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
             Else
-                used_dev_model = "PC"
+                myWebDriver.used_dev_model = "PC"
             End If
 
             Dim myprofile = ""
@@ -459,7 +457,8 @@ Public Class Form1
 
 
 
-            Open_Browser("Chrome", used_dev_model, myprofile)
+            'Open_Browser("Chrome", used_dev_model, myprofile)
+            myWebDriver.Open_Browser("Chrome", myWebDriver.used_dev_model, myprofile)
 
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
@@ -487,9 +486,9 @@ Public Class Form1
         If chrome_RadioButton.Checked = True Then
 
             If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
-                used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
+                myWebDriver.used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
             Else
-                used_dev_model = "PC"
+                myWebDriver.used_dev_model = "PC"
             End If
 
             Dim myprofile = ""
@@ -503,7 +502,7 @@ Public Class Form1
             End If
 
 
-            Open_Browser("Chrome", used_dev_model, "全部隨機")
+            myWebDriver.Open_Browser("Chrome", myWebDriver.used_dev_model, "全部隨機")
 
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
@@ -513,107 +512,15 @@ Public Class Form1
 
     End Sub
 
-    Private Function Open_Browser(browser As String, devicetype As String, profile As String)
-
-        If profile = "全部隨機" Then
-            Dim allProfileItem = Profile_CheckedListBox.Items
-            Dim rnd = rnd_num.Next(0, allProfileItem.Count)
-            profile = curr_path + allProfileItem(rnd)
-        Else
-            Dim ProfileItem = profile.Split(";")
-            Dim rnd = rnd_num.Next(0, ProfileItem.Length)
-            profile = ProfileItem(rnd)
-
-        End If
-
-        Debug.WriteLine("profile : " + profile)
-
-        If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
-            Dim JsonString As String = System.IO.File.ReadAllText(profile + "\ProfileInfo.txt")
-            Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
-            Profile_JsonObject = JsonConvert.DeserializeObject(JsonString)
-            Dim lang = Profile_JsonObject.Item("LanguagePack").ToString()
-            used_lang = lang
-            Debug.WriteLine("lang : " + lang)
-        End If
-
-
-
-        Select Case used_lang
-            Case "zh-TW"
-                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-TW.json"))
-            Case "zh-HK"
-                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-HK.json"))
-            Case "zh-CN"
-                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-CN.json"))
-            Case "en-US"
-                langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
-        End Select
-
-
-        'Debug.WriteLine(langConverter.Item("Create_Post"))
-
-        If browser = "Chrome" Then
-            Try
-                Dim driverManager = New DriverManager()
-                'driverManager.SetUpDriver(New ChromeConfig(), "106.0.5249.61") 'Use specify version.
-                'driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
-                driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
-                Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
-                serv.HideCommandPromptWindow = True 'hide cmd
-                Dim options = New Chrome.ChromeOptions()
-                If profile <> "" Then
-                    options.AddArguments("--user-data-dir=" + profile)
-                    used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
-                    running_chrome_profile = used_chrome_profile
-                End If
-                options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-
-                used_dev_model = devicetype
-                used_browser = "Chrome"
-                If devicetype <> "PC" Then
-                    options.EnableMobileEmulation(used_dev_model)
-                End If
-                chromeDriver = New ChromeDriver(serv, options)
-                chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-                ' Refresh Profile Items
-
-
-                'Minimize windows util headless mode work fine
-                If Headless_Mode_Checkbox.Checked Then
-                    'options.AddArguments("--headless", "--disable-gpu")
-                    chromeDriver.Manage().Window().Minimize()
-                End If
-
-
-                act = New Actions(chromeDriver)
-
-                Profile_CheckedListBox.Items.Clear()
-                Render_profile_CheckedListBox()
-                Return True
-            Catch ex As Exception
-                Debug.WriteLine(ex)
-                Return False
-            End Try
-
-        ElseIf browser = "Firefox" Then
-            Open_Firefox()
-        ElseIf browser = "Edge" Then
-            Open_Edge()
-        End If
-
-        Return False
-    End Function
-
-    Private Sub Open_Firefox()
-        used_browser = "Firefox"
+    Public Sub Open_Firefox()
+        myWebDriver.used_browser = "Firefox"
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New FirefoxConfig())
         Dim firefoxDriver = New FirefoxDriver()
     End Sub
 
-    Private Sub Open_Edge()
-        used_browser = "Edge"
+    Public Sub Open_Edge()
+        myWebDriver.used_browser = "Edge"
         Dim driverManager = New DriverManager()
         driverManager.SetUpDriver(New EdgeConfig())
         Dim edgeDrvier = New EdgeDriver()
@@ -621,10 +528,9 @@ Public Class Form1
 
     Public Function Navigate_GoToUrl(url As String)
         Try
-            chromeDriver.Navigate.GoToUrl(url)
+            myWebDriver.Navigate_GoToUrl(url)
             Return True
         Catch ex As Exception
-            Debug.WriteLine(ex)
             Return False
         End Try
 
@@ -632,7 +538,7 @@ Public Class Form1
 
     Private Sub get_groupname_Button_Click(sender As Object, e As EventArgs) Handles get_groupname_Button.Click
 
-        Dim group_name = Get_current_group_name()
+        Dim group_name = myWebDriver.Get_current_group_name()
         If group_name <> "" Then
             group_name_TextBox.Text = group_name
         Else
@@ -641,37 +547,25 @@ Public Class Form1
 
     End Sub
 
-    Private Function Get_current_group_name()
-        Try
-            Dim group_name = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_name_a"))).GetAttribute("innerHTML")
-            Return group_name
-        Catch ex As Exception
-            Return ""
-        End Try
-    End Function
 
 
     Private Sub Driver_close_Click(sender As Object, e As EventArgs) Handles driver_close_bnt.Click
         'driver_close_bnt.Enabled = False
-        used_browser = ""
-        used_dev_model = "PC"
         used_chrome_profile = ""
         running_chrome_profile = ""
-        Try
-            chromeDriver.Quit()
-        Catch ex As Exception
+
+        If Quit_chromedriver() = False Then
             MsgBox("未偵測到Chrome")
-        End Try
+        End If
 
     End Sub
 
     Public Function Quit_chromedriver()
         Try
-            chromeDriver.Quit()
-            used_browser = ""
-            used_dev_model = "PC"
+
             used_chrome_profile = ""
             running_chrome_profile = ""
+            myWebDriver.Quit_ChromeDriver()
             Return True
         Catch ex As Exception
             Return False
@@ -691,120 +585,15 @@ Public Class Form1
 
     End Sub
 
-    Private Sub IsInternetConnected()
-        If Not My.Computer.Network.Ping("google.com") Then
-            MsgBox("Network is unreachable")
-            'Write_err_log("Network is unreachable")
-        End If
-
-    End Sub
 
 
-    Private Function Click_by_Cursor_Offset(x As String, y As String)
 
-        'js code for getting cursor position in brower
-        'document.onclick = Function(e)
-        '{
-        'var x = e.pageX;
-        'var y = e.pageY;
-        'Alert("User clicked at position (" + x + "," + y + ")")
-        '};
-
-        Try
-            act.MoveByOffset(x, y).Build.Perform()
-            act.Click.Perform()
-            act.MoveByOffset(-x, -y).Build.Perform()
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-
-    End Function
 
     Private Sub Click_by_location_test_btn_Click(sender As Object, e As EventArgs) Handles Click_by_location_test_btn.Click
         Dim cursor_x = CursorX_TextBox.Text
         Dim cursor_y = CursorY_TextBox.Text
-        Click_by_Cursor_Offset(cursor_x, cursor_y)
+        myWebDriver.Click_by_Cursor_Offset(cursor_x, cursor_y)
     End Sub
-
-
-    Private Sub block_user_btn_Click(sender As Object, e As EventArgs)
-
-        Dim mytabs = chromeDriver.WindowHandles
-
-        For Each mytab In mytabs
-            'Debug.WriteLine("tab:" & mytab)
-            chromeDriver.SwitchTo.Window(mytab)
-            Thread.Sleep(1000)
-            click_by_aria_label("查看選項")
-            Thread.Sleep(500)
-            click_by_span_text("封鎖")
-            Thread.Sleep(500)
-            'submit
-            'click_by_aria_label("確認")
-        Next
-
-    End Sub
-
-    Private Function click_by_aria_label(str As String) As Boolean
-        Try
-            chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + str + "']")).Click()
-            'Write_log("Click: " + str)
-            Return True
-        Catch ex As Exception
-            'Write_err_log("Click: " + str)
-            IsInternetConnected()
-            Debug.WriteLine(ex)
-            Return False
-        End Try
-    End Function
-
-    Private Function click_by_span_text(str As String) As Boolean
-
-        Try
-            chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
-            'Write_log("Click: " + str)
-            Return True
-        Catch ex As Exception
-            'Write_err_log("Click: " + str)
-            IsInternetConnected()
-            'Debug.WriteLine(ex)
-            Return False
-        End Try
-    End Function
-
-    Function IsElementPresentByCssSelector(locatorKey As String) As Boolean
-        Try
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
-            chromeDriver.FindElement(By.CssSelector(locatorKey))
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-            Return True
-        Catch ex As Exception
-            'Debug.WriteLine(ex)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-            Return False
-        End Try
-
-    End Function
-
-    Function IsElementPresentByXpath(locatorXpath As String) As Boolean
-        Try
-            chromeDriver.FindElement(By.XPath(locatorXpath))
-            Return True
-        Catch ex As Exception
-            'Debug.WriteLine(ex)
-            Return False
-        End Try
-    End Function
-
-    Function IsElementPresentByClass(ClassName As String) As Boolean
-        Try
-            chromeDriver.FindElement(By.ClassName(ClassName))
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
 
     Public Sub EventlogListview_AddNewItem(content)
         Dim curr_row = script_ListView.Items.Count
@@ -949,264 +738,6 @@ Public Class Form1
 
     End Sub
 
-    Private Function Click_reply_random_emoji(Emoji_str)
-        If Emoji_str = "" Then
-            'Debug.WriteLine("Empty")
-            Return False
-        End If
-
-        Dim Emoji_arr() As String = Split(Trim(Emoji_str))
-        Dim Used_emoji = ""
-
-        If Emoji_arr.Length <> 0 Then
-            Dim rnd_num As New Random()
-            Dim random = rnd_num.Next(0, Emoji_arr.Length)
-            Used_emoji = Emoji_arr(random)
-        End If
-
-        Try
-            Dim searchBtn As IWebElement = chromeDriver.FindElement(By.XPath("//span[text()='" + langConverter.Item("Like").ToString() + "']"))
-            Dim actionProvider As Actions = New Actions(chromeDriver)
-            actionProvider.ClickAndHold(searchBtn).Build().Perform()
-            Thread.Sleep(1000)
-
-            Select Case Used_emoji
-                Case "讚好"
-                    Return click_by_aria_label(langConverter.Item("Like").ToString())
-                Case "愛心"
-                    Return click_by_aria_label(langConverter.Item("Love").ToString())
-                Case "加油"
-                    Return click_by_aria_label(langConverter.Item("Care").ToString())
-                Case "生氣"
-                    Return click_by_aria_label(langConverter.Item("Angry").ToString())
-                Case "驚訝"
-                    Return click_by_aria_label(langConverter.Item("Wow").ToString())
-                Case "難過"
-                    Return click_by_aria_label(langConverter.Item("Sad").ToString())
-                Case "哈哈"
-                    Return click_by_aria_label(langConverter.Item("Haha").ToString())
-
-            End Select
-
-        Catch ex As Exception
-            Return False
-        End Try
-
-        Return False
-
-    End Function
-
-    Private Function Login_fb(fb_email As String, fb_passwd As String)
-        Try
-            Navigate_GoToUrl("https://www.facebook.com/")
-            chromeDriver.FindElement(By.Name("email")).SendKeys(fb_email)
-            chromeDriver.FindElement(By.Name("pass")).SendKeys(fb_passwd)
-            chromeDriver.FindElement(By.Name("pass")).SendKeys(Keys.Return)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-
-    End Function
-
-    Public Function Click_element_by_feature(parm As String)
-        Select Case parm
-            Case "留個言吧"
-                Return Click_leave_message()
-            Case "發佈"
-                Return click_by_aria_label("發佈")
-            Case "回覆/留言"
-                Return Click_reply()
-        End Select
-
-        Return False
-    End Function
-
-    Private Function Click_leave_message()
-
-        Try
-
-            Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
-            'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5)
-            For Each pattern In str_patterns
-                Debug.WriteLine("try : " + pattern.ToString())
-                If IsElementPresentByXpath("//span[contains(text(),'" + pattern.ToString() + "')]") Then
-                    Debug.WriteLine("pattern : " + pattern.ToString())
-                    chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + pattern.ToString() + "')]")).Click()
-                    Return True
-                End If
-            Next
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            Return False
-        End Try
-
-        Return False
-
-    End Function
-
-    Private Function Click_reply()
-        Try
-
-            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                chromeDriver.FindElements(By.CssSelector("div.jg3vgc78.cgu29s5g.lq84ybu9.hf30pyar.r227ecj6 > ul > li:nth-child(2) > div")).ElementAt(0).Click()
-            Else
-                Return click_by_aria_label(langConverter.Item("aria-label-Leave-a-comment").ToString())
-            End If
-
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
-
-    Private Function Send_reply_comment(content)
-        'Dim msgbox_ele As Object
-        'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
-        Try
-            Dim msgbox_ele As Object
-            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
-            Else
-                'msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
-                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
-            End If
-
-
-            Clipboard.SetText(content)
-            msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
-
-
-            'Dim str_arr() As String = content.Split(vbLf)
-            'For Each line As String In str_arr
-            'line = line.Replace(vbCr, "").Replace(vbLf, "")
-            'msgbox_ele.SendKeys(line)
-            'Thread.Sleep(100)
-            'msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
-            'Next
-
-
-
-            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-            Return True
-
-        Catch ex As Exception
-            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-            Debug.WriteLine(ex)
-            Return False
-        End Try
-
-
-
-
-    End Function
-
-    Private Function Upload_reply_img(img)
-
-        Try
-            'Debug.WriteLine("Copy " + img)
-            Dim msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
-            Dim myimage = Bitmap.FromFile(img)
-            Clipboard.SetImage(myimage)
-            msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
-            Return True
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            Return False
-        End Try
-
-
-
-        ' old code keep until stable
-        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
-
-        Try
-            Dim comment_img_input As Object
-            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("reply_comment_img_input")))
-            Else
-                comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("reply_post_img_input")))
-            End If
-
-            comment_img_input.SendKeys(image_folder_path + img)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-
-
-    End Function
-
-    Private Function Reply_Random_Match_TextAndImage(content)
-        'Debug.WriteLine(content)
-        Dim AllConditions() As String = content.Split(";")
-        Dim rnd = rnd_num.Next(0, AllConditions.Length)
-
-        'Debug.WriteLine(AllConditions(rnd))
-
-
-        Dim TextFolder = AllConditions(rnd).Split("%20")(0)
-        Dim ImageFolder = AllConditions(rnd).Split("%20")(1)
-
-        Dim Txtfiles() As String = IO.Directory.GetFiles(TextFolder)
-        Dim TextFile_ArrayList = New ArrayList()
-        For Each file As String In Txtfiles
-            'Debug.WriteLine(file)
-            If Path.GetExtension(file) = ".txt" Then
-                TextFile_ArrayList.Add(file)
-            End If
-        Next
-
-        rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
-
-        If Send_reply_comment(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then ' send text 
-            Return False
-        End If
-
-
-        Dim Imgfiles() As String = IO.Directory.GetFiles(ImageFolder)
-        Dim ImgageFile_ArrayList = New ArrayList()
-        For Each file As String In Imgfiles
-            'Debug.WriteLine(file)
-            ImgageFile_ArrayList.Add(file)
-        Next
-
-        rnd = rnd_num.Next(0, ImgageFile_ArrayList.Count)
-        'Debug.WriteLine("Image : " + ImgageFile_ArrayList(rnd))
-
-        If Upload_reply_img(ImgageFile_ArrayList(rnd)) = False Then   'upload img
-            Return False
-        End If
-
-        Return True
-
-    End Function
-
-    Private Function Submit_reply_comment()
-        Try
-
-            Dim msgbox_ele As Object
-            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-
-                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='回覆']"))
-            Else
-
-                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
-                'msgbox_ele = chromeDriver.FindElements(By.CssSelector(".xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
-            End If
-
-            msgbox_ele(0).SendKeys(Keys.Enter)
-            Return True
-
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            Return False
-        End Try
-    End Function
 
     Private Function Post_Random_Match_TextAndImage(content)
         'Debug.WriteLine(content)
@@ -1229,7 +760,7 @@ Public Class Form1
 
         rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
 
-        If Write_post_send_content(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
+        If myWebDriver.Write_post_send_content(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
             Return False
         End If
 
@@ -1244,7 +775,7 @@ Public Class Form1
         rnd = rnd_num.Next(0, ImgageFile_ArrayList.Count)
         'Debug.WriteLine("Image : " + ImgageFile_ArrayList(rnd))
 
-        If Tring_to_upload_img(ImgageFile_ArrayList(rnd)) = False Then
+        If myWebDriver.Tring_to_upload_img(ImgageFile_ArrayList(rnd)) = False Then
             Return False
         End If
 
@@ -1272,7 +803,7 @@ Public Class Form1
 
         rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
 
-        If Write_post_send_content(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
+        If myWebDriver.Write_post_send_content(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
             Return False
         End If
 
@@ -1286,126 +817,25 @@ Public Class Form1
             End If
         Next
 
-        If Tring_to_upload_img(img_path_str) = False Then
+        If myWebDriver.Tring_to_upload_img(img_path_str) = False Then
             Return False
         End If
 
         Return True
     End Function
 
-    Private Function Write_post_send_content(content)
-        Try
-            Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
-            'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3)
-            For Each pattern In str_patterns
-                'Debug.WriteLine("try : " + pattern.ToString())
-                Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
-                If IsElementPresentByXpath(xpath) Then
-                    'Debug.WriteLine("pattern : " + pattern.ToString())
-                    Dim msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
-                    msgbox_ele.SendKeys(content)
-                    Return True
-                End If
-            Next
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-
-        Catch ex As Exception
-
-            Return False
-        End Try
-
-        Return False
-
-
-    End Function
-
-    Private Function Clear_post_content()
-        Try
-            Dim msgbox_ele As Object
-            Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
-            'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3)
-            For Each pattern In str_patterns
-                'Debug.WriteLine("try : " + pattern.ToString())
-                Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
-                If IsElementPresentByXpath(xpath) Then
-                    'Debug.WriteLine("pattern : " + pattern.ToString())
-                    msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
-                    msgbox_ele.SendKeys(Keys.LeftControl + "a")
-                    msgbox_ele.SendKeys(Keys.Delete)
-                    Return True
-                End If
-            Next
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-        Return False
-    End Function
-
-    Private Function Tring_to_upload_img(img_path_str)
-
-        'Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
-        'Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
-
-        click_by_aria_label(langConverter.Item("Photo_Video"))
-
-        Dim upload_img_input As Object
-
-
-        Try
-            upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
-            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-
-
-    End Function
 
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
         Try
-            curr_url_ComboBox.Text = chromeDriver.Url
+            curr_url_ComboBox.Text = myWebDriver.chromeDriver.Url
         Catch ex As Exception
             MsgBox("未偵測到Chrome")
         End Try
     End Sub
 
-    Function Messager_Contact(Room_Id As String, message As String)
-
-        Try
-            Navigate_GoToUrl("https://www.facebook.com/messages/t/" + Room_Id)
-
-            Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate"))
-
-            Dim str_arr() As String = message.Split(vbLf)
-            For Each line As String In str_arr
-                line = line.Replace(vbCr, "").Replace(vbLf, "")
-                Text_input.SendKeys(line)
-                Thread.Sleep(100)
-                Text_input.SendKeys(Keys.LeftShift + Keys.Return)
-            Next
-
-
-            'Text_input.SendKeys(Keys.Return)
-            Return True
-        Catch ex As Exception
-            Return False
-            Debug.WriteLine(ex)
-        End Try
-
-
-
-    End Function
-
-
     Private Function ScrollPage_By_Offset(x As String, y As String)
-
         Try
-            chromeDriver.ExecuteJavaScript("window.scrollTo(" + x + ", " + y + ");")
+            myWebDriver.chromeDriver.ExecuteJavaScript("window.scrollTo(" + x + ", " + y + ");")
         Catch ex As Exception
             Return False
         End Try
@@ -1425,10 +855,10 @@ Public Class Form1
     End Sub
 
     Private Sub Clear_script_btn_Click(sender As Object, e As EventArgs) Handles Clear_script_btn.Click
-        used_browser = ""
-        used_dev_model = "PC"
-        used_chrome_profile = ""
-        running_chrome_profile = ""
+        myWebDriver.used_browser = ""
+        myWebDriver.used_dev_model = "PC"
+        myWebDriver.used_chrome_profile = ""
+        myWebDriver.running_chrome_profile = ""
         script_ListView.Items.Clear()
     End Sub
 
@@ -1714,9 +1144,9 @@ Public Class Form1
 
     Private Async Sub Get_Groups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_Groups_List_btn.Click
         Groups_ListView.Items.Clear()
-        chromeDriver.Navigate.GoToUrl("https://www.facebook.com/groups/feed/")
+        myWebDriver.Navigate_GoToUrl("https://www.facebook.com/groups/feed/")
         Try 'if there are more groups, load the groups via button clicked
-            chromeDriver.FindElement(By.XPath("//span[contains(text(),'查看更多')]")).Click()
+            myWebDriver.chromeDriver.FindElement(By.XPath("//span[contains(text(),'查看更多')]")).Click()
             Await Delay_msec(1000)
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -1728,18 +1158,18 @@ Public Class Form1
 
         While True
             scroll_x_value += 1000
-            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span")).Count
+            Dim my_counter As Integer = myWebDriver.chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span")).Count
             If my_counter = pre_counter Then
                 Exit While
             End If
 
-            chromeDriver.ExecuteJavaScript("document.getElementsByClassName(""xb57i2i x1q594ok x5lxg6s x78zum5 xdt5ytf x6ikm8r x1ja2u2z x1pq812k x1rohswg xfk6m8 x1yqm8si xjx87ck x1l7klhg x1iyjqo2 xs83m0k x2lwn1j xx8ngbg xwo3gff x1oyok0e x1odjw0f x1e4zzel x1n2onr6 xq1qtft"")[0].scroll(0," & scroll_x_value & ")")
+            myWebDriver.chromeDriver.ExecuteJavaScript("document.getElementsByClassName(""xb57i2i x1q594ok x5lxg6s x78zum5 xdt5ytf x6ikm8r x1ja2u2z x1pq812k x1rohswg xfk6m8 x1yqm8si xjx87ck x1l7klhg x1iyjqo2 xs83m0k x2lwn1j xx8ngbg xwo3gff x1oyok0e x1odjw0f x1e4zzel x1n2onr6 xq1qtft"")[0].scroll(0," & scroll_x_value & ")")
             pre_counter = my_counter
             Await Delay_msec(1000)
         End While
 
-        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span"))
-        Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.x1sxyh0.xurb0ha > a"))
+        Dim group_name_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span"))
+        Dim group_url_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.x1sxyh0.xurb0ha > a"))
         'Debug.WriteLine(group_name_classes.Count)
         For i As Integer = 0 To group_name_classes.Count - 1
             'Debug.WriteLine(group_name_classes.ElementAt(i))
@@ -1854,45 +1284,6 @@ Public Class Form1
         ScriptInsertion.Insert_Random_Navigation_URL()
     End Sub
 
-    Public Function Search_Keyword(engine As String, keyword As String)
-        Try
-            Select Case engine
-                Case "Facebook"
-                    'chromeDriver.Navigate.GoToUrl("https://www.facebook.com/search/top/?q=" + keyword)
-
-                    If IsElementPresentByCssSelector("div.x5yr21d.x1n2onr6.xh8yej3.x1t2pt76.x1plvlek.xryxfnj > div > div > div > div > div > div > label") Then
-                        chromeDriver.FindElement(By.CssSelector("div.x5yr21d.x1n2onr6.xh8yej3.x1t2pt76.x1plvlek.xryxfnj > div > div > div > div > div > div > label")).Click()
-                    End If
-
-
-                    Navigate_GoToUrl("https://www.facebook.com/")
-                    chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']")).Click()
-                    Dim Search_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x9f619.x78zum5.xnnlda6 > div > div > label > input"))
-                    Search_input.Clear()
-                    Search_input.SendKeys(keyword)
-                    Search_input.SendKeys(Keys.Enter)
-                Case "Google"
-                    'chromeDriver.Navigate.GoToUrl("https://www.google.com.tw/search?q=" + keyword)
-                    Navigate_GoToUrl("https://www.google.com.tw/")
-                    Dim search_input = chromeDriver.FindElement(By.CssSelector("div.a4bIc > input"))
-                    search_input.SendKeys(keyword)
-                    search_input.SendKeys(Keys.Enter)
-                Case "Youtube"
-                    'chromeDriver.Navigate.GoToUrl("https://www.youtube.com/results?search_query=" + keyword)
-                    Navigate_GoToUrl("https://www.youtube.com/")
-                    Dim Search_input = chromeDriver.FindElement(By.CssSelector("#search-input > input"))
-                    Search_input.Clear()
-                    Search_input.SendKeys(keyword)
-                    Search_input.SendKeys(Keys.Enter)
-            End Select
-            Return True
-        Catch ex As Exception
-            Debug.WriteLine(ex)
-            Return False
-        End Try
-        Return True
-
-    End Function
 
     Private Sub Refresh_Searching_Keyword_CheckedListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_Searching_Keyword_CheckedListBox_btn.Click
         Searching_Keyword_CheckedListBox.Items.Clear()
@@ -1909,24 +1300,24 @@ Public Class Form1
         Dim pre_counter As Integer = 0
         Groups_ListView.Items.Clear()
         '### Find other groups ###
-        chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/")
+        myWebDriver.chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/")
         Thread.Sleep(3000)
         pre_counter = 0
         While True ' Scroll to the bottom
-            Dim my_counter As Integer = chromeDriver.FindElements(By.CssSelector("a > ._7hkf._3qn7._61-3._2fyi._3qng")).Count
+            Dim my_counter As Integer = myWebDriver.chromeDriver.FindElements(By.CssSelector("a > ._7hkf._3qn7._61-3._2fyi._3qng")).Count
             'Debug.WriteLine(my_counter)
             If my_counter = pre_counter Then
                 Exit While
             End If
-            chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
+            myWebDriver.chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
             pre_counter = my_counter
             Thread.Sleep(1000)
         End While
 
 
         'Add to the listview
-        Dim group_name_classes = chromeDriver.FindElements(By.CssSelector(".x1jchvi3.x132q4wb.xzsf02u.x117nqv4"))
-        Dim group_url_classes = chromeDriver.FindElements(By.CssSelector("div._7hkf._3qn7._61-3._2fyi._3qng > a"))
+        Dim group_name_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector(".x1jchvi3.x132q4wb.xzsf02u.x117nqv4"))
+        Dim group_url_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div._7hkf._3qn7._61-3._2fyi._3qng > a"))
 
         'Debug.WriteLine(group_url_classes.Count)
         For i As Integer = 0 To group_url_classes.Count - 1

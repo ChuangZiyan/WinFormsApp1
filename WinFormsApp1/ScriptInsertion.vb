@@ -6,9 +6,9 @@ Module ScriptInsertion
     Public Sub Insert_to_script(action As String, content As String)
 
         If Form1.EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
-            Form1.used_dev_model = Form1.EmulatedDevice_ComboBox.SelectedItem.ToString
+            Form1.myWebDriver.used_dev_model = Form1.EmulatedDevice_ComboBox.SelectedItem.ToString
         Else
-            Form1.used_dev_model = "PC"
+            Form1.myWebDriver.used_dev_model = "PC"
         End If
 
         Dim myline As String
@@ -16,7 +16,7 @@ Module ScriptInsertion
         If action = "" Then
             myline = content + ",,,,,,"
         Else
-            myline = Form1.used_browser + "," + Form1.used_dev_model + "," + Form1.used_chrome_profile + "," + action + "," + content + ","
+            myline = Form1.myWebDriver.used_browser + "," + Form1.myWebDriver.used_dev_model + "," + Form1.used_chrome_profile + "," + action + "," + content + ","
         End If
 
         Form1.EventlogListview_AddNewItem(myline)
@@ -123,7 +123,7 @@ Module ScriptInsertion
         End If
 
         If Form1.chrome_RadioButton.Checked = True Then
-            Form1.used_browser = "Chrome"
+            Form1.myWebDriver.used_browser = "Chrome"
             Dim profile_nickname = ""
 
             If myprofile.Contains(";"c) Then
@@ -139,9 +139,9 @@ Module ScriptInsertion
             Form1.used_chrome_profile = profile_nickname
 
         ElseIf Form1.firefox_RadioButton.Checked = True Then
-            Form1.used_browser = "Firefox"
+            Form1.myWebDriver.used_browser = "Firefox"
         ElseIf Form1.edge_RadioButton.Checked = True Then
-            Form1.used_browser = "Edge"
+            Form1.myWebDriver.used_browser = "Edge"
         End If
 
 
@@ -327,7 +327,7 @@ Module ScriptInsertion
         If Content = "" Then
             MsgBox("佇列為空")
         Else
-            Form1.used_browser = "Chrome"
+            Form1.myWebDriver.used_browser = "Chrome"
             Insert_to_script("開啟:佇列", Content.Trim(";"c))
         End If
 
