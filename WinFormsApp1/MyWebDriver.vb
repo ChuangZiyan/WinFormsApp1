@@ -26,8 +26,8 @@ Public Class MyWebDriver
 
     Dim rnd_num As New Random()
 
-    Public css_selector_config_obj As Newtonsoft.Json.Linq.JObject
-    Public m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
+    'Public css_selector_config_obj As Newtonsoft.Json.Linq.JObject
+    'Public m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
     Public used_browser As String = ""
     Public used_dev_model As String = "PC"
@@ -36,9 +36,16 @@ Public Class MyWebDriver
     'Dim webDriverWait As WebDriverWait
 
     Public langConverter As Newtonsoft.Json.Linq.JObject
+
     Public used_lang = "zh-TW"
 
     Public Profile_Queue() As String
+
+    Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
+    Dim css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
+
+    Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
+    Dim m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
 
     Public Function Open_Browser(browser As String, devicetype As String, profile As String)
@@ -54,7 +61,7 @@ Public Class MyWebDriver
 
         End If
 
-        Debug.WriteLine("profile : " + profile)
+        'Debug.WriteLine("profile : " + profile)
 
         If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
             Dim JsonString As String = System.IO.File.ReadAllText(profile + "\ProfileInfo.txt")
@@ -62,7 +69,7 @@ Public Class MyWebDriver
             Profile_JsonObject = JsonConvert.DeserializeObject(JsonString)
             Dim lang = Profile_JsonObject.Item("LanguagePack").ToString()
             used_lang = lang
-            Debug.WriteLine("lang : " + lang)
+            'Debug.WriteLine("lang : " + lang)
         End If
 
 
@@ -96,6 +103,22 @@ Public Class MyWebDriver
                     running_chrome_profile = used_chrome_profile
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+
+
+
+                options.AddExcludedArgument("enable-automation")
+
+                'Dim auto_adjust_window = False
+                If False Then ' True for turn on
+                    Dim workarea_Hight As Integer
+                    Dim workerarea_width As Integer
+                    workarea_Hight = Screen.PrimaryScreen.WorkingArea.Width
+                    workerarea_width = Screen.PrimaryScreen.WorkingArea.Height
+                    options.AddArgument(" --window-size=" & workarea_Hight / 2 & "," & workerarea_width)
+                    options.AddArgument(" --window-position=" & workarea_Hight / 2 & "," & "0")
+                End If
+
+
 
                 used_dev_model = devicetype
                 used_browser = "Chrome"
@@ -184,7 +207,6 @@ Public Class MyWebDriver
         End If
 
     End Sub
-
 
 
     Public Function click_by_aria_label(str As String) As Boolean
@@ -441,8 +463,6 @@ Public Class MyWebDriver
 
 
     End Function
-
-
 
     Public Sub block_user_btn_Click(sender As Object, e As EventArgs)
 

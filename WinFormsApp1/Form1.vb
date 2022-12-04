@@ -20,6 +20,7 @@ Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
 
+
 Public Class Form1
 
     'Const Version = "1.0.221027.1"
@@ -30,14 +31,14 @@ Public Class Form1
 
     Dim rnd_num As New Random()
 
-    Public css_selector_config_obj As Newtonsoft.Json.Linq.JObject
-    Public m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
+    'Public css_selector_config_obj As Newtonsoft.Json.Linq.JObject
+    'Public m_css_selector_config_obj As Newtonsoft.Json.Linq.JObject
 
     Public used_chrome_profile As String = ""
     Public running_chrome_profile As String = ""
     'Dim webDriverWait As WebDriverWait
 
-    Public langConverter As Newtonsoft.Json.Linq.JObject
+
     Public used_lang = "zh-TW"
 
 
@@ -52,12 +53,6 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         'Me.Text = "Main Form - " + Version
-        Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
-        css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
-
-        Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
-        m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
-
         'Default String : 
         Profile_TextBox.Text = FormInit.curr_path + "profiles"
         Block_Text_TextBox.Text = "分隔行"
@@ -501,8 +496,18 @@ Public Class Form1
                 Next
             End If
 
-
             myWebDriver.Open_Browser("Chrome", myWebDriver.used_dev_model, "全部隨機")
+
+            If curr_url_ComboBox.Text <> "" Then
+                Dim pattern As String
+                pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+                If Regex.IsMatch(curr_url_ComboBox.Text, pattern) Then
+                    Navigate_GoToUrl(curr_url_ComboBox.Text)
+                Else
+                    MsgBox("網址格式錯誤")
+                End If
+
+            End If
 
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
@@ -586,9 +591,6 @@ Public Class Form1
     End Sub
 
 
-
-
-
     Private Sub Click_by_location_test_btn_Click(sender As Object, e As EventArgs) Handles Click_by_location_test_btn.Click
         Dim cursor_x = CursorX_TextBox.Text
         Dim cursor_y = CursorY_TextBox.Text
@@ -619,6 +621,7 @@ Public Class Form1
     Dim script_running = False
     Dim Pause_Script = False
     Dim Continue_time = ""
+
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim TimeNow = Date.Now.ToString("HH:mm:ss")
@@ -662,6 +665,10 @@ Public Class Form1
     End Sub
 
     Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
+
+
+
+
 
         loop_run = CheckBox_loop_run.Checked
         'Debug.WriteLine("Loop Run : " & loop_run)
@@ -737,7 +744,6 @@ Public Class Form1
         Next
 
     End Sub
-
 
     Private Function Post_Random_Match_TextAndImage(content)
         'Debug.WriteLine(content)
@@ -823,7 +829,6 @@ Public Class Form1
 
         Return True
     End Function
-
 
     Private Sub Get_url_btn_Click(sender As Object, e As EventArgs) Handles Get_url_btn.Click
         Try
