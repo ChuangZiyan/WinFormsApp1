@@ -48,6 +48,16 @@ Public Class MyWebDriver
     Dim m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
 
+    Public Function Write_post_send_content_Task(content) As Task(Of Boolean)
+        Return Task.Run(Function() Write_post_send_content(content))
+    End Function
+
+    Public Function Tring_to_upload_img_Task(image_path) As Task(Of Boolean)
+        Return Task.Run(Function() Tring_to_upload_img(image_path))
+    End Function
+
+
+
     Public Function Open_Browser(browser As String, devicetype As String, profile As String)
 
         If profile = "全部隨機" Then
@@ -71,7 +81,6 @@ Public Class MyWebDriver
             used_lang = lang
             'Debug.WriteLine("lang : " + lang)
         End If
-
 
 
         Select Case used_lang
@@ -136,8 +145,7 @@ Public Class MyWebDriver
                     chromeDriver.Manage().Window().Minimize()
                 End If
 
-
-                Form1.act = New Actions(chromeDriver)
+                act = New Actions(chromeDriver)
 
                 Form1.Profile_CheckedListBox.Items.Clear()
                 Render_profile_CheckedListBox()
@@ -390,7 +398,7 @@ Public Class MyWebDriver
 
 
 
-    Public Function Write_post_send_content(content)
+    Public Function Write_post_send_content(content) As Boolean
         Try
             Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
             'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
@@ -402,18 +410,16 @@ Public Class MyWebDriver
                     'Debug.WriteLine("pattern : " + pattern.ToString())
                     Dim msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
                     msgbox_ele.SendKeys(content)
+                    chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                     Return True
                 End If
             Next
             chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-
+            Return False
         Catch ex As Exception
-
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return False
         End Try
-
-        Return False
-
 
     End Function
 
@@ -443,7 +449,7 @@ Public Class MyWebDriver
         Return False
     End Function
 
-    Public Function Tring_to_upload_img(img_path_str)
+    Public Function Tring_to_upload_img(img_path_str) As Boolean
 
         'Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
         'Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)

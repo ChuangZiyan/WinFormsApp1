@@ -260,36 +260,36 @@ Public Class Form1
                 Case "點擊"
                     boolean_result = myWebDriver.Click_element_by_feature(content)
                 Case "發送"
-                    boolean_result = myWebDriver.Write_post_send_content(content)
+                    boolean_result = Await myWebDriver.Write_post_send_content_Task(content)
                 Case "發送:隨機"
                     If content = "全部隨機" Then
                         Dim allTextFile = Text_File_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allTextFile.Count)
                         'Debug.WriteLine("TEXT : " + allTextFile(rnd))
-                        boolean_result = myWebDriver.Write_post_send_content(File.ReadAllText(text_folder_path + allTextFile(rnd)))
+                        boolean_result = Await myWebDriver.Write_post_send_content_Task(File.ReadAllText(text_folder_path + allTextFile(rnd)))
                     Else
                         Dim TextFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, TextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = myWebDriver.Write_post_send_content(File.ReadAllText(text_folder_path + TextFiles(rnd)))
+                        boolean_result = Await myWebDriver.Write_post_send_content_Task(File.ReadAllText(text_folder_path + TextFiles(rnd)))
                     End If
                 Case "發送上載:隨機配對"
-                    boolean_result = Post_Random_Match_TextAndImage(content)
+                    boolean_result = Await Post_Random_Match_TextAndImage(content)
                 Case "發送上載:隨機配對多圖"
-                    boolean_result = Post_Random_Match_TextAndImageFolder(content)
+                    boolean_result = Await Post_Random_Match_TextAndImageFolder(content)
                 Case "清空"
                     boolean_result = myWebDriver.Clear_post_content()
                 Case "上載"
-                    boolean_result = myWebDriver.Tring_to_upload_img(content)
+                    boolean_result = Await myWebDriver.Tring_to_upload_img_Task(content)
                 Case "上載:隨機"
                     If content = "全部隨機" Then
                         Dim allImageFile = img_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = myWebDriver.Tring_to_upload_img(image_folder_path + allImageFile(rnd))
+                        boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + allImageFile(rnd))
                     Else
                         Dim ImageFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = myWebDriver.Tring_to_upload_img(image_folder_path + ImageFiles(rnd))
+                        boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + ImageFiles(rnd))
                     End If
 
                 Case "回應:上載"
@@ -423,7 +423,6 @@ Public Class Form1
         Next
         Await Delay_msec(1000)
     End Function
-
 
     Public Shared Async Function Delay_msec(msec As Integer) As Task
         Await Task.Delay(msec)
@@ -745,7 +744,7 @@ Public Class Form1
 
     End Sub
 
-    Private Function Post_Random_Match_TextAndImage(content)
+    Private Async Function Post_Random_Match_TextAndImage(content) As Task(Of Boolean)
         'Debug.WriteLine(content)
         Dim AllConditions() As String = content.Split(";")
 
@@ -766,7 +765,7 @@ Public Class Form1
 
         rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
 
-        If myWebDriver.Write_post_send_content(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
+        If Await myWebDriver.Write_post_send_content_Task(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then
             Return False
         End If
 
@@ -781,7 +780,7 @@ Public Class Form1
         rnd = rnd_num.Next(0, ImgageFile_ArrayList.Count)
         'Debug.WriteLine("Image : " + ImgageFile_ArrayList(rnd))
 
-        If myWebDriver.Tring_to_upload_img(ImgageFile_ArrayList(rnd)) = False Then
+        If Await myWebDriver.Tring_to_upload_img_Task(ImgageFile_ArrayList(rnd)) = False Then
             Return False
         End If
 
@@ -789,7 +788,7 @@ Public Class Form1
 
     End Function
 
-    Private Function Post_Random_Match_TextAndImageFolder(content)
+    Private Async Function Post_Random_Match_TextAndImageFolder(content) As Task(Of Boolean)
         Dim AllConditions() As String = content.Split(";")
 
         Dim rnd = rnd_num.Next(0, AllConditions.Length)
@@ -823,7 +822,7 @@ Public Class Form1
             End If
         Next
 
-        If myWebDriver.Tring_to_upload_img(img_path_str) = False Then
+        If Await myWebDriver.Tring_to_upload_img_Task(img_path_str) = False Then
             Return False
         End If
 
