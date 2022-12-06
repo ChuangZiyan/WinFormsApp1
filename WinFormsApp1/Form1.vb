@@ -186,7 +186,7 @@ Public Class Form1
                     boolean_result = True
                 Case "開啟"
                     If profile = "" Or profile <> running_chrome_profile Then
-                        boolean_result = myWebDriver.Open_Browser(brower, devicetype, content)
+                        boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, content)
                     Else
                         boolean_result = False
                     End If
@@ -198,7 +198,7 @@ Public Class Form1
                     'Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
                     used_chrome_profile = Profile_Queue(profile_index).Split("\")(UBound(Profile_Queue(profile_index).Split("\")))
                     item.SubItems.Item(3).Text = used_chrome_profile
-                    boolean_result = myWebDriver.Open_Browser(brower, devicetype, Profile_Queue(profile_index))
+                    boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, Profile_Queue(profile_index))
 
                     'Debug.WriteLine("ProfleQ: " & Profile_Queue.Count)
 
@@ -226,19 +226,19 @@ Public Class Form1
                     If content.Contains(";"c) Then
                         content = content.Split(";")(1)
                     End If
-                    boolean_result = myWebDriver.Navigate_GoToUrl(content)
+                    boolean_result = Await myWebDriver.Navigate_GoToUrl_Task(content)
 
                 Case "前往:隨機"
 
                     If content = "全部隨機" Then
                         Dim allURLTextFile = Navigation_URL_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allURLTextFile.Count)
-                        boolean_result = myWebDriver.Navigate_GoToUrl(File.ReadAllText(FormInit.URL_Navigation_path + allURLTextFile(rnd)))
+                        boolean_result = Await myWebDriver.Navigate_GoToUrl_Task(File.ReadAllText(FormInit.URL_Navigation_path + allURLTextFile(rnd)))
                     Else
                         Dim URLTextFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, URLTextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = myWebDriver.Navigate_GoToUrl(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
+                        boolean_result = Await myWebDriver.Navigate_GoToUrl_Task(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
                     End If
 
                 Case "等待"
@@ -258,7 +258,7 @@ Public Class Form1
                         boolean_result = False
                     End Try
                 Case "點擊"
-                    boolean_result = myWebDriver.Click_element_by_feature(content)
+                    boolean_result = Await myWebDriver.Click_element_by_feature_Task(content)
                 Case "發送"
                     boolean_result = Await myWebDriver.Write_post_send_content_Task(content)
                 Case "發送:隨機"
@@ -278,7 +278,7 @@ Public Class Form1
                 Case "發送上載:隨機配對多圖"
                     boolean_result = Await Post_Random_Match_TextAndImageFolder(content)
                 Case "清空"
-                    boolean_result = myWebDriver.Clear_post_content()
+                    boolean_result = Await myWebDriver.Clear_post_content_Task()
                 Case "上載"
                     boolean_result = Await myWebDriver.Tring_to_upload_img_Task(content)
                 Case "上載:隨機"
@@ -293,45 +293,44 @@ Public Class Form1
                     End If
 
                 Case "回應:上載"
-                    boolean_result = myWebDriver.Upload_reply_img(image_folder_path + content)
+                    boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + content)
                 Case "回應:上載隨機"
                     If content = "全部隨機" Then
                         Dim allImageFile = img_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = myWebDriver.Upload_reply_img(image_folder_path + allImageFile(rnd))
+                        boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + allImageFile(rnd))
                     Else
                         Dim ImageFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = myWebDriver.Upload_reply_img(image_folder_path + ImageFiles(rnd))
+                        boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + ImageFiles(rnd))
                     End If
                 Case "回應:內容"
-                    boolean_result = myWebDriver.Send_reply_comment(content)
+                    boolean_result = Await myWebDriver.Send_reply_comment_Task(content)
                 Case "回應:隨機"
                     If content = "全部隨機" Then
                         Dim allTextFile = Text_File_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allTextFile.Count)
                         'Debug.WriteLine("TEXT : " + allTextFile(rnd))
-                        boolean_result = myWebDriver.Send_reply_comment(File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd)))
+                        boolean_result = Await myWebDriver.Send_reply_comment_Task(File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd)))
                     Else
                         Dim TextFiles = content.Split(";")
                         Dim rnd = rnd_num.Next(0, TextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = myWebDriver.Send_reply_comment(File.ReadAllText(curr_path + "resources\texts\" + TextFiles(rnd)))
+                        boolean_result = Await myWebDriver.Send_reply_comment_Task(File.ReadAllText(curr_path + "resources\texts\" + TextFiles(rnd)))
                     End If
                 Case "回應:隨機配對"
-                    boolean_result = myWebDriver.Reply_Random_Match_TextAndImage(content)
+                    boolean_result = Await myWebDriver.Reply_Random_Match_TextAndImage_Task(content)
 
                 Case "回應:送出"
 
                     If myWebDriver.IsElementPresentByClass("uiScaledImageContainer") Then
-                        boolean_result = myWebDriver.Submit_reply_comment()
+                        boolean_result = Await myWebDriver.Submit_reply_comment_Task()
                     Else
-                        boolean_result = myWebDriver.Submit_reply_comment()
-                        'Await Delay(1000)
+                        boolean_result = Await myWebDriver.Submit_reply_comment_Task()
                     End If
 
                 Case "回應:按讚"
-                    boolean_result = myWebDriver.Click_reply_random_emoji(content)
+                    boolean_result = Await myWebDriver.Click_reply_random_emoji_Task(content)
                 Case "捲動頁面"
                     Dim Offset As String() = content.Split(";")
                     Dim y_offset = CInt(Offset(1).Split(":")(0))
@@ -358,7 +357,7 @@ Public Class Form1
 
                 Case "搜尋"
                     Dim param() = content.Split(";")
-                    boolean_result = myWebDriver.Search_Keyword(param(0), param(1))
+                    boolean_result = Await myWebDriver.Search_Keyword_Task(param(0), param(1))
                 Case "搜尋:隨機"
 
                     Dim param() = content.Split("%20")
@@ -366,12 +365,12 @@ Public Class Form1
                     If param(1) = "全部隨機" Then
                         Dim allKeywordTextFile = Searching_Keyword_CheckedListBox.Items
                         Dim rnd = rnd_num.Next(0, allKeywordTextFile.Count)
-                        boolean_result = myWebDriver.Search_Keyword(param(0), File.ReadAllText(FormInit.keyword_Searching_path + allKeywordTextFile(rnd)))
+                        boolean_result = Await myWebDriver.Search_Keyword_Task(param(0), File.ReadAllText(FormInit.keyword_Searching_path + allKeywordTextFile(rnd)))
                     Else
                         Dim KeywordTextFiles = param(1).Split(";")
                         Dim rnd = rnd_num.Next(0, KeywordTextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = myWebDriver.Search_Keyword(param(0), File.ReadAllText(FormInit.keyword_Searching_path + KeywordTextFiles(rnd)))
+                        boolean_result = Await myWebDriver.Search_Keyword_Task(param(0), File.ReadAllText(FormInit.keyword_Searching_path + KeywordTextFiles(rnd)))
                     End If
 
                 Case "關閉程式"
@@ -428,7 +427,7 @@ Public Class Form1
         Await Task.Delay(msec)
     End Function
 
-    Private Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
+    Private Async Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
 
 
         If chrome_RadioButton.Checked = True Then
@@ -452,7 +451,7 @@ Public Class Form1
 
 
             'Open_Browser("Chrome", used_dev_model, myprofile)
-            myWebDriver.Open_Browser("Chrome", myWebDriver.used_dev_model, myprofile)
+            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, myprofile)
 
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
@@ -466,7 +465,7 @@ Public Class Form1
             Dim pattern As String
             pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
             If Regex.IsMatch(curr_url_ComboBox.Text, pattern) Then
-                Navigate_GoToUrl(curr_url_ComboBox.Text)
+                Await myWebDriver.Navigate_GoToUrl_Task(curr_url_ComboBox.Text)
             Else
                 MsgBox("網址格式錯誤")
             End If
@@ -476,7 +475,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub Open_Random_Profile_btn_Click(sender As Object, e As EventArgs) Handles Open_Random_Profile_btn.Click
+    Private Async Sub Open_Random_Profile_btn_Click(sender As Object, e As EventArgs) Handles Open_Random_Profile_btn.Click
         If chrome_RadioButton.Checked = True Then
 
             If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
@@ -495,7 +494,7 @@ Public Class Form1
                 Next
             End If
 
-            myWebDriver.Open_Browser("Chrome", myWebDriver.used_dev_model, "全部隨機")
+            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, "全部隨機")
 
             If curr_url_ComboBox.Text <> "" Then
                 Dim pattern As String

@@ -48,15 +48,10 @@ Public Class MyWebDriver
     Dim m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
 
-    Public Function Write_post_send_content_Task(content) As Task(Of Boolean)
-        Return Task.Run(Function() Write_post_send_content(content))
+
+    Public Function Open_Browser_Task(browser As String, devicetype As String, profile As String)
+        Return Task.Run(Function() Open_Browser(browser, devicetype, profile))
     End Function
-
-    Public Function Tring_to_upload_img_Task(image_path) As Task(Of Boolean)
-        Return Task.Run(Function() Tring_to_upload_img(image_path))
-    End Function
-
-
 
     Public Function Open_Browser(browser As String, devicetype As String, profile As String)
 
@@ -175,6 +170,10 @@ Public Class MyWebDriver
 
     End Function
 
+    Public Function Navigate_GoToUrl_Task(url)
+        Return Task.Run(Function() Navigate_GoToUrl(url))
+    End Function
+
     Public Function Navigate_GoToUrl(url As String)
         Try
             chromeDriver.Navigate.GoToUrl(url)
@@ -208,6 +207,7 @@ Public Class MyWebDriver
             Return ""
         End Try
     End Function
+
     Private Sub IsInternetConnected()
         If Not My.Computer.Network.Ping("google.com") Then
             MsgBox("Network is unreachable")
@@ -215,7 +215,6 @@ Public Class MyWebDriver
         End If
 
     End Sub
-
 
     Public Function click_by_aria_label(str As String) As Boolean
         Try
@@ -230,6 +229,10 @@ Public Class MyWebDriver
         End Try
     End Function
 
+    Public Function Click_element_by_feature_Task(parm)
+        Return Task.Run(Function() Click_element_by_feature(parm))
+    End Function
+
     Public Function Click_element_by_feature(parm As String)
         Select Case parm
             Case "留個言吧"
@@ -242,7 +245,6 @@ Public Class MyWebDriver
 
         Return False
     End Function
-
 
     Public Function click_by_span_text(str As String) As Boolean
 
@@ -291,6 +293,11 @@ Public Class MyWebDriver
         End Try
     End Function
 
+
+    Public Function Upload_reply_img_Task(img)
+        Return Task.Run(Function() Upload_reply_img(img))
+    End Function
+
     Public Function Upload_reply_img(img)
 
         Try
@@ -327,6 +334,10 @@ Public Class MyWebDriver
         End Try
 
 
+    End Function
+
+    Public Function Reply_Random_Match_TextAndImage_Task(content)
+        Return Task.Run(Function() Reply_Random_Match_TextAndImage(content))
     End Function
 
     Public Function Reply_Random_Match_TextAndImage(content)
@@ -374,6 +385,10 @@ Public Class MyWebDriver
 
     End Function
 
+    Public Function Submit_reply_comment_Task()
+        Return Task.Run(Function() Submit_reply_comment())
+    End Function
+
     Public Function Submit_reply_comment()
         Try
 
@@ -396,7 +411,9 @@ Public Class MyWebDriver
         End Try
     End Function
 
-
+    Public Function Write_post_send_content_Task(content) As Task(Of Boolean)
+        Return Task.Run(Function() Write_post_send_content(content))
+    End Function
 
     Public Function Write_post_send_content(content) As Boolean
         Try
@@ -424,7 +441,12 @@ Public Class MyWebDriver
     End Function
 
 
-    Public Function Clear_post_content()
+
+    Public Function Clear_post_content_Task() As Task(Of Boolean)
+        Return Task.Run(Function() Clear_post_content())
+    End Function
+
+    Public Function Clear_post_content() As Boolean
         Try
             Dim msgbox_ele As Object
             Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
@@ -447,6 +469,10 @@ Public Class MyWebDriver
             Return False
         End Try
         Return False
+    End Function
+
+    Public Function Tring_to_upload_img_Task(image_path) As Task(Of Boolean)
+        Return Task.Run(Function() Tring_to_upload_img(image_path))
     End Function
 
     Public Function Tring_to_upload_img(img_path_str) As Boolean
@@ -529,6 +555,11 @@ Public Class MyWebDriver
         End Try
     End Function
 
+
+    Public Function Send_reply_comment_Task(content)
+        Return Task.Run(Function() Send_reply_comment(content))
+    End Function
+
     Public Function Send_reply_comment(content)
         'Dim msgbox_ele As Object
         'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
@@ -570,6 +601,10 @@ Public Class MyWebDriver
 
     End Function
 
+
+    Public Function Click_reply_random_emoji_Task(Emoji_str)
+        Return Task.Run(Function() Click_reply_random_emoji(Emoji_str))
+    End Function
 
     Public Function Click_reply_random_emoji(Emoji_str)
         If Emoji_str = "" Then
@@ -642,6 +677,11 @@ Public Class MyWebDriver
             Debug.WriteLine(ex)
         End Try
 
+    End Function
+
+
+    Public Function Search_Keyword_Task(engine As String, keyword As String)
+        Return Task.Run(Function() Search_Keyword(engine, keyword))
     End Function
 
     Public Function Search_Keyword(engine As String, keyword As String)
