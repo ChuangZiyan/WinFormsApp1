@@ -319,7 +319,7 @@ Public Class Form1
                         boolean_result = Await myWebDriver.Send_reply_comment_Task(File.ReadAllText(curr_path + "resources\texts\" + TextFiles(rnd)))
                     End If
                 Case "回應:隨機配對"
-                    boolean_result = Await myWebDriver.Reply_Random_Match_TextAndImage_Task(content)
+                    boolean_result = Await myWebDriver.Reply_Random_Match_TextAndImage(content)
 
                 Case "回應:送出"
 

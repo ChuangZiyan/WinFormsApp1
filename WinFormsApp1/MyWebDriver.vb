@@ -295,6 +295,8 @@ Public Class MyWebDriver
 
 
     Public Function Upload_reply_img_Task(img)
+        Dim myimage = Bitmap.FromFile(img)
+        Clipboard.SetImage(myimage)
         Return Task.Run(Function() Upload_reply_img(img))
     End Function
 
@@ -303,8 +305,6 @@ Public Class MyWebDriver
         Try
             'Debug.WriteLine("Copy " + img)
             Dim msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
-            Dim myimage = Bitmap.FromFile(img)
-            Clipboard.SetImage(myimage)
             msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
             Return True
 
@@ -312,8 +312,6 @@ Public Class MyWebDriver
             Debug.WriteLine(ex)
             Return False
         End Try
-
-
 
         ' old code keep until stable
         chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
@@ -336,11 +334,8 @@ Public Class MyWebDriver
 
     End Function
 
-    Public Function Reply_Random_Match_TextAndImage_Task(content)
-        Return Task.Run(Function() Reply_Random_Match_TextAndImage(content))
-    End Function
 
-    Public Function Reply_Random_Match_TextAndImage(content)
+    Public Async Function Reply_Random_Match_TextAndImage(content) As Task(Of Boolean)
         'Debug.WriteLine(content)
         Dim AllConditions() As String = content.Split(";")
         Dim rnd = rnd_num.Next(0, AllConditions.Length)
@@ -351,7 +346,7 @@ Public Class MyWebDriver
         Dim TextFolder = AllConditions(rnd).Split("%20")(0)
         Dim ImageFolder = AllConditions(rnd).Split("%20")(1)
 
-        Dim Txtfiles() As String = IO.Directory.GetFiles(TextFolder)
+        Dim Txtfiles() As String = IO.Directory.GetFiles(FormInit.text_folder_path + TextFolder)
         Dim TextFile_ArrayList = New ArrayList()
         For Each file As String In Txtfiles
             'Debug.WriteLine(file)
@@ -362,12 +357,12 @@ Public Class MyWebDriver
 
         rnd = rnd_num.Next(0, TextFile_ArrayList.Count)
 
-        If Send_reply_comment(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then ' send text 
+        If Await Send_reply_comment_Task(File.ReadAllText(TextFile_ArrayList(rnd))) = False Then ' send text 
             Return False
         End If
 
 
-        Dim Imgfiles() As String = IO.Directory.GetFiles(ImageFolder)
+        Dim Imgfiles() As String = IO.Directory.GetFiles(FormInit.image_folder_path + ImageFolder)
         Dim ImgageFile_ArrayList = New ArrayList()
         For Each file As String In Imgfiles
             'Debug.WriteLine(file)
@@ -544,7 +539,7 @@ Public Class MyWebDriver
         Try
 
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                chromeDriver.FindElements(By.CssSelector("div.jg3vgc78.cgu29s5g.lq84ybu9.hf30pyar.r227ecj6 > ul > li:nth-child(2) > div")).ElementAt(0).Click()
+                chromeDriver.FindElements(By.CssSelector("div.xq8finb.x16n37ib.x3dsekl.x1uuop16 > div > div:nth-child(2) > div")).ElementAt(0).Click()
             Else
                 Return click_by_aria_label(langConverter.Item("aria-label-Leave-a-comment").ToString())
             End If
@@ -557,10 +552,11 @@ Public Class MyWebDriver
 
 
     Public Function Send_reply_comment_Task(content)
+        Clipboard.SetText(content)
         Return Task.Run(Function() Send_reply_comment(content))
     End Function
 
-    Public Function Send_reply_comment(content)
+    Public Function Send_reply_comment(content) As Boolean
         'Dim msgbox_ele As Object
         'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
         Try
@@ -573,7 +569,7 @@ Public Class MyWebDriver
             End If
 
 
-            Clipboard.SetText(content)
+
             msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
 
 
@@ -585,8 +581,6 @@ Public Class MyWebDriver
             'msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
             'Next
 
-
-
             'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
 
@@ -595,9 +589,6 @@ Public Class MyWebDriver
             Debug.WriteLine(ex)
             Return False
         End Try
-
-
-
 
     End Function
 
