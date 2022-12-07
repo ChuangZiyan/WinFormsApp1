@@ -323,7 +323,7 @@ Public Class Form1
 
                 Case "回應:送出"
 
-                    If myWebDriver.IsElementPresentByClass("uiScaledImageContainer") Then
+                    If Await myWebDriver.IsElementPresentByClass_Task("uiScaledImageContainer") Then
                         boolean_result = Await myWebDriver.Submit_reply_comment_Task()
                     Else
                         boolean_result = Await myWebDriver.Submit_reply_comment_Task()

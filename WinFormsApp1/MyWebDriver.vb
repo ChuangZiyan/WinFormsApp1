@@ -284,6 +284,10 @@ Public Class MyWebDriver
         End Try
     End Function
 
+    Public Function IsElementPresentByClass_Task(parm)
+        Return Task.Run(Function() IsElementPresentByClass(parm))
+    End Function
+
     Function IsElementPresentByClass(ClassName As String) As Boolean
         Try
             chromeDriver.FindElement(By.ClassName(ClassName))
@@ -688,7 +692,8 @@ Public Class MyWebDriver
 
                     Navigate_GoToUrl("https://www.facebook.com/")
                     chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']")).Click()
-                    Dim Search_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x9f619.x78zum5.xnnlda6 > div > div > label > input"))
+                    'Dim Search_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x9f619.x78zum5.xnnlda6 > div > div > label > input"))
+                    Dim Search_input = chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']"))
                     Search_input.Clear()
                     Search_input.SendKeys(keyword)
                     Search_input.SendKeys(Keys.Enter)
