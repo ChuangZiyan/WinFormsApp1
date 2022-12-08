@@ -401,8 +401,8 @@ Public Class Form1
                         'Await Delay_msec(sec * 1000)
                         boolean_result = True
                         'shutdown system
-                        Process.Start("shutdown", "-s -t 0")
                         Close()
+                        Process.Start("shutdown", "-s -t 0")
                     Catch ex As Exception
                         Debug.WriteLine(ex)
                         boolean_result = False
@@ -621,6 +621,41 @@ Public Class Form1
     Dim Continue_time = ""
 
 
+    Dim RunCountdown = False
+
+    Private Sub Countdown_Toggle_Button_Click(sender As Object, e As EventArgs) Handles Countdown_Toggle_Button.Click
+
+        If Exit_Program_Counter_CheckBox.Checked Or PowerOff_PC_Counter_CheckBox.Checked = True Then
+
+            If RunCountdown = True Then
+
+                Countdown_Toggle_Button.Text = "開始"
+                RunCountdown = False
+                Exit_Program_Counter_CheckBox.Enabled = True
+                PowerOff_PC_Counter_CheckBox.Enabled = True
+                myHoursCounter_NumericUpDown.Enabled = True
+                myMinutesCounter_NumericUpDown.Enabled = True
+                mySecondsCounter_NumericUpDown.Enabled = True
+
+            ElseIf RunCountdown = False Then
+
+                Countdown_Toggle_Button.Text = "取消"
+                RunCountdown = True
+                Exit_Program_Counter_CheckBox.Enabled = False
+                PowerOff_PC_Counter_CheckBox.Enabled = False
+                myHoursCounter_NumericUpDown.Enabled = False
+                myMinutesCounter_NumericUpDown.Enabled = False
+                mySecondsCounter_NumericUpDown.Enabled = False
+
+            End If
+
+
+        Else
+            MsgBox("需勾選關閉程式或者關閉電腦")
+        End If
+
+    End Sub
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim TimeNow = Date.Now.ToString("HH:mm:ss")
         'Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
@@ -660,12 +695,35 @@ Public Class Form1
             Run_script_controller()
         End If
 
+
+        ' Countdown
+        If RunCountdown Then
+            Dim total_secs = myHoursCounter_NumericUpDown.Value * 3600 + myMinutesCounter_NumericUpDown.Value * 60 + mySecondsCounter_NumericUpDown.Value
+
+
+            'Exit Program or Shutdown PC
+            If total_secs = 0 Then
+                If Exit_Program_Counter_CheckBox.Checked = True Then
+                    Debug.WriteLine("離開程式")
+                    Close()
+                ElseIf PowerOff_PC_Counter_CheckBox.Checked = True Then
+                    Close()
+                    Process.Start("shutdown", "-s -t 0")
+                End If
+                Return
+            End If
+
+            total_secs -= 1
+
+            myHoursCounter_NumericUpDown.Value = Int(total_secs / 3600)
+            total_secs = total_secs Mod 3600
+            myMinutesCounter_NumericUpDown.Value = Int(total_secs / 60)
+            mySecondsCounter_NumericUpDown.Value = total_secs Mod 60
+        End If
+
     End Sub
 
     Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
-
-
-
 
 
         loop_run = CheckBox_loop_run.Checked
@@ -1434,4 +1492,19 @@ Public Class Form1
     Private Sub Delete_Str_from_RTBox_btn_Click(sender As Object, e As EventArgs) Handles Delete_Str_from_RTBox_btn.Click
         Auto_GenerateTextFile_RichTextBox.Text = Auto_GenerateTextFile_RichTextBox.Text.Replace(Pattern_Str_ComboBox.Text, "")
     End Sub
+
+    Private Sub Exit_Program_Counter_CheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles Exit_Program_Counter_CheckBox.CheckedChanged
+        If Exit_Program_Counter_CheckBox.Checked = True Then
+            PowerOff_PC_Counter_CheckBox.Checked = False
+        End If
+
+    End Sub
+
+    Private Sub PowerOff_PC_Counter_CheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles PowerOff_PC_Counter_CheckBox.CheckedChanged
+        If PowerOff_PC_Counter_CheckBox.Checked = True Then
+            Exit_Program_Counter_CheckBox.Checked = False
+        End If
+    End Sub
+
+
 End Class

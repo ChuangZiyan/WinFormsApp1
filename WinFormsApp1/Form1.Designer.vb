@@ -69,6 +69,16 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Countdown_Toggle_Button = New System.Windows.Forms.Button()
+        Me.Label54 = New System.Windows.Forms.Label()
+        Me.PowerOff_PC_Counter_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Exit_Program_Counter_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Label51 = New System.Windows.Forms.Label()
+        Me.mySecondsCounter_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Label52 = New System.Windows.Forms.Label()
+        Me.myMinutesCounter_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.myHoursCounter_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Open_Random_Profile_btn = New System.Windows.Forms.Button()
         Me.curr_url_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Insert_Shutdown_System_btn = New System.Windows.Forms.Button()
@@ -270,6 +280,9 @@ Partial Class Form1
         Me.cmd_GroupBox.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage5.SuspendLayout()
+        CType(Me.mySecondsCounter_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.myMinutesCounter_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.myHoursCounter_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -741,6 +754,16 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Countdown_Toggle_Button)
+        Me.TabPage5.Controls.Add(Me.Label54)
+        Me.TabPage5.Controls.Add(Me.PowerOff_PC_Counter_CheckBox)
+        Me.TabPage5.Controls.Add(Me.Exit_Program_Counter_CheckBox)
+        Me.TabPage5.Controls.Add(Me.Label51)
+        Me.TabPage5.Controls.Add(Me.mySecondsCounter_NumericUpDown)
+        Me.TabPage5.Controls.Add(Me.Label52)
+        Me.TabPage5.Controls.Add(Me.myMinutesCounter_NumericUpDown)
+        Me.TabPage5.Controls.Add(Me.Label53)
+        Me.TabPage5.Controls.Add(Me.myHoursCounter_NumericUpDown)
         Me.TabPage5.Controls.Add(Me.Open_Random_Profile_btn)
         Me.TabPage5.Controls.Add(Me.curr_url_ComboBox)
         Me.TabPage5.Controls.Add(Me.Insert_Shutdown_System_btn)
@@ -803,6 +826,95 @@ Partial Class Form1
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'Countdown_Toggle_Button
+        '
+        Me.Countdown_Toggle_Button.Location = New System.Drawing.Point(538, 728)
+        Me.Countdown_Toggle_Button.Name = "Countdown_Toggle_Button"
+        Me.Countdown_Toggle_Button.Size = New System.Drawing.Size(94, 29)
+        Me.Countdown_Toggle_Button.TabIndex = 142
+        Me.Countdown_Toggle_Button.Text = "開始"
+        Me.Countdown_Toggle_Button.UseVisualStyleBackColor = True
+        '
+        'Label54
+        '
+        Me.Label54.AutoSize = True
+        Me.Label54.Location = New System.Drawing.Point(135, 733)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(80, 19)
+        Me.Label54.TabIndex = 141
+        Me.Label54.Text = "倒數時間 : "
+        '
+        'PowerOff_PC_Counter_CheckBox
+        '
+        Me.PowerOff_PC_Counter_CheckBox.AutoSize = True
+        Me.PowerOff_PC_Counter_CheckBox.Location = New System.Drawing.Point(40, 763)
+        Me.PowerOff_PC_Counter_CheckBox.Name = "PowerOff_PC_Counter_CheckBox"
+        Me.PowerOff_PC_Counter_CheckBox.Size = New System.Drawing.Size(91, 23)
+        Me.PowerOff_PC_Counter_CheckBox.TabIndex = 140
+        Me.PowerOff_PC_Counter_CheckBox.Text = "關閉電腦"
+        Me.PowerOff_PC_Counter_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Exit_Program_Counter_CheckBox
+        '
+        Me.Exit_Program_Counter_CheckBox.AutoSize = True
+        Me.Exit_Program_Counter_CheckBox.Location = New System.Drawing.Point(40, 731)
+        Me.Exit_Program_Counter_CheckBox.Name = "Exit_Program_Counter_CheckBox"
+        Me.Exit_Program_Counter_CheckBox.Size = New System.Drawing.Size(91, 23)
+        Me.Exit_Program_Counter_CheckBox.TabIndex = 139
+        Me.Exit_Program_Counter_CheckBox.Text = "關閉程式"
+        Me.Exit_Program_Counter_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Label51
+        '
+        Me.Label51.AutoSize = True
+        Me.Label51.Location = New System.Drawing.Point(502, 733)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(30, 19)
+        Me.Label51.TabIndex = 138
+        Me.Label51.Text = "/秒"
+        '
+        'mySecondsCounter_NumericUpDown
+        '
+        Me.mySecondsCounter_NumericUpDown.Location = New System.Drawing.Point(425, 731)
+        Me.mySecondsCounter_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.mySecondsCounter_NumericUpDown.Name = "mySecondsCounter_NumericUpDown"
+        Me.mySecondsCounter_NumericUpDown.Size = New System.Drawing.Size(60, 27)
+        Me.mySecondsCounter_NumericUpDown.TabIndex = 137
+        '
+        'Label52
+        '
+        Me.Label52.AutoSize = True
+        Me.Label52.Location = New System.Drawing.Point(389, 733)
+        Me.Label52.Name = "Label52"
+        Me.Label52.Size = New System.Drawing.Size(30, 19)
+        Me.Label52.TabIndex = 136
+        Me.Label52.Text = "/分"
+        '
+        'myMinutesCounter_NumericUpDown
+        '
+        Me.myMinutesCounter_NumericUpDown.Location = New System.Drawing.Point(323, 731)
+        Me.myMinutesCounter_NumericUpDown.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.myMinutesCounter_NumericUpDown.Name = "myMinutesCounter_NumericUpDown"
+        Me.myMinutesCounter_NumericUpDown.Size = New System.Drawing.Size(60, 27)
+        Me.myMinutesCounter_NumericUpDown.TabIndex = 135
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Location = New System.Drawing.Point(287, 733)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(30, 19)
+        Me.Label53.TabIndex = 134
+        Me.Label53.Text = "/時"
+        '
+        'myHoursCounter_NumericUpDown
+        '
+        Me.myHoursCounter_NumericUpDown.Location = New System.Drawing.Point(221, 731)
+        Me.myHoursCounter_NumericUpDown.Maximum = New Decimal(New Integer() {72, 0, 0, 0})
+        Me.myHoursCounter_NumericUpDown.Name = "myHoursCounter_NumericUpDown"
+        Me.myHoursCounter_NumericUpDown.Size = New System.Drawing.Size(60, 27)
+        Me.myHoursCounter_NumericUpDown.TabIndex = 133
+        '
         'Open_Random_Profile_btn
         '
         Me.Open_Random_Profile_btn.Location = New System.Drawing.Point(439, 257)
@@ -822,7 +934,7 @@ Partial Class Form1
         '
         'Insert_Shutdown_System_btn
         '
-        Me.Insert_Shutdown_System_btn.Location = New System.Drawing.Point(439, 719)
+        Me.Insert_Shutdown_System_btn.Location = New System.Drawing.Point(439, 684)
         Me.Insert_Shutdown_System_btn.Name = "Insert_Shutdown_System_btn"
         Me.Insert_Shutdown_System_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_Shutdown_System_btn.TabIndex = 130
@@ -831,7 +943,7 @@ Partial Class Form1
         '
         'Insert_Exit_Program_btn
         '
-        Me.Insert_Exit_Program_btn.Location = New System.Drawing.Point(439, 684)
+        Me.Insert_Exit_Program_btn.Location = New System.Drawing.Point(439, 649)
         Me.Insert_Exit_Program_btn.Name = "Insert_Exit_Program_btn"
         Me.Insert_Exit_Program_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_Exit_Program_btn.TabIndex = 129
@@ -874,7 +986,7 @@ Partial Class Form1
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(400, 688)
+        Me.Label13.Location = New System.Drawing.Point(400, 653)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(30, 19)
         Me.Label13.TabIndex = 124
@@ -883,7 +995,7 @@ Partial Class Form1
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(40, 688)
+        Me.Label36.Location = New System.Drawing.Point(40, 653)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(73, 19)
         Me.Label36.TabIndex = 123
@@ -1058,7 +1170,7 @@ Partial Class Form1
         '
         'Insert_delay_btn
         '
-        Me.Insert_delay_btn.Location = New System.Drawing.Point(439, 649)
+        Me.Insert_delay_btn.Location = New System.Drawing.Point(439, 614)
         Me.Insert_delay_btn.Name = "Insert_delay_btn"
         Me.Insert_delay_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_delay_btn.TabIndex = 70
@@ -1090,7 +1202,7 @@ Partial Class Form1
         '
         'wait_random_second_NumericUpDown
         '
-        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(119, 686)
+        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(119, 651)
         Me.wait_random_second_NumericUpDown.Name = "wait_random_second_NumericUpDown"
         Me.wait_random_second_NumericUpDown.Size = New System.Drawing.Size(264, 27)
         Me.wait_random_second_NumericUpDown.TabIndex = 68
@@ -1107,7 +1219,7 @@ Partial Class Form1
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(400, 655)
+        Me.Label12.Location = New System.Drawing.Point(400, 620)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(30, 19)
         Me.Label12.TabIndex = 67
@@ -1124,7 +1236,7 @@ Partial Class Form1
         '
         'wait_second_NumericUpDown
         '
-        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(323, 653)
+        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(323, 618)
         Me.wait_second_NumericUpDown.Name = "wait_second_NumericUpDown"
         Me.wait_second_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_second_NumericUpDown.TabIndex = 66
@@ -1141,7 +1253,7 @@ Partial Class Form1
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(287, 655)
+        Me.Label11.Location = New System.Drawing.Point(287, 620)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(30, 19)
         Me.Label11.TabIndex = 65
@@ -1210,7 +1322,7 @@ Partial Class Form1
         '
         'wait_minute_NumericUpDown
         '
-        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(221, 653)
+        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(221, 618)
         Me.wait_minute_NumericUpDown.Name = "wait_minute_NumericUpDown"
         Me.wait_minute_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_minute_NumericUpDown.TabIndex = 64
@@ -1227,7 +1339,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(185, 655)
+        Me.Label10.Location = New System.Drawing.Point(185, 620)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(30, 19)
         Me.Label10.TabIndex = 63
@@ -1244,7 +1356,7 @@ Partial Class Form1
         '
         'wait_hour_NumericUpDown
         '
-        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(119, 653)
+        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(119, 618)
         Me.wait_hour_NumericUpDown.Name = "wait_hour_NumericUpDown"
         Me.wait_hour_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_hour_NumericUpDown.TabIndex = 62
@@ -1252,7 +1364,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(33, 655)
+        Me.Label9.Location = New System.Drawing.Point(33, 620)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(76, 19)
         Me.Label9.TabIndex = 61
@@ -2626,6 +2738,9 @@ Partial Class Form1
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
+        CType(Me.mySecondsCounter_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.myMinutesCounter_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.myHoursCounter_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_random_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.wait_second_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
@@ -2895,4 +3010,14 @@ Partial Class Form1
     Friend WithEvents Split_NewLine_By_Char_btn As Button
     Friend WithEvents Pattern_Str_ComboBox As ComboBox
     Friend WithEvents Delete_Str_from_RTBox_btn As Button
+    Friend WithEvents Label54 As Label
+    Friend WithEvents PowerOff_PC_Counter_CheckBox As CheckBox
+    Friend WithEvents Exit_Program_Counter_CheckBox As CheckBox
+    Friend WithEvents Label51 As Label
+    Friend WithEvents mySecondsCounter_NumericUpDown As NumericUpDown
+    Friend WithEvents Label52 As Label
+    Friend WithEvents myMinutesCounter_NumericUpDown As NumericUpDown
+    Friend WithEvents Label53 As Label
+    Friend WithEvents myHoursCounter_NumericUpDown As NumericUpDown
+    Friend WithEvents Countdown_Toggle_Button As Button
 End Class

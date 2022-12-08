@@ -261,8 +261,8 @@ Public Class MyWebDriver
     End Function
 
     Function IsElementPresentByCssSelector(locatorKey As String) As Boolean
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5)
         Try
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
             chromeDriver.FindElement(By.CssSelector(locatorKey))
             chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
@@ -684,16 +684,28 @@ Public Class MyWebDriver
             Select Case engine
                 Case "Facebook"
                     'chromeDriver.Navigate.GoToUrl("https://www.facebook.com/search/top/?q=" + keyword)
+                    Navigate_GoToUrl("https://www.facebook.com/")
 
-                    If IsElementPresentByCssSelector("div.x5yr21d.x1n2onr6.xh8yej3.x1t2pt76.x1plvlek.xryxfnj > div > div > div > div > div > div > label") Then
-                        chromeDriver.FindElement(By.CssSelector("div.x5yr21d.x1n2onr6.xh8yej3.x1t2pt76.x1plvlek.xryxfnj > div > div > div > div > div > div > label")).Click()
+                    If IsElementPresentByCssSelector("div.x9f619.x78zum5.x1s65kcs.xixxii4.x13vifvy.xhtitgo.xds687c.x90ctcv.x12dzrxb.xiimyba.xqmrbw9.x1h737yt") Then
+                        Dim search_icon = chromeDriver.FindElement(By.CssSelector("div.x9f619.x78zum5.x1s65kcs.xixxii4.x13vifvy.xhtitgo.xds687c.x90ctcv.x12dzrxb.xiimyba.xqmrbw9.x1h737yt"))
+                        act.MoveToElement(search_icon).Perform()
+
                     End If
 
+                    Dim search_input_selector_str_1 = "div.x5yr21d.x1n2onr6.xh8yej3.x1t2pt76.x1plvlek.xryxfnj > div > div > div > div > div > div > label > input"
+                    Dim search_input_selector_str_2 = "div.x9f619.x1s65kcs.x16xn7b0.xixxii4.x17qophe.x13vifvy.xj35x94.xhtitgo.xmy5rp > div > div > div > div > div > label > input"
+                    Dim Search_input As Object
+                    If IsElementPresentByCssSelector(search_input_selector_str_1) Then
+                        Search_input = chromeDriver.FindElement(By.CssSelector(search_input_selector_str_1))
 
-                    Navigate_GoToUrl("https://www.facebook.com/")
-                    chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']")).Click()
-                    'Dim Search_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x9f619.x78zum5.xnnlda6 > div > div > label > input"))
-                    Dim Search_input = chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']"))
+                    ElseIf IsElementPresentByCssSelector(search_input_selector_str_2) Then
+                        Search_input = chromeDriver.FindElement(By.CssSelector(search_input_selector_str_2))
+                    Else
+                        Return False
+                    End If
+
+                    'chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']")).Click()
+                    'Dim Search_input = chromeDriver.FindElement(By.CssSelector("input[aria-label$='搜尋 Facebook']"))
                     Search_input.Clear()
                     Search_input.SendKeys(keyword)
                     Search_input.SendKeys(Keys.Enter)
