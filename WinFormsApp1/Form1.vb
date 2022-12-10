@@ -304,6 +304,19 @@ Public Class Form1
                         Dim rnd = rnd_num.Next(0, ImageFiles.Length)
                         boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + ImageFiles(rnd))
                     End If
+                Case "限時:上載"
+                    boolean_result = Await myWebDriver.Upload_Story_img_Task(content)
+                Case "限時:隨機上載"
+                    If content = "全部隨機" Then
+                        Dim allImageFile = img_CheckedListBox.Items
+                        Dim rnd = rnd_num.Next(0, allImageFile.Count)
+                        boolean_result = Await myWebDriver.Upload_Story_img_Task(image_folder_path + allImageFile(rnd))
+                    Else
+                        Dim ImageFiles = content.Split(";")
+                        Dim rnd = rnd_num.Next(0, ImageFiles.Length)
+                        boolean_result = Await myWebDriver.Upload_Story_img_Task(image_folder_path + ImageFiles(rnd))
+                    End If
+
                 Case "回應:內容"
                     boolean_result = Await myWebDriver.Send_reply_comment_Task(content)
                 Case "回應:隨機"
@@ -704,7 +717,7 @@ Public Class Form1
             'Exit Program or Shutdown PC
             If total_secs = 0 Then
                 If Exit_Program_Counter_CheckBox.Checked = True Then
-                    Debug.WriteLine("離開程式")
+                    'Debug.WriteLine("離開程式")
                     Close()
                 ElseIf PowerOff_PC_Counter_CheckBox.Checked = True Then
                     Close()
@@ -1506,5 +1519,7 @@ Public Class Form1
         End If
     End Sub
 
-
+    Private Sub Insert_Story_Image_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Story_Image_Btn.Click
+        ScriptInsertion.Insert_story_img_video()
+    End Sub
 End Class

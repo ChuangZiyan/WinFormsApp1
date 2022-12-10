@@ -48,7 +48,6 @@ Public Class MyWebDriver
     Dim m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
 
 
-
     Public Function Open_Browser_Task(browser As String, devicetype As String, profile As String)
         Return Task.Run(Function() Open_Browser(browser, devicetype, profile))
     End Function
@@ -297,7 +296,6 @@ Public Class MyWebDriver
         End Try
     End Function
 
-
     Public Function Upload_reply_img_Task(img)
         Dim myimage = Bitmap.FromFile(img)
         Clipboard.SetImage(myimage)
@@ -335,6 +333,25 @@ Public Class MyWebDriver
             Return False
         End Try
 
+
+    End Function
+
+
+    Public Function Upload_Story_img_Task(img)
+        Return Task.Run(Function() Upload_Story_img(img))
+    End Function
+
+
+    Public Function Upload_Story_img(img)
+        Try
+            chromeDriver.Navigate.GoToUrl("https://www.facebook.com/stories/create")
+            Dim img_input = chromeDriver.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.xdt5ytf.x193iq5w.xeuugli.x1r8uery.x1iyjqo2.xs83m0k.x78zum5.x1t2pt76 > div > div > div > div > input"))
+            img_input.SendKeys(img)
+            chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x10h3on.x78zum5.x1q0g3np.xy75621.x1qughib.x1ye3gou.xn6708d > div:nth-child(2) > div")).Click()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
 
     End Function
 

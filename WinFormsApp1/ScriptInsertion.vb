@@ -403,4 +403,39 @@ Module ScriptInsertion
 
 
 
+    Public Sub Insert_story_img_video()
+        Dim img_path_str As String = ""
+
+        'get selected img path into string 
+        If Form1.img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To Form1.img_CheckedListBox.CheckedItems.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+                Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
+                If img_path_str = "" Then
+                    img_path_str = image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
+                Else
+                    img_path_str = img_path_str & vbLf & image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
+                End If
+            Next
+            Insert_to_script("限時:上載", img_path_str)
+        Else
+            MsgBox("未勾選任何檔案")
+        End If
+    End Sub
+
+
+    Public Sub Insert_Story_Random_Image()
+        Dim Image_file_path As String = ""
+        For Each itemChecked In Form1.img_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Image_file_path += itemChecked + ";"
+        Next
+
+        If Image_file_path = "" Then
+            Insert_to_script("限時:隨機上載", "全部隨機")
+        Else
+            Insert_to_script("限時:隨機上載", Image_file_path.TrimEnd(";"))
+        End If
+    End Sub
+
 End Module

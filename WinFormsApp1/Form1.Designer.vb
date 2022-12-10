@@ -270,6 +270,9 @@ Partial Class Form1
         Me.Block_User = New System.Windows.Forms.TabPage()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.Insert_Story_Image_Btn = New System.Windows.Forms.Button()
+        Me.Insert_Random_Story_Image_Btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1372,6 +1375,9 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Insert_Random_Story_Image_Btn)
+        Me.TabPage3.Controls.Add(Me.Insert_Story_Image_Btn)
+        Me.TabPage3.Controls.Add(Me.Label55)
         Me.TabPage3.Controls.Add(Me.Insert_Reply_Random_Image_btn)
         Me.TabPage3.Controls.Add(Me.Insert_Reply_Random_Match_btn)
         Me.TabPage3.Controls.Add(Me.Label41)
@@ -1428,7 +1434,7 @@ Partial Class Form1
         '
         'Insert_Reply_Random_Image_btn
         '
-        Me.Insert_Reply_Random_Image_btn.Location = New System.Drawing.Point(688, 534)
+        Me.Insert_Reply_Random_Image_btn.Location = New System.Drawing.Point(688, 503)
         Me.Insert_Reply_Random_Image_btn.Name = "Insert_Reply_Random_Image_btn"
         Me.Insert_Reply_Random_Image_btn.Size = New System.Drawing.Size(224, 29)
         Me.Insert_Reply_Random_Image_btn.TabIndex = 94
@@ -1437,7 +1443,7 @@ Partial Class Form1
         '
         'Insert_Reply_Random_Match_btn
         '
-        Me.Insert_Reply_Random_Match_btn.Location = New System.Drawing.Point(687, 569)
+        Me.Insert_Reply_Random_Match_btn.Location = New System.Drawing.Point(687, 538)
         Me.Insert_Reply_Random_Match_btn.Name = "Insert_Reply_Random_Match_btn"
         Me.Insert_Reply_Random_Match_btn.Size = New System.Drawing.Size(224, 29)
         Me.Insert_Reply_Random_Match_btn.TabIndex = 94
@@ -1447,7 +1453,7 @@ Partial Class Form1
         'Label41
         '
         Me.Label41.AutoSize = True
-        Me.Label41.Location = New System.Drawing.Point(687, 372)
+        Me.Label41.Location = New System.Drawing.Point(687, 341)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(82, 19)
         Me.Label41.TabIndex = 116
@@ -1455,7 +1461,7 @@ Partial Class Form1
         '
         'Insert_submit_comment_btn
         '
-        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(688, 604)
+        Me.Insert_submit_comment_btn.Location = New System.Drawing.Point(688, 573)
         Me.Insert_submit_comment_btn.Name = "Insert_submit_comment_btn"
         Me.Insert_submit_comment_btn.Size = New System.Drawing.Size(224, 29)
         Me.Insert_submit_comment_btn.TabIndex = 82
@@ -1464,7 +1470,7 @@ Partial Class Form1
         '
         'Insert_click_reply_btn
         '
-        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(687, 394)
+        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(687, 363)
         Me.Insert_click_reply_btn.Name = "Insert_click_reply_btn"
         Me.Insert_click_reply_btn.Size = New System.Drawing.Size(224, 29)
         Me.Insert_click_reply_btn.TabIndex = 77
@@ -1473,16 +1479,16 @@ Partial Class Form1
         '
         'Insert_emoji_btn
         '
-        Me.Insert_emoji_btn.Location = New System.Drawing.Point(688, 746)
+        Me.Insert_emoji_btn.Location = New System.Drawing.Point(752, 685)
         Me.Insert_emoji_btn.Name = "Insert_emoji_btn"
-        Me.Insert_emoji_btn.Size = New System.Drawing.Size(224, 29)
+        Me.Insert_emoji_btn.Size = New System.Drawing.Size(127, 29)
         Me.Insert_emoji_btn.TabIndex = 92
         Me.Insert_emoji_btn.Text = "插入"
         Me.Insert_emoji_btn.UseVisualStyleBackColor = True
         '
         'Insert_reply_comment_btn
         '
-        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(688, 429)
+        Me.Insert_reply_comment_btn.Location = New System.Drawing.Point(688, 398)
         Me.Insert_reply_comment_btn.Name = "Insert_reply_comment_btn"
         Me.Insert_reply_comment_btn.Size = New System.Drawing.Size(224, 29)
         Me.Insert_reply_comment_btn.TabIndex = 79
@@ -1492,7 +1498,7 @@ Partial Class Form1
         'Emoji_haha_CheckBox
         '
         Me.Emoji_haha_CheckBox.AutoSize = True
-        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(693, 716)
+        Me.Emoji_haha_CheckBox.Location = New System.Drawing.Point(693, 685)
         Me.Emoji_haha_CheckBox.Name = "Emoji_haha_CheckBox"
         Me.Emoji_haha_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_haha_CheckBox.TabIndex = 91
@@ -1501,7 +1507,7 @@ Partial Class Form1
         '
         'Insert_random_matching_text_and_all_img_btn
         '
-        Me.Insert_random_matching_text_and_all_img_btn.Location = New System.Drawing.Point(687, 305)
+        Me.Insert_random_matching_text_and_all_img_btn.Location = New System.Drawing.Point(687, 274)
         Me.Insert_random_matching_text_and_all_img_btn.Name = "Insert_random_matching_text_and_all_img_btn"
         Me.Insert_random_matching_text_and_all_img_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_random_matching_text_and_all_img_btn.TabIndex = 101
@@ -1511,7 +1517,7 @@ Partial Class Form1
         'Emoji_sad_CheckBox
         '
         Me.Emoji_sad_CheckBox.AutoSize = True
-        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(818, 687)
+        Me.Emoji_sad_CheckBox.Location = New System.Drawing.Point(818, 656)
         Me.Emoji_sad_CheckBox.Name = "Emoji_sad_CheckBox"
         Me.Emoji_sad_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_sad_CheckBox.TabIndex = 90
@@ -1520,7 +1526,7 @@ Partial Class Form1
         '
         'Insert_Reply_Random_TxtFile_btn
         '
-        Me.Insert_Reply_Random_TxtFile_btn.Location = New System.Drawing.Point(688, 464)
+        Me.Insert_Reply_Random_TxtFile_btn.Location = New System.Drawing.Point(688, 433)
         Me.Insert_Reply_Random_TxtFile_btn.Name = "Insert_Reply_Random_TxtFile_btn"
         Me.Insert_Reply_Random_TxtFile_btn.Size = New System.Drawing.Size(224, 29)
         Me.Insert_Reply_Random_TxtFile_btn.TabIndex = 93
@@ -1530,7 +1536,7 @@ Partial Class Form1
         'Emoji_wow_CheckBox
         '
         Me.Emoji_wow_CheckBox.AutoSize = True
-        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(754, 687)
+        Me.Emoji_wow_CheckBox.Location = New System.Drawing.Point(754, 656)
         Me.Emoji_wow_CheckBox.Name = "Emoji_wow_CheckBox"
         Me.Emoji_wow_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_wow_CheckBox.TabIndex = 89
@@ -1540,7 +1546,7 @@ Partial Class Form1
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(683, 38)
+        Me.Label40.Location = New System.Drawing.Point(683, 7)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(46, 19)
         Me.Label40.TabIndex = 115
@@ -1549,7 +1555,7 @@ Partial Class Form1
         'Emoji_angry_CheckBox
         '
         Me.Emoji_angry_CheckBox.AutoSize = True
-        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(693, 687)
+        Me.Emoji_angry_CheckBox.Location = New System.Drawing.Point(693, 656)
         Me.Emoji_angry_CheckBox.Name = "Emoji_angry_CheckBox"
         Me.Emoji_angry_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_angry_CheckBox.TabIndex = 88
@@ -1558,7 +1564,7 @@ Partial Class Form1
         '
         'Insert_submit_post_btn
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(687, 340)
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(687, 309)
         Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
         Me.Insert_submit_post_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_submit_post_btn.TabIndex = 75
@@ -1568,7 +1574,7 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(688, 636)
+        Me.Label14.Location = New System.Drawing.Point(688, 605)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(76, 19)
         Me.Label14.TabIndex = 84
@@ -1576,7 +1582,7 @@ Partial Class Form1
         '
         'Insert_Upload_Random_Image_btn
         '
-        Me.Insert_Upload_Random_Image_btn.Location = New System.Drawing.Point(683, 235)
+        Me.Insert_Upload_Random_Image_btn.Location = New System.Drawing.Point(683, 204)
         Me.Insert_Upload_Random_Image_btn.Name = "Insert_Upload_Random_Image_btn"
         Me.Insert_Upload_Random_Image_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_Upload_Random_Image_btn.TabIndex = 96
@@ -1586,7 +1592,7 @@ Partial Class Form1
         'Emoji_care_CheckBox
         '
         Me.Emoji_care_CheckBox.AutoSize = True
-        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(818, 658)
+        Me.Emoji_care_CheckBox.Location = New System.Drawing.Point(818, 627)
         Me.Emoji_care_CheckBox.Name = "Emoji_care_CheckBox"
         Me.Emoji_care_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_care_CheckBox.TabIndex = 87
@@ -1595,7 +1601,7 @@ Partial Class Form1
         '
         'Insert_comment_upload_img_btn
         '
-        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(688, 499)
+        Me.Insert_comment_upload_img_btn.Location = New System.Drawing.Point(688, 468)
         Me.Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
         Me.Insert_comment_upload_img_btn.Size = New System.Drawing.Size(224, 29)
         Me.Insert_comment_upload_img_btn.TabIndex = 81
@@ -1605,7 +1611,7 @@ Partial Class Form1
         'Emoji_like_CheckBox
         '
         Me.Emoji_like_CheckBox.AutoSize = True
-        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(693, 658)
+        Me.Emoji_like_CheckBox.Location = New System.Drawing.Point(693, 627)
         Me.Emoji_like_CheckBox.Name = "Emoji_like_CheckBox"
         Me.Emoji_like_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_like_CheckBox.TabIndex = 85
@@ -1614,7 +1620,7 @@ Partial Class Form1
         '
         'Insert_random_matching_text_and_img_btn
         '
-        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(687, 270)
+        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(687, 239)
         Me.Insert_random_matching_text_and_img_btn.Name = "Insert_random_matching_text_and_img_btn"
         Me.Insert_random_matching_text_and_img_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_random_matching_text_and_img_btn.TabIndex = 100
@@ -1624,7 +1630,7 @@ Partial Class Form1
         'Emoji_love_CheckBox
         '
         Me.Emoji_love_CheckBox.AutoSize = True
-        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(754, 658)
+        Me.Emoji_love_CheckBox.Location = New System.Drawing.Point(754, 627)
         Me.Emoji_love_CheckBox.Name = "Emoji_love_CheckBox"
         Me.Emoji_love_CheckBox.Size = New System.Drawing.Size(61, 23)
         Me.Emoji_love_CheckBox.TabIndex = 86
@@ -1642,7 +1648,7 @@ Partial Class Form1
         '
         'Insert_send_content_btn
         '
-        Me.Insert_send_content_btn.Location = New System.Drawing.Point(683, 95)
+        Me.Insert_send_content_btn.Location = New System.Drawing.Point(683, 64)
         Me.Insert_send_content_btn.Name = "Insert_send_content_btn"
         Me.Insert_send_content_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_send_content_btn.TabIndex = 72
@@ -1651,16 +1657,16 @@ Partial Class Form1
         '
         'Refresh_All_ListBox_btn
         '
-        Me.Refresh_All_ListBox_btn.Location = New System.Drawing.Point(683, 6)
+        Me.Refresh_All_ListBox_btn.Location = New System.Drawing.Point(338, 781)
         Me.Refresh_All_ListBox_btn.Name = "Refresh_All_ListBox_btn"
-        Me.Refresh_All_ListBox_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Refresh_All_ListBox_btn.Size = New System.Drawing.Size(323, 29)
         Me.Refresh_All_ListBox_btn.TabIndex = 113
         Me.Refresh_All_ListBox_btn.Text = "重新整理"
         Me.Refresh_All_ListBox_btn.UseVisualStyleBackColor = True
         '
         'Insert_click_img_video_btn
         '
-        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(683, 200)
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(683, 169)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
         Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
@@ -1678,7 +1684,7 @@ Partial Class Form1
         '
         'Insert_clear_content_btn
         '
-        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(683, 165)
+        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(683, 134)
         Me.Insert_clear_content_btn.Name = "Insert_clear_content_btn"
         Me.Insert_clear_content_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_clear_content_btn.TabIndex = 73
@@ -1687,7 +1693,7 @@ Partial Class Form1
         '
         'Insert_send_Random_content_TextFile_btn
         '
-        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(683, 130)
+        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(683, 99)
         Me.Insert_send_Random_content_TextFile_btn.Name = "Insert_send_Random_content_TextFile_btn"
         Me.Insert_send_Random_content_TextFile_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_send_Random_content_TextFile_btn.TabIndex = 95
@@ -1696,7 +1702,7 @@ Partial Class Form1
         '
         'Insert_click_leave_msg_btn
         '
-        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(683, 60)
+        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(683, 29)
         Me.Insert_click_leave_msg_btn.Name = "Insert_click_leave_msg_btn"
         Me.Insert_click_leave_msg_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_click_leave_msg_btn.TabIndex = 71
@@ -2717,6 +2723,33 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.Location = New System.Drawing.Point(688, 721)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(80, 19)
+        Me.Label55.TabIndex = 117
+        Me.Label55.Text = "限時動態 : "
+        '
+        'Insert_Story_Image_Btn
+        '
+        Me.Insert_Story_Image_Btn.Location = New System.Drawing.Point(693, 746)
+        Me.Insert_Story_Image_Btn.Name = "Insert_Story_Image_Btn"
+        Me.Insert_Story_Image_Btn.Size = New System.Drawing.Size(186, 29)
+        Me.Insert_Story_Image_Btn.TabIndex = 118
+        Me.Insert_Story_Image_Btn.Text = "圖片 - 插入"
+        Me.Insert_Story_Image_Btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Random_Story_Image_Btn
+        '
+        Me.Insert_Random_Story_Image_Btn.Location = New System.Drawing.Point(693, 781)
+        Me.Insert_Random_Story_Image_Btn.Name = "Insert_Random_Story_Image_Btn"
+        Me.Insert_Random_Story_Image_Btn.Size = New System.Drawing.Size(186, 29)
+        Me.Insert_Random_Story_Image_Btn.TabIndex = 119
+        Me.Insert_Random_Story_Image_Btn.Text = "隨機圖片 - 插入"
+        Me.Insert_Random_Story_Image_Btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3020,4 +3053,7 @@ Partial Class Form1
     Friend WithEvents Label53 As Label
     Friend WithEvents myHoursCounter_NumericUpDown As NumericUpDown
     Friend WithEvents Countdown_Toggle_Button As Button
+    Friend WithEvents Insert_Random_Story_Image_Btn As Button
+    Friend WithEvents Insert_Story_Image_Btn As Button
+    Friend WithEvents Label55 As Label
 End Class
