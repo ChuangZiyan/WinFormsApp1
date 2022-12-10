@@ -132,6 +132,9 @@ Partial Class Form1
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Insert_Random_Story_Image_Btn = New System.Windows.Forms.Button()
+        Me.Insert_Story_Image_Btn = New System.Windows.Forms.Button()
+        Me.Label55 = New System.Windows.Forms.Label()
         Me.Insert_Reply_Random_Image_btn = New System.Windows.Forms.Button()
         Me.Insert_Reply_Random_Match_btn = New System.Windows.Forms.Button()
         Me.Label41 = New System.Windows.Forms.Label()
@@ -270,9 +273,6 @@ Partial Class Form1
         Me.Block_User = New System.Windows.Forms.TabPage()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label55 = New System.Windows.Forms.Label()
-        Me.Insert_Story_Image_Btn = New System.Windows.Forms.Button()
-        Me.Insert_Random_Story_Image_Btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1431,6 +1431,33 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "發文發圖"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Insert_Random_Story_Image_Btn
+        '
+        Me.Insert_Random_Story_Image_Btn.Location = New System.Drawing.Point(693, 781)
+        Me.Insert_Random_Story_Image_Btn.Name = "Insert_Random_Story_Image_Btn"
+        Me.Insert_Random_Story_Image_Btn.Size = New System.Drawing.Size(186, 29)
+        Me.Insert_Random_Story_Image_Btn.TabIndex = 119
+        Me.Insert_Random_Story_Image_Btn.Text = "隨機圖片 - 插入"
+        Me.Insert_Random_Story_Image_Btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Story_Image_Btn
+        '
+        Me.Insert_Story_Image_Btn.Location = New System.Drawing.Point(693, 746)
+        Me.Insert_Story_Image_Btn.Name = "Insert_Story_Image_Btn"
+        Me.Insert_Story_Image_Btn.Size = New System.Drawing.Size(186, 29)
+        Me.Insert_Story_Image_Btn.TabIndex = 118
+        Me.Insert_Story_Image_Btn.Text = "圖片 - 插入"
+        Me.Insert_Story_Image_Btn.UseVisualStyleBackColor = True
+        '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.Location = New System.Drawing.Point(688, 721)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(80, 19)
+        Me.Label55.TabIndex = 117
+        Me.Label55.Text = "限時動態 : "
         '
         'Insert_Reply_Random_Image_btn
         '
@@ -2722,33 +2749,6 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
-        '
-        'Label55
-        '
-        Me.Label55.AutoSize = True
-        Me.Label55.Location = New System.Drawing.Point(688, 721)
-        Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(80, 19)
-        Me.Label55.TabIndex = 117
-        Me.Label55.Text = "限時動態 : "
-        '
-        'Insert_Story_Image_Btn
-        '
-        Me.Insert_Story_Image_Btn.Location = New System.Drawing.Point(693, 746)
-        Me.Insert_Story_Image_Btn.Name = "Insert_Story_Image_Btn"
-        Me.Insert_Story_Image_Btn.Size = New System.Drawing.Size(186, 29)
-        Me.Insert_Story_Image_Btn.TabIndex = 118
-        Me.Insert_Story_Image_Btn.Text = "圖片 - 插入"
-        Me.Insert_Story_Image_Btn.UseVisualStyleBackColor = True
-        '
-        'Insert_Random_Story_Image_Btn
-        '
-        Me.Insert_Random_Story_Image_Btn.Location = New System.Drawing.Point(693, 781)
-        Me.Insert_Random_Story_Image_Btn.Name = "Insert_Random_Story_Image_Btn"
-        Me.Insert_Random_Story_Image_Btn.Size = New System.Drawing.Size(186, 29)
-        Me.Insert_Random_Story_Image_Btn.TabIndex = 119
-        Me.Insert_Random_Story_Image_Btn.Text = "隨機圖片 - 插入"
-        Me.Insert_Random_Story_Image_Btn.UseVisualStyleBackColor = True
         '
         'Form1
         '

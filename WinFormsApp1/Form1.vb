@@ -1522,4 +1522,9 @@ Public Class Form1
     Private Sub Insert_Story_Image_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Story_Image_Btn.Click
         ScriptInsertion.Insert_story_img_video()
     End Sub
+
+    Private Sub Insert_Random_Story_Image_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Random_Story_Image_Btn.Click
+        ScriptInsertion.Insert_Story_Random_Image()
+    End Sub
+
 End Class
