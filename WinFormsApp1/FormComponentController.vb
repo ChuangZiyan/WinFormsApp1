@@ -548,7 +548,6 @@ Module FormComponentController
         Next
     End Sub
 
-
     Public Sub Auto_Generated_TextFile()
         Dim Texts() As String = Form1.Auto_GenerateTextFile_RichTextBox.Text.Split(vbLf)
         Dim file_count = 1
@@ -561,7 +560,6 @@ Module FormComponentController
 
         Next
     End Sub
-
 
 
 End Module

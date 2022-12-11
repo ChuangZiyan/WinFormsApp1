@@ -13,6 +13,29 @@ Module FormInit
     Public configs_dir = curr_path + "configs\"
     Public auto_generated_textfile_path = curr_path + "auto_generated\"
 
+
+    Public Sub FormInit_Render_All()
+        Property_Folder_Init()
+        Render_Script_listview()
+        Render_Maching_condition_listview()
+        Render_img_listbox()
+        Render_TextFolder_listbox()
+        Render_ImageFolder_listbox()
+        Render_TextFile_listbox()
+        Render_profile_CheckedListBox()
+        Render_Lang_Packs_ComboBox()
+        Render_DevList_combobox()
+        Render_Groups_Listview()
+        Render_ProfileName_ComboBox_Item()
+        Render_My_Script_ComboBox()
+        Render_Keyword_TextFIle()
+        Render_URL_TextFIle()
+        Render_Current_URL_ComboBox()
+        Render_Block_Lang_Packs_ComboBox()
+    End Sub
+
+
+
     Public Sub Render_Script_listview()
         Form1.script_ListView.View = View.Details
         Form1.script_ListView.GridLines = True
@@ -46,7 +69,18 @@ Module FormInit
                 Dim lang = Path.GetFileNameWithoutExtension(file)
                 Form1.Lang_Packs_ComboBox.Items.Add(lang)
             End If
+        Next
+    End Sub
 
+    Public Sub Render_Block_Lang_Packs_ComboBox()
+
+        Dim files() As String = IO.Directory.GetFiles(curr_path + "langpacks")
+        For Each file As String In files
+            'Debug.WriteLine(file)
+            If Path.GetExtension(file) = ".json" Then
+                Dim lang = Path.GetFileNameWithoutExtension(file)
+                Form1.Block_User_Lang_ComboBox.Items.Add(lang)
+            End If
         Next
     End Sub
 
@@ -229,13 +263,11 @@ Module FormInit
                 Dim parentFolder As String = split(split.Length - 2)
                 Form1.Searching_Keyword_CheckedListBox.Items.Add(parentFolder + "\" + Path.GetFileName(file))
 
-
             Next
 
         Next
 
     End Sub
-
 
     Public Sub Render_URL_TextFIle()
         If Not System.IO.Directory.Exists(URL_Navigation_path) Then

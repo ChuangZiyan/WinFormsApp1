@@ -195,6 +195,8 @@ Partial Class Form1
         Me.Insert_SendKeyClick_btn = New System.Windows.Forms.Button()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label56 = New System.Windows.Forms.Label()
+        Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.ScrollBy_Y_SingleOffset_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label39 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
@@ -271,8 +273,11 @@ Partial Class Form1
         Me.Label50 = New System.Windows.Forms.Label()
         Me.Crawler_Post_Content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.Block_User = New System.Windows.Forms.TabPage()
+        Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Label57 = New System.Windows.Forms.Label()
+        Me.Block_User_Lang_ComboBox = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -296,6 +301,7 @@ Partial Class Form1
         Me.TabPage4.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_Y_SingleOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -305,6 +311,7 @@ Partial Class Form1
         Me.Navigation_Tab.SuspendLayout()
         Me.Widget_TabPage.SuspendLayout()
         Me.Post_Crawler.SuspendLayout()
+        Me.Block_User.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -2011,6 +2018,8 @@ Partial Class Form1
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Label56)
+        Me.GroupBox3.Controls.Add(Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown)
         Me.GroupBox3.Controls.Add(Me.ScrollBy_Y_SingleOffset_NumericUpDown)
         Me.GroupBox3.Controls.Add(Me.Label39)
         Me.GroupBox3.Controls.Add(Me.Label32)
@@ -2031,6 +2040,23 @@ Partial Class Form1
         Me.GroupBox3.TabIndex = 8
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "滑鼠事件"
+        '
+        'Label56
+        '
+        Me.Label56.AutoSize = True
+        Me.Label56.Location = New System.Drawing.Point(303, 152)
+        Me.Label56.Name = "Label56"
+        Me.Label56.Size = New System.Drawing.Size(54, 19)
+        Me.Label56.TabIndex = 21
+        Me.Label56.Text = "y停留 :"
+        '
+        'ScrollBy_Y_SingleDelayOffset_NumericUpDown
+        '
+        Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown.Location = New System.Drawing.Point(363, 149)
+        Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown.Name = "ScrollBy_Y_SingleDelayOffset_NumericUpDown"
+        Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown.Size = New System.Drawing.Size(90, 27)
+        Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown.TabIndex = 20
         '
         'ScrollBy_Y_SingleOffset_NumericUpDown
         '
@@ -2087,7 +2113,7 @@ Partial Class Form1
         '
         'Insert_ScrollBy_Offset_btn
         '
-        Me.Insert_ScrollBy_Offset_btn.Location = New System.Drawing.Point(303, 148)
+        Me.Insert_ScrollBy_Offset_btn.Location = New System.Drawing.Point(459, 147)
         Me.Insert_ScrollBy_Offset_btn.Name = "Insert_ScrollBy_Offset_btn"
         Me.Insert_ScrollBy_Offset_btn.Size = New System.Drawing.Size(179, 29)
         Me.Insert_ScrollBy_Offset_btn.TabIndex = 10
@@ -2738,6 +2764,9 @@ Partial Class Form1
         '
         'Block_User
         '
+        Me.Block_User.Controls.Add(Me.Label57)
+        Me.Block_User.Controls.Add(Me.Block_User_Lang_ComboBox)
+        Me.Block_User.Controls.Add(Me.Block_User_By_Page)
         Me.Block_User.Location = New System.Drawing.Point(4, 28)
         Me.Block_User.Name = "Block_User"
         Me.Block_User.Size = New System.Drawing.Size(918, 820)
@@ -2745,10 +2774,36 @@ Partial Class Form1
         Me.Block_User.Text = "封鎖人"
         Me.Block_User.UseVisualStyleBackColor = True
         '
+        'Block_User_By_Page
+        '
+        Me.Block_User_By_Page.Location = New System.Drawing.Point(208, 36)
+        Me.Block_User_By_Page.Name = "Block_User_By_Page"
+        Me.Block_User_By_Page.Size = New System.Drawing.Size(94, 29)
+        Me.Block_User_By_Page.TabIndex = 0
+        Me.Block_User_By_Page.Text = "封鎖"
+        Me.Block_User_By_Page.UseVisualStyleBackColor = True
+        '
         'Timer1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
+        '
+        'Label57
+        '
+        Me.Label57.AutoSize = True
+        Me.Label57.Location = New System.Drawing.Point(19, 39)
+        Me.Label57.Name = "Label57"
+        Me.Label57.Size = New System.Drawing.Size(46, 19)
+        Me.Label57.TabIndex = 114
+        Me.Label57.Text = "語系 :"
+        '
+        'Block_User_Lang_ComboBox
+        '
+        Me.Block_User_Lang_ComboBox.FormattingEnabled = True
+        Me.Block_User_Lang_ComboBox.Location = New System.Drawing.Point(71, 36)
+        Me.Block_User_Lang_ComboBox.Name = "Block_User_Lang_ComboBox"
+        Me.Block_User_Lang_ComboBox.Size = New System.Drawing.Size(111, 27)
+        Me.Block_User_Lang_ComboBox.TabIndex = 113
         '
         'Form1
         '
@@ -2788,6 +2843,7 @@ Partial Class Form1
         Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ScrollBy_Y_SingleOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2802,6 +2858,8 @@ Partial Class Form1
         Me.Widget_TabPage.ResumeLayout(False)
         Me.Post_Crawler.ResumeLayout(False)
         Me.Post_Crawler.PerformLayout()
+        Me.Block_User.ResumeLayout(False)
+        Me.Block_User.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3056,4 +3114,9 @@ Partial Class Form1
     Friend WithEvents Insert_Random_Story_Image_Btn As Button
     Friend WithEvents Insert_Story_Image_Btn As Button
     Friend WithEvents Label55 As Label
+    Friend WithEvents Label56 As Label
+    Friend WithEvents ScrollBy_Y_SingleDelayOffset_NumericUpDown As NumericUpDown
+    Friend WithEvents Block_User_By_Page As Button
+    Friend WithEvents Label57 As Label
+    Friend WithEvents Block_User_Lang_ComboBox As ComboBox
 End Class

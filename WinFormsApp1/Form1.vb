@@ -58,22 +58,7 @@ Public Class Form1
         Block_Text_TextBox.Text = "分隔行"
         curr_url_ComboBox.Text = "https://www.facebook.com/"
 
-        FormInit.Property_Folder_Init()
-        FormInit.Render_Script_listview()
-        FormInit.Render_Maching_condition_listview()
-        FormInit.Render_img_listbox()
-        FormInit.Render_TextFolder_listbox()
-        FormInit.Render_ImageFolder_listbox()
-        FormInit.Render_TextFile_listbox()
-        FormInit.Render_profile_CheckedListBox()
-        FormInit.Render_Lang_Packs_ComboBox()
-        FormInit.Render_DevList_combobox()
-        FormInit.Render_Groups_Listview()
-        FormInit.Render_ProfileName_ComboBox_Item()
-        FormInit.Render_My_Script_ComboBox()
-        FormInit.Render_Keyword_TextFIle()
-        FormInit.Render_URL_TextFIle()
-        FormInit.Render_Current_URL_ComboBox()
+        FormInit.FormInit_Render_All()
 
     End Sub
 
@@ -348,12 +333,13 @@ Public Class Form1
                     Dim Offset As String() = content.Split(";")
                     Dim y_offset = CInt(Offset(1).Split(":")(0))
                     Dim y_single_offset = CInt(Offset(1).Split(":")(1))
+                    Dim y_single_delay_offset = CInt(Offset(1).Split(":")(2))
 
                     If y_single_offset > 0 Then
                         For scroll_offset As Integer = y_single_offset To y_offset Step y_single_offset
                             item.SubItems.Item(6).Text = CStr(scroll_offset)
                             boolean_result = ScrollPage_By_Offset(Offset(0), CStr(scroll_offset))
-                            Await Delay(1000)
+                            Await Delay(y_single_delay_offset * 1000)
                         Next
                     Else
                         boolean_result = ScrollPage_By_Offset(Offset(0), CStr(y_offset))
@@ -489,6 +475,8 @@ Public Class Form1
 
 
     Private Async Sub Open_Random_Profile_btn_Click(sender As Object, e As EventArgs) Handles Open_Random_Profile_btn.Click
+
+
         If chrome_RadioButton.Checked = True Then
 
             If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
@@ -497,17 +485,11 @@ Public Class Form1
                 myWebDriver.used_dev_model = "PC"
             End If
 
-            Dim myprofile = ""
-            If Profile_TextBox.Text <> "" And Profile_Name_ComboBox.Text <> "" Then
-                myprofile = Profile_TextBox.Text + "\" + Profile_Name_ComboBox.Text
-            Else
-                For Each itemSeleted In Profile_CheckedListBox.SelectedItems
-                    'Debug.WriteLine(itemSeleted)
-                    myprofile = itemSeleted
-                Next
-            End If
+            Dim allProfileItem = Profile_CheckedListBox.Items
+            Debug.WriteLine("count : " & allProfileItem.Count)
+            Dim rnd = rnd_num.Next(0, allProfileItem.Count)
 
-            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, "全部隨機")
+            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, FormInit.curr_path + allProfileItem(rnd))
 
             If curr_url_ComboBox.Text <> "" Then
                 Dim pattern As String
@@ -1209,7 +1191,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_ScrollBy_Offset_btn_Click(sender As Object, e As EventArgs) Handles Insert_ScrollBy_Offset_btn.Click
-        Insert_to_script("捲動頁面", ScrollBy_X_Offset_NumericUpDown.Value & ";" & ScrollBy_Y_Offset_NumericUpDown.Value & ":" & ScrollBy_Y_SingleOffset_NumericUpDown.Value)
+        Insert_to_script("捲動頁面", ScrollBy_X_Offset_NumericUpDown.Value & ";" & ScrollBy_Y_Offset_NumericUpDown.Value & ":" & ScrollBy_Y_SingleOffset_NumericUpDown.Value & ":" & ScrollBy_Y_SingleDelayOffset_NumericUpDown.Value)
     End Sub
 
     Private Sub Insert_Messager_Contact_btn_Click(sender As Object, e As EventArgs) Handles Insert_Messager_Contact_btn.Click
@@ -1464,7 +1446,8 @@ Public Class Form1
 
         Try
             chromeDriverCrawler.Navigate.GoToUrl(Crawler_Post_URL_TextBox.Text)
-            If chromeDriverCrawler.Url.Contains("?next=") Then
+
+            If chromeDriverCrawler.Url.Contains("?next=") Or chromeDriverCrawler.Url.Contains("permalink.php") Then
                 Await Delay_msec(2000) ' waiting for redirection
                 chromeDriverCrawler.Navigate.GoToUrl(Crawler_Post_URL_TextBox.Text)
             End If
@@ -1472,10 +1455,17 @@ Public Class Form1
             Dim css_selector_str = "div[data-testid='post_message'] > div"
 
             If Crawler_Post_URL_TextBox.Text.Contains("m.facebook.com") Then
-                css_selector_str = "div._5rgt._5nk5 > div > p"
+                css_selector_str = "div.story_body_container > div > div"
             End If
 
-            Crawler_Post_Content_RichTextBox.Text = chromeDriverCrawler.FindElement(By.CssSelector(css_selector_str)).GetAttribute("innerHTML")
+            Dim source_HTML = chromeDriverCrawler.FindElement(By.CssSelector(css_selector_str)).GetAttribute("innerHTML")
+
+            Dim regex As New Text.RegularExpressions.Regex("<.*?>", RegexOptions.Singleline)
+            Dim result As String = regex.Replace(source_HTML, String.Empty)
+
+
+            Crawler_Post_Content_RichTextBox.Text = result
+
             chromeDriverCrawler.Quit()
             Crawl_Post_Content_Btn.Enabled = True
             Crawl_Post_Content_Btn.Text = "抓取貼文內容"
@@ -1527,4 +1517,13 @@ Public Class Form1
         ScriptInsertion.Insert_Story_Random_Image()
     End Sub
 
+    Private Async Sub Block_User_By_Page_Click(sender As Object, e As EventArgs) Handles Block_User_By_Page.Click
+        Block_User_By_Page.Enabled = False
+        Block_User_By_Page.Text = "執行中"
+        Await myWebDriver.Block_User_By_Page_Task()
+
+        Block_User_By_Page.Enabled = True
+        Block_User_By_Page.Text = "封鎖"
+
+    End Sub
 End Class

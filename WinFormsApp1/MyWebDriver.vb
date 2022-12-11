@@ -53,19 +53,7 @@ Public Class MyWebDriver
     End Function
 
     Public Function Open_Browser(browser As String, devicetype As String, profile As String)
-
-        If profile = "全部隨機" Then
-            Dim allProfileItem = Form1.Profile_CheckedListBox.Items
-            Dim rnd = rnd_num.Next(0, allProfileItem.Count)
-            profile = curr_path + allProfileItem(rnd)
-        Else
-            Dim ProfileItem = profile.Split(";")
-            Dim rnd = rnd_num.Next(0, ProfileItem.Length)
-            profile = ProfileItem(rnd)
-
-        End If
-
-        'Debug.WriteLine("profile : " + profile)
+        Debug.WriteLine("profile : " + profile)
 
         If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
             Dim JsonString As String = System.IO.File.ReadAllText(profile + "\ProfileInfo.txt")
@@ -75,7 +63,6 @@ Public Class MyWebDriver
             used_lang = lang
             'Debug.WriteLine("lang : " + lang)
         End If
-
 
         Select Case used_lang
             Case "zh-TW"
@@ -88,8 +75,7 @@ Public Class MyWebDriver
                 langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
         End Select
 
-
-        'Debug.WriteLine(langConverter.Item("Create_Post"))
+        Debug.WriteLine(langConverter.Item("Create_Post"))
 
         If browser = "Chrome" Then
             Try
@@ -106,8 +92,6 @@ Public Class MyWebDriver
                     running_chrome_profile = used_chrome_profile
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-
-
 
                 options.AddExcludedArgument("enable-automation")
 
@@ -347,8 +331,16 @@ Public Class MyWebDriver
             chromeDriver.Navigate.GoToUrl("https://www.facebook.com/stories/create")
             Dim img_input = chromeDriver.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.xdt5ytf.x193iq5w.xeuugli.x1r8uery.x1iyjqo2.xs83m0k.x78zum5.x1t2pt76 > div > div > div > div > input"))
             img_input.SendKeys(img)
-            chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x10h3on.x78zum5.x1q0g3np.xy75621.x1qughib.x1ye3gou.xn6708d > div:nth-child(2) > div")).Click()
-            Return True
+
+            If IsElementPresentByCssSelector("div.x5yr21d.x10l6tqk.xtzzx4i.xwa60dl > div > div > img") Then
+                Thread.Sleep(1000)
+                chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x10h3on.x78zum5.x1q0g3np.xy75621.x1qughib.x1ye3gou.xn6708d > div:nth-child(2) > div")).Click()
+
+                Return True
+            Else
+                Return False
+            End If
+
         Catch ex As Exception
             Return False
         End Try
@@ -362,7 +354,6 @@ Public Class MyWebDriver
         Dim rnd = rnd_num.Next(0, AllConditions.Length)
 
         'Debug.WriteLine(AllConditions(rnd))
-
 
         Dim TextFolder = AllConditions(rnd).Split("%20")(0)
         Dim ImageFolder = AllConditions(rnd).Split("%20")(1)
@@ -457,7 +448,6 @@ Public Class MyWebDriver
     End Function
 
 
-
     Public Function Clear_post_content_Task() As Task(Of Boolean)
         Return Task.Run(Function() Clear_post_content())
     End Function
@@ -500,7 +490,6 @@ Public Class MyWebDriver
 
         Dim upload_img_input As Object
 
-
         Try
             upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
             upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
@@ -512,23 +501,57 @@ Public Class MyWebDriver
 
     End Function
 
-    Public Sub block_user_btn_Click(sender As Object, e As EventArgs)
+
+    Public Function Block_User_By_Page_Task()
+        Return Task.Run(Function() Block_User_By_Page())
+    End Function
+
+    Public Function Block_User_By_Page()
 
         Dim mytabs = chromeDriver.WindowHandles
 
+        Dim Block_langConverter As Newtonsoft.Json.Linq.JObject
+        Dim Block_Used_Lang = "zh-TW" ' default lang
+
+        If Form1.Block_User_Lang_ComboBox.Text <> "" Then
+            Block_Used_Lang = Form1.Block_User_Lang_ComboBox.Text
+        End If
+
+        Select Case Block_Used_Lang
+            Case "zh-TW"
+                Block_langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-TW.json"))
+            Case "zh-HK"
+                Block_langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-HK.json"))
+            Case "zh-CN"
+                Block_langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\zh-CN.json"))
+            Case "en-US"
+                Block_langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
+            Case Else
+                MsgBox("LangPack Error")
+                Return False
+
+        End Select
+
         For Each mytab In mytabs
             'Debug.WriteLine("tab:" & mytab)
-            chromeDriver.SwitchTo.Window(mytab)
-            Thread.Sleep(1000)
-            click_by_aria_label("查看選項")
-            Thread.Sleep(500)
-            click_by_span_text("封鎖")
-            Thread.Sleep(500)
-            'submit
-            'click_by_aria_label("確認")
+            Try
+                chromeDriver.SwitchTo.Window(mytab)
+                Thread.Sleep(1000)
+                click_by_aria_label(Block_langConverter.Item("See_Options").ToString())
+                Thread.Sleep(500)
+                click_by_span_text(Block_langConverter.Item("Block").ToString())
+                Thread.Sleep(500)
+                click_by_span_text(Block_langConverter.Item("Confirm").ToString())
+
+            Catch ex As Exception
+
+            End Try
+
         Next
 
-    End Sub
+        Return True
+
+    End Function
 
     Public Function Click_leave_message()
 
@@ -774,9 +797,6 @@ Public Class MyWebDriver
     Public Shared Async Function Delay_msec(msec As Integer) As Task
         Await Task.Delay(msec)
     End Function
-
-
-
 
 
 End Class

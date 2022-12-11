@@ -2,7 +2,6 @@
 
 Module ScriptInsertion
 
-
     Public Sub Insert_to_script(action As String, content As String)
 
         If Form1.EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
@@ -21,7 +20,6 @@ Module ScriptInsertion
 
         Form1.EventlogListview_AddNewItem(myline)
     End Sub
-
 
 
     Public Sub Insert_Login()
@@ -400,8 +398,6 @@ Module ScriptInsertion
             Insert_to_script("前往:隨機", Txt_file_path.TrimEnd(";"))
         End If
     End Sub
-
-
 
     Public Sub Insert_story_img_video()
         Dim img_path_str As String = ""
