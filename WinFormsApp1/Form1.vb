@@ -335,11 +335,16 @@ Public Class Form1
                     Dim y_single_offset = CInt(Offset(1).Split(":")(1))
                     Dim y_single_delay_offset = CInt(Offset(1).Split(":")(2))
 
+                    Debug.WriteLine(y_single_delay_offset)
                     If y_single_offset > 0 Then
                         For scroll_offset As Integer = y_single_offset To y_offset Step y_single_offset
-                            item.SubItems.Item(6).Text = CStr(scroll_offset)
                             boolean_result = ScrollPage_By_Offset(Offset(0), CStr(scroll_offset))
-                            Await Delay(y_single_delay_offset * 1000)
+                            For sec = y_single_delay_offset To 0 Step -1
+                                Debug.WriteLine(y_single_delay_offset)
+                                item.SubItems.Item(6).Text = CStr(sec)
+                                Await Delay(1000)
+                            Next
+
                         Next
                     Else
                         boolean_result = ScrollPage_By_Offset(Offset(0), CStr(y_offset))
@@ -1199,8 +1204,15 @@ Public Class Form1
     End Sub
 
     Private Async Sub Get_Groups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_Groups_List_btn.Click
+
+
+        If Await myWebDriver.Navigate_GoToUrl_Task("https://www.facebook.com/groups/feed/") = False Then
+            MsgBox("未偵測到Chrome")
+            Exit Sub
+        End If
+
         Groups_ListView.Items.Clear()
-        myWebDriver.Navigate_GoToUrl("https://www.facebook.com/groups/feed/")
+
         Try 'if there are more groups, load the groups via button clicked
             myWebDriver.chromeDriver.FindElement(By.XPath("//span[contains(text(),'查看更多')]")).Click()
             Await Delay_msec(1000)
@@ -1351,12 +1363,18 @@ Public Class Form1
         FormInit.Render_URL_TextFIle()
     End Sub
 
-    Private Sub Get_mGroups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_mGroups_List_btn.Click
+    Private Async Sub Get_mGroups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_mGroups_List_btn.Click
+
+        If Await myWebDriver.Navigate_GoToUrl_Task("https://m.facebook.com/groups_browse/your_groups/") = False Then
+            MsgBox("未偵測到Chrome")
+            Exit Sub
+        End If
+
         Dim curr_row As Integer = 0
         Dim pre_counter As Integer = 0
         Groups_ListView.Items.Clear()
         '### Find other groups ###
-        myWebDriver.chromeDriver.Navigate.GoToUrl("https://m.facebook.com/groups_browse/your_groups/")
+
         Thread.Sleep(3000)
         pre_counter = 0
         While True ' Scroll to the bottom
@@ -1526,4 +1544,5 @@ Public Class Form1
         Block_User_By_Page.Text = "封鎖"
 
     End Sub
+
 End Class

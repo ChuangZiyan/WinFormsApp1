@@ -119,8 +119,8 @@ Public Class MyWebDriver
 
                 'Minimize windows util headless mode work fine
                 If Form1.Headless_Mode_Checkbox.Checked Then
-                    'options.AddArguments("--headless", "--disable-gpu")
-                    chromeDriver.Manage().Window().Minimize()
+                    options.AddArguments("--headless", "--disable-gpu")
+                    'chromeDriver.Manage().Window().Minimize()
                 End If
 
                 act = New Actions(chromeDriver)
@@ -153,11 +153,11 @@ Public Class MyWebDriver
 
     End Function
 
-    Public Function Navigate_GoToUrl_Task(url)
+    Public Function Navigate_GoToUrl_Task(url) As Task(Of Boolean)
         Return Task.Run(Function() Navigate_GoToUrl(url))
     End Function
 
-    Public Function Navigate_GoToUrl(url As String)
+    Public Function Navigate_GoToUrl(url As String) As Boolean
         Try
             chromeDriver.Navigate.GoToUrl(url)
             Return True
@@ -244,14 +244,12 @@ Public Class MyWebDriver
     End Function
 
     Function IsElementPresentByCssSelector(locatorKey As String) As Boolean
-        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5)
+
         Try
             chromeDriver.FindElement(By.CssSelector(locatorKey))
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
         Catch ex As Exception
             'Debug.WriteLine(ex)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return False
         End Try
 
@@ -532,23 +530,21 @@ Public Class MyWebDriver
 
         End Select
 
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5)
         For Each mytab In mytabs
             'Debug.WriteLine("tab:" & mytab)
-            Try
-                chromeDriver.SwitchTo.Window(mytab)
-                Thread.Sleep(1000)
-                click_by_aria_label(Block_langConverter.Item("See_Options").ToString())
-                Thread.Sleep(500)
-                click_by_span_text(Block_langConverter.Item("Block").ToString())
-                Thread.Sleep(500)
-                click_by_span_text(Block_langConverter.Item("Confirm").ToString())
-
-            Catch ex As Exception
-
-            End Try
+            chromeDriver.SwitchTo.Window(mytab)
+            Thread.Sleep(1000)
+            If click_by_aria_label(Block_langConverter.Item("See_Options")) = False Then
+                Continue For
+            End If
+            Thread.Sleep(500)
+            click_by_span_text(Block_langConverter.Item("Block"))
+            Thread.Sleep(500)
+            click_by_span_text(Block_langConverter.Item("Confirm"))
 
         Next
-
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
         Return True
 
     End Function

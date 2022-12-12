@@ -273,11 +273,11 @@ Partial Class Form1
         Me.Label50 = New System.Windows.Forms.Label()
         Me.Crawler_Post_Content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.Block_User = New System.Windows.Forms.TabPage()
+        Me.Label57 = New System.Windows.Forms.Label()
+        Me.Block_User_Lang_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label57 = New System.Windows.Forms.Label()
-        Me.Block_User_Lang_ComboBox = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2774,20 +2774,6 @@ Partial Class Form1
         Me.Block_User.Text = "封鎖人"
         Me.Block_User.UseVisualStyleBackColor = True
         '
-        'Block_User_By_Page
-        '
-        Me.Block_User_By_Page.Location = New System.Drawing.Point(208, 36)
-        Me.Block_User_By_Page.Name = "Block_User_By_Page"
-        Me.Block_User_By_Page.Size = New System.Drawing.Size(94, 29)
-        Me.Block_User_By_Page.TabIndex = 0
-        Me.Block_User_By_Page.Text = "封鎖"
-        Me.Block_User_By_Page.UseVisualStyleBackColor = True
-        '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
-        '
         'Label57
         '
         Me.Label57.AutoSize = True
@@ -2804,6 +2790,20 @@ Partial Class Form1
         Me.Block_User_Lang_ComboBox.Name = "Block_User_Lang_ComboBox"
         Me.Block_User_Lang_ComboBox.Size = New System.Drawing.Size(111, 27)
         Me.Block_User_Lang_ComboBox.TabIndex = 113
+        '
+        'Block_User_By_Page
+        '
+        Me.Block_User_By_Page.Location = New System.Drawing.Point(208, 36)
+        Me.Block_User_By_Page.Name = "Block_User_By_Page"
+        Me.Block_User_By_Page.Size = New System.Drawing.Size(94, 29)
+        Me.Block_User_By_Page.TabIndex = 0
+        Me.Block_User_By_Page.Text = "封鎖"
+        Me.Block_User_By_Page.UseVisualStyleBackColor = True
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
         '
         'Form1
         '
