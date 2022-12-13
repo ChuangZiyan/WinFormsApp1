@@ -180,6 +180,17 @@ Partial Class Form1
         Me.Open_dir_in_explorer_btn = New System.Windows.Forms.Button()
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Cursor_Y_Position_Label = New System.Windows.Forms.Label()
+        Me.Label64 = New System.Windows.Forms.Label()
+        Me.Label63 = New System.Windows.Forms.Label()
+        Me.Cursor_X_Position_Label = New System.Windows.Forms.Label()
+        Me.Label61 = New System.Windows.Forms.Label()
+        Me.Label60 = New System.Windows.Forms.Label()
+        Me.Cursor_Y_Position_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label59 = New System.Windows.Forms.Label()
+        Me.Cursor_X_Position_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label58 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.KeyboardFirstKey_ComboBox = New System.Windows.Forms.ComboBox()
@@ -278,6 +289,7 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Insert_System_Mouse_Position_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -299,6 +311,7 @@ Partial Class Form1
         Me.TabPage3.SuspendLayout()
         CType(Me.Selected_PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1871,6 +1884,7 @@ Partial Class Form1
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.GroupBox5)
         Me.TabPage4.Controls.Add(Me.GroupBox4)
         Me.TabPage4.Controls.Add(Me.GroupBox3)
         Me.TabPage4.Location = New System.Drawing.Point(4, 28)
@@ -1880,6 +1894,112 @@ Partial Class Form1
         Me.TabPage4.TabIndex = 1
         Me.TabPage4.Text = "滑鼠鍵盤事件"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.Insert_System_Mouse_Position_btn)
+        Me.GroupBox5.Controls.Add(Me.Cursor_Y_Position_Label)
+        Me.GroupBox5.Controls.Add(Me.Label64)
+        Me.GroupBox5.Controls.Add(Me.Label63)
+        Me.GroupBox5.Controls.Add(Me.Cursor_X_Position_Label)
+        Me.GroupBox5.Controls.Add(Me.Label61)
+        Me.GroupBox5.Controls.Add(Me.Label60)
+        Me.GroupBox5.Controls.Add(Me.Cursor_Y_Position_TextBox)
+        Me.GroupBox5.Controls.Add(Me.Label59)
+        Me.GroupBox5.Controls.Add(Me.Cursor_X_Position_TextBox)
+        Me.GroupBox5.Controls.Add(Me.Label58)
+        Me.GroupBox5.Location = New System.Drawing.Point(15, 475)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(897, 313)
+        Me.GroupBox5.TabIndex = 10
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "鼠標監視"
+        '
+        'Cursor_Y_Position_Label
+        '
+        Me.Cursor_Y_Position_Label.AutoSize = True
+        Me.Cursor_Y_Position_Label.Location = New System.Drawing.Point(249, 39)
+        Me.Cursor_Y_Position_Label.Name = "Cursor_Y_Position_Label"
+        Me.Cursor_Y_Position_Label.Size = New System.Drawing.Size(37, 19)
+        Me.Cursor_Y_Position_Label.TabIndex = 9
+        Me.Cursor_Y_Position_Label.Text = "N/A"
+        '
+        'Label64
+        '
+        Me.Label64.AutoSize = True
+        Me.Label64.Location = New System.Drawing.Point(219, 39)
+        Me.Label64.Name = "Label64"
+        Me.Label64.Size = New System.Drawing.Size(24, 19)
+        Me.Label64.TabIndex = 8
+        Me.Label64.Text = "y :"
+        '
+        'Label63
+        '
+        Me.Label63.AutoSize = True
+        Me.Label63.Location = New System.Drawing.Point(107, 39)
+        Me.Label63.Name = "Label63"
+        Me.Label63.Size = New System.Drawing.Size(23, 19)
+        Me.Label63.TabIndex = 7
+        Me.Label63.Text = "x :"
+        '
+        'Cursor_X_Position_Label
+        '
+        Me.Cursor_X_Position_Label.AutoSize = True
+        Me.Cursor_X_Position_Label.Location = New System.Drawing.Point(136, 39)
+        Me.Cursor_X_Position_Label.Name = "Cursor_X_Position_Label"
+        Me.Cursor_X_Position_Label.Size = New System.Drawing.Size(37, 19)
+        Me.Cursor_X_Position_Label.TabIndex = 6
+        Me.Cursor_X_Position_Label.Text = "N/A"
+        '
+        'Label61
+        '
+        Me.Label61.AutoSize = True
+        Me.Label61.Location = New System.Drawing.Point(40, 76)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(50, 19)
+        Me.Label61.TabIndex = 5
+        Me.Label61.Text = "座標 : "
+        '
+        'Label60
+        '
+        Me.Label60.AutoSize = True
+        Me.Label60.Location = New System.Drawing.Point(219, 71)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(24, 19)
+        Me.Label60.TabIndex = 4
+        Me.Label60.Text = "y :"
+        '
+        'Cursor_Y_Position_TextBox
+        '
+        Me.Cursor_Y_Position_TextBox.Location = New System.Drawing.Point(249, 68)
+        Me.Cursor_Y_Position_TextBox.Name = "Cursor_Y_Position_TextBox"
+        Me.Cursor_Y_Position_TextBox.Size = New System.Drawing.Size(60, 27)
+        Me.Cursor_Y_Position_TextBox.TabIndex = 3
+        '
+        'Label59
+        '
+        Me.Label59.AutoSize = True
+        Me.Label59.Location = New System.Drawing.Point(107, 71)
+        Me.Label59.Name = "Label59"
+        Me.Label59.Size = New System.Drawing.Size(23, 19)
+        Me.Label59.TabIndex = 2
+        Me.Label59.Text = "x :"
+        '
+        'Cursor_X_Position_TextBox
+        '
+        Me.Cursor_X_Position_TextBox.Location = New System.Drawing.Point(136, 68)
+        Me.Cursor_X_Position_TextBox.Name = "Cursor_X_Position_TextBox"
+        Me.Cursor_X_Position_TextBox.Size = New System.Drawing.Size(60, 27)
+        Me.Cursor_X_Position_TextBox.TabIndex = 1
+        '
+        'Label58
+        '
+        Me.Label58.AutoSize = True
+        Me.Label58.Location = New System.Drawing.Point(10, 39)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(80, 19)
+        Me.Label58.TabIndex = 0
+        Me.Label58.Text = "當前座標 : "
         '
         'GroupBox4
         '
@@ -1896,9 +2016,9 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.Label26)
         Me.GroupBox4.Controls.Add(Me.Insert_SendKeyClick_btn)
         Me.GroupBox4.Controls.Add(Me.Label24)
-        Me.GroupBox4.Location = New System.Drawing.Point(15, 280)
+        Me.GroupBox4.Location = New System.Drawing.Point(15, 259)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(897, 252)
+        Me.GroupBox4.Size = New System.Drawing.Size(897, 192)
         Me.GroupBox4.TabIndex = 9
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "鍵盤事件"
@@ -1932,7 +2052,7 @@ Partial Class Form1
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(632, 174)
+        Me.Button10.Location = New System.Drawing.Point(602, 124)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(155, 29)
         Me.Button10.TabIndex = 13
@@ -1941,7 +2061,7 @@ Partial Class Form1
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(632, 132)
+        Me.Button9.Location = New System.Drawing.Point(602, 82)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(155, 29)
         Me.Button9.TabIndex = 12
@@ -1950,7 +2070,7 @@ Partial Class Form1
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(532, 174)
+        Me.Button8.Location = New System.Drawing.Point(502, 124)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(94, 29)
         Me.Button8.TabIndex = 11
@@ -1959,7 +2079,7 @@ Partial Class Form1
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(532, 132)
+        Me.Button7.Location = New System.Drawing.Point(502, 82)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(94, 29)
         Me.Button7.TabIndex = 10
@@ -1968,14 +2088,14 @@ Partial Class Form1
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(92, 176)
+        Me.TextBox8.Location = New System.Drawing.Point(62, 126)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(434, 27)
         Me.TextBox8.TabIndex = 9
         '
         'TextBox7
         '
-        Me.TextBox7.Location = New System.Drawing.Point(92, 132)
+        Me.TextBox7.Location = New System.Drawing.Point(62, 82)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(434, 27)
         Me.TextBox7.TabIndex = 8
@@ -1983,7 +2103,7 @@ Partial Class Form1
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(6, 184)
+        Me.Label27.Location = New System.Drawing.Point(6, 134)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(50, 19)
         Me.Label27.TabIndex = 7
@@ -1992,7 +2112,7 @@ Partial Class Form1
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(6, 140)
+        Me.Label26.Location = New System.Drawing.Point(6, 90)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(50, 19)
         Me.Label26.TabIndex = 6
@@ -2036,7 +2156,7 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.CursorY_TextBox)
         Me.GroupBox3.Location = New System.Drawing.Point(15, 16)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(897, 258)
+        Me.GroupBox3.Size = New System.Drawing.Size(897, 225)
         Me.GroupBox3.TabIndex = 8
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "滑鼠事件"
@@ -2805,6 +2925,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Insert_System_Mouse_Position_btn
+        '
+        Me.Insert_System_Mouse_Position_btn.Location = New System.Drawing.Point(323, 66)
+        Me.Insert_System_Mouse_Position_btn.Name = "Insert_System_Mouse_Position_btn"
+        Me.Insert_System_Mouse_Position_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_System_Mouse_Position_btn.TabIndex = 10
+        Me.Insert_System_Mouse_Position_btn.Text = "Test"
+        Me.Insert_System_Mouse_Position_btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -2839,6 +2968,8 @@ Partial Class Form1
         Me.TabPage3.PerformLayout()
         CType(Me.Selected_PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -3119,4 +3250,16 @@ Partial Class Form1
     Friend WithEvents Block_User_By_Page As Button
     Friend WithEvents Label57 As Label
     Friend WithEvents Block_User_Lang_ComboBox As ComboBox
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents Label58 As Label
+    Friend WithEvents Label60 As Label
+    Friend WithEvents Cursor_Y_Position_TextBox As TextBox
+    Friend WithEvents Label59 As Label
+    Friend WithEvents Cursor_X_Position_TextBox As TextBox
+    Friend WithEvents Cursor_Y_Position_Label As Label
+    Friend WithEvents Label64 As Label
+    Friend WithEvents Label63 As Label
+    Friend WithEvents Cursor_X_Position_Label As Label
+    Friend WithEvents Label61 As Label
+    Friend WithEvents Insert_System_Mouse_Position_btn As Button
 End Class

@@ -19,6 +19,7 @@ Imports System.Text.RegularExpressions
 Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 
 Public Class Form1
@@ -341,7 +342,7 @@ Public Class Form1
                             boolean_result = ScrollPage_By_Offset(Offset(0), CStr(scroll_offset))
                             For sec = y_single_delay_offset To 0 Step -1
                                 Debug.WriteLine(y_single_delay_offset)
-                                item.SubItems.Item(6).Text = CStr(sec)
+                                item.SubItems.Item(6).Text = CStr(scroll_offset) + ":" + CStr(sec)
                                 Await Delay(1000)
                             Next
 
@@ -623,6 +624,8 @@ Public Class Form1
 
     Dim RunCountdown = False
 
+
+
     Private Sub Countdown_Toggle_Button_Click(sender As Object, e As EventArgs) Handles Countdown_Toggle_Button.Click
 
         If Exit_Program_Counter_CheckBox.Checked Or PowerOff_PC_Counter_CheckBox.Checked = True Then
@@ -656,7 +659,20 @@ Public Class Form1
 
     End Sub
 
+
+
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+
+
+
+
+        'Dim MousePosition As Point
+        Dim MousePosition = Cursor.Position
+
+        Cursor_X_Position_Label.Text = MousePosition.X
+        Cursor_Y_Position_Label.Text = MousePosition.Y
+        'Debug.WriteLine(MousePosition.X)
         Dim TimeNow = Date.Now.ToString("HH:mm:ss")
         'Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
         'Debug.WriteLine("start : " + start_time)
@@ -1545,4 +1561,15 @@ Public Class Form1
 
     End Sub
 
+    Private Declare Sub mouse_event Lib "user32" (ByVal dwFlags As Integer, ByVal dx As Integer, ByVal dy As Integer, ByVal cButtons As Integer, ByVal dwExtraInfo As Integer)
+
+    Private Sub Insert_System_Mouse_Position_btn_Click(sender As Object, e As EventArgs) Handles Insert_System_Mouse_Position_btn.Click
+
+        If Cursor_X_Position_TextBox.Text <> "" And Cursor_Y_Position_TextBox.Text <> "" Then
+            Cursor.Position = New Point(CInt(Cursor_X_Position_TextBox.Text), CInt(Cursor_Y_Position_TextBox.Text))
+            mouse_event(&H2, 0, 0, 0, 0)
+            mouse_event(&H4, 0, 0, 0, 0)
+        End If
+
+    End Sub
 End Class
