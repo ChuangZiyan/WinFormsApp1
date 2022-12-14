@@ -181,6 +181,7 @@ Partial Class Form1
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Test_System_Mouse_Position_Click_btn = New System.Windows.Forms.Button()
         Me.Cursor_Y_Position_Label = New System.Windows.Forms.Label()
         Me.Label64 = New System.Windows.Forms.Label()
         Me.Label63 = New System.Windows.Forms.Label()
@@ -289,7 +290,6 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Insert_System_Mouse_Position_btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1897,7 +1897,7 @@ Partial Class Form1
         '
         'GroupBox5
         '
-        Me.GroupBox5.Controls.Add(Me.Insert_System_Mouse_Position_btn)
+        Me.GroupBox5.Controls.Add(Me.Test_System_Mouse_Position_Click_btn)
         Me.GroupBox5.Controls.Add(Me.Cursor_Y_Position_Label)
         Me.GroupBox5.Controls.Add(Me.Label64)
         Me.GroupBox5.Controls.Add(Me.Label63)
@@ -1914,6 +1914,15 @@ Partial Class Form1
         Me.GroupBox5.TabIndex = 10
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "鼠標監視"
+        '
+        'Test_System_Mouse_Position_Click_btn
+        '
+        Me.Test_System_Mouse_Position_Click_btn.Location = New System.Drawing.Point(323, 66)
+        Me.Test_System_Mouse_Position_Click_btn.Name = "Test_System_Mouse_Position_Click_btn"
+        Me.Test_System_Mouse_Position_Click_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Test_System_Mouse_Position_Click_btn.TabIndex = 10
+        Me.Test_System_Mouse_Position_Click_btn.Text = "點擊測試"
+        Me.Test_System_Mouse_Position_Click_btn.UseVisualStyleBackColor = True
         '
         'Cursor_Y_Position_Label
         '
@@ -2925,15 +2934,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Insert_System_Mouse_Position_btn
-        '
-        Me.Insert_System_Mouse_Position_btn.Location = New System.Drawing.Point(323, 66)
-        Me.Insert_System_Mouse_Position_btn.Name = "Insert_System_Mouse_Position_btn"
-        Me.Insert_System_Mouse_Position_btn.Size = New System.Drawing.Size(94, 29)
-        Me.Insert_System_Mouse_Position_btn.TabIndex = 10
-        Me.Insert_System_Mouse_Position_btn.Text = "Test"
-        Me.Insert_System_Mouse_Position_btn.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3261,5 +3261,5 @@ Partial Class Form1
     Friend WithEvents Label63 As Label
     Friend WithEvents Cursor_X_Position_Label As Label
     Friend WithEvents Label61 As Label
-    Friend WithEvents Insert_System_Mouse_Position_btn As Button
+    Friend WithEvents Test_System_Mouse_Position_Click_btn As Button
 End Class

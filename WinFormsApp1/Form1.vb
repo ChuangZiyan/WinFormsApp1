@@ -50,6 +50,11 @@ Public Class Form1
 
 
     Public myWebDriver As New MyWebDriver()
+    Public keyboardController As New KeyboardAndMouseController()
+
+    ' ######### Keyboard hook #############
+
+
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -1561,15 +1566,9 @@ Public Class Form1
 
     End Sub
 
-    Private Declare Sub mouse_event Lib "user32" (ByVal dwFlags As Integer, ByVal dx As Integer, ByVal dy As Integer, ByVal cButtons As Integer, ByVal dwExtraInfo As Integer)
 
-    Private Sub Insert_System_Mouse_Position_btn_Click(sender As Object, e As EventArgs) Handles Insert_System_Mouse_Position_btn.Click
-
-        If Cursor_X_Position_TextBox.Text <> "" And Cursor_Y_Position_TextBox.Text <> "" Then
-            Cursor.Position = New Point(CInt(Cursor_X_Position_TextBox.Text), CInt(Cursor_Y_Position_TextBox.Text))
-            mouse_event(&H2, 0, 0, 0, 0)
-            mouse_event(&H4, 0, 0, 0, 0)
-        End If
-
+    Private Sub Test_System_Mouse_Position_Click_btn_Click(sender As Object, e As EventArgs) Handles Test_System_Mouse_Position_Click_btn.Click
+        keyboardController.Test_System_Mouse_Position_OnClick()
     End Sub
+
 End Class
