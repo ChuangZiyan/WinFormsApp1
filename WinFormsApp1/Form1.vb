@@ -20,7 +20,8 @@ Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-
+Imports AngleSharp.Text
+Imports System.Diagnostics.Metrics
 
 Public Class Form1
 
@@ -50,7 +51,7 @@ Public Class Form1
 
 
     Public myWebDriver As New MyWebDriver()
-    Public keyboardController As New KeyboardAndMouseController()
+    Public keyboardMouseController As New KeyboardAndMouseController()
 
     ' ######### Keyboard hook #############
 
@@ -417,9 +418,24 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         boolean_result = False
                     End Try
-
+                Case "系統點擊:左鍵"
+                    Dim position = content.Split(";")(1)
+                    Dim counter = CInt(content.Split(";")(0))
+                    For i = counter To 1 Step -1
+                        item.SubItems.Item(6).Text = (i.ToString())
+                        Await Delay_msec(1000)
+                    Next
+                    boolean_result = keyboardMouseController.System_Mouse_OnClick_By_Position("left", CInt(position.Split(":")(0)), CInt(position.Split(":")(1)))
+                Case "系統點擊:右鍵"
+                    Dim position = content.Split(";")(1)
+                    Dim counter = CInt(content.Split(";")(0))
+                    For i = counter To 1 Step -1
+                        item.SubItems.Item(6).Text = (i.ToString())
+                        Await Delay_msec(1000)
+                    Next
+                    boolean_result = keyboardMouseController.System_Mouse_OnClick_By_Position("right", CInt(position.Split(":")(0)), CInt(position.Split(":")(1)))
             End Select
-            If boolean_result = True Then ' record the result
+            If boolean_result = True Then 'record the result
 
                 item.SubItems.Item(6).Text = ("成功")
             ElseIf boolean_result = False Then
@@ -1568,7 +1584,31 @@ Public Class Form1
 
 
     Private Sub Test_System_Mouse_Position_Click_btn_Click(sender As Object, e As EventArgs) Handles Test_System_Mouse_Position_Click_btn.Click
-        keyboardController.Test_System_Mouse_Position_OnClick()
+        If IsNumeric(Cursor_X_Position_TextBox.Text) And IsNumeric(Cursor_Y_Position_TextBox.Text) Then
+            keyboardMouseController.Test_System_Mouse_Position_OnClick()
+        Else
+            MsgBox("非法數值")
+        End If
+
     End Sub
+
+    Private Sub Insert_Mouse_Left_Click_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Mouse_Left_Click_Btn.Click
+        If IsNumeric(Cursor_X_Position_TextBox.Text) And IsNumeric(Cursor_Y_Position_TextBox.Text) Then
+            Insert_to_script("系統點擊:左鍵", Mouse_OnClick_Delay_Sec_Numeric.Value & ";" + Cursor_X_Position_TextBox.Text + ":" + Cursor_Y_Position_TextBox.Text)
+        Else
+            MsgBox("非法數值")
+        End If
+
+    End Sub
+
+    Private Sub Insert_Mouse_Right_Click_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Mouse_Right_Click_Btn.Click
+        If IsNumeric(Cursor_X_Position_TextBox.Text) And IsNumeric(Cursor_Y_Position_TextBox.Text) Then
+            Insert_to_script("系統點擊:右鍵", Mouse_OnClick_Delay_Sec_Numeric.Value & ";" + Cursor_X_Position_TextBox.Text + ":" + Cursor_Y_Position_TextBox.Text)
+        Else
+            MsgBox("非法數值")
+        End If
+
+    End Sub
+
 
 End Class

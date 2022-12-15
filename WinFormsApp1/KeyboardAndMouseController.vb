@@ -15,6 +15,27 @@
     End Sub
 
 
+    Public Function System_Mouse_OnClick_By_Position(button As String, x As Integer, y As Integer)
+        Try
+            Cursor.Position = New Point(x, y)
+            If button = "left" Then
+                mouse_event(&H2, 0, 0, 0, 0) 'left btn down 
+                mouse_event(&H4, 0, 0, 0, 0) 'left btn up
+            ElseIf button = "right" Then
+                mouse_event(&H8, 0, 0, 0, 0) 'right btn down
+                mouse_event(&H10, 0, 0, 0, 0) 'right btn up
+            End If
+
+            Return True
+
+        Catch ex As Exception
+            Return False
+        End Try
+
+
+    End Function
+
+
     Public WithEvents kbHook As New KeyboardHook
     Dim LControlKey_KeyDown = False
     Dim LMenu_KeyDown = False

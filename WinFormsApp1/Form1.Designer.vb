@@ -181,6 +181,11 @@ Partial Class Form1
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Label65 = New System.Windows.Forms.Label()
+        Me.Label62 = New System.Windows.Forms.Label()
+        Me.Mouse_OnClick_Delay_Sec_Numeric = New System.Windows.Forms.NumericUpDown()
+        Me.Insert_Mouse_Right_Click_Btn = New System.Windows.Forms.Button()
+        Me.Insert_Mouse_Left_Click_Btn = New System.Windows.Forms.Button()
         Me.Test_System_Mouse_Position_Click_btn = New System.Windows.Forms.Button()
         Me.Cursor_Y_Position_Label = New System.Windows.Forms.Label()
         Me.Label64 = New System.Windows.Forms.Label()
@@ -312,6 +317,7 @@ Partial Class Form1
         CType(Me.Selected_PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        CType(Me.Mouse_OnClick_Delay_Sec_Numeric, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.ScrollBy_Y_SingleDelayOffset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1897,6 +1903,11 @@ Partial Class Form1
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.Label65)
+        Me.GroupBox5.Controls.Add(Me.Label62)
+        Me.GroupBox5.Controls.Add(Me.Mouse_OnClick_Delay_Sec_Numeric)
+        Me.GroupBox5.Controls.Add(Me.Insert_Mouse_Right_Click_Btn)
+        Me.GroupBox5.Controls.Add(Me.Insert_Mouse_Left_Click_Btn)
         Me.GroupBox5.Controls.Add(Me.Test_System_Mouse_Position_Click_btn)
         Me.GroupBox5.Controls.Add(Me.Cursor_Y_Position_Label)
         Me.GroupBox5.Controls.Add(Me.Label64)
@@ -1914,6 +1925,49 @@ Partial Class Form1
         Me.GroupBox5.TabIndex = 10
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "鼠標監視"
+        '
+        'Label65
+        '
+        Me.Label65.AutoSize = True
+        Me.Label65.Location = New System.Drawing.Point(161, 116)
+        Me.Label65.Name = "Label65"
+        Me.Label65.Size = New System.Drawing.Size(24, 19)
+        Me.Label65.TabIndex = 15
+        Me.Label65.Text = "秒"
+        '
+        'Label62
+        '
+        Me.Label62.AutoSize = True
+        Me.Label62.Location = New System.Drawing.Point(40, 116)
+        Me.Label62.Name = "Label62"
+        Me.Label62.Size = New System.Drawing.Size(50, 19)
+        Me.Label62.TabIndex = 14
+        Me.Label62.Text = "延遲 : "
+        '
+        'Mouse_OnClick_Delay_Sec_Numeric
+        '
+        Me.Mouse_OnClick_Delay_Sec_Numeric.Location = New System.Drawing.Point(96, 111)
+        Me.Mouse_OnClick_Delay_Sec_Numeric.Name = "Mouse_OnClick_Delay_Sec_Numeric"
+        Me.Mouse_OnClick_Delay_Sec_Numeric.Size = New System.Drawing.Size(59, 27)
+        Me.Mouse_OnClick_Delay_Sec_Numeric.TabIndex = 13
+        '
+        'Insert_Mouse_Right_Click_Btn
+        '
+        Me.Insert_Mouse_Right_Click_Btn.Location = New System.Drawing.Point(322, 111)
+        Me.Insert_Mouse_Right_Click_Btn.Name = "Insert_Mouse_Right_Click_Btn"
+        Me.Insert_Mouse_Right_Click_Btn.Size = New System.Drawing.Size(125, 29)
+        Me.Insert_Mouse_Right_Click_Btn.TabIndex = 12
+        Me.Insert_Mouse_Right_Click_Btn.Text = "右鍵點擊 - 插入"
+        Me.Insert_Mouse_Right_Click_Btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Mouse_Left_Click_Btn
+        '
+        Me.Insert_Mouse_Left_Click_Btn.Location = New System.Drawing.Point(191, 111)
+        Me.Insert_Mouse_Left_Click_Btn.Name = "Insert_Mouse_Left_Click_Btn"
+        Me.Insert_Mouse_Left_Click_Btn.Size = New System.Drawing.Size(125, 29)
+        Me.Insert_Mouse_Left_Click_Btn.TabIndex = 11
+        Me.Insert_Mouse_Left_Click_Btn.Text = "左鍵點擊 - 插入"
+        Me.Insert_Mouse_Left_Click_Btn.UseVisualStyleBackColor = True
         '
         'Test_System_Mouse_Position_Click_btn
         '
@@ -2970,6 +3024,7 @@ Partial Class Form1
         Me.TabPage4.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        CType(Me.Mouse_OnClick_Delay_Sec_Numeric, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -3262,4 +3317,9 @@ Partial Class Form1
     Friend WithEvents Cursor_X_Position_Label As Label
     Friend WithEvents Label61 As Label
     Friend WithEvents Test_System_Mouse_Position_Click_btn As Button
+    Friend WithEvents Mouse_OnClick_Delay_Sec_Numeric As NumericUpDown
+    Friend WithEvents Insert_Mouse_Right_Click_Btn As Button
+    Friend WithEvents Insert_Mouse_Left_Click_Btn As Button
+    Friend WithEvents Label65 As Label
+    Friend WithEvents Label62 As Label
 End Class
