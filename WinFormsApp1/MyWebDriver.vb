@@ -53,7 +53,7 @@ Public Class MyWebDriver
     End Function
 
     Public Function Open_Browser(browser As String, devicetype As String, profile As String)
-        Debug.WriteLine("profile : " + profile)
+        'Debug.WriteLine("profile : " + profile)
 
         If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
             Dim JsonString As String = System.IO.File.ReadAllText(profile + "\ProfileInfo.txt")

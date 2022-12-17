@@ -181,15 +181,23 @@ Partial Class Form1
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Insert_Copy_ImageFile_Btn = New System.Windows.Forms.Button()
+        Me.Select_ImageFile_For_Copy_Dialog_Btn = New System.Windows.Forms.Button()
+        Me.Target_ImageFile_Path_For_Copy_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label27 = New System.Windows.Forms.Label()
         Me.Label65 = New System.Windows.Forms.Label()
         Me.Label62 = New System.Windows.Forms.Label()
         Me.Mouse_OnClick_Delay_Sec_Numeric = New System.Windows.Forms.NumericUpDown()
+        Me.Insert_Copy_TextFileContent_Btn = New System.Windows.Forms.Button()
         Me.Insert_Mouse_Right_Click_Btn = New System.Windows.Forms.Button()
         Me.Insert_Mouse_Left_Click_Btn = New System.Windows.Forms.Button()
         Me.Test_System_Mouse_Position_Click_btn = New System.Windows.Forms.Button()
+        Me.Select_TextFile_For_Copy_Dialog_Btn = New System.Windows.Forms.Button()
         Me.Cursor_Y_Position_Label = New System.Windows.Forms.Label()
+        Me.Target_TextFile_Path_For_Copy_TextBox = New System.Windows.Forms.TextBox()
         Me.Label64 = New System.Windows.Forms.Label()
         Me.Label63 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
         Me.Cursor_X_Position_Label = New System.Windows.Forms.Label()
         Me.Label61 = New System.Windows.Forms.Label()
         Me.Label60 = New System.Windows.Forms.Label()
@@ -201,14 +209,6 @@ Partial Class Form1
         Me.Label25 = New System.Windows.Forms.Label()
         Me.KeyboardFirstKey_ComboBox = New System.Windows.Forms.ComboBox()
         Me.KeyboardSecondKey_ComboBox = New System.Windows.Forms.ComboBox()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.Label26 = New System.Windows.Forms.Label()
         Me.Insert_SendKeyClick_btn = New System.Windows.Forms.Button()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -1903,15 +1903,23 @@ Partial Class Form1
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.Insert_Copy_ImageFile_Btn)
+        Me.GroupBox5.Controls.Add(Me.Select_ImageFile_For_Copy_Dialog_Btn)
+        Me.GroupBox5.Controls.Add(Me.Target_ImageFile_Path_For_Copy_TextBox)
+        Me.GroupBox5.Controls.Add(Me.Label27)
         Me.GroupBox5.Controls.Add(Me.Label65)
         Me.GroupBox5.Controls.Add(Me.Label62)
         Me.GroupBox5.Controls.Add(Me.Mouse_OnClick_Delay_Sec_Numeric)
+        Me.GroupBox5.Controls.Add(Me.Insert_Copy_TextFileContent_Btn)
         Me.GroupBox5.Controls.Add(Me.Insert_Mouse_Right_Click_Btn)
         Me.GroupBox5.Controls.Add(Me.Insert_Mouse_Left_Click_Btn)
         Me.GroupBox5.Controls.Add(Me.Test_System_Mouse_Position_Click_btn)
+        Me.GroupBox5.Controls.Add(Me.Select_TextFile_For_Copy_Dialog_Btn)
         Me.GroupBox5.Controls.Add(Me.Cursor_Y_Position_Label)
+        Me.GroupBox5.Controls.Add(Me.Target_TextFile_Path_For_Copy_TextBox)
         Me.GroupBox5.Controls.Add(Me.Label64)
         Me.GroupBox5.Controls.Add(Me.Label63)
+        Me.GroupBox5.Controls.Add(Me.Label26)
         Me.GroupBox5.Controls.Add(Me.Cursor_X_Position_Label)
         Me.GroupBox5.Controls.Add(Me.Label61)
         Me.GroupBox5.Controls.Add(Me.Label60)
@@ -1919,12 +1927,46 @@ Partial Class Form1
         Me.GroupBox5.Controls.Add(Me.Label59)
         Me.GroupBox5.Controls.Add(Me.Cursor_X_Position_TextBox)
         Me.GroupBox5.Controls.Add(Me.Label58)
-        Me.GroupBox5.Location = New System.Drawing.Point(15, 475)
+        Me.GroupBox5.Location = New System.Drawing.Point(15, 382)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(897, 313)
+        Me.GroupBox5.Size = New System.Drawing.Size(897, 424)
         Me.GroupBox5.TabIndex = 10
         Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "鼠標監視"
+        Me.GroupBox5.Text = "系統鍵鼠事件"
+        '
+        'Insert_Copy_ImageFile_Btn
+        '
+        Me.Insert_Copy_ImageFile_Btn.Location = New System.Drawing.Point(570, 179)
+        Me.Insert_Copy_ImageFile_Btn.Name = "Insert_Copy_ImageFile_Btn"
+        Me.Insert_Copy_ImageFile_Btn.Size = New System.Drawing.Size(177, 29)
+        Me.Insert_Copy_ImageFile_Btn.TabIndex = 19
+        Me.Insert_Copy_ImageFile_Btn.Text = "複製圖片位置 - 插入"
+        Me.Insert_Copy_ImageFile_Btn.UseVisualStyleBackColor = True
+        '
+        'Select_ImageFile_For_Copy_Dialog_Btn
+        '
+        Me.Select_ImageFile_For_Copy_Dialog_Btn.Location = New System.Drawing.Point(470, 179)
+        Me.Select_ImageFile_For_Copy_Dialog_Btn.Name = "Select_ImageFile_For_Copy_Dialog_Btn"
+        Me.Select_ImageFile_For_Copy_Dialog_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Select_ImageFile_For_Copy_Dialog_Btn.TabIndex = 18
+        Me.Select_ImageFile_For_Copy_Dialog_Btn.Text = "選擇檔案"
+        Me.Select_ImageFile_For_Copy_Dialog_Btn.UseVisualStyleBackColor = True
+        '
+        'Target_ImageFile_Path_For_Copy_TextBox
+        '
+        Me.Target_ImageFile_Path_For_Copy_TextBox.Location = New System.Drawing.Point(96, 181)
+        Me.Target_ImageFile_Path_For_Copy_TextBox.Name = "Target_ImageFile_Path_For_Copy_TextBox"
+        Me.Target_ImageFile_Path_For_Copy_TextBox.Size = New System.Drawing.Size(368, 27)
+        Me.Target_ImageFile_Path_For_Copy_TextBox.TabIndex = 17
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(40, 186)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(50, 19)
+        Me.Label27.TabIndex = 16
+        Me.Label27.Text = "路徑 : "
         '
         'Label65
         '
@@ -1950,6 +1992,15 @@ Partial Class Form1
         Me.Mouse_OnClick_Delay_Sec_Numeric.Name = "Mouse_OnClick_Delay_Sec_Numeric"
         Me.Mouse_OnClick_Delay_Sec_Numeric.Size = New System.Drawing.Size(59, 27)
         Me.Mouse_OnClick_Delay_Sec_Numeric.TabIndex = 13
+        '
+        'Insert_Copy_TextFileContent_Btn
+        '
+        Me.Insert_Copy_TextFileContent_Btn.Location = New System.Drawing.Point(570, 144)
+        Me.Insert_Copy_TextFileContent_Btn.Name = "Insert_Copy_TextFileContent_Btn"
+        Me.Insert_Copy_TextFileContent_Btn.Size = New System.Drawing.Size(177, 29)
+        Me.Insert_Copy_TextFileContent_Btn.TabIndex = 13
+        Me.Insert_Copy_TextFileContent_Btn.Text = "複製Txt檔案內容 - 插入"
+        Me.Insert_Copy_TextFileContent_Btn.UseVisualStyleBackColor = True
         '
         'Insert_Mouse_Right_Click_Btn
         '
@@ -1978,6 +2029,15 @@ Partial Class Form1
         Me.Test_System_Mouse_Position_Click_btn.Text = "點擊測試"
         Me.Test_System_Mouse_Position_Click_btn.UseVisualStyleBackColor = True
         '
+        'Select_TextFile_For_Copy_Dialog_Btn
+        '
+        Me.Select_TextFile_For_Copy_Dialog_Btn.Location = New System.Drawing.Point(470, 144)
+        Me.Select_TextFile_For_Copy_Dialog_Btn.Name = "Select_TextFile_For_Copy_Dialog_Btn"
+        Me.Select_TextFile_For_Copy_Dialog_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Select_TextFile_For_Copy_Dialog_Btn.TabIndex = 10
+        Me.Select_TextFile_For_Copy_Dialog_Btn.Text = "選擇檔案"
+        Me.Select_TextFile_For_Copy_Dialog_Btn.UseVisualStyleBackColor = True
+        '
         'Cursor_Y_Position_Label
         '
         Me.Cursor_Y_Position_Label.AutoSize = True
@@ -1986,6 +2046,13 @@ Partial Class Form1
         Me.Cursor_Y_Position_Label.Size = New System.Drawing.Size(37, 19)
         Me.Cursor_Y_Position_Label.TabIndex = 9
         Me.Cursor_Y_Position_Label.Text = "N/A"
+        '
+        'Target_TextFile_Path_For_Copy_TextBox
+        '
+        Me.Target_TextFile_Path_For_Copy_TextBox.Location = New System.Drawing.Point(96, 146)
+        Me.Target_TextFile_Path_For_Copy_TextBox.Name = "Target_TextFile_Path_For_Copy_TextBox"
+        Me.Target_TextFile_Path_For_Copy_TextBox.Size = New System.Drawing.Size(368, 27)
+        Me.Target_TextFile_Path_For_Copy_TextBox.TabIndex = 9
         '
         'Label64
         '
@@ -2004,6 +2071,15 @@ Partial Class Form1
         Me.Label63.Size = New System.Drawing.Size(23, 19)
         Me.Label63.TabIndex = 7
         Me.Label63.Text = "x :"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(40, 151)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(50, 19)
+        Me.Label26.TabIndex = 6
+        Me.Label26.Text = "路徑 : "
         '
         'Cursor_X_Position_Label
         '
@@ -2069,22 +2145,14 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.Label25)
         Me.GroupBox4.Controls.Add(Me.KeyboardFirstKey_ComboBox)
         Me.GroupBox4.Controls.Add(Me.KeyboardSecondKey_ComboBox)
-        Me.GroupBox4.Controls.Add(Me.Button10)
-        Me.GroupBox4.Controls.Add(Me.Button9)
-        Me.GroupBox4.Controls.Add(Me.Button8)
-        Me.GroupBox4.Controls.Add(Me.Button7)
-        Me.GroupBox4.Controls.Add(Me.TextBox8)
-        Me.GroupBox4.Controls.Add(Me.TextBox7)
-        Me.GroupBox4.Controls.Add(Me.Label27)
-        Me.GroupBox4.Controls.Add(Me.Label26)
         Me.GroupBox4.Controls.Add(Me.Insert_SendKeyClick_btn)
         Me.GroupBox4.Controls.Add(Me.Label24)
         Me.GroupBox4.Location = New System.Drawing.Point(15, 259)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(897, 192)
+        Me.GroupBox4.Size = New System.Drawing.Size(897, 96)
         Me.GroupBox4.TabIndex = 9
         Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "鍵盤事件"
+        Me.GroupBox4.Text = "Selenium 鍵盤事件"
         '
         'Label25
         '
@@ -2112,74 +2180,6 @@ Partial Class Form1
         Me.KeyboardSecondKey_ComboBox.Name = "KeyboardSecondKey_ComboBox"
         Me.KeyboardSecondKey_ComboBox.Size = New System.Drawing.Size(125, 27)
         Me.KeyboardSecondKey_ComboBox.TabIndex = 14
-        '
-        'Button10
-        '
-        Me.Button10.Location = New System.Drawing.Point(602, 124)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(155, 29)
-        Me.Button10.TabIndex = 13
-        Me.Button10.Text = "複製文字位置 - 插入"
-        Me.Button10.UseVisualStyleBackColor = True
-        '
-        'Button9
-        '
-        Me.Button9.Location = New System.Drawing.Point(602, 82)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(155, 29)
-        Me.Button9.TabIndex = 12
-        Me.Button9.Text = "複製圖片位置 - 插入"
-        Me.Button9.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(502, 124)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(94, 29)
-        Me.Button8.TabIndex = 11
-        Me.Button8.Text = "選擇檔案"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(502, 82)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(94, 29)
-        Me.Button7.TabIndex = 10
-        Me.Button7.Text = "選擇檔案"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
-        'TextBox8
-        '
-        Me.TextBox8.Location = New System.Drawing.Point(62, 126)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(434, 27)
-        Me.TextBox8.TabIndex = 9
-        '
-        'TextBox7
-        '
-        Me.TextBox7.Location = New System.Drawing.Point(62, 82)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(434, 27)
-        Me.TextBox7.TabIndex = 8
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(6, 134)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(50, 19)
-        Me.Label27.TabIndex = 7
-        Me.Label27.Text = "路徑 : "
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(6, 90)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(50, 19)
-        Me.Label26.TabIndex = 6
-        Me.Label26.Text = "路徑 : "
         '
         'Insert_SendKeyClick_btn
         '
@@ -2222,7 +2222,7 @@ Partial Class Form1
         Me.GroupBox3.Size = New System.Drawing.Size(897, 225)
         Me.GroupBox3.TabIndex = 8
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "滑鼠事件"
+        Me.GroupBox3.Text = "Selenium 滑鼠事件"
         '
         'Label56
         '
@@ -3160,13 +3160,9 @@ Partial Class Form1
     Friend WithEvents Label2 As Label
     Friend WithEvents Click_by_location_test_btn As Button
     Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents Button10 As Button
-    Friend WithEvents Button9 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents TextBox8 As TextBox
-    Friend WithEvents TextBox7 As TextBox
-    Friend WithEvents Label27 As Label
+    Friend WithEvents Insert_Copy_TextFileContent_Btn As Button
+    Friend WithEvents Select_TextFile_For_Copy_Dialog_Btn As Button
+    Friend WithEvents Target_TextFile_Path_For_Copy_TextBox As TextBox
     Friend WithEvents Label26 As Label
     Friend WithEvents Insert_SendKeyClick_btn As Button
     Friend WithEvents Label24 As Label
@@ -3322,4 +3318,8 @@ Partial Class Form1
     Friend WithEvents Insert_Mouse_Left_Click_Btn As Button
     Friend WithEvents Label65 As Label
     Friend WithEvents Label62 As Label
+    Friend WithEvents Insert_Copy_ImageFile_Btn As Button
+    Friend WithEvents Select_ImageFile_For_Copy_Dialog_Btn As Button
+    Friend WithEvents Target_ImageFile_Path_For_Copy_TextBox As TextBox
+    Friend WithEvents Label27 As Label
 End Class

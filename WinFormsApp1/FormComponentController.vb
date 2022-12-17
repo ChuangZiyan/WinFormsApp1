@@ -562,5 +562,53 @@ Module FormComponentController
     End Sub
 
 
+    Public Sub Select_TextFile_For_Copy_Dialog()
+        Dim fd As OpenFileDialog = New OpenFileDialog()
+        Dim strFileName As String
+
+        fd.Title = "Open File Dialog"
+        'fd.InitialDirectory = "C:\"
+        fd.Filter = "Text Files (.txt)|*.txt"
+        fd.FilterIndex = 2
+        fd.RestoreDirectory = True
+
+        'Dim allowed_extension = New String() {".txt"}
+
+        If fd.ShowDialog() = DialogResult.OK Then
+            strFileName = fd.FileName
+
+            If Path.GetExtension(strFileName) = ".txt" Then
+                Form1.Target_TextFile_Path_For_Copy_TextBox.Text = strFileName
+            Else
+                MsgBox("無效的文字檔案")
+            End If
+
+        End If
+
+    End Sub
+
+    Public Sub Select_ImageFile_For_Copy_Dialog()
+        Dim fd As OpenFileDialog = New OpenFileDialog()
+
+        fd.Title = "Open File Dialog"
+        'fd.InitialDirectory = "C:\"
+        fd.Filter = "Image Files|*.jpeg;*.jpg;*.png;"
+        fd.FilterIndex = 2
+        fd.RestoreDirectory = True
+        fd.Multiselect = True
+
+        'Dim allowed_extension = New String() {".jpg", ".jpeg", ".png"}
+
+        If fd.ShowDialog() = DialogResult.OK Then
+            Dim formatted_filePath = ""
+            For Each fileName In fd.FileNames
+                'Debug.WriteLine(fileName)
+                formatted_filePath += fileName + ";"
+            Next
+            formatted_filePath = formatted_filePath.Trim(";")
+            'Debug.WriteLine(formatted_filePath)
+            Form1.Target_ImageFile_Path_For_Copy_TextBox.Text = formatted_filePath
+        End If
+    End Sub
 
 End Module

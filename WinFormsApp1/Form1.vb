@@ -22,6 +22,8 @@ Imports WebDriverManager.Helpers
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AngleSharp.Text
 Imports System.Diagnostics.Metrics
+Imports System.Xml
+Imports System.Collections.Specialized
 
 Public Class Form1
 
@@ -342,7 +344,7 @@ Public Class Form1
                     Dim y_single_offset = CInt(Offset(1).Split(":")(1))
                     Dim y_single_delay_offset = CInt(Offset(1).Split(":")(2))
 
-                    Debug.WriteLine(y_single_delay_offset)
+                    'Debug.WriteLine(y_single_delay_offset)
                     If y_single_offset > 0 Then
                         For scroll_offset As Integer = y_single_offset To y_offset Step y_single_offset
                             boolean_result = ScrollPage_By_Offset(Offset(0), CStr(scroll_offset))
@@ -434,6 +436,33 @@ Public Class Form1
                         Await Delay_msec(1000)
                     Next
                     boolean_result = keyboardMouseController.System_Mouse_OnClick_By_Position("right", CInt(position.Split(":")(0)), CInt(position.Split(":")(1)))
+                Case "複製:檔案內容"
+                    Try
+                        Dim txtFileContent = IO.File.ReadAllText(content)
+                        'Clipboard.SetImage(myimage)
+                        Clipboard.SetText(txtFileContent)
+                        boolean_result = True
+
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
+
+                Case "複製:圖片位置"
+                    Try
+                        Dim imageFilePath_StringCollection = New StringCollection()
+                        For Each file In content.Split(";")
+                            'Dim myimage = Bitmap.FromFile(file)
+                            imageFilePath_StringCollection.Add(file)
+                        Next
+                        Clipboard.SetFileDropList(imageFilePath_StringCollection)
+                        'Clipboard.SetImage()
+                        boolean_result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
+
             End Select
             If boolean_result = True Then 'record the result
 
@@ -1472,8 +1501,6 @@ Public Class Form1
         FormComponentController.Auto_Generated_TextFile()
     End Sub
 
-
-
     Private Async Sub Crawl_Post_Content_Btn_Click(sender As Object, e As EventArgs) Handles Crawl_Post_Content_Btn.Click
 
         Crawl_Post_Content_Btn.Enabled = False
@@ -1610,5 +1637,19 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Select_TextFile_For_Copy_Dialog_Btn_Click(sender As Object, e As EventArgs) Handles Select_TextFile_For_Copy_Dialog_Btn.Click
+        FormComponentController.Select_TextFile_For_Copy_Dialog()
+    End Sub
 
+    Private Sub Select_ImageFile_For_Copy_Dialog_Btn_Click(sender As Object, e As EventArgs) Handles Select_ImageFile_For_Copy_Dialog_Btn.Click
+        FormComponentController.Select_ImageFile_For_Copy_Dialog()
+    End Sub
+
+    Private Sub Insert_Copy_TextFileContent_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Copy_TextFileContent_Btn.Click
+        ScriptInsertion.Insert_Copy_TextFileContent()
+    End Sub
+
+    Private Sub Insert_Copy_ImageFile_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Copy_ImageFile_Btn.Click
+        ScriptInsertion.Insert_Copy_ImageFile()
+    End Sub
 End Class

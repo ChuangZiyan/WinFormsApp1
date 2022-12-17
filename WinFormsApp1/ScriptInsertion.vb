@@ -1,4 +1,5 @@
-﻿Imports System.Text.RegularExpressions
+﻿Imports System.IO
+Imports System.Text.RegularExpressions
 
 Module ScriptInsertion
 
@@ -433,5 +434,45 @@ Module ScriptInsertion
             Insert_to_script("限時:隨機上載", Image_file_path.TrimEnd(";"))
         End If
     End Sub
+
+
+
+    Public Sub Insert_Copy_TextFileContent()
+        Dim myFilePath = Form1.Target_TextFile_Path_For_Copy_TextBox.Text
+        'Dim allowed_extension = New String() {".txt", ".jpg", ".jpeg", ".png"}
+
+        Dim myFile_extenion = Path.GetExtension(myFilePath)
+
+        If myFile_extenion = ".txt" Then
+            Insert_to_script("複製:檔案內容", myFilePath)
+        Else
+            MsgBox("無效的文字檔案或者路徑")
+        End If
+
+    End Sub
+
+    Public Sub Insert_Copy_ImageFile()
+        Dim myFilePaths = Form1.Target_ImageFile_Path_For_Copy_TextBox.Text
+        Dim allowed_extension = New String() {".jpg", ".jpeg", ".png"}
+
+        If myFilePaths = "" Then
+            MsgBox("參數中中存在無效的圖片檔案或者無效路徑")
+            Exit Sub
+        End If
+
+
+        For Each filePath In myFilePaths.Split(";")
+            Dim myFile_extenion = Path.GetExtension(filePath)
+            If Not allowed_extension.Contains(myFile_extenion) Then
+                MsgBox("參數中中存在無效的圖片檔案或者無效路徑")
+                Exit Sub
+            End If
+        Next
+
+        Insert_to_script("複製:圖片位置", myFilePaths)
+    End Sub
+
+
+
 
 End Module

@@ -41,7 +41,7 @@
     Dim LMenu_KeyDown = False
 
     Public Sub kbHook_KeyDown(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyDown
-        Debug.WriteLine(Key.ToString)
+        'Debug.WriteLine(Key.ToString)
         Select Case Key.ToString
             Case "LControlKey"
                 LControlKey_KeyDown = True
@@ -57,7 +57,7 @@
 
     End Sub
     Public Sub kbHook_KeyUp(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyUp
-        Debug.WriteLine(Key)
+        'Debug.WriteLine(Key)
         Select Case Key.ToString
             Case "LControlKey"
                 LControlKey_KeyDown = False
