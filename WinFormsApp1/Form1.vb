@@ -436,6 +436,9 @@ Public Class Form1
                         Await Delay_msec(1000)
                     Next
                     boolean_result = keyboardMouseController.System_Mouse_OnClick_By_Position("right", CInt(position.Split(":")(0)), CInt(position.Split(":")(1)))
+                Case "系統發送:按鍵"
+                    boolean_result = System_SendKey(content.Split("+")(0), content.Split("+")(1))
+
                 Case "複製:檔案內容"
                     Try
                         Dim txtFileContent = IO.File.ReadAllText(content)
@@ -1062,6 +1065,30 @@ Public Class Form1
         End If
     End Sub
 
+
+    Public Function System_SendKey(firstKey, secondKey)
+
+        Try
+            Select Case firstKey
+                Case "ENTER"
+                    My.Computer.Keyboard.SendKeys("~")
+                Case "ESC"
+                    My.Computer.Keyboard.SendKeys("{ESC}")
+                Case "CTRL"
+                    My.Computer.Keyboard.SendKeys("^" + secondKey)
+                Case "ALT"
+                    My.Computer.Keyboard.SendKeys("%" + secondKey)
+                Case Else
+                    My.Computer.Keyboard.SendKeys(secondKey)
+
+            End Select
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
     Private Sub load_script_btn_Click(sender As Object, e As EventArgs) Handles load_script_btn.Click
         Try
             script_ListView.Items.Clear()
@@ -1652,4 +1679,11 @@ Public Class Form1
     Private Sub Insert_Copy_ImageFile_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Copy_ImageFile_Btn.Click
         ScriptInsertion.Insert_Copy_ImageFile()
     End Sub
+
+    Private Sub Insert_SystemKeyboardClick_btn_Click(sender As Object, e As EventArgs) Handles Insert_SystemKeyboardClick_btn.Click
+        If SystemKeyboardFirstKey_ComboBox.Text <> "" Or SystemKeyboardSecondKey_ComboBox.Text <> "" Then
+            Insert_to_script("系統發送:按鍵", SystemKeyboardFirstKey_ComboBox.Text + "+" + SystemKeyboardSecondKey_ComboBox.Text)
+        End If
+    End Sub
+
 End Class

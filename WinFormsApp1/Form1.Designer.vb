@@ -181,6 +181,11 @@ Partial Class Form1
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Label66 = New System.Windows.Forms.Label()
+        Me.SystemKeyboardFirstKey_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.SystemKeyboardSecondKey_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Insert_SystemKeyboardClick_btn = New System.Windows.Forms.Button()
+        Me.Label67 = New System.Windows.Forms.Label()
         Me.Insert_Copy_ImageFile_Btn = New System.Windows.Forms.Button()
         Me.Select_ImageFile_For_Copy_Dialog_Btn = New System.Windows.Forms.Button()
         Me.Target_ImageFile_Path_For_Copy_TextBox = New System.Windows.Forms.TextBox()
@@ -1903,6 +1908,11 @@ Partial Class Form1
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.Label66)
+        Me.GroupBox5.Controls.Add(Me.SystemKeyboardFirstKey_ComboBox)
+        Me.GroupBox5.Controls.Add(Me.SystemKeyboardSecondKey_ComboBox)
+        Me.GroupBox5.Controls.Add(Me.Insert_SystemKeyboardClick_btn)
+        Me.GroupBox5.Controls.Add(Me.Label67)
         Me.GroupBox5.Controls.Add(Me.Insert_Copy_ImageFile_Btn)
         Me.GroupBox5.Controls.Add(Me.Select_ImageFile_For_Copy_Dialog_Btn)
         Me.GroupBox5.Controls.Add(Me.Target_ImageFile_Path_For_Copy_TextBox)
@@ -1933,6 +1943,51 @@ Partial Class Form1
         Me.GroupBox5.TabIndex = 10
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "系統鍵鼠事件"
+        '
+        'Label66
+        '
+        Me.Label66.AutoSize = True
+        Me.Label66.Location = New System.Drawing.Point(227, 217)
+        Me.Label66.Name = "Label66"
+        Me.Label66.Size = New System.Drawing.Size(20, 19)
+        Me.Label66.TabIndex = 24
+        Me.Label66.Text = "+"
+        '
+        'SystemKeyboardFirstKey_ComboBox
+        '
+        Me.SystemKeyboardFirstKey_ComboBox.FormattingEnabled = True
+        Me.SystemKeyboardFirstKey_ComboBox.Items.AddRange(New Object() {"ENTER", "CTRL", "ALT", "ESC"})
+        Me.SystemKeyboardFirstKey_ComboBox.Location = New System.Drawing.Point(96, 214)
+        Me.SystemKeyboardFirstKey_ComboBox.Name = "SystemKeyboardFirstKey_ComboBox"
+        Me.SystemKeyboardFirstKey_ComboBox.Size = New System.Drawing.Size(125, 27)
+        Me.SystemKeyboardFirstKey_ComboBox.TabIndex = 23
+        '
+        'SystemKeyboardSecondKey_ComboBox
+        '
+        Me.SystemKeyboardSecondKey_ComboBox.FormattingEnabled = True
+        Me.SystemKeyboardSecondKey_ComboBox.Items.AddRange(New Object() {"C", "V", "A"})
+        Me.SystemKeyboardSecondKey_ComboBox.Location = New System.Drawing.Point(253, 214)
+        Me.SystemKeyboardSecondKey_ComboBox.Name = "SystemKeyboardSecondKey_ComboBox"
+        Me.SystemKeyboardSecondKey_ComboBox.Size = New System.Drawing.Size(125, 27)
+        Me.SystemKeyboardSecondKey_ComboBox.TabIndex = 22
+        '
+        'Insert_SystemKeyboardClick_btn
+        '
+        Me.Insert_SystemKeyboardClick_btn.Location = New System.Drawing.Point(384, 212)
+        Me.Insert_SystemKeyboardClick_btn.Name = "Insert_SystemKeyboardClick_btn"
+        Me.Insert_SystemKeyboardClick_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_SystemKeyboardClick_btn.TabIndex = 21
+        Me.Insert_SystemKeyboardClick_btn.Text = "插入"
+        Me.Insert_SystemKeyboardClick_btn.UseVisualStyleBackColor = True
+        '
+        'Label67
+        '
+        Me.Label67.AutoSize = True
+        Me.Label67.Location = New System.Drawing.Point(40, 222)
+        Me.Label67.Name = "Label67"
+        Me.Label67.Size = New System.Drawing.Size(50, 19)
+        Me.Label67.TabIndex = 20
+        Me.Label67.Text = "按鍵 : "
         '
         'Insert_Copy_ImageFile_Btn
         '
@@ -3322,4 +3377,9 @@ Partial Class Form1
     Friend WithEvents Select_ImageFile_For_Copy_Dialog_Btn As Button
     Friend WithEvents Target_ImageFile_Path_For_Copy_TextBox As TextBox
     Friend WithEvents Label27 As Label
+    Friend WithEvents Label66 As Label
+    Friend WithEvents SystemKeyboardFirstKey_ComboBox As ComboBox
+    Friend WithEvents SystemKeyboardSecondKey_ComboBox As ComboBox
+    Friend WithEvents Insert_SystemKeyboardClick_btn As Button
+    Friend WithEvents Label67 As Label
 End Class
