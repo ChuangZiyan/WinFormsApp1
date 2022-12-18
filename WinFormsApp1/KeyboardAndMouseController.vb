@@ -1,9 +1,12 @@
-﻿Public Class KeyboardAndMouseController
+﻿
+Imports InputHelperLib
+
+Public Class KeyboardAndMouseController
+
 
 
 
     Public Declare Sub mouse_event Lib "user32" (ByVal dwFlags As Integer, ByVal dx As Integer, ByVal dy As Integer, ByVal cButtons As Integer, ByVal dwExtraInfo As Integer)
-
 
     Public Sub Test_System_Mouse_Position_OnClick()
         If Form1.Cursor_X_Position_TextBox.Text <> "" And Form1.Cursor_Y_Position_TextBox.Text <> "" Then
@@ -13,7 +16,6 @@
         End If
 
     End Sub
-
 
     Public Function System_Mouse_OnClick_By_Position(button As String, x As Integer, y As Integer)
         Try
@@ -36,18 +38,30 @@
     End Function
 
 
+
     Public WithEvents kbHook As New KeyboardHook
     Dim LControlKey_KeyDown = False
     Dim LMenu_KeyDown = False
+    Dim F1_KeyDown = False
+    Dim F2_KeyDown = False
+
+    Dim record = False
 
     Public Sub kbHook_KeyDown(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyDown
         'Debug.WriteLine(Key.ToString)
+
         Select Case Key.ToString
             Case "LControlKey"
                 LControlKey_KeyDown = True
             Case "LMenu"
                 LMenu_KeyDown = True
+            Case "F1"
+                F1_KeyDown = True
+            Case "F2"
+                F2_KeyDown = True
         End Select
+
+
 
         If LControlKey_KeyDown And LMenu_KeyDown Then
             Form1.Cursor_X_Position_TextBox.Text = Form1.Cursor_X_Position_Label.Text
@@ -57,12 +71,61 @@
 
     End Sub
     Public Sub kbHook_KeyUp(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyUp
-        'Debug.WriteLine(Key)
+        Debug.WriteLine(Key)
+
+        Dim myKey = Key.ToString
+
+        If record And myKey <> "LControlKey" Then
+
+            Insert_To_Script_By_Record(Key.ToString)
+
+        End If
+
+        If LControlKey_KeyDown And F1_KeyDown Then
+            Debug.WriteLine("Start log action")
+            record = True
+        End If
+
+        If LControlKey_KeyDown And F2_KeyDown Then
+            Debug.WriteLine("Stop log action")
+            record = False
+        End If
+
         Select Case Key.ToString
             Case "LControlKey"
                 LControlKey_KeyDown = False
             Case "LMenu"
                 LMenu_KeyDown = False
+            Case "F1"
+                F1_KeyDown = False
+            Case "F2"
+                F2_KeyDown = False
         End Select
+
+
     End Sub
+
+
+    Public Sub Insert_To_Script_By_Record(scnd_key)
+
+        Dim firstKey = ""
+        Dim secondKey = scnd_key
+
+        If LControlKey_KeyDown Then
+            firstKey = "CTRL"
+        ElseIf LMenu_KeyDown Then
+            firstKey = "ALT"
+        End If
+
+        If firstKey = "CTRL" And scnd_key = "F1" Then
+            Exit Sub
+        ElseIf firstKey = "CTRL" And scnd_key = "F2" Then
+            Exit Sub
+        End If
+
+        Insert_to_script("系統發送:按鍵", firstKey + "+" + secondKey)
+    End Sub
+
+
+
 End Class
