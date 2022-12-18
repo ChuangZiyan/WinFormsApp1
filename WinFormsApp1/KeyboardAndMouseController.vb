@@ -1,7 +1,13 @@
 ﻿
-Imports InputHelperLib
-
 Public Class KeyboardAndMouseController
+
+
+
+
+    Public WithEvents MouseHook As New MouseHook
+    Public Sub MouseHook_Mouse_Left_Down(e As Point) Handles MouseHook.Mouse_Left_Down
+        Debug.WriteLine("Left Click")
+    End Sub
 
 
 
