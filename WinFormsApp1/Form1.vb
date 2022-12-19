@@ -1149,14 +1149,14 @@ Public Class Form1
             'Else
             '     group_name_TextBox.Text = ""
             'end If
-              '  curr_url_ComboBox.Text = content
+            '  curr_url_ComboBox.Text = content
 
-                'Case "開啟"
-                'profile_path_TextBox.Text = content
-            Case "登入"
-                Dim account_passwd = content.Split(" ")
-                fb_account_TextBox.Text = account_passwd(0).Split(":")(1)
-                fb_password_TextBox.Text = account_passwd(1).Split(":")(1)
+            'Case "開啟"
+            'profile_path_TextBox.Text = content
+            'Case "登入"
+            'Dim account_passwd = content.Split(" ")
+            '  fb_account_TextBox.Text = account_passwd(0).Split(":")(1)
+            'fb_password_TextBox.Text = account_passwd(1).Split(":")(1)
             Case "等待"
                 Dim total_sec As Integer = 0
                 If content.Contains("±"c) Then 'if have random second
