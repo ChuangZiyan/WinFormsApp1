@@ -1125,8 +1125,8 @@ Public Class Form1
         Dim action = script_ListView.Items(script_ListView.FocusedItem.Index).SubItems(4).Text
         Dim content = script_ListView.Items(script_ListView.FocusedItem.Index).SubItems(5).Text
 
-        fb_account_TextBox.Text = ""
-        fb_password_TextBox.Text = ""
+        'fb_account_TextBox.Text = ""
+        'fb_password_TextBox.Text = ""
         group_name_TextBox.Text = ""
         'curr_url_ComboBox.Text = ""
 
