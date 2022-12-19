@@ -60,8 +60,13 @@ Public Class MyWebDriver
             Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
             Profile_JsonObject = JsonConvert.DeserializeObject(JsonString)
             Dim lang = Profile_JsonObject.Item("LanguagePack").ToString()
-            used_lang = lang
+
+            If lang <> "" Then
+                used_lang = lang
+            End If
+
             'Debug.WriteLine("lang : " + lang)
+
         End If
 
         Select Case used_lang

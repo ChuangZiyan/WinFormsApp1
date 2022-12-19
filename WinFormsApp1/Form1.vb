@@ -217,10 +217,10 @@ Public Class Form1
                     Dim wrapper As New Simple3Des("password")
                     Dim plainText As String = wrapper.DecryptData(account_passwd(1).Split(":")(1))
 
-                    Debug.WriteLine(plainText)
+                    'Debug.WriteLine(plainText)
 
-                    'boolean_result = myWebDriver.Login_fb(account_passwd(0).Split(":")(1), plainText)
-                    boolean_result = True
+                    boolean_result = myWebDriver.Login_fb(account_passwd(0).Split(":")(1), plainText)
+                    'boolean_result = True
                     Await Delay_msec(1000)
                 Case "前往"
                     If content.Contains(";"c) Then
