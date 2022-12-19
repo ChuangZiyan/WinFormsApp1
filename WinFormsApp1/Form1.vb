@@ -213,7 +213,14 @@ Public Class Form1
                 Case "登入"
                     Dim auth() As String = content.Split(";")
                     Dim account_passwd = content.Split(" ")
-                    boolean_result = myWebDriver.Login_fb(account_passwd(0).Split(":")(1), account_passwd(1).Split(":")(1))
+
+                    Dim wrapper As New Simple3Des("password")
+                    Dim plainText As String = wrapper.DecryptData(account_passwd(1).Split(":")(1))
+
+                    Debug.WriteLine(plainText)
+
+                    'boolean_result = myWebDriver.Login_fb(account_passwd(0).Split(":")(1), plainText)
+                    boolean_result = True
                     Await Delay_msec(1000)
                 Case "前往"
                     If content.Contains(";"c) Then
@@ -716,9 +723,6 @@ Public Class Form1
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
-
-
-
         'Dim MousePosition As Point
         Dim MousePosition = Cursor.Position
 
@@ -1124,7 +1128,7 @@ Public Class Form1
         fb_account_TextBox.Text = ""
         fb_password_TextBox.Text = ""
         group_name_TextBox.Text = ""
-        curr_url_ComboBox.Text = ""
+        'curr_url_ComboBox.Text = ""
 
 
         Select Case browser
@@ -1138,14 +1142,14 @@ Public Class Form1
 
 
         Select Case action
-            Case "前往"
-                If content.Contains(";"c) Then
-                    group_name_TextBox.Text = content.Split(";")(0)
-                    content = content.Split(";")(1)
-                Else
-                    group_name_TextBox.Text = ""
-                End If
-                curr_url_ComboBox.Text = content
+            'Case "前往"
+            'If content.Contains(";"c) Then
+            'group_name_TextBox.Text = content.Split(";")(0)
+            '   content = content.Split(";")(1)
+            'Else
+            '     group_name_TextBox.Text = ""
+            'end If
+              '  curr_url_ComboBox.Text = content
 
                 'Case "開啟"
                 'profile_path_TextBox.Text = content
@@ -1685,4 +1689,21 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Reveal_password_Textbox_Btn_Click(sender As Object, e As EventArgs) Handles Reveal_password_Textbox_Btn.Click
+
+        Debug.WriteLine(fb_password_TextBox.PasswordChar)
+
+        If fb_password_TextBox.PasswordChar = "*" Then
+            Reveal_password_Textbox_Btn.Text = "隱藏"
+            fb_password_TextBox.PasswordChar = ""
+        ElseIf fb_password_TextBox.PasswordChar = vbNullChar Then
+            Reveal_password_Textbox_Btn.Text = "顯示"
+            fb_password_TextBox.PasswordChar = "*"
+        End If
+
+    End Sub
+
+    Private Sub Modify_Selected_ListView_Url_Btn_Click(sender As Object, e As EventArgs) Handles Modify_Selected_ListView_Url_Btn.Click
+        Modify_ScriptListView_Selected_URL_item()
+    End Sub
 End Class

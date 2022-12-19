@@ -2,14 +2,25 @@
 Public Class KeyboardAndMouseController
 
 
-
+    Dim record = False
 
     Public WithEvents MouseHook As New MouseHook
     Public Sub MouseHook_Mouse_Left_Down(e As Point) Handles MouseHook.Mouse_Left_Down
-        Debug.WriteLine("Left Click")
+        If Not record Then
+            Exit Sub
+        End If
+        Dim MousePosition = Cursor.Position
+        Insert_to_script("系統點擊:左鍵", "0;" + Str(MousePosition.X) + ":" + Str(MousePosition.Y))
     End Sub
 
 
+    Public Sub MouseHook_Mouse_Right_Down(e As Point) Handles MouseHook.Mouse_Right_Down
+        If Not record Then
+            Exit Sub
+        End If
+        Dim MousePosition = Cursor.Position
+        Insert_to_script("系統點擊:右鍵", "0;" + Str(MousePosition.X) + ":" + Str(MousePosition.Y))
+    End Sub
 
 
     Public Declare Sub mouse_event Lib "user32" (ByVal dwFlags As Integer, ByVal dx As Integer, ByVal dy As Integer, ByVal cButtons As Integer, ByVal dwExtraInfo As Integer)
@@ -43,15 +54,11 @@ Public Class KeyboardAndMouseController
 
     End Function
 
-
-
     Public WithEvents kbHook As New KeyboardHook
     Dim LControlKey_KeyDown = False
     Dim LMenu_KeyDown = False
     Dim F1_KeyDown = False
     Dim F2_KeyDown = False
-
-    Dim record = False
 
     Public Sub kbHook_KeyDown(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyDown
         'Debug.WriteLine(Key.ToString)
@@ -67,8 +74,6 @@ Public Class KeyboardAndMouseController
                 F2_KeyDown = True
         End Select
 
-
-
         If LControlKey_KeyDown And LMenu_KeyDown Then
             Form1.Cursor_X_Position_TextBox.Text = Form1.Cursor_X_Position_Label.Text
             Form1.Cursor_Y_Position_TextBox.Text = Form1.Cursor_Y_Position_Label.Text
@@ -77,7 +82,6 @@ Public Class KeyboardAndMouseController
 
     End Sub
     Public Sub kbHook_KeyUp(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyUp
-        Debug.WriteLine(Key)
 
         Dim myKey = Key.ToString
 
@@ -88,12 +92,10 @@ Public Class KeyboardAndMouseController
         End If
 
         If LControlKey_KeyDown And F1_KeyDown Then
-            Debug.WriteLine("Start log action")
             record = True
         End If
 
         If LControlKey_KeyDown And F2_KeyDown Then
-            Debug.WriteLine("Stop log action")
             record = False
         End If
 
@@ -131,7 +133,6 @@ Public Class KeyboardAndMouseController
 
         Insert_to_script("系統發送:按鍵", firstKey + "+" + secondKey)
     End Sub
-
 
 
 End Class

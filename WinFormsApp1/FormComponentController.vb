@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.IO.File
+Imports System.Text.RegularExpressions
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 Imports WinFormsApp1.JsonProfileInfo
@@ -610,5 +611,38 @@ Module FormComponentController
             Form1.Target_ImageFile_Path_For_Copy_TextBox.Text = formatted_filePath
         End If
     End Sub
+
+
+    Public Sub Modify_ScriptListView_Selected_URL_item()
+
+        Try
+
+            If Form1.script_ListView.SelectedItems(0).SubItems.Item(4).Text <> "前往" Then
+                MsgBox("僅能修改前往網址")
+                Exit Sub
+            End If
+        Catch ex As Exception
+            MsgBox("未選取任何項目")
+            Exit Sub
+        End Try
+
+        Dim pattern As String
+        Dim content As String = ""
+        pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+        If Regex.IsMatch(Form1.curr_url_ComboBox.Text, pattern) Then
+
+            If Form1.group_name_TextBox.Text <> "" Then
+                content = Form1.group_name_TextBox.Text + ";" + Form1.curr_url_ComboBox.Text
+            Else
+                content = Form1.curr_url_ComboBox.Text
+            End If
+
+            Form1.script_ListView.SelectedItems(0).SubItems.Item(5).Text = content
+        Else
+            MsgBox("網址格式錯誤")
+        End If
+
+    End Sub
+
 
 End Module

@@ -23,6 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.content_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.driver_close_bnt = New System.Windows.Forms.Button()
         Me.curr_url_lbl = New System.Windows.Forms.Label()
@@ -69,6 +70,8 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Modify_Selected_ListView_Url_Btn = New System.Windows.Forms.Button()
+        Me.Reveal_password_Textbox_Btn = New System.Windows.Forms.Button()
         Me.Countdown_Toggle_Button = New System.Windows.Forms.Button()
         Me.Label54 = New System.Windows.Forms.Label()
         Me.PowerOff_PC_Counter_CheckBox = New System.Windows.Forms.CheckBox()
@@ -788,6 +791,8 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Modify_Selected_ListView_Url_Btn)
+        Me.TabPage5.Controls.Add(Me.Reveal_password_Textbox_Btn)
         Me.TabPage5.Controls.Add(Me.Countdown_Toggle_Button)
         Me.TabPage5.Controls.Add(Me.Label54)
         Me.TabPage5.Controls.Add(Me.PowerOff_PC_Counter_CheckBox)
@@ -859,6 +864,24 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Modify_Selected_ListView_Url_Btn
+        '
+        Me.Modify_Selected_ListView_Url_Btn.Location = New System.Drawing.Point(300, 578)
+        Me.Modify_Selected_ListView_Url_Btn.Name = "Modify_Selected_ListView_Url_Btn"
+        Me.Modify_Selected_ListView_Url_Btn.Size = New System.Drawing.Size(133, 29)
+        Me.Modify_Selected_ListView_Url_Btn.TabIndex = 144
+        Me.Modify_Selected_ListView_Url_Btn.Text = "修改所選網址"
+        Me.Modify_Selected_ListView_Url_Btn.UseVisualStyleBackColor = True
+        '
+        'Reveal_password_Textbox_Btn
+        '
+        Me.Reveal_password_Textbox_Btn.Location = New System.Drawing.Point(439, 415)
+        Me.Reveal_password_Textbox_Btn.Name = "Reveal_password_Textbox_Btn"
+        Me.Reveal_password_Textbox_Btn.Size = New System.Drawing.Size(80, 29)
+        Me.Reveal_password_Textbox_Btn.TabIndex = 143
+        Me.Reveal_password_Textbox_Btn.Text = "顯示"
+        Me.Reveal_password_Textbox_Btn.UseVisualStyleBackColor = True
         '
         'Countdown_Toggle_Button
         '
@@ -1169,9 +1192,9 @@ Partial Class Form1
         '
         'Save_Account_Passwd_btn
         '
-        Me.Save_Account_Passwd_btn.Location = New System.Drawing.Point(439, 415)
+        Me.Save_Account_Passwd_btn.Location = New System.Drawing.Point(522, 413)
         Me.Save_Account_Passwd_btn.Name = "Save_Account_Passwd_btn"
-        Me.Save_Account_Passwd_btn.Size = New System.Drawing.Size(163, 29)
+        Me.Save_Account_Passwd_btn.Size = New System.Drawing.Size(80, 29)
         Me.Save_Account_Passwd_btn.TabIndex = 106
         Me.Save_Account_Passwd_btn.Text = "儲存"
         Me.Save_Account_Passwd_btn.UseVisualStyleBackColor = True
@@ -1222,6 +1245,7 @@ Partial Class Form1
         '
         Me.fb_password_TextBox.Location = New System.Drawing.Point(119, 415)
         Me.fb_password_TextBox.Name = "fb_password_TextBox"
+        Me.fb_password_TextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.fb_password_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.fb_password_TextBox.TabIndex = 51
         '
@@ -3050,6 +3074,7 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(1786, 908)
         Me.Controls.Add(Me.cmd_GroupBox)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
         Me.Text = "Main Form"
         Me.GroupBox1.ResumeLayout(False)
@@ -3382,4 +3407,6 @@ Partial Class Form1
     Friend WithEvents SystemKeyboardSecondKey_ComboBox As ComboBox
     Friend WithEvents Insert_SystemKeyboardClick_btn As Button
     Friend WithEvents Label67 As Label
+    Friend WithEvents Reveal_password_Textbox_Btn As Button
+    Friend WithEvents Modify_Selected_ListView_Url_Btn As Button
 End Class

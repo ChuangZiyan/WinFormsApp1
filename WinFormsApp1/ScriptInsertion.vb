@@ -27,10 +27,14 @@ Module ScriptInsertion
         Dim fb_email = Form1.fb_account_TextBox.Text
         Dim fb_passwd = Form1.fb_password_TextBox.Text
 
+        Dim plainText = fb_passwd
+        Dim wrapper As New Simple3Des("password")
+        Dim cipherText As String = wrapper.EncryptData(plainText)
+
         If fb_email = "" OrElse fb_passwd = "" Then
             MsgBox("帳號與密碼不可為空")
         Else
-            Insert_to_script("登入", "帳號:" + fb_email + " 密碼:" + fb_passwd)
+            Insert_to_script("登入", "帳號:" + fb_email + " 密碼:" + cipherText)
         End If
     End Sub
 
