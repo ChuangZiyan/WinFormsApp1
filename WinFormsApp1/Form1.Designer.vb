@@ -70,6 +70,9 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Profile_Target_Dir_Name_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Move_Profile_To_Selected_Foler_btn = New System.Windows.Forms.Button()
+        Me.Modify_Selected_ListView_AccountAndPasswd_Btn = New System.Windows.Forms.Button()
         Me.Modify_Selected_ListView_Url_Btn = New System.Windows.Forms.Button()
         Me.Reveal_password_Textbox_Btn = New System.Windows.Forms.Button()
         Me.Countdown_Toggle_Button = New System.Windows.Forms.Button()
@@ -363,7 +366,7 @@ Partial Class Form1
         'curr_url_lbl
         '
         Me.curr_url_lbl.AutoSize = True
-        Me.curr_url_lbl.Location = New System.Drawing.Point(63, 548)
+        Me.curr_url_lbl.Location = New System.Drawing.Point(63, 572)
         Me.curr_url_lbl.Name = "curr_url_lbl"
         Me.curr_url_lbl.Size = New System.Drawing.Size(46, 19)
         Me.curr_url_lbl.TabIndex = 10
@@ -381,7 +384,7 @@ Partial Class Form1
         '
         'group_name_TextBox
         '
-        Me.group_name_TextBox.Location = New System.Drawing.Point(119, 513)
+        Me.group_name_TextBox.Location = New System.Drawing.Point(119, 537)
         Me.group_name_TextBox.Name = "group_name_TextBox"
         Me.group_name_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.group_name_TextBox.TabIndex = 27
@@ -389,7 +392,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(33, 516)
+        Me.Label3.Location = New System.Drawing.Point(33, 540)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(80, 19)
         Me.Label3.TabIndex = 28
@@ -791,6 +794,9 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Profile_Target_Dir_Name_ComboBox)
+        Me.TabPage5.Controls.Add(Me.Move_Profile_To_Selected_Foler_btn)
+        Me.TabPage5.Controls.Add(Me.Modify_Selected_ListView_AccountAndPasswd_Btn)
         Me.TabPage5.Controls.Add(Me.Modify_Selected_ListView_Url_Btn)
         Me.TabPage5.Controls.Add(Me.Reveal_password_Textbox_Btn)
         Me.TabPage5.Controls.Add(Me.Countdown_Toggle_Button)
@@ -865,9 +871,36 @@ Partial Class Form1
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'Profile_Target_Dir_Name_ComboBox
+        '
+        Me.Profile_Target_Dir_Name_ComboBox.FormattingEnabled = True
+        Me.Profile_Target_Dir_Name_ComboBox.Items.AddRange(New Object() {"available", "ban", "useless"})
+        Me.Profile_Target_Dir_Name_ComboBox.Location = New System.Drawing.Point(439, 292)
+        Me.Profile_Target_Dir_Name_ComboBox.Name = "Profile_Target_Dir_Name_ComboBox"
+        Me.Profile_Target_Dir_Name_ComboBox.Size = New System.Drawing.Size(163, 27)
+        Me.Profile_Target_Dir_Name_ComboBox.TabIndex = 147
+        '
+        'Move_Profile_To_Selected_Foler_btn
+        '
+        Me.Move_Profile_To_Selected_Foler_btn.Location = New System.Drawing.Point(439, 325)
+        Me.Move_Profile_To_Selected_Foler_btn.Name = "Move_Profile_To_Selected_Foler_btn"
+        Me.Move_Profile_To_Selected_Foler_btn.Size = New System.Drawing.Size(163, 29)
+        Me.Move_Profile_To_Selected_Foler_btn.TabIndex = 146
+        Me.Move_Profile_To_Selected_Foler_btn.Text = "移動"
+        Me.Move_Profile_To_Selected_Foler_btn.UseVisualStyleBackColor = True
+        '
+        'Modify_Selected_ListView_AccountAndPasswd_Btn
+        '
+        Me.Modify_Selected_ListView_AccountAndPasswd_Btn.Location = New System.Drawing.Point(525, 439)
+        Me.Modify_Selected_ListView_AccountAndPasswd_Btn.Name = "Modify_Selected_ListView_AccountAndPasswd_Btn"
+        Me.Modify_Selected_ListView_AccountAndPasswd_Btn.Size = New System.Drawing.Size(77, 29)
+        Me.Modify_Selected_ListView_AccountAndPasswd_Btn.TabIndex = 145
+        Me.Modify_Selected_ListView_AccountAndPasswd_Btn.Text = "修改"
+        Me.Modify_Selected_ListView_AccountAndPasswd_Btn.UseVisualStyleBackColor = True
+        '
         'Modify_Selected_ListView_Url_Btn
         '
-        Me.Modify_Selected_ListView_Url_Btn.Location = New System.Drawing.Point(300, 578)
+        Me.Modify_Selected_ListView_Url_Btn.Location = New System.Drawing.Point(300, 602)
         Me.Modify_Selected_ListView_Url_Btn.Name = "Modify_Selected_ListView_Url_Btn"
         Me.Modify_Selected_ListView_Url_Btn.Size = New System.Drawing.Size(133, 29)
         Me.Modify_Selected_ListView_Url_Btn.TabIndex = 144
@@ -876,7 +909,7 @@ Partial Class Form1
         '
         'Reveal_password_Textbox_Btn
         '
-        Me.Reveal_password_Textbox_Btn.Location = New System.Drawing.Point(439, 415)
+        Me.Reveal_password_Textbox_Btn.Location = New System.Drawing.Point(439, 439)
         Me.Reveal_password_Textbox_Btn.Name = "Reveal_password_Textbox_Btn"
         Me.Reveal_password_Textbox_Btn.Size = New System.Drawing.Size(80, 29)
         Me.Reveal_password_Textbox_Btn.TabIndex = 143
@@ -885,7 +918,7 @@ Partial Class Form1
         '
         'Countdown_Toggle_Button
         '
-        Me.Countdown_Toggle_Button.Location = New System.Drawing.Point(538, 728)
+        Me.Countdown_Toggle_Button.Location = New System.Drawing.Point(538, 752)
         Me.Countdown_Toggle_Button.Name = "Countdown_Toggle_Button"
         Me.Countdown_Toggle_Button.Size = New System.Drawing.Size(94, 29)
         Me.Countdown_Toggle_Button.TabIndex = 142
@@ -895,7 +928,7 @@ Partial Class Form1
         'Label54
         '
         Me.Label54.AutoSize = True
-        Me.Label54.Location = New System.Drawing.Point(135, 733)
+        Me.Label54.Location = New System.Drawing.Point(135, 757)
         Me.Label54.Name = "Label54"
         Me.Label54.Size = New System.Drawing.Size(80, 19)
         Me.Label54.TabIndex = 141
@@ -904,7 +937,7 @@ Partial Class Form1
         'PowerOff_PC_Counter_CheckBox
         '
         Me.PowerOff_PC_Counter_CheckBox.AutoSize = True
-        Me.PowerOff_PC_Counter_CheckBox.Location = New System.Drawing.Point(40, 763)
+        Me.PowerOff_PC_Counter_CheckBox.Location = New System.Drawing.Point(40, 787)
         Me.PowerOff_PC_Counter_CheckBox.Name = "PowerOff_PC_Counter_CheckBox"
         Me.PowerOff_PC_Counter_CheckBox.Size = New System.Drawing.Size(91, 23)
         Me.PowerOff_PC_Counter_CheckBox.TabIndex = 140
@@ -914,7 +947,7 @@ Partial Class Form1
         'Exit_Program_Counter_CheckBox
         '
         Me.Exit_Program_Counter_CheckBox.AutoSize = True
-        Me.Exit_Program_Counter_CheckBox.Location = New System.Drawing.Point(40, 731)
+        Me.Exit_Program_Counter_CheckBox.Location = New System.Drawing.Point(40, 755)
         Me.Exit_Program_Counter_CheckBox.Name = "Exit_Program_Counter_CheckBox"
         Me.Exit_Program_Counter_CheckBox.Size = New System.Drawing.Size(91, 23)
         Me.Exit_Program_Counter_CheckBox.TabIndex = 139
@@ -924,7 +957,7 @@ Partial Class Form1
         'Label51
         '
         Me.Label51.AutoSize = True
-        Me.Label51.Location = New System.Drawing.Point(502, 733)
+        Me.Label51.Location = New System.Drawing.Point(502, 757)
         Me.Label51.Name = "Label51"
         Me.Label51.Size = New System.Drawing.Size(30, 19)
         Me.Label51.TabIndex = 138
@@ -932,7 +965,7 @@ Partial Class Form1
         '
         'mySecondsCounter_NumericUpDown
         '
-        Me.mySecondsCounter_NumericUpDown.Location = New System.Drawing.Point(425, 731)
+        Me.mySecondsCounter_NumericUpDown.Location = New System.Drawing.Point(425, 755)
         Me.mySecondsCounter_NumericUpDown.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         Me.mySecondsCounter_NumericUpDown.Name = "mySecondsCounter_NumericUpDown"
         Me.mySecondsCounter_NumericUpDown.Size = New System.Drawing.Size(60, 27)
@@ -941,7 +974,7 @@ Partial Class Form1
         'Label52
         '
         Me.Label52.AutoSize = True
-        Me.Label52.Location = New System.Drawing.Point(389, 733)
+        Me.Label52.Location = New System.Drawing.Point(389, 757)
         Me.Label52.Name = "Label52"
         Me.Label52.Size = New System.Drawing.Size(30, 19)
         Me.Label52.TabIndex = 136
@@ -949,7 +982,7 @@ Partial Class Form1
         '
         'myMinutesCounter_NumericUpDown
         '
-        Me.myMinutesCounter_NumericUpDown.Location = New System.Drawing.Point(323, 731)
+        Me.myMinutesCounter_NumericUpDown.Location = New System.Drawing.Point(323, 755)
         Me.myMinutesCounter_NumericUpDown.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
         Me.myMinutesCounter_NumericUpDown.Name = "myMinutesCounter_NumericUpDown"
         Me.myMinutesCounter_NumericUpDown.Size = New System.Drawing.Size(60, 27)
@@ -958,7 +991,7 @@ Partial Class Form1
         'Label53
         '
         Me.Label53.AutoSize = True
-        Me.Label53.Location = New System.Drawing.Point(287, 733)
+        Me.Label53.Location = New System.Drawing.Point(287, 757)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(30, 19)
         Me.Label53.TabIndex = 134
@@ -966,7 +999,7 @@ Partial Class Form1
         '
         'myHoursCounter_NumericUpDown
         '
-        Me.myHoursCounter_NumericUpDown.Location = New System.Drawing.Point(221, 731)
+        Me.myHoursCounter_NumericUpDown.Location = New System.Drawing.Point(221, 755)
         Me.myHoursCounter_NumericUpDown.Maximum = New Decimal(New Integer() {72, 0, 0, 0})
         Me.myHoursCounter_NumericUpDown.Name = "myHoursCounter_NumericUpDown"
         Me.myHoursCounter_NumericUpDown.Size = New System.Drawing.Size(60, 27)
@@ -984,14 +1017,14 @@ Partial Class Form1
         'curr_url_ComboBox
         '
         Me.curr_url_ComboBox.FormattingEnabled = True
-        Me.curr_url_ComboBox.Location = New System.Drawing.Point(119, 545)
+        Me.curr_url_ComboBox.Location = New System.Drawing.Point(119, 569)
         Me.curr_url_ComboBox.Name = "curr_url_ComboBox"
         Me.curr_url_ComboBox.Size = New System.Drawing.Size(314, 27)
         Me.curr_url_ComboBox.TabIndex = 131
         '
         'Insert_Shutdown_System_btn
         '
-        Me.Insert_Shutdown_System_btn.Location = New System.Drawing.Point(439, 684)
+        Me.Insert_Shutdown_System_btn.Location = New System.Drawing.Point(439, 708)
         Me.Insert_Shutdown_System_btn.Name = "Insert_Shutdown_System_btn"
         Me.Insert_Shutdown_System_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_Shutdown_System_btn.TabIndex = 130
@@ -1000,7 +1033,7 @@ Partial Class Form1
         '
         'Insert_Exit_Program_btn
         '
-        Me.Insert_Exit_Program_btn.Location = New System.Drawing.Point(439, 649)
+        Me.Insert_Exit_Program_btn.Location = New System.Drawing.Point(439, 673)
         Me.Insert_Exit_Program_btn.Name = "Insert_Exit_Program_btn"
         Me.Insert_Exit_Program_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_Exit_Program_btn.TabIndex = 129
@@ -1027,7 +1060,7 @@ Partial Class Form1
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(59, 485)
+        Me.Label37.Location = New System.Drawing.Point(59, 509)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(54, 19)
         Me.Label37.TabIndex = 126
@@ -1035,7 +1068,7 @@ Partial Class Form1
         '
         'Block_Text_TextBox
         '
-        Me.Block_Text_TextBox.Location = New System.Drawing.Point(119, 482)
+        Me.Block_Text_TextBox.Location = New System.Drawing.Point(119, 506)
         Me.Block_Text_TextBox.Name = "Block_Text_TextBox"
         Me.Block_Text_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.Block_Text_TextBox.TabIndex = 125
@@ -1043,7 +1076,7 @@ Partial Class Form1
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(400, 653)
+        Me.Label13.Location = New System.Drawing.Point(400, 677)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(30, 19)
         Me.Label13.TabIndex = 124
@@ -1052,7 +1085,7 @@ Partial Class Form1
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(40, 653)
+        Me.Label36.Location = New System.Drawing.Point(40, 677)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(73, 19)
         Me.Label36.TabIndex = 123
@@ -1060,7 +1093,7 @@ Partial Class Form1
         '
         'Delete_Selected_Profile_Folder_btn
         '
-        Me.Delete_Selected_Profile_Folder_btn.Location = New System.Drawing.Point(439, 347)
+        Me.Delete_Selected_Profile_Folder_btn.Location = New System.Drawing.Point(439, 368)
         Me.Delete_Selected_Profile_Folder_btn.Name = "Delete_Selected_Profile_Folder_btn"
         Me.Delete_Selected_Profile_Folder_btn.Size = New System.Drawing.Size(163, 29)
         Me.Delete_Selected_Profile_Folder_btn.TabIndex = 122
@@ -1152,9 +1185,9 @@ Partial Class Form1
         Me.Profile_CheckedListBox.CheckOnClick = True
         Me.Profile_CheckedListBox.FormattingEnabled = True
         Me.Profile_CheckedListBox.HorizontalScrollbar = True
-        Me.Profile_CheckedListBox.Location = New System.Drawing.Point(119, 152)
+        Me.Profile_CheckedListBox.Location = New System.Drawing.Point(119, 151)
         Me.Profile_CheckedListBox.Name = "Profile_CheckedListBox"
-        Me.Profile_CheckedListBox.Size = New System.Drawing.Size(314, 224)
+        Me.Profile_CheckedListBox.Size = New System.Drawing.Size(314, 246)
         Me.Profile_CheckedListBox.TabIndex = 111
         '
         'Lang_Packs_ComboBox
@@ -1167,7 +1200,7 @@ Partial Class Form1
         '
         'Remark_TextBox
         '
-        Me.Remark_TextBox.Location = New System.Drawing.Point(119, 448)
+        Me.Remark_TextBox.Location = New System.Drawing.Point(119, 472)
         Me.Remark_TextBox.Name = "Remark_TextBox"
         Me.Remark_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.Remark_TextBox.TabIndex = 108
@@ -1175,7 +1208,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(63, 452)
+        Me.Label1.Location = New System.Drawing.Point(63, 476)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(46, 19)
         Me.Label1.TabIndex = 107
@@ -1192,7 +1225,7 @@ Partial Class Form1
         '
         'Save_Account_Passwd_btn
         '
-        Me.Save_Account_Passwd_btn.Location = New System.Drawing.Point(522, 413)
+        Me.Save_Account_Passwd_btn.Location = New System.Drawing.Point(439, 404)
         Me.Save_Account_Passwd_btn.Name = "Save_Account_Passwd_btn"
         Me.Save_Account_Passwd_btn.Size = New System.Drawing.Size(80, 29)
         Me.Save_Account_Passwd_btn.TabIndex = 106
@@ -1219,7 +1252,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(63, 385)
+        Me.Label7.Location = New System.Drawing.Point(63, 409)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(50, 19)
         Me.Label7.TabIndex = 48
@@ -1227,7 +1260,7 @@ Partial Class Form1
         '
         'Insert_delay_btn
         '
-        Me.Insert_delay_btn.Location = New System.Drawing.Point(439, 614)
+        Me.Insert_delay_btn.Location = New System.Drawing.Point(439, 638)
         Me.Insert_delay_btn.Name = "Insert_delay_btn"
         Me.Insert_delay_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_delay_btn.TabIndex = 70
@@ -1236,14 +1269,14 @@ Partial Class Form1
         '
         'fb_account_TextBox
         '
-        Me.fb_account_TextBox.Location = New System.Drawing.Point(119, 382)
+        Me.fb_account_TextBox.Location = New System.Drawing.Point(119, 406)
         Me.fb_account_TextBox.Name = "fb_account_TextBox"
         Me.fb_account_TextBox.Size = New System.Drawing.Size(314, 27)
         Me.fb_account_TextBox.TabIndex = 50
         '
         'fb_password_TextBox
         '
-        Me.fb_password_TextBox.Location = New System.Drawing.Point(119, 415)
+        Me.fb_password_TextBox.Location = New System.Drawing.Point(119, 439)
         Me.fb_password_TextBox.Name = "fb_password_TextBox"
         Me.fb_password_TextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.fb_password_TextBox.Size = New System.Drawing.Size(314, 27)
@@ -1252,7 +1285,7 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(63, 418)
+        Me.Label8.Location = New System.Drawing.Point(63, 442)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(50, 19)
         Me.Label8.TabIndex = 52
@@ -1260,14 +1293,14 @@ Partial Class Form1
         '
         'wait_random_second_NumericUpDown
         '
-        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(119, 651)
+        Me.wait_random_second_NumericUpDown.Location = New System.Drawing.Point(119, 675)
         Me.wait_random_second_NumericUpDown.Name = "wait_random_second_NumericUpDown"
         Me.wait_random_second_NumericUpDown.Size = New System.Drawing.Size(264, 27)
         Me.wait_random_second_NumericUpDown.TabIndex = 68
         '
         'Insert_login_Button
         '
-        Me.Insert_login_Button.Location = New System.Drawing.Point(439, 447)
+        Me.Insert_login_Button.Location = New System.Drawing.Point(439, 471)
         Me.Insert_login_Button.Name = "Insert_login_Button"
         Me.Insert_login_Button.Size = New System.Drawing.Size(163, 29)
         Me.Insert_login_Button.TabIndex = 53
@@ -1277,7 +1310,7 @@ Partial Class Form1
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(400, 620)
+        Me.Label12.Location = New System.Drawing.Point(400, 644)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(30, 19)
         Me.Label12.TabIndex = 67
@@ -1294,14 +1327,14 @@ Partial Class Form1
         '
         'wait_second_NumericUpDown
         '
-        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(323, 618)
+        Me.wait_second_NumericUpDown.Location = New System.Drawing.Point(323, 642)
         Me.wait_second_NumericUpDown.Name = "wait_second_NumericUpDown"
         Me.wait_second_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_second_NumericUpDown.TabIndex = 66
         '
         'get_groupname_Button
         '
-        Me.get_groupname_Button.Location = New System.Drawing.Point(439, 511)
+        Me.get_groupname_Button.Location = New System.Drawing.Point(439, 535)
         Me.get_groupname_Button.Name = "get_groupname_Button"
         Me.get_groupname_Button.Size = New System.Drawing.Size(163, 29)
         Me.get_groupname_Button.TabIndex = 55
@@ -1311,7 +1344,7 @@ Partial Class Form1
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(287, 620)
+        Me.Label11.Location = New System.Drawing.Point(287, 644)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(30, 19)
         Me.Label11.TabIndex = 65
@@ -1319,7 +1352,7 @@ Partial Class Form1
         '
         'Get_url_btn
         '
-        Me.Get_url_btn.Location = New System.Drawing.Point(439, 543)
+        Me.Get_url_btn.Location = New System.Drawing.Point(439, 567)
         Me.Get_url_btn.Name = "Get_url_btn"
         Me.Get_url_btn.Size = New System.Drawing.Size(163, 29)
         Me.Get_url_btn.TabIndex = 56
@@ -1328,7 +1361,7 @@ Partial Class Form1
         '
         'Insert_empty_btn
         '
-        Me.Insert_empty_btn.Location = New System.Drawing.Point(439, 482)
+        Me.Insert_empty_btn.Location = New System.Drawing.Point(439, 506)
         Me.Insert_empty_btn.Name = "Insert_empty_btn"
         Me.Insert_empty_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_empty_btn.TabIndex = 83
@@ -1380,14 +1413,14 @@ Partial Class Form1
         '
         'wait_minute_NumericUpDown
         '
-        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(221, 618)
+        Me.wait_minute_NumericUpDown.Location = New System.Drawing.Point(221, 642)
         Me.wait_minute_NumericUpDown.Name = "wait_minute_NumericUpDown"
         Me.wait_minute_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_minute_NumericUpDown.TabIndex = 64
         '
         'Insert_navigate_to_url_btn
         '
-        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(439, 578)
+        Me.Insert_navigate_to_url_btn.Location = New System.Drawing.Point(439, 602)
         Me.Insert_navigate_to_url_btn.Name = "Insert_navigate_to_url_btn"
         Me.Insert_navigate_to_url_btn.Size = New System.Drawing.Size(163, 29)
         Me.Insert_navigate_to_url_btn.TabIndex = 59
@@ -1397,7 +1430,7 @@ Partial Class Form1
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(185, 620)
+        Me.Label10.Location = New System.Drawing.Point(185, 644)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(30, 19)
         Me.Label10.TabIndex = 63
@@ -1414,7 +1447,7 @@ Partial Class Form1
         '
         'wait_hour_NumericUpDown
         '
-        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(119, 618)
+        Me.wait_hour_NumericUpDown.Location = New System.Drawing.Point(119, 642)
         Me.wait_hour_NumericUpDown.Name = "wait_hour_NumericUpDown"
         Me.wait_hour_NumericUpDown.Size = New System.Drawing.Size(60, 27)
         Me.wait_hour_NumericUpDown.TabIndex = 62
@@ -1422,7 +1455,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(33, 620)
+        Me.Label9.Location = New System.Drawing.Point(33, 644)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(76, 19)
         Me.Label9.TabIndex = 61
@@ -3409,4 +3442,7 @@ Partial Class Form1
     Friend WithEvents Label67 As Label
     Friend WithEvents Reveal_password_Textbox_Btn As Button
     Friend WithEvents Modify_Selected_ListView_Url_Btn As Button
+    Friend WithEvents Modify_Selected_ListView_AccountAndPasswd_Btn As Button
+    Friend WithEvents Profile_Target_Dir_Name_ComboBox As ComboBox
+    Friend WithEvents Move_Profile_To_Selected_Foler_btn As Button
 End Class

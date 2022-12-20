@@ -62,7 +62,7 @@ Public Class Form1
 
         'Me.Text = "Main Form - " + Version
         'Default String : 
-        Profile_TextBox.Text = FormInit.curr_path + "profiles"
+        Profile_TextBox.Text = FormInit.curr_path + "profiles/availible"
         Block_Text_TextBox.Text = "分隔行"
         curr_url_ComboBox.Text = "https://www.facebook.com/"
 
@@ -507,7 +507,7 @@ Public Class Form1
                 myprofile = Profile_TextBox.Text + "\" + Profile_Name_ComboBox.Text
             Else
                 For Each itemSeleted In Profile_CheckedListBox.SelectedItems
-                    'Debug.WriteLine(itemSeleted)
+                    Debug.WriteLine(itemSeleted)
                     myprofile = itemSeleted
                 Next
             End If
@@ -515,6 +515,8 @@ Public Class Form1
 
 
             'Open_Browser("Chrome", used_dev_model, myprofile)
+            Debug.WriteLine("profile : " + myprofile)
+            'Exit Sub
             Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, myprofile)
 
         ElseIf firefox_RadioButton.Checked = True Then
@@ -554,7 +556,7 @@ Public Class Form1
             Debug.WriteLine("count : " & allProfileItem.Count)
             Dim rnd = rnd_num.Next(0, allProfileItem.Count)
 
-            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, FormInit.curr_path + allProfileItem(rnd))
+            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, FormInit.profile_path + allProfileItem(rnd))
 
             If curr_url_ComboBox.Text <> "" Then
                 Dim pattern As String
@@ -1705,5 +1707,56 @@ Public Class Form1
 
     Private Sub Modify_Selected_ListView_Url_Btn_Click(sender As Object, e As EventArgs) Handles Modify_Selected_ListView_Url_Btn.Click
         Modify_ScriptListView_Selected_URL_item()
+    End Sub
+
+    Private Sub Modify_Selected_ListView_AccountAndPasswd_Btn_Click(sender As Object, e As EventArgs) Handles Modify_Selected_ListView_AccountAndPasswd_Btn.Click
+        Modify_ScriptListView_Selected_AccountAndPassword_item()
+    End Sub
+
+    Private Sub Move_Profile_To_Selected_Foler_btn_Click(sender As Object, e As EventArgs) Handles Move_Profile_To_Selected_Foler_btn.Click
+        Dim targetDir = FormInit.profile_path + Profile_Target_Dir_Name_ComboBox.Text
+        Dim allowedDir As String() = {"available", "ban", "useless"}
+
+        'Debug.WriteLine(Array.IndexOf(allowedDir, Profile_Target_Dir_Name_ComboBox.Text))
+
+        'Exit Sub
+
+        If Array.IndexOf(allowedDir, Profile_Target_Dir_Name_ComboBox.Text) = -1 Then
+            MsgBox("無效資料夾")
+            Exit Sub
+        End If
+
+        Dim myfilePath = ""
+        Dim myFileName = ""
+        For Each itemSelected In Profile_CheckedListBox.SelectedItems
+            'Debug.WriteLine(itemSelected)
+            myfilePath = FormInit.profile_path + itemSelected
+            myFileName = itemSelected.Split("\")(1)
+
+            If itemSelected.Split("\")(0) = Profile_Target_Dir_Name_ComboBox.Text Then
+                MsgBox("目的資料夾與來源相同")
+                Exit Sub
+            End If
+
+        Next
+
+        If myfilePath = "" Then
+            MsgBox("未選擇Proflie")
+            Exit Sub
+        End If
+
+        Try
+            Debug.WriteLine("From: " + myfilePath)
+            Debug.WriteLine("To : " + targetDir)
+            Debug.WriteLine(myFileName)
+            My.Computer.FileSystem.MoveDirectory(myfilePath, targetDir + "\" + myFileName)
+            FormInit.Render_profile_CheckedListBox()
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("移動失敗，相同檔名或者其他錯誤")
+        End Try
+
+
+
     End Sub
 End Class

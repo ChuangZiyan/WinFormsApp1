@@ -99,6 +99,14 @@ Module FormInit
             System.IO.Directory.CreateDirectory(profile_path)
         End If
 
+        Dim profileChildFolder = {"available", "ban", "useless"}
+        For Each childDir In profileChildFolder
+            If Not System.IO.Directory.Exists(profile_path + childDir) Then
+                System.IO.Directory.CreateDirectory(profile_path + childDir)
+            End If
+        Next
+
+
         If Not System.IO.Directory.Exists(save_script_folder_path) Then
             System.IO.Directory.CreateDirectory(save_script_folder_path)
         End If
@@ -122,14 +130,21 @@ Module FormInit
     End Sub
 
     Public Sub Render_profile_CheckedListBox()
-        Dim mypath = curr_path + "profiles"
-        Dim dirs() As String = IO.Directory.GetDirectories(mypath)
-        For Each dir As String In dirs
-            'Debug.WriteLine(dir)
-            Dim split As String() = dir.Split("\")
-            Dim profile_name As String = split(split.Length - 2) + "\" + split(split.Length - 1)
-            Form1.Profile_CheckedListBox.Items.Add(profile_name)
+        Form1.Profile_CheckedListBox.Items.Clear()
+        Dim myFolder = {"available", "ban", "useless"}
+
+        For Each folder In myFolder
+            'Dim mypath = curr_path + "profiles\" + folder
+            Dim dirs() As String = IO.Directory.GetDirectories(profile_path + folder)
+            For Each dir As String In dirs
+                'Debug.WriteLine(dir)
+                Dim split As String() = dir.Split("\")
+                Dim profile_name As String = split(split.Length - 2) + "\" + split(split.Length - 1)
+                Form1.Profile_CheckedListBox.Items.Add(profile_name)
+            Next
         Next
+
+
 
     End Sub
 

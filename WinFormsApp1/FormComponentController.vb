@@ -209,13 +209,13 @@ Module FormComponentController
 
         Dim myfile = ""
         For Each itemSelected In Form1.Profile_CheckedListBox.SelectedItems
-            'Debug.WriteLine(itemSeleted)
-            myfile = itemSelected + "\ProfileInfo.txt"
-            'Form1.Profile_TextBox.Text = FormInit.curr_path
+            Debug.WriteLine(itemSelected)
+            myfile = "profiles\" + itemSelected + "\ProfileInfo.txt"
+            Form1.Profile_TextBox.Text = FormInit.profile_path + itemSelected.Split("\")(0)
             Form1.Profile_Name_ComboBox.Text = itemSelected.Split("\")(1)
         Next
 
-        'Debug.WriteLine("myfile " + myfile)
+        Debug.WriteLine("myfile " + myfile)
         If My.Computer.FileSystem.FileExists(myfile) Then
             Dim JsonString As String = System.IO.File.ReadAllText(myfile)
             Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
@@ -641,6 +641,38 @@ Module FormComponentController
         Else
             MsgBox("網址格式錯誤")
         End If
+
+    End Sub
+
+    Public Sub Modify_ScriptListView_Selected_AccountAndPassword_item()
+
+        Try
+
+            If Form1.script_ListView.SelectedItems(0).SubItems.Item(4).Text <> "登入" Then
+                MsgBox("僅能修改帳號密碼")
+                Exit Sub
+            End If
+        Catch ex As Exception
+            MsgBox("未選取任何項目")
+            Exit Sub
+        End Try
+
+        Dim content = Form1.script_ListView.SelectedItems(0).SubItems.Item(5).Text
+        Dim fb_email = content.Split(" ")(0).Split(":")(1)
+        Dim fb_passwd = content.Split(" ")(1).Split(":")(1)
+
+        If Form1.fb_account_TextBox.Text <> "" Then
+            fb_email = Form1.fb_account_TextBox.Text
+        End If
+
+        If Form1.fb_password_TextBox.Text <> "" Then
+            Dim plainText = fb_passwd
+            Dim wrapper As New Simple3Des("password")
+            Dim cipherText As String = wrapper.EncryptData(plainText)
+            fb_passwd = cipherText
+        End If
+
+        Form1.script_ListView.SelectedItems(0).SubItems.Item(5).Text = "帳號:" + fb_email + " 密碼:" + fb_passwd
 
     End Sub
 
