@@ -131,9 +131,23 @@ Module FormInit
 
     Public Sub Render_profile_CheckedListBox()
         Form1.Profile_CheckedListBox.Items.Clear()
-        Dim myFolder = {"available", "ban", "useless"}
+        Dim myFilterList As ArrayList = New ArrayList()
 
-        For Each folder In myFolder
+        'Dim myFolder = {"available", "ban", "useless"}
+
+        If Form1.Filter_Available_Profile_CheckBox.Checked Then
+            myFilterList.Add("available")
+        End If
+
+        If Form1.Filter_Ban_Profile_CheckBox.Checked Then
+            myFilterList.Add("ban")
+        End If
+
+        If Form1.Filter_Useless_Profile_CheckBox.Checked Then
+            myFilterList.Add("useless")
+        End If
+
+        For Each folder In myFilterList
             'Dim mypath = curr_path + "profiles\" + folder
             Dim dirs() As String = IO.Directory.GetDirectories(profile_path + folder)
             For Each dir As String In dirs

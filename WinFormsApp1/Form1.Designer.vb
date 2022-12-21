@@ -70,6 +70,10 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Label68 = New System.Windows.Forms.Label()
+        Me.Filter_Useless_Profile_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Filter_Available_Profile_CheckBox = New System.Windows.Forms.CheckBox()
+        Me.Filter_Ban_Profile_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Profile_Target_Dir_Name_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Move_Profile_To_Selected_Foler_btn = New System.Windows.Forms.Button()
         Me.Modify_Selected_ListView_AccountAndPasswd_Btn = New System.Windows.Forms.Button()
@@ -306,6 +310,12 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label70 = New System.Windows.Forms.Label()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -342,6 +352,8 @@ Partial Class Form1
         Me.Widget_TabPage.SuspendLayout()
         Me.Post_Crawler.SuspendLayout()
         Me.Block_User.SuspendLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -794,6 +806,10 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Label68)
+        Me.TabPage5.Controls.Add(Me.Filter_Useless_Profile_CheckBox)
+        Me.TabPage5.Controls.Add(Me.Filter_Available_Profile_CheckBox)
+        Me.TabPage5.Controls.Add(Me.Filter_Ban_Profile_CheckBox)
         Me.TabPage5.Controls.Add(Me.Profile_Target_Dir_Name_ComboBox)
         Me.TabPage5.Controls.Add(Me.Move_Profile_To_Selected_Foler_btn)
         Me.TabPage5.Controls.Add(Me.Modify_Selected_ListView_AccountAndPasswd_Btn)
@@ -870,6 +886,45 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Label68
+        '
+        Me.Label68.AutoSize = True
+        Me.Label68.Location = New System.Drawing.Point(17, 162)
+        Me.Label68.Name = "Label68"
+        Me.Label68.Size = New System.Drawing.Size(39, 19)
+        Me.Label68.TabIndex = 151
+        Me.Label68.Text = "篩選"
+        '
+        'Filter_Useless_Profile_CheckBox
+        '
+        Me.Filter_Useless_Profile_CheckBox.AutoSize = True
+        Me.Filter_Useless_Profile_CheckBox.Location = New System.Drawing.Point(17, 245)
+        Me.Filter_Useless_Profile_CheckBox.Name = "Filter_Useless_Profile_CheckBox"
+        Me.Filter_Useless_Profile_CheckBox.Size = New System.Drawing.Size(81, 23)
+        Me.Filter_Useless_Profile_CheckBox.TabIndex = 150
+        Me.Filter_Useless_Profile_CheckBox.Text = "useless"
+        Me.Filter_Useless_Profile_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Filter_Available_Profile_CheckBox
+        '
+        Me.Filter_Available_Profile_CheckBox.AutoSize = True
+        Me.Filter_Available_Profile_CheckBox.Location = New System.Drawing.Point(17, 187)
+        Me.Filter_Available_Profile_CheckBox.Name = "Filter_Available_Profile_CheckBox"
+        Me.Filter_Available_Profile_CheckBox.Size = New System.Drawing.Size(92, 23)
+        Me.Filter_Available_Profile_CheckBox.TabIndex = 149
+        Me.Filter_Available_Profile_CheckBox.Text = "available"
+        Me.Filter_Available_Profile_CheckBox.UseVisualStyleBackColor = True
+        '
+        'Filter_Ban_Profile_CheckBox
+        '
+        Me.Filter_Ban_Profile_CheckBox.AutoSize = True
+        Me.Filter_Ban_Profile_CheckBox.Location = New System.Drawing.Point(17, 216)
+        Me.Filter_Ban_Profile_CheckBox.Name = "Filter_Ban_Profile_CheckBox"
+        Me.Filter_Ban_Profile_CheckBox.Size = New System.Drawing.Size(57, 23)
+        Me.Filter_Ban_Profile_CheckBox.TabIndex = 148
+        Me.Filter_Ban_Profile_CheckBox.Text = "ban"
+        Me.Filter_Ban_Profile_CheckBox.UseVisualStyleBackColor = True
         '
         'Profile_Target_Dir_Name_ComboBox
         '
@@ -2933,6 +2988,7 @@ Partial Class Form1
         '
         'Widget_TabPage
         '
+        Me.Widget_TabPage.Controls.Add(Me.GroupBox6)
         Me.Widget_TabPage.Controls.Add(Me.Delete_Str_from_RTBox_btn)
         Me.Widget_TabPage.Controls.Add(Me.Split_NewLine_By_Char_btn)
         Me.Widget_TabPage.Controls.Add(Me.Pattern_Str_ComboBox)
@@ -2948,7 +3004,7 @@ Partial Class Form1
         '
         'Delete_Str_from_RTBox_btn
         '
-        Me.Delete_Str_from_RTBox_btn.Location = New System.Drawing.Point(783, 743)
+        Me.Delete_Str_from_RTBox_btn.Location = New System.Drawing.Point(810, 359)
         Me.Delete_Str_from_RTBox_btn.Name = "Delete_Str_from_RTBox_btn"
         Me.Delete_Str_from_RTBox_btn.Size = New System.Drawing.Size(94, 29)
         Me.Delete_Str_from_RTBox_btn.TabIndex = 5
@@ -2957,7 +3013,7 @@ Partial Class Form1
         '
         'Split_NewLine_By_Char_btn
         '
-        Me.Split_NewLine_By_Char_btn.Location = New System.Drawing.Point(683, 743)
+        Me.Split_NewLine_By_Char_btn.Location = New System.Drawing.Point(710, 359)
         Me.Split_NewLine_By_Char_btn.Name = "Split_NewLine_By_Char_btn"
         Me.Split_NewLine_By_Char_btn.Size = New System.Drawing.Size(94, 29)
         Me.Split_NewLine_By_Char_btn.TabIndex = 4
@@ -2968,14 +3024,14 @@ Partial Class Form1
         '
         Me.Pattern_Str_ComboBox.FormattingEnabled = True
         Me.Pattern_Str_ComboBox.Items.AddRange(New Object() {"，", "。", ",", "."})
-        Me.Pattern_Str_ComboBox.Location = New System.Drawing.Point(526, 745)
+        Me.Pattern_Str_ComboBox.Location = New System.Drawing.Point(553, 361)
         Me.Pattern_Str_ComboBox.Name = "Pattern_Str_ComboBox"
         Me.Pattern_Str_ComboBox.Size = New System.Drawing.Size(151, 27)
         Me.Pattern_Str_ComboBox.TabIndex = 3
         '
         'Auto_Generated_TextFile_Btn
         '
-        Me.Auto_Generated_TextFile_Btn.Location = New System.Drawing.Point(114, 745)
+        Me.Auto_Generated_TextFile_Btn.Location = New System.Drawing.Point(114, 361)
         Me.Auto_Generated_TextFile_Btn.Name = "Auto_Generated_TextFile_Btn"
         Me.Auto_Generated_TextFile_Btn.Size = New System.Drawing.Size(94, 29)
         Me.Auto_Generated_TextFile_Btn.TabIndex = 2
@@ -2984,7 +3040,7 @@ Partial Class Form1
         '
         'Reveal_Auto_Generated_Folder_Btn
         '
-        Me.Reveal_Auto_Generated_Folder_Btn.Location = New System.Drawing.Point(14, 745)
+        Me.Reveal_Auto_Generated_Folder_Btn.Location = New System.Drawing.Point(14, 361)
         Me.Reveal_Auto_Generated_Folder_Btn.Name = "Reveal_Auto_Generated_Folder_Btn"
         Me.Reveal_Auto_Generated_Folder_Btn.Size = New System.Drawing.Size(94, 29)
         Me.Reveal_Auto_Generated_Folder_Btn.TabIndex = 1
@@ -2995,7 +3051,7 @@ Partial Class Form1
         '
         Me.Auto_GenerateTextFile_RichTextBox.Location = New System.Drawing.Point(14, 16)
         Me.Auto_GenerateTextFile_RichTextBox.Name = "Auto_GenerateTextFile_RichTextBox"
-        Me.Auto_GenerateTextFile_RichTextBox.Size = New System.Drawing.Size(890, 711)
+        Me.Auto_GenerateTextFile_RichTextBox.Size = New System.Drawing.Size(890, 337)
         Me.Auto_GenerateTextFile_RichTextBox.TabIndex = 0
         Me.Auto_GenerateTextFile_RichTextBox.Text = ""
         Me.Auto_GenerateTextFile_RichTextBox.WordWrap = False
@@ -3100,6 +3156,61 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(62, 44)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(94, 27)
+        Me.NumericUpDown1.TabIndex = 7
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(162, 42)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(94, 29)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "產生"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(262, 43)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(499, 27)
+        Me.TextBox1.TabIndex = 9
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(767, 41)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(94, 29)
+        Me.Button2.TabIndex = 10
+        Me.Button2.Text = "複製"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Label70
+        '
+        Me.Label70.AutoSize = True
+        Me.Label70.Location = New System.Drawing.Point(6, 50)
+        Me.Label70.Name = "Label70"
+        Me.Label70.Size = New System.Drawing.Size(50, 19)
+        Me.Label70.TabIndex = 11
+        Me.Label70.Text = "長度 : "
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.Label70)
+        Me.GroupBox6.Controls.Add(Me.Button2)
+        Me.GroupBox6.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox6.Controls.Add(Me.TextBox1)
+        Me.GroupBox6.Controls.Add(Me.Button1)
+        Me.GroupBox6.Location = New System.Drawing.Point(14, 481)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(890, 110)
+        Me.GroupBox6.TabIndex = 12
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "產生混合隨機字串"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3159,6 +3270,9 @@ Partial Class Form1
         Me.Post_Crawler.PerformLayout()
         Me.Block_User.ResumeLayout(False)
         Me.Block_User.PerformLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3445,4 +3559,14 @@ Partial Class Form1
     Friend WithEvents Modify_Selected_ListView_AccountAndPasswd_Btn As Button
     Friend WithEvents Profile_Target_Dir_Name_ComboBox As ComboBox
     Friend WithEvents Move_Profile_To_Selected_Foler_btn As Button
+    Friend WithEvents Filter_Available_Profile_CheckBox As CheckBox
+    Friend WithEvents Filter_Ban_Profile_CheckBox As CheckBox
+    Friend WithEvents Filter_Useless_Profile_CheckBox As CheckBox
+    Friend WithEvents Label68 As Label
+    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents Label70 As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button1 As Button
 End Class

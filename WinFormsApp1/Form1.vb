@@ -65,8 +65,8 @@ Public Class Form1
         Profile_TextBox.Text = FormInit.curr_path + "profiles/availible"
         Block_Text_TextBox.Text = "分隔行"
         curr_url_ComboBox.Text = "https://www.facebook.com/"
-
         FormInit.FormInit_Render_All()
+        Filter_Available_Profile_CheckBox.Checked = True
 
     End Sub
 
@@ -188,7 +188,10 @@ Public Class Form1
                     If i = 1 Then
                         Profile_Queue = content.Split(";")
                     End If
-                    'Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
+                    Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
+
+                    'boolean_result = True
+
                     used_chrome_profile = Profile_Queue(profile_index).Split("\")(UBound(Profile_Queue(profile_index).Split("\")))
                     item.SubItems.Item(3).Text = used_chrome_profile
                     boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, Profile_Queue(profile_index))
@@ -1758,5 +1761,17 @@ Public Class Form1
 
 
 
+    End Sub
+
+    Private Sub Filter_Available_Profile_CheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles Filter_Available_Profile_CheckBox.CheckedChanged
+        FormInit.Render_profile_CheckedListBox()
+    End Sub
+
+    Private Sub Filter_Ban_Profile_CheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles Filter_Ban_Profile_CheckBox.CheckedChanged
+        FormInit.Render_profile_CheckedListBox()
+    End Sub
+
+    Private Sub Filter_Useless_Profile_CheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles Filter_Useless_Profile_CheckBox.CheckedChanged
+        FormInit.Render_profile_CheckedListBox()
     End Sub
 End Class

@@ -321,7 +321,7 @@ Module ScriptInsertion
 
     Public Sub Insert_Queue_To_script()
         Dim Content As String = ""
-        Dim profile_dir = FormInit.curr_path
+        Dim profile_dir = FormInit.profile_path
         For Each item In Form1.Profile_Queue_ListBox.Items
             'MsgBox(item.SubItems(0).Text & vbCrLf & item.SubItems(1).Text)
             Content += profile_dir + item + ";"
