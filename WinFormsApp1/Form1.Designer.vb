@@ -32,6 +32,8 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Target_Index_Script_ListView_NummericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Move_Script_ListView_Item_To_Index_Btn = New System.Windows.Forms.Button()
         Me.Headless_Mode_Checkbox = New System.Windows.Forms.CheckBox()
         Me.Reset_Script_btn = New System.Windows.Forms.Button()
         Me.Continute_Script_btn = New System.Windows.Forms.Button()
@@ -292,6 +294,12 @@ Partial Class Form1
         Me.Insert_Random_Navigation_URL_btn = New System.Windows.Forms.Button()
         Me.Navigation_URL_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.Label70 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Delete_Str_from_RTBox_btn = New System.Windows.Forms.Button()
         Me.Split_NewLine_By_Char_btn = New System.Windows.Forms.Button()
         Me.Pattern_Str_ComboBox = New System.Windows.Forms.ComboBox()
@@ -310,13 +318,8 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label70 = New System.Windows.Forms.Label()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_hour, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -350,10 +353,10 @@ Partial Class Form1
         Me.Searching.SuspendLayout()
         Me.Navigation_Tab.SuspendLayout()
         Me.Widget_TabPage.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Post_Crawler.SuspendLayout()
         Me.Block_User.SuspendLayout()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -420,6 +423,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Target_Index_Script_ListView_NummericUpDown)
+        Me.GroupBox1.Controls.Add(Me.Move_Script_ListView_Item_To_Index_Btn)
         Me.GroupBox1.Controls.Add(Me.Headless_Mode_Checkbox)
         Me.GroupBox1.Controls.Add(Me.Reset_Script_btn)
         Me.GroupBox1.Controls.Add(Me.Continute_Script_btn)
@@ -460,6 +465,24 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
+        '
+        'Target_Index_Script_ListView_NummericUpDown
+        '
+        Me.Target_Index_Script_ListView_NummericUpDown.Location = New System.Drawing.Point(107, 22)
+        Me.Target_Index_Script_ListView_NummericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Target_Index_Script_ListView_NummericUpDown.Name = "Target_Index_Script_ListView_NummericUpDown"
+        Me.Target_Index_Script_ListView_NummericUpDown.Size = New System.Drawing.Size(57, 27)
+        Me.Target_Index_Script_ListView_NummericUpDown.TabIndex = 130
+        Me.Target_Index_Script_ListView_NummericUpDown.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'Move_Script_ListView_Item_To_Index_Btn
+        '
+        Me.Move_Script_ListView_Item_To_Index_Btn.Location = New System.Drawing.Point(7, 22)
+        Me.Move_Script_ListView_Item_To_Index_Btn.Name = "Move_Script_ListView_Item_To_Index_Btn"
+        Me.Move_Script_ListView_Item_To_Index_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Move_Script_ListView_Item_To_Index_Btn.TabIndex = 129
+        Me.Move_Script_ListView_Item_To_Index_Btn.Text = "移動到"
+        Me.Move_Script_ListView_Item_To_Index_Btn.UseVisualStyleBackColor = True
         '
         'Headless_Mode_Checkbox
         '
@@ -527,7 +550,7 @@ Partial Class Form1
         '
         'MoveDown_selected_item_btn
         '
-        Me.MoveDown_selected_item_btn.Location = New System.Drawing.Point(106, 22)
+        Me.MoveDown_selected_item_btn.Location = New System.Drawing.Point(294, 22)
         Me.MoveDown_selected_item_btn.Name = "MoveDown_selected_item_btn"
         Me.MoveDown_selected_item_btn.Size = New System.Drawing.Size(94, 29)
         Me.MoveDown_selected_item_btn.TabIndex = 68
@@ -536,7 +559,7 @@ Partial Class Form1
         '
         'Move_up_selected_item_btn
         '
-        Me.Move_up_selected_item_btn.Location = New System.Drawing.Point(6, 22)
+        Me.Move_up_selected_item_btn.Location = New System.Drawing.Point(194, 22)
         Me.Move_up_selected_item_btn.Name = "Move_up_selected_item_btn"
         Me.Move_up_selected_item_btn.Size = New System.Drawing.Size(94, 29)
         Me.Move_up_selected_item_btn.TabIndex = 67
@@ -556,7 +579,7 @@ Partial Class Form1
         'Delete_selected_item_btn
         '
         Me.Delete_selected_item_btn.BackColor = System.Drawing.Color.LightCoral
-        Me.Delete_selected_item_btn.Location = New System.Drawing.Point(206, 22)
+        Me.Delete_selected_item_btn.Location = New System.Drawing.Point(394, 22)
         Me.Delete_selected_item_btn.Name = "Delete_selected_item_btn"
         Me.Delete_selected_item_btn.Size = New System.Drawing.Size(94, 29)
         Me.Delete_selected_item_btn.TabIndex = 66
@@ -584,7 +607,7 @@ Partial Class Form1
         'Clear_script_btn
         '
         Me.Clear_script_btn.BackColor = System.Drawing.Color.LightCoral
-        Me.Clear_script_btn.Location = New System.Drawing.Point(705, 25)
+        Me.Clear_script_btn.Location = New System.Drawing.Point(705, 22)
         Me.Clear_script_btn.Name = "Clear_script_btn"
         Me.Clear_script_btn.Size = New System.Drawing.Size(97, 29)
         Me.Clear_script_btn.TabIndex = 43
@@ -3002,6 +3025,61 @@ Partial Class Form1
         Me.Widget_TabPage.Text = "小工具"
         Me.Widget_TabPage.UseVisualStyleBackColor = True
         '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.Label70)
+        Me.GroupBox6.Controls.Add(Me.Button2)
+        Me.GroupBox6.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox6.Controls.Add(Me.TextBox1)
+        Me.GroupBox6.Controls.Add(Me.Button1)
+        Me.GroupBox6.Location = New System.Drawing.Point(14, 481)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(890, 110)
+        Me.GroupBox6.TabIndex = 12
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "產生混合隨機字串"
+        '
+        'Label70
+        '
+        Me.Label70.AutoSize = True
+        Me.Label70.Location = New System.Drawing.Point(6, 50)
+        Me.Label70.Name = "Label70"
+        Me.Label70.Size = New System.Drawing.Size(50, 19)
+        Me.Label70.TabIndex = 11
+        Me.Label70.Text = "長度 : "
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(767, 41)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(94, 29)
+        Me.Button2.TabIndex = 10
+        Me.Button2.Text = "複製"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(62, 44)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(94, 27)
+        Me.NumericUpDown1.TabIndex = 7
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(262, 43)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(499, 27)
+        Me.TextBox1.TabIndex = 9
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(162, 42)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(94, 29)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "產生"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Delete_Str_from_RTBox_btn
         '
         Me.Delete_Str_from_RTBox_btn.Location = New System.Drawing.Point(810, 359)
@@ -3156,61 +3234,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(62, 44)
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(94, 27)
-        Me.NumericUpDown1.TabIndex = 7
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(162, 42)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(94, 29)
-        Me.Button1.TabIndex = 8
-        Me.Button1.Text = "產生"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(262, 43)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(499, 27)
-        Me.TextBox1.TabIndex = 9
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(767, 41)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(94, 29)
-        Me.Button2.TabIndex = 10
-        Me.Button2.Text = "複製"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Label70
-        '
-        Me.Label70.AutoSize = True
-        Me.Label70.Location = New System.Drawing.Point(6, 50)
-        Me.Label70.Name = "Label70"
-        Me.Label70.Size = New System.Drawing.Size(50, 19)
-        Me.Label70.TabIndex = 11
-        Me.Label70.Text = "長度 : "
-        '
-        'GroupBox6
-        '
-        Me.GroupBox6.Controls.Add(Me.Label70)
-        Me.GroupBox6.Controls.Add(Me.Button2)
-        Me.GroupBox6.Controls.Add(Me.NumericUpDown1)
-        Me.GroupBox6.Controls.Add(Me.TextBox1)
-        Me.GroupBox6.Controls.Add(Me.Button1)
-        Me.GroupBox6.Location = New System.Drawing.Point(14, 481)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(890, 110)
-        Me.GroupBox6.TabIndex = 12
-        Me.GroupBox6.TabStop = False
-        Me.GroupBox6.Text = "產生混合隨機字串"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3223,6 +3246,7 @@ Partial Class Form1
         Me.Text = "Main Form"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown_script_end_minute, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown_script_end_hour, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3266,13 +3290,13 @@ Partial Class Form1
         Me.Navigation_Tab.ResumeLayout(False)
         Me.Navigation_Tab.PerformLayout()
         Me.Widget_TabPage.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Post_Crawler.ResumeLayout(False)
         Me.Post_Crawler.PerformLayout()
         Me.Block_User.ResumeLayout(False)
         Me.Block_User.PerformLayout()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox6.ResumeLayout(False)
-        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3569,4 +3593,6 @@ Partial Class Form1
     Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents Move_Script_ListView_Item_To_Index_Btn As Button
+    Friend WithEvents Target_Index_Script_ListView_NummericUpDown As NumericUpDown
 End Class

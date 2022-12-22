@@ -690,6 +690,11 @@ Public Class MyWebDriver
     End Function
 
 
+    Public Function Messager_Contact_Task(Room_Id, message)
+        Return Task.Run(Function() Messager_Contact(Room_Id, message))
+    End Function
+
+
     Function Messager_Contact(Room_Id As String, message As String)
 
         Try
@@ -706,7 +711,7 @@ Public Class MyWebDriver
             Next
 
 
-            'Text_input.SendKeys(Keys.Return)
+            Text_input.SendKeys(Keys.Return)
             Return True
         Catch ex As Exception
             Return False

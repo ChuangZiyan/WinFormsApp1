@@ -375,7 +375,7 @@ Public Class Form1
                 Case "聊天"
                     Dim Target = content.Split(";")(0)
                     Dim Text = content.Split(";")(1)
-                    boolean_result = myWebDriver.Messager_Contact(Target, Text)
+                    boolean_result = Await myWebDriver.Messager_Contact_Task(Target, Text)
 
                 Case "搜尋"
                     Dim param() = content.Split(";")
@@ -1194,6 +1194,10 @@ Public Class Form1
         FormComponentController.MoveDown_ScriptListView_selected_item()
     End Sub
 
+    Private Sub Move_Script_ListView_Item_To_Index_Btn_Click(sender As Object, e As EventArgs) Handles Move_Script_ListView_Item_To_Index_Btn.Click
+        FormComponentController.Move_Script_ListView_Item_To_Index(Target_Index_Script_ListView_NummericUpDown.Value)
+    End Sub
+
     Private Sub Text_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.ItemCheck
         FormComponentController.Text_File_CheckedListBox_Click()
 
@@ -1774,4 +1778,5 @@ Public Class Form1
     Private Sub Filter_Useless_Profile_CheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles Filter_Useless_Profile_CheckBox.CheckedChanged
         FormInit.Render_profile_CheckedListBox()
     End Sub
+
 End Class

@@ -49,6 +49,32 @@ Module FormComponentController
         Rearrange_scriptlistview_number()
     End Sub
 
+    Public Sub Move_Script_ListView_Item_To_Index(target_idx)
+
+        If Form1.script_ListView.SelectedIndices.Count > 0 Then
+            For i = 0 To Form1.script_ListView.SelectedIndices.Count - 1
+                Dim index = Form1.script_ListView.SelectedIndices(i)
+                If index >= 0 Then
+                    'If Form1.script_ListView.SelectedIndices.Contains(target_idx) Then
+                    'Continue For
+                    'End If
+
+                    If target_idx > Form1.script_ListView.Items.Count Then
+                        target_idx = Form1.script_ListView.Items.Count
+                        Debug.WriteLine(Form1.script_ListView.Items.Count)
+                    End If
+
+                    Dim temp As ListViewItem = Form1.script_ListView.Items(index)
+                    Form1.script_ListView.Items.RemoveAt(index)
+                    Form1.script_ListView.Items.Insert(target_idx - 1, temp)
+                    Debug.WriteLine("idx : " & index)
+                    'Form1.script_ListView.Items(target_idx - 1).Focused = True
+                End If
+            Next
+        End If
+    End Sub
+
+
     Public Sub Rearrange_scriptlistview_number()
         Dim index = 1
         For Each item As ListViewItem In Form1.script_ListView.Items
@@ -171,7 +197,7 @@ Module FormComponentController
 
         For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
             Debug.WriteLine(itemSeleted)
-            Profile_Path = itemSeleted
+            Profile_Path = FormInit.profile_path + itemSeleted
         Next
 
         Debug.WriteLine(Profile_Path)
@@ -341,13 +367,13 @@ Module FormComponentController
     Public Sub Delete_Selected_Profile_Folder()
 
         For Each itemSelected In Form1.Profile_CheckedListBox.SelectedItems
-
-            If Directory.Exists(itemSelected) Then
+            Dim profile_path = FormInit.profile_path + itemSelected
+            If Directory.Exists(profile_path) Then
                 Dim result As DialogResult = MessageBox.Show("確定要刪除此資料夾?", "確認訊息", MessageBoxButtons.YesNo)
                 If result = DialogResult.Yes Then
-                    Debug.WriteLine("Delete : " + itemSelected)
+                    Debug.WriteLine("Delete : " + profile_path)
                     'Delete a Directory
-                    Directory.Delete(itemSelected, True)
+                    Directory.Delete(profile_path, True)
                     Form1.Profile_CheckedListBox.Items.Clear()
                     Render_profile_CheckedListBox()
                     Exit Sub
