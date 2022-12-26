@@ -95,6 +95,7 @@ Public Class MyWebDriver
                     options.AddArguments("--user-data-dir=" + profile)
                     used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
                     running_chrome_profile = used_chrome_profile
+                    'FormInit.Render_profile_CheckedListBox()
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
 
@@ -130,8 +131,6 @@ Public Class MyWebDriver
 
                 act = New Actions(chromeDriver)
 
-                Form1.Profile_CheckedListBox.Items.Clear()
-                Render_profile_CheckedListBox()
                 Return True
             Catch ex As Exception
                 Debug.WriteLine(ex)

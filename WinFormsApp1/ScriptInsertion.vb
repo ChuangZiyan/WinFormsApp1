@@ -112,7 +112,7 @@ Module ScriptInsertion
 
     Public Sub Insert_open_browser()
         Dim myprofile As String = ""
-        Dim profile_dir = FormInit.curr_path
+        Dim profile_dir = FormInit.profile_path
 
         If Form1.Profile_TextBox.Text <> "" And Form1.Profile_Name_ComboBox.Text <> "" Then
             myprofile = Form1.Profile_TextBox.Text + "\" + Form1.Profile_Name_ComboBox.Text

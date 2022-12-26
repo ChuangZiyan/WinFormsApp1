@@ -27,8 +27,9 @@ Module FormComponentController
                     Form1.script_ListView.Items(index - 1).Focused = True
                 End If
             Next
+            Rearrange_scriptlistview_number()
         End If
-        Rearrange_scriptlistview_number()
+
     End Sub
 
     Public Sub MoveDown_ScriptListView_selected_item()
@@ -45,8 +46,9 @@ Module FormComponentController
                     Form1.script_ListView.Items(index + 1).Focused = True
                 End If
             Next
+            Rearrange_scriptlistview_number()
         End If
-        Rearrange_scriptlistview_number()
+
     End Sub
 
     Public Sub Move_Script_ListView_Item_To_Index(target_idx)
@@ -67,10 +69,11 @@ Module FormComponentController
                     Dim temp As ListViewItem = Form1.script_ListView.Items(index)
                     Form1.script_ListView.Items.RemoveAt(index)
                     Form1.script_ListView.Items.Insert(target_idx - 1, temp)
-                    Debug.WriteLine("idx : " & index)
+                    'Debug.WriteLine("idx : " & index)
                     'Form1.script_ListView.Items(target_idx - 1).Focused = True
                 End If
             Next
+            Rearrange_scriptlistview_number()
         End If
     End Sub
 
@@ -701,6 +704,47 @@ Module FormComponentController
         Form1.script_ListView.SelectedItems(0).SubItems.Item(5).Text = "帳號:" + fb_email + " 密碼:" + fb_passwd
 
     End Sub
+
+
+    Public Sub Set_Folder_Checked_with_TextFile_textbox(folder_name)
+
+        For i As Integer = 0 To Form1.Text_File_CheckedListBox.Items.Count - 1
+            Dim fd_name = Form1.Text_File_CheckedListBox.Items(i).ToString.Split("\"c)(0)
+            If fd_name = folder_name Then
+                Form1.Text_File_CheckedListBox.SetItemChecked(i, True)
+            End If
+        Next
+
+    End Sub
+
+    Public Sub Set_TextFile_Item_Checked(checked)
+
+        For i As Integer = 0 To Form1.Text_File_CheckedListBox.Items.Count - 1
+            Form1.Text_File_CheckedListBox.SetItemChecked(i, checked)
+        Next
+
+    End Sub
+
+
+    Public Sub Set_Folder_Checked_with_ImageFile_textbox(folder_name)
+
+        For i As Integer = 0 To Form1.img_CheckedListBox.Items.Count - 1
+            Dim fd_name = Form1.img_CheckedListBox.Items(i).ToString.Split("\"c)(0)
+            If fd_name = folder_name Then
+                Form1.img_CheckedListBox.SetItemChecked(i, True)
+            End If
+        Next
+
+    End Sub
+
+    Public Sub Set_ImageFile_Item_Checked(checked)
+
+        For i As Integer = 0 To Form1.img_CheckedListBox.Items.Count - 1
+            Form1.img_CheckedListBox.SetItemChecked(i, checked)
+        Next
+
+    End Sub
+
 
 
 End Module

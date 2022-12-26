@@ -144,6 +144,10 @@ Partial Class Form1
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Deselect_All_Image_Folder_btn = New System.Windows.Forms.Button()
+        Me.DeselectAll_Folder_with_TextFile_textbox_btn = New System.Windows.Forms.Button()
+        Me.Select_All_Folder_with_Image_textbox_btn = New System.Windows.Forms.Button()
+        Me.SelectAll_Folder_with_TextFile_textbox_btn = New System.Windows.Forms.Button()
         Me.Insert_Random_Story_Image_Btn = New System.Windows.Forms.Button()
         Me.Insert_Story_Image_Btn = New System.Windows.Forms.Button()
         Me.Label55 = New System.Windows.Forms.Label()
@@ -1541,6 +1545,10 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Deselect_All_Image_Folder_btn)
+        Me.TabPage3.Controls.Add(Me.DeselectAll_Folder_with_TextFile_textbox_btn)
+        Me.TabPage3.Controls.Add(Me.Select_All_Folder_with_Image_textbox_btn)
+        Me.TabPage3.Controls.Add(Me.SelectAll_Folder_with_TextFile_textbox_btn)
         Me.TabPage3.Controls.Add(Me.Insert_Random_Story_Image_Btn)
         Me.TabPage3.Controls.Add(Me.Insert_Story_Image_Btn)
         Me.TabPage3.Controls.Add(Me.Label55)
@@ -1597,6 +1605,42 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "發文發圖"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Deselect_All_Image_Folder_btn
+        '
+        Me.Deselect_All_Image_Folder_btn.Location = New System.Drawing.Point(302, 468)
+        Me.Deselect_All_Image_Folder_btn.Name = "Deselect_All_Image_Folder_btn"
+        Me.Deselect_All_Image_Folder_btn.Size = New System.Drawing.Size(54, 29)
+        Me.Deselect_All_Image_Folder_btn.TabIndex = 123
+        Me.Deselect_All_Image_Folder_btn.Text = "不選"
+        Me.Deselect_All_Image_Folder_btn.UseVisualStyleBackColor = True
+        '
+        'DeselectAll_Folder_with_TextFile_textbox_btn
+        '
+        Me.DeselectAll_Folder_with_TextFile_textbox_btn.Location = New System.Drawing.Point(302, 214)
+        Me.DeselectAll_Folder_with_TextFile_textbox_btn.Name = "DeselectAll_Folder_with_TextFile_textbox_btn"
+        Me.DeselectAll_Folder_with_TextFile_textbox_btn.Size = New System.Drawing.Size(54, 29)
+        Me.DeselectAll_Folder_with_TextFile_textbox_btn.TabIndex = 122
+        Me.DeselectAll_Folder_with_TextFile_textbox_btn.Text = "不選"
+        Me.DeselectAll_Folder_with_TextFile_textbox_btn.UseVisualStyleBackColor = True
+        '
+        'Select_All_Folder_with_Image_textbox_btn
+        '
+        Me.Select_All_Folder_with_Image_textbox_btn.Location = New System.Drawing.Point(242, 468)
+        Me.Select_All_Folder_with_Image_textbox_btn.Name = "Select_All_Folder_with_Image_textbox_btn"
+        Me.Select_All_Folder_with_Image_textbox_btn.Size = New System.Drawing.Size(54, 29)
+        Me.Select_All_Folder_with_Image_textbox_btn.TabIndex = 121
+        Me.Select_All_Folder_with_Image_textbox_btn.Text = "全選"
+        Me.Select_All_Folder_with_Image_textbox_btn.UseVisualStyleBackColor = True
+        '
+        'SelectAll_Folder_with_TextFile_textbox_btn
+        '
+        Me.SelectAll_Folder_with_TextFile_textbox_btn.Location = New System.Drawing.Point(244, 214)
+        Me.SelectAll_Folder_with_TextFile_textbox_btn.Name = "SelectAll_Folder_with_TextFile_textbox_btn"
+        Me.SelectAll_Folder_with_TextFile_textbox_btn.Size = New System.Drawing.Size(54, 29)
+        Me.SelectAll_Folder_with_TextFile_textbox_btn.TabIndex = 120
+        Me.SelectAll_Folder_with_TextFile_textbox_btn.Text = "全選"
+        Me.SelectAll_Folder_with_TextFile_textbox_btn.UseVisualStyleBackColor = True
         '
         'Insert_Random_Story_Image_Btn
         '
@@ -1868,9 +1912,9 @@ Partial Class Form1
         '
         'Open_Folder_with_Image_textbox_btn
         '
-        Me.Open_Folder_with_Image_textbox_btn.Location = New System.Drawing.Point(262, 471)
+        Me.Open_Folder_with_Image_textbox_btn.Location = New System.Drawing.Point(181, 469)
         Me.Open_Folder_with_Image_textbox_btn.Name = "Open_Folder_with_Image_textbox_btn"
-        Me.Open_Folder_with_Image_textbox_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Open_Folder_with_Image_textbox_btn.Size = New System.Drawing.Size(55, 29)
         Me.Open_Folder_with_Image_textbox_btn.TabIndex = 112
         Me.Open_Folder_with_Image_textbox_btn.Text = "打開"
         Me.Open_Folder_with_Image_textbox_btn.UseVisualStyleBackColor = True
@@ -1906,7 +1950,7 @@ Partial Class Form1
         '
         Me.ImageFolder_TextBox.Location = New System.Drawing.Point(73, 471)
         Me.ImageFolder_TextBox.Name = "ImageFolder_TextBox"
-        Me.ImageFolder_TextBox.Size = New System.Drawing.Size(183, 27)
+        Me.ImageFolder_TextBox.Size = New System.Drawing.Size(102, 27)
         Me.ImageFolder_TextBox.TabIndex = 111
         '
         'Label30
@@ -1920,9 +1964,9 @@ Partial Class Form1
         '
         'Open_Folder_with_TextFile_textbox_btn
         '
-        Me.Open_Folder_with_TextFile_textbox_btn.Location = New System.Drawing.Point(262, 214)
+        Me.Open_Folder_with_TextFile_textbox_btn.Location = New System.Drawing.Point(183, 214)
         Me.Open_Folder_with_TextFile_textbox_btn.Name = "Open_Folder_with_TextFile_textbox_btn"
-        Me.Open_Folder_with_TextFile_textbox_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Open_Folder_with_TextFile_textbox_btn.Size = New System.Drawing.Size(55, 29)
         Me.Open_Folder_with_TextFile_textbox_btn.TabIndex = 109
         Me.Open_Folder_with_TextFile_textbox_btn.Text = "打開"
         Me.Open_Folder_with_TextFile_textbox_btn.UseVisualStyleBackColor = True
@@ -1931,7 +1975,7 @@ Partial Class Form1
         '
         Me.TextFileFolder_TextBox.Location = New System.Drawing.Point(73, 214)
         Me.TextFileFolder_TextBox.Name = "TextFileFolder_TextBox"
-        Me.TextFileFolder_TextBox.Size = New System.Drawing.Size(183, 27)
+        Me.TextFileFolder_TextBox.Size = New System.Drawing.Size(104, 27)
         Me.TextFileFolder_TextBox.TabIndex = 108
         '
         'Label29
@@ -3595,4 +3639,8 @@ Partial Class Form1
     Friend WithEvents Button1 As Button
     Friend WithEvents Move_Script_ListView_Item_To_Index_Btn As Button
     Friend WithEvents Target_Index_Script_ListView_NummericUpDown As NumericUpDown
+    Friend WithEvents Deselect_All_Image_Folder_btn As Button
+    Friend WithEvents DeselectAll_Folder_with_TextFile_textbox_btn As Button
+    Friend WithEvents Select_All_Folder_with_Image_textbox_btn As Button
+    Friend WithEvents SelectAll_Folder_with_TextFile_textbox_btn As Button
 End Class

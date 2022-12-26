@@ -58,16 +58,23 @@ Public Class Form1
     ' ######### Keyboard hook #############
 
 
+
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         'Me.Text = "Main Form - " + Version
         'Default String : 
-        Profile_TextBox.Text = FormInit.curr_path + "profiles/availible"
+        Profile_TextBox.Text = FormInit.curr_path + "profiles/available"
         Block_Text_TextBox.Text = "分隔行"
         curr_url_ComboBox.Text = "https://www.facebook.com/"
         FormInit.FormInit_Render_All()
         Filter_Available_Profile_CheckBox.Checked = True
+    End Sub
 
+
+    'Overload MsgBox
+    Public Sub MsgBox(msg As String)
+        MessageBox.Show(msg, Me.Text, MessageBoxButtons.OK)
     End Sub
 
 
@@ -179,6 +186,17 @@ Public Class Form1
                     boolean_result = True
                 Case "開啟"
                     If profile = "" Or profile <> running_chrome_profile Then
+
+                        If content.Contains(";"c) Then
+                            Dim allProfile = content.Split(";")
+                            'Debug.WriteLine("count : " & allProfile.Count)
+                            Dim rnd = rnd_num.Next(0, allProfile.Count)
+                            content = allProfile(rnd)
+                        End If
+
+                        'Debug.WriteLine(content)
+                        'boolean_result = True
+                        'Return
                         boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, content)
                     Else
                         boolean_result = False
@@ -518,9 +536,10 @@ Public Class Form1
 
 
             'Open_Browser("Chrome", used_dev_model, myprofile)
-            Debug.WriteLine("profile : " + myprofile)
+            'Debug.WriteLine("profile : " + myprofile)
             'Exit Sub
             Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, myprofile)
+            Render_profile_CheckedListBox()
 
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
@@ -1198,12 +1217,12 @@ Public Class Form1
         FormComponentController.Move_Script_ListView_Item_To_Index(Target_Index_Script_ListView_NummericUpDown.Value)
     End Sub
 
-    Private Sub Text_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.ItemCheck
+    Private Sub Text_File_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Text_File_CheckedListBox.SelectedIndexChanged
         FormComponentController.Text_File_CheckedListBox_Click()
 
     End Sub
 
-    Private Sub img_CheckedListBox_Click(sender As Object, e As EventArgs) Handles img_CheckedListBox.ItemCheck
+    Private Sub img_CheckedListBox_Click(sender As Object, e As EventArgs) Handles img_CheckedListBox.SelectedIndexChanged
         FormComponentController.Img_CheckedListBox_Click()
     End Sub
 
@@ -1779,4 +1798,31 @@ Public Class Form1
         FormInit.Render_profile_CheckedListBox()
     End Sub
 
+    Private Sub SelectAll_Folder_with_TextFile_textbox_btn_Click(sender As Object, e As EventArgs) Handles SelectAll_Folder_with_TextFile_textbox_btn.Click
+        If TextFileFolder_TextBox.Text <> "" Then
+            FormComponentController.Set_Folder_Checked_with_TextFile_textbox(TextFileFolder_TextBox.Text)
+        Else
+            FormComponentController.Set_TextFile_Item_Checked(True)
+        End If
+
+    End Sub
+
+    Private Sub DeselectAll_Folder_with_TextFile_textbox_btn_Click(sender As Object, e As EventArgs) Handles DeselectAll_Folder_with_TextFile_textbox_btn.Click
+        FormComponentController.Set_TextFile_Item_Checked(False)
+    End Sub
+
+    Private Sub Select_All_Folder_with_Image_textbox_btn_Click(sender As Object, e As EventArgs) Handles Select_All_Folder_with_Image_textbox_btn.Click
+
+        If ImageFolder_TextBox.Text <> "" Then
+            FormComponentController.Set_Folder_Checked_with_ImageFile_textbox(ImageFolder_TextBox.Text)
+        Else
+            FormComponentController.Set_ImageFile_Item_Checked(True)
+        End If
+
+
+    End Sub
+
+    Private Sub Deselect_All_Image_Folder_btn_Click(sender As Object, e As EventArgs) Handles Deselect_All_Image_Folder_btn.Click
+        FormComponentController.Set_ImageFile_Item_Checked(False)
+    End Sub
 End Class
