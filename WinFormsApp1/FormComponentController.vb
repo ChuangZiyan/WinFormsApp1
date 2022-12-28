@@ -78,6 +78,20 @@ Module FormComponentController
     End Sub
 
 
+    Public Sub Set_Item_Index_To_NummericUpDown()
+        If Form1.script_ListView.SelectedIndices.Count > 0 Then
+            For i = 0 To Form1.script_ListView.SelectedIndices.Count - 1
+                Dim index = Form1.script_ListView.SelectedIndices(i)
+                If index >= 0 Then
+                    'Debug.WriteLine(Form1.script_ListView.Items.Item(index).Text)
+                    Form1.Target_Index_Script_ListView_NummericUpDown.Value = CInt(Form1.script_ListView.Items.Item(index).Text)
+                End If
+            Next
+
+        End If
+    End Sub
+
+
     Public Sub Rearrange_scriptlistview_number()
         Dim index = 1
         For Each item As ListViewItem In Form1.script_ListView.Items

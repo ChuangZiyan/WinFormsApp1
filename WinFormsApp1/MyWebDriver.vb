@@ -226,8 +226,12 @@ Public Class MyWebDriver
                 Return Click_leave_message()
             Case "發佈"
                 Return click_by_aria_label("發佈")
-            Case "回覆/留言"
+            Case "留言"
                 Return Click_reply()
+            Case "回覆上"
+                Return Click_Top_Reply()
+            Case "回覆下"
+                Return Click_Bottom_Reply()
         End Select
 
         Return False
@@ -289,7 +293,7 @@ Public Class MyWebDriver
     End Function
 
     Public Function Upload_reply_img(img)
-
+        Debug.WriteLine("img : " + img)
         Try
             'Debug.WriteLine("Copy " + img)
             Dim msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
@@ -302,7 +306,7 @@ Public Class MyWebDriver
         End Try
 
         ' old code keep until stable
-        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
+        'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
 
         Try
             Dim comment_img_input As Object
@@ -313,7 +317,7 @@ Public Class MyWebDriver
             End If
 
             comment_img_input.SendKeys(image_folder_path + img)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
         Catch ex As Exception
             Return False
@@ -386,7 +390,7 @@ Public Class MyWebDriver
         rnd = rnd_num.Next(0, ImgageFile_ArrayList.Count)
         'Debug.WriteLine("Image : " + ImgageFile_ArrayList(rnd))
 
-        If Upload_reply_img(ImgageFile_ArrayList(rnd)) = False Then   'upload img
+        If Await Upload_reply_img_Task(ImgageFile_ArrayList(rnd)) = False Then   'upload img
             Return False
         End If
 
@@ -594,6 +598,26 @@ Public Class MyWebDriver
         End Try
     End Function
 
+    Private Function Click_Top_Reply()
+        Try
+            chromeDriver.FindElements(By.CssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x1pi30zi > ul > li:nth-child(2) > div")).First.Click()
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
+    Private Function Click_Bottom_Reply()
+        Try
+            Dim myelement = chromeDriver.FindElements(By.CssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x1pi30zi > ul > li:nth-child(2) > div"))
+            myelement.Last.Click()
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
 
     Public Function Send_reply_comment_Task(content)
         Clipboard.SetText(content)

@@ -635,7 +635,6 @@ Public Class Form1
     End Sub
 
 
-
     Private Sub Driver_close_Click(sender As Object, e As EventArgs) Handles driver_close_bnt.Click
         'driver_close_bnt.Enabled = False
         used_chrome_profile = ""
@@ -1052,7 +1051,15 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_click_reply_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_reply_btn.Click
-        Insert_to_script("點擊", "回覆/留言")
+        Insert_to_script("點擊", "留言")
+    End Sub
+
+    Private Sub Insert_Click_reply_Top_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Click_reply_Top_Btn.Click
+        Insert_to_script("點擊", "回覆上")
+    End Sub
+
+    Private Sub Insert_Click_reply_Bottom_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Click_reply_Bottom_Btn.Click
+        Insert_to_script("點擊", "回覆下")
     End Sub
 
     Private Sub Insert_reply_comment_btn_Click(sender As Object, e As EventArgs) Handles Insert_reply_comment_btn.Click
@@ -1370,6 +1377,48 @@ Public Class Form1
         Next
     End Sub
 
+    Private Async Sub Get_mGroups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_mGroups_List_btn.Click
+
+        If Await myWebDriver.Navigate_GoToUrl_Task("https://m.facebook.com/groups_browse/your_groups/") = False Then
+            MsgBox("未偵測到Chrome")
+            Exit Sub
+        End If
+
+        Dim curr_row As Integer = 0
+        Dim pre_counter As Integer = 0
+        Groups_ListView.Items.Clear()
+        '### Find other groups ###
+
+        Await Delay_msec(3000)
+        pre_counter = 0
+        While True ' Scroll to the bottom
+            Dim my_counter As Integer = myWebDriver.chromeDriver.FindElements(By.CssSelector("a > ._7hkf._3qn7._61-3._2fyi._3qng")).Count
+            'Debug.WriteLine(my_counter)
+            If my_counter = pre_counter Then
+                Exit While
+            End If
+            myWebDriver.chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
+            pre_counter = my_counter
+            Await Delay_msec(1000)
+        End While
+
+
+        'Add to the listview
+        Dim group_name_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector(".x1jchvi3.x132q4wb.xzsf02u.x117nqv4"))
+        Dim group_url_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div._7hkf._3qn7._61-3._2fyi._3qng > a"))
+
+        'Debug.WriteLine(group_url_classes.Count)
+        For i As Integer = 0 To group_url_classes.Count - 1
+            'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
+            Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
+            'Groups_ListView.Items.Add("NameGG", 100)
+            Groups_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
+            curr_row += 1
+        Next
+    End Sub
+
+
+
     Private Sub Delete_Selected_Profile_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_Selected_Profile_Folder_btn.Click
         FormComponentController.Delete_Selected_Profile_Folder()
     End Sub
@@ -1487,45 +1536,6 @@ Public Class Form1
         FormInit.Render_URL_TextFIle()
     End Sub
 
-    Private Async Sub Get_mGroups_List_btn_Click(sender As Object, e As EventArgs) Handles Get_mGroups_List_btn.Click
-
-        If Await myWebDriver.Navigate_GoToUrl_Task("https://m.facebook.com/groups_browse/your_groups/") = False Then
-            MsgBox("未偵測到Chrome")
-            Exit Sub
-        End If
-
-        Dim curr_row As Integer = 0
-        Dim pre_counter As Integer = 0
-        Groups_ListView.Items.Clear()
-        '### Find other groups ###
-
-        Thread.Sleep(3000)
-        pre_counter = 0
-        While True ' Scroll to the bottom
-            Dim my_counter As Integer = myWebDriver.chromeDriver.FindElements(By.CssSelector("a > ._7hkf._3qn7._61-3._2fyi._3qng")).Count
-            'Debug.WriteLine(my_counter)
-            If my_counter = pre_counter Then
-                Exit While
-            End If
-            myWebDriver.chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
-            pre_counter = my_counter
-            Thread.Sleep(1000)
-        End While
-
-
-        'Add to the listview
-        Dim group_name_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector(".x1jchvi3.x132q4wb.xzsf02u.x117nqv4"))
-        Dim group_url_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div._7hkf._3qn7._61-3._2fyi._3qng > a"))
-
-        'Debug.WriteLine(group_url_classes.Count)
-        For i As Integer = 0 To group_url_classes.Count - 1
-            'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
-            Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
-            'Groups_ListView.Items.Add("NameGG", 100)
-            Groups_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
-            curr_row += 1
-        Next
-    End Sub
 
     Private Sub GroupList_Replace_String_Btn_Click(sender As Object, e As EventArgs) Handles GroupList_Replace_String_Btn.Click
         For Each item As ListViewItem In Groups_ListView.Items
@@ -1825,4 +1835,13 @@ Public Class Form1
     Private Sub Deselect_All_Image_Folder_btn_Click(sender As Object, e As EventArgs) Handles Deselect_All_Image_Folder_btn.Click
         FormComponentController.Set_ImageFile_Item_Checked(False)
     End Sub
+
+
+    Private Sub script_ListView_Right_Click(sender As Object, ByVal e As MouseEventArgs) Handles script_ListView.MouseClick
+        'Debug.WriteLine("Click")
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            Set_Item_Index_To_NummericUpDown()
+        End If
+    End Sub
+
 End Class

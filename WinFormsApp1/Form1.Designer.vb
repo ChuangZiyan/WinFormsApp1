@@ -322,6 +322,8 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Insert_Click_reply_Top_Btn = New System.Windows.Forms.Button()
+        Me.Insert_Click_reply_Bottom_Btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1545,6 +1547,8 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Insert_Click_reply_Bottom_Btn)
+        Me.TabPage3.Controls.Add(Me.Insert_Click_reply_Top_Btn)
         Me.TabPage3.Controls.Add(Me.Deselect_All_Image_Folder_btn)
         Me.TabPage3.Controls.Add(Me.DeselectAll_Folder_with_TextFile_textbox_btn)
         Me.TabPage3.Controls.Add(Me.Select_All_Folder_with_Image_textbox_btn)
@@ -1707,11 +1711,11 @@ Partial Class Form1
         '
         'Insert_click_reply_btn
         '
-        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(687, 363)
+        Me.Insert_click_reply_btn.Location = New System.Drawing.Point(688, 363)
         Me.Insert_click_reply_btn.Name = "Insert_click_reply_btn"
-        Me.Insert_click_reply_btn.Size = New System.Drawing.Size(224, 29)
+        Me.Insert_click_reply_btn.Size = New System.Drawing.Size(70, 29)
         Me.Insert_click_reply_btn.TabIndex = 77
-        Me.Insert_click_reply_btn.Text = "按 回覆/留言-插入"
+        Me.Insert_click_reply_btn.Text = "留言"
         Me.Insert_click_reply_btn.UseVisualStyleBackColor = True
         '
         'Insert_emoji_btn
@@ -3278,6 +3282,24 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Insert_Click_reply_Top_Btn
+        '
+        Me.Insert_Click_reply_Top_Btn.Location = New System.Drawing.Point(764, 363)
+        Me.Insert_Click_reply_Top_Btn.Name = "Insert_Click_reply_Top_Btn"
+        Me.Insert_Click_reply_Top_Btn.Size = New System.Drawing.Size(70, 29)
+        Me.Insert_Click_reply_Top_Btn.TabIndex = 124
+        Me.Insert_Click_reply_Top_Btn.Text = "回覆上"
+        Me.Insert_Click_reply_Top_Btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Click_reply_Bottom_Btn
+        '
+        Me.Insert_Click_reply_Bottom_Btn.Location = New System.Drawing.Point(838, 363)
+        Me.Insert_Click_reply_Bottom_Btn.Name = "Insert_Click_reply_Bottom_Btn"
+        Me.Insert_Click_reply_Bottom_Btn.Size = New System.Drawing.Size(70, 29)
+        Me.Insert_Click_reply_Bottom_Btn.TabIndex = 125
+        Me.Insert_Click_reply_Bottom_Btn.Text = "回覆下"
+        Me.Insert_Click_reply_Bottom_Btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3643,4 +3665,6 @@ Partial Class Form1
     Friend WithEvents DeselectAll_Folder_with_TextFile_textbox_btn As Button
     Friend WithEvents Select_All_Folder_with_Image_textbox_btn As Button
     Friend WithEvents SelectAll_Folder_with_TextFile_textbox_btn As Button
+    Friend WithEvents Insert_Click_reply_Bottom_Btn As Button
+    Friend WithEvents Insert_Click_reply_Top_Btn As Button
 End Class
