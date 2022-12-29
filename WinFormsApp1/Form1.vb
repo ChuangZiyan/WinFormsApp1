@@ -111,10 +111,13 @@ Public Class Form1
             For Each item As ListViewItem In script_ListView.Items
                 item.SubItems.Item(6).Text = ""
             Next
+            Debug.WriteLine("ST RUN")
             Await Run_script(i)
+            Debug.WriteLine("ED RUN")
+            Debug.WriteLine("LOOP : " & loop_run)
 
-
-            If Not loop_run Then
+            If loop_run = False Then
+                Debug.WriteLine("no loop")
                 Exit While
             End If
             i += 1
@@ -130,6 +133,8 @@ Public Class Form1
     Private Async Function Run_script(i As Integer) As Task
         'Debug.WriteLine(logging.Get_NewLogFile_dir())
 
+
+        Debug.WriteLine("**************  Run : " & i & " *********************************")
         Dim record_script = False
         Dim log_file_path As String = ""
         If Record_script_result_checkbox.Checked = True Then
@@ -148,7 +153,9 @@ Public Class Form1
             If Pause_Script = True Then ' Pause script
                 While True
                     Await Delay_msec(1000)
+                    Debug.WriteLine("Pause_Script : " & Pause_Script)
                     If Pause_Script = False Then
+                        Debug.WriteLine("Go ")
                         Exit While
                     End If
                 End While
@@ -184,6 +191,7 @@ Public Class Form1
                     Continue_time = content
                     Pause_Script = True
                     boolean_result = True
+                    Debug.WriteLine(Continue_time)
                 Case "開啟"
                     If profile = "" Or profile <> running_chrome_profile Then
 
@@ -386,7 +394,7 @@ Public Class Form1
                         boolean_result = ScrollPage_By_Offset(Offset(0), CStr(y_offset))
                     End If
                 Case "發送:按鍵"
-                    boolean_result = SendBrowserKeyAction(content)
+                    boolean_result = myWebDriver.SendBrowserKeyAction(content)
                 Case "點擊:座標"
                     Dim offset() = content.Split(";")
                     boolean_result = myWebDriver.Click_by_Cursor_Offset(offset(0), offset(1))
@@ -754,6 +762,7 @@ Public Class Form1
         'Debug.WriteLine(MousePosition.X)
         Dim TimeNow = Date.Now.ToString("HH:mm:ss")
         'Debug.WriteLine("current : " + Date.Now.ToString("HH:mm:ss"))
+        'Debug.WriteLine("Ctime : " + Continue_time)
         'Debug.WriteLine("start : " + start_time)
         'Debug.WriteLine("End : " + end_time)
 
@@ -816,6 +825,7 @@ Public Class Form1
             mySecondsCounter_NumericUpDown.Value = total_secs Mod 60
         End If
 
+
     End Sub
 
     Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
@@ -855,38 +865,6 @@ Public Class Form1
         Return total_sec
     End Function
 
-    Private Function SendBrowserKeyAction(pkey As String)
-        Dim key_list() As String = pkey.Split("+")
-
-        Dim firstKey = Keys.Enter
-
-        Select Case key_list(0)
-            Case "ENTER"
-                firstKey = Keys.Enter
-            Case "ESC"
-                firstKey = Keys.Escape
-            Case "CTRL"
-                firstKey = Keys.LeftControl
-            Case "ALT"
-                firstKey = Keys.LeftAlt
-
-        End Select
-
-        Try
-            If key_list.Length > 1 Then
-
-                act.KeyDown(firstKey).SendKeys(key_list(1)).KeyUp(firstKey).Perform()
-            Else
-                act.SendKeys(firstKey).Perform()
-            End If
-
-            Return True
-
-        Catch ex As Exception
-            Return False
-        End Try
-
-    End Function
 
     Private Sub Restore_ListViewItems_BackColor()
         For Each item As ListViewItem In script_ListView.Items
@@ -1424,8 +1402,8 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_Script_Start_TIme_btn_Click(sender As Object, e As EventArgs) Handles Insert_Script_Start_TIme_btn.Click
-        start_time = NumericUpDown_script_start_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_second.Value.ToString.PadLeft(2, "0")
-        Insert_to_script("開始", start_time)
+        Dim mytime = NumericUpDown_script_start_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_start_second.Value.ToString.PadLeft(2, "0")
+        Insert_to_script("開始", mytime)
     End Sub
 
     Private Sub Script_Config_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Script_Config_ComboBox.SelectedIndexChanged

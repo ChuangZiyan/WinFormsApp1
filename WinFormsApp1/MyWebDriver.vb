@@ -823,6 +823,41 @@ Public Class MyWebDriver
 
     End Function
 
+    Public Function SendBrowserKeyAction(pkey As String)
+        Dim key_list() As String = pkey.Split("+")
+
+        Dim firstKey = Keys.Enter
+
+        Select Case key_list(0)
+            Case "ENTER"
+                firstKey = Keys.Enter
+            Case "ESC"
+                firstKey = Keys.Escape
+            Case "CTRL"
+                firstKey = Keys.LeftControl
+            Case "ALT"
+                firstKey = Keys.LeftAlt
+
+        End Select
+
+        Try
+            If key_list.Length > 1 Then
+                act.KeyDown(firstKey).SendKeys(key_list(1)).KeyUp(firstKey).Perform()
+            Else
+                act.SendKeys(firstKey).Perform()
+            End If
+
+            Return True
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+
+    End Function
+
+
+
     Public Shared Async Function Delay_msec(msec As Integer) As Task
         Await Task.Delay(msec)
     End Function

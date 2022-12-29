@@ -361,14 +361,22 @@ Module ScriptInsertion
     End Sub
 
     Public Sub Insert_navigate_to_url_in_GroupList()
+
         Dim pattern As String
         pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
         If Regex.IsMatch(Form1.GroupList_GroupURL_Textbox.Text, pattern) Then
+            Dim content As String
+            If Form1.GroupList_GroupName_Textbox.Text <> "" Then
+                content = Form1.GroupList_GroupName_Textbox.Text + ";" + Form1.GroupList_GroupURL_Textbox.Text
+            Else
+                content = Form1.curr_url_ComboBox.Text
+            End If
 
-            Insert_to_script("前往", Form1.GroupList_GroupURL_Textbox.Text)
+            Insert_to_script("前往", content)
         Else
             MsgBox("網址格式錯誤")
         End If
+
     End Sub
 
     Public Sub Insert_Random_Searching_Keyword()
