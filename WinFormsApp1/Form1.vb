@@ -96,6 +96,7 @@ Public Class Form1
         script_running = False
         Pause_Script = False
         Continue_time = ""
+        Profile_Queue = {}
         Restore_ListViewItems_BackColor()
         For Each item As ListViewItem In script_ListView.Items
             item.SubItems.Item(3).Text = ""
@@ -111,13 +112,10 @@ Public Class Form1
             For Each item As ListViewItem In script_ListView.Items
                 item.SubItems.Item(6).Text = ""
             Next
-            Debug.WriteLine("ST RUN")
+
             Await Run_script(i)
-            Debug.WriteLine("ED RUN")
-            Debug.WriteLine("LOOP : " & loop_run)
 
             If loop_run = False Then
-                Debug.WriteLine("no loop")
                 Exit While
             End If
             i += 1
@@ -133,8 +131,7 @@ Public Class Form1
     Private Async Function Run_script(i As Integer) As Task
         'Debug.WriteLine(logging.Get_NewLogFile_dir())
 
-
-        Debug.WriteLine("**************  Run : " & i & " *********************************")
+        'Debug.WriteLine("**************  Run : " & i & " *********************************")
         Dim record_script = False
         Dim log_file_path As String = ""
         If Record_script_result_checkbox.Checked = True Then
@@ -157,6 +154,10 @@ Public Class Form1
                     If Pause_Script = False Then
                         Debug.WriteLine("Go ")
                         Exit While
+                    End If
+
+                    If Flag_start_script Then
+                        Return
                     End If
                 End While
             End If
@@ -191,7 +192,7 @@ Public Class Form1
                     Continue_time = content
                     Pause_Script = True
                     boolean_result = True
-                    Debug.WriteLine(Continue_time)
+                    'Debug.WriteLine(Continue_time)
                 Case "開啟"
                     If profile = "" Or profile <> running_chrome_profile Then
 
@@ -205,6 +206,8 @@ Public Class Form1
                         'Debug.WriteLine(content)
                         'boolean_result = True
                         'Return
+                        used_chrome_profile = content.Split("\")(UBound(content.Split("\")))
+                        item.SubItems.Item(3).Text = used_chrome_profile
                         boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, content)
                     Else
                         boolean_result = False
@@ -829,8 +832,7 @@ Public Class Form1
     End Sub
 
     Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
-
-
+        script_ListView.SelectedItems.Clear()
         loop_run = CheckBox_loop_run.Checked
         'Debug.WriteLine("Loop Run : " & loop_run)
 
