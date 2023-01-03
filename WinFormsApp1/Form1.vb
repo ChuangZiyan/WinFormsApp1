@@ -24,6 +24,7 @@ Imports AngleSharp.Text
 Imports System.Diagnostics.Metrics
 Imports System.Xml
 Imports System.Collections.Specialized
+Imports System.Reflection.Metadata
 
 Public Class Form1
 
@@ -271,6 +272,33 @@ Public Class Form1
                         Dim rnd = rnd_num.Next(0, URLTextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
                         boolean_result = Await myWebDriver.Navigate_GoToUrl_Task(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
+                    End If
+
+                Case "前往社團"
+
+                    Dim groupListFilePath = FormInit.profile_path + content.Split(";")(0) + "\GroupList.txt"
+                    If My.Computer.FileSystem.FileExists(groupListFilePath) Then
+
+                        Dim GroupsFileText = File.ReadAllLines(groupListFilePath)
+                        Dim rnd = rnd_num.Next(0, GroupsFileText.Count)
+
+                        Dim line_counter = 0
+                        For Each line In GroupsFileText
+
+                            If line_counter = rnd Then
+                                Dim myGroupURL = line.Split("&nbsp")(1)
+                                Debug.WriteLine("GOTO " + line)
+                                If Navigate_GoToUrl(myGroupURL) Then
+                                    boolean_result = True
+                                Else
+                                    boolean_result = False
+                                End If
+                                Exit For
+                            End If
+                            line_counter += 1
+                        Next
+                    Else
+                        boolean_result = False
                     End If
 
                 Case "等待"
@@ -1354,6 +1382,7 @@ Public Class Form1
             'Debug.WriteLine(group_name_classes.ElementAt(i))
             Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
             Groups_ListView.Items(i).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href"))
+            'FB_Groups_CheckedListBox
         Next
     End Sub
 
@@ -1824,4 +1853,46 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Save_Group_List_In_Profile_Button_Click(sender As Object, e As EventArgs) Handles Save_Group_List_In_Profile_Button.Click
+        FormComponentController.Save_Groups_List_In_Profile()
+    End Sub
+
+    Private Sub Insert_GroupList_RandomGroup_Navigate_ToURL_btn_Click(sender As Object, e As EventArgs) Handles Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Click
+        Dim Profile = ""
+
+        For Each itemSeleted In Profile_CheckedListBox.SelectedItems
+            'Debug.WriteLine(itemSeleted)
+            Profile = itemSeleted
+        Next
+
+        If Profile = "" Then
+            MsgBox("未選擇任何Profile")
+            Exit Sub
+        End If
+        Insert_to_script("前往社團", Profile + ";全部隨機")
+    End Sub
+
+    Private Sub Reveal_GroupListFile_In_FileExplorer_Click(sender As Object, e As EventArgs) Handles Reveal_GroupListFile_In_FileExplorer.Click
+        Dim Profile = ""
+
+        For Each itemSeleted In Profile_CheckedListBox.SelectedItems
+            'Debug.WriteLine(itemSeleted)
+            Profile = itemSeleted
+        Next
+
+        If Profile = "" Then
+            MsgBox("未選擇任何Profile")
+            Exit Sub
+        End If
+
+        Dim grouplist_file_path = FormInit.profile_path + Profile + "\GroupList.txt"
+        Debug.WriteLine(grouplist_file_path)
+        If System.IO.File.Exists(grouplist_file_path) Then
+            Process.Start("explorer.exe", grouplist_file_path)
+        Else
+            MsgBox("社團列表不存在")
+        End If
+
+
+    End Sub
 End Class

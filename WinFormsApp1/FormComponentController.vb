@@ -248,19 +248,61 @@ Module FormComponentController
 
     End Sub
 
+
+    Public Sub Save_Groups_List_In_Profile()
+        Dim Profile_Path = ""
+
+        For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
+            'Debug.WriteLine(itemSeleted)
+            Profile_Path = FormInit.profile_path + itemSeleted
+        Next
+
+        'Debug.WriteLine(Profile_Path)
+        If Profile_Path = "" Then
+            MsgBox("未選擇任何Profile")
+            Exit Sub
+        End If
+
+        'Debug.WriteLine(jsonString)
+        Try
+
+            Dim myfile As System.IO.StreamWriter
+            myfile = My.Computer.FileSystem.OpenTextFileWriter(Profile_Path + "\GroupList.txt", False) 'True : append   'False : overwrite
+
+            For Each groupItem As ListViewItem In Form1.Groups_ListView.Items
+
+                Dim LVRow As String = ""
+                For Each LVCell As ListViewItem.ListViewSubItem In groupItem.SubItems
+
+                    LVRow &= LVCell.Text & "&nbsp"
+                Next
+                myfile.WriteLine(LVRow)
+            Next
+
+            myfile.Close()
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("儲存失敗，路徑錯誤或者其他錯誤")
+        End Try
+
+        MsgBox("已儲存到 : " + Profile_Path + "\GroupList.txt")
+
+    End Sub
+
     Public Sub Profile_CheckedListBox_SelectedIndexChanged()
 
-        Dim myfile = ""
+        Dim myprofile = ""
         For Each itemSelected In Form1.Profile_CheckedListBox.SelectedItems
-            Debug.WriteLine(itemSelected)
-            myfile = "profiles\" + itemSelected + "\ProfileInfo.txt"
+            'Debug.WriteLine(itemSelected)
+            myprofile = "profiles\" + itemSelected
             Form1.Profile_TextBox.Text = FormInit.profile_path + itemSelected.Split("\")(0)
             Form1.Profile_Name_ComboBox.Text = itemSelected.Split("\")(1)
         Next
 
-        Debug.WriteLine("myfile " + myfile)
-        If My.Computer.FileSystem.FileExists(myfile) Then
-            Dim JsonString As String = System.IO.File.ReadAllText(myfile)
+        'Debug.WriteLine("myfile " + myprofile)
+        If My.Computer.FileSystem.FileExists(myprofile + "\ProfileInfo.txt") Then
+            Dim JsonString As String = System.IO.File.ReadAllText(myprofile + "\ProfileInfo.txt")
             Dim Profile_JsonObject As Newtonsoft.Json.Linq.JObject
             Profile_JsonObject = JsonConvert.DeserializeObject(JsonString)
 
@@ -274,6 +316,31 @@ Module FormComponentController
             Form1.Lang_Packs_ComboBox.SelectedIndex = -1
             Form1.Remark_TextBox.Text = ""
         End If
+
+
+        'Render Facebook Group List
+        Form1.Groups_ListView.Items.Clear()
+        'Debug.WriteLine(myprofile + "\GroupList.csv")
+        If My.Computer.FileSystem.FileExists(myprofile + "\GroupList.txt") Then
+            Dim reader As StreamReader = My.Computer.FileSystem.OpenTextFileReader(myprofile + "\GroupList.txt")
+            Dim line As String
+            Dim i = 0
+            Do
+                line = reader.ReadLine
+                If line = "" Then
+                    Continue Do
+                End If
+                'Debug.WriteLine(line)
+                Dim myItem = line.Split("&nbsp")
+                Form1.Groups_ListView.Items.Add(myItem(0), 100)
+                Form1.Groups_ListView.Items(i).SubItems.Add(myItem(1))
+                i += 1
+            Loop Until line Is Nothing
+
+            reader.Close()
+
+        End If
+
     End Sub
 
     Public Sub Text_File_CheckedListBox_Click()

@@ -144,6 +144,8 @@ Partial Class Form1
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Insert_Click_reply_Bottom_Btn = New System.Windows.Forms.Button()
+        Me.Insert_Click_reply_Top_Btn = New System.Windows.Forms.Button()
         Me.Deselect_All_Image_Folder_btn = New System.Windows.Forms.Button()
         Me.DeselectAll_Folder_with_TextFile_textbox_btn = New System.Windows.Forms.Button()
         Me.Select_All_Folder_with_Image_textbox_btn = New System.Windows.Forms.Button()
@@ -256,6 +258,8 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn = New System.Windows.Forms.Button()
+        Me.Save_Group_List_In_Profile_Button = New System.Windows.Forms.Button()
         Me.GroupList_Replaced_String_ComboBox = New System.Windows.Forms.ComboBox()
         Me.GroupList_Target_String_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Insert_GroupList_Navigate_ToURL_btn = New System.Windows.Forms.Button()
@@ -322,8 +326,7 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Insert_Click_reply_Top_Btn = New System.Windows.Forms.Button()
-        Me.Insert_Click_reply_Bottom_Btn = New System.Windows.Forms.Button()
+        Me.Reveal_GroupListFile_In_FileExplorer = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1610,6 +1613,24 @@ Partial Class Form1
         Me.TabPage3.Text = "發文發圖"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'Insert_Click_reply_Bottom_Btn
+        '
+        Me.Insert_Click_reply_Bottom_Btn.Location = New System.Drawing.Point(838, 363)
+        Me.Insert_Click_reply_Bottom_Btn.Name = "Insert_Click_reply_Bottom_Btn"
+        Me.Insert_Click_reply_Bottom_Btn.Size = New System.Drawing.Size(70, 29)
+        Me.Insert_Click_reply_Bottom_Btn.TabIndex = 125
+        Me.Insert_Click_reply_Bottom_Btn.Text = "回覆下"
+        Me.Insert_Click_reply_Bottom_Btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Click_reply_Top_Btn
+        '
+        Me.Insert_Click_reply_Top_Btn.Location = New System.Drawing.Point(764, 363)
+        Me.Insert_Click_reply_Top_Btn.Name = "Insert_Click_reply_Top_Btn"
+        Me.Insert_Click_reply_Top_Btn.Size = New System.Drawing.Size(70, 29)
+        Me.Insert_Click_reply_Top_Btn.TabIndex = 124
+        Me.Insert_Click_reply_Top_Btn.Text = "回覆上"
+        Me.Insert_Click_reply_Top_Btn.UseVisualStyleBackColor = True
+        '
         'Deselect_All_Image_Folder_btn
         '
         Me.Deselect_All_Image_Folder_btn.Location = New System.Drawing.Point(302, 468)
@@ -2659,6 +2680,9 @@ Partial Class Form1
         '
         'GroupList
         '
+        Me.GroupList.Controls.Add(Me.Reveal_GroupListFile_In_FileExplorer)
+        Me.GroupList.Controls.Add(Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn)
+        Me.GroupList.Controls.Add(Me.Save_Group_List_In_Profile_Button)
         Me.GroupList.Controls.Add(Me.GroupList_Replaced_String_ComboBox)
         Me.GroupList.Controls.Add(Me.GroupList_Target_String_ComboBox)
         Me.GroupList.Controls.Add(Me.Insert_GroupList_Navigate_ToURL_btn)
@@ -2677,27 +2701,45 @@ Partial Class Form1
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
         '
+        'Insert_GroupList_RandomGroup_Navigate_ToURL_btn
+        '
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Location = New System.Drawing.Point(802, 101)
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Name = "Insert_GroupList_RandomGroup_Navigate_ToURL_btn"
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.TabIndex = 15
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Text = "隨機 - 插入"
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.UseVisualStyleBackColor = True
+        '
+        'Save_Group_List_In_Profile_Button
+        '
+        Me.Save_Group_List_In_Profile_Button.Location = New System.Drawing.Point(248, 9)
+        Me.Save_Group_List_In_Profile_Button.Name = "Save_Group_List_In_Profile_Button"
+        Me.Save_Group_List_In_Profile_Button.Size = New System.Drawing.Size(87, 29)
+        Me.Save_Group_List_In_Profile_Button.TabIndex = 14
+        Me.Save_Group_List_In_Profile_Button.Text = "儲存列表"
+        Me.Save_Group_List_In_Profile_Button.UseVisualStyleBackColor = True
+        '
         'GroupList_Replaced_String_ComboBox
         '
         Me.GroupList_Replaced_String_ComboBox.FormattingEnabled = True
         Me.GroupList_Replaced_String_ComboBox.Items.AddRange(New Object() {"www.facebook.com"})
-        Me.GroupList_Replaced_String_ComboBox.Location = New System.Drawing.Point(635, 7)
+        Me.GroupList_Replaced_String_ComboBox.Location = New System.Drawing.Point(719, 11)
         Me.GroupList_Replaced_String_ComboBox.Name = "GroupList_Replaced_String_ComboBox"
-        Me.GroupList_Replaced_String_ComboBox.Size = New System.Drawing.Size(261, 27)
+        Me.GroupList_Replaced_String_ComboBox.Size = New System.Drawing.Size(175, 27)
         Me.GroupList_Replaced_String_ComboBox.TabIndex = 13
         '
         'GroupList_Target_String_ComboBox
         '
         Me.GroupList_Target_String_ComboBox.FormattingEnabled = True
         Me.GroupList_Target_String_ComboBox.Items.AddRange(New Object() {"m.facebook.com"})
-        Me.GroupList_Target_String_ComboBox.Location = New System.Drawing.Point(278, 9)
+        Me.GroupList_Target_String_ComboBox.Location = New System.Drawing.Point(441, 11)
         Me.GroupList_Target_String_ComboBox.Name = "GroupList_Target_String_ComboBox"
-        Me.GroupList_Target_String_ComboBox.Size = New System.Drawing.Size(251, 27)
+        Me.GroupList_Target_String_ComboBox.Size = New System.Drawing.Size(172, 27)
         Me.GroupList_Target_String_ComboBox.TabIndex = 12
         '
         'Insert_GroupList_Navigate_ToURL_btn
         '
-        Me.Insert_GroupList_Navigate_ToURL_btn.Location = New System.Drawing.Point(802, 50)
+        Me.Insert_GroupList_Navigate_ToURL_btn.Location = New System.Drawing.Point(802, 53)
         Me.Insert_GroupList_Navigate_ToURL_btn.Name = "Insert_GroupList_Navigate_ToURL_btn"
         Me.Insert_GroupList_Navigate_ToURL_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_GroupList_Navigate_ToURL_btn.TabIndex = 11
@@ -2706,22 +2748,22 @@ Partial Class Form1
         '
         'GroupList_GroupURL_Textbox
         '
-        Me.GroupList_GroupURL_Textbox.Location = New System.Drawing.Point(463, 52)
+        Me.GroupList_GroupURL_Textbox.Location = New System.Drawing.Point(441, 55)
         Me.GroupList_GroupURL_Textbox.Name = "GroupList_GroupURL_Textbox"
-        Me.GroupList_GroupURL_Textbox.Size = New System.Drawing.Size(333, 27)
+        Me.GroupList_GroupURL_Textbox.Size = New System.Drawing.Size(355, 27)
         Me.GroupList_GroupURL_Textbox.TabIndex = 10
         '
         'GroupList_GroupName_Textbox
         '
-        Me.GroupList_GroupName_Textbox.Location = New System.Drawing.Point(106, 52)
+        Me.GroupList_GroupName_Textbox.Location = New System.Drawing.Point(107, 55)
         Me.GroupList_GroupName_Textbox.Name = "GroupList_GroupName_Textbox"
-        Me.GroupList_GroupName_Textbox.Size = New System.Drawing.Size(295, 27)
+        Me.GroupList_GroupName_Textbox.Size = New System.Drawing.Size(272, 27)
         Me.GroupList_GroupName_Textbox.TabIndex = 9
         '
         'Label46
         '
         Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(407, 55)
+        Me.Label46.Location = New System.Drawing.Point(385, 58)
         Me.Label46.Name = "Label46"
         Me.Label46.Size = New System.Drawing.Size(50, 19)
         Me.Label46.TabIndex = 8
@@ -2730,7 +2772,7 @@ Partial Class Form1
         'Label45
         '
         Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(20, 55)
+        Me.Label45.Location = New System.Drawing.Point(20, 58)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(80, 19)
         Me.Label45.TabIndex = 7
@@ -2738,7 +2780,7 @@ Partial Class Form1
         '
         'GroupList_Replace_String_Btn
         '
-        Me.GroupList_Replace_String_Btn.Location = New System.Drawing.Point(535, 7)
+        Me.GroupList_Replace_String_Btn.Location = New System.Drawing.Point(619, 9)
         Me.GroupList_Replace_String_Btn.Name = "GroupList_Replace_String_Btn"
         Me.GroupList_Replace_String_Btn.Size = New System.Drawing.Size(94, 29)
         Me.GroupList_Replace_String_Btn.TabIndex = 5
@@ -2747,15 +2789,15 @@ Partial Class Form1
         '
         'Groups_ListView
         '
-        Me.Groups_ListView.Location = New System.Drawing.Point(20, 91)
+        Me.Groups_ListView.Location = New System.Drawing.Point(20, 136)
         Me.Groups_ListView.Name = "Groups_ListView"
-        Me.Groups_ListView.Size = New System.Drawing.Size(876, 711)
+        Me.Groups_ListView.Size = New System.Drawing.Size(876, 666)
         Me.Groups_ListView.TabIndex = 3
         Me.Groups_ListView.UseCompatibleStateImageBehavior = False
         '
         'Get_mGroups_List_btn
         '
-        Me.Get_mGroups_List_btn.Location = New System.Drawing.Point(149, 9)
+        Me.Get_mGroups_List_btn.Location = New System.Drawing.Point(119, 9)
         Me.Get_mGroups_List_btn.Name = "Get_mGroups_List_btn"
         Me.Get_mGroups_List_btn.Size = New System.Drawing.Size(123, 29)
         Me.Get_mGroups_List_btn.TabIndex = 2
@@ -2766,7 +2808,7 @@ Partial Class Form1
         '
         Me.Get_Groups_List_btn.Location = New System.Drawing.Point(20, 9)
         Me.Get_Groups_List_btn.Name = "Get_Groups_List_btn"
-        Me.Get_Groups_List_btn.Size = New System.Drawing.Size(123, 29)
+        Me.Get_Groups_List_btn.Size = New System.Drawing.Size(93, 29)
         Me.Get_Groups_List_btn.TabIndex = 1
         Me.Get_Groups_List_btn.Text = "取社團列表"
         Me.Get_Groups_List_btn.UseVisualStyleBackColor = True
@@ -3282,23 +3324,14 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Insert_Click_reply_Top_Btn
+        'Reveal_GroupListFile_In_FileExplorer
         '
-        Me.Insert_Click_reply_Top_Btn.Location = New System.Drawing.Point(764, 363)
-        Me.Insert_Click_reply_Top_Btn.Name = "Insert_Click_reply_Top_Btn"
-        Me.Insert_Click_reply_Top_Btn.Size = New System.Drawing.Size(70, 29)
-        Me.Insert_Click_reply_Top_Btn.TabIndex = 124
-        Me.Insert_Click_reply_Top_Btn.Text = "回覆上"
-        Me.Insert_Click_reply_Top_Btn.UseVisualStyleBackColor = True
-        '
-        'Insert_Click_reply_Bottom_Btn
-        '
-        Me.Insert_Click_reply_Bottom_Btn.Location = New System.Drawing.Point(838, 363)
-        Me.Insert_Click_reply_Bottom_Btn.Name = "Insert_Click_reply_Bottom_Btn"
-        Me.Insert_Click_reply_Bottom_Btn.Size = New System.Drawing.Size(70, 29)
-        Me.Insert_Click_reply_Bottom_Btn.TabIndex = 125
-        Me.Insert_Click_reply_Bottom_Btn.Text = "回覆下"
-        Me.Insert_Click_reply_Bottom_Btn.UseVisualStyleBackColor = True
+        Me.Reveal_GroupListFile_In_FileExplorer.Location = New System.Drawing.Point(341, 9)
+        Me.Reveal_GroupListFile_In_FileExplorer.Name = "Reveal_GroupListFile_In_FileExplorer"
+        Me.Reveal_GroupListFile_In_FileExplorer.Size = New System.Drawing.Size(94, 29)
+        Me.Reveal_GroupListFile_In_FileExplorer.TabIndex = 16
+        Me.Reveal_GroupListFile_In_FileExplorer.Text = "打開檔案"
+        Me.Reveal_GroupListFile_In_FileExplorer.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -3667,4 +3700,7 @@ Partial Class Form1
     Friend WithEvents SelectAll_Folder_with_TextFile_textbox_btn As Button
     Friend WithEvents Insert_Click_reply_Bottom_Btn As Button
     Friend WithEvents Insert_Click_reply_Top_Btn As Button
+    Friend WithEvents Insert_GroupList_RandomGroup_Navigate_ToURL_btn As Button
+    Friend WithEvents Save_Group_List_In_Profile_Button As Button
+    Friend WithEvents Reveal_GroupListFile_In_FileExplorer As Button
 End Class
