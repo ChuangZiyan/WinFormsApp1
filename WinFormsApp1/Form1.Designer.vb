@@ -258,6 +258,10 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.Delete_All_Facebook_GroupList_Btn = New System.Windows.Forms.Button()
+        Me.Remove_Selected_Group_Btn = New System.Windows.Forms.Button()
+        Me.Refresh_GroupList_Btn = New System.Windows.Forms.Button()
+        Me.Reveal_GroupListFile_In_FileExplorer = New System.Windows.Forms.Button()
         Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn = New System.Windows.Forms.Button()
         Me.Save_Group_List_In_Profile_Button = New System.Windows.Forms.Button()
         Me.GroupList_Replaced_String_ComboBox = New System.Windows.Forms.ComboBox()
@@ -326,7 +330,6 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Reveal_GroupListFile_In_FileExplorer = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2680,6 +2683,9 @@ Partial Class Form1
         '
         'GroupList
         '
+        Me.GroupList.Controls.Add(Me.Delete_All_Facebook_GroupList_Btn)
+        Me.GroupList.Controls.Add(Me.Remove_Selected_Group_Btn)
+        Me.GroupList.Controls.Add(Me.Refresh_GroupList_Btn)
         Me.GroupList.Controls.Add(Me.Reveal_GroupListFile_In_FileExplorer)
         Me.GroupList.Controls.Add(Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn)
         Me.GroupList.Controls.Add(Me.Save_Group_List_In_Profile_Button)
@@ -2700,6 +2706,42 @@ Partial Class Form1
         Me.GroupList.TabIndex = 4
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
+        '
+        'Delete_All_Facebook_GroupList_Btn
+        '
+        Me.Delete_All_Facebook_GroupList_Btn.Location = New System.Drawing.Point(219, 101)
+        Me.Delete_All_Facebook_GroupList_Btn.Name = "Delete_All_Facebook_GroupList_Btn"
+        Me.Delete_All_Facebook_GroupList_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Delete_All_Facebook_GroupList_Btn.TabIndex = 19
+        Me.Delete_All_Facebook_GroupList_Btn.Text = "刪除全部"
+        Me.Delete_All_Facebook_GroupList_Btn.UseVisualStyleBackColor = True
+        '
+        'Remove_Selected_Group_Btn
+        '
+        Me.Remove_Selected_Group_Btn.Location = New System.Drawing.Point(119, 101)
+        Me.Remove_Selected_Group_Btn.Name = "Remove_Selected_Group_Btn"
+        Me.Remove_Selected_Group_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Remove_Selected_Group_Btn.TabIndex = 18
+        Me.Remove_Selected_Group_Btn.Text = "刪除所選"
+        Me.Remove_Selected_Group_Btn.UseVisualStyleBackColor = True
+        '
+        'Refresh_GroupList_Btn
+        '
+        Me.Refresh_GroupList_Btn.Location = New System.Drawing.Point(20, 101)
+        Me.Refresh_GroupList_Btn.Name = "Refresh_GroupList_Btn"
+        Me.Refresh_GroupList_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Refresh_GroupList_Btn.TabIndex = 17
+        Me.Refresh_GroupList_Btn.Text = "重新整理"
+        Me.Refresh_GroupList_Btn.UseVisualStyleBackColor = True
+        '
+        'Reveal_GroupListFile_In_FileExplorer
+        '
+        Me.Reveal_GroupListFile_In_FileExplorer.Location = New System.Drawing.Point(341, 9)
+        Me.Reveal_GroupListFile_In_FileExplorer.Name = "Reveal_GroupListFile_In_FileExplorer"
+        Me.Reveal_GroupListFile_In_FileExplorer.Size = New System.Drawing.Size(94, 29)
+        Me.Reveal_GroupListFile_In_FileExplorer.TabIndex = 16
+        Me.Reveal_GroupListFile_In_FileExplorer.Text = "打開檔案"
+        Me.Reveal_GroupListFile_In_FileExplorer.UseVisualStyleBackColor = True
         '
         'Insert_GroupList_RandomGroup_Navigate_ToURL_btn
         '
@@ -3324,15 +3366,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Reveal_GroupListFile_In_FileExplorer
-        '
-        Me.Reveal_GroupListFile_In_FileExplorer.Location = New System.Drawing.Point(341, 9)
-        Me.Reveal_GroupListFile_In_FileExplorer.Name = "Reveal_GroupListFile_In_FileExplorer"
-        Me.Reveal_GroupListFile_In_FileExplorer.Size = New System.Drawing.Size(94, 29)
-        Me.Reveal_GroupListFile_In_FileExplorer.TabIndex = 16
-        Me.Reveal_GroupListFile_In_FileExplorer.Text = "打開檔案"
-        Me.Reveal_GroupListFile_In_FileExplorer.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3703,4 +3736,7 @@ Partial Class Form1
     Friend WithEvents Insert_GroupList_RandomGroup_Navigate_ToURL_btn As Button
     Friend WithEvents Save_Group_List_In_Profile_Button As Button
     Friend WithEvents Reveal_GroupListFile_In_FileExplorer As Button
+    Friend WithEvents Refresh_GroupList_Btn As Button
+    Friend WithEvents Remove_Selected_Group_Btn As Button
+    Friend WithEvents Delete_All_Facebook_GroupList_Btn As Button
 End Class

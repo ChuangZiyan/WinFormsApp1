@@ -249,7 +249,7 @@ Module FormComponentController
     End Sub
 
 
-    Public Sub Save_Groups_List_In_Profile()
+    Public Sub Save_Groups_List_In_Profile(messagebox)
         Dim Profile_Path = ""
 
         For Each itemSeleted In Form1.Profile_CheckedListBox.SelectedItems
@@ -286,7 +286,10 @@ Module FormComponentController
             MsgBox("儲存失敗，路徑錯誤或者其他錯誤")
         End Try
 
-        MsgBox("已儲存到 : " + Profile_Path + "\GroupList.txt")
+        If messagebox Then
+            MsgBox("已儲存到 : " + Profile_Path + "\GroupList.txt")
+        End If
+
 
     End Sub
 

@@ -489,21 +489,20 @@ Public Class MyWebDriver
 
     Public Function Tring_to_upload_img(img_path_str) As Boolean
 
-        'Dim ele1 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_1").ToString)
-        'Dim ele2 = IsElementPresent(css_selector_config_obj.Item("group_post_img_input_2").ToString)
-
-        click_by_aria_label(langConverter.Item("Photo_Video"))
-
-        Dim upload_img_input As Object
-
         Try
-            upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
-            upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+            Dim upload_img_input As Object
+            If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
+                upload_img_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input"))
+                upload_img_input.SendKeys(img_path_str)
+            Else
+                click_by_aria_label(langConverter.Item("Photo_Video"))
+                upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
+                upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+            End If
             Return True
         Catch ex As Exception
             Return False
         End Try
-
 
     End Function
 

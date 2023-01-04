@@ -1854,7 +1854,7 @@ Public Class Form1
     End Sub
 
     Private Sub Save_Group_List_In_Profile_Button_Click(sender As Object, e As EventArgs) Handles Save_Group_List_In_Profile_Button.Click
-        FormComponentController.Save_Groups_List_In_Profile()
+        FormComponentController.Save_Groups_List_In_Profile(True)
     End Sub
 
     Private Sub Insert_GroupList_RandomGroup_Navigate_ToURL_btn_Click(sender As Object, e As EventArgs) Handles Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Click
@@ -1893,6 +1893,48 @@ Public Class Form1
             MsgBox("社團列表不存在")
         End If
 
+
+    End Sub
+
+    Private Sub Refresh_GroupList_Btn_Click(sender As Object, e As EventArgs) Handles Refresh_GroupList_Btn.Click
+        FormComponentController.Profile_CheckedListBox_SelectedIndexChanged()
+    End Sub
+
+    Private Sub Remove_Selected_Group_Btn_Click(sender As Object, e As EventArgs) Handles Remove_Selected_Group_Btn.Click
+        For i As Integer = Groups_ListView.SelectedIndices.Count - 1 To 0 Step -1
+            Groups_ListView.Items.RemoveAt(Groups_ListView.SelectedIndices(i))
+        Next
+        Save_Groups_List_In_Profile(False)
+    End Sub
+
+    Private Sub Delete_All_Facebook_GroupList_Btn_Click(sender As Object, e As EventArgs) Handles Delete_All_Facebook_GroupList_Btn.Click
+
+
+        Dim Profile = ""
+
+        For Each itemSeleted In Profile_CheckedListBox.SelectedItems
+            'Debug.WriteLine(itemSeleted)
+            Profile = itemSeleted
+        Next
+
+        If Profile = "" Then
+            MsgBox("未選擇任何Profile")
+            Exit Sub
+        End If
+
+        Dim grouplist_file_path = FormInit.profile_path + Profile + "\GroupList.txt"
+        'Debug.WriteLine(grouplist_file_path)
+        If System.IO.File.Exists(grouplist_file_path) Then
+
+            Dim result As DialogResult = MessageBox.Show("確定要刪除此社團列表?", "確認訊息", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                My.Computer.FileSystem.DeleteFile(grouplist_file_path)
+                Groups_ListView.Items.Clear()
+            End If
+
+        Else
+            MsgBox("社團列表不存在")
+        End If
 
     End Sub
 End Class
