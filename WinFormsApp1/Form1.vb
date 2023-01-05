@@ -128,6 +128,7 @@ Public Class Form1
     End Sub
 
 
+
     '# Main routing struct #'
     Private Async Function Run_script(i As Integer) As Task
         'Debug.WriteLine(logging.Get_NewLogFile_dir())
@@ -151,7 +152,7 @@ Public Class Form1
             If Pause_Script = True Then ' Pause script
                 While True
                     Await Delay_msec(1000)
-                    Debug.WriteLine("Pause_Script : " & Pause_Script)
+                    'Debug.WriteLine("Pause_Script : " & Pause_Script)
                     If Pause_Script = False Then
                         Debug.WriteLine("Go ")
                         Exit While
@@ -218,7 +219,7 @@ Public Class Form1
                     If i = 1 Then
                         Profile_Queue = content.Split(";")
                     End If
-                    Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
+                    'Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
 
                     'boolean_result = True
 
@@ -240,6 +241,43 @@ Public Class Form1
                         profile_index += 1
                     End If
 
+                Case "開啟:資料夾佇列"
+
+                    loop_run = True
+                    If i = 1 Then
+                        Dim ProfileArrayList As ArrayList = New ArrayList()
+                        Dim dirs() As String = IO.Directory.GetDirectories(FormInit.profile_path + "available")
+                        For Each dir As String In dirs
+                            ProfileArrayList.Add(dir)
+                        Next
+                        'ProfileArrayList.CopyTo(Profile_Queue)
+                        Profile_Queue = DirectCast(ProfileArrayList.ToArray(GetType(String)), String())
+
+                        If content = "隨機" Then
+                            FormComponentController.RandomizeArray(Profile_Queue)
+                        End If
+
+                    End If
+
+                    'Debug.WriteLine("Profile= : " + Profile_Queue(profile_index))
+
+                    used_chrome_profile = Profile_Queue(profile_index).Split("\")(UBound(Profile_Queue(profile_index).Split("\")))
+                    item.SubItems.Item(3).Text = used_chrome_profile
+                    boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, Profile_Queue(profile_index))
+
+                    'Debug.WriteLine("ProfleQ: " & Profile_Queue.Count)
+
+                    If Profile_Queue.Count - 1 = profile_index Then
+
+                        If CheckBox_loop_run.Checked = False Then
+                            profile_index = 0
+                            loop_run = False
+                        Else
+                            profile_index = 0
+                        End If
+                    Else
+                        profile_index += 1
+                    End If
 
                 Case "關閉"
                     boolean_result = Quit_chromedriver()
@@ -287,8 +325,8 @@ Public Class Form1
 
                             If line_counter = rnd Then
                                 Dim myGroupURL = line.Split("&nbsp")(1)
-                                Debug.WriteLine("GOTO " + line)
-                                If Navigate_GoToUrl(myGroupURL) Then
+                                'Debug.WriteLine("GOTO " + line)
+                                If Await myWebDriver.Navigate_GoToUrl_Task(myGroupURL) Then
                                     boolean_result = True
                                 Else
                                     boolean_result = False
@@ -1936,5 +1974,15 @@ Public Class Form1
             MsgBox("社團列表不存在")
         End If
 
+    End Sub
+
+    Private Sub Insert_Available_Queue_To_script_Click(sender As Object, e As EventArgs) Handles Insert_Available_Queue_To_script.Click
+        myWebDriver.used_browser = "Chrome"
+        Insert_to_script("開啟:資料夾佇列", "依序")
+    End Sub
+
+    Private Sub Insert_Available_RndQueue_To_script_Click(sender As Object, e As EventArgs) Handles Insert_Available_RndQueue_To_script.Click
+        myWebDriver.used_browser = "Chrome"
+        Insert_to_script("開啟:資料夾佇列", "隨機")
     End Sub
 End Class

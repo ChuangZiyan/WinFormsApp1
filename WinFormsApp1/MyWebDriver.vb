@@ -54,6 +54,7 @@ Public Class MyWebDriver
 
     Public Function Open_Browser(browser As String, devicetype As String, profile As String)
         'Debug.WriteLine("profile : " + profile)
+        'Debug.WriteLine("browser : " + browser)
 
         If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
             Dim JsonString As String = System.IO.File.ReadAllText(profile + "\ProfileInfo.txt")
@@ -80,7 +81,7 @@ Public Class MyWebDriver
                 langConverter = JsonConvert.DeserializeObject(System.IO.File.ReadAllText("langpacks\en-US.json"))
         End Select
 
-        Debug.WriteLine(langConverter.Item("Create_Post"))
+        'Debug.WriteLine(langConverter.Item("Create_Post"))
 
         If browser = "Chrome" Then
             Try

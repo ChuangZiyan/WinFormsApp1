@@ -829,6 +829,17 @@ Module FormComponentController
 
     End Sub
 
-
+    Public Sub RandomizeArray(ByVal items() As String)
+        Dim max_index As Integer = items.Length - 1
+        Dim rnd As New Random
+        For i As Integer = 0 To max_index - 1
+            ' Pick an item for position i.
+            Dim j As Integer = rnd.Next(i, max_index + 1)
+            ' Swap them.
+            Dim temp As String = items(i)
+            items(i) = items(j)
+            items(j) = temp
+        Next i
+    End Sub
 
 End Module

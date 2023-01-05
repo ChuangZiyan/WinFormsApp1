@@ -72,6 +72,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Insert_Available_Queue_To_script = New System.Windows.Forms.Button()
         Me.Label68 = New System.Windows.Forms.Label()
         Me.Filter_Useless_Profile_CheckBox = New System.Windows.Forms.CheckBox()
         Me.Filter_Available_Profile_CheckBox = New System.Windows.Forms.CheckBox()
@@ -330,6 +331,7 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Insert_Available_RndQueue_To_script = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -841,6 +843,8 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Insert_Available_RndQueue_To_script)
+        Me.TabPage5.Controls.Add(Me.Insert_Available_Queue_To_script)
         Me.TabPage5.Controls.Add(Me.Label68)
         Me.TabPage5.Controls.Add(Me.Filter_Useless_Profile_CheckBox)
         Me.TabPage5.Controls.Add(Me.Filter_Available_Profile_CheckBox)
@@ -921,6 +925,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Insert_Available_Queue_To_script
+        '
+        Me.Insert_Available_Queue_To_script.Location = New System.Drawing.Point(608, 649)
+        Me.Insert_Available_Queue_To_script.Name = "Insert_Available_Queue_To_script"
+        Me.Insert_Available_Queue_To_script.Size = New System.Drawing.Size(138, 29)
+        Me.Insert_Available_Queue_To_script.TabIndex = 152
+        Me.Insert_Available_Queue_To_script.Text = "資料夾佇列 - 插入"
+        Me.Insert_Available_Queue_To_script.UseVisualStyleBackColor = True
         '
         'Label68
         '
@@ -3366,6 +3379,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Insert_Available_RndQueue_To_script
+        '
+        Me.Insert_Available_RndQueue_To_script.Location = New System.Drawing.Point(608, 684)
+        Me.Insert_Available_RndQueue_To_script.Name = "Insert_Available_RndQueue_To_script"
+        Me.Insert_Available_RndQueue_To_script.Size = New System.Drawing.Size(138, 29)
+        Me.Insert_Available_RndQueue_To_script.TabIndex = 153
+        Me.Insert_Available_RndQueue_To_script.Text = "資料夾隨機佇列 - 插入"
+        Me.Insert_Available_RndQueue_To_script.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3739,4 +3761,6 @@ Partial Class Form1
     Friend WithEvents Refresh_GroupList_Btn As Button
     Friend WithEvents Remove_Selected_Group_Btn As Button
     Friend WithEvents Delete_All_Facebook_GroupList_Btn As Button
+    Friend WithEvents Insert_Available_Queue_To_script As Button
+    Friend WithEvents Insert_Available_RndQueue_To_script As Button
 End Class
