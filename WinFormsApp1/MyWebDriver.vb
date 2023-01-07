@@ -19,6 +19,10 @@ Imports System.Text.RegularExpressions
 Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
+Imports System.Reflection.Metadata
+Imports System.Collections.Specialized
+Imports System.Runtime.Intrinsics
+
 Public Class MyWebDriver
     Public chromeDriver As IWebDriver
     Public act As Actions
@@ -204,6 +208,18 @@ Public Class MyWebDriver
 
     End Sub
 
+
+    Public Function Click_By_Text_Task(type, text)
+
+        If type = "aria_label" Then
+            Return Task.Run(Function() click_by_aria_label(text))
+        ElseIf type = "span-text" Then
+            Return Task.Run(Function() click_by_span_text(text))
+        End If
+
+        Return False
+    End Function
+
     Public Function click_by_aria_label(str As String) As Boolean
         Try
             chromeDriver.FindElement(By.CssSelector("div[aria-label$='" + str + "']")).Click()
@@ -216,6 +232,22 @@ Public Class MyWebDriver
             Return False
         End Try
     End Function
+
+
+    Public Function click_by_span_text(str As String) As Boolean
+
+        Try
+            chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
+            'Write_log("Click: " + str)
+            Return True
+        Catch ex As Exception
+            'Write_err_log("Click: " + str)
+            IsInternetConnected()
+            'Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
 
     Public Function Click_element_by_feature_Task(parm)
         Return Task.Run(Function() Click_element_by_feature(parm))
@@ -238,19 +270,6 @@ Public Class MyWebDriver
         Return False
     End Function
 
-    Public Function click_by_span_text(str As String) As Boolean
-
-        Try
-            chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + str + "')]")).Click()
-            'Write_log("Click: " + str)
-            Return True
-        Catch ex As Exception
-            'Write_err_log("Click: " + str)
-            IsInternetConnected()
-            'Debug.WriteLine(ex)
-            Return False
-        End Try
-    End Function
 
     Function IsElementPresentByCssSelector(locatorKey As String) As Boolean
 
@@ -306,7 +325,7 @@ Public Class MyWebDriver
             Return False
         End Try
 
-        ' old code keep until stable
+        'old code keep until stable
         'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
 
         Try
@@ -489,7 +508,6 @@ Public Class MyWebDriver
     End Function
 
     Public Function Tring_to_upload_img(img_path_str) As Boolean
-
         Try
             Dim upload_img_input As Object
             If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then

@@ -72,6 +72,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Insert_Available_RndQueue_To_script = New System.Windows.Forms.Button()
         Me.Insert_Available_Queue_To_script = New System.Windows.Forms.Button()
         Me.Label68 = New System.Windows.Forms.Label()
         Me.Filter_Useless_Profile_CheckBox = New System.Windows.Forms.CheckBox()
@@ -331,7 +332,11 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Insert_Available_RndQueue_To_script = New System.Windows.Forms.Button()
+        Me.Label69 = New System.Windows.Forms.Label()
+        Me.TextElementType_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Insert_Click_by_Text_Btn = New System.Windows.Forms.Button()
+        Me.TargetClickText_TextBox = New System.Windows.Forms.TextBox()
+        Me.Label71 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -925,6 +930,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Insert_Available_RndQueue_To_script
+        '
+        Me.Insert_Available_RndQueue_To_script.Location = New System.Drawing.Point(608, 684)
+        Me.Insert_Available_RndQueue_To_script.Name = "Insert_Available_RndQueue_To_script"
+        Me.Insert_Available_RndQueue_To_script.Size = New System.Drawing.Size(138, 29)
+        Me.Insert_Available_RndQueue_To_script.TabIndex = 153
+        Me.Insert_Available_RndQueue_To_script.Text = "資料夾隨機佇列 - 插入"
+        Me.Insert_Available_RndQueue_To_script.UseVisualStyleBackColor = True
         '
         'Insert_Available_Queue_To_script
         '
@@ -2157,9 +2171,9 @@ Partial Class Form1
         Me.GroupBox5.Controls.Add(Me.Label59)
         Me.GroupBox5.Controls.Add(Me.Cursor_X_Position_TextBox)
         Me.GroupBox5.Controls.Add(Me.Label58)
-        Me.GroupBox5.Location = New System.Drawing.Point(15, 382)
+        Me.GroupBox5.Location = New System.Drawing.Point(15, 453)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(897, 424)
+        Me.GroupBox5.Size = New System.Drawing.Size(897, 353)
         Me.GroupBox5.TabIndex = 10
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "系統鍵鼠事件"
@@ -2417,6 +2431,11 @@ Partial Class Form1
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.Label71)
+        Me.GroupBox4.Controls.Add(Me.TargetClickText_TextBox)
+        Me.GroupBox4.Controls.Add(Me.Insert_Click_by_Text_Btn)
+        Me.GroupBox4.Controls.Add(Me.TextElementType_ComboBox)
+        Me.GroupBox4.Controls.Add(Me.Label69)
         Me.GroupBox4.Controls.Add(Me.Label25)
         Me.GroupBox4.Controls.Add(Me.KeyboardFirstKey_ComboBox)
         Me.GroupBox4.Controls.Add(Me.KeyboardSecondKey_ComboBox)
@@ -2424,7 +2443,7 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.Label24)
         Me.GroupBox4.Location = New System.Drawing.Point(15, 259)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(897, 96)
+        Me.GroupBox4.Size = New System.Drawing.Size(897, 167)
         Me.GroupBox4.TabIndex = 9
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Selenium 鍵盤事件"
@@ -3379,14 +3398,48 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Insert_Available_RndQueue_To_script
+        'Label69
         '
-        Me.Insert_Available_RndQueue_To_script.Location = New System.Drawing.Point(608, 684)
-        Me.Insert_Available_RndQueue_To_script.Name = "Insert_Available_RndQueue_To_script"
-        Me.Insert_Available_RndQueue_To_script.Size = New System.Drawing.Size(138, 29)
-        Me.Insert_Available_RndQueue_To_script.TabIndex = 153
-        Me.Insert_Available_RndQueue_To_script.Text = "資料夾隨機佇列 - 插入"
-        Me.Insert_Available_RndQueue_To_script.UseVisualStyleBackColor = True
+        Me.Label69.AutoSize = True
+        Me.Label69.Location = New System.Drawing.Point(6, 94)
+        Me.Label69.Name = "Label69"
+        Me.Label69.Size = New System.Drawing.Size(65, 19)
+        Me.Label69.TabIndex = 17
+        Me.Label69.Text = "按文字 : "
+        '
+        'TextElementType_ComboBox
+        '
+        Me.TextElementType_ComboBox.FormattingEnabled = True
+        Me.TextElementType_ComboBox.Items.AddRange(New Object() {"aria-label", "span-text"})
+        Me.TextElementType_ComboBox.Location = New System.Drawing.Point(275, 86)
+        Me.TextElementType_ComboBox.Name = "TextElementType_ComboBox"
+        Me.TextElementType_ComboBox.Size = New System.Drawing.Size(108, 27)
+        Me.TextElementType_ComboBox.TabIndex = 18
+        '
+        'Insert_Click_by_Text_Btn
+        '
+        Me.Insert_Click_by_Text_Btn.Location = New System.Drawing.Point(396, 86)
+        Me.Insert_Click_by_Text_Btn.Name = "Insert_Click_by_Text_Btn"
+        Me.Insert_Click_by_Text_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_Click_by_Text_Btn.TabIndex = 19
+        Me.Insert_Click_by_Text_Btn.Text = "插入"
+        Me.Insert_Click_by_Text_Btn.UseVisualStyleBackColor = True
+        '
+        'TargetClickText_TextBox
+        '
+        Me.TargetClickText_TextBox.Location = New System.Drawing.Point(71, 86)
+        Me.TargetClickText_TextBox.Name = "TargetClickText_TextBox"
+        Me.TargetClickText_TextBox.Size = New System.Drawing.Size(142, 27)
+        Me.TargetClickText_TextBox.TabIndex = 20
+        '
+        'Label71
+        '
+        Me.Label71.AutoSize = True
+        Me.Label71.Location = New System.Drawing.Point(219, 94)
+        Me.Label71.Name = "Label71"
+        Me.Label71.Size = New System.Drawing.Size(50, 19)
+        Me.Label71.TabIndex = 21
+        Me.Label71.Text = "類型 : "
         '
         'Form1
         '
@@ -3763,4 +3816,9 @@ Partial Class Form1
     Friend WithEvents Delete_All_Facebook_GroupList_Btn As Button
     Friend WithEvents Insert_Available_Queue_To_script As Button
     Friend WithEvents Insert_Available_RndQueue_To_script As Button
+    Friend WithEvents TargetClickText_TextBox As TextBox
+    Friend WithEvents Insert_Click_by_Text_Btn As Button
+    Friend WithEvents TextElementType_ComboBox As ComboBox
+    Friend WithEvents Label69 As Label
+    Friend WithEvents Label71 As Label
 End Class

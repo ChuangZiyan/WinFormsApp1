@@ -357,6 +357,11 @@ Public Class Form1
                     End Try
                 Case "點擊"
                     boolean_result = Await myWebDriver.Click_element_by_feature_Task(content)
+                Case "點擊:文字"
+
+                    Dim mycontent = content.Split(";")
+                    boolean_result = Await myWebDriver.Click_By_Text_Task(mycontent(0), mycontent(1))
+
                 Case "發送"
                     boolean_result = Await myWebDriver.Write_post_send_content_Task(content)
                 Case "發送:隨機"
@@ -1984,5 +1989,9 @@ Public Class Form1
     Private Sub Insert_Available_RndQueue_To_script_Click(sender As Object, e As EventArgs) Handles Insert_Available_RndQueue_To_script.Click
         myWebDriver.used_browser = "Chrome"
         Insert_to_script("開啟:資料夾佇列", "隨機")
+    End Sub
+
+    Private Sub Insert_Click_by_Text_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Click_by_Text_Btn.Click
+        Insert_to_script("點擊:文字", TextElementType_ComboBox.Text + ";" + TargetClickText_TextBox.Text)
     End Sub
 End Class
