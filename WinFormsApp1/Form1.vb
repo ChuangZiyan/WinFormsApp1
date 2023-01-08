@@ -25,6 +25,7 @@ Imports System.Diagnostics.Metrics
 Imports System.Xml
 Imports System.Collections.Specialized
 Imports System.Reflection.Metadata
+Imports System.Buffers
 
 Public Class Form1
 
@@ -313,8 +314,14 @@ Public Class Form1
                     End If
 
                 Case "前往社團"
-
+                    Debug.WriteLine("Running Profile : " + myWebDriver.running_chrome_profile_path)
                     Dim groupListFilePath = FormInit.profile_path + content.Split(";")(0) + "\GroupList.txt"
+                    If content.Split(";")(0) = "不指定" Then
+                        groupListFilePath = myWebDriver.running_chrome_profile_path + "\GroupList.txt"
+                        Debug.WriteLine(groupListFilePath)
+                    End If
+
+
                     If My.Computer.FileSystem.FileExists(groupListFilePath) Then
 
                         Dim GroupsFileText = File.ReadAllLines(groupListFilePath)
@@ -358,9 +365,13 @@ Public Class Form1
                 Case "點擊"
                     boolean_result = Await myWebDriver.Click_element_by_feature_Task(content)
                 Case "點擊:文字"
+                    Try
+                        Dim mycontent = content.Split(";")
+                        boolean_result = Await myWebDriver.Click_By_Text_Task(mycontent(0), mycontent(1))
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
 
-                    Dim mycontent = content.Split(";")
-                    boolean_result = Await myWebDriver.Click_By_Text_Task(mycontent(0), mycontent(1))
 
                 Case "發送"
                     boolean_result = Await myWebDriver.Write_post_send_content_Task(content)
@@ -1993,5 +2004,18 @@ Public Class Form1
 
     Private Sub Insert_Click_by_Text_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Click_by_Text_Btn.Click
         Insert_to_script("點擊:文字", TextElementType_ComboBox.Text + ";" + TargetClickText_TextBox.Text)
+    End Sub
+
+    Private Sub Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn_Click(sender As Object, e As EventArgs) Handles Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Click
+        Insert_to_script("前往社團", "不指定;全部隨機")
+    End Sub
+
+    Private Sub Generate_Random_Password_String_Btn_Click(sender As Object, e As EventArgs) Handles Generate_Random_Password_String_Btn.Click
+        Dim generated_password_str = Generate_Random_Password(Pasword_Length_NumericUpDown.Value)
+        Generated_Password_TextBox.Text = generated_password_str
+    End Sub
+
+    Private Sub Copy_Generated_Password_Btn_Click(sender As Object, e As EventArgs) Handles Copy_Generated_Password_Btn.Click
+        Clipboard.SetText(Generated_Password_TextBox.Text)
     End Sub
 End Class

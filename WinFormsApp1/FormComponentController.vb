@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Buffers
+Imports System.IO
 Imports System.IO.File
 Imports System.Text.RegularExpressions
 Imports Newtonsoft.Json
@@ -841,5 +842,19 @@ Module FormComponentController
             items(j) = temp
         Next i
     End Sub
+
+
+    Public Function Generate_Random_Password(pw_length As Integer)
+        Dim allowed_Char_String As String
+        Dim generated_Password As String
+        allowed_Char_String = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        generated_Password = ""
+        For i = 1 To pw_length
+            Randomize()
+            generated_Password &= Mid(allowed_Char_String, Int(Rnd() * Len(allowed_Char_String) + 1), 1)
+        Next
+
+        Return generated_Password
+    End Function
 
 End Module

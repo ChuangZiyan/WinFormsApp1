@@ -22,6 +22,7 @@ Imports WebDriverManager.Helpers
 Imports System.Reflection.Metadata
 Imports System.Collections.Specialized
 Imports System.Runtime.Intrinsics
+Imports System.DirectoryServices.ActiveDirectory
 
 Public Class MyWebDriver
     Public chromeDriver As IWebDriver
@@ -37,6 +38,8 @@ Public Class MyWebDriver
     Public used_dev_model As String = "PC"
     Public used_chrome_profile As String = ""
     Public running_chrome_profile As String = ""
+
+    Public running_chrome_profile_path As String = ""
     'Dim webDriverWait As WebDriverWait
 
     Public langConverter As Newtonsoft.Json.Linq.JObject
@@ -98,6 +101,7 @@ Public Class MyWebDriver
                 Dim options = New Chrome.ChromeOptions()
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
+                    running_chrome_profile_path = profile
                     used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
                     running_chrome_profile = used_chrome_profile
                     'FormInit.Render_profile_CheckedListBox()
@@ -209,7 +213,8 @@ Public Class MyWebDriver
     End Sub
 
 
-    Public Function Click_By_Text_Task(type, text)
+    Public Function Click_By_Text_Task(type, text) As Task(Of Boolean)
+
 
         If type = "aria_label" Then
             Return Task.Run(Function() click_by_aria_label(text))
@@ -217,7 +222,7 @@ Public Class MyWebDriver
             Return Task.Run(Function() click_by_span_text(text))
         End If
 
-        Return False
+
     End Function
 
     Public Function click_by_aria_label(str As String) As Boolean
@@ -452,7 +457,7 @@ Public Class MyWebDriver
         Try
             Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
             'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
             For Each pattern In str_patterns
                 'Debug.WriteLine("try : " + pattern.ToString())
                 Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
@@ -509,6 +514,7 @@ Public Class MyWebDriver
 
     Public Function Tring_to_upload_img(img_path_str) As Boolean
         Try
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
             Dim upload_img_input As Object
             If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
                 upload_img_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input"))
@@ -518,8 +524,10 @@ Public Class MyWebDriver
                 upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
                 upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
             End If
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
         Catch ex As Exception
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return False
         End Try
 
@@ -581,7 +589,7 @@ Public Class MyWebDriver
 
             Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
             'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
             For Each pattern In str_patterns
                 Debug.WriteLine("try : " + pattern.ToString())
                 If IsElementPresentByXpath("//span[contains(text(),'" + pattern.ToString() + "')]") Then

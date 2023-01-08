@@ -231,6 +231,11 @@ Partial Class Form1
         Me.Cursor_X_Position_TextBox = New System.Windows.Forms.TextBox()
         Me.Label58 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label71 = New System.Windows.Forms.Label()
+        Me.TargetClickText_TextBox = New System.Windows.Forms.TextBox()
+        Me.Insert_Click_by_Text_Btn = New System.Windows.Forms.Button()
+        Me.TextElementType_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label69 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.KeyboardFirstKey_ComboBox = New System.Windows.Forms.ComboBox()
         Me.KeyboardSecondKey_ComboBox = New System.Windows.Forms.ComboBox()
@@ -260,6 +265,7 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn = New System.Windows.Forms.Button()
         Me.Delete_All_Facebook_GroupList_Btn = New System.Windows.Forms.Button()
         Me.Remove_Selected_Group_Btn = New System.Windows.Forms.Button()
         Me.Refresh_GroupList_Btn = New System.Windows.Forms.Button()
@@ -310,10 +316,10 @@ Partial Class Form1
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Label70 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Copy_Generated_Password_Btn = New System.Windows.Forms.Button()
+        Me.Pasword_Length_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Generated_Password_TextBox = New System.Windows.Forms.TextBox()
+        Me.Generate_Random_Password_String_Btn = New System.Windows.Forms.Button()
         Me.Delete_Str_from_RTBox_btn = New System.Windows.Forms.Button()
         Me.Split_NewLine_By_Char_btn = New System.Windows.Forms.Button()
         Me.Pattern_Str_ComboBox = New System.Windows.Forms.ComboBox()
@@ -332,11 +338,6 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label69 = New System.Windows.Forms.Label()
-        Me.TextElementType_ComboBox = New System.Windows.Forms.ComboBox()
-        Me.Insert_Click_by_Text_Btn = New System.Windows.Forms.Button()
-        Me.TargetClickText_TextBox = New System.Windows.Forms.TextBox()
-        Me.Label71 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -373,7 +374,7 @@ Partial Class Form1
         Me.Navigation_Tab.SuspendLayout()
         Me.Widget_TabPage.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Pasword_Length_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Post_Crawler.SuspendLayout()
         Me.Block_User.SuspendLayout()
         Me.SuspendLayout()
@@ -2448,6 +2449,49 @@ Partial Class Form1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Selenium 鍵盤事件"
         '
+        'Label71
+        '
+        Me.Label71.AutoSize = True
+        Me.Label71.Location = New System.Drawing.Point(219, 94)
+        Me.Label71.Name = "Label71"
+        Me.Label71.Size = New System.Drawing.Size(50, 19)
+        Me.Label71.TabIndex = 21
+        Me.Label71.Text = "類型 : "
+        '
+        'TargetClickText_TextBox
+        '
+        Me.TargetClickText_TextBox.Location = New System.Drawing.Point(71, 86)
+        Me.TargetClickText_TextBox.Name = "TargetClickText_TextBox"
+        Me.TargetClickText_TextBox.Size = New System.Drawing.Size(142, 27)
+        Me.TargetClickText_TextBox.TabIndex = 20
+        '
+        'Insert_Click_by_Text_Btn
+        '
+        Me.Insert_Click_by_Text_Btn.Location = New System.Drawing.Point(396, 86)
+        Me.Insert_Click_by_Text_Btn.Name = "Insert_Click_by_Text_Btn"
+        Me.Insert_Click_by_Text_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_Click_by_Text_Btn.TabIndex = 19
+        Me.Insert_Click_by_Text_Btn.Text = "插入"
+        Me.Insert_Click_by_Text_Btn.UseVisualStyleBackColor = True
+        '
+        'TextElementType_ComboBox
+        '
+        Me.TextElementType_ComboBox.FormattingEnabled = True
+        Me.TextElementType_ComboBox.Items.AddRange(New Object() {"aria-label", "span-text"})
+        Me.TextElementType_ComboBox.Location = New System.Drawing.Point(275, 86)
+        Me.TextElementType_ComboBox.Name = "TextElementType_ComboBox"
+        Me.TextElementType_ComboBox.Size = New System.Drawing.Size(108, 27)
+        Me.TextElementType_ComboBox.TabIndex = 18
+        '
+        'Label69
+        '
+        Me.Label69.AutoSize = True
+        Me.Label69.Location = New System.Drawing.Point(6, 94)
+        Me.Label69.Name = "Label69"
+        Me.Label69.Size = New System.Drawing.Size(65, 19)
+        Me.Label69.TabIndex = 17
+        Me.Label69.Text = "按文字 : "
+        '
         'Label25
         '
         Me.Label25.AutoSize = True
@@ -2715,6 +2759,7 @@ Partial Class Form1
         '
         'GroupList
         '
+        Me.GroupList.Controls.Add(Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn)
         Me.GroupList.Controls.Add(Me.Delete_All_Facebook_GroupList_Btn)
         Me.GroupList.Controls.Add(Me.Remove_Selected_Group_Btn)
         Me.GroupList.Controls.Add(Me.Refresh_GroupList_Btn)
@@ -2738,6 +2783,15 @@ Partial Class Form1
         Me.GroupList.TabIndex = 4
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
+        '
+        'Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn
+        '
+        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Location = New System.Drawing.Point(741, 101)
+        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Name = "Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn"
+        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Size = New System.Drawing.Size(153, 29)
+        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.TabIndex = 20
+        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Text = "自動帳號隨機 - 插入"
+        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.UseVisualStyleBackColor = True
         '
         'Delete_All_Facebook_GroupList_Btn
         '
@@ -2777,11 +2831,11 @@ Partial Class Form1
         '
         'Insert_GroupList_RandomGroup_Navigate_ToURL_btn
         '
-        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Location = New System.Drawing.Point(802, 101)
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Location = New System.Drawing.Point(571, 101)
         Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Name = "Insert_GroupList_RandomGroup_Navigate_ToURL_btn"
-        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Size = New System.Drawing.Size(164, 29)
         Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.TabIndex = 15
-        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Text = "隨機 - 插入"
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Text = "所選帳號隨機 - 插入"
         Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.UseVisualStyleBackColor = True
         '
         'Save_Group_List_In_Profile_Button
@@ -3192,10 +3246,10 @@ Partial Class Form1
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.Label70)
-        Me.GroupBox6.Controls.Add(Me.Button2)
-        Me.GroupBox6.Controls.Add(Me.NumericUpDown1)
-        Me.GroupBox6.Controls.Add(Me.TextBox1)
-        Me.GroupBox6.Controls.Add(Me.Button1)
+        Me.GroupBox6.Controls.Add(Me.Copy_Generated_Password_Btn)
+        Me.GroupBox6.Controls.Add(Me.Pasword_Length_NumericUpDown)
+        Me.GroupBox6.Controls.Add(Me.Generated_Password_TextBox)
+        Me.GroupBox6.Controls.Add(Me.Generate_Random_Password_String_Btn)
         Me.GroupBox6.Location = New System.Drawing.Point(14, 481)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(890, 110)
@@ -3212,37 +3266,39 @@ Partial Class Form1
         Me.Label70.TabIndex = 11
         Me.Label70.Text = "長度 : "
         '
-        'Button2
+        'Copy_Generated_Password_Btn
         '
-        Me.Button2.Location = New System.Drawing.Point(767, 41)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(94, 29)
-        Me.Button2.TabIndex = 10
-        Me.Button2.Text = "複製"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Copy_Generated_Password_Btn.Location = New System.Drawing.Point(767, 43)
+        Me.Copy_Generated_Password_Btn.Name = "Copy_Generated_Password_Btn"
+        Me.Copy_Generated_Password_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Copy_Generated_Password_Btn.TabIndex = 10
+        Me.Copy_Generated_Password_Btn.Text = "複製"
+        Me.Copy_Generated_Password_Btn.UseVisualStyleBackColor = True
         '
-        'NumericUpDown1
+        'Pasword_Length_NumericUpDown
         '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(62, 44)
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(94, 27)
-        Me.NumericUpDown1.TabIndex = 7
+        Me.Pasword_Length_NumericUpDown.Location = New System.Drawing.Point(62, 45)
+        Me.Pasword_Length_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Pasword_Length_NumericUpDown.Name = "Pasword_Length_NumericUpDown"
+        Me.Pasword_Length_NumericUpDown.Size = New System.Drawing.Size(94, 27)
+        Me.Pasword_Length_NumericUpDown.TabIndex = 7
+        Me.Pasword_Length_NumericUpDown.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'TextBox1
+        'Generated_Password_TextBox
         '
-        Me.TextBox1.Location = New System.Drawing.Point(262, 43)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(499, 27)
-        Me.TextBox1.TabIndex = 9
+        Me.Generated_Password_TextBox.Location = New System.Drawing.Point(262, 44)
+        Me.Generated_Password_TextBox.Name = "Generated_Password_TextBox"
+        Me.Generated_Password_TextBox.Size = New System.Drawing.Size(499, 27)
+        Me.Generated_Password_TextBox.TabIndex = 9
         '
-        'Button1
+        'Generate_Random_Password_String_Btn
         '
-        Me.Button1.Location = New System.Drawing.Point(162, 42)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(94, 29)
-        Me.Button1.TabIndex = 8
-        Me.Button1.Text = "產生"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Generate_Random_Password_String_Btn.Location = New System.Drawing.Point(162, 43)
+        Me.Generate_Random_Password_String_Btn.Name = "Generate_Random_Password_String_Btn"
+        Me.Generate_Random_Password_String_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Generate_Random_Password_String_Btn.TabIndex = 8
+        Me.Generate_Random_Password_String_Btn.Text = "產生"
+        Me.Generate_Random_Password_String_Btn.UseVisualStyleBackColor = True
         '
         'Delete_Str_from_RTBox_btn
         '
@@ -3398,49 +3454,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Label69
-        '
-        Me.Label69.AutoSize = True
-        Me.Label69.Location = New System.Drawing.Point(6, 94)
-        Me.Label69.Name = "Label69"
-        Me.Label69.Size = New System.Drawing.Size(65, 19)
-        Me.Label69.TabIndex = 17
-        Me.Label69.Text = "按文字 : "
-        '
-        'TextElementType_ComboBox
-        '
-        Me.TextElementType_ComboBox.FormattingEnabled = True
-        Me.TextElementType_ComboBox.Items.AddRange(New Object() {"aria-label", "span-text"})
-        Me.TextElementType_ComboBox.Location = New System.Drawing.Point(275, 86)
-        Me.TextElementType_ComboBox.Name = "TextElementType_ComboBox"
-        Me.TextElementType_ComboBox.Size = New System.Drawing.Size(108, 27)
-        Me.TextElementType_ComboBox.TabIndex = 18
-        '
-        'Insert_Click_by_Text_Btn
-        '
-        Me.Insert_Click_by_Text_Btn.Location = New System.Drawing.Point(396, 86)
-        Me.Insert_Click_by_Text_Btn.Name = "Insert_Click_by_Text_Btn"
-        Me.Insert_Click_by_Text_Btn.Size = New System.Drawing.Size(94, 29)
-        Me.Insert_Click_by_Text_Btn.TabIndex = 19
-        Me.Insert_Click_by_Text_Btn.Text = "插入"
-        Me.Insert_Click_by_Text_Btn.UseVisualStyleBackColor = True
-        '
-        'TargetClickText_TextBox
-        '
-        Me.TargetClickText_TextBox.Location = New System.Drawing.Point(71, 86)
-        Me.TargetClickText_TextBox.Name = "TargetClickText_TextBox"
-        Me.TargetClickText_TextBox.Size = New System.Drawing.Size(142, 27)
-        Me.TargetClickText_TextBox.TabIndex = 20
-        '
-        'Label71
-        '
-        Me.Label71.AutoSize = True
-        Me.Label71.Location = New System.Drawing.Point(219, 94)
-        Me.Label71.Name = "Label71"
-        Me.Label71.Size = New System.Drawing.Size(50, 19)
-        Me.Label71.TabIndex = 21
-        Me.Label71.Text = "類型 : "
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3499,7 +3512,7 @@ Partial Class Form1
         Me.Widget_TabPage.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Pasword_Length_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Post_Crawler.ResumeLayout(False)
         Me.Post_Crawler.PerformLayout()
         Me.Block_User.ResumeLayout(False)
@@ -3796,10 +3809,10 @@ Partial Class Form1
     Friend WithEvents Label68 As Label
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents Label70 As Label
-    Friend WithEvents Button2 As Button
-    Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Copy_Generated_Password_Btn As Button
+    Friend WithEvents Pasword_Length_NumericUpDown As NumericUpDown
+    Friend WithEvents Generated_Password_TextBox As TextBox
+    Friend WithEvents Generate_Random_Password_String_Btn As Button
     Friend WithEvents Move_Script_ListView_Item_To_Index_Btn As Button
     Friend WithEvents Target_Index_Script_ListView_NummericUpDown As NumericUpDown
     Friend WithEvents Deselect_All_Image_Folder_btn As Button
@@ -3821,4 +3834,5 @@ Partial Class Form1
     Friend WithEvents TextElementType_ComboBox As ComboBox
     Friend WithEvents Label69 As Label
     Friend WithEvents Label71 As Label
+    Friend WithEvents Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn As Button
 End Class
