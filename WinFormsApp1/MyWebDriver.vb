@@ -882,11 +882,35 @@ Public Class MyWebDriver
 
     End Function
 
-
-
     Public Shared Async Function Delay_msec(msec As Integer) As Task
         Await Task.Delay(msec)
     End Function
 
+
+    Public Function Change_Fb_Password()
+        Try
+            Dim password_input = chromeDriver.FindElement(By.XPath("//input[@type='password']"))
+            Dim new_password = FormComponentController.Generate_Random_Password(10) 'edit password length you want.
+            password_input.SendKeys(new_password)
+
+            Dim jsonObject = New JsonProfileInfo()
+            jsonObject.Password = new_password
+            Dim jsonString = JsonConvert.SerializeObject(jsonObject)
+
+            'Debug.WriteLine(jsonString)
+
+            Dim myfile As System.IO.StreamWriter
+            myfile = My.Computer.FileSystem.OpenTextFileWriter(profile_path + "\ProfileInfo.txt", False) 'True : append   'False : overwrite
+            myfile.WriteLine(jsonString)
+            myfile.Close()
+
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+
+
+    End Function
 
 End Class

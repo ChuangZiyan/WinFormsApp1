@@ -338,6 +338,8 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Insert_Change_FB_Password_Btn = New System.Windows.Forms.Button()
+        Me.Reveal_Profile_Info_Btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -849,6 +851,7 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Reveal_Profile_Info_Btn)
         Me.TabPage5.Controls.Add(Me.Insert_Available_RndQueue_To_script)
         Me.TabPage5.Controls.Add(Me.Insert_Available_Queue_To_script)
         Me.TabPage5.Controls.Add(Me.Label68)
@@ -3229,6 +3232,7 @@ Partial Class Form1
         '
         'Widget_TabPage
         '
+        Me.Widget_TabPage.Controls.Add(Me.Insert_Change_FB_Password_Btn)
         Me.Widget_TabPage.Controls.Add(Me.GroupBox6)
         Me.Widget_TabPage.Controls.Add(Me.Delete_Str_from_RTBox_btn)
         Me.Widget_TabPage.Controls.Add(Me.Split_NewLine_By_Char_btn)
@@ -3250,7 +3254,7 @@ Partial Class Form1
         Me.GroupBox6.Controls.Add(Me.Pasword_Length_NumericUpDown)
         Me.GroupBox6.Controls.Add(Me.Generated_Password_TextBox)
         Me.GroupBox6.Controls.Add(Me.Generate_Random_Password_String_Btn)
-        Me.GroupBox6.Location = New System.Drawing.Point(14, 481)
+        Me.GroupBox6.Location = New System.Drawing.Point(14, 423)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(890, 110)
         Me.GroupBox6.TabIndex = 12
@@ -3453,6 +3457,24 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
+        '
+        'Insert_Change_FB_Password_Btn
+        '
+        Me.Insert_Change_FB_Password_Btn.Location = New System.Drawing.Point(14, 691)
+        Me.Insert_Change_FB_Password_Btn.Name = "Insert_Change_FB_Password_Btn"
+        Me.Insert_Change_FB_Password_Btn.Size = New System.Drawing.Size(156, 29)
+        Me.Insert_Change_FB_Password_Btn.TabIndex = 13
+        Me.Insert_Change_FB_Password_Btn.Text = "更改密碼 - 插入"
+        Me.Insert_Change_FB_Password_Btn.UseVisualStyleBackColor = True
+        '
+        'Reveal_Profile_Info_Btn
+        '
+        Me.Reveal_Profile_Info_Btn.Location = New System.Drawing.Point(15, 274)
+        Me.Reveal_Profile_Info_Btn.Name = "Reveal_Profile_Info_Btn"
+        Me.Reveal_Profile_Info_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Reveal_Profile_Info_Btn.TabIndex = 154
+        Me.Reveal_Profile_Info_Btn.Text = "打開Profile"
+        Me.Reveal_Profile_Info_Btn.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -3835,4 +3857,6 @@ Partial Class Form1
     Friend WithEvents Label69 As Label
     Friend WithEvents Label71 As Label
     Friend WithEvents Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn As Button
+    Friend WithEvents Insert_Change_FB_Password_Btn As Button
+    Friend WithEvents Reveal_Profile_Info_Btn As Button
 End Class

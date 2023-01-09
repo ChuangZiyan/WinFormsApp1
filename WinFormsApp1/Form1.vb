@@ -585,6 +585,8 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         boolean_result = False
                     End Try
+                Case "更改密碼"
+
 
             End Select
             If boolean_result = True Then 'record the result
@@ -1426,7 +1428,7 @@ Public Class Form1
 
             myWebDriver.chromeDriver.ExecuteJavaScript("document.getElementsByClassName(""xb57i2i x1q594ok x5lxg6s x78zum5 xdt5ytf x6ikm8r x1ja2u2z x1pq812k x1rohswg xfk6m8 x1yqm8si xjx87ck x1l7klhg x1iyjqo2 xs83m0k x2lwn1j xx8ngbg xwo3gff x1oyok0e x1odjw0f x1e4zzel x1n2onr6 xq1qtft"")[0].scroll(0," & scroll_x_value & ")")
             pre_counter = my_counter
-            Await Delay_msec(1000)
+            Await Delay_msec(4000)
         End While
 
         Dim group_name_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span"))
@@ -1462,7 +1464,7 @@ Public Class Form1
             End If
             myWebDriver.chromeDriver.ExecuteJavaScript("window.scrollTo(0, document.body.scrollHeight);")
             pre_counter = my_counter
-            Await Delay_msec(1000)
+            Await Delay_msec(4000)
         End While
 
 
@@ -2017,5 +2019,33 @@ Public Class Form1
 
     Private Sub Copy_Generated_Password_Btn_Click(sender As Object, e As EventArgs) Handles Copy_Generated_Password_Btn.Click
         Clipboard.SetText(Generated_Password_TextBox.Text)
+    End Sub
+
+    Private Sub Insert_Change_FB_Password_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Change_FB_Password_Btn.Click
+        Insert_to_script("更改密碼", "")
+    End Sub
+
+    Private Sub Reveal_Profile_Info_Btn_Click(sender As Object, e As EventArgs) Handles Reveal_Profile_Info_Btn.Click
+        Dim Profile = ""
+
+        For Each itemSeleted In Profile_CheckedListBox.SelectedItems
+            'Debug.WriteLine(itemSeleted)
+            Profile = itemSeleted
+        Next
+
+        If Profile = "" Then
+            MsgBox("未選擇任何Profile")
+            Exit Sub
+        End If
+
+        Dim profile_info_path = FormInit.profile_path + Profile + "\ProfileInfo.txt"
+
+        If System.IO.File.Exists(profile_info_path) Then
+            Process.Start("explorer.exe", profile_info_path)
+        Else
+            MsgBox("ProfileInfo.txt 不存在")
+        End If
+
+
     End Sub
 End Class
