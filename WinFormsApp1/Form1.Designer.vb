@@ -72,6 +72,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Reveal_Profile_Info_Btn = New System.Windows.Forms.Button()
         Me.Insert_Available_RndQueue_To_script = New System.Windows.Forms.Button()
         Me.Insert_Available_Queue_To_script = New System.Windows.Forms.Button()
         Me.Label68 = New System.Windows.Forms.Label()
@@ -265,6 +266,8 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.Add_Item_To_GroupList_Btn = New System.Windows.Forms.Button()
+        Me.Modify_Selected_GroupList_Item_Btn = New System.Windows.Forms.Button()
         Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn = New System.Windows.Forms.Button()
         Me.Delete_All_Facebook_GroupList_Btn = New System.Windows.Forms.Button()
         Me.Remove_Selected_Group_Btn = New System.Windows.Forms.Button()
@@ -314,6 +317,7 @@ Partial Class Form1
         Me.Insert_Random_Navigation_URL_btn = New System.Windows.Forms.Button()
         Me.Navigation_URL_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
+        Me.Insert_Change_FB_Password_Btn = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Label70 = New System.Windows.Forms.Label()
         Me.Copy_Generated_Password_Btn = New System.Windows.Forms.Button()
@@ -338,8 +342,7 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Insert_Change_FB_Password_Btn = New System.Windows.Forms.Button()
-        Me.Reveal_Profile_Info_Btn = New System.Windows.Forms.Button()
+        Me.Navigate_To_Selected_Group_Btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -934,6 +937,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Reveal_Profile_Info_Btn
+        '
+        Me.Reveal_Profile_Info_Btn.Location = New System.Drawing.Point(15, 274)
+        Me.Reveal_Profile_Info_Btn.Name = "Reveal_Profile_Info_Btn"
+        Me.Reveal_Profile_Info_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Reveal_Profile_Info_Btn.TabIndex = 154
+        Me.Reveal_Profile_Info_Btn.Text = "打開Profile"
+        Me.Reveal_Profile_Info_Btn.UseVisualStyleBackColor = True
         '
         'Insert_Available_RndQueue_To_script
         '
@@ -2762,6 +2774,9 @@ Partial Class Form1
         '
         'GroupList
         '
+        Me.GroupList.Controls.Add(Me.Navigate_To_Selected_Group_Btn)
+        Me.GroupList.Controls.Add(Me.Add_Item_To_GroupList_Btn)
+        Me.GroupList.Controls.Add(Me.Modify_Selected_GroupList_Item_Btn)
         Me.GroupList.Controls.Add(Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn)
         Me.GroupList.Controls.Add(Me.Delete_All_Facebook_GroupList_Btn)
         Me.GroupList.Controls.Add(Me.Remove_Selected_Group_Btn)
@@ -2787,9 +2802,27 @@ Partial Class Form1
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
         '
+        'Add_Item_To_GroupList_Btn
+        '
+        Me.Add_Item_To_GroupList_Btn.Location = New System.Drawing.Point(844, 53)
+        Me.Add_Item_To_GroupList_Btn.Name = "Add_Item_To_GroupList_Btn"
+        Me.Add_Item_To_GroupList_Btn.Size = New System.Drawing.Size(50, 29)
+        Me.Add_Item_To_GroupList_Btn.TabIndex = 22
+        Me.Add_Item_To_GroupList_Btn.Text = "新增"
+        Me.Add_Item_To_GroupList_Btn.UseVisualStyleBackColor = True
+        '
+        'Modify_Selected_GroupList_Item_Btn
+        '
+        Me.Modify_Selected_GroupList_Item_Btn.Location = New System.Drawing.Point(788, 53)
+        Me.Modify_Selected_GroupList_Item_Btn.Name = "Modify_Selected_GroupList_Item_Btn"
+        Me.Modify_Selected_GroupList_Item_Btn.Size = New System.Drawing.Size(50, 29)
+        Me.Modify_Selected_GroupList_Item_Btn.TabIndex = 21
+        Me.Modify_Selected_GroupList_Item_Btn.Text = "修改"
+        Me.Modify_Selected_GroupList_Item_Btn.UseVisualStyleBackColor = True
+        '
         'Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn
         '
-        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Location = New System.Drawing.Point(741, 101)
+        Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Location = New System.Drawing.Point(741, 88)
         Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Name = "Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn"
         Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.Size = New System.Drawing.Size(153, 29)
         Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn.TabIndex = 20
@@ -2798,7 +2831,7 @@ Partial Class Form1
         '
         'Delete_All_Facebook_GroupList_Btn
         '
-        Me.Delete_All_Facebook_GroupList_Btn.Location = New System.Drawing.Point(219, 101)
+        Me.Delete_All_Facebook_GroupList_Btn.Location = New System.Drawing.Point(219, 88)
         Me.Delete_All_Facebook_GroupList_Btn.Name = "Delete_All_Facebook_GroupList_Btn"
         Me.Delete_All_Facebook_GroupList_Btn.Size = New System.Drawing.Size(94, 29)
         Me.Delete_All_Facebook_GroupList_Btn.TabIndex = 19
@@ -2807,7 +2840,7 @@ Partial Class Form1
         '
         'Remove_Selected_Group_Btn
         '
-        Me.Remove_Selected_Group_Btn.Location = New System.Drawing.Point(119, 101)
+        Me.Remove_Selected_Group_Btn.Location = New System.Drawing.Point(119, 88)
         Me.Remove_Selected_Group_Btn.Name = "Remove_Selected_Group_Btn"
         Me.Remove_Selected_Group_Btn.Size = New System.Drawing.Size(94, 29)
         Me.Remove_Selected_Group_Btn.TabIndex = 18
@@ -2816,7 +2849,7 @@ Partial Class Form1
         '
         'Refresh_GroupList_Btn
         '
-        Me.Refresh_GroupList_Btn.Location = New System.Drawing.Point(20, 101)
+        Me.Refresh_GroupList_Btn.Location = New System.Drawing.Point(20, 88)
         Me.Refresh_GroupList_Btn.Name = "Refresh_GroupList_Btn"
         Me.Refresh_GroupList_Btn.Size = New System.Drawing.Size(94, 29)
         Me.Refresh_GroupList_Btn.TabIndex = 17
@@ -2834,7 +2867,7 @@ Partial Class Form1
         '
         'Insert_GroupList_RandomGroup_Navigate_ToURL_btn
         '
-        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Location = New System.Drawing.Point(571, 101)
+        Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Location = New System.Drawing.Point(571, 88)
         Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Name = "Insert_GroupList_RandomGroup_Navigate_ToURL_btn"
         Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.Size = New System.Drawing.Size(164, 29)
         Me.Insert_GroupList_RandomGroup_Navigate_ToURL_btn.TabIndex = 15
@@ -2870,7 +2903,7 @@ Partial Class Form1
         '
         'Insert_GroupList_Navigate_ToURL_btn
         '
-        Me.Insert_GroupList_Navigate_ToURL_btn.Location = New System.Drawing.Point(802, 53)
+        Me.Insert_GroupList_Navigate_ToURL_btn.Location = New System.Drawing.Point(471, 88)
         Me.Insert_GroupList_Navigate_ToURL_btn.Name = "Insert_GroupList_Navigate_ToURL_btn"
         Me.Insert_GroupList_Navigate_ToURL_btn.Size = New System.Drawing.Size(94, 29)
         Me.Insert_GroupList_Navigate_ToURL_btn.TabIndex = 11
@@ -2879,22 +2912,22 @@ Partial Class Form1
         '
         'GroupList_GroupURL_Textbox
         '
-        Me.GroupList_GroupURL_Textbox.Location = New System.Drawing.Point(441, 55)
+        Me.GroupList_GroupURL_Textbox.Location = New System.Drawing.Point(416, 55)
         Me.GroupList_GroupURL_Textbox.Name = "GroupList_GroupURL_Textbox"
-        Me.GroupList_GroupURL_Textbox.Size = New System.Drawing.Size(355, 27)
+        Me.GroupList_GroupURL_Textbox.Size = New System.Drawing.Size(366, 27)
         Me.GroupList_GroupURL_Textbox.TabIndex = 10
         '
         'GroupList_GroupName_Textbox
         '
-        Me.GroupList_GroupName_Textbox.Location = New System.Drawing.Point(107, 55)
+        Me.GroupList_GroupName_Textbox.Location = New System.Drawing.Point(100, 55)
         Me.GroupList_GroupName_Textbox.Name = "GroupList_GroupName_Textbox"
-        Me.GroupList_GroupName_Textbox.Size = New System.Drawing.Size(272, 27)
+        Me.GroupList_GroupName_Textbox.Size = New System.Drawing.Size(254, 27)
         Me.GroupList_GroupName_Textbox.TabIndex = 9
         '
         'Label46
         '
         Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(385, 58)
+        Me.Label46.Location = New System.Drawing.Point(360, 58)
         Me.Label46.Name = "Label46"
         Me.Label46.Size = New System.Drawing.Size(50, 19)
         Me.Label46.TabIndex = 8
@@ -2920,9 +2953,9 @@ Partial Class Form1
         '
         'Groups_ListView
         '
-        Me.Groups_ListView.Location = New System.Drawing.Point(20, 136)
+        Me.Groups_ListView.Location = New System.Drawing.Point(20, 139)
         Me.Groups_ListView.Name = "Groups_ListView"
-        Me.Groups_ListView.Size = New System.Drawing.Size(876, 666)
+        Me.Groups_ListView.Size = New System.Drawing.Size(876, 663)
         Me.Groups_ListView.TabIndex = 3
         Me.Groups_ListView.UseCompatibleStateImageBehavior = False
         '
@@ -3247,6 +3280,15 @@ Partial Class Form1
         Me.Widget_TabPage.Text = "小工具"
         Me.Widget_TabPage.UseVisualStyleBackColor = True
         '
+        'Insert_Change_FB_Password_Btn
+        '
+        Me.Insert_Change_FB_Password_Btn.Location = New System.Drawing.Point(14, 691)
+        Me.Insert_Change_FB_Password_Btn.Name = "Insert_Change_FB_Password_Btn"
+        Me.Insert_Change_FB_Password_Btn.Size = New System.Drawing.Size(156, 29)
+        Me.Insert_Change_FB_Password_Btn.TabIndex = 13
+        Me.Insert_Change_FB_Password_Btn.Text = "更改密碼 - 插入"
+        Me.Insert_Change_FB_Password_Btn.UseVisualStyleBackColor = True
+        '
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.Label70)
@@ -3458,23 +3500,14 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Insert_Change_FB_Password_Btn
+        'Navigate_To_Selected_Group_Btn
         '
-        Me.Insert_Change_FB_Password_Btn.Location = New System.Drawing.Point(14, 691)
-        Me.Insert_Change_FB_Password_Btn.Name = "Insert_Change_FB_Password_Btn"
-        Me.Insert_Change_FB_Password_Btn.Size = New System.Drawing.Size(156, 29)
-        Me.Insert_Change_FB_Password_Btn.TabIndex = 13
-        Me.Insert_Change_FB_Password_Btn.Text = "更改密碼 - 插入"
-        Me.Insert_Change_FB_Password_Btn.UseVisualStyleBackColor = True
-        '
-        'Reveal_Profile_Info_Btn
-        '
-        Me.Reveal_Profile_Info_Btn.Location = New System.Drawing.Point(15, 274)
-        Me.Reveal_Profile_Info_Btn.Name = "Reveal_Profile_Info_Btn"
-        Me.Reveal_Profile_Info_Btn.Size = New System.Drawing.Size(94, 29)
-        Me.Reveal_Profile_Info_Btn.TabIndex = 154
-        Me.Reveal_Profile_Info_Btn.Text = "打開Profile"
-        Me.Reveal_Profile_Info_Btn.UseVisualStyleBackColor = True
+        Me.Navigate_To_Selected_Group_Btn.Location = New System.Drawing.Point(371, 88)
+        Me.Navigate_To_Selected_Group_Btn.Name = "Navigate_To_Selected_Group_Btn"
+        Me.Navigate_To_Selected_Group_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Navigate_To_Selected_Group_Btn.TabIndex = 23
+        Me.Navigate_To_Selected_Group_Btn.Text = "直接前往"
+        Me.Navigate_To_Selected_Group_Btn.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -3859,4 +3892,7 @@ Partial Class Form1
     Friend WithEvents Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn As Button
     Friend WithEvents Insert_Change_FB_Password_Btn As Button
     Friend WithEvents Reveal_Profile_Info_Btn As Button
+    Friend WithEvents Add_Item_To_GroupList_Btn As Button
+    Friend WithEvents Modify_Selected_GroupList_Item_Btn As Button
+    Friend WithEvents Navigate_To_Selected_Group_Btn As Button
 End Class

@@ -1617,6 +1617,29 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub Modify_Selected_GroupList_Item_Btn_Click(sender As Object, e As EventArgs) Handles Modify_Selected_GroupList_Item_Btn.Click
+        For i As Integer = Groups_ListView.SelectedIndices.Count - 1 To 0 Step -1
+            Groups_ListView.SelectedItems.Item(0).SubItems(0).Text = GroupList_GroupName_Textbox.Text
+            Groups_ListView.SelectedItems.Item(0).SubItems(1).Text = GroupList_GroupURL_Textbox.Text
+        Next
+    End Sub
+
+    Private Sub Add_Item_To_GroupList_Btn_Click(sender As Object, e As EventArgs) Handles Add_Item_To_GroupList_Btn.Click
+        Groups_ListView.Items.Add(GroupList_GroupName_Textbox.Text, 100)
+        Groups_ListView.Items(Groups_ListView.Items.Count - 1).SubItems.Add(GroupList_GroupURL_Textbox.Text)
+    End Sub
+
+    Private Async Sub Navigate_To_Selected_Group_Btn_Click(sender As Object, e As EventArgs) Handles Navigate_To_Selected_Group_Btn.Click
+
+        For i As Integer = Groups_ListView.SelectedIndices.Count - 1 To 0 Step -1
+            Dim url = Groups_ListView.SelectedItems.Item(0).SubItems(1).Text
+            If Await myWebDriver.Navigate_GoToUrl_Task(url) = False Then
+                MsgBox("未偵測到瀏覽器，或者網址錯誤")
+            End If
+        Next
+
+    End Sub
+
     Private Sub Insert_GroupList_Navigate_ToURL_btn_Click(sender As Object, e As EventArgs) Handles Insert_GroupList_Navigate_ToURL_btn.Click
         ScriptInsertion.Insert_navigate_to_url_in_GroupList()
     End Sub
@@ -2048,4 +2071,6 @@ Public Class Form1
 
 
     End Sub
+
+
 End Class

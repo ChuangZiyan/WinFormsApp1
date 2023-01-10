@@ -20,6 +20,7 @@ Module ScriptInsertion
         End If
 
         Form1.EventlogListview_AddNewItem(myline)
+        Form1.script_ListView.Items(Form1.script_ListView.Items.Count - 1).EnsureVisible()
     End Sub
 
 
