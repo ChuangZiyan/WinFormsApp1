@@ -32,6 +32,8 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.script_ListView = New System.Windows.Forms.ListView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Refresh_myScript_ComboBox_Btn = New System.Windows.Forms.Button()
+        Me.Insert_Def_Set_Btn = New System.Windows.Forms.Button()
         Me.Target_Index_Script_ListView_NummericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Move_Script_ListView_Item_To_Index_Btn = New System.Windows.Forms.Button()
         Me.Headless_Mode_Checkbox = New System.Windows.Forms.CheckBox()
@@ -266,6 +268,7 @@ Partial Class Form1
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.GroupList = New System.Windows.Forms.TabPage()
+        Me.Navigate_To_Selected_Group_Btn = New System.Windows.Forms.Button()
         Me.Add_Item_To_GroupList_Btn = New System.Windows.Forms.Button()
         Me.Modify_Selected_GroupList_Item_Btn = New System.Windows.Forms.Button()
         Me.Insert_Auto_GroupList_RandomGroup_Navigate_ToURL_btn = New System.Windows.Forms.Button()
@@ -342,7 +345,6 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Navigate_To_Selected_Group_Btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -448,6 +450,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Refresh_myScript_ComboBox_Btn)
+        Me.GroupBox1.Controls.Add(Me.Insert_Def_Set_Btn)
         Me.GroupBox1.Controls.Add(Me.Target_Index_Script_ListView_NummericUpDown)
         Me.GroupBox1.Controls.Add(Me.Move_Script_ListView_Item_To_Index_Btn)
         Me.GroupBox1.Controls.Add(Me.Headless_Mode_Checkbox)
@@ -490,6 +494,24 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 41
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "腳本"
+        '
+        'Refresh_myScript_ComboBox_Btn
+        '
+        Me.Refresh_myScript_ComboBox_Btn.Location = New System.Drawing.Point(658, 725)
+        Me.Refresh_myScript_ComboBox_Btn.Name = "Refresh_myScript_ComboBox_Btn"
+        Me.Refresh_myScript_ComboBox_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Refresh_myScript_ComboBox_Btn.TabIndex = 132
+        Me.Refresh_myScript_ComboBox_Btn.Text = "重新整理"
+        Me.Refresh_myScript_ComboBox_Btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Def_Set_Btn
+        '
+        Me.Insert_Def_Set_Btn.Location = New System.Drawing.Point(658, 643)
+        Me.Insert_Def_Set_Btn.Name = "Insert_Def_Set_Btn"
+        Me.Insert_Def_Set_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Insert_Def_Set_Btn.TabIndex = 131
+        Me.Insert_Def_Set_Btn.Text = "集合 - 插入"
+        Me.Insert_Def_Set_Btn.UseVisualStyleBackColor = True
         '
         'Target_Index_Script_ListView_NummericUpDown
         '
@@ -551,7 +573,7 @@ Partial Class Form1
         Me.Script_Config_ComboBox.FormattingEnabled = True
         Me.Script_Config_ComboBox.Location = New System.Drawing.Point(89, 727)
         Me.Script_Config_ComboBox.Name = "Script_Config_ComboBox"
-        Me.Script_Config_ComboBox.Size = New System.Drawing.Size(663, 27)
+        Me.Script_Config_ComboBox.Size = New System.Drawing.Size(563, 27)
         Me.Script_Config_ComboBox.TabIndex = 123
         '
         'Label35
@@ -2519,7 +2541,7 @@ Partial Class Form1
         'KeyboardFirstKey_ComboBox
         '
         Me.KeyboardFirstKey_ComboBox.FormattingEnabled = True
-        Me.KeyboardFirstKey_ComboBox.Items.AddRange(New Object() {"ENTER", "ESC", "CTRL", "ALT"})
+        Me.KeyboardFirstKey_ComboBox.Items.AddRange(New Object() {"ENTER", "ESC", "CTRL", "ALT", "SPACE"})
         Me.KeyboardFirstKey_ComboBox.Location = New System.Drawing.Point(62, 35)
         Me.KeyboardFirstKey_ComboBox.Name = "KeyboardFirstKey_ComboBox"
         Me.KeyboardFirstKey_ComboBox.Size = New System.Drawing.Size(125, 27)
@@ -2801,6 +2823,15 @@ Partial Class Form1
         Me.GroupList.TabIndex = 4
         Me.GroupList.Text = "社團列表"
         Me.GroupList.UseVisualStyleBackColor = True
+        '
+        'Navigate_To_Selected_Group_Btn
+        '
+        Me.Navigate_To_Selected_Group_Btn.Location = New System.Drawing.Point(371, 88)
+        Me.Navigate_To_Selected_Group_Btn.Name = "Navigate_To_Selected_Group_Btn"
+        Me.Navigate_To_Selected_Group_Btn.Size = New System.Drawing.Size(94, 29)
+        Me.Navigate_To_Selected_Group_Btn.TabIndex = 23
+        Me.Navigate_To_Selected_Group_Btn.Text = "直接前往"
+        Me.Navigate_To_Selected_Group_Btn.UseVisualStyleBackColor = True
         '
         'Add_Item_To_GroupList_Btn
         '
@@ -3500,15 +3531,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Navigate_To_Selected_Group_Btn
-        '
-        Me.Navigate_To_Selected_Group_Btn.Location = New System.Drawing.Point(371, 88)
-        Me.Navigate_To_Selected_Group_Btn.Name = "Navigate_To_Selected_Group_Btn"
-        Me.Navigate_To_Selected_Group_Btn.Size = New System.Drawing.Size(94, 29)
-        Me.Navigate_To_Selected_Group_Btn.TabIndex = 23
-        Me.Navigate_To_Selected_Group_Btn.Text = "直接前往"
-        Me.Navigate_To_Selected_Group_Btn.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3895,4 +3917,6 @@ Partial Class Form1
     Friend WithEvents Add_Item_To_GroupList_Btn As Button
     Friend WithEvents Modify_Selected_GroupList_Item_Btn As Button
     Friend WithEvents Navigate_To_Selected_Group_Btn As Button
+    Friend WithEvents Insert_Def_Set_Btn As Button
+    Friend WithEvents Refresh_myScript_ComboBox_Btn As Button
 End Class

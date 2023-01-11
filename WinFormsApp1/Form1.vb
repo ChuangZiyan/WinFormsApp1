@@ -1696,10 +1696,11 @@ Public Class Form1
                 css_selector_str = "div.story_body_container > div > div"
             End If
 
-            Dim source_HTML = chromeDriverCrawler.FindElement(By.CssSelector(css_selector_str)).GetAttribute("innerHTML")
+            Dim source_HTML = chromeDriverCrawler.FindElement(By.CssSelector(css_selector_str)).GetAttribute("innerHTML").Trim()
 
             Dim regex As New Text.RegularExpressions.Regex("<.*?>", RegexOptions.Singleline)
-            Dim result As String = regex.Replace(source_HTML, String.Empty)
+            'Dim result As String = regex.Replace(source_HTML, String.Empty)
+            Dim result As String = regex.Replace(source_HTML, vbCrLf)
 
 
             Crawler_Post_Content_RichTextBox.Text = result
@@ -2072,5 +2073,9 @@ Public Class Form1
 
     End Sub
 
-
+    Private Sub Refresh_myScript_ComboBox_Btn_Click(sender As Object, e As EventArgs) Handles Refresh_myScript_ComboBox_Btn.Click
+        Script_Config_ComboBox.Items.Clear()
+        FormInit.Render_My_Script_ComboBox()
+        MsgBox("已更新常用腳本")
+    End Sub
 End Class

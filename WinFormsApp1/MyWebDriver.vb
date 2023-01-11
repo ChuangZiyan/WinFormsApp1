@@ -863,6 +863,8 @@ Public Class MyWebDriver
                 firstKey = Keys.LeftControl
             Case "ALT"
                 firstKey = Keys.LeftAlt
+            Case "SPACE"
+                firstKey = Keys.Space
 
         End Select
 
