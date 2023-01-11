@@ -586,7 +586,7 @@ Public Class Form1
                         boolean_result = False
                     End Try
                 Case "更改密碼"
-
+                    boolean_result = Await myWebDriver.Change_Fb_Password_Task()
 
             End Select
             If boolean_result = True Then 'record the result

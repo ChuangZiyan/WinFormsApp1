@@ -887,6 +887,10 @@ Public Class MyWebDriver
     End Function
 
 
+    Public Function Change_Fb_Password_Task()
+        Return Task.Run(Function() Change_Fb_Password())
+    End Function
+
     Public Function Change_Fb_Password()
         Try
             Dim password_input = chromeDriver.FindElement(By.XPath("//input[@type='password']"))
@@ -896,11 +900,8 @@ Public Class MyWebDriver
             Dim jsonObject = New JsonProfileInfo()
             jsonObject.Password = new_password
             Dim jsonString = JsonConvert.SerializeObject(jsonObject)
-
-            'Debug.WriteLine(jsonString)
-
             Dim myfile As System.IO.StreamWriter
-            myfile = My.Computer.FileSystem.OpenTextFileWriter(profile_path + "\ProfileInfo.txt", False) 'True : append   'False : overwrite
+            myfile = My.Computer.FileSystem.OpenTextFileWriter(running_chrome_profile_path + "\ProfileInfo.txt", False) 'True : append   'False : overwrite
             myfile.WriteLine(jsonString)
             myfile.Close()
 
