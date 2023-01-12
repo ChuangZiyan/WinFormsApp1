@@ -452,9 +452,9 @@ Public Class MyWebDriver
             Else
 
                 msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
-                'msgbox_ele = chromeDriver.FindElements(By.CssSelector(".xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
             End If
-
+            Debug.WriteLine("msgbox : ")
+            Debug.WriteLine(msgbox_ele(0))
             msgbox_ele(0).SendKeys(Keys.Enter)
             Return True
 
@@ -669,27 +669,46 @@ Public Class MyWebDriver
         'Dim msgbox_ele As Object
         'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
         Try
+            'Dim msgbox_ele As Object
+            'If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
+            '   msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
+            'Else
+            'msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
+            '   msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
+            'End If
+
             Dim msgbox_ele As Object
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='回覆']"))
+
+                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='回覆']"))
             Else
-                'msgbox_ele = chromeDriver.FindElement(By.CssSelector("div[aria-label^='留言'] > p"))
-                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
+
+                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
             End If
 
+            'Debug.WriteLine("content : " & content)
+
+            'content = content.Replace(vbCrLf, Keys.LeftShift + Keys.Enter)
+
+            'content = content.replace(, Keys.chord(Keys.Shift, Keys.Enter))
+            'content = content.replace(vbCrLf, Keys.LeftShift + Keys.Enter)
+            'content = content.replace(vbNewLine, Keys.LeftShift + Keys.Enter)
+            'msgbox_ele(0).SendKeys(content)
 
 
-            msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
+            If headless_mode Then
 
+                Dim str_arr() As String = content.Split(vbCrLf)
+                For Each line As String In str_arr
+                    'line = line.Replace(vbCrLf, "").
+                    msgbox_ele(0).SendKeys(line)
+                    Thread.Sleep(300)
+                    msgbox_ele(0).SendKeys(Keys.LeftShift + Keys.Return)
+                Next
 
-            'Dim str_arr() As String = content.Split(vbLf)
-            'For Each line As String In str_arr
-            'line = line.Replace(vbCr, "").Replace(vbLf, "")
-            'msgbox_ele.SendKeys(line)
-            'Thread.Sleep(100)
-            'msgbox_ele.SendKeys(Keys.LeftShift + Keys.Return)
-            'Next
-
+            Else
+                msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
+            End If
             'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
 

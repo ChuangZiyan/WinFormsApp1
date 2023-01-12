@@ -197,10 +197,8 @@ Public Class Form1
                     boolean_result = True
                     'Debug.WriteLine(Continue_time)
                 Case "開啟"
-                    If Headless_Mode_Checkbox.Checked Then
-                        myWebDriver.headless_mode = True
-                    End If
 
+                    myWebDriver.headless_mode = Headless_Mode_Checkbox.Checked
 
                     If profile = "" Or profile <> running_chrome_profile Then
 
@@ -2084,4 +2082,14 @@ Public Class Form1
         MsgBox("已更新常用腳本")
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim allTextFile = Text_File_CheckedListBox.Items
+        Dim rnd = rnd_num.Next(0, allTextFile.Count)
+
+        Dim content = File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd))
+        content = content.Replace(vbCrLf, "*")
+        Debug.WriteLine("=============================================================")
+        Debug.WriteLine(content)
+        Debug.WriteLine("=============================================================")
+    End Sub
 End Class
