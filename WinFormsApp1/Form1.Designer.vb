@@ -74,7 +74,6 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Reveal_Profile_Info_Btn = New System.Windows.Forms.Button()
         Me.Insert_Available_RndQueue_To_script = New System.Windows.Forms.Button()
         Me.Insert_Available_Queue_To_script = New System.Windows.Forms.Button()
@@ -877,7 +876,6 @@ Partial Class Form1
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.Button1)
         Me.TabPage5.Controls.Add(Me.Reveal_Profile_Info_Btn)
         Me.TabPage5.Controls.Add(Me.Insert_Available_RndQueue_To_script)
         Me.TabPage5.Controls.Add(Me.Insert_Available_Queue_To_script)
@@ -961,15 +959,6 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(709, 763)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(94, 29)
-        Me.Button1.TabIndex = 155
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'Reveal_Profile_Info_Btn
         '
@@ -3930,5 +3919,4 @@ Partial Class Form1
     Friend WithEvents Navigate_To_Selected_Group_Btn As Button
     Friend WithEvents Insert_Def_Set_Btn As Button
     Friend WithEvents Refresh_myScript_ComboBox_Btn As Button
-    Friend WithEvents Button1 As Button
 End Class

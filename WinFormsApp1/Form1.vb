@@ -1702,8 +1702,8 @@ Public Class Form1
             Dim source_HTML = chromeDriverCrawler.FindElement(By.CssSelector(css_selector_str)).GetAttribute("innerHTML").Trim()
 
             Dim regex As New Text.RegularExpressions.Regex("<.*?>", RegexOptions.Singleline)
-            'Dim result As String = regex.Replace(source_HTML, String.Empty)
-            Dim result As String = regex.Replace(source_HTML, vbCrLf)
+            Dim result As String = regex.Replace(source_HTML, String.Empty)
+            'Dim result As String = regex.Replace(source_HTML, vbCrLf)
 
 
             Crawler_Post_Content_RichTextBox.Text = result
@@ -2082,14 +2082,5 @@ Public Class Form1
         MsgBox("已更新常用腳本")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim allTextFile = Text_File_CheckedListBox.Items
-        Dim rnd = rnd_num.Next(0, allTextFile.Count)
 
-        Dim content = File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd))
-        content = content.Replace(vbCrLf, "*")
-        Debug.WriteLine("=============================================================")
-        Debug.WriteLine(content)
-        Debug.WriteLine("=============================================================")
-    End Sub
 End Class
