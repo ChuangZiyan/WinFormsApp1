@@ -345,6 +345,7 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -876,6 +877,7 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Button1)
         Me.TabPage5.Controls.Add(Me.Reveal_Profile_Info_Btn)
         Me.TabPage5.Controls.Add(Me.Insert_Available_RndQueue_To_script)
         Me.TabPage5.Controls.Add(Me.Insert_Available_Queue_To_script)
@@ -3531,6 +3533,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(709, 763)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(94, 29)
+        Me.Button1.TabIndex = 155
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3919,4 +3930,5 @@ Partial Class Form1
     Friend WithEvents Navigate_To_Selected_Group_Btn As Button
     Friend WithEvents Insert_Def_Set_Btn As Button
     Friend WithEvents Refresh_myScript_ComboBox_Btn As Button
+    Friend WithEvents Button1 As Button
 End Class

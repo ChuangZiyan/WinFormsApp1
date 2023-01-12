@@ -46,6 +46,8 @@ Public Class MyWebDriver
 
     Public used_lang = "zh-TW"
 
+    Public headless_mode = False
+
     Public Profile_Queue() As String
 
     Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
@@ -107,8 +109,15 @@ Public Class MyWebDriver
                     'FormInit.Render_profile_CheckedListBox()
                 End If
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking")
-
                 options.AddExcludedArgument("enable-automation")
+
+                'Minimize windows util headless mode work fine
+
+                If headless_mode Then
+                    Debug.WriteLine("Headless mode")
+                    options.AddArguments("--headless", "--disable-gpu")
+                    'chromeDriver.Manage().Window().Minimize()
+                End If
 
                 'Dim auto_adjust_window = False
                 If False Then ' True for turn on
@@ -132,11 +141,7 @@ Public Class MyWebDriver
                 ' Refresh Profile Items
 
 
-                'Minimize windows util headless mode work fine
-                If Form1.Headless_Mode_Checkbox.Checked Then
-                    options.AddArguments("--headless", "--disable-gpu")
-                    'chromeDriver.Manage().Window().Minimize()
-                End If
+
 
                 act = New Actions(chromeDriver)
 
@@ -263,7 +268,17 @@ Public Class MyWebDriver
             Case "留個言吧"
                 Return Click_leave_message()
             Case "發佈"
-                Return click_by_aria_label("發佈")
+                Try
+                    chromeDriver.FindElement(By.CssSelector("div[aria-label='發佈']")).Click()
+                    'Write_log("Click: " + str)
+                    Return True
+                Catch ex As Exception
+                    'Write_err_log("Click: " + str)
+                    IsInternetConnected()
+                    Debug.WriteLine(ex)
+                    Return False
+                End Try
+
             Case "留言"
                 Return Click_reply()
             Case "回覆上"

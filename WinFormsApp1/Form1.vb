@@ -197,6 +197,11 @@ Public Class Form1
                     boolean_result = True
                     'Debug.WriteLine(Continue_time)
                 Case "開啟"
+                    If Headless_Mode_Checkbox.Checked Then
+                        myWebDriver.headless_mode = True
+                    End If
+
+
                     If profile = "" Or profile <> running_chrome_profile Then
 
                         If content.Contains(";"c) Then
@@ -2078,4 +2083,5 @@ Public Class Form1
         FormInit.Render_My_Script_ComboBox()
         MsgBox("已更新常用腳本")
     End Sub
+
 End Class
