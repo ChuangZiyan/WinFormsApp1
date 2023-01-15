@@ -334,35 +334,38 @@ Public Class MyWebDriver
 
     Public Function Upload_reply_img(img)
         Debug.WriteLine("img : " + img)
+
         Try
-            'Debug.WriteLine("Copy " + img)
-            Dim msgbox_ele = chromeDriver.FindElements(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.notranslate"))
-            msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
+            Dim comment_img_input As Object
+
+            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
+
+                comment_img_input = chromeDriver.FindElements(By.CssSelector("div[aria-label^='回覆']"))
+            Else
+
+                comment_img_input = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
+            End If
+
+
+            If headless_mode Then
+                Debug.WriteLine("headless mode")
+                Dim image_input = chromeDriver.FindElement(By.CssSelector("div.x4b6v7d.x1ojsi0c > ul > li:nth-child(3) > input"))
+                image_input.SendKeys(img)
+            Else
+                'Debug.WriteLine("Copy " + img)
+                comment_img_input(0).SendKeys(Keys.LeftControl + "v")
+            End If
+
             Return True
 
         Catch ex As Exception
             Debug.WriteLine(ex)
             Return False
+
         End Try
 
         'old code keep until stable
         'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
-
-        Try
-            Dim comment_img_input As Object
-            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("reply_comment_img_input")))
-            Else
-                comment_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("reply_post_img_input")))
-            End If
-
-            comment_img_input.SendKeys(image_folder_path + img)
-            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-
 
     End Function
 
