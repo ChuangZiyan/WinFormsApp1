@@ -401,7 +401,7 @@ Module ScriptInsertion
 
     Public Sub Insert_Random_Navigation_URL()
         Dim Txt_file_path As String = ""
-        For Each itemChecked In Form1.Navigation_URL_CheckedListBox.CheckedItems
+        For Each itemChecked In Form1.Searching_Keyword_CheckedListBox.CheckedItems
             'Debug.WriteLine(itemChecked)
             Txt_file_path += itemChecked + ";"
         Next

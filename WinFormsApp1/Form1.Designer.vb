@@ -290,6 +290,9 @@ Partial Class Form1
         Me.Get_mGroups_List_btn = New System.Windows.Forms.Button()
         Me.Get_Groups_List_btn = New System.Windows.Forms.Button()
         Me.Searching = New System.Windows.Forms.TabPage()
+        Me.Label72 = New System.Windows.Forms.Label()
+        Me.Selection_Item_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Insert_Random_Navigation_URL_btn = New System.Windows.Forms.Button()
         Me.Refresh_Searching_Keyword_CheckedListBox_btn = New System.Windows.Forms.Button()
         Me.Search_Engine_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Keyword_TextFileName_TextBox = New System.Windows.Forms.TextBox()
@@ -305,20 +308,6 @@ Partial Class Form1
         Me.Insert_Random_Searching_Keyword_btn = New System.Windows.Forms.Button()
         Me.Insert_Searching_Keyword_btn = New System.Windows.Forms.Button()
         Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
-        Me.Navigation_Tab = New System.Windows.Forms.TabPage()
-        Me.Refresh_Navigation_URL_CheckedListBox_btn = New System.Windows.Forms.Button()
-        Me.Navigation_URL_FIleName_TextBox = New System.Windows.Forms.TextBox()
-        Me.Label47 = New System.Windows.Forms.Label()
-        Me.Navigation_URL_Text_SaveAs_btn = New System.Windows.Forms.Button()
-        Me.Save_Navigation_URL_btn = New System.Windows.Forms.Button()
-        Me.Navigation_URL_Dir_TextBox = New System.Windows.Forms.TextBox()
-        Me.Label48 = New System.Windows.Forms.Label()
-        Me.Reveal_Navigation_URL_Folder_btn = New System.Windows.Forms.Button()
-        Me.Delete_NavigationURL_Folder_btn = New System.Windows.Forms.Button()
-        Me.Navigation_URL_FileText_TextBox = New System.Windows.Forms.TextBox()
-        Me.Label49 = New System.Windows.Forms.Label()
-        Me.Insert_Random_Navigation_URL_btn = New System.Windows.Forms.Button()
-        Me.Navigation_URL_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
         Me.Insert_Change_FB_Password_Btn = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
@@ -378,7 +367,6 @@ Partial Class Form1
         Me.TabPage6.SuspendLayout()
         Me.GroupList.SuspendLayout()
         Me.Searching.SuspendLayout()
-        Me.Navigation_Tab.SuspendLayout()
         Me.Widget_TabPage.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.Pasword_Length_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -864,7 +852,6 @@ Partial Class Form1
         Me.TabControl2.Controls.Add(Me.TabPage6)
         Me.TabControl2.Controls.Add(Me.GroupList)
         Me.TabControl2.Controls.Add(Me.Searching)
-        Me.TabControl2.Controls.Add(Me.Navigation_Tab)
         Me.TabControl2.Controls.Add(Me.Widget_TabPage)
         Me.TabControl2.Controls.Add(Me.Post_Crawler)
         Me.TabControl2.Controls.Add(Me.Block_User)
@@ -3010,6 +2997,9 @@ Partial Class Form1
         '
         'Searching
         '
+        Me.Searching.Controls.Add(Me.Label72)
+        Me.Searching.Controls.Add(Me.Selection_Item_ComboBox)
+        Me.Searching.Controls.Add(Me.Insert_Random_Navigation_URL_btn)
         Me.Searching.Controls.Add(Me.Refresh_Searching_Keyword_CheckedListBox_btn)
         Me.Searching.Controls.Add(Me.Search_Engine_ComboBox)
         Me.Searching.Controls.Add(Me.Keyword_TextFileName_TextBox)
@@ -3029,12 +3019,41 @@ Partial Class Form1
         Me.Searching.Name = "Searching"
         Me.Searching.Size = New System.Drawing.Size(918, 820)
         Me.Searching.TabIndex = 5
-        Me.Searching.Text = "搜尋"
+        Me.Searching.Text = "搜尋與前往"
         Me.Searching.UseVisualStyleBackColor = True
+        '
+        'Label72
+        '
+        Me.Label72.AutoSize = True
+        Me.Label72.Location = New System.Drawing.Point(22, 24)
+        Me.Label72.Name = "Label72"
+        Me.Label72.Size = New System.Drawing.Size(80, 19)
+        Me.Label72.TabIndex = 22
+        Me.Label72.Text = "功能選擇 : "
+        '
+        'Selection_Item_ComboBox
+        '
+        Me.Selection_Item_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Selection_Item_ComboBox.FormattingEnabled = True
+        Me.Selection_Item_ComboBox.Items.AddRange(New Object() {"搜尋", "前往"})
+        Me.Selection_Item_ComboBox.Location = New System.Drawing.Point(108, 16)
+        Me.Selection_Item_ComboBox.Name = "Selection_Item_ComboBox"
+        Me.Selection_Item_ComboBox.Size = New System.Drawing.Size(244, 27)
+        Me.Selection_Item_ComboBox.TabIndex = 21
+        '
+        'Insert_Random_Navigation_URL_btn
+        '
+        Me.Insert_Random_Navigation_URL_btn.Location = New System.Drawing.Point(358, 74)
+        Me.Insert_Random_Navigation_URL_btn.Name = "Insert_Random_Navigation_URL_btn"
+        Me.Insert_Random_Navigation_URL_btn.Size = New System.Drawing.Size(152, 29)
+        Me.Insert_Random_Navigation_URL_btn.TabIndex = 20
+        Me.Insert_Random_Navigation_URL_btn.Text = "隨機前往 - 插入"
+        Me.Insert_Random_Navigation_URL_btn.UseVisualStyleBackColor = True
+        Me.Insert_Random_Navigation_URL_btn.Visible = False
         '
         'Refresh_Searching_Keyword_CheckedListBox_btn
         '
-        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Location = New System.Drawing.Point(367, 192)
+        Me.Refresh_Searching_Keyword_CheckedListBox_btn.Location = New System.Drawing.Point(358, 234)
         Me.Refresh_Searching_Keyword_CheckedListBox_btn.Name = "Refresh_Searching_Keyword_CheckedListBox_btn"
         Me.Refresh_Searching_Keyword_CheckedListBox_btn.Size = New System.Drawing.Size(152, 29)
         Me.Refresh_Searching_Keyword_CheckedListBox_btn.TabIndex = 16
@@ -3045,14 +3064,14 @@ Partial Class Form1
         '
         Me.Search_Engine_ComboBox.FormattingEnabled = True
         Me.Search_Engine_ComboBox.Items.AddRange(New Object() {"Facebook", "Google", "Youtube"})
-        Me.Search_Engine_ComboBox.Location = New System.Drawing.Point(367, 32)
+        Me.Search_Engine_ComboBox.Location = New System.Drawing.Point(358, 74)
         Me.Search_Engine_ComboBox.Name = "Search_Engine_ComboBox"
         Me.Search_Engine_ComboBox.Size = New System.Drawing.Size(152, 27)
         Me.Search_Engine_ComboBox.TabIndex = 15
         '
         'Keyword_TextFileName_TextBox
         '
-        Me.Keyword_TextFileName_TextBox.Location = New System.Drawing.Point(102, 297)
+        Me.Keyword_TextFileName_TextBox.Location = New System.Drawing.Point(93, 339)
         Me.Keyword_TextFileName_TextBox.Name = "Keyword_TextFileName_TextBox"
         Me.Keyword_TextFileName_TextBox.Size = New System.Drawing.Size(259, 27)
         Me.Keyword_TextFileName_TextBox.TabIndex = 14
@@ -3060,7 +3079,7 @@ Partial Class Form1
         'Label44
         '
         Me.Label44.AutoSize = True
-        Me.Label44.Location = New System.Drawing.Point(46, 300)
+        Me.Label44.Location = New System.Drawing.Point(37, 342)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(50, 19)
         Me.Label44.TabIndex = 13
@@ -3068,7 +3087,7 @@ Partial Class Form1
         '
         'Searching_Keyword_Text_SaveAs_btn
         '
-        Me.Searching_Keyword_Text_SaveAs_btn.Location = New System.Drawing.Point(525, 328)
+        Me.Searching_Keyword_Text_SaveAs_btn.Location = New System.Drawing.Point(516, 370)
         Me.Searching_Keyword_Text_SaveAs_btn.Name = "Searching_Keyword_Text_SaveAs_btn"
         Me.Searching_Keyword_Text_SaveAs_btn.Size = New System.Drawing.Size(152, 29)
         Me.Searching_Keyword_Text_SaveAs_btn.TabIndex = 12
@@ -3077,7 +3096,7 @@ Partial Class Form1
         '
         'Save_Search_Keyword_btn
         '
-        Me.Save_Search_Keyword_btn.Location = New System.Drawing.Point(367, 328)
+        Me.Save_Search_Keyword_btn.Location = New System.Drawing.Point(358, 370)
         Me.Save_Search_Keyword_btn.Name = "Save_Search_Keyword_btn"
         Me.Save_Search_Keyword_btn.Size = New System.Drawing.Size(152, 29)
         Me.Save_Search_Keyword_btn.TabIndex = 11
@@ -3086,7 +3105,7 @@ Partial Class Form1
         '
         'SearchingKeyword_folder_Textbox
         '
-        Me.SearchingKeyword_folder_Textbox.Location = New System.Drawing.Point(102, 264)
+        Me.SearchingKeyword_folder_Textbox.Location = New System.Drawing.Point(93, 306)
         Me.SearchingKeyword_folder_Textbox.Name = "SearchingKeyword_folder_Textbox"
         Me.SearchingKeyword_folder_Textbox.Size = New System.Drawing.Size(259, 27)
         Me.SearchingKeyword_folder_Textbox.TabIndex = 10
@@ -3094,7 +3113,7 @@ Partial Class Form1
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(31, 272)
+        Me.Label43.Location = New System.Drawing.Point(22, 314)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(65, 19)
         Me.Label43.TabIndex = 9
@@ -3102,7 +3121,7 @@ Partial Class Form1
         '
         'Reveal_Keyword_Folder_btn
         '
-        Me.Reveal_Keyword_Folder_btn.Location = New System.Drawing.Point(367, 262)
+        Me.Reveal_Keyword_Folder_btn.Location = New System.Drawing.Point(358, 304)
         Me.Reveal_Keyword_Folder_btn.Name = "Reveal_Keyword_Folder_btn"
         Me.Reveal_Keyword_Folder_btn.Size = New System.Drawing.Size(152, 29)
         Me.Reveal_Keyword_Folder_btn.TabIndex = 8
@@ -3111,7 +3130,7 @@ Partial Class Form1
         '
         'Delete_Keyword_Folder_btn
         '
-        Me.Delete_Keyword_Folder_btn.Location = New System.Drawing.Point(367, 227)
+        Me.Delete_Keyword_Folder_btn.Location = New System.Drawing.Point(358, 269)
         Me.Delete_Keyword_Folder_btn.Name = "Delete_Keyword_Folder_btn"
         Me.Delete_Keyword_Folder_btn.Size = New System.Drawing.Size(152, 29)
         Me.Delete_Keyword_Folder_btn.TabIndex = 7
@@ -3120,7 +3139,7 @@ Partial Class Form1
         '
         'Searching_keyword_Text_Textbox
         '
-        Me.Searching_keyword_Text_Textbox.Location = New System.Drawing.Point(102, 330)
+        Me.Searching_keyword_Text_Textbox.Location = New System.Drawing.Point(93, 372)
         Me.Searching_keyword_Text_Textbox.Name = "Searching_keyword_Text_Textbox"
         Me.Searching_keyword_Text_Textbox.Size = New System.Drawing.Size(259, 27)
         Me.Searching_keyword_Text_Textbox.TabIndex = 5
@@ -3128,7 +3147,7 @@ Partial Class Form1
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(46, 333)
+        Me.Label42.Location = New System.Drawing.Point(37, 375)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(50, 19)
         Me.Label42.TabIndex = 4
@@ -3136,7 +3155,7 @@ Partial Class Form1
         '
         'Insert_Random_Searching_Keyword_btn
         '
-        Me.Insert_Random_Searching_Keyword_btn.Location = New System.Drawing.Point(525, 65)
+        Me.Insert_Random_Searching_Keyword_btn.Location = New System.Drawing.Point(516, 107)
         Me.Insert_Random_Searching_Keyword_btn.Name = "Insert_Random_Searching_Keyword_btn"
         Me.Insert_Random_Searching_Keyword_btn.Size = New System.Drawing.Size(152, 29)
         Me.Insert_Random_Searching_Keyword_btn.TabIndex = 3
@@ -3145,7 +3164,7 @@ Partial Class Form1
         '
         'Insert_Searching_Keyword_btn
         '
-        Me.Insert_Searching_Keyword_btn.Location = New System.Drawing.Point(525, 30)
+        Me.Insert_Searching_Keyword_btn.Location = New System.Drawing.Point(516, 72)
         Me.Insert_Searching_Keyword_btn.Name = "Insert_Searching_Keyword_btn"
         Me.Insert_Searching_Keyword_btn.Size = New System.Drawing.Size(152, 29)
         Me.Insert_Searching_Keyword_btn.TabIndex = 2
@@ -3156,143 +3175,10 @@ Partial Class Form1
         '
         Me.Searching_Keyword_CheckedListBox.CheckOnClick = True
         Me.Searching_Keyword_CheckedListBox.FormattingEnabled = True
-        Me.Searching_Keyword_CheckedListBox.Location = New System.Drawing.Point(31, 32)
+        Me.Searching_Keyword_CheckedListBox.Location = New System.Drawing.Point(22, 74)
         Me.Searching_Keyword_CheckedListBox.Name = "Searching_Keyword_CheckedListBox"
         Me.Searching_Keyword_CheckedListBox.Size = New System.Drawing.Size(330, 224)
         Me.Searching_Keyword_CheckedListBox.TabIndex = 0
-        '
-        'Navigation_Tab
-        '
-        Me.Navigation_Tab.Controls.Add(Me.Refresh_Navigation_URL_CheckedListBox_btn)
-        Me.Navigation_Tab.Controls.Add(Me.Navigation_URL_FIleName_TextBox)
-        Me.Navigation_Tab.Controls.Add(Me.Label47)
-        Me.Navigation_Tab.Controls.Add(Me.Navigation_URL_Text_SaveAs_btn)
-        Me.Navigation_Tab.Controls.Add(Me.Save_Navigation_URL_btn)
-        Me.Navigation_Tab.Controls.Add(Me.Navigation_URL_Dir_TextBox)
-        Me.Navigation_Tab.Controls.Add(Me.Label48)
-        Me.Navigation_Tab.Controls.Add(Me.Reveal_Navigation_URL_Folder_btn)
-        Me.Navigation_Tab.Controls.Add(Me.Delete_NavigationURL_Folder_btn)
-        Me.Navigation_Tab.Controls.Add(Me.Navigation_URL_FileText_TextBox)
-        Me.Navigation_Tab.Controls.Add(Me.Label49)
-        Me.Navigation_Tab.Controls.Add(Me.Insert_Random_Navigation_URL_btn)
-        Me.Navigation_Tab.Controls.Add(Me.Navigation_URL_CheckedListBox)
-        Me.Navigation_Tab.Location = New System.Drawing.Point(4, 28)
-        Me.Navigation_Tab.Name = "Navigation_Tab"
-        Me.Navigation_Tab.Size = New System.Drawing.Size(918, 820)
-        Me.Navigation_Tab.TabIndex = 6
-        Me.Navigation_Tab.Text = "前往"
-        Me.Navigation_Tab.UseVisualStyleBackColor = True
-        '
-        'Refresh_Navigation_URL_CheckedListBox_btn
-        '
-        Me.Refresh_Navigation_URL_CheckedListBox_btn.Location = New System.Drawing.Point(367, 192)
-        Me.Refresh_Navigation_URL_CheckedListBox_btn.Name = "Refresh_Navigation_URL_CheckedListBox_btn"
-        Me.Refresh_Navigation_URL_CheckedListBox_btn.Size = New System.Drawing.Size(152, 29)
-        Me.Refresh_Navigation_URL_CheckedListBox_btn.TabIndex = 31
-        Me.Refresh_Navigation_URL_CheckedListBox_btn.Text = "重新整理"
-        Me.Refresh_Navigation_URL_CheckedListBox_btn.UseVisualStyleBackColor = True
-        '
-        'Navigation_URL_FIleName_TextBox
-        '
-        Me.Navigation_URL_FIleName_TextBox.Location = New System.Drawing.Point(102, 297)
-        Me.Navigation_URL_FIleName_TextBox.Name = "Navigation_URL_FIleName_TextBox"
-        Me.Navigation_URL_FIleName_TextBox.Size = New System.Drawing.Size(259, 27)
-        Me.Navigation_URL_FIleName_TextBox.TabIndex = 29
-        '
-        'Label47
-        '
-        Me.Label47.AutoSize = True
-        Me.Label47.Location = New System.Drawing.Point(46, 300)
-        Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(50, 19)
-        Me.Label47.TabIndex = 28
-        Me.Label47.Text = "名稱 : "
-        '
-        'Navigation_URL_Text_SaveAs_btn
-        '
-        Me.Navigation_URL_Text_SaveAs_btn.Location = New System.Drawing.Point(525, 328)
-        Me.Navigation_URL_Text_SaveAs_btn.Name = "Navigation_URL_Text_SaveAs_btn"
-        Me.Navigation_URL_Text_SaveAs_btn.Size = New System.Drawing.Size(152, 29)
-        Me.Navigation_URL_Text_SaveAs_btn.TabIndex = 27
-        Me.Navigation_URL_Text_SaveAs_btn.Text = "另存內容"
-        Me.Navigation_URL_Text_SaveAs_btn.UseVisualStyleBackColor = True
-        '
-        'Save_Navigation_URL_btn
-        '
-        Me.Save_Navigation_URL_btn.Location = New System.Drawing.Point(367, 328)
-        Me.Save_Navigation_URL_btn.Name = "Save_Navigation_URL_btn"
-        Me.Save_Navigation_URL_btn.Size = New System.Drawing.Size(152, 29)
-        Me.Save_Navigation_URL_btn.TabIndex = 26
-        Me.Save_Navigation_URL_btn.Text = "儲存內容"
-        Me.Save_Navigation_URL_btn.UseVisualStyleBackColor = True
-        '
-        'Navigation_URL_Dir_TextBox
-        '
-        Me.Navigation_URL_Dir_TextBox.Location = New System.Drawing.Point(102, 264)
-        Me.Navigation_URL_Dir_TextBox.Name = "Navigation_URL_Dir_TextBox"
-        Me.Navigation_URL_Dir_TextBox.Size = New System.Drawing.Size(259, 27)
-        Me.Navigation_URL_Dir_TextBox.TabIndex = 25
-        '
-        'Label48
-        '
-        Me.Label48.AutoSize = True
-        Me.Label48.Location = New System.Drawing.Point(31, 272)
-        Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(65, 19)
-        Me.Label48.TabIndex = 24
-        Me.Label48.Text = "資料夾 : "
-        '
-        'Reveal_Navigation_URL_Folder_btn
-        '
-        Me.Reveal_Navigation_URL_Folder_btn.Location = New System.Drawing.Point(367, 262)
-        Me.Reveal_Navigation_URL_Folder_btn.Name = "Reveal_Navigation_URL_Folder_btn"
-        Me.Reveal_Navigation_URL_Folder_btn.Size = New System.Drawing.Size(152, 29)
-        Me.Reveal_Navigation_URL_Folder_btn.TabIndex = 23
-        Me.Reveal_Navigation_URL_Folder_btn.Text = "打開所選資料夾"
-        Me.Reveal_Navigation_URL_Folder_btn.UseVisualStyleBackColor = True
-        '
-        'Delete_NavigationURL_Folder_btn
-        '
-        Me.Delete_NavigationURL_Folder_btn.Location = New System.Drawing.Point(367, 227)
-        Me.Delete_NavigationURL_Folder_btn.Name = "Delete_NavigationURL_Folder_btn"
-        Me.Delete_NavigationURL_Folder_btn.Size = New System.Drawing.Size(152, 29)
-        Me.Delete_NavigationURL_Folder_btn.TabIndex = 22
-        Me.Delete_NavigationURL_Folder_btn.Text = "刪除所選檔案"
-        Me.Delete_NavigationURL_Folder_btn.UseVisualStyleBackColor = True
-        '
-        'Navigation_URL_FileText_TextBox
-        '
-        Me.Navigation_URL_FileText_TextBox.Location = New System.Drawing.Point(102, 330)
-        Me.Navigation_URL_FileText_TextBox.Name = "Navigation_URL_FileText_TextBox"
-        Me.Navigation_URL_FileText_TextBox.Size = New System.Drawing.Size(259, 27)
-        Me.Navigation_URL_FileText_TextBox.TabIndex = 21
-        '
-        'Label49
-        '
-        Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(46, 333)
-        Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(50, 19)
-        Me.Label49.TabIndex = 20
-        Me.Label49.Text = "內容 : "
-        '
-        'Insert_Random_Navigation_URL_btn
-        '
-        Me.Insert_Random_Navigation_URL_btn.Location = New System.Drawing.Point(367, 32)
-        Me.Insert_Random_Navigation_URL_btn.Name = "Insert_Random_Navigation_URL_btn"
-        Me.Insert_Random_Navigation_URL_btn.Size = New System.Drawing.Size(152, 29)
-        Me.Insert_Random_Navigation_URL_btn.TabIndex = 19
-        Me.Insert_Random_Navigation_URL_btn.Text = "隨機前往 - 插入"
-        Me.Insert_Random_Navigation_URL_btn.UseVisualStyleBackColor = True
-        '
-        'Navigation_URL_CheckedListBox
-        '
-        Me.Navigation_URL_CheckedListBox.CheckOnClick = True
-        Me.Navigation_URL_CheckedListBox.FormattingEnabled = True
-        Me.Navigation_URL_CheckedListBox.Location = New System.Drawing.Point(31, 32)
-        Me.Navigation_URL_CheckedListBox.Name = "Navigation_URL_CheckedListBox"
-        Me.Navigation_URL_CheckedListBox.Size = New System.Drawing.Size(330, 224)
-        Me.Navigation_URL_CheckedListBox.TabIndex = 17
         '
         'Widget_TabPage
         '
@@ -3584,8 +3470,6 @@ Partial Class Form1
         Me.GroupList.PerformLayout()
         Me.Searching.ResumeLayout(False)
         Me.Searching.PerformLayout()
-        Me.Navigation_Tab.ResumeLayout(False)
-        Me.Navigation_Tab.PerformLayout()
         Me.Widget_TabPage.ResumeLayout(False)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
@@ -3800,20 +3684,6 @@ Partial Class Form1
     Friend WithEvents GroupList_GroupName_Textbox As TextBox
     Friend WithEvents Label46 As Label
     Friend WithEvents Label45 As Label
-    Friend WithEvents Navigation_Tab As TabPage
-    Friend WithEvents Refresh_Navigation_URL_CheckedListBox_btn As Button
-    Friend WithEvents Navigation_URL_FIleName_TextBox As TextBox
-    Friend WithEvents Label47 As Label
-    Friend WithEvents Navigation_URL_Text_SaveAs_btn As Button
-    Friend WithEvents Save_Navigation_URL_btn As Button
-    Friend WithEvents Navigation_URL_Dir_TextBox As TextBox
-    Friend WithEvents Label48 As Label
-    Friend WithEvents Reveal_Navigation_URL_Folder_btn As Button
-    Friend WithEvents Delete_NavigationURL_Folder_btn As Button
-    Friend WithEvents Navigation_URL_FileText_TextBox As TextBox
-    Friend WithEvents Label49 As Label
-    Friend WithEvents Insert_Random_Navigation_URL_btn As Button
-    Friend WithEvents Navigation_URL_CheckedListBox As CheckedListBox
     Friend WithEvents Widget_TabPage As TabPage
     Friend WithEvents Auto_GenerateTextFile_RichTextBox As RichTextBox
     Friend WithEvents Auto_Generated_TextFile_Btn As Button
@@ -3919,4 +3789,7 @@ Partial Class Form1
     Friend WithEvents Navigate_To_Selected_Group_Btn As Button
     Friend WithEvents Insert_Def_Set_Btn As Button
     Friend WithEvents Refresh_myScript_ComboBox_Btn As Button
+    Friend WithEvents Selection_Item_ComboBox As ComboBox
+    Friend WithEvents Insert_Random_Navigation_URL_btn As Button
+    Friend WithEvents Label72 As Label
 End Class

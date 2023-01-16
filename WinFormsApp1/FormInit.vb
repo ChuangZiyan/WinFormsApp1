@@ -15,6 +15,7 @@ Module FormInit
 
 
     Public Sub FormInit_Render_All()
+
         Property_Folder_Init()
         Render_Script_listview()
         Render_Maching_condition_listview()
@@ -28,10 +29,14 @@ Module FormInit
         Render_Groups_Listview()
         Render_ProfileName_ComboBox_Item()
         Render_My_Script_ComboBox()
-        Render_Keyword_TextFIle()
-        Render_URL_TextFIle()
+        'Render_Keyword_TextFIle()
+        'Render_URL_TextFIle()
         Render_Current_URL_ComboBox()
         Render_Block_Lang_Packs_ComboBox()
+
+
+
+        Form1.Selection_Item_ComboBox.Text = "搜尋"
     End Sub
 
 
@@ -276,10 +281,21 @@ Module FormInit
     End Sub
 
     Public Sub Render_Keyword_TextFIle()
-        If Not System.IO.Directory.Exists(keyword_Searching_path) Then
-            System.IO.Directory.CreateDirectory(keyword_Searching_path)
+        Dim myPath = keyword_Searching_path
+
+
+        If curr_selected_feature = "搜尋" Then
+            myPath = keyword_Searching_path
+        ElseIf curr_selected_feature = "前往" Then
+            myPath = URL_Navigation_path
         End If
-        Dim dirs() As String = IO.Directory.GetDirectories(keyword_Searching_path)
+
+
+        If Not System.IO.Directory.Exists(myPath) Then
+            System.IO.Directory.CreateDirectory(myPath)
+        End If
+        Form1.Searching_Keyword_CheckedListBox.Items.Clear()
+        Dim dirs() As String = IO.Directory.GetDirectories(myPath)
         'image/*,image/heif,image/heic,video/*,video/mp4,video/x-m4v,video/x-matroska,.mkv
 
         For Each dir As String In dirs
@@ -302,6 +318,7 @@ Module FormInit
         If Not System.IO.Directory.Exists(URL_Navigation_path) Then
             System.IO.Directory.CreateDirectory(URL_Navigation_path)
         End If
+        Form1.Searching_Keyword_CheckedListBox.Items.Clear()
         Dim dirs() As String = IO.Directory.GetDirectories(URL_Navigation_path)
         'image/*,image/heif,image/heic,video/*,video/mp4,video/x-m4v,video/x-matroska,.mkv
 
@@ -313,7 +330,7 @@ Module FormInit
 
                 Dim split As String() = file.Split("\")
                 Dim parentFolder As String = split(split.Length - 2)
-                Form1.Navigation_URL_CheckedListBox.Items.Add(parentFolder + "\" + Path.GetFileName(file))
+                Form1.Searching_Keyword_CheckedListBox.Items.Add(parentFolder + "\" + Path.GetFileName(file))
 
             Next
 

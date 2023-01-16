@@ -7,6 +7,9 @@ Imports Newtonsoft.Json.Linq
 Imports WinFormsApp1.JsonProfileInfo
 Module FormComponentController
 
+    Public curr_selected_feature = "搜尋"
+
+
     Public Sub Delete_ScriptListView_selected_item()
         For i As Integer = Form1.script_ListView.SelectedIndices.Count - 1 To 0 Step -1
             Form1.script_ListView.Items.RemoveAt(Form1.script_ListView.SelectedIndices(i))
@@ -498,6 +501,13 @@ Module FormComponentController
         If Form1.SearchingKeyword_folder_Textbox.Text <> "" Then
 
             Dim keyword_folder_path = FormInit.keyword_Searching_path + "/" + Form1.SearchingKeyword_folder_Textbox.Text
+
+            If curr_selected_feature = "搜尋" Then
+                keyword_folder_path = FormInit.keyword_Searching_path + "/" + Form1.SearchingKeyword_folder_Textbox.Text
+            ElseIf curr_selected_feature = "前往" Then
+                keyword_folder_path = FormInit.URL_Navigation_path + "/" + Form1.SearchingKeyword_folder_Textbox.Text
+            End If
+
             Dim keyword_file_name As String
 
             If Form1.Keyword_TextFileName_TextBox.Text = "" Then ' auto generate file name
@@ -512,6 +522,10 @@ Module FormComponentController
             End If
             WriteAllText(keyword_folder_path + "/" + keyword_file_name, Form1.Searching_keyword_Text_Textbox.Text)
             Form1.Searching_Keyword_CheckedListBox.Items.Clear()
+
+            Form1.SearchingKeyword_folder_Textbox.Clear()
+            Form1.Keyword_TextFileName_TextBox.Clear()
+            Form1.Searching_keyword_Text_Textbox.Clear()
             FormInit.Render_Keyword_TextFIle()
 
         Else
@@ -549,15 +563,25 @@ Module FormComponentController
 
 
     Public Sub Searching_Keyword_CheckedListBox_OnClick()
+        Dim myFolderPath = ""
+
+        If curr_selected_feature = "搜尋" Then
+            myFolderPath = FormInit.keyword_Searching_path
+        ElseIf curr_selected_feature = "前往" Then
+            myFolderPath = FormInit.URL_Navigation_path
+        End If
+
 
         Dim Txt_file_path As String = ""
         For Each itemSeleted In Form1.Searching_Keyword_CheckedListBox.SelectedItems
             Txt_file_path = itemSeleted
         Next
-        Form1.Searching_keyword_Text_Textbox.Text = File.ReadAllText(FormInit.keyword_Searching_path + Txt_file_path)
+        Form1.Searching_keyword_Text_Textbox.Text = File.ReadAllText(myFolderPath + Txt_file_path)
         Dim temp_arr = Txt_file_path.Split("\")
         Form1.Keyword_TextFileName_TextBox.Text = Path.GetFileNameWithoutExtension(Txt_file_path)
         Form1.SearchingKeyword_folder_Textbox.Text = temp_arr(temp_arr.Length - 2)
+
+
     End Sub
 
     Public Sub Navigation_URL_CheckedListBox_OnClick()
@@ -610,6 +634,14 @@ Module FormComponentController
         End If
 
         Dim mypath As String = FormInit.keyword_Searching_path + Form1.SearchingKeyword_folder_Textbox.Text
+
+        If curr_selected_feature = "搜尋" Then
+            mypath = FormInit.keyword_Searching_path + Form1.SearchingKeyword_folder_Textbox.Text
+        ElseIf curr_selected_feature = "前往" Then
+            mypath = FormInit.URL_Navigation_path + Form1.SearchingKeyword_folder_Textbox.Text
+        End If
+
+
         If Not System.IO.Directory.Exists(mypath) Then
             System.IO.Directory.CreateDirectory(mypath)
         End If
@@ -633,6 +665,16 @@ Module FormComponentController
         For Each itemSelected In Form1.Searching_Keyword_CheckedListBox.SelectedItems
 
             Dim keyword_file = FormInit.keyword_Searching_path + itemSelected
+
+            If curr_selected_feature = "搜尋" Then
+                keyword_file = FormInit.keyword_Searching_path + itemSelected
+            ElseIf curr_selected_feature = "前往" Then
+                keyword_file = FormInit.URL_Navigation_path + itemSelected
+            End If
+
+
+
+
             If File.Exists(keyword_file) Then
                 Dim result As DialogResult = MessageBox.Show("確定要刪除此檔案?", "確認訊息", MessageBoxButtons.YesNo)
                 If result = DialogResult.Yes Then

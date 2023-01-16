@@ -1540,7 +1540,7 @@ Public Class Form1
         FormComponentController.Save_Search_Keyword_btn_Click()
     End Sub
 
-    Private Sub Save_Navigation_URL_btn_Click(sender As Object, e As EventArgs) Handles Save_Navigation_URL_btn.Click
+    Private Sub Save_Navigation_URL_btn_Click(sender As Object, e As EventArgs) 
         FormComponentController.Save_Navigation_URL_btn_Click()
     End Sub
 
@@ -1556,7 +1556,7 @@ Public Class Form1
         FormComponentController.Searching_Keyword_Text_SaveAs()
     End Sub
 
-    Private Sub Navigation_URL_Text_SaveAs_btn_Click(sender As Object, e As EventArgs) Handles Navigation_URL_Text_SaveAs_btn.Click
+    Private Sub Navigation_URL_Text_SaveAs_btn_Click(sender As Object, e As EventArgs) 
         FormComponentController.Navigation_URL_Text_SaveAs()
     End Sub
 
@@ -1564,7 +1564,7 @@ Public Class Form1
         FormComponentController.Reveal_Keyword_Folder()
     End Sub
 
-    Private Sub Reveal_Navigation_URL_Folder_btn_Click(sender As Object, e As EventArgs) Handles Reveal_Navigation_URL_Folder_btn.Click
+    Private Sub Reveal_Navigation_URL_Folder_btn_Click(sender As Object, e As EventArgs) 
         FormComponentController.Reveal_Navigation_URL_Folder()
     End Sub
 
@@ -1572,7 +1572,7 @@ Public Class Form1
         FormComponentController.Delete_Keyword_Folder()
     End Sub
 
-    Private Sub Delete_NavigationURL_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_NavigationURL_Folder_btn.Click
+    Private Sub Delete_NavigationURL_Folder_btn_Click(sender As Object, e As EventArgs) 
         FormComponentController.Delete_Navigation_URL_File()
     End Sub
 
@@ -1589,17 +1589,16 @@ Public Class Form1
         ScriptInsertion.Insert_Random_Searching_Keyword()
     End Sub
 
-    Private Sub Insert_Random_Navigation_URL_btn_Click(sender As Object, e As EventArgs) Handles Insert_Random_Navigation_URL_btn.Click
-        ScriptInsertion.Insert_Random_Navigation_URL()
-    End Sub
-
 
     Private Sub Refresh_Searching_Keyword_CheckedListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_Searching_Keyword_CheckedListBox_btn.Click
         Searching_Keyword_CheckedListBox.Items.Clear()
+        SearchingKeyword_folder_Textbox.Clear()
+        Keyword_TextFileName_TextBox.Clear()
+        Searching_keyword_Text_Textbox.Clear()
         FormInit.Render_Keyword_TextFIle()
     End Sub
 
-    Private Sub Refresh_Navigation_URL_CheckedListBox_btn_Click(sender As Object, e As EventArgs) Handles Refresh_Navigation_URL_CheckedListBox_btn.Click
+    Private Sub Refresh_Navigation_URL_CheckedListBox_btn_Click(sender As Object, e As EventArgs) 
         Navigation_URL_CheckedListBox.Items.Clear()
         FormInit.Render_URL_TextFIle()
     End Sub
@@ -2082,5 +2081,34 @@ Public Class Form1
         MsgBox("已更新常用腳本")
     End Sub
 
+    Private Sub Selection_Item_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Selection_Item_ComboBox.SelectedIndexChanged
 
+        SearchingKeyword_folder_Textbox.Clear()
+        Keyword_TextFileName_TextBox.Clear()
+        Searching_keyword_Text_Textbox.Clear()
+        If Selection_Item_ComboBox.Text = "前往" Then
+            FormComponentController.curr_selected_feature = "前往"
+
+
+            Search_Engine_ComboBox.Visible = False
+            Insert_Searching_Keyword_btn.Visible = False
+            Insert_Random_Searching_Keyword_btn.Visible = False
+
+            Insert_Random_Navigation_URL_btn.Visible = True
+
+        ElseIf Selection_Item_ComboBox.Text = "搜尋" Then
+            FormComponentController.curr_selected_feature = "搜尋"
+            Insert_Random_Navigation_URL_btn.Visible = False
+
+            Search_Engine_ComboBox.Visible = True
+            Insert_Searching_Keyword_btn.Visible = True
+            Insert_Random_Searching_Keyword_btn.Visible = True
+
+        End If
+        FormInit.Render_Keyword_TextFIle()
+    End Sub
+
+    Private Sub Insert_Random_Navigation_URL_btn_Click(sender As Object, e As EventArgs) Handles Insert_Random_Navigation_URL_btn.Click
+        ScriptInsertion.Insert_Random_Navigation_URL()
+    End Sub
 End Class
