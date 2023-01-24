@@ -305,18 +305,12 @@ Public Class Form1
 
                 Case "前往:隨機"
 
-                    If content = "全部隨機" Then
-                        Dim allURLTextFile = Navigation_URL_CheckedListBox.Items
-                        Dim rnd = rnd_num.Next(0, allURLTextFile.Count)
-                        boolean_result = Await myWebDriver.Navigate_GoToUrl_Task(File.ReadAllText(FormInit.URL_Navigation_path + allURLTextFile(rnd)))
-                    Else
-                        Dim URLTextFiles = content.Split(";")
-                        Dim rnd = rnd_num.Next(0, URLTextFiles.Length)
+                    Dim URLTextFiles = content.Split(";")
+                    Dim rnd = rnd_num.Next(0, URLTextFiles.Length)
                         'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
                         boolean_result = Await myWebDriver.Navigate_GoToUrl_Task(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
-                    End If
 
-                Case "前往社團"
+                        Case "前往社團"
                     Debug.WriteLine("Running Profile : " + myWebDriver.running_chrome_profile_path)
                     Dim groupListFilePath = FormInit.profile_path + content.Split(";")(0) + "\GroupList.txt"
                     If content.Split(";")(0) = "不指定" Then
@@ -1540,41 +1534,24 @@ Public Class Form1
         FormComponentController.Save_Search_Keyword_btn_Click()
     End Sub
 
-    Private Sub Save_Navigation_URL_btn_Click(sender As Object, e As EventArgs) 
-        FormComponentController.Save_Navigation_URL_btn_Click()
-    End Sub
-
     Private Sub Searching_Keyword_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Searching_Keyword_CheckedListBox.ItemCheck
         FormComponentController.Searching_Keyword_CheckedListBox_OnClick()
     End Sub
 
-    Private Sub Navigation_URL_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Navigation_URL_CheckedListBox.ItemCheck
-        FormComponentController.Navigation_URL_CheckedListBox_OnClick()
-    End Sub
 
     Private Sub Searching_Keyword_Text_SaveAs_btn_Click(sender As Object, e As EventArgs) Handles Searching_Keyword_Text_SaveAs_btn.Click
         FormComponentController.Searching_Keyword_Text_SaveAs()
-    End Sub
-
-    Private Sub Navigation_URL_Text_SaveAs_btn_Click(sender As Object, e As EventArgs) 
-        FormComponentController.Navigation_URL_Text_SaveAs()
     End Sub
 
     Private Sub Reveal_Keyword_Folder_btn_Click(sender As Object, e As EventArgs) Handles Reveal_Keyword_Folder_btn.Click
         FormComponentController.Reveal_Keyword_Folder()
     End Sub
 
-    Private Sub Reveal_Navigation_URL_Folder_btn_Click(sender As Object, e As EventArgs) 
-        FormComponentController.Reveal_Navigation_URL_Folder()
-    End Sub
 
     Private Sub Delete_Keyword_Folder_btn_Click(sender As Object, e As EventArgs) Handles Delete_Keyword_Folder_btn.Click
         FormComponentController.Delete_Keyword_Folder()
     End Sub
 
-    Private Sub Delete_NavigationURL_Folder_btn_Click(sender As Object, e As EventArgs) 
-        FormComponentController.Delete_Navigation_URL_File()
-    End Sub
 
     Private Sub Insert_Searching_Keyword_btn_Click(sender As Object, e As EventArgs) Handles Insert_Searching_Keyword_btn.Click
         If Search_Engine_ComboBox.Text <> "" And Searching_keyword_Text_Textbox.Text <> "" Then
@@ -1598,10 +1575,7 @@ Public Class Form1
         FormInit.Render_Keyword_TextFIle()
     End Sub
 
-    Private Sub Refresh_Navigation_URL_CheckedListBox_btn_Click(sender As Object, e As EventArgs) 
-        Navigation_URL_CheckedListBox.Items.Clear()
-        FormInit.Render_URL_TextFIle()
-    End Sub
+
 
 
     Private Sub GroupList_Replace_String_Btn_Click(sender As Object, e As EventArgs) Handles GroupList_Replace_String_Btn.Click
