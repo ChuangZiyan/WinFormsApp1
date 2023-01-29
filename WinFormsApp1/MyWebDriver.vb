@@ -545,6 +545,9 @@ Public Class MyWebDriver
             If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
                 upload_img_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input"))
                 upload_img_input.SendKeys(img_path_str)
+            ElseIf IsElementPresentByCssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x4uap5 > div:nth-child(1) > form > div > div > div.x4b6v7d.x1ojsi0c.x10e4vud.x1bouk6t > ul > li:nth-child(3) > input") Then
+                upload_img_input = chromeDriver.FindElement(By.CssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x4uap5 > div:nth-child(1) > form > div > div > div.x4b6v7d.x1ojsi0c.x10e4vud.x1bouk6t > ul > li:nth-child(3) > input"))
+                upload_img_input.SendKeys(img_path_str)
             Else
                 click_by_aria_label(langConverter.Item("Photo_Video"))
                 upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
@@ -689,25 +692,33 @@ Public Class MyWebDriver
             'End If
 
             Dim msgbox_ele As Object
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3)
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
 
                 msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='回覆']"))
             Else
 
-                msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
+                If IsElementPresentByCssSelector("div[aria-label^='留言'] > p > span") Then
+                    msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p > span"))
+
+                Else
+                    msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
+                End If
+
+
             End If
 
-            'Debug.WriteLine("content : " & content)
+                'Debug.WriteLine("content : " & content)
 
-            'content = content.Replace(vbCrLf, Keys.LeftShift + Keys.Enter)
+                'content = content.Replace(vbCrLf, Keys.LeftShift + Keys.Enter)
 
-            'content = content.replace(, Keys.chord(Keys.Shift, Keys.Enter))
-            'content = content.replace(vbCrLf, Keys.LeftShift + Keys.Enter)
-            'content = content.replace(vbNewLine, Keys.LeftShift + Keys.Enter)
-            'msgbox_ele(0).SendKeys(content)
+                'content = content.replace(, Keys.chord(Keys.Shift, Keys.Enter))
+                'content = content.replace(vbCrLf, Keys.LeftShift + Keys.Enter)
+                'content = content.replace(vbNewLine, Keys.LeftShift + Keys.Enter)
+                'msgbox_ele(0).SendKeys(content)
 
 
-            If headless_mode Then
+                If headless_mode Then
 
                 Dim str_arr() As String = content.Split(vbCrLf)
                 For Each line As String In str_arr
@@ -720,11 +731,11 @@ Public Class MyWebDriver
             Else
                 msgbox_ele(0).SendKeys(Keys.LeftControl + "v")
             End If
-            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
 
         Catch ex As Exception
-            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Debug.WriteLine(ex)
             Return False
         End Try
