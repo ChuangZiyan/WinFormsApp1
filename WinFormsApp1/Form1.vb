@@ -307,17 +307,16 @@ Public Class Form1
 
                     Dim URLTextFiles = content.Split(";")
                     Dim rnd = rnd_num.Next(0, URLTextFiles.Length)
-                        'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = Await myWebDriver.Navigate_GoToUrl_Task(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
+                    'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
+                    boolean_result = Await myWebDriver.Navigate_GoToUrl_Task(File.ReadAllText(FormInit.URL_Navigation_path + URLTextFiles(rnd)))
 
-                        Case "前往社團"
-                    Debug.WriteLine("Running Profile : " + myWebDriver.running_chrome_profile_path)
+                Case "前往社團"
+                    'Debug.WriteLine("Running Profile : " + myWebDriver.running_chrome_profile_path)
                     Dim groupListFilePath = FormInit.profile_path + content.Split(";")(0) + "\GroupList.txt"
                     If content.Split(";")(0) = "不指定" Then
                         groupListFilePath = myWebDriver.running_chrome_profile_path + "\GroupList.txt"
                         Debug.WriteLine(groupListFilePath)
                     End If
-
 
                     If My.Computer.FileSystem.FileExists(groupListFilePath) Then
 
@@ -447,11 +446,17 @@ Public Class Form1
 
                 Case "回應:送出"
 
-                    If Await myWebDriver.IsElementPresentByClass_Task("uiScaledImageContainer") Then
-                        boolean_result = Await myWebDriver.Submit_reply_comment_Task()
+                    If myWebDriver.IsUploadImage Then
+                        If Await myWebDriver.IsElementPresentByClass_Task("uiScaledImageContainer") Then
+                            boolean_result = Await myWebDriver.Submit_reply_comment_Task()
+                        Else
+                            boolean_result = Await myWebDriver.Submit_reply_comment_Task()
+                        End If
                     Else
                         boolean_result = Await myWebDriver.Submit_reply_comment_Task()
                     End If
+
+                    myWebDriver.IsUploadImage = False
 
                 Case "回應:按讚"
                     boolean_result = Await myWebDriver.Click_reply_random_emoji_Task(content)

@@ -50,11 +50,17 @@ Public Class MyWebDriver
 
     Public Profile_Queue() As String
 
+    Public IsUploadImage = False
+
+
     Dim css_selector_config As String = System.IO.File.ReadAllText("css_selector_config.json")
     Dim css_selector_config_obj = JsonConvert.DeserializeObject(css_selector_config)
 
     Dim m_css_selector_config As String = System.IO.File.ReadAllText("m_css_selector_config.json")
     Dim m_css_selector_config_obj = JsonConvert.DeserializeObject(m_css_selector_config)
+
+
+
 
 
     Public Function Open_Browser_Task(browser As String, devicetype As String, profile As String)
@@ -334,6 +340,8 @@ Public Class MyWebDriver
 
     Public Function Upload_reply_img(img)
         Debug.WriteLine("img : " + img)
+
+        IsUploadImage = True
 
         Try
             Dim comment_img_input As Object
