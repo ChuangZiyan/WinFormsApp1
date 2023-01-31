@@ -100,6 +100,11 @@ Module FormInit
             System.IO.Directory.CreateDirectory(img_path)
         End If
 
+        Dim matched_path = My.Computer.FileSystem.CurrentDirectory + "\resources\matched_resource\"
+        If Not System.IO.Directory.Exists(matched_path) Then
+            System.IO.Directory.CreateDirectory(matched_path)
+        End If
+
         If Not System.IO.Directory.Exists(profile_path) Then
             System.IO.Directory.CreateDirectory(profile_path)
         End If
@@ -131,6 +136,8 @@ Module FormInit
         If Not System.IO.Directory.Exists(auto_generated_textfile_path) Then
             System.IO.Directory.CreateDirectory(auto_generated_textfile_path)
         End If
+
+
 
     End Sub
 

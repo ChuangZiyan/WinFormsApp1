@@ -204,6 +204,9 @@ Partial Class Form1
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Insert_Paste_Match_TextAndImg_Btn = New System.Windows.Forms.Button()
+        Me.Insert_Matched_Random_Folder_Txt_AllImg_btn = New System.Windows.Forms.Button()
+        Me.Insert_Matched_Random_Folder_Txt_Img_btn = New System.Windows.Forms.Button()
         Me.Label66 = New System.Windows.Forms.Label()
         Me.SystemKeyboardFirstKey_ComboBox = New System.Windows.Forms.ComboBox()
         Me.SystemKeyboardSecondKey_ComboBox = New System.Windows.Forms.ComboBox()
@@ -2167,6 +2170,9 @@ Partial Class Form1
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.Insert_Paste_Match_TextAndImg_Btn)
+        Me.GroupBox5.Controls.Add(Me.Insert_Matched_Random_Folder_Txt_AllImg_btn)
+        Me.GroupBox5.Controls.Add(Me.Insert_Matched_Random_Folder_Txt_Img_btn)
         Me.GroupBox5.Controls.Add(Me.Label66)
         Me.GroupBox5.Controls.Add(Me.SystemKeyboardFirstKey_ComboBox)
         Me.GroupBox5.Controls.Add(Me.SystemKeyboardSecondKey_ComboBox)
@@ -2202,6 +2208,33 @@ Partial Class Form1
         Me.GroupBox5.TabIndex = 10
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "系統鍵鼠事件"
+        '
+        'Insert_Paste_Match_TextAndImg_Btn
+        '
+        Me.Insert_Paste_Match_TextAndImg_Btn.Location = New System.Drawing.Point(512, 258)
+        Me.Insert_Paste_Match_TextAndImg_Btn.Name = "Insert_Paste_Match_TextAndImg_Btn"
+        Me.Insert_Paste_Match_TextAndImg_Btn.Size = New System.Drawing.Size(230, 29)
+        Me.Insert_Paste_Match_TextAndImg_Btn.TabIndex = 27
+        Me.Insert_Paste_Match_TextAndImg_Btn.Text = "隨機資料夾文字圖片貼上"
+        Me.Insert_Paste_Match_TextAndImg_Btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Matched_Random_Folder_Txt_AllImg_btn
+        '
+        Me.Insert_Matched_Random_Folder_Txt_AllImg_btn.Location = New System.Drawing.Point(276, 258)
+        Me.Insert_Matched_Random_Folder_Txt_AllImg_btn.Name = "Insert_Matched_Random_Folder_Txt_AllImg_btn"
+        Me.Insert_Matched_Random_Folder_Txt_AllImg_btn.Size = New System.Drawing.Size(230, 29)
+        Me.Insert_Matched_Random_Folder_Txt_AllImg_btn.TabIndex = 26
+        Me.Insert_Matched_Random_Folder_Txt_AllImg_btn.Text = "隨機資料夾文字全部圖片 - 插入"
+        Me.Insert_Matched_Random_Folder_Txt_AllImg_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Matched_Random_Folder_Txt_Img_btn
+        '
+        Me.Insert_Matched_Random_Folder_Txt_Img_btn.Location = New System.Drawing.Point(40, 258)
+        Me.Insert_Matched_Random_Folder_Txt_Img_btn.Name = "Insert_Matched_Random_Folder_Txt_Img_btn"
+        Me.Insert_Matched_Random_Folder_Txt_Img_btn.Size = New System.Drawing.Size(230, 29)
+        Me.Insert_Matched_Random_Folder_Txt_Img_btn.TabIndex = 25
+        Me.Insert_Matched_Random_Folder_Txt_Img_btn.Text = "隨機資料夾文字圖片 - 插入"
+        Me.Insert_Matched_Random_Folder_Txt_Img_btn.UseVisualStyleBackColor = True
         '
         'Label66
         '
@@ -3792,4 +3825,7 @@ Partial Class Form1
     Friend WithEvents Selection_Item_ComboBox As ComboBox
     Friend WithEvents Insert_Random_Navigation_URL_btn As Button
     Friend WithEvents Label72 As Label
+    Friend WithEvents Insert_Paste_Match_TextAndImg_Btn As Button
+    Friend WithEvents Insert_Matched_Random_Folder_Txt_AllImg_btn As Button
+    Friend WithEvents Insert_Matched_Random_Folder_Txt_Img_btn As Button
 End Class

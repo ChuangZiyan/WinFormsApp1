@@ -107,6 +107,9 @@ Public Class Form1
     End Sub
 
     Dim profile_index = 0
+    Dim selected_matched_folder As String
+    Dim matched_type As String
+
     Private Async Sub Run_script_controller()
         Dim i = 1
 
@@ -587,6 +590,72 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         boolean_result = False
                     End Try
+                Case "複製:隨機資料夾"
+                    Try
+                        matched_type = "single"
+                        Dim dirs() As String = IO.Directory.GetDirectories("resources\matched_resource")
+                        Dim rnd = rnd_num.Next(0, dirs.Length)
+                        selected_matched_folder = dirs(rnd)
+
+                        If content = "文字和圖片" Then
+                            'Debug.WriteLine("text and image")
+                            matched_type = "single"
+                        ElseIf content = "文字和全部圖片" Then
+                            'Debug.WriteLine("text and all image")
+                            matched_type = "all"
+                        End If
+                        boolean_result = True
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+                Case "貼上:隨機資料夾"
+                    Clipboard.Clear()
+                    Try
+                        Debug.WriteLine("Seleted dir :" + selected_matched_folder)
+                        Debug.WriteLine("Type :" + matched_type)
+
+                        Dim files() As String = IO.Directory.GetFiles(selected_matched_folder)
+                        Dim textFile As ArrayList = New ArrayList()
+                        Dim imageFile As ArrayList = New ArrayList()
+
+                        For Each file As String In files
+                            'Debug.WriteLine(file)
+                            Dim extension = Path.GetExtension(file)
+                            If extension = ".txt" Then
+                                textFile.add(file)
+                            ElseIf extension = ".png" Or extension = ".jpg" Or extension = ".jpeg" Then
+                                imageFile.Add(file)
+                            End If
+                        Next
+
+                        Dim txtrnd = rnd_num.Next(0, textFile.Count)
+                        Clipboard.SetText(ReadAllText(textFile(Rnd)))
+                        System_SendKey("CTRL", "v")
+
+                        If matched_type = "single" Then
+                            Dim imgrnd = rnd_num.Next(0, imageFile.Count)
+                            Dim image_file = Bitmap.FromFile(imageFile(imgrnd))
+                            Clipboard.SetImage(image_file)
+                        ElseIf matched_type = "all" Then
+                            Dim imageFilePath_StringCollection = New StringCollection()
+                            For Each img In imageFile
+                                'Dim myimage = Bitmap.FromFile(file)
+                                'Debug.WriteLine(My.Computer.FileSystem.CurrentDirectory + "\" + img)
+                                imageFilePath_StringCollection.Add(My.Computer.FileSystem.CurrentDirectory + "\" + img)
+                            Next
+                            Clipboard.SetFileDropList(imageFilePath_StringCollection)
+
+                        Else
+                            MsgBox("Error! No Type Seleted")
+                        End If
+                        System_SendKey("CTRL", "v")
+                        boolean_result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
+
+
                 Case "更改密碼"
                     boolean_result = Await myWebDriver.Change_Fb_Password_Task()
 
@@ -837,9 +906,6 @@ Public Class Form1
         End If
 
     End Sub
-
-
-
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
@@ -2090,4 +2156,17 @@ Public Class Form1
     Private Sub Insert_Random_Navigation_URL_btn_Click(sender As Object, e As EventArgs) Handles Insert_Random_Navigation_URL_btn.Click
         ScriptInsertion.Insert_Random_Navigation_URL()
     End Sub
+
+    Private Sub Insert_Matched_Random_Folder_Txt_Img_btn_Click(sender As Object, e As EventArgs) Handles Insert_Matched_Random_Folder_Txt_Img_btn.Click
+        Insert_to_script("複製:隨機資料夾", "文字和圖片")
+    End Sub
+
+    Private Sub Insert_Matched_Random_Folder_Txt_AllImg_btn_Click(sender As Object, e As EventArgs) Handles Insert_Matched_Random_Folder_Txt_AllImg_btn.Click
+        Insert_to_script("複製:隨機資料夾", "文字和全部圖片")
+    End Sub
+
+    Private Sub Insert_Paste_Match_TextAndImg_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Paste_Match_TextAndImg_Btn.Click
+        Insert_to_script("貼上:隨機資料夾", "")
+    End Sub
+
 End Class
