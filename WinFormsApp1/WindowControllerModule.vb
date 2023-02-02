@@ -49,7 +49,7 @@ Module WindowControllerModule
                 Debug.WriteLine("Right:" & rct.Right)
                 Debug.WriteLine("Bottom:" & rct.Bottom)
                 SetWindowPos(chrome.Key, 0, rct.Left, rct.Top, width, height, &H40)
-                Exit For
+                'Exit For
             Next
         End If
     End Sub
@@ -70,7 +70,7 @@ Module WindowControllerModule
                 Debug.WriteLine("Right:" & rct.Right)
                 Debug.WriteLine("Bottom:" & rct.Bottom)
                 SetWindowPos(chrome.Key, 0, X, Y, rct.Right - rct.Left, rct.Bottom - rct.Top, &H40)
-                Exit For
+                'Exit For
             Next
         End If
     End Sub
