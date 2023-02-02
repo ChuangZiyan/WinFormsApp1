@@ -2169,4 +2169,15 @@ Public Class Form1
         Insert_to_script("貼上:隨機資料夾", "")
     End Sub
 
+    Private Sub Set_All_Window_Size_Btn_Click(sender As Object, e As EventArgs) Handles Set_All_Window_Size_Btn.Click
+        Set_All_Window_Size(Window_Width_NumericUpDown.Value, Window_Height_NumericUpDown.Value)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        find_all_window()
+    End Sub
+
+    Private Sub Overlap_All_Window_To_Location_Btn_Click(sender As Object, e As EventArgs) Handles Overlap_All_Window_To_Location_Btn.Click
+        Overlap_All_Window(Overlap_Location_X_NumericUpDown.Value, Overlap_Location_Y_NumericUpDown.Value)
+    End Sub
 End Class

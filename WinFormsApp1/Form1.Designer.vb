@@ -312,6 +312,12 @@ Partial Class Form1
         Me.Insert_Searching_Keyword_btn = New System.Windows.Forms.Button()
         Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label48 = New System.Windows.Forms.Label()
+        Me.Label47 = New System.Windows.Forms.Label()
+        Me.Window_Width_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Window_Height_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Set_All_Window_Size_Btn = New System.Windows.Forms.Button()
         Me.Insert_Change_FB_Password_Btn = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Label70 = New System.Windows.Forms.Label()
@@ -337,6 +343,11 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Overlap_All_Window_To_Location_Btn = New System.Windows.Forms.Button()
+        Me.Label49 = New System.Windows.Forms.Label()
+        Me.Label73 = New System.Windows.Forms.Label()
+        Me.Overlap_Location_Y_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Overlap_Location_X_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -371,10 +382,14 @@ Partial Class Form1
         Me.GroupList.SuspendLayout()
         Me.Searching.SuspendLayout()
         Me.Widget_TabPage.SuspendLayout()
+        CType(Me.Window_Width_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Window_Height_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox6.SuspendLayout()
         CType(Me.Pasword_Length_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Post_Crawler.SuspendLayout()
         Me.Block_User.SuspendLayout()
+        CType(Me.Overlap_Location_Y_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Overlap_Location_X_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -3215,6 +3230,17 @@ Partial Class Form1
         '
         'Widget_TabPage
         '
+        Me.Widget_TabPage.Controls.Add(Me.Label49)
+        Me.Widget_TabPage.Controls.Add(Me.Label73)
+        Me.Widget_TabPage.Controls.Add(Me.Overlap_Location_Y_NumericUpDown)
+        Me.Widget_TabPage.Controls.Add(Me.Overlap_Location_X_NumericUpDown)
+        Me.Widget_TabPage.Controls.Add(Me.Overlap_All_Window_To_Location_Btn)
+        Me.Widget_TabPage.Controls.Add(Me.Button1)
+        Me.Widget_TabPage.Controls.Add(Me.Label48)
+        Me.Widget_TabPage.Controls.Add(Me.Label47)
+        Me.Widget_TabPage.Controls.Add(Me.Window_Width_NumericUpDown)
+        Me.Widget_TabPage.Controls.Add(Me.Window_Height_NumericUpDown)
+        Me.Widget_TabPage.Controls.Add(Me.Set_All_Window_Size_Btn)
         Me.Widget_TabPage.Controls.Add(Me.Insert_Change_FB_Password_Btn)
         Me.Widget_TabPage.Controls.Add(Me.GroupBox6)
         Me.Widget_TabPage.Controls.Add(Me.Delete_Str_from_RTBox_btn)
@@ -3230,9 +3256,61 @@ Partial Class Form1
         Me.Widget_TabPage.Text = "小工具"
         Me.Widget_TabPage.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(810, 773)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(94, 29)
+        Me.Button1.TabIndex = 19
+        Me.Button1.Text = "test"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.Location = New System.Drawing.Point(199, 613)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(63, 19)
+        Me.Label48.TabIndex = 18
+        Me.Label48.Text = "Width : "
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Location = New System.Drawing.Point(14, 613)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(67, 19)
+        Me.Label47.TabIndex = 17
+        Me.Label47.Text = "Height : "
+        '
+        'Window_Width_NumericUpDown
+        '
+        Me.Window_Width_NumericUpDown.Location = New System.Drawing.Point(268, 610)
+        Me.Window_Width_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Window_Width_NumericUpDown.Name = "Window_Width_NumericUpDown"
+        Me.Window_Width_NumericUpDown.Size = New System.Drawing.Size(100, 27)
+        Me.Window_Width_NumericUpDown.TabIndex = 16
+        '
+        'Window_Height_NumericUpDown
+        '
+        Me.Window_Height_NumericUpDown.Location = New System.Drawing.Point(87, 610)
+        Me.Window_Height_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Window_Height_NumericUpDown.Name = "Window_Height_NumericUpDown"
+        Me.Window_Height_NumericUpDown.Size = New System.Drawing.Size(100, 27)
+        Me.Window_Height_NumericUpDown.TabIndex = 15
+        '
+        'Set_All_Window_Size_Btn
+        '
+        Me.Set_All_Window_Size_Btn.Location = New System.Drawing.Point(395, 608)
+        Me.Set_All_Window_Size_Btn.Name = "Set_All_Window_Size_Btn"
+        Me.Set_All_Window_Size_Btn.Size = New System.Drawing.Size(156, 29)
+        Me.Set_All_Window_Size_Btn.TabIndex = 14
+        Me.Set_All_Window_Size_Btn.Text = "設定所有窗口大小"
+        Me.Set_All_Window_Size_Btn.UseVisualStyleBackColor = True
+        '
         'Insert_Change_FB_Password_Btn
         '
-        Me.Insert_Change_FB_Password_Btn.Location = New System.Drawing.Point(14, 691)
+        Me.Insert_Change_FB_Password_Btn.Location = New System.Drawing.Point(14, 541)
         Me.Insert_Change_FB_Password_Btn.Name = "Insert_Change_FB_Password_Btn"
         Me.Insert_Change_FB_Password_Btn.Size = New System.Drawing.Size(156, 29)
         Me.Insert_Change_FB_Password_Btn.TabIndex = 13
@@ -3450,6 +3528,49 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Overlap_All_Window_To_Location_Btn
+        '
+        Me.Overlap_All_Window_To_Location_Btn.Location = New System.Drawing.Point(395, 653)
+        Me.Overlap_All_Window_To_Location_Btn.Name = "Overlap_All_Window_To_Location_Btn"
+        Me.Overlap_All_Window_To_Location_Btn.Size = New System.Drawing.Size(156, 29)
+        Me.Overlap_All_Window_To_Location_Btn.TabIndex = 20
+        Me.Overlap_All_Window_To_Location_Btn.Text = "重疊所有窗口"
+        Me.Overlap_All_Window_To_Location_Btn.UseVisualStyleBackColor = True
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.Location = New System.Drawing.Point(199, 658)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(29, 19)
+        Me.Label49.TabIndex = 24
+        Me.Label49.Text = "Y : "
+        '
+        'Label73
+        '
+        Me.Label73.AutoSize = True
+        Me.Label73.Location = New System.Drawing.Point(14, 658)
+        Me.Label73.Name = "Label73"
+        Me.Label73.Size = New System.Drawing.Size(30, 19)
+        Me.Label73.TabIndex = 23
+        Me.Label73.Text = "X : "
+        '
+        'Overlap_Location_Y_NumericUpDown
+        '
+        Me.Overlap_Location_Y_NumericUpDown.Location = New System.Drawing.Point(268, 655)
+        Me.Overlap_Location_Y_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Overlap_Location_Y_NumericUpDown.Name = "Overlap_Location_Y_NumericUpDown"
+        Me.Overlap_Location_Y_NumericUpDown.Size = New System.Drawing.Size(100, 27)
+        Me.Overlap_Location_Y_NumericUpDown.TabIndex = 22
+        '
+        'Overlap_Location_X_NumericUpDown
+        '
+        Me.Overlap_Location_X_NumericUpDown.Location = New System.Drawing.Point(87, 655)
+        Me.Overlap_Location_X_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Overlap_Location_X_NumericUpDown.Name = "Overlap_Location_X_NumericUpDown"
+        Me.Overlap_Location_X_NumericUpDown.Size = New System.Drawing.Size(100, 27)
+        Me.Overlap_Location_X_NumericUpDown.TabIndex = 21
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -3504,6 +3625,9 @@ Partial Class Form1
         Me.Searching.ResumeLayout(False)
         Me.Searching.PerformLayout()
         Me.Widget_TabPage.ResumeLayout(False)
+        Me.Widget_TabPage.PerformLayout()
+        CType(Me.Window_Width_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Window_Height_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         CType(Me.Pasword_Length_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3511,6 +3635,8 @@ Partial Class Form1
         Me.Post_Crawler.PerformLayout()
         Me.Block_User.ResumeLayout(False)
         Me.Block_User.PerformLayout()
+        CType(Me.Overlap_Location_Y_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Overlap_Location_X_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3828,4 +3954,15 @@ Partial Class Form1
     Friend WithEvents Insert_Paste_Match_TextAndImg_Btn As Button
     Friend WithEvents Insert_Matched_Random_Folder_Txt_AllImg_btn As Button
     Friend WithEvents Insert_Matched_Random_Folder_Txt_Img_btn As Button
+    Friend WithEvents Label48 As Label
+    Friend WithEvents Label47 As Label
+    Friend WithEvents Window_Width_NumericUpDown As NumericUpDown
+    Friend WithEvents Window_Height_NumericUpDown As NumericUpDown
+    Friend WithEvents Set_All_Window_Size_Btn As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Label49 As Label
+    Friend WithEvents Label73 As Label
+    Friend WithEvents Overlap_Location_Y_NumericUpDown As NumericUpDown
+    Friend WithEvents Overlap_Location_X_NumericUpDown As NumericUpDown
+    Friend WithEvents Overlap_All_Window_To_Location_Btn As Button
 End Class
