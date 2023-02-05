@@ -312,6 +312,11 @@ Partial Class Form1
         Me.Insert_Searching_Keyword_btn = New System.Windows.Forms.Button()
         Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
+        Me.Label49 = New System.Windows.Forms.Label()
+        Me.Label73 = New System.Windows.Forms.Label()
+        Me.Overlap_Location_Y_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Overlap_Location_X_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Overlap_All_Window_To_Location_Btn = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
@@ -343,11 +348,7 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Overlap_All_Window_To_Location_Btn = New System.Windows.Forms.Button()
-        Me.Label49 = New System.Windows.Forms.Label()
-        Me.Label73 = New System.Windows.Forms.Label()
-        Me.Overlap_Location_Y_NumericUpDown = New System.Windows.Forms.NumericUpDown()
-        Me.Overlap_Location_X_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Perfom_Window_Layout_Btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -382,14 +383,14 @@ Partial Class Form1
         Me.GroupList.SuspendLayout()
         Me.Searching.SuspendLayout()
         Me.Widget_TabPage.SuspendLayout()
+        CType(Me.Overlap_Location_Y_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Overlap_Location_X_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Window_Width_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Window_Height_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox6.SuspendLayout()
         CType(Me.Pasword_Length_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Post_Crawler.SuspendLayout()
         Me.Block_User.SuspendLayout()
-        CType(Me.Overlap_Location_Y_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Overlap_Location_X_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -3230,6 +3231,7 @@ Partial Class Form1
         '
         'Widget_TabPage
         '
+        Me.Widget_TabPage.Controls.Add(Me.Perfom_Window_Layout_Btn)
         Me.Widget_TabPage.Controls.Add(Me.Label49)
         Me.Widget_TabPage.Controls.Add(Me.Label73)
         Me.Widget_TabPage.Controls.Add(Me.Overlap_Location_Y_NumericUpDown)
@@ -3255,6 +3257,49 @@ Partial Class Form1
         Me.Widget_TabPage.TabIndex = 7
         Me.Widget_TabPage.Text = "小工具"
         Me.Widget_TabPage.UseVisualStyleBackColor = True
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.Location = New System.Drawing.Point(199, 658)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(29, 19)
+        Me.Label49.TabIndex = 24
+        Me.Label49.Text = "Y : "
+        '
+        'Label73
+        '
+        Me.Label73.AutoSize = True
+        Me.Label73.Location = New System.Drawing.Point(14, 658)
+        Me.Label73.Name = "Label73"
+        Me.Label73.Size = New System.Drawing.Size(30, 19)
+        Me.Label73.TabIndex = 23
+        Me.Label73.Text = "X : "
+        '
+        'Overlap_Location_Y_NumericUpDown
+        '
+        Me.Overlap_Location_Y_NumericUpDown.Location = New System.Drawing.Point(268, 655)
+        Me.Overlap_Location_Y_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Overlap_Location_Y_NumericUpDown.Name = "Overlap_Location_Y_NumericUpDown"
+        Me.Overlap_Location_Y_NumericUpDown.Size = New System.Drawing.Size(100, 27)
+        Me.Overlap_Location_Y_NumericUpDown.TabIndex = 22
+        '
+        'Overlap_Location_X_NumericUpDown
+        '
+        Me.Overlap_Location_X_NumericUpDown.Location = New System.Drawing.Point(87, 655)
+        Me.Overlap_Location_X_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Overlap_Location_X_NumericUpDown.Name = "Overlap_Location_X_NumericUpDown"
+        Me.Overlap_Location_X_NumericUpDown.Size = New System.Drawing.Size(100, 27)
+        Me.Overlap_Location_X_NumericUpDown.TabIndex = 21
+        '
+        'Overlap_All_Window_To_Location_Btn
+        '
+        Me.Overlap_All_Window_To_Location_Btn.Location = New System.Drawing.Point(395, 653)
+        Me.Overlap_All_Window_To_Location_Btn.Name = "Overlap_All_Window_To_Location_Btn"
+        Me.Overlap_All_Window_To_Location_Btn.Size = New System.Drawing.Size(156, 29)
+        Me.Overlap_All_Window_To_Location_Btn.TabIndex = 20
+        Me.Overlap_All_Window_To_Location_Btn.Text = "重疊所有窗口"
+        Me.Overlap_All_Window_To_Location_Btn.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -3528,48 +3573,14 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Overlap_All_Window_To_Location_Btn
+        'Perfom_Window_Layout_Btn
         '
-        Me.Overlap_All_Window_To_Location_Btn.Location = New System.Drawing.Point(395, 653)
-        Me.Overlap_All_Window_To_Location_Btn.Name = "Overlap_All_Window_To_Location_Btn"
-        Me.Overlap_All_Window_To_Location_Btn.Size = New System.Drawing.Size(156, 29)
-        Me.Overlap_All_Window_To_Location_Btn.TabIndex = 20
-        Me.Overlap_All_Window_To_Location_Btn.Text = "重疊所有窗口"
-        Me.Overlap_All_Window_To_Location_Btn.UseVisualStyleBackColor = True
-        '
-        'Label49
-        '
-        Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(199, 658)
-        Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(29, 19)
-        Me.Label49.TabIndex = 24
-        Me.Label49.Text = "Y : "
-        '
-        'Label73
-        '
-        Me.Label73.AutoSize = True
-        Me.Label73.Location = New System.Drawing.Point(14, 658)
-        Me.Label73.Name = "Label73"
-        Me.Label73.Size = New System.Drawing.Size(30, 19)
-        Me.Label73.TabIndex = 23
-        Me.Label73.Text = "X : "
-        '
-        'Overlap_Location_Y_NumericUpDown
-        '
-        Me.Overlap_Location_Y_NumericUpDown.Location = New System.Drawing.Point(268, 655)
-        Me.Overlap_Location_Y_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.Overlap_Location_Y_NumericUpDown.Name = "Overlap_Location_Y_NumericUpDown"
-        Me.Overlap_Location_Y_NumericUpDown.Size = New System.Drawing.Size(100, 27)
-        Me.Overlap_Location_Y_NumericUpDown.TabIndex = 22
-        '
-        'Overlap_Location_X_NumericUpDown
-        '
-        Me.Overlap_Location_X_NumericUpDown.Location = New System.Drawing.Point(87, 655)
-        Me.Overlap_Location_X_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.Overlap_Location_X_NumericUpDown.Name = "Overlap_Location_X_NumericUpDown"
-        Me.Overlap_Location_X_NumericUpDown.Size = New System.Drawing.Size(100, 27)
-        Me.Overlap_Location_X_NumericUpDown.TabIndex = 21
+        Me.Perfom_Window_Layout_Btn.Location = New System.Drawing.Point(557, 608)
+        Me.Perfom_Window_Layout_Btn.Name = "Perfom_Window_Layout_Btn"
+        Me.Perfom_Window_Layout_Btn.Size = New System.Drawing.Size(153, 29)
+        Me.Perfom_Window_Layout_Btn.TabIndex = 25
+        Me.Perfom_Window_Layout_Btn.Text = "自動布局窗口"
+        Me.Perfom_Window_Layout_Btn.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -3626,6 +3637,8 @@ Partial Class Form1
         Me.Searching.PerformLayout()
         Me.Widget_TabPage.ResumeLayout(False)
         Me.Widget_TabPage.PerformLayout()
+        CType(Me.Overlap_Location_Y_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Overlap_Location_X_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Window_Width_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Window_Height_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox6.ResumeLayout(False)
@@ -3635,8 +3648,6 @@ Partial Class Form1
         Me.Post_Crawler.PerformLayout()
         Me.Block_User.ResumeLayout(False)
         Me.Block_User.PerformLayout()
-        CType(Me.Overlap_Location_Y_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Overlap_Location_X_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3965,4 +3976,5 @@ Partial Class Form1
     Friend WithEvents Overlap_Location_Y_NumericUpDown As NumericUpDown
     Friend WithEvents Overlap_Location_X_NumericUpDown As NumericUpDown
     Friend WithEvents Overlap_All_Window_To_Location_Btn As Button
+    Friend WithEvents Perfom_Window_Layout_Btn As Button
 End Class

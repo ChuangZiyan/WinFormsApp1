@@ -2173,11 +2173,20 @@ Public Class Form1
         Set_All_Window_Size(Window_Width_NumericUpDown.Value, Window_Height_NumericUpDown.Value)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        find_all_window()
-    End Sub
 
     Private Sub Overlap_All_Window_To_Location_Btn_Click(sender As Object, e As EventArgs) Handles Overlap_All_Window_To_Location_Btn.Click
         Overlap_All_Window(Overlap_Location_X_NumericUpDown.Value, Overlap_Location_Y_NumericUpDown.Value)
     End Sub
+
+    Private Sub Perfom_Window_Layout_Btn_Click(sender As Object, e As EventArgs) Handles Perfom_Window_Layout_Btn.Click
+        perform_Window_Layout()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim hWndArrayList = get_All__Chrome_hWnd()
+        For Each hWnd In hWndArrayList
+            Debug.WriteLine(hWnd)
+        Next
+    End Sub
+
 End Class

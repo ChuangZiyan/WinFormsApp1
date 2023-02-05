@@ -32,47 +32,116 @@ Module WindowControllerModule
     Private Declare Function EnumWindows Lib "user32" (ByVal lpEnumFunc As EnumWindowsProcDelegate, ByVal lParam As IntPtr) As Boolean
     Private Delegate Function EnumWindowsProcDelegate(ByVal hWnd As IntPtr, ByVal lParam As IntPtr) As Boolean
 
+    Public Function get_All__Chrome_hWnd() As ArrayList
 
-    Public Sub Set_All_Window_Size(width As Integer, height As Integer)
         chromeWindows.Clear() ' clear dic.
         EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
+
+        Dim hWndArrayList As ArrayList = New ArrayList()
         ' display contents
         If chromeWindows.Count = 0 Then
             MessageBox.Show("None found, list is empty!")
         Else ' do something with the results,...
             For Each chrome In chromeWindows
                 Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
-                Dim rct As RECT
-                GetWindowRect(chrome.Key, rct)
-                Debug.WriteLine("Left:" & rct.Left)
-                Debug.WriteLine("Top:" & rct.Top)
-                Debug.WriteLine("Right:" & rct.Right)
-                Debug.WriteLine("Bottom:" & rct.Bottom)
-                SetWindowPos(chrome.Key, 0, rct.Left, rct.Top, width, height, &H40)
-                'Exit For
+                If chrome.Value.Contains("Google Chrome") Then
+                    hWndArrayList.Add(chrome.Key)
+                End If
+
+            Next
+        End If
+        Return hWndArrayList
+    End Function
+
+
+    Public Sub perform_Window_Layout()
+        Dim hWndArrayList = get_All__Chrome_hWnd()
+        Dim screenWidth As Integer = Screen.PrimaryScreen.Bounds.Width
+        Dim screenHeight As Integer = Screen.PrimaryScreen.Bounds.Height
+
+        Debug.WriteLine("screenWidth : {0}", screenWidth)
+        Debug.WriteLine("screenHeight : {0}", screenHeight)
+
+        If hWndArrayList.Count = 1 Then
+            SetWindowPos(hWndArrayList(0), 0, 0, 0, screenWidth, screenHeight, &H40)
+        ElseIf hWndArrayList.Count = 2 Then
+            Dim pos_left = 0
+            Dim pos_top = 0
+
+            For Each hWnd In hWndArrayList
+                Debug.WriteLine("set : pos_left:{0}  pos_top:{1} screenWidth:{2} screenHeight:{3}", pos_left, pos_top, screenWidth / 2, screenHeight)
+                SetWindowPos(hWnd, 0, pos_left, pos_top, screenWidth / 2, screenHeight, &H40)
+                pos_left += screenWidth / 2
+            Next
+        ElseIf hWndArrayList.Count <= 4 Then
+            Dim pos_left = 0
+            Dim pos_top = 0
+            Dim window_counter = 0
+
+            For Each hWnd In hWndArrayList
+                window_counter += 1
+                Debug.WriteLine("set : pos_left:{0}  pos_top:{1} screenWidth:{2} screenHeight:{3}", pos_left, pos_top, screenWidth / 2, screenHeight / 2)
+                SetWindowPos(hWnd, 0, pos_left, pos_top, screenWidth / 2, screenHeight / 2, &H40)
+                pos_left += screenWidth / 2
+
+                If window_counter = 2 Then
+                    pos_left = 0
+                    pos_top += screenHeight / 2
+                End If
+            Next
+
+        ElseIf hWndArrayList.Count <= 6 Then
+            Dim pos_left = 0
+            Dim pos_top = 0
+            Dim window_counter = 0
+
+            For Each hWnd In hWndArrayList
+                window_counter += 1
+                Debug.WriteLine("set : pos_left:{0}  pos_top:{1} screenWidth:{2} screenHeight:{3}", pos_left, pos_top, screenWidth / 3, screenHeight / 2)
+                SetWindowPos(hWnd, 0, pos_left, pos_top, screenWidth / 3, screenHeight / 2, &H40)
+                pos_left += screenWidth / 3
+
+                If window_counter = 3 Then
+                    pos_left = 0
+                    pos_top += screenHeight / 2
+                End If
             Next
         End If
     End Sub
 
+
+
+    Public Sub Set_All_Window_Size(width As Integer, height As Integer)
+
+
+        Dim chromeWindows As ArrayList = get_All__Chrome_hWnd()
+
+        For Each chrome In chromeWindows
+            Dim rct As RECT
+            GetWindowRect(chrome, rct)
+            Debug.WriteLine("Left:" & rct.Left)
+            Debug.WriteLine("Top:" & rct.Top)
+            Debug.WriteLine("Right:" & rct.Right)
+            Debug.WriteLine("Bottom:" & rct.Bottom)
+            SetWindowPos(chrome, 0, rct.Left, rct.Top, width, height, &H40)
+            'Exit For
+        Next
+
+    End Sub
+
     Public Sub Overlap_All_Window(X As Integer, Y As Integer)
-        chromeWindows.Clear() ' clear dic.
-        EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
-        ' display contents
-        If chromeWindows.Count = 0 Then
-            MessageBox.Show("None found, list is empty!")
-        Else ' do something with the results,...
-            For Each chrome In chromeWindows
-                Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
-                Dim rct As RECT
-                GetWindowRect(chrome.Key, rct)
-                Debug.WriteLine("Left:" & rct.Left)
-                Debug.WriteLine("Top:" & rct.Top)
-                Debug.WriteLine("Right:" & rct.Right)
-                Debug.WriteLine("Bottom:" & rct.Bottom)
-                SetWindowPos(chrome.Key, 0, X, Y, rct.Right - rct.Left, rct.Bottom - rct.Top, &H40)
-                'Exit For
-            Next
-        End If
+        Dim chromeWindows As ArrayList = get_All__Chrome_hWnd()
+        For Each chrome In chromeWindows
+            Dim rct As RECT
+            GetWindowRect(chrome, rct)
+            Debug.WriteLine("Left:" & rct.Left)
+            Debug.WriteLine("Top:" & rct.Top)
+            Debug.WriteLine("Right:" & rct.Right)
+            Debug.WriteLine("Bottom:" & rct.Bottom)
+            SetWindowPos(chrome, 0, X, Y, rct.Right - rct.Left, rct.Bottom - rct.Top, &H40)
+            'Exit For
+        Next
+
     End Sub
 
     ' Helper/API Funcs...
@@ -91,26 +160,5 @@ Module WindowControllerModule
         GetClassName(hWnd, sbClassName, 256)
         Return sbClassName.ToString
     End Function
-
-
-    Public Sub find_all_window()
-        chromeWindows.Clear() ' clear dic.
-        EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
-        ' display contents
-        If chromeWindows.Count = 0 Then
-            MessageBox.Show("None found, list is empty!")
-        Else ' do something with the results,...
-            For Each chrome In chromeWindows
-                Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
-                Dim rct As RECT
-                GetWindowRect(chrome.Key, rct)
-                Debug.WriteLine("Left:" & rct.Left)
-                Debug.WriteLine("Top:" & rct.Top)
-                Debug.WriteLine("Right:" & rct.Right)
-                Debug.WriteLine("Bottom:" & rct.Bottom)
-                Exit For
-            Next
-        End If
-    End Sub
 
 End Module
