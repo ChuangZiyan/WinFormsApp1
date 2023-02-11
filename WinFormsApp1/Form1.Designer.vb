@@ -312,6 +312,7 @@ Partial Class Form1
         Me.Insert_Searching_Keyword_btn = New System.Windows.Forms.Button()
         Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
+        Me.Perfom_Window_Layout_Btn = New System.Windows.Forms.Button()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label73 = New System.Windows.Forms.Label()
         Me.Overlap_Location_Y_NumericUpDown = New System.Windows.Forms.NumericUpDown()
@@ -348,7 +349,8 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Perfom_Window_Layout_Btn = New System.Windows.Forms.Button()
+        Me.pos_X_TextBox1 = New System.Windows.Forms.TextBox()
+        Me.pos_Y_TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3231,6 +3233,8 @@ Partial Class Form1
         '
         'Widget_TabPage
         '
+        Me.Widget_TabPage.Controls.Add(Me.pos_Y_TextBox1)
+        Me.Widget_TabPage.Controls.Add(Me.pos_X_TextBox1)
         Me.Widget_TabPage.Controls.Add(Me.Perfom_Window_Layout_Btn)
         Me.Widget_TabPage.Controls.Add(Me.Label49)
         Me.Widget_TabPage.Controls.Add(Me.Label73)
@@ -3257,6 +3261,15 @@ Partial Class Form1
         Me.Widget_TabPage.TabIndex = 7
         Me.Widget_TabPage.Text = "小工具"
         Me.Widget_TabPage.UseVisualStyleBackColor = True
+        '
+        'Perfom_Window_Layout_Btn
+        '
+        Me.Perfom_Window_Layout_Btn.Location = New System.Drawing.Point(557, 608)
+        Me.Perfom_Window_Layout_Btn.Name = "Perfom_Window_Layout_Btn"
+        Me.Perfom_Window_Layout_Btn.Size = New System.Drawing.Size(153, 29)
+        Me.Perfom_Window_Layout_Btn.TabIndex = 25
+        Me.Perfom_Window_Layout_Btn.Text = "自動布局窗口"
+        Me.Perfom_Window_Layout_Btn.UseVisualStyleBackColor = True
         '
         'Label49
         '
@@ -3303,7 +3316,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(810, 773)
+        Me.Button1.Location = New System.Drawing.Point(510, 771)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(94, 29)
         Me.Button1.TabIndex = 19
@@ -3573,14 +3586,19 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Perfom_Window_Layout_Btn
+        'pos_X_TextBox1
         '
-        Me.Perfom_Window_Layout_Btn.Location = New System.Drawing.Point(557, 608)
-        Me.Perfom_Window_Layout_Btn.Name = "Perfom_Window_Layout_Btn"
-        Me.Perfom_Window_Layout_Btn.Size = New System.Drawing.Size(153, 29)
-        Me.Perfom_Window_Layout_Btn.TabIndex = 25
-        Me.Perfom_Window_Layout_Btn.Text = "自動布局窗口"
-        Me.Perfom_Window_Layout_Btn.UseVisualStyleBackColor = True
+        Me.pos_X_TextBox1.Location = New System.Drawing.Point(610, 771)
+        Me.pos_X_TextBox1.Name = "pos_X_TextBox1"
+        Me.pos_X_TextBox1.Size = New System.Drawing.Size(79, 27)
+        Me.pos_X_TextBox1.TabIndex = 26
+        '
+        'pos_Y_TextBox1
+        '
+        Me.pos_Y_TextBox1.Location = New System.Drawing.Point(695, 771)
+        Me.pos_Y_TextBox1.Name = "pos_Y_TextBox1"
+        Me.pos_Y_TextBox1.Size = New System.Drawing.Size(79, 27)
+        Me.pos_Y_TextBox1.TabIndex = 27
         '
         'Form1
         '
@@ -3977,4 +3995,6 @@ Partial Class Form1
     Friend WithEvents Overlap_Location_X_NumericUpDown As NumericUpDown
     Friend WithEvents Overlap_All_Window_To_Location_Btn As Button
     Friend WithEvents Perfom_Window_Layout_Btn As Button
+    Friend WithEvents pos_X_TextBox1 As TextBox
+    Friend WithEvents pos_Y_TextBox1 As TextBox
 End Class

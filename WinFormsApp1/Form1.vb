@@ -2183,6 +2183,11 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        test_All__Chrome_hWnd()
+
+        Exit Sub
+
         Dim hWndArrayList = get_All__Chrome_hWnd()
         For Each hWnd In hWndArrayList
             Debug.WriteLine(hWnd)

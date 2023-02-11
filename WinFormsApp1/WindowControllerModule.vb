@@ -1,5 +1,7 @@
-﻿Imports System.Runtime.InteropServices
+﻿Imports System.Reflection.Emit
+Imports System.Runtime.InteropServices
 Imports System.Text
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Module WindowControllerModule
 
@@ -160,5 +162,63 @@ Module WindowControllerModule
         GetClassName(hWnd, sbClassName, 256)
         Return sbClassName.ToString
     End Function
+
+
+
+
+
+    '############### Sample code for test  ###################
+
+
+
+
+
+    Public Const WM_LBUTTONDOWN = &H201
+    Public Const WM_LBUTTONUP = &H202
+
+    Public Function test_All__Chrome_hWnd() As ArrayList
+        chromeWindows.Clear() ' clear dic.
+        EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
+
+        Dim pos_x = CInt(Form1.pos_X_TextBox1.Text)
+        Dim pos_y = CInt(Form1.pos_Y_TextBox1.Text)
+
+        Dim hWndArrayList As ArrayList = New ArrayList()
+        ' display contents
+        If chromeWindows.Count = 0 Then
+            MessageBox.Show("None found, list is empty!")
+        Else ' do something with the results,...
+            For Each chrome In chromeWindows
+                Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                If chrome.Value.Contains("Google Chrome") Then
+
+                    PostMessage(chrome.Key, WM_LBUTTONDOWN, 0, MAKELPARAM(pos_x, pos_y))    '點下滑鼠左鍵 
+                    PostMessage(chrome.Key, WM_LBUTTONUP, 0, MAKELPARAM(pos_x, pos_y))
+
+                End If
+
+            Next
+        End If
+        Return hWndArrayList
+    End Function
+
+    Public Function MAKELPARAM(ByVal l As Integer, ByVal h As Integer) As Long '仿C# MAKELPARAM()函數 
+        Dim r As Integer = l + (h << 16)
+        Return (r)
+    End Function
+
+    <DllImport("user32")>
+    Public Function PostMessage(ByVal hwnd As IntPtr, ByVal wMsg As UInt32, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As Integer
+    End Function
+
+
+
+    <DllImport("user32.dll", EntryPoint:="SendMessageW")>
+    Private Function SendMessageW(ByVal hWnd As IntPtr, ByVal Msg As UInteger, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As Integer
+    End Function
+
+
+
+
 
 End Module
