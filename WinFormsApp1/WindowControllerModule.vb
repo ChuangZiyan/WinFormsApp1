@@ -2,6 +2,7 @@
 Imports System.Runtime.InteropServices
 Imports System.Text
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports ICSharpCode.SharpZipLib.Zip
 
 Module WindowControllerModule
 
@@ -22,9 +23,9 @@ Module WindowControllerModule
     Private Function GetClassName(ByVal hWnd As IntPtr, ByVal lpClassName As StringBuilder, ByVal nMaxCount As Integer) As Integer
     End Function
 
-    <DllImport("user32.dll")>
-    Private Function GetWindowRect(ByVal hWnd As IntPtr, ByRef lpRect As RECT) As Boolean
-    End Function
+    '<DllImport("user32.dll")>
+    'Private Function GetWindowRect(ByVal hWnd As IntPtr, ByRef lpRect As RECT) As Boolean
+    'End Function
 
 
     Private chromeWindows As New Dictionary(Of IntPtr, String)
@@ -164,13 +165,34 @@ Module WindowControllerModule
     End Function
 
 
+    Public Sub Update_Window_Hwnd_ListView()
+        Form1.Window_Hwnd_ListView.Items.Clear()
+        chromeWindows.Clear() ' clear dic.
+        EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
+
+        Dim i As Integer = 0
+        ' display contents
+        If chromeWindows.Count = 0 Then
+            MessageBox.Show("None found, list is empty!")
+        Else ' do something with the results,...
+            For Each chrome In chromeWindows
+                'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                If chrome.Value.Contains("Google Chrome") Then
+                    Form1.Window_Hwnd_ListView.Items.Add(CStr(chrome.Key), 100)
+                    Form1.Window_Hwnd_ListView.Items(i).SubItems.Add(chrome.Value)
+                    Form1.Window_Hwnd_ListView.Items(i).SubItems.Add("")
+                    i += 1
+
+                End If
+
+            Next
+        End If
+
+    End Sub
 
 
 
     '############### Sample code for test  ###################
-
-
-
 
 
     Public Const WM_LBUTTONDOWN = &H201
@@ -180,8 +202,8 @@ Module WindowControllerModule
         chromeWindows.Clear() ' clear dic.
         EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
 
-        Dim pos_x = CInt(Form1.pos_X_TextBox1.Text)
-        Dim pos_y = CInt(Form1.pos_Y_TextBox1.Text)
+        'Dim pos_x = CInt(Form1.pos_X_TextBox1.Text)
+        'Dim pos_y = CInt(Form1.pos_Y_TextBox1.Text)
 
         Dim hWndArrayList As ArrayList = New ArrayList()
         ' display contents
@@ -189,11 +211,12 @@ Module WindowControllerModule
             MessageBox.Show("None found, list is empty!")
         Else ' do something with the results,...
             For Each chrome In chromeWindows
-                Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
                 If chrome.Value.Contains("Google Chrome") Then
+                    Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                    'PostMessage(chrome.Key, WM_LBUTTONDOWN, 0, MAKELPARAM(pos_x, pos_y))    '點下滑鼠左鍵 
+                    'PostMessage(chrome.Key, WM_LBUTTONUP, 0, MAKELPARAM(pos_x, pos_y))
 
-                    PostMessage(chrome.Key, WM_LBUTTONDOWN, 0, MAKELPARAM(pos_x, pos_y))    '點下滑鼠左鍵 
-                    PostMessage(chrome.Key, WM_LBUTTONUP, 0, MAKELPARAM(pos_x, pos_y))
 
                 End If
 
@@ -202,7 +225,7 @@ Module WindowControllerModule
         Return hWndArrayList
     End Function
 
-    Public Function MAKELPARAM(ByVal l As Integer, ByVal h As Integer) As Long '仿C# MAKELPARAM()函數 
+    Public Function MAKELPARAM(ByVal l As Integer, ByVal h As Integer) As Long
         Dim r As Integer = l + (h << 16)
         Return (r)
     End Function
@@ -217,6 +240,89 @@ Module WindowControllerModule
     Private Function SendMessageW(ByVal hWnd As IntPtr, ByVal Msg As UInteger, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As Integer
     End Function
 
+
+
+    Declare Function GetCursorPos Lib "user32" Alias "GetCursorPos" (ByRef lpPoint As POINTAPI) As Integer
+
+
+    Structure POINTAPI
+        Dim x As Integer
+        Dim y As Integer
+    End Structure
+
+
+
+
+    Public Declare Function WindowFromPoint Lib "user32" Alias "WindowFromPoint" (ByVal xPoint As Integer, ByVal yPoint As Integer) As Integer
+    Private Declare Function GetWindowRect Lib "user32" Alias "GetWindowRect" (ByVal hwnd As Integer, ByRef lpRect As RECT) As Integer
+
+    Public MasterHwnd As Integer
+    Public sync_flag As Boolean = False
+    Dim REAL_X As Integer
+    Dim REAL_Y As Integer
+    Public Function Click_All_Window(x, y)
+        GetCursorPos(p) '取得滑鼠游標所在位置 
+
+        If sync_flag = False Then
+            Return False
+        End If
+
+        Return False
+
+        Dim Real_XY As RECT
+        Debug.WriteLine(GetWindowRect(MasterHwnd, Real_XY))
+        Debug.WriteLine("Left:" & Real_XY.Left)
+        Debug.WriteLine("Top:" & Real_XY.Top)
+        Debug.WriteLine("Right:" & Real_XY.Right)
+        Debug.WriteLine("Bottom:" & Real_XY.Bottom)
+        REAL_X = p.x - Real_XY.Left
+        REAL_Y = p.y - Real_XY.Top
+        Debug.WriteLine("# " & REAL_X & "," & REAL_Y)
+
+
+        chromeWindows.Clear() ' clear dic.
+        EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
+
+        'Dim pos_x = CInt(Form1.pos_X_TextBox1.Text)
+        'Dim pos_y = CInt(Form1.pos_Y_TextBox1.Text)
+
+        Dim hWndArrayList As ArrayList = New ArrayList()
+        ' display contents
+        If chromeWindows.Count = 0 Then
+            MessageBox.Show("None found, list is empty!")
+        Else ' do something with the results,...
+            For Each chrome In chromeWindows
+                'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                If chrome.Value.Contains("Google Chrome") Then
+                    Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                    PostMessage(chrome.Key, WM_LBUTTONDOWN, 0, MAKELPARAM(REAL_X, REAL_Y))    '點下滑鼠左鍵 
+                    PostMessage(chrome.Key, WM_LBUTTONUP, 0, MAKELPARAM(REAL_X, REAL_Y))
+
+                End If
+
+            Next
+        End If
+
+        Return True
+    End Function
+
+
+    Dim p As New POINTAPI
+
+
+    'VB.NET的宣告
+    <DllImport("user32.dll")>
+    Function GetClientRect(ByVal hwnd As IntPtr, ByRef lpRect As RECT) As Boolean
+    End Function
+
+
+    <DllImport("user32.dll")>
+    Private Function ChildWindowFromPoint(ByVal hWndParent As IntPtr, ByVal Point As Point) As IntPtr
+    End Function
+
+    <DllImport("user32.dll", SetLastError:=True)>
+    Private Function GetForegroundWindow() As IntPtr
+    End Function
 
 
 

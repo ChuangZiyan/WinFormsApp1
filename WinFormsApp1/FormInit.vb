@@ -34,6 +34,8 @@ Module FormInit
         Render_Current_URL_ComboBox()
         Render_Block_Lang_Packs_ComboBox()
 
+        Render_Window_Hwnd_Listview()
+
 
 
         Form1.Selection_Item_ComboBox.Text = "搜尋"
@@ -261,6 +263,15 @@ Module FormInit
         Form1.Groups_ListView.Columns.Add("網址", 800)
     End Sub
 
+    Public Sub Render_Window_Hwnd_Listview()
+        Form1.Window_Hwnd_ListView.View = View.Details
+        Form1.Window_Hwnd_ListView.GridLines = True
+        Form1.Window_Hwnd_ListView.FullRowSelect = True
+        Form1.Window_Hwnd_ListView.Columns.Add("Hwnd", 100)
+        Form1.Window_Hwnd_ListView.Columns.Add("窗口名稱", 310)
+        Form1.Window_Hwnd_ListView.Columns.Add("狀態", 80)
+    End Sub
+
     Public Sub Render_ProfileName_ComboBox_Item()
         For i As Integer = 1 To 100
             Form1.Profile_Name_ComboBox.Items.Add(i.ToString().PadLeft(3, "0"))
@@ -352,4 +363,7 @@ Module FormInit
             Form1.curr_url_ComboBox.Items.Add(url)
         Next
     End Sub
+
+
+
 End Module

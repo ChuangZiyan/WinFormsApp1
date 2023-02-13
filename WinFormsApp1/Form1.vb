@@ -2182,16 +2182,37 @@ Public Class Form1
         perform_Window_Layout()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        test_All__Chrome_hWnd()
+    Private Sub Update_Window_Hwnd_Btn_Click(sender As Object, e As EventArgs) Handles Update_Window_Hwnd_Btn.Click
+        Update_Window_Hwnd_ListView()
+    End Sub
 
-        Exit Sub
+    Private Sub Set_Selected_Hwnd_Btn_Click(sender As Object, e As EventArgs) Handles Set_Selected_Hwnd_Btn.Click
 
-        Dim hWndArrayList = get_All__Chrome_hWnd()
-        For Each hWnd In hWndArrayList
-            Debug.WriteLine(hWnd)
+        For i As Integer = Window_Hwnd_ListView.Items.Count - 1 To 0 Step -1
+            'Debug.WriteLine(Groups_ListView.SelectedItems.Item(0).SubItems(0).Text)
+            Window_Hwnd_ListView.Items(i).SubItems(2).Text = ""
+        Next
+
+        For i As Integer = Window_Hwnd_ListView.SelectedIndices.Count - 1 To 0 Step -1
+            'Debug.WriteLine(Groups_ListView.SelectedItems.Item(0).SubItems(0).Text)
+            WindowControllerModule.MasterHwnd = CInt(Window_Hwnd_ListView.SelectedItems.Item(0).SubItems(0).Text)
+            Window_Hwnd_ListView.SelectedItems.Item(0).SubItems(2).Text = "主控端"
         Next
     End Sub
 
+    Private Sub Start_Windows_Action_Sync_btn_Click(sender As Object, e As EventArgs) Handles Start_Windows_Action_Sync_btn.Click
+        Debug.WriteLine("Hwnd : " & WindowControllerModule.MasterHwnd)
+        If WindowControllerModule.sync_flag = True Then
+            WindowControllerModule.sync_flag = False
+            Start_Windows_Action_Sync_btn.Text = "開始同步"
+            Start_Windows_Action_Sync_btn.BackColor = Color.White
+        ElseIf WindowControllerModule.sync_flag = False Then
+            WindowControllerModule.sync_flag = True
+            Start_Windows_Action_Sync_btn.Text = "停止同步"
+            Start_Windows_Action_Sync_btn.BackColor = Color.OrangeRed
+        End If
+
+        Debug.WriteLine("FLAG:" & WindowControllerModule.sync_flag)
+    End Sub
 End Class

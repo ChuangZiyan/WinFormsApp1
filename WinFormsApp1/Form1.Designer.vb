@@ -312,6 +312,12 @@ Partial Class Form1
         Me.Insert_Searching_Keyword_btn = New System.Windows.Forms.Button()
         Me.Searching_Keyword_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Widget_TabPage = New System.Windows.Forms.TabPage()
+        Me.Start_Windows_Action_Sync_btn = New System.Windows.Forms.Button()
+        Me.Set_Selected_Hwnd_Btn = New System.Windows.Forms.Button()
+        Me.Update_Window_Hwnd_Btn = New System.Windows.Forms.Button()
+        Me.Window_Hwnd_ListView = New System.Windows.Forms.ListView()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Hwnd_TextBox = New System.Windows.Forms.TextBox()
         Me.Perfom_Window_Layout_Btn = New System.Windows.Forms.Button()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label73 = New System.Windows.Forms.Label()
@@ -349,8 +355,6 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.pos_X_TextBox1 = New System.Windows.Forms.TextBox()
-        Me.pos_Y_TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3233,8 +3237,12 @@ Partial Class Form1
         '
         'Widget_TabPage
         '
-        Me.Widget_TabPage.Controls.Add(Me.pos_Y_TextBox1)
-        Me.Widget_TabPage.Controls.Add(Me.pos_X_TextBox1)
+        Me.Widget_TabPage.Controls.Add(Me.Start_Windows_Action_Sync_btn)
+        Me.Widget_TabPage.Controls.Add(Me.Set_Selected_Hwnd_Btn)
+        Me.Widget_TabPage.Controls.Add(Me.Update_Window_Hwnd_Btn)
+        Me.Widget_TabPage.Controls.Add(Me.Window_Hwnd_ListView)
+        Me.Widget_TabPage.Controls.Add(Me.Button2)
+        Me.Widget_TabPage.Controls.Add(Me.Hwnd_TextBox)
         Me.Widget_TabPage.Controls.Add(Me.Perfom_Window_Layout_Btn)
         Me.Widget_TabPage.Controls.Add(Me.Label49)
         Me.Widget_TabPage.Controls.Add(Me.Label73)
@@ -3262,9 +3270,60 @@ Partial Class Form1
         Me.Widget_TabPage.Text = "小工具"
         Me.Widget_TabPage.UseVisualStyleBackColor = True
         '
+        'Start_Windows_Action_Sync_btn
+        '
+        Me.Start_Windows_Action_Sync_btn.Location = New System.Drawing.Point(420, 769)
+        Me.Start_Windows_Action_Sync_btn.Name = "Start_Windows_Action_Sync_btn"
+        Me.Start_Windows_Action_Sync_btn.Size = New System.Drawing.Size(94, 29)
+        Me.Start_Windows_Action_Sync_btn.TabIndex = 31
+        Me.Start_Windows_Action_Sync_btn.Text = "開始同步"
+        Me.Start_Windows_Action_Sync_btn.UseVisualStyleBackColor = True
+        '
+        'Set_Selected_Hwnd_Btn
+        '
+        Me.Set_Selected_Hwnd_Btn.Location = New System.Drawing.Point(148, 769)
+        Me.Set_Selected_Hwnd_Btn.Name = "Set_Selected_Hwnd_Btn"
+        Me.Set_Selected_Hwnd_Btn.Size = New System.Drawing.Size(114, 29)
+        Me.Set_Selected_Hwnd_Btn.TabIndex = 30
+        Me.Set_Selected_Hwnd_Btn.Text = "設定主控窗口"
+        Me.Set_Selected_Hwnd_Btn.UseVisualStyleBackColor = True
+        '
+        'Update_Window_Hwnd_Btn
+        '
+        Me.Update_Window_Hwnd_Btn.Location = New System.Drawing.Point(14, 769)
+        Me.Update_Window_Hwnd_Btn.Name = "Update_Window_Hwnd_Btn"
+        Me.Update_Window_Hwnd_Btn.Size = New System.Drawing.Size(128, 29)
+        Me.Update_Window_Hwnd_Btn.TabIndex = 29
+        Me.Update_Window_Hwnd_Btn.Text = "更新窗口列表"
+        Me.Update_Window_Hwnd_Btn.UseVisualStyleBackColor = True
+        '
+        'Window_Hwnd_ListView
+        '
+        Me.Window_Hwnd_ListView.Location = New System.Drawing.Point(14, 541)
+        Me.Window_Hwnd_ListView.Name = "Window_Hwnd_ListView"
+        Me.Window_Hwnd_ListView.Size = New System.Drawing.Size(500, 219)
+        Me.Window_Hwnd_ListView.TabIndex = 28
+        Me.Window_Hwnd_ListView.UseCompatibleStateImageBehavior = False
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(810, 771)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(94, 29)
+        Me.Button2.TabIndex = 27
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Hwnd_TextBox
+        '
+        Me.Hwnd_TextBox.Location = New System.Drawing.Point(610, 771)
+        Me.Hwnd_TextBox.Name = "Hwnd_TextBox"
+        Me.Hwnd_TextBox.Size = New System.Drawing.Size(194, 27)
+        Me.Hwnd_TextBox.TabIndex = 26
+        '
         'Perfom_Window_Layout_Btn
         '
-        Me.Perfom_Window_Layout_Btn.Location = New System.Drawing.Point(557, 608)
+        Me.Perfom_Window_Layout_Btn.Location = New System.Drawing.Point(557, 451)
         Me.Perfom_Window_Layout_Btn.Name = "Perfom_Window_Layout_Btn"
         Me.Perfom_Window_Layout_Btn.Size = New System.Drawing.Size(153, 29)
         Me.Perfom_Window_Layout_Btn.TabIndex = 25
@@ -3274,7 +3333,7 @@ Partial Class Form1
         'Label49
         '
         Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(199, 658)
+        Me.Label49.Location = New System.Drawing.Point(199, 501)
         Me.Label49.Name = "Label49"
         Me.Label49.Size = New System.Drawing.Size(29, 19)
         Me.Label49.TabIndex = 24
@@ -3283,7 +3342,7 @@ Partial Class Form1
         'Label73
         '
         Me.Label73.AutoSize = True
-        Me.Label73.Location = New System.Drawing.Point(14, 658)
+        Me.Label73.Location = New System.Drawing.Point(14, 501)
         Me.Label73.Name = "Label73"
         Me.Label73.Size = New System.Drawing.Size(30, 19)
         Me.Label73.TabIndex = 23
@@ -3291,7 +3350,7 @@ Partial Class Form1
         '
         'Overlap_Location_Y_NumericUpDown
         '
-        Me.Overlap_Location_Y_NumericUpDown.Location = New System.Drawing.Point(268, 655)
+        Me.Overlap_Location_Y_NumericUpDown.Location = New System.Drawing.Point(268, 498)
         Me.Overlap_Location_Y_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.Overlap_Location_Y_NumericUpDown.Name = "Overlap_Location_Y_NumericUpDown"
         Me.Overlap_Location_Y_NumericUpDown.Size = New System.Drawing.Size(100, 27)
@@ -3299,7 +3358,7 @@ Partial Class Form1
         '
         'Overlap_Location_X_NumericUpDown
         '
-        Me.Overlap_Location_X_NumericUpDown.Location = New System.Drawing.Point(87, 655)
+        Me.Overlap_Location_X_NumericUpDown.Location = New System.Drawing.Point(87, 498)
         Me.Overlap_Location_X_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.Overlap_Location_X_NumericUpDown.Name = "Overlap_Location_X_NumericUpDown"
         Me.Overlap_Location_X_NumericUpDown.Size = New System.Drawing.Size(100, 27)
@@ -3307,7 +3366,7 @@ Partial Class Form1
         '
         'Overlap_All_Window_To_Location_Btn
         '
-        Me.Overlap_All_Window_To_Location_Btn.Location = New System.Drawing.Point(395, 653)
+        Me.Overlap_All_Window_To_Location_Btn.Location = New System.Drawing.Point(395, 496)
         Me.Overlap_All_Window_To_Location_Btn.Name = "Overlap_All_Window_To_Location_Btn"
         Me.Overlap_All_Window_To_Location_Btn.Size = New System.Drawing.Size(156, 29)
         Me.Overlap_All_Window_To_Location_Btn.TabIndex = 20
@@ -3316,7 +3375,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(510, 771)
+        Me.Button1.Location = New System.Drawing.Point(710, 716)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(94, 29)
         Me.Button1.TabIndex = 19
@@ -3326,7 +3385,7 @@ Partial Class Form1
         'Label48
         '
         Me.Label48.AutoSize = True
-        Me.Label48.Location = New System.Drawing.Point(199, 613)
+        Me.Label48.Location = New System.Drawing.Point(199, 456)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(63, 19)
         Me.Label48.TabIndex = 18
@@ -3335,7 +3394,7 @@ Partial Class Form1
         'Label47
         '
         Me.Label47.AutoSize = True
-        Me.Label47.Location = New System.Drawing.Point(14, 613)
+        Me.Label47.Location = New System.Drawing.Point(14, 456)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(67, 19)
         Me.Label47.TabIndex = 17
@@ -3343,7 +3402,7 @@ Partial Class Form1
         '
         'Window_Width_NumericUpDown
         '
-        Me.Window_Width_NumericUpDown.Location = New System.Drawing.Point(268, 610)
+        Me.Window_Width_NumericUpDown.Location = New System.Drawing.Point(268, 453)
         Me.Window_Width_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.Window_Width_NumericUpDown.Name = "Window_Width_NumericUpDown"
         Me.Window_Width_NumericUpDown.Size = New System.Drawing.Size(100, 27)
@@ -3351,7 +3410,7 @@ Partial Class Form1
         '
         'Window_Height_NumericUpDown
         '
-        Me.Window_Height_NumericUpDown.Location = New System.Drawing.Point(87, 610)
+        Me.Window_Height_NumericUpDown.Location = New System.Drawing.Point(87, 453)
         Me.Window_Height_NumericUpDown.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.Window_Height_NumericUpDown.Name = "Window_Height_NumericUpDown"
         Me.Window_Height_NumericUpDown.Size = New System.Drawing.Size(100, 27)
@@ -3359,7 +3418,7 @@ Partial Class Form1
         '
         'Set_All_Window_Size_Btn
         '
-        Me.Set_All_Window_Size_Btn.Location = New System.Drawing.Point(395, 608)
+        Me.Set_All_Window_Size_Btn.Location = New System.Drawing.Point(395, 451)
         Me.Set_All_Window_Size_Btn.Name = "Set_All_Window_Size_Btn"
         Me.Set_All_Window_Size_Btn.Size = New System.Drawing.Size(156, 29)
         Me.Set_All_Window_Size_Btn.TabIndex = 14
@@ -3368,7 +3427,7 @@ Partial Class Form1
         '
         'Insert_Change_FB_Password_Btn
         '
-        Me.Insert_Change_FB_Password_Btn.Location = New System.Drawing.Point(14, 541)
+        Me.Insert_Change_FB_Password_Btn.Location = New System.Drawing.Point(14, 401)
         Me.Insert_Change_FB_Password_Btn.Name = "Insert_Change_FB_Password_Btn"
         Me.Insert_Change_FB_Password_Btn.Size = New System.Drawing.Size(156, 29)
         Me.Insert_Change_FB_Password_Btn.TabIndex = 13
@@ -3382,7 +3441,7 @@ Partial Class Form1
         Me.GroupBox6.Controls.Add(Me.Pasword_Length_NumericUpDown)
         Me.GroupBox6.Controls.Add(Me.Generated_Password_TextBox)
         Me.GroupBox6.Controls.Add(Me.Generate_Random_Password_String_Btn)
-        Me.GroupBox6.Location = New System.Drawing.Point(14, 423)
+        Me.GroupBox6.Location = New System.Drawing.Point(14, 285)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(890, 110)
         Me.GroupBox6.TabIndex = 12
@@ -3434,7 +3493,7 @@ Partial Class Form1
         '
         'Delete_Str_from_RTBox_btn
         '
-        Me.Delete_Str_from_RTBox_btn.Location = New System.Drawing.Point(810, 359)
+        Me.Delete_Str_from_RTBox_btn.Location = New System.Drawing.Point(810, 237)
         Me.Delete_Str_from_RTBox_btn.Name = "Delete_Str_from_RTBox_btn"
         Me.Delete_Str_from_RTBox_btn.Size = New System.Drawing.Size(94, 29)
         Me.Delete_Str_from_RTBox_btn.TabIndex = 5
@@ -3443,7 +3502,7 @@ Partial Class Form1
         '
         'Split_NewLine_By_Char_btn
         '
-        Me.Split_NewLine_By_Char_btn.Location = New System.Drawing.Point(710, 359)
+        Me.Split_NewLine_By_Char_btn.Location = New System.Drawing.Point(710, 237)
         Me.Split_NewLine_By_Char_btn.Name = "Split_NewLine_By_Char_btn"
         Me.Split_NewLine_By_Char_btn.Size = New System.Drawing.Size(94, 29)
         Me.Split_NewLine_By_Char_btn.TabIndex = 4
@@ -3454,14 +3513,14 @@ Partial Class Form1
         '
         Me.Pattern_Str_ComboBox.FormattingEnabled = True
         Me.Pattern_Str_ComboBox.Items.AddRange(New Object() {"，", "。", ",", "."})
-        Me.Pattern_Str_ComboBox.Location = New System.Drawing.Point(553, 361)
+        Me.Pattern_Str_ComboBox.Location = New System.Drawing.Point(553, 239)
         Me.Pattern_Str_ComboBox.Name = "Pattern_Str_ComboBox"
         Me.Pattern_Str_ComboBox.Size = New System.Drawing.Size(151, 27)
         Me.Pattern_Str_ComboBox.TabIndex = 3
         '
         'Auto_Generated_TextFile_Btn
         '
-        Me.Auto_Generated_TextFile_Btn.Location = New System.Drawing.Point(114, 361)
+        Me.Auto_Generated_TextFile_Btn.Location = New System.Drawing.Point(114, 239)
         Me.Auto_Generated_TextFile_Btn.Name = "Auto_Generated_TextFile_Btn"
         Me.Auto_Generated_TextFile_Btn.Size = New System.Drawing.Size(94, 29)
         Me.Auto_Generated_TextFile_Btn.TabIndex = 2
@@ -3470,7 +3529,7 @@ Partial Class Form1
         '
         'Reveal_Auto_Generated_Folder_Btn
         '
-        Me.Reveal_Auto_Generated_Folder_Btn.Location = New System.Drawing.Point(14, 361)
+        Me.Reveal_Auto_Generated_Folder_Btn.Location = New System.Drawing.Point(14, 239)
         Me.Reveal_Auto_Generated_Folder_Btn.Name = "Reveal_Auto_Generated_Folder_Btn"
         Me.Reveal_Auto_Generated_Folder_Btn.Size = New System.Drawing.Size(94, 29)
         Me.Reveal_Auto_Generated_Folder_Btn.TabIndex = 1
@@ -3481,7 +3540,7 @@ Partial Class Form1
         '
         Me.Auto_GenerateTextFile_RichTextBox.Location = New System.Drawing.Point(14, 16)
         Me.Auto_GenerateTextFile_RichTextBox.Name = "Auto_GenerateTextFile_RichTextBox"
-        Me.Auto_GenerateTextFile_RichTextBox.Size = New System.Drawing.Size(890, 337)
+        Me.Auto_GenerateTextFile_RichTextBox.Size = New System.Drawing.Size(890, 215)
         Me.Auto_GenerateTextFile_RichTextBox.TabIndex = 0
         Me.Auto_GenerateTextFile_RichTextBox.Text = ""
         Me.Auto_GenerateTextFile_RichTextBox.WordWrap = False
@@ -3585,20 +3644,6 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
-        '
-        'pos_X_TextBox1
-        '
-        Me.pos_X_TextBox1.Location = New System.Drawing.Point(610, 771)
-        Me.pos_X_TextBox1.Name = "pos_X_TextBox1"
-        Me.pos_X_TextBox1.Size = New System.Drawing.Size(79, 27)
-        Me.pos_X_TextBox1.TabIndex = 26
-        '
-        'pos_Y_TextBox1
-        '
-        Me.pos_Y_TextBox1.Location = New System.Drawing.Point(695, 771)
-        Me.pos_Y_TextBox1.Name = "pos_Y_TextBox1"
-        Me.pos_Y_TextBox1.Size = New System.Drawing.Size(79, 27)
-        Me.pos_Y_TextBox1.TabIndex = 27
         '
         'Form1
         '
@@ -3995,6 +4040,10 @@ Partial Class Form1
     Friend WithEvents Overlap_Location_X_NumericUpDown As NumericUpDown
     Friend WithEvents Overlap_All_Window_To_Location_Btn As Button
     Friend WithEvents Perfom_Window_Layout_Btn As Button
-    Friend WithEvents pos_X_TextBox1 As TextBox
-    Friend WithEvents pos_Y_TextBox1 As TextBox
+    Friend WithEvents Hwnd_TextBox As TextBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Window_Hwnd_ListView As ListView
+    Friend WithEvents Update_Window_Hwnd_Btn As Button
+    Friend WithEvents Start_Windows_Action_Sync_btn As Button
+    Friend WithEvents Set_Selected_Hwnd_Btn As Button
 End Class

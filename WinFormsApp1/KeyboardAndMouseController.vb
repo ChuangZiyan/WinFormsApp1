@@ -5,23 +5,26 @@ Public Class KeyboardAndMouseController
     Dim record = False
 
 
-    'Public WithEvents MouseHook As New MouseHook
-    'Public Sub MouseHook_Mouse_Left_Down(e As Point) Handles MouseHook.Mouse_Left_Down
-    'If Not record Then
-    'Exit Sub
-    'End If
-    'Dim MousePosition = Cursor.Position
-    '   Insert_to_script("系統點擊:左鍵", "0;" + Str(MousePosition.X) + ":" + Str(MousePosition.Y))
-    'End Sub
+    Public WithEvents MouseHook As New MouseHook
+    Public Sub MouseHook_Mouse_Left_Down(e As Point) Handles MouseHook.Mouse_Left_Down
+        Dim MousePosition = Cursor.Position
+        'Debug.WriteLine(MousePosition)
+        Click_All_Window(MousePosition.X, MousePosition.Y)
+
+        If record Then
+            Insert_to_script("系統點擊:左鍵", "0;" + Str(MousePosition.X) + ":" + Str(MousePosition.Y))
+        End If
+
+    End Sub
 
 
-    'Public Sub MouseHook_Mouse_Right_Down(e As Point) Handles MouseHook.Mouse_Right_Down
-    'If Not record Then
-    'Exit Sub
-    'End If
-    'Dim MousePosition = Cursor.Position
-    '   Insert_to_script("系統點擊:右鍵", "0;" + Str(MousePosition.X) + ":" + Str(MousePosition.Y))
-    'End Sub
+    Public Sub MouseHook_Mouse_Right_Down(e As Point) Handles MouseHook.Mouse_Right_Down
+        If Not record Then
+            Exit Sub
+        End If
+        Dim MousePosition = Cursor.Position
+            Insert_to_script("系統點擊:右鍵", "0;" + Str(MousePosition.X) + ":" + Str(MousePosition.Y))
+    End Sub
 
 
     Public Declare Sub mouse_event Lib "user32" (ByVal dwFlags As Integer, ByVal dx As Integer, ByVal dy As Integer, ByVal cButtons As Integer, ByVal dwExtraInfo As Integer)
