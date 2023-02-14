@@ -65,7 +65,9 @@ Public Class KeyboardAndMouseController
     Dim F2_KeyDown = False
 
     Public Sub kbHook_KeyDown(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyDown
-        'Debug.WriteLine(Key.ToString)
+
+
+        'SendKey_To_All_Window(Key.ToString)
 
         Select Case Key.ToString
             Case "LControlKey"
@@ -86,6 +88,8 @@ Public Class KeyboardAndMouseController
 
     End Sub
     Public Sub kbHook_KeyUp(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyUp
+
+
 
         Dim myKey = Key.ToString
 

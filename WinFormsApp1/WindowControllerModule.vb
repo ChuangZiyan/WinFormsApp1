@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.Text
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports ICSharpCode.SharpZipLib.Zip
+Imports OpenQA.Selenium.DevTools.V101.Emulation
 
 Module WindowControllerModule
 
@@ -236,11 +237,6 @@ Module WindowControllerModule
 
 
 
-    <DllImport("user32.dll", EntryPoint:="SendMessageW")>
-    Private Function SendMessageW(ByVal hWnd As IntPtr, ByVal Msg As UInteger, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As Integer
-    End Function
-
-
 
     Declare Function GetCursorPos Lib "user32" Alias "GetCursorPos" (ByRef lpPoint As POINTAPI) As Integer
 
@@ -251,8 +247,8 @@ Module WindowControllerModule
     End Structure
 
 
-
-
+    Public Declare Function SetActiveWindow Lib "user32" (ByVal hWnd As Long) As Long
+    Public Declare Function SetForegroundWindow Lib "user32.dll" (ByVal hwnd As Integer) As Integer
     Public Declare Function WindowFromPoint Lib "user32" Alias "WindowFromPoint" (ByVal xPoint As Integer, ByVal yPoint As Integer) As Integer
     Private Declare Function GetWindowRect Lib "user32" Alias "GetWindowRect" (ByVal hwnd As Integer, ByRef lpRect As RECT) As Integer
 
@@ -260,6 +256,16 @@ Module WindowControllerModule
     Public sync_flag As Boolean = False
     Dim REAL_X As Integer
     Dim REAL_Y As Integer
+
+
+    Public Const WM_KEYDOWN = &H100
+    Public Const WM_KEYUP = &H101
+
+
+
+
+
+
     Public Function Click_All_Window(x, y)
         GetCursorPos(p) '取得滑鼠游標所在位置 
 
@@ -267,24 +273,20 @@ Module WindowControllerModule
             Return False
         End If
 
-        Return False
+        'Return False
 
         Dim Real_XY As RECT
-        Debug.WriteLine(GetWindowRect(MasterHwnd, Real_XY))
-        Debug.WriteLine("Left:" & Real_XY.Left)
-        Debug.WriteLine("Top:" & Real_XY.Top)
-        Debug.WriteLine("Right:" & Real_XY.Right)
-        Debug.WriteLine("Bottom:" & Real_XY.Bottom)
+        'Debug.WriteLine(GetWindowRect(MasterHwnd, Real_XY))
+        'Debug.WriteLine("Left:" & Real_XY.Left)
+        'Debug.WriteLine("Top:" & Real_XY.Top)
+        'Debug.WriteLine("Right:" & Real_XY.Right)
+        'Debug.WriteLine("Bottom:" & Real_XY.Bottom)
         REAL_X = p.x - Real_XY.Left
         REAL_Y = p.y - Real_XY.Top
-        Debug.WriteLine("# " & REAL_X & "," & REAL_Y)
-
+        'Debug.WriteLine("# " & REAL_X & "," & REAL_Y)
 
         chromeWindows.Clear() ' clear dic.
         EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
-
-        'Dim pos_x = CInt(Form1.pos_X_TextBox1.Text)
-        'Dim pos_y = CInt(Form1.pos_Y_TextBox1.Text)
 
         Dim hWndArrayList As ArrayList = New ArrayList()
         ' display contents
@@ -294,7 +296,11 @@ Module WindowControllerModule
             For Each chrome In chromeWindows
                 'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
                 If chrome.Value.Contains("Google Chrome") Then
-                    Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                    If chrome.Key = MasterHwnd Then
+                        Debug.WriteLine("Continue")
+                        Continue For
+                    End If
+                    'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
                     PostMessage(chrome.Key, WM_LBUTTONDOWN, 0, MAKELPARAM(REAL_X, REAL_Y))    '點下滑鼠左鍵 
                     PostMessage(chrome.Key, WM_LBUTTONUP, 0, MAKELPARAM(REAL_X, REAL_Y))
 
@@ -305,6 +311,46 @@ Module WindowControllerModule
 
         Return True
     End Function
+
+    Declare Function MapVirtualKey Lib "user32" Alias "MapVirtualKeyA" (
+     ByVal wCode As Long,
+     ByVal wMapType As Long) As Long
+
+
+    Public Sub SendKey_To_All_Window(key)
+        If sync_flag = False Then
+            Exit Sub
+        End If
+        Debug.WriteLine("press:" + key)
+        chromeWindows.Clear() ' clear dic.
+        EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
+
+        ' display contents
+        If chromeWindows.Count = 0 Then
+            MessageBox.Show("None found, list is empty!")
+        Else ' do something with the results,...
+            For Each chrome In chromeWindows
+                'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                If chrome.Value.Contains("Google Chrome") Then
+                    If chrome.Key = MasterHwnd Then
+                        Debug.WriteLine("Continue")
+                        Continue For
+                    End If
+                    '################ keyboard test ################ '
+                    Dim vkCode As Long
+                    Dim lParam As Long
+                    vkCode = Asc("T")
+                    lParam = 1 + MapVirtualKey(vkCode, 0) * (2 ^ 16)
+                    Debug.Print(Hex(vkCode), Hex(lParam))
+                    SetActiveWindow(chrome.Key)
+                    PostMessage(chrome.Key, WM_KEYDOWN, vkCode, lParam)
+
+                End If
+
+            Next
+        End If
+    End Sub
+
 
 
     Dim p As New POINTAPI
@@ -323,6 +369,8 @@ Module WindowControllerModule
     <DllImport("user32.dll", SetLastError:=True)>
     Private Function GetForegroundWindow() As IntPtr
     End Function
+
+    Declare Function GetAsyncKeyState Lib "user32" Alias "GetAsyncKeyState" (ByVal vKey As IntPtr) As Integer '全域接收鍵鼠訊息 
 
 
 
