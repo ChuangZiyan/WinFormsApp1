@@ -2215,4 +2215,8 @@ Public Class Form1
 
         Debug.WriteLine("FLAG:" & WindowControllerModule.sync_flag)
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        SendKey_To_All_Window("test")
+    End Sub
 End Class

@@ -1,4 +1,6 @@
 ﻿
+Imports System.Threading
+
 Public Class KeyboardAndMouseController
 
 
@@ -23,7 +25,7 @@ Public Class KeyboardAndMouseController
             Exit Sub
         End If
         Dim MousePosition = Cursor.Position
-            Insert_to_script("系統點擊:右鍵", "0;" + Str(MousePosition.X) + ":" + Str(MousePosition.Y))
+        Insert_to_script("系統點擊:右鍵", "0;" + Str(MousePosition.X) + ":" + Str(MousePosition.Y))
     End Sub
 
 
@@ -64,10 +66,25 @@ Public Class KeyboardAndMouseController
     Dim F1_KeyDown = False
     Dim F2_KeyDown = False
 
+
+    Public myKeyboardHook = True
+
     Public Sub kbHook_KeyDown(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyDown
+        If myKeyboardHook = False Then
+            Exit Sub
+        End If
+        Debug.WriteLine("GO1")
+        'Debug.WriteLine("keydown " + Key.ToString)
+
+        If LControlKey_KeyDown AndAlso Key.ToString = "V" Then
+            Debug.WriteLine("PAUSE")
+            myKeyboardHook = False
+            Thread.Sleep(1000)
+            SendKey_To_All_Window(Key.ToString)
+            myKeyboardHook = True
+        End If
 
 
-        'SendKey_To_All_Window(Key.ToString)
 
         Select Case Key.ToString
             Case "LControlKey"
@@ -89,7 +106,10 @@ Public Class KeyboardAndMouseController
     End Sub
     Public Sub kbHook_KeyUp(ByVal Key As System.Windows.Forms.Keys) Handles kbHook.KeyUp
 
-
+        If myKeyboardHook = False Then
+            Exit Sub
+        End If
+        Debug.WriteLine("GO2")
 
         Dim myKey = Key.ToString
 

@@ -1,6 +1,7 @@
 ﻿Imports System.Reflection.Emit
 Imports System.Runtime.InteropServices
 Imports System.Text
+Imports System.Threading
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports ICSharpCode.SharpZipLib.Zip
 Imports OpenQA.Selenium.DevTools.V101.Emulation
@@ -236,6 +237,10 @@ Module WindowControllerModule
     End Function
 
 
+    <DllImport("user32.dll", EntryPoint:="SendMessageW")>
+    Private Function SendMessageW(ByVal hWnd As IntPtr, ByVal Msg As UInteger, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As Integer
+    End Function
+
 
 
     Declare Function GetCursorPos Lib "user32" Alias "GetCursorPos" (ByRef lpPoint As POINTAPI) As Integer
@@ -260,11 +265,11 @@ Module WindowControllerModule
 
     Public Const WM_KEYDOWN = &H100
     Public Const WM_KEYUP = &H101
+    Public Const WM_PASTE = &H302
 
 
 
-
-
+    Public curr_click_input_pos(2) As Integer
 
     Public Function Click_All_Window(x, y)
         GetCursorPos(p) '取得滑鼠游標所在位置 
@@ -276,11 +281,7 @@ Module WindowControllerModule
         'Return False
 
         Dim Real_XY As RECT
-        'Debug.WriteLine(GetWindowRect(MasterHwnd, Real_XY))
-        'Debug.WriteLine("Left:" & Real_XY.Left)
-        'Debug.WriteLine("Top:" & Real_XY.Top)
-        'Debug.WriteLine("Right:" & Real_XY.Right)
-        'Debug.WriteLine("Bottom:" & Real_XY.Bottom)
+
         REAL_X = p.x - Real_XY.Left
         REAL_Y = p.y - Real_XY.Top
         'Debug.WriteLine("# " & REAL_X & "," & REAL_Y)
@@ -303,6 +304,8 @@ Module WindowControllerModule
                     'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
                     PostMessage(chrome.Key, WM_LBUTTONDOWN, 0, MAKELPARAM(REAL_X, REAL_Y))    '點下滑鼠左鍵 
                     PostMessage(chrome.Key, WM_LBUTTONUP, 0, MAKELPARAM(REAL_X, REAL_Y))
+                    curr_click_input_pos = {REAL_X, REAL_Y}
+
 
                 End If
 
@@ -333,21 +336,23 @@ Module WindowControllerModule
                 'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
                 If chrome.Value.Contains("Google Chrome") Then
                     If chrome.Key = MasterHwnd Then
-                        Debug.WriteLine("Continue")
                         Continue For
                     End If
                     '################ keyboard test ################ '
-                    Dim vkCode As Long
-                    Dim lParam As Long
-                    vkCode = Asc("T")
-                    lParam = 1 + MapVirtualKey(vkCode, 0) * (2 ^ 16)
-                    Debug.Print(Hex(vkCode), Hex(lParam))
-                    SetActiveWindow(chrome.Key)
-                    PostMessage(chrome.Key, WM_KEYDOWN, vkCode, lParam)
-
+                    'Dim vkCode As Long
+                    'Dim lParam As Long
+                    'vkCode = Asc(key)
+                    'lParam = 1 + MapVirtualKey(vkCode, 0) * (2 ^ 16)
+                    'Debug.Print(Hex(vkCode), Hex(lParam))
+                    SetForegroundWindow(chrome.Key)
+                    Thread.Sleep(100)
+                    SendKeys.Send("^v")
                 End If
 
             Next
+            Debug.WriteLine("set" & MasterHwnd)
+            SetForegroundWindow(MasterHwnd)
+            'PostMessage(MasterHwnd, WM_LBUTTONDOWN, 0, MAKELPARAM(curr_click_input_pos(0), curr_click_input_pos(1)))
         End If
     End Sub
 
