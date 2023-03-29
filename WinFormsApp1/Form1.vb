@@ -371,7 +371,6 @@ Public Class Form1
                         boolean_result = False
                     End Try
 
-
                 Case "發送"
                     boolean_result = Await myWebDriver.Write_post_send_content_Task(content)
                 Case "發送:隨機"
@@ -404,6 +403,8 @@ Public Class Form1
                         Dim rnd = rnd_num.Next(0, ImageFiles.Length)
                         boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + ImageFiles(rnd))
                     End If
+                Case "插入背景"
+                    boolean_result = Await myWebDriver.Insert_Post_Background_Task()
 
                 Case "回應:上載"
                     boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + content)
@@ -2169,6 +2170,10 @@ Public Class Form1
         Insert_to_script("貼上:隨機資料夾", "")
     End Sub
 
+    Private Sub Insert_Random_Post_Background_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Random_Post_Background_Btn.Click
+        Insert_to_script("插入背景", "隨機")
+    End Sub
+
     Private Sub Set_All_Window_Size_Btn_Click(sender As Object, e As EventArgs) Handles Set_All_Window_Size_Btn.Click
         Set_All_Window_Size(Window_Width_NumericUpDown.Value, Window_Height_NumericUpDown.Value)
     End Sub
@@ -2216,7 +2221,5 @@ Public Class Form1
         Debug.WriteLine("FLAG:" & WindowControllerModule.sync_flag)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        SendKey_To_All_Window("test")
-    End Sub
+
 End Class

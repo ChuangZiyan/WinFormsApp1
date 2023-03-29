@@ -977,6 +977,27 @@ Public Class MyWebDriver
             Return False
         End Try
 
+    End Function
+
+
+
+    Public Function Insert_Post_Background_Task()
+        Return Task.Run(Function() Insert_Post_Background())
+    End Function
+
+    Public Function Insert_Post_Background()
+        Try
+            chromeDriver.FindElement(By.CssSelector("div.x1ey2m1c.x9f619.xn6708d.x1swvt13.x10l6tqk.x17qophe.x84fkku > div > div")).Click()
+            Dim background_colors = chromeDriver.FindElements(By.CssSelector("div > div.x6ikm8r.x10wlt62.xurb0ha.x1sxyh0.xh8yej3 > div > div"))
+            Dim rnd = rnd_num.Next(1, background_colors.Count)
+            Thread.Sleep(2000)
+            Debug.WriteLine("div.x6ikm8r.x10wlt62.xurb0ha.x1sxyh0.xh8yej3 > div > div:nth-child(" + CStr(rnd) + ") > div")
+            chromeDriver.FindElement(By.CssSelector("div.x6ikm8r.x10wlt62.xurb0ha.x1sxyh0.xh8yej3 > div > div:nth-child(" + CStr(rnd) + ") > div")).Click()
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
 
     End Function
 

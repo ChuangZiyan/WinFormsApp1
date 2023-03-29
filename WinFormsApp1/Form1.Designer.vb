@@ -355,6 +355,7 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Insert_Random_Post_Background_Btn = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1630,6 +1631,7 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Insert_Random_Post_Background_Btn)
         Me.TabPage3.Controls.Add(Me.Insert_Click_reply_Bottom_Btn)
         Me.TabPage3.Controls.Add(Me.Insert_Click_reply_Top_Btn)
         Me.TabPage3.Controls.Add(Me.Deselect_All_Image_Folder_btn)
@@ -1849,7 +1851,7 @@ Partial Class Form1
         '
         'Insert_random_matching_text_and_all_img_btn
         '
-        Me.Insert_random_matching_text_and_all_img_btn.Location = New System.Drawing.Point(687, 274)
+        Me.Insert_random_matching_text_and_all_img_btn.Location = New System.Drawing.Point(683, 239)
         Me.Insert_random_matching_text_and_all_img_btn.Name = "Insert_random_matching_text_and_all_img_btn"
         Me.Insert_random_matching_text_and_all_img_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_random_matching_text_and_all_img_btn.TabIndex = 101
@@ -1924,9 +1926,9 @@ Partial Class Form1
         '
         'Insert_Upload_Random_Image_btn
         '
-        Me.Insert_Upload_Random_Image_btn.Location = New System.Drawing.Point(683, 204)
+        Me.Insert_Upload_Random_Image_btn.Location = New System.Drawing.Point(775, 169)
         Me.Insert_Upload_Random_Image_btn.Name = "Insert_Upload_Random_Image_btn"
-        Me.Insert_Upload_Random_Image_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_Upload_Random_Image_btn.Size = New System.Drawing.Size(133, 29)
         Me.Insert_Upload_Random_Image_btn.TabIndex = 96
         Me.Insert_Upload_Random_Image_btn.Text = "隨機圖片-插入"
         Me.Insert_Upload_Random_Image_btn.UseVisualStyleBackColor = True
@@ -1962,7 +1964,7 @@ Partial Class Form1
         '
         'Insert_random_matching_text_and_img_btn
         '
-        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(687, 239)
+        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(683, 204)
         Me.Insert_random_matching_text_and_img_btn.Name = "Insert_random_matching_text_and_img_btn"
         Me.Insert_random_matching_text_and_img_btn.Size = New System.Drawing.Size(225, 29)
         Me.Insert_random_matching_text_and_img_btn.TabIndex = 100
@@ -2010,7 +2012,7 @@ Partial Class Form1
         '
         Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(683, 169)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
-        Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(86, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
         Me.Insert_click_img_video_btn.Text = "圖片-插入"
         Me.Insert_click_img_video_btn.UseVisualStyleBackColor = True
@@ -3645,6 +3647,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Insert_Random_Post_Background_Btn
+        '
+        Me.Insert_Random_Post_Background_Btn.Location = New System.Drawing.Point(687, 274)
+        Me.Insert_Random_Post_Background_Btn.Name = "Insert_Random_Post_Background_Btn"
+        Me.Insert_Random_Post_Background_Btn.Size = New System.Drawing.Size(221, 29)
+        Me.Insert_Random_Post_Background_Btn.TabIndex = 126
+        Me.Insert_Random_Post_Background_Btn.Text = "隨機背景 - 插入"
+        Me.Insert_Random_Post_Background_Btn.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -4046,4 +4057,5 @@ Partial Class Form1
     Friend WithEvents Update_Window_Hwnd_Btn As Button
     Friend WithEvents Start_Windows_Action_Sync_btn As Button
     Friend WithEvents Set_Selected_Hwnd_Btn As Button
+    Friend WithEvents Insert_Random_Post_Background_Btn As Button
 End Class
