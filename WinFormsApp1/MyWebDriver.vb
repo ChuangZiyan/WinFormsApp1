@@ -485,14 +485,18 @@ Public Class MyWebDriver
             chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
             For Each pattern In str_patterns
                 'Debug.WriteLine("try : " + pattern.ToString())
-                Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
-                If IsElementPresentByXpath(xpath) Then
+                Try
+                    Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
                     'Debug.WriteLine("pattern : " + pattern.ToString())
                     Dim msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
                     msgbox_ele.SendKeys(content)
                     chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                     Return True
-                End If
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                End Try
+                'If IsElementPresentByXpath(xpath) Then
+                'End If
             Next
             chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return False
