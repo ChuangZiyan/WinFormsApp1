@@ -314,7 +314,6 @@ Public Class MyWebDriver
             chromeDriver.FindElement(By.XPath(locatorXpath))
             Return True
         Catch ex As Exception
-            'Debug.WriteLine(ex)
             Return False
         End Try
     End Function
@@ -618,14 +617,19 @@ Public Class MyWebDriver
 
             Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
             'Debug.WriteLine("tetsetse  " + str_patterns(0).ToString)
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1)
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
             For Each pattern In str_patterns
                 Debug.WriteLine("try : " + pattern.ToString())
-                If IsElementPresentByXpath("//span[contains(text(),'" + pattern.ToString() + "')]") Then
-                    Debug.WriteLine("pattern : " + pattern.ToString())
+                'If IsElementPresentByXpath("//span[contains(text(),'" + pattern.ToString() + "')]") Then
+                'Debug.WriteLine("pattern : " + pattern.ToString())
+                Try
                     chromeDriver.FindElement(By.XPath("//span[contains(text(),'" + pattern.ToString() + "')]")).Click()
                     Return True
-                End If
+                Catch ex As Exception
+
+                End Try
+
+                'End If
             Next
             chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
         Catch ex As Exception

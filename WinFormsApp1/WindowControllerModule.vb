@@ -339,11 +339,42 @@ Module WindowControllerModule
                         Continue For
                     End If
                     '################ keyboard test ################ '
-                    'Dim vkCode As Long
-                    'Dim lParam As Long
-                    'vkCode = Asc(key)
-                    'lParam = 1 + MapVirtualKey(vkCode, 0) * (2 ^ 16)
+                    Dim vkCode As Long
+                    Dim lParam As Long
+                    vkCode = Asc(key)
+                    lParam = 1 + MapVirtualKey(vkCode, 0) * (2 ^ 16)
                     'Debug.Print(Hex(vkCode), Hex(lParam))
+                    SetForegroundWindow(chrome.Key)
+                    Thread.Sleep(100)
+                    PostMessage(MasterHwnd, WM_LBUTTONDOWN, lParam, 0)
+                    Thread.Sleep(100)
+                End If
+
+            Next
+            Debug.WriteLine("set" & MasterHwnd)
+            SetForegroundWindow(MasterHwnd)
+            'PostMessage(MasterHwnd, WM_LBUTTONDOWN, 0, MAKELPARAM(curr_click_input_pos(0), curr_click_input_pos(1)))
+        End If
+    End Sub
+
+    Public Sub Send_Patse_to_All_Window(key)
+        If sync_flag = False Then
+            Exit Sub
+        End If
+        Debug.WriteLine("press:" + key)
+        chromeWindows.Clear() ' clear dic.
+        EnumWindows(AddressOf ClassesByName, IntPtr.Zero) ' enum windows w/classname "Chrome_WidgetWin_1".
+
+        ' display contents
+        If chromeWindows.Count = 0 Then
+            MessageBox.Show("None found, list is empty!")
+        Else ' do something with the results,...
+            For Each chrome In chromeWindows
+                'Debug.WriteLine("hWnd={0}, Title={1}", chrome.Key, chrome.Value)
+                If chrome.Value.Contains("Google Chrome") Then
+                    If chrome.Key = MasterHwnd Then
+                        Continue For
+                    End If
                     SetForegroundWindow(chrome.Key)
                     Thread.Sleep(100)
                     SendKeys.Send("^v")
