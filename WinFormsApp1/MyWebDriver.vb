@@ -114,7 +114,7 @@ Public Class MyWebDriver
                     running_chrome_profile = used_chrome_profile
                     'FormInit.Render_profile_CheckedListBox()
                 End If
-                options.AddArguments("--disable-notifications", "--disable-popup-blocking")
+                options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features","--disable-blink-features=AutomationControlled")
                 options.AddExcludedArgument("enable-automation")
 
                 'Minimize windows util headless mode work fine
