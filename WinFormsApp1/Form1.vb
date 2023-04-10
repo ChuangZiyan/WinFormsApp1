@@ -371,6 +371,8 @@ Public Class Form1
                         boolean_result = False
                     End Try
 
+                Case "分享網址"
+                    boolean_result = Await myWebDriver.Write_post_send_content_Task(content)
                 Case "發送"
                     boolean_result = Await myWebDriver.Write_post_send_content_Task(content)
                 Case "發送:隨機"
@@ -2221,5 +2223,7 @@ Public Class Form1
         Debug.WriteLine("FLAG:" & WindowControllerModule.sync_flag)
     End Sub
 
-
+    Private Sub Insert_share_url_btn_Click(sender As Object, e As EventArgs) Handles Insert_share_url_btn.Click
+        Insert_to_script("分享網址", curr_url_ComboBox.Text)
+    End Sub
 End Class

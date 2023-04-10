@@ -161,14 +161,19 @@ Module ScriptInsertion
 
         'get selected img path into string 
         If Form1.img_CheckedListBox.CheckedItems.Count <> 0 Then
-            For i = 0 To Form1.img_CheckedListBox.CheckedItems.Count - 1
+            For i = 0 To Form1.img_CheckedListBox.Items.Count - 1
                 'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
-                Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
-                If img_path_str = "" Then
-                    img_path_str = image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
-                Else
-                    img_path_str = img_path_str & vbLf & image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
+
+                If Form1.img_CheckedListBox.GetItemChecked(i) Then
+                    Debug.WriteLine("###################")
+                    Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
+                    If img_path_str = "" Then
+                        img_path_str = image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
+                    Else
+                        img_path_str = img_path_str & vbLf & image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
+                    End If
                 End If
+
             Next
             Insert_to_script("上載", img_path_str)
         Else

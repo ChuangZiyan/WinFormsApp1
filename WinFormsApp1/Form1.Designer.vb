@@ -149,6 +149,8 @@ Partial Class Form1
         Me.wait_hour_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Insert_share_url_btn = New System.Windows.Forms.Button()
+        Me.Insert_Random_Post_Background_Btn = New System.Windows.Forms.Button()
         Me.Insert_Click_reply_Bottom_Btn = New System.Windows.Forms.Button()
         Me.Insert_Click_reply_Top_Btn = New System.Windows.Forms.Button()
         Me.Deselect_All_Image_Folder_btn = New System.Windows.Forms.Button()
@@ -355,7 +357,7 @@ Partial Class Form1
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Insert_Random_Post_Background_Btn = New System.Windows.Forms.Button()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -881,6 +883,7 @@ Partial Class Form1
         Me.TabControl2.Controls.Add(Me.Widget_TabPage)
         Me.TabControl2.Controls.Add(Me.Post_Crawler)
         Me.TabControl2.Controls.Add(Me.Block_User)
+        Me.TabControl2.Controls.Add(Me.TabPage1)
         Me.TabControl2.Location = New System.Drawing.Point(6, 26)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -1631,6 +1634,7 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Insert_share_url_btn)
         Me.TabPage3.Controls.Add(Me.Insert_Random_Post_Background_Btn)
         Me.TabPage3.Controls.Add(Me.Insert_Click_reply_Bottom_Btn)
         Me.TabPage3.Controls.Add(Me.Insert_Click_reply_Top_Btn)
@@ -1694,6 +1698,24 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "發文發圖"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Insert_share_url_btn
+        '
+        Me.Insert_share_url_btn.Location = New System.Drawing.Point(688, 274)
+        Me.Insert_share_url_btn.Name = "Insert_share_url_btn"
+        Me.Insert_share_url_btn.Size = New System.Drawing.Size(220, 29)
+        Me.Insert_share_url_btn.TabIndex = 127
+        Me.Insert_share_url_btn.Text = "分享網址 - 插入"
+        Me.Insert_share_url_btn.UseVisualStyleBackColor = True
+        '
+        'Insert_Random_Post_Background_Btn
+        '
+        Me.Insert_Random_Post_Background_Btn.Location = New System.Drawing.Point(688, 239)
+        Me.Insert_Random_Post_Background_Btn.Name = "Insert_Random_Post_Background_Btn"
+        Me.Insert_Random_Post_Background_Btn.Size = New System.Drawing.Size(220, 29)
+        Me.Insert_Random_Post_Background_Btn.TabIndex = 126
+        Me.Insert_Random_Post_Background_Btn.Text = "隨機背景 - 插入"
+        Me.Insert_Random_Post_Background_Btn.UseVisualStyleBackColor = True
         '
         'Insert_Click_reply_Bottom_Btn
         '
@@ -1851,9 +1873,9 @@ Partial Class Form1
         '
         'Insert_random_matching_text_and_all_img_btn
         '
-        Me.Insert_random_matching_text_and_all_img_btn.Location = New System.Drawing.Point(683, 239)
+        Me.Insert_random_matching_text_and_all_img_btn.Location = New System.Drawing.Point(688, 204)
         Me.Insert_random_matching_text_and_all_img_btn.Name = "Insert_random_matching_text_and_all_img_btn"
-        Me.Insert_random_matching_text_and_all_img_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_random_matching_text_and_all_img_btn.Size = New System.Drawing.Size(220, 29)
         Me.Insert_random_matching_text_and_all_img_btn.TabIndex = 101
         Me.Insert_random_matching_text_and_all_img_btn.Text = "隨機配對文字全部圖片 - 插入"
         Me.Insert_random_matching_text_and_all_img_btn.UseVisualStyleBackColor = True
@@ -1908,9 +1930,9 @@ Partial Class Form1
         '
         'Insert_submit_post_btn
         '
-        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(687, 309)
+        Me.Insert_submit_post_btn.Location = New System.Drawing.Point(688, 309)
         Me.Insert_submit_post_btn.Name = "Insert_submit_post_btn"
-        Me.Insert_submit_post_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_submit_post_btn.Size = New System.Drawing.Size(220, 29)
         Me.Insert_submit_post_btn.TabIndex = 75
         Me.Insert_submit_post_btn.Text = "按 發布-插入"
         Me.Insert_submit_post_btn.UseVisualStyleBackColor = True
@@ -1926,7 +1948,7 @@ Partial Class Form1
         '
         'Insert_Upload_Random_Image_btn
         '
-        Me.Insert_Upload_Random_Image_btn.Location = New System.Drawing.Point(775, 169)
+        Me.Insert_Upload_Random_Image_btn.Location = New System.Drawing.Point(775, 134)
         Me.Insert_Upload_Random_Image_btn.Name = "Insert_Upload_Random_Image_btn"
         Me.Insert_Upload_Random_Image_btn.Size = New System.Drawing.Size(133, 29)
         Me.Insert_Upload_Random_Image_btn.TabIndex = 96
@@ -1964,9 +1986,9 @@ Partial Class Form1
         '
         'Insert_random_matching_text_and_img_btn
         '
-        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(683, 204)
+        Me.Insert_random_matching_text_and_img_btn.Location = New System.Drawing.Point(688, 169)
         Me.Insert_random_matching_text_and_img_btn.Name = "Insert_random_matching_text_and_img_btn"
-        Me.Insert_random_matching_text_and_img_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_random_matching_text_and_img_btn.Size = New System.Drawing.Size(220, 29)
         Me.Insert_random_matching_text_and_img_btn.TabIndex = 100
         Me.Insert_random_matching_text_and_img_btn.Text = "隨機配對文字圖片 - 插入"
         Me.Insert_random_matching_text_and_img_btn.UseVisualStyleBackColor = True
@@ -1992,9 +2014,9 @@ Partial Class Form1
         '
         'Insert_send_content_btn
         '
-        Me.Insert_send_content_btn.Location = New System.Drawing.Point(683, 64)
+        Me.Insert_send_content_btn.Location = New System.Drawing.Point(688, 64)
         Me.Insert_send_content_btn.Name = "Insert_send_content_btn"
-        Me.Insert_send_content_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_send_content_btn.Size = New System.Drawing.Size(81, 29)
         Me.Insert_send_content_btn.TabIndex = 72
         Me.Insert_send_content_btn.Text = "內容-插入"
         Me.Insert_send_content_btn.UseVisualStyleBackColor = True
@@ -2010,9 +2032,9 @@ Partial Class Form1
         '
         'Insert_click_img_video_btn
         '
-        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(683, 169)
+        Me.Insert_click_img_video_btn.Location = New System.Drawing.Point(688, 134)
         Me.Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
-        Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(86, 29)
+        Me.Insert_click_img_video_btn.Size = New System.Drawing.Size(81, 29)
         Me.Insert_click_img_video_btn.TabIndex = 74
         Me.Insert_click_img_video_btn.Text = "圖片-插入"
         Me.Insert_click_img_video_btn.UseVisualStyleBackColor = True
@@ -2028,27 +2050,27 @@ Partial Class Form1
         '
         'Insert_clear_content_btn
         '
-        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(683, 134)
+        Me.Insert_clear_content_btn.Location = New System.Drawing.Point(688, 99)
         Me.Insert_clear_content_btn.Name = "Insert_clear_content_btn"
-        Me.Insert_clear_content_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_clear_content_btn.Size = New System.Drawing.Size(220, 29)
         Me.Insert_clear_content_btn.TabIndex = 73
         Me.Insert_clear_content_btn.Text = "清空內容-插入"
         Me.Insert_clear_content_btn.UseVisualStyleBackColor = True
         '
         'Insert_send_Random_content_TextFile_btn
         '
-        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(683, 99)
+        Me.Insert_send_Random_content_TextFile_btn.Location = New System.Drawing.Point(775, 64)
         Me.Insert_send_Random_content_TextFile_btn.Name = "Insert_send_Random_content_TextFile_btn"
-        Me.Insert_send_Random_content_TextFile_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_send_Random_content_TextFile_btn.Size = New System.Drawing.Size(133, 29)
         Me.Insert_send_Random_content_TextFile_btn.TabIndex = 95
         Me.Insert_send_Random_content_TextFile_btn.Text = "隨機文檔-插入"
         Me.Insert_send_Random_content_TextFile_btn.UseVisualStyleBackColor = True
         '
         'Insert_click_leave_msg_btn
         '
-        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(683, 29)
+        Me.Insert_click_leave_msg_btn.Location = New System.Drawing.Point(688, 29)
         Me.Insert_click_leave_msg_btn.Name = "Insert_click_leave_msg_btn"
-        Me.Insert_click_leave_msg_btn.Size = New System.Drawing.Size(225, 29)
+        Me.Insert_click_leave_msg_btn.Size = New System.Drawing.Size(220, 29)
         Me.Insert_click_leave_msg_btn.TabIndex = 71
         Me.Insert_click_leave_msg_btn.Text = "按 留個言吧-插入"
         Me.Insert_click_leave_msg_btn.UseVisualStyleBackColor = True
@@ -3647,14 +3669,14 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Insert_Random_Post_Background_Btn
+        'TabPage1
         '
-        Me.Insert_Random_Post_Background_Btn.Location = New System.Drawing.Point(687, 274)
-        Me.Insert_Random_Post_Background_Btn.Name = "Insert_Random_Post_Background_Btn"
-        Me.Insert_Random_Post_Background_Btn.Size = New System.Drawing.Size(221, 29)
-        Me.Insert_Random_Post_Background_Btn.TabIndex = 126
-        Me.Insert_Random_Post_Background_Btn.Text = "隨機背景 - 插入"
-        Me.Insert_Random_Post_Background_Btn.UseVisualStyleBackColor = True
+        Me.TabPage1.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Size = New System.Drawing.Size(918, 820)
+        Me.TabPage1.TabIndex = 10
+        Me.TabPage1.Text = "定時腳本"
+        Me.TabPage1.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -4058,4 +4080,6 @@ Partial Class Form1
     Friend WithEvents Start_Windows_Action_Sync_btn As Button
     Friend WithEvents Set_Selected_Hwnd_Btn As Button
     Friend WithEvents Insert_Random_Post_Background_Btn As Button
+    Friend WithEvents Insert_share_url_btn As Button
+    Friend WithEvents TabPage1 As TabPage
 End Class
