@@ -355,9 +355,19 @@ Partial Class Form1
         Me.Label57 = New System.Windows.Forms.Label()
         Me.Block_User_Lang_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Block_User_By_Page = New System.Windows.Forms.Button()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Script_File_Queue_ListView = New System.Windows.Forms.ListView()
+        Me.Label77 = New System.Windows.Forms.Label()
+        Me.Label76 = New System.Windows.Forms.Label()
+        Me.Script_Start_Time_DateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.Add_Script_To_Queue_Btn = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label75 = New System.Windows.Forms.Label()
+        Me.Label74 = New System.Windows.Forms.Label()
+        Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Target_Index_Script_ListView_NummericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_script_end_second, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -400,6 +410,7 @@ Partial Class Form1
         CType(Me.Pasword_Length_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Post_Crawler.SuspendLayout()
         Me.Block_User.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.SuspendLayout()
         '
         'content_RichTextBox
@@ -3664,19 +3675,118 @@ Partial Class Form1
         Me.Block_User_By_Page.Text = "封鎖"
         Me.Block_User_By_Page.UseVisualStyleBackColor = True
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
-        '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Script_File_Queue_ListView)
+        Me.TabPage1.Controls.Add(Me.Label77)
+        Me.TabPage1.Controls.Add(Me.Label76)
+        Me.TabPage1.Controls.Add(Me.Script_Start_Time_DateTimePicker)
+        Me.TabPage1.Controls.Add(Me.Add_Script_To_Queue_Btn)
+        Me.TabPage1.Controls.Add(Me.Button4)
+        Me.TabPage1.Controls.Add(Me.Button3)
+        Me.TabPage1.Controls.Add(Me.Label75)
+        Me.TabPage1.Controls.Add(Me.Label74)
+        Me.TabPage1.Controls.Add(Me.Script_File_ListBox)
         Me.TabPage1.Location = New System.Drawing.Point(4, 28)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Size = New System.Drawing.Size(918, 820)
         Me.TabPage1.TabIndex = 10
         Me.TabPage1.Text = "定時腳本"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Script_File_Queue_ListView
+        '
+        Me.Script_File_Queue_ListView.Location = New System.Drawing.Point(373, 45)
+        Me.Script_File_Queue_ListView.Name = "Script_File_Queue_ListView"
+        Me.Script_File_Queue_ListView.Size = New System.Drawing.Size(529, 612)
+        Me.Script_File_Queue_ListView.TabIndex = 10
+        Me.Script_File_Queue_ListView.UseCompatibleStateImageBehavior = False
+        '
+        'Label77
+        '
+        Me.Label77.AutoSize = True
+        Me.Label77.Location = New System.Drawing.Point(160, 668)
+        Me.Label77.Name = "Label77"
+        Me.Label77.Size = New System.Drawing.Size(39, 19)
+        Me.Label77.TabIndex = 9
+        Me.Label77.Text = "執行"
+        '
+        'Label76
+        '
+        Me.Label76.AutoSize = True
+        Me.Label76.Location = New System.Drawing.Point(17, 671)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(24, 19)
+        Me.Label76.TabIndex = 8
+        Me.Label76.Text = "於"
+        '
+        'Script_Start_Time_DateTimePicker
+        '
+        Me.Script_Start_Time_DateTimePicker.CustomFormat = "HH:mm:ss"
+        Me.Script_Start_Time_DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.Script_Start_Time_DateTimePicker.Location = New System.Drawing.Point(47, 665)
+        Me.Script_Start_Time_DateTimePicker.Name = "Script_Start_Time_DateTimePicker"
+        Me.Script_Start_Time_DateTimePicker.Size = New System.Drawing.Size(107, 27)
+        Me.Script_Start_Time_DateTimePicker.TabIndex = 7
+        '
+        'Add_Script_To_Queue_Btn
+        '
+        Me.Add_Script_To_Queue_Btn.Location = New System.Drawing.Point(231, 666)
+        Me.Add_Script_To_Queue_Btn.Name = "Add_Script_To_Queue_Btn"
+        Me.Add_Script_To_Queue_Btn.Size = New System.Drawing.Size(136, 29)
+        Me.Add_Script_To_Queue_Btn.TabIndex = 6
+        Me.Add_Script_To_Queue_Btn.Text = "新增至佇列"
+        Me.Add_Script_To_Queue_Btn.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(808, 663)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(94, 29)
+        Me.Button4.TabIndex = 5
+        Me.Button4.Text = "暫停"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(708, 663)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(94, 29)
+        Me.Button3.TabIndex = 4
+        Me.Button3.Text = "開始"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Label75
+        '
+        Me.Label75.AutoSize = True
+        Me.Label75.Location = New System.Drawing.Point(373, 23)
+        Me.Label75.Name = "Label75"
+        Me.Label75.Size = New System.Drawing.Size(72, 19)
+        Me.Label75.TabIndex = 3
+        Me.Label75.Text = "腳本佇列:"
+        '
+        'Label74
+        '
+        Me.Label74.AutoSize = True
+        Me.Label74.Location = New System.Drawing.Point(17, 23)
+        Me.Label74.Name = "Label74"
+        Me.Label74.Size = New System.Drawing.Size(42, 19)
+        Me.Label74.TabIndex = 1
+        Me.Label74.Text = "腳本:"
+        '
+        'Script_File_ListBox
+        '
+        Me.Script_File_ListBox.FormattingEnabled = True
+        Me.Script_File_ListBox.ItemHeight = 19
+        Me.Script_File_ListBox.Location = New System.Drawing.Point(17, 45)
+        Me.Script_File_ListBox.Name = "Script_File_ListBox"
+        Me.Script_File_ListBox.Size = New System.Drawing.Size(350, 612)
+        Me.Script_File_ListBox.TabIndex = 0
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
         '
         'Form1
         '
@@ -3744,6 +3854,8 @@ Partial Class Form1
         Me.Post_Crawler.PerformLayout()
         Me.Block_User.ResumeLayout(False)
         Me.Block_User.PerformLayout()
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4082,4 +4194,14 @@ Partial Class Form1
     Friend WithEvents Insert_Random_Post_Background_Btn As Button
     Friend WithEvents Insert_share_url_btn As Button
     Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents Script_File_ListBox As ListBox
+    Friend WithEvents Add_Script_To_Queue_Btn As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Label75 As Label
+    Friend WithEvents Label74 As Label
+    Friend WithEvents Script_File_Queue_ListView As ListView
+    Friend WithEvents Label77 As Label
+    Friend WithEvents Label76 As Label
+    Friend WithEvents Script_Start_Time_DateTimePicker As DateTimePicker
 End Class

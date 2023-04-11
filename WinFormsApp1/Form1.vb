@@ -2226,4 +2226,19 @@ Public Class Form1
     Private Sub Insert_share_url_btn_Click(sender As Object, e As EventArgs) Handles Insert_share_url_btn.Click
         Insert_to_script("分享網址", curr_url_ComboBox.Text)
     End Sub
+
+    Private Sub Add_Script_To_Queue_Btn_Click(sender As Object, e As EventArgs) Handles Add_Script_To_Queue_Btn.Click
+
+        If Script_File_ListBox.SelectedItems.Count > 0 Then
+            For Each selectedItem As Object In Script_File_ListBox.SelectedItems
+                Debug.WriteLine(selectedItem.ToString())
+
+                Dim curr_row = Script_File_Queue_ListView.Items.Count
+                Script_File_Queue_ListView.Items.Insert(curr_row, selectedItem.ToString())
+
+                Script_File_Queue_ListView.Items(curr_row).SubItems.Add(Script_Start_Time_DateTimePicker.Text)
+
+            Next
+        End If
+    End Sub
 End Class

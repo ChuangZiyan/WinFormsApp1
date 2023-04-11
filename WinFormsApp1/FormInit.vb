@@ -36,6 +36,9 @@ Module FormInit
 
         Render_Window_Hwnd_Listview()
 
+        Render_My_Script_ListBox()
+        Render_Script_File_Queue_ListView()
+
 
 
         Form1.Selection_Item_ComboBox.Text = "搜尋"
@@ -64,6 +67,15 @@ Module FormInit
         Form1.Match_Condition_ListView.Columns.Add("文字檔案夾", 300)
         Form1.Match_Condition_ListView.Columns.Add("相片檔案夾", 300)
 
+
+    End Sub
+
+    Public Sub Render_Script_File_Queue_ListView()
+        Form1.Script_File_Queue_ListView.View = View.Details
+        Form1.Script_File_Queue_ListView.GridLines = True
+        Form1.Script_File_Queue_ListView.FullRowSelect = True
+        Form1.Script_File_Queue_ListView.Columns.Add("腳本名稱", 330)
+        Form1.Script_File_Queue_ListView.Columns.Add("執行時間", 200)
 
     End Sub
 
@@ -293,10 +305,24 @@ Module FormInit
 
         Next
 
+        'Script_Config_ComboBox
+    End Sub
 
+
+    Public Sub Render_My_Script_ListBox()
+
+        Dim files() As String = IO.Directory.GetFiles(save_script_folder_path)
+        For Each file As String In files
+            'Debug.WriteLine(file)
+            If Path.GetExtension(file) = ".txt" Then
+                Form1.Script_File_ListBox.Items.Add(Path.GetFileName(file))
+            End If
+
+        Next
 
         'Script_Config_ComboBox
     End Sub
+
 
 
 
