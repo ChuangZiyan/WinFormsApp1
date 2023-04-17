@@ -332,8 +332,13 @@ Public Class MyWebDriver
     End Function
 
     Public Function Upload_reply_img_Task(img)
-        Dim myimage = Bitmap.FromFile(img)
-        Clipboard.SetImage(myimage)
+        ' Dim myimage = Bitmap.FromFile(img)
+        'Clipboard.SetImage(myimage)
+        Dim f() As String = {img}
+        Dim d As New DataObject(DataFormats.FileDrop, f)
+        Clipboard.SetDataObject(d, True)
+
+
         Return Task.Run(Function() Upload_reply_img(img))
     End Function
 

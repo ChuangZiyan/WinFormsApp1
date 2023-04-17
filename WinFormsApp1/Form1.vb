@@ -62,7 +62,7 @@ Public Class Form1
 
 
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'Me.Text = "Main Form - " + Version
         'Default String : 
@@ -625,7 +625,7 @@ Public Class Form1
                             'Debug.WriteLine(file)
                             Dim extension = Path.GetExtension(file)
                             If extension = ".txt" Then
-                                textFile.add(file)
+                                textFile.Add(file)
                             ElseIf extension = ".png" Or extension = ".jpg" Or extension = ".jpeg" Then
                                 imageFile.Add(file)
                             End If
@@ -1608,7 +1608,7 @@ Public Class Form1
         FormComponentController.Save_Search_Keyword_btn_Click()
     End Sub
 
-    Private Sub Searching_Keyword_CheckedListBox_Click(sender As Object, e As EventArgs) Handles Searching_Keyword_CheckedListBox.ItemCheck
+    Private Sub Searching_Keyword_CheckedListBox_Click(sender As Object, e As EventArgs)
         FormComponentController.Searching_Keyword_CheckedListBox_OnClick()
     End Sub
 
@@ -1659,7 +1659,7 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub Groups_ListView_ItemSelectionChanged(sender As Object, e As EventArgs) Handles Groups_ListView.ItemSelectionChanged
+    Private Sub Groups_ListView_ItemSelectionChanged(sender As Object, e As EventArgs)
         For i As Integer = Groups_ListView.SelectedIndices.Count - 1 To 0 Step -1
             'Debug.WriteLine(Groups_ListView.SelectedItems.Item(0).SubItems(0).Text)
             GroupList_GroupName_Textbox.Text = Groups_ListView.SelectedItems.Item(0).SubItems(0).Text
