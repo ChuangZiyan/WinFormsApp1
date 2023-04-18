@@ -2,8 +2,6 @@
 Imports System.Threading
 Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Chrome
-Imports OpenQA.Selenium.Edge
-Imports OpenQA.Selenium.Firefox
 Imports OpenQA.Selenium.Support.Extensions
 Imports OpenQA.Selenium.Support.UI
 Imports OpenQA.Selenium.Interactions
@@ -297,6 +295,10 @@ Public Class MyWebDriver
     End Function
 
 
+    Public Function IsElementPresentByCssSelector_Task(parm)
+        Return Task.Run(Function() IsElementPresentByCssSelector(parm))
+    End Function
+
     Function IsElementPresentByCssSelector(locatorKey As String) As Boolean
 
         Try
@@ -324,9 +326,12 @@ Public Class MyWebDriver
 
     Function IsElementPresentByClass(ClassName As String) As Boolean
         Try
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
             chromeDriver.FindElement(By.ClassName(ClassName))
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return True
         Catch ex As Exception
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return False
         End Try
     End Function

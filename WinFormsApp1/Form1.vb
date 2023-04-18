@@ -453,11 +453,23 @@ Public Class Form1
                 Case "回應:送出"
 
                     If myWebDriver.IsUploadImage Then
-                        If Await myWebDriver.IsElementPresentByClass_Task("uiScaledImageContainer") Then
-                            boolean_result = Await myWebDriver.Submit_reply_comment_Task()
-                        Else
-                            boolean_result = Await myWebDriver.Submit_reply_comment_Task()
-                        End If
+                        Debug.WriteLine("INININI")
+                        'div.x1iyjqo2.xurb0ha.x1sxyh0.xh8yej3 > div.xzpqnlu.x1hyvwdk.xjm9jq1.x6ikm8r.x10wlt62.x10l6tqk.x1i1rx1s
+
+                        'x1iyjqo2 x1emribx x1xmf6yo x1e56ztr
+
+                        For i = 0 To 15
+                            Debug.WriteLine("TRYYYYYYYYYYYYYY")
+                            Await Delay_msec(2000)
+
+                            If Await myWebDriver.IsElementPresentByClass_Task(".x1iyjqo2.x1emribx.x1xmf6yo.x1e56ztr") = False Then
+                                Debug.WriteLine("NOT !!!!")
+                                boolean_result = Await myWebDriver.Submit_reply_comment_Task()
+                                Exit For
+                            End If
+
+                        Next
+
                     Else
                         boolean_result = Await myWebDriver.Submit_reply_comment_Task()
                     End If

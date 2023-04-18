@@ -3726,6 +3726,7 @@ Partial Class Form1
         Script_Start_Time_DateTimePicker.Format = DateTimePickerFormat.Custom
         Script_Start_Time_DateTimePicker.Location = New Point(47, 665)
         Script_Start_Time_DateTimePicker.Name = "Script_Start_Time_DateTimePicker"
+        Script_Start_Time_DateTimePicker.ShowUpDown = True
         Script_Start_Time_DateTimePicker.Size = New Size(107, 27)
         Script_Start_Time_DateTimePicker.TabIndex = 7
         ' 
@@ -3790,7 +3791,7 @@ Partial Class Form1
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(9.0F, 19.0F)
+        AutoScaleDimensions = New SizeF(9F, 19F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1786, 908)
         Controls.Add(cmd_GroupBox)
