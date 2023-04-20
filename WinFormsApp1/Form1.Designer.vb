@@ -361,8 +361,8 @@ Partial Class Form1
         Label76 = New Label()
         Script_Start_Time_DateTimePicker = New DateTimePicker()
         Add_Script_To_Queue_Btn = New Button()
-        Button4 = New Button()
-        Button3 = New Button()
+        Pause_Script_Queue_Running_Btn = New Button()
+        Start_Script_Queue_btn = New Button()
         Label75 = New Label()
         Label74 = New Label()
         Script_File_ListBox = New ListBox()
@@ -3682,8 +3682,8 @@ Partial Class Form1
         TabPage1.Controls.Add(Label76)
         TabPage1.Controls.Add(Script_Start_Time_DateTimePicker)
         TabPage1.Controls.Add(Add_Script_To_Queue_Btn)
-        TabPage1.Controls.Add(Button4)
-        TabPage1.Controls.Add(Button3)
+        TabPage1.Controls.Add(Pause_Script_Queue_Running_Btn)
+        TabPage1.Controls.Add(Start_Script_Queue_btn)
         TabPage1.Controls.Add(Label75)
         TabPage1.Controls.Add(Label74)
         TabPage1.Controls.Add(Script_File_ListBox)
@@ -3739,23 +3739,23 @@ Partial Class Form1
         Add_Script_To_Queue_Btn.Text = "新增至佇列"
         Add_Script_To_Queue_Btn.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' Pause_Script_Queue_Running_Btn
         ' 
-        Button4.Location = New Point(808, 663)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(94, 29)
-        Button4.TabIndex = 5
-        Button4.Text = "暫停"
-        Button4.UseVisualStyleBackColor = True
+        Pause_Script_Queue_Running_Btn.Location = New Point(808, 663)
+        Pause_Script_Queue_Running_Btn.Name = "Pause_Script_Queue_Running_Btn"
+        Pause_Script_Queue_Running_Btn.Size = New Size(94, 29)
+        Pause_Script_Queue_Running_Btn.TabIndex = 5
+        Pause_Script_Queue_Running_Btn.Text = "暫停"
+        Pause_Script_Queue_Running_Btn.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' Start_Script_Queue_btn
         ' 
-        Button3.Location = New Point(708, 663)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(94, 29)
-        Button3.TabIndex = 4
-        Button3.Text = "開始"
-        Button3.UseVisualStyleBackColor = True
+        Start_Script_Queue_btn.Location = New Point(708, 663)
+        Start_Script_Queue_btn.Name = "Start_Script_Queue_btn"
+        Start_Script_Queue_btn.Size = New Size(94, 29)
+        Start_Script_Queue_btn.TabIndex = 4
+        Start_Script_Queue_btn.Text = "開始"
+        Start_Script_Queue_btn.UseVisualStyleBackColor = True
         ' 
         ' Label75
         ' 
@@ -4196,8 +4196,8 @@ Partial Class Form1
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Script_File_ListBox As ListBox
     Friend WithEvents Add_Script_To_Queue_Btn As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents Pause_Script_Queue_Running_Btn As Button
+    Friend WithEvents Start_Script_Queue_btn As Button
     Friend WithEvents Label75 As Label
     Friend WithEvents Label74 As Label
     Friend WithEvents Script_File_Queue_ListView As ListView

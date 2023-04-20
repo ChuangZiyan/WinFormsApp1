@@ -476,11 +476,11 @@ Module FormComponentController
         Next
     End Sub
 
-    Public Sub Script_Config_ComboBox_SelectedIndexChanged()
 
+    Public Sub Load_Script_File(file_name)
         Try
             Form1.script_ListView.Items.Clear()
-            Dim log_lines = IO.File.ReadAllLines(save_script_folder_path + Form1.Script_Config_ComboBox.Text)
+            Dim log_lines = IO.File.ReadAllLines(save_script_folder_path + file_name)
             Dim curr_row As Integer = 0
             Dim index = 1
             For Each line In log_lines

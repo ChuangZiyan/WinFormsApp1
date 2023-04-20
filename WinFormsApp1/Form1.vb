@@ -26,6 +26,7 @@ Imports System.Xml
 Imports System.Collections.Specialized
 Imports System.Reflection.Metadata
 Imports System.Buffers
+Imports ICSharpCode.SharpZipLib.Zip
 
 Public Class Form1
 
@@ -43,6 +44,7 @@ Public Class Form1
     Public used_chrome_profile As String = ""
     Public running_chrome_profile As String = ""
     'Dim webDriverWait As WebDriverWait
+
 
 
     Public used_lang = "zh-TW"
@@ -119,8 +121,8 @@ Public Class Form1
             Next
 
             Await Run_script(i)
-
             If loop_run = False Then
+                script_running = False
                 Exit While
             End If
             i += 1
@@ -137,7 +139,7 @@ Public Class Form1
     Private Async Function Run_script(i As Integer) As Task
         'Debug.WriteLine(logging.Get_NewLogFile_dir())
 
-        'Debug.WriteLine("**************  Run : " & i & " *********************************")
+        Debug.WriteLine("**************  Run : " & i & " *********************************")
         Dim record_script = False
         Dim log_file_path As String = ""
         If Record_script_result_checkbox.Checked = True Then
@@ -686,6 +688,8 @@ Public Class Form1
             End If
 
         Next
+
+
         Await Delay_msec(1000)
     End Function
 
@@ -1577,7 +1581,7 @@ Public Class Form1
     End Sub
 
     Private Sub Script_Config_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Script_Config_ComboBox.SelectedIndexChanged
-        FormComponentController.Script_Config_ComboBox_SelectedIndexChanged()
+        FormComponentController.Load_Script_File(Script_Config_ComboBox.Text)
     End Sub
 
     Private Sub Delete_Conditions_Listview_item_btn_Click(sender As Object, e As EventArgs) Handles Delete_Conditions_Listview_item_btn.Click
@@ -2252,5 +2256,85 @@ Public Class Form1
 
             Next
         End If
+    End Sub
+
+
+    Public script_queue_running = False
+    Private Async Sub Start_Script_Queue_btn_Click(sender As Object, e As EventArgs) Handles Start_Script_Queue_btn.Click
+
+        script_queue_running = True
+
+        Dim first_item = Script_File_Queue_ListView.Items(0)
+
+        Load_Script_File(first_item.Text)
+        Flag_start_script = True
+
+        first_item.BackColor = Color.SteelBlue
+        first_item.ForeColor = Color.White
+        first_item.EnsureVisible()
+
+        Await Delay_msec(2000)
+        For i = 1 To Script_File_Queue_ListView.Items.Count - 1
+            Debug.WriteLine("########################" & Script_File_Queue_ListView.Items(i).Text & "################################")
+
+            While True
+
+                'Debug.WriteLine(Script_File_Queue_ListView.Items(i).Text)
+                Dim TimeNow = Date.Now.ToString("HH:mm:ss")
+                'Debug.WriteLine(TimeNow)
+                'Debug.WriteLine(Script_File_Queue_ListView.Items(i).SubItems(1).Text)
+
+                If True Then ' if time == time getting start
+
+                    Debug.WriteLine("FlagStartScript : " & Flag_start_script)
+                    Debug.WriteLine("script_running : " & script_running)
+
+                    If script_running = True Then
+                        Await Delay_msec(2000)
+                        Continue While
+                    Else
+                        Debug.WriteLine("EXIT")
+                        Debug.WriteLine(script_running)
+                        myWebDriver.used_browser = ""
+                        myWebDriver.used_dev_model = "PC"
+                        myWebDriver.used_chrome_profile = ""
+                        myWebDriver.running_chrome_profile = ""
+                        script_ListView.Items.Clear()
+
+                        Restore_ScriptFileQueueListView_BackColor()
+                        Dim item = Script_File_Queue_ListView.Items(i)
+                        item.BackColor = Color.SteelBlue
+                        item.ForeColor = Color.White
+                        item.EnsureVisible()
+
+                        Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
+                        Flag_start_script = True
+                        Await Delay_msec(2000)
+                        Exit While
+                    End If
+
+
+                End If
+
+
+            End While
+
+        Next
+
+
+        Debug.WriteLine("EOF")
+
+    End Sub
+
+    Private Sub Restore_ScriptFileQueueListView_BackColor()
+        For Each item As ListViewItem In Script_File_Queue_ListView.Items
+            item.BackColor = Color.White
+            item.ForeColor = Color.Black
+        Next
+
+    End Sub
+
+    Private Sub Pause_Script_Queue_Running_Btn_Click(sender As Object, e As EventArgs) Handles Pause_Script_Queue_Running_Btn.Click
+
     End Sub
 End Class
