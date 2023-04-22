@@ -361,13 +361,13 @@ Partial Class Form1
         Label76 = New Label()
         Script_Start_Time_DateTimePicker = New DateTimePicker()
         Add_Script_To_Queue_Btn = New Button()
-        Pause_Script_Queue_Running_Btn = New Button()
         Start_Script_Queue_btn = New Button()
         Label75 = New Label()
         Label74 = New Label()
         Script_File_ListBox = New ListBox()
         Timer1 = New Timer(components)
         SaveFileDialog1 = New SaveFileDialog()
+        LoopRun_Script_Queue_CheckBox = New CheckBox()
         GroupBox1.SuspendLayout()
         CType(Target_Index_Script_ListView_NummericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(NumericUpDown_script_end_second, ComponentModel.ISupportInitialize).BeginInit()
@@ -3677,12 +3677,12 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(LoopRun_Script_Queue_CheckBox)
         TabPage1.Controls.Add(Script_File_Queue_ListView)
         TabPage1.Controls.Add(Label77)
         TabPage1.Controls.Add(Label76)
         TabPage1.Controls.Add(Script_Start_Time_DateTimePicker)
         TabPage1.Controls.Add(Add_Script_To_Queue_Btn)
-        TabPage1.Controls.Add(Pause_Script_Queue_Running_Btn)
         TabPage1.Controls.Add(Start_Script_Queue_btn)
         TabPage1.Controls.Add(Label75)
         TabPage1.Controls.Add(Label74)
@@ -3739,18 +3739,9 @@ Partial Class Form1
         Add_Script_To_Queue_Btn.Text = "新增至佇列"
         Add_Script_To_Queue_Btn.UseVisualStyleBackColor = True
         ' 
-        ' Pause_Script_Queue_Running_Btn
-        ' 
-        Pause_Script_Queue_Running_Btn.Location = New Point(808, 663)
-        Pause_Script_Queue_Running_Btn.Name = "Pause_Script_Queue_Running_Btn"
-        Pause_Script_Queue_Running_Btn.Size = New Size(94, 29)
-        Pause_Script_Queue_Running_Btn.TabIndex = 5
-        Pause_Script_Queue_Running_Btn.Text = "暫停"
-        Pause_Script_Queue_Running_Btn.UseVisualStyleBackColor = True
-        ' 
         ' Start_Script_Queue_btn
         ' 
-        Start_Script_Queue_btn.Location = New Point(708, 663)
+        Start_Script_Queue_btn.Location = New Point(808, 663)
         Start_Script_Queue_btn.Name = "Start_Script_Queue_btn"
         Start_Script_Queue_btn.Size = New Size(94, 29)
         Start_Script_Queue_btn.TabIndex = 4
@@ -3788,6 +3779,16 @@ Partial Class Form1
         ' 
         Timer1.Enabled = True
         Timer1.Interval = 1000
+        ' 
+        ' LoopRun_Script_Queue_CheckBox
+        ' 
+        LoopRun_Script_Queue_CheckBox.AutoSize = True
+        LoopRun_Script_Queue_CheckBox.Location = New Point(741, 665)
+        LoopRun_Script_Queue_CheckBox.Name = "LoopRun_Script_Queue_CheckBox"
+        LoopRun_Script_Queue_CheckBox.Size = New Size(61, 23)
+        LoopRun_Script_Queue_CheckBox.TabIndex = 11
+        LoopRun_Script_Queue_CheckBox.Text = "循環"
+        LoopRun_Script_Queue_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
@@ -4196,7 +4197,6 @@ Partial Class Form1
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Script_File_ListBox As ListBox
     Friend WithEvents Add_Script_To_Queue_Btn As Button
-    Friend WithEvents Pause_Script_Queue_Running_Btn As Button
     Friend WithEvents Start_Script_Queue_btn As Button
     Friend WithEvents Label75 As Label
     Friend WithEvents Label74 As Label
@@ -4204,4 +4204,5 @@ Partial Class Form1
     Friend WithEvents Label77 As Label
     Friend WithEvents Label76 As Label
     Friend WithEvents Script_Start_Time_DateTimePicker As DateTimePicker
+    Friend WithEvents LoopRun_Script_Queue_CheckBox As CheckBox
 End Class

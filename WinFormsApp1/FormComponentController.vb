@@ -479,6 +479,7 @@ Module FormComponentController
 
     Public Sub Load_Script_File(file_name)
         Try
+            Debug.WriteLine("LOAD " + file_name)
             Form1.script_ListView.Items.Clear()
             Dim log_lines = IO.File.ReadAllLines(save_script_folder_path + file_name)
             Dim curr_row As Integer = 0
@@ -820,5 +821,6 @@ Module FormComponentController
 
         Return generated_Password
     End Function
+
 
 End Module

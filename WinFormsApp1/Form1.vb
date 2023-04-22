@@ -139,7 +139,7 @@ Public Class Form1
     Private Async Function Run_script(i As Integer) As Task
         'Debug.WriteLine(logging.Get_NewLogFile_dir())
 
-        Debug.WriteLine("**************  Run : " & i & " *********************************")
+        'Debug.WriteLine("**************  Run : " & i & " *********************************")
         Dim record_script = False
         Dim log_file_path As String = ""
         If Record_script_result_checkbox.Checked = True Then
@@ -2225,7 +2225,7 @@ Public Class Form1
     End Sub
 
     Private Sub Start_Windows_Action_Sync_btn_Click(sender As Object, e As EventArgs) Handles Start_Windows_Action_Sync_btn.Click
-        Debug.WriteLine("Hwnd : " & WindowControllerModule.MasterHwnd)
+        'Debug.WriteLine("Hwnd : " & WindowControllerModule.MasterHwnd)
         If WindowControllerModule.sync_flag = True Then
             WindowControllerModule.sync_flag = False
             Start_Windows_Action_Sync_btn.Text = "開始同步"
@@ -2236,7 +2236,7 @@ Public Class Form1
             Start_Windows_Action_Sync_btn.BackColor = Color.OrangeRed
         End If
 
-        Debug.WriteLine("FLAG:" & WindowControllerModule.sync_flag)
+        'Debug.WriteLine("FLAG:" & WindowControllerModule.sync_flag)
     End Sub
 
     Private Sub Insert_share_url_btn_Click(sender As Object, e As EventArgs) Handles Insert_share_url_btn.Click
@@ -2259,10 +2259,8 @@ Public Class Form1
     End Sub
 
 
-    Public script_queue_running = False
-    Private Async Sub Start_Script_Queue_btn_Click(sender As Object, e As EventArgs) Handles Start_Script_Queue_btn.Click
-
-        script_queue_running = True
+    Public Async Function Run_script_Queue() As Task(Of Boolean)
+        Restore_ScriptFileQueueListView_BackColor()
 
         Dim first_item = Script_File_Queue_ListView.Items(0)
 
@@ -2275,9 +2273,10 @@ Public Class Form1
 
         Await Delay_msec(2000)
         For i = 1 To Script_File_Queue_ListView.Items.Count - 1
-            Debug.WriteLine("########################" & Script_File_Queue_ListView.Items(i).Text & "################################")
-
+            'Debug.WriteLine("########################" & Script_File_Queue_ListView.Items(i).Text & "################################")
+            'Debug.WriteLine(i)
             While True
+                'Debug.WriteLine("******************")
 
                 'Debug.WriteLine(Script_File_Queue_ListView.Items(i).Text)
                 Dim TimeNow = Date.Now.ToString("HH:mm:ss")
@@ -2286,15 +2285,13 @@ Public Class Form1
 
                 If True Then ' if time == time getting start
 
-                    Debug.WriteLine("FlagStartScript : " & Flag_start_script)
-                    Debug.WriteLine("script_running : " & script_running)
+                    'Debug.WriteLine("FlagStartScript : " & Flag_start_script)
+                    'Debug.WriteLine("script_running : " & script_running)
 
                     If script_running = True Then
                         Await Delay_msec(2000)
                         Continue While
                     Else
-                        Debug.WriteLine("EXIT")
-                        Debug.WriteLine(script_running)
                         myWebDriver.used_browser = ""
                         myWebDriver.used_dev_model = "PC"
                         myWebDriver.used_chrome_profile = ""
@@ -2310,6 +2307,7 @@ Public Class Form1
                         Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
                         Flag_start_script = True
                         Await Delay_msec(2000)
+
                         Exit While
                     End If
 
@@ -2321,8 +2319,24 @@ Public Class Form1
 
         Next
 
+        'Debug.WriteLine("EOF")
+        Return True
 
-        Debug.WriteLine("EOF")
+    End Function
+
+
+    Private Async Sub Start_Script_Queue_btn_Click(sender As Object, e As EventArgs) Handles Start_Script_Queue_btn.Click
+
+        If LoopRun_Script_Queue_CheckBox.Checked = True Then
+            While True
+                Await Run_script_Queue()
+                Await Delay_msec(3000)
+            End While
+
+        Else
+            Await Run_script_Queue()
+        End If
+
 
     End Sub
 
@@ -2334,7 +2348,4 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Pause_Script_Queue_Running_Btn_Click(sender As Object, e As EventArgs) Handles Pause_Script_Queue_Running_Btn.Click
-
-    End Sub
 End Class
