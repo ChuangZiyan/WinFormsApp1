@@ -2259,17 +2259,44 @@ Public Class Form1
     End Sub
 
 
+    Public Function TimeCheck(myTime)
+        Dim TimeNow = Date.Now.ToString("HH:mm:ss")
+
+
+        Dim curr_time As New TimeSpan(Hour(TimeNow), Minute(TimeNow), Second(TimeNow))
+        Debug.WriteLine("sec:" & CInt(curr_time.TotalSeconds))
+
+        Dim my_script_start_time As New TimeSpan(Hour(myTime), Minute(myTime), Second(myTime))
+        Debug.WriteLine("SCsec:" & CInt(my_script_start_time.TotalSeconds))
+
+        If Math.Abs(CInt(my_script_start_time.TotalSeconds) - CInt(curr_time.TotalSeconds)) < 2 Then
+            Return True
+        Else
+            Return False
+        End If
+
+    End Function
+
     Public Async Function Run_script_Queue() As Task(Of Boolean)
         Restore_ScriptFileQueueListView_BackColor()
 
         Dim first_item = Script_File_Queue_ListView.Items(0)
-
-        Load_Script_File(first_item.Text)
-        Flag_start_script = True
-
         first_item.BackColor = Color.SteelBlue
         first_item.ForeColor = Color.White
         first_item.EnsureVisible()
+        Load_Script_File(first_item.Text)
+
+        While True
+
+            Dim script_start_time = Script_File_Queue_ListView.Items(0).SubItems(1).Text
+            If TimeCheck(script_start_time) Then
+                Exit While
+            End If
+
+            Await Delay_msec(1000)
+        End While
+        Flag_start_script = True
+
 
         Await Delay_msec(2000)
         For i = 1 To Script_File_Queue_ListView.Items.Count - 1
@@ -2279,39 +2306,50 @@ Public Class Form1
                 'Debug.WriteLine("******************")
 
                 'Debug.WriteLine(Script_File_Queue_ListView.Items(i).Text)
+                Dim currentScriptTime = Script_File_Queue_ListView.Items(i).SubItems(1).Text
                 Dim TimeNow = Date.Now.ToString("HH:mm:ss")
                 'Debug.WriteLine(TimeNow)
-                'Debug.WriteLine(Script_File_Queue_ListView.Items(i).SubItems(1).Text)
+                'Debug.WriteLine(currentScriptTime)
 
-                If True Then ' if time == time getting start
-
-                    'Debug.WriteLine("FlagStartScript : " & Flag_start_script)
-                    'Debug.WriteLine("script_running : " & script_running)
-
-                    If script_running = True Then
+                If TimeCheck(currentScriptTime) And script_running Then 'if still running, interrupt current script and start next script
+                    Debug.WriteLine("run next script " + Script_File_Queue_ListView.Items(i).Text)
+                    script_running = False
+                    Await Delay_msec(2000)
+                ElseIf Not script_running Then
+                    If TimeCheck(currentScriptTime) Then
+                        script_running = False
                         Await Delay_msec(2000)
-                        Continue While
                     Else
-                        myWebDriver.used_browser = ""
-                        myWebDriver.used_dev_model = "PC"
-                        myWebDriver.used_chrome_profile = ""
-                        myWebDriver.running_chrome_profile = ""
-                        script_ListView.Items.Clear()
-
-                        Restore_ScriptFileQueueListView_BackColor()
-                        Dim item = Script_File_Queue_ListView.Items(i)
-                        item.BackColor = Color.SteelBlue
-                        item.ForeColor = Color.White
-                        item.EnsureVisible()
-
-                        Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
-                        Flag_start_script = True
-                        Await Delay_msec(2000)
-
-                        Exit While
+                        Await Delay_msec(1000)
+                        Continue While
                     End If
+                End If
 
+                'Debug.WriteLine("FlagStartScript : " & Flag_start_script)
+                'Debug.WriteLine("script_running : " & script_running)
 
+                If script_running = True Then
+                    'Debug.WriteLine("CONT")
+                    Await Delay_msec(2000)
+                    Continue While
+                Else
+                    myWebDriver.used_browser = ""
+                    myWebDriver.used_dev_model = "PC"
+                    myWebDriver.used_chrome_profile = ""
+                    myWebDriver.running_chrome_profile = ""
+                    script_ListView.Items.Clear()
+
+                    Restore_ScriptFileQueueListView_BackColor()
+                    Dim item = Script_File_Queue_ListView.Items(i)
+                    item.BackColor = Color.SteelBlue
+                    item.ForeColor = Color.White
+                    item.EnsureVisible()
+
+                    Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
+                    Flag_start_script = True
+                    Await Delay_msec(2000)
+
+                    Exit While
                 End If
 
 
@@ -2319,7 +2357,7 @@ Public Class Form1
 
         Next
 
-        'Debug.WriteLine("EOF")
+        Debug.WriteLine("EOF")
         Return True
 
     End Function
