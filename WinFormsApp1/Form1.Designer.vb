@@ -356,6 +356,7 @@ Partial Class Form1
         Block_User_Lang_ComboBox = New ComboBox()
         Block_User_By_Page = New Button()
         TabPage1 = New TabPage()
+        LoopRun_SingleScript_Queue_CheckBox = New CheckBox()
         Script_File_Queue_ListView = New ListView()
         Label77 = New Label()
         Label76 = New Label()
@@ -367,7 +368,6 @@ Partial Class Form1
         Script_File_ListBox = New ListBox()
         Timer1 = New Timer(components)
         SaveFileDialog1 = New SaveFileDialog()
-        LoopRun_Script_Queue_CheckBox = New CheckBox()
         GroupBox1.SuspendLayout()
         CType(Target_Index_Script_ListView_NummericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(NumericUpDown_script_end_second, ComponentModel.ISupportInitialize).BeginInit()
@@ -3677,7 +3677,7 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
-        TabPage1.Controls.Add(LoopRun_Script_Queue_CheckBox)
+        TabPage1.Controls.Add(LoopRun_SingleScript_Queue_CheckBox)
         TabPage1.Controls.Add(Script_File_Queue_ListView)
         TabPage1.Controls.Add(Label77)
         TabPage1.Controls.Add(Label76)
@@ -3694,6 +3694,16 @@ Partial Class Form1
         TabPage1.Text = "定時腳本"
         TabPage1.UseVisualStyleBackColor = True
         ' 
+        ' LoopRun_SingleScript_Queue_CheckBox
+        ' 
+        LoopRun_SingleScript_Queue_CheckBox.AutoSize = True
+        LoopRun_SingleScript_Queue_CheckBox.Location = New Point(196, 675)
+        LoopRun_SingleScript_Queue_CheckBox.Name = "LoopRun_SingleScript_Queue_CheckBox"
+        LoopRun_SingleScript_Queue_CheckBox.Size = New Size(61, 23)
+        LoopRun_SingleScript_Queue_CheckBox.TabIndex = 12
+        LoopRun_SingleScript_Queue_CheckBox.Text = "循環"
+        LoopRun_SingleScript_Queue_CheckBox.UseVisualStyleBackColor = True
+        ' 
         ' Script_File_Queue_ListView
         ' 
         Script_File_Queue_ListView.Location = New Point(373, 45)
@@ -3705,7 +3715,7 @@ Partial Class Form1
         ' Label77
         ' 
         Label77.AutoSize = True
-        Label77.Location = New Point(160, 668)
+        Label77.Location = New Point(144, 676)
         Label77.Name = "Label77"
         Label77.Size = New Size(39, 19)
         Label77.TabIndex = 9
@@ -3714,7 +3724,7 @@ Partial Class Form1
         ' Label76
         ' 
         Label76.AutoSize = True
-        Label76.Location = New Point(17, 671)
+        Label76.Location = New Point(16, 674)
         Label76.Name = "Label76"
         Label76.Size = New Size(24, 19)
         Label76.TabIndex = 8
@@ -3724,17 +3734,17 @@ Partial Class Form1
         ' 
         Script_Start_Time_DateTimePicker.CustomFormat = "HH:mm:ss"
         Script_Start_Time_DateTimePicker.Format = DateTimePickerFormat.Custom
-        Script_Start_Time_DateTimePicker.Location = New Point(47, 665)
+        Script_Start_Time_DateTimePicker.Location = New Point(46, 668)
         Script_Start_Time_DateTimePicker.Name = "Script_Start_Time_DateTimePicker"
         Script_Start_Time_DateTimePicker.ShowUpDown = True
-        Script_Start_Time_DateTimePicker.Size = New Size(107, 27)
+        Script_Start_Time_DateTimePicker.Size = New Size(92, 27)
         Script_Start_Time_DateTimePicker.TabIndex = 7
         ' 
         ' Add_Script_To_Queue_Btn
         ' 
-        Add_Script_To_Queue_Btn.Location = New Point(231, 666)
+        Add_Script_To_Queue_Btn.Location = New Point(263, 671)
         Add_Script_To_Queue_Btn.Name = "Add_Script_To_Queue_Btn"
-        Add_Script_To_Queue_Btn.Size = New Size(136, 29)
+        Add_Script_To_Queue_Btn.Size = New Size(104, 29)
         Add_Script_To_Queue_Btn.TabIndex = 6
         Add_Script_To_Queue_Btn.Text = "新增至佇列"
         Add_Script_To_Queue_Btn.UseVisualStyleBackColor = True
@@ -3779,16 +3789,6 @@ Partial Class Form1
         ' 
         Timer1.Enabled = True
         Timer1.Interval = 1000
-        ' 
-        ' LoopRun_Script_Queue_CheckBox
-        ' 
-        LoopRun_Script_Queue_CheckBox.AutoSize = True
-        LoopRun_Script_Queue_CheckBox.Location = New Point(741, 665)
-        LoopRun_Script_Queue_CheckBox.Name = "LoopRun_Script_Queue_CheckBox"
-        LoopRun_Script_Queue_CheckBox.Size = New Size(61, 23)
-        LoopRun_Script_Queue_CheckBox.TabIndex = 11
-        LoopRun_Script_Queue_CheckBox.Text = "循環"
-        LoopRun_Script_Queue_CheckBox.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
@@ -4204,5 +4204,5 @@ Partial Class Form1
     Friend WithEvents Label77 As Label
     Friend WithEvents Label76 As Label
     Friend WithEvents Script_Start_Time_DateTimePicker As DateTimePicker
-    Friend WithEvents LoopRun_Script_Queue_CheckBox As CheckBox
+    Friend WithEvents LoopRun_SingleScript_Queue_CheckBox As CheckBox
 End Class

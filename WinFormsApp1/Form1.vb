@@ -2254,6 +2254,12 @@ Public Class Form1
 
                 Script_File_Queue_ListView.Items(curr_row).SubItems.Add(Script_Start_Time_DateTimePicker.Text)
 
+                If LoopRun_SingleScript_Queue_CheckBox.Checked = True Then
+                    Script_File_Queue_ListView.Items(curr_row).SubItems.Add("是")
+                Else
+                    Script_File_Queue_ListView.Items(curr_row).SubItems.Add("否")
+                End If
+
             Next
         End If
     End Sub
@@ -2284,17 +2290,16 @@ Public Class Form1
         first_item.BackColor = Color.SteelBlue
         first_item.ForeColor = Color.White
         first_item.EnsureVisible()
+
+        If first_item.SubItems(2).Text = "是" Then
+            Debug.WriteLine("loop run : yes")
+            loop_run = True
+        Else
+            Debug.WriteLine("loop run : no")
+            loop_run = False
+        End If
         Load_Script_File(first_item.Text)
 
-        While True
-
-            Dim script_start_time = Script_File_Queue_ListView.Items(0).SubItems(1).Text
-            If TimeCheck(script_start_time) Then
-                Exit While
-            End If
-
-            Await Delay_msec(1000)
-        End While
         Flag_start_script = True
 
 
@@ -2345,6 +2350,13 @@ Public Class Form1
                     item.ForeColor = Color.White
                     item.EnsureVisible()
 
+                    If item.SubItems(2).Text = "是" Then
+                        Debug.WriteLine("loop run : yes")
+                        loop_run = True
+                    Else
+                        Debug.WriteLine("loop run : no")
+                        loop_run = False
+                    End If
                     Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
                     Flag_start_script = True
                     Await Delay_msec(2000)
@@ -2364,17 +2376,16 @@ Public Class Form1
 
 
     Private Async Sub Start_Script_Queue_btn_Click(sender As Object, e As EventArgs) Handles Start_Script_Queue_btn.Click
+        Dim script_start_time = Script_File_Queue_ListView.Items(0).SubItems(1).Text
+        While True
 
-        If LoopRun_Script_Queue_CheckBox.Checked = True Then
-            While True
+            If TimeCheck(script_start_time) Then
                 Await Run_script_Queue()
                 Await Delay_msec(3000)
-            End While
-
-        Else
-            Await Run_script_Queue()
-        End If
-
+            Else
+                Await Delay_msec(1000)
+            End If
+        End While
 
     End Sub
 

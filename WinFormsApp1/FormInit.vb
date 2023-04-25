@@ -74,8 +74,9 @@ Module FormInit
         Form1.Script_File_Queue_ListView.View = View.Details
         Form1.Script_File_Queue_ListView.GridLines = True
         Form1.Script_File_Queue_ListView.FullRowSelect = True
-        Form1.Script_File_Queue_ListView.Columns.Add("腳本名稱", 330)
-        Form1.Script_File_Queue_ListView.Columns.Add("執行時間", 200)
+        Form1.Script_File_Queue_ListView.Columns.Add("腳本名稱", 350)
+        Form1.Script_File_Queue_ListView.Columns.Add("執行時間", 100)
+        Form1.Script_File_Queue_ListView.Columns.Add("循環", 80)
 
     End Sub
 
