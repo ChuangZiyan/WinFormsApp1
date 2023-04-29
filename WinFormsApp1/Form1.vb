@@ -2284,88 +2284,48 @@ Public Class Form1
     End Function
 
     Public Async Function Run_script_Queue() As Task(Of Boolean)
-        Restore_ScriptFileQueueListView_BackColor()
-
-        Dim first_item = Script_File_Queue_ListView.Items(0)
-        first_item.BackColor = Color.SteelBlue
-        first_item.ForeColor = Color.White
-        first_item.EnsureVisible()
-
-        If first_item.SubItems(2).Text = "是" Then
-            Debug.WriteLine("loop run : yes")
-            loop_run = True
-        Else
-            Debug.WriteLine("loop run : no")
-            loop_run = False
-        End If
-        Load_Script_File(first_item.Text)
-
-        Flag_start_script = True
+        'Restore_ScriptFileQueueListView_BackColor()
 
 
-        Await Delay_msec(2000)
-        For i = 1 To Script_File_Queue_ListView.Items.Count - 1
-            'Debug.WriteLine("########################" & Script_File_Queue_ListView.Items(i).Text & "################################")
-            'Debug.WriteLine(i)
-            While True
-                'Debug.WriteLine("******************")
+        For i = 0 To Script_File_Queue_ListView.Items.Count - 1
 
-                'Debug.WriteLine(Script_File_Queue_ListView.Items(i).Text)
-                Dim currentScriptTime = Script_File_Queue_ListView.Items(i).SubItems(1).Text
-                Dim TimeNow = Date.Now.ToString("HH:mm:ss")
-                'Debug.WriteLine(TimeNow)
-                'Debug.WriteLine(currentScriptTime)
+            Dim currentScriptTime = Script_File_Queue_ListView.Items(i).SubItems(1).Text
+            Dim TimeNow = Date.Now.ToString("HH:mm:ss")
 
-                If TimeCheck(currentScriptTime) And script_running Then 'if still running, interrupt current script and start next script
-                    Debug.WriteLine("run next script " + Script_File_Queue_ListView.Items(i).Text)
-                    script_running = False
-                    Await Delay_msec(2000)
-                ElseIf Not script_running Then
-                    If TimeCheck(currentScriptTime) Then
-                        script_running = False
-                        Await Delay_msec(2000)
-                    Else
-                        Await Delay_msec(1000)
-                        Continue While
-                    End If
-                End If
+            Debug.WriteLine("script : " + Script_File_Queue_ListView.Items(i).Text)
+            Debug.WriteLine("time : " + currentScriptTime)
 
-                'Debug.WriteLine("FlagStartScript : " & Flag_start_script)
-                'Debug.WriteLine("script_running : " & script_running)
+
+            If TimeCheck(currentScriptTime) Then 'if still running, interrupt current script and start next script
+
 
                 If script_running = True Then
-                    'Debug.WriteLine("CONT")
+                    script_running = False
                     Await Delay_msec(2000)
-                    Continue While
-                Else
-                    myWebDriver.used_browser = ""
-                    myWebDriver.used_dev_model = "PC"
-                    myWebDriver.used_chrome_profile = ""
-                    myWebDriver.running_chrome_profile = ""
-                    script_ListView.Items.Clear()
-
-                    Restore_ScriptFileQueueListView_BackColor()
-                    Dim item = Script_File_Queue_ListView.Items(i)
-                    item.BackColor = Color.SteelBlue
-                    item.ForeColor = Color.White
-                    item.EnsureVisible()
-
-                    If item.SubItems(2).Text = "是" Then
-                        Debug.WriteLine("loop run : yes")
-                        loop_run = True
-                    Else
-                        Debug.WriteLine("loop run : no")
-                        loop_run = False
-                    End If
-                    Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
-                    Flag_start_script = True
-                    Await Delay_msec(2000)
-
-                    Exit While
                 End If
 
+                Try
+                    myWebDriver.chromeDriver.Close()
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                End Try
 
-            End While
+
+                Restore_ScriptFileQueueListView_BackColor()
+                Dim first_item = Script_File_Queue_ListView.Items(i)
+                first_item.BackColor = Color.SteelBlue
+                first_item.ForeColor = Color.White
+                first_item.EnsureVisible()
+
+                Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
+                If Script_File_Queue_ListView.Items(i).SubItems(2).Text = "是" Then
+                    loop_run = True
+                Else
+                    loop_run = False
+                End If
+                Flag_start_script = True
+                Await Delay_msec(2000)
+            End If
 
         Next
 
@@ -2378,13 +2338,8 @@ Public Class Form1
     Private Async Sub Start_Script_Queue_btn_Click(sender As Object, e As EventArgs) Handles Start_Script_Queue_btn.Click
         Dim script_start_time = Script_File_Queue_ListView.Items(0).SubItems(1).Text
         While True
-
-            If TimeCheck(script_start_time) Then
-                Await Run_script_Queue()
-                Await Delay_msec(3000)
-            Else
-                Await Delay_msec(1000)
-            End If
+            Await Run_script_Queue()
+            Await Delay_msec(1000)
         End While
 
     End Sub
