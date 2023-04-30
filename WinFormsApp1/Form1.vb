@@ -2249,10 +2249,22 @@ Public Class Form1
             For Each selectedItem As Object In Script_File_ListBox.SelectedItems
                 Debug.WriteLine(selectedItem.ToString())
 
+                Dim myTime = Script_Start_Time_DateTimePicker.Value
+
+                'time check
+                While True
+                    If script_time_check(myTime.ToString("HH:mm:ss")) Then
+                        Exit While
+                    Else
+                        myTime = myTime.AddMinutes(1) ' if same time add 1 min
+                    End If
+
+                End While
+
                 Dim curr_row = Script_File_Queue_ListView.Items.Count
                 Script_File_Queue_ListView.Items.Insert(curr_row, selectedItem.ToString())
 
-                Script_File_Queue_ListView.Items(curr_row).SubItems.Add(Script_Start_Time_DateTimePicker.Text)
+                Script_File_Queue_ListView.Items(curr_row).SubItems.Add(myTime.ToString("HH:mm:ss"))
 
                 If LoopRun_SingleScript_Queue_CheckBox.Checked = True Then
                     Script_File_Queue_ListView.Items(curr_row).SubItems.Add("是")
@@ -2263,6 +2275,29 @@ Public Class Form1
             Next
         End If
     End Sub
+
+    Public Function script_time_check(mytime)
+        For i = 0 To Script_File_Queue_ListView.Items.Count - 1
+
+            Dim time_1 As New TimeSpan(Hour(mytime), Minute(mytime), Second(mytime))
+            'Debug.WriteLine("######" + mytime)
+
+
+            Dim scripttime = Script_File_Queue_ListView.Items(i).SubItems(1).Text
+            Debug.WriteLine("scripttime" + scripttime)
+
+            Dim my_script_start_time As New TimeSpan(Hour(scripttime), Minute(scripttime), Second(scripttime))
+
+            If Math.Abs(CInt(time_1.TotalSeconds) - CInt(my_script_start_time.TotalSeconds)) < 60 Then
+                Debug.WriteLine(Math.Abs(CInt(time_1.TotalSeconds) - CInt(my_script_start_time.TotalSeconds)))
+                Return False
+            End If
+
+        Next
+
+        Return True
+
+    End Function
 
 
     Public Function TimeCheck(myTime)
@@ -2336,7 +2371,8 @@ Public Class Form1
 
 
     Private Async Sub Start_Script_Queue_btn_Click(sender As Object, e As EventArgs) Handles Start_Script_Queue_btn.Click
-        Dim script_start_time = Script_File_Queue_ListView.Items(0).SubItems(1).Text
+        'Dim script_start_time = Script_File_Queue_ListView.Items(0).SubItems(1).Text
+        script_ListView.Items.Clear()
         While True
             Await Run_script_Queue()
             Await Delay_msec(1000)
@@ -2352,4 +2388,8 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Script_File_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Script_File_ListBox.SelectedIndexChanged
+        Debug.WriteLine(Script_File_ListBox.SelectedItem.ToString)
+        Load_Script_File(Script_File_ListBox.SelectedItem.ToString)
+    End Sub
 End Class

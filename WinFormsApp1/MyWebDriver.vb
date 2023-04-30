@@ -112,8 +112,11 @@ Public Class MyWebDriver
                     running_chrome_profile = used_chrome_profile
                     'FormInit.Render_profile_CheckedListBox()
                 End If
-                options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features","--disable-blink-features=AutomationControlled")
+                options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
+                'options.AddArguments("remote-debugging-port=9222", "--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
                 options.AddExcludedArgument("enable-automation")
+
+                'options.DebuggerAddress = "localhost:9222" ' for remote debug browser
 
                 'Minimize windows util headless mode work fine
 
@@ -140,7 +143,25 @@ Public Class MyWebDriver
                 If devicetype <> "PC" Then
                     options.EnableMobileEmulation(used_dev_model)
                 End If
-                chromeDriver = New ChromeDriver(serv, options)
+
+
+
+                'chromeDriver = New ChromeDriver(serv, options)
+
+
+                '######################### remote debug address test ###############################
+                'chromeDriver = New ChromeDriver(options)
+                'Thread.Sleep(5000)
+
+                'Dim mainWindowHandle As String = chromeDriver.WindowHandles.First()
+
+                'chromeDriver.SwitchTo().Window(mainWindowHandle)
+
+
+                'chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
+
+                '######################### remote debug address test ###############################
+
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                 ' Refresh Profile Items
 
