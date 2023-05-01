@@ -2305,10 +2305,10 @@ Public Class Form1
 
 
         Dim curr_time As New TimeSpan(Hour(TimeNow), Minute(TimeNow), Second(TimeNow))
-        Debug.WriteLine("sec:" & CInt(curr_time.TotalSeconds))
+        'Debug.WriteLine("sec:" & CInt(curr_time.TotalSeconds))
 
         Dim my_script_start_time As New TimeSpan(Hour(myTime), Minute(myTime), Second(myTime))
-        Debug.WriteLine("SCsec:" & CInt(my_script_start_time.TotalSeconds))
+        'Debug.WriteLine("SCsec:" & CInt(my_script_start_time.TotalSeconds))
 
         If Math.Abs(CInt(my_script_start_time.TotalSeconds) - CInt(curr_time.TotalSeconds)) < 2 Then
             Return True
@@ -2327,8 +2327,8 @@ Public Class Form1
             Dim currentScriptTime = Script_File_Queue_ListView.Items(i).SubItems(1).Text
             Dim TimeNow = Date.Now.ToString("HH:mm:ss")
 
-            Debug.WriteLine("script : " + Script_File_Queue_ListView.Items(i).Text)
-            Debug.WriteLine("time : " + currentScriptTime)
+            'Debug.WriteLine("script : " + Script_File_Queue_ListView.Items(i).Text)
+            'Debug.WriteLine("time : " + currentScriptTime)
 
 
             If TimeCheck(currentScriptTime) Then 'if still running, interrupt current script and start next script
@@ -2389,7 +2389,23 @@ Public Class Form1
     End Sub
 
     Private Sub Script_File_ListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Script_File_ListBox.SelectedIndexChanged
-        Debug.WriteLine(Script_File_ListBox.SelectedItem.ToString)
+        'Debug.WriteLine(Script_File_ListBox.SelectedItem.ToString)
         Load_Script_File(Script_File_ListBox.SelectedItem.ToString)
+    End Sub
+
+    Private Sub Save_script_queue_file_btn_Click(sender As Object, e As EventArgs) Handles Save_script_queue_file_btn.Click
+        Save_Script_Queue_File_Content()
+        script_queue_ComboBox.Items.Clear()
+        FormInit.Render_MyScript_Queue_ComboBox()
+    End Sub
+
+    Private Sub Refresh_script_queue_btn_Click(sender As Object, e As EventArgs) Handles Refresh_script_queue_btn.Click
+        script_queue_ComboBox.Items.Clear()
+        FormInit.Render_MyScript_Queue_ComboBox()
+
+    End Sub
+
+    Private Sub script_queue_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles script_queue_ComboBox.SelectedIndexChanged
+        Load_Script_Queue_File(script_queue_ComboBox.Text)
     End Sub
 End Class

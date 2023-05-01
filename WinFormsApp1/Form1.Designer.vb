@@ -356,6 +356,9 @@ Partial Class Form1
         Block_User_Lang_ComboBox = New ComboBox()
         Block_User_By_Page = New Button()
         TabPage1 = New TabPage()
+        Refresh_script_queue_btn = New Button()
+        script_queue_ComboBox = New ComboBox()
+        Save_script_queue_file_btn = New Button()
         LoopRun_SingleScript_Queue_CheckBox = New CheckBox()
         Script_File_Queue_ListView = New ListView()
         Label77 = New Label()
@@ -3677,6 +3680,9 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(Refresh_script_queue_btn)
+        TabPage1.Controls.Add(script_queue_ComboBox)
+        TabPage1.Controls.Add(Save_script_queue_file_btn)
         TabPage1.Controls.Add(LoopRun_SingleScript_Queue_CheckBox)
         TabPage1.Controls.Add(Script_File_Queue_ListView)
         TabPage1.Controls.Add(Label77)
@@ -3694,10 +3700,36 @@ Partial Class Form1
         TabPage1.Text = "定時腳本"
         TabPage1.UseVisualStyleBackColor = True
         ' 
+        ' Refresh_script_queue_btn
+        ' 
+        Refresh_script_queue_btn.Location = New Point(632, 663)
+        Refresh_script_queue_btn.Name = "Refresh_script_queue_btn"
+        Refresh_script_queue_btn.Size = New Size(94, 29)
+        Refresh_script_queue_btn.TabIndex = 15
+        Refresh_script_queue_btn.Text = "重新整理"
+        Refresh_script_queue_btn.UseVisualStyleBackColor = True
+        ' 
+        ' script_queue_ComboBox
+        ' 
+        script_queue_ComboBox.FormattingEnabled = True
+        script_queue_ComboBox.Location = New Point(373, 663)
+        script_queue_ComboBox.Name = "script_queue_ComboBox"
+        script_queue_ComboBox.Size = New Size(253, 27)
+        script_queue_ComboBox.TabIndex = 14
+        ' 
+        ' Save_script_queue_file_btn
+        ' 
+        Save_script_queue_file_btn.Location = New Point(732, 664)
+        Save_script_queue_file_btn.Name = "Save_script_queue_file_btn"
+        Save_script_queue_file_btn.Size = New Size(70, 29)
+        Save_script_queue_file_btn.TabIndex = 13
+        Save_script_queue_file_btn.Text = "另存"
+        Save_script_queue_file_btn.UseVisualStyleBackColor = True
+        ' 
         ' LoopRun_SingleScript_Queue_CheckBox
         ' 
         LoopRun_SingleScript_Queue_CheckBox.AutoSize = True
-        LoopRun_SingleScript_Queue_CheckBox.Location = New Point(196, 675)
+        LoopRun_SingleScript_Queue_CheckBox.Location = New Point(196, 667)
         LoopRun_SingleScript_Queue_CheckBox.Name = "LoopRun_SingleScript_Queue_CheckBox"
         LoopRun_SingleScript_Queue_CheckBox.Size = New Size(61, 23)
         LoopRun_SingleScript_Queue_CheckBox.TabIndex = 12
@@ -3715,7 +3747,7 @@ Partial Class Form1
         ' Label77
         ' 
         Label77.AutoSize = True
-        Label77.Location = New Point(144, 676)
+        Label77.Location = New Point(151, 668)
         Label77.Name = "Label77"
         Label77.Size = New Size(39, 19)
         Label77.TabIndex = 9
@@ -3724,7 +3756,7 @@ Partial Class Form1
         ' Label76
         ' 
         Label76.AutoSize = True
-        Label76.Location = New Point(16, 674)
+        Label76.Location = New Point(23, 669)
         Label76.Name = "Label76"
         Label76.Size = New Size(24, 19)
         Label76.TabIndex = 8
@@ -3734,7 +3766,7 @@ Partial Class Form1
         ' 
         Script_Start_Time_DateTimePicker.CustomFormat = "HH:mm:ss"
         Script_Start_Time_DateTimePicker.Format = DateTimePickerFormat.Custom
-        Script_Start_Time_DateTimePicker.Location = New Point(46, 668)
+        Script_Start_Time_DateTimePicker.Location = New Point(53, 663)
         Script_Start_Time_DateTimePicker.Name = "Script_Start_Time_DateTimePicker"
         Script_Start_Time_DateTimePicker.ShowUpDown = True
         Script_Start_Time_DateTimePicker.Size = New Size(92, 27)
@@ -3742,7 +3774,7 @@ Partial Class Form1
         ' 
         ' Add_Script_To_Queue_Btn
         ' 
-        Add_Script_To_Queue_Btn.Location = New Point(263, 671)
+        Add_Script_To_Queue_Btn.Location = New Point(263, 664)
         Add_Script_To_Queue_Btn.Name = "Add_Script_To_Queue_Btn"
         Add_Script_To_Queue_Btn.Size = New Size(104, 29)
         Add_Script_To_Queue_Btn.TabIndex = 6
@@ -4205,4 +4237,7 @@ Partial Class Form1
     Friend WithEvents Label76 As Label
     Friend WithEvents Script_Start_Time_DateTimePicker As DateTimePicker
     Friend WithEvents LoopRun_SingleScript_Queue_CheckBox As CheckBox
+    Friend WithEvents Save_script_queue_file_btn As Button
+    Friend WithEvents script_queue_ComboBox As ComboBox
+    Friend WithEvents Refresh_script_queue_btn As Button
 End Class

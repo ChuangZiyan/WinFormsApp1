@@ -12,6 +12,7 @@ Module FormInit
     Public URL_Navigation_path = curr_path + "url\"
     Public configs_dir = curr_path + "configs\"
     Public auto_generated_textfile_path = curr_path + "auto_generated\"
+    Public myscript_queue_path = curr_path + "myscript_queue\"
 
 
     Public Sub FormInit_Render_All()
@@ -38,7 +39,7 @@ Module FormInit
 
         Render_My_Script_ListBox()
         Render_Script_File_Queue_ListView()
-
+        Render_MyScript_Queue_ComboBox()
 
 
         Form1.Selection_Item_ComboBox.Text = "搜尋"
@@ -152,6 +153,9 @@ Module FormInit
             System.IO.Directory.CreateDirectory(auto_generated_textfile_path)
         End If
 
+        If Not System.IO.Directory.Exists(myscript_queue_path) Then
+            System.IO.Directory.CreateDirectory(myscript_queue_path)
+        End If
 
 
     End Sub
@@ -394,6 +398,19 @@ Module FormInit
         Next
     End Sub
 
+
+    Public Sub Render_MyScript_Queue_ComboBox()
+        Dim files() As String = IO.Directory.GetFiles(myscript_queue_path)
+        For Each file As String In files
+            'Debug.WriteLine(file)
+            If Path.GetExtension(file) = ".txt" Then
+                Form1.script_queue_ComboBox.Items.Add(Path.GetFileName(file))
+            End If
+
+        Next
+
+
+    End Sub
 
 
 End Module

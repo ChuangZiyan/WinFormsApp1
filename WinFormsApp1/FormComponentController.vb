@@ -134,6 +134,34 @@ Module FormComponentController
         End If
     End Sub
 
+
+    Public Sub Save_Script_Queue_File_Content()
+        Dim script_txt = ""
+        Dim cmd_arrlist As ArrayList = New ArrayList()
+        For Each item As ListViewItem In Form1.Script_File_Queue_ListView.Items
+
+            Dim tmp_str = ""
+            For i = 0 To item.SubItems.Count - 1
+                cmd_arrlist.Add(item.SubItems.Item(i).Text)
+            Next
+            tmp_str = String.Join(",", cmd_arrlist.ToArray())
+            cmd_arrlist.Clear()
+            script_txt += tmp_str & vbCrLf
+
+        Next
+
+        Form1.SaveFileDialog1.Filter = "txt files (*.txt)|"
+        Form1.SaveFileDialog1.DefaultExt = "txt"
+        Form1.SaveFileDialog1.FilterIndex = 2
+        Form1.SaveFileDialog1.RestoreDirectory = True
+
+        If Form1.SaveFileDialog1.ShowDialog = DialogResult.OK Then
+            'Debug.WriteLine(script_txt)
+            WriteAllText(Form1.SaveFileDialog1.FileName, script_txt)
+        End If
+    End Sub
+
+
     Public Sub Save_RichBox_Content()
         Form1.SaveFileDialog1.Filter = "txt files (*.txt)|"
         Form1.SaveFileDialog1.DefaultExt = "txt"
@@ -489,6 +517,35 @@ Module FormComponentController
                 Form1.script_ListView.Items.Add(index.ToString)
                 For Each cmd In splittedLine
                     Form1.script_ListView.Items(curr_row).SubItems.Add(cmd)
+                Next
+                curr_row += 1
+                index += 1
+            Next
+
+        Catch ex As Exception
+            MsgBox("載入失敗，檔案無效或不存在")
+        End Try
+    End Sub
+
+    Public Sub Load_Script_Queue_File(file_name)
+        Try
+            Debug.WriteLine("LOAD " + file_name)
+            Form1.Script_File_Queue_ListView.Items.Clear()
+            Dim log_lines = IO.File.ReadAllLines(myscript_queue_path + file_name)
+            Dim curr_row As Integer = 0
+            Dim index = 1
+            For Each line In log_lines
+                Dim splittedLine() As String = line.Split(",")
+                Dim first = True
+                For Each cmd In splittedLine
+                    If first Then
+                        Form1.Script_File_Queue_ListView.Items.Add(cmd)
+                        first = False
+                    Else
+                        Form1.Script_File_Queue_ListView.Items(curr_row).SubItems.Add(cmd)
+                    End If
+
+
                 Next
                 curr_row += 1
                 index += 1
