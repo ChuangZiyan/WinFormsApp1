@@ -105,18 +105,25 @@ Public Class MyWebDriver
                 Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
                 serv.HideCommandPromptWindow = True 'hide cmd
                 Dim options = New Chrome.ChromeOptions()
+
+                Dim processStartInfo As New ProcessStartInfo("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") ' for remote chrome
+
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
+
                     running_chrome_profile_path = profile
                     used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
                     running_chrome_profile = used_chrome_profile
+                    processStartInfo.Arguments = "--remote-debugging-port=9222 --user-data-dir=" + profile
                     'FormInit.Render_profile_CheckedListBox()
+                Else
+                    processStartInfo.Arguments = "--remote-debugging-port=9222"
                 End If
-                options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
+                'options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
                 'options.AddArguments("remote-debugging-port=9222", "--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
-                options.AddExcludedArgument("enable-automation")
+                'options.AddExcludedArgument("enable-automation")
 
-                'options.DebuggerAddress = "localhost:9222" ' for remote debug browser
+                options.DebuggerAddress = "localhost:9222" ' for remote debug browser
 
                 'Minimize windows util headless mode work fine
 
@@ -150,13 +157,15 @@ Public Class MyWebDriver
 
 
                 '######################### remote debug address test ###############################
-                'chromeDriver = New ChromeDriver(options)
-                'Thread.Sleep(5000)
 
-                'Dim mainWindowHandle As String = chromeDriver.WindowHandles.First()
+                Dim chromeProcess As Process = Process.Start(processStartInfo)
+                chromeProcess.WaitForInputIdle()
+                'chromeProcess.WaitForExit()
+                chromeDriver = New ChromeDriver(serv, options)
 
-                'chromeDriver.SwitchTo().Window(mainWindowHandle)
+                Dim mainWindowHandle As String = chromeDriver.WindowHandles.First()
 
+                chromeDriver.SwitchTo().Window(mainWindowHandle)
 
                 'chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
 
@@ -164,9 +173,6 @@ Public Class MyWebDriver
 
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                 ' Refresh Profile Items
-
-
-
 
                 act = New Actions(chromeDriver)
 
@@ -187,6 +193,12 @@ Public Class MyWebDriver
 
     Public Function Quit_ChromeDriver()
         Try
+
+            Dim chromeProcesses() As Process = Process.GetProcessesByName("chrome")
+            For Each chromeProcess As Process In chromeProcesses
+                chromeProcess.CloseMainWindow()
+                chromeProcess.Close()
+            Next
             chromeDriver.Quit()
             Return True
         Catch ex As Exception
