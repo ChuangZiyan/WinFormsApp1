@@ -106,7 +106,14 @@ Public Class MyWebDriver
                 serv.HideCommandPromptWindow = True 'hide cmd
                 Dim options = New Chrome.ChromeOptions()
 
-                Dim processStartInfo As New ProcessStartInfo("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") ' for remote chrome
+                Dim chrome_path = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+                If System.IO.File.Exists("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") Then
+                    chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+                End If
+
+                Dim processStartInfo As New ProcessStartInfo(chrome_path) ' for remote chrome
+
+                Dim chrome_argv = "--remote-debugging-port=9222 --disable-extensions --disable-popup-blocking --disable-notifications --disable-javascript"
 
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
@@ -114,12 +121,12 @@ Public Class MyWebDriver
                     running_chrome_profile_path = profile
                     used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
                     running_chrome_profile = used_chrome_profile
-                    processStartInfo.Arguments = "--remote-debugging-port=9222 --user-data-dir=" + profile
+                    processStartInfo.Arguments = chrome_argv + " --user-data-dir=" + profile
                     'FormInit.Render_profile_CheckedListBox()
                 Else
-                    processStartInfo.Arguments = "--remote-debugging-port=9222"
+                    processStartInfo.Arguments = chrome_argv
                 End If
-                'options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
+                options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
                 'options.AddArguments("remote-debugging-port=9222", "--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
                 'options.AddExcludedArgument("enable-automation")
 
@@ -173,6 +180,7 @@ Public Class MyWebDriver
 
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                 ' Refresh Profile Items
+
 
                 act = New Actions(chromeDriver)
 

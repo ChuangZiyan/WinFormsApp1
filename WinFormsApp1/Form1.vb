@@ -832,16 +832,34 @@ Public Class Form1
     End Sub
 
     Public Function Quit_chromedriver()
+
         Try
 
             used_chrome_profile = ""
             running_chrome_profile = ""
             myWebDriver.Quit_ChromeDriver()
+            'Dismiss_alert()
+
             Return True
         Catch ex As Exception
             Return False
         End Try
     End Function
+
+
+    Public Sub Dismiss_alert()
+        Try
+
+            Dim alert As IAlert = myWebDriver.chromeDriver.SwitchTo().Alert()
+
+            Dim alertText As String = alert.Text
+
+            'alert.Accept() ' 或者
+            alert.Dismiss()
+        Catch ex As NoAlertPresentException
+            ' 如果没有警报框弹出，继续测试
+        End Try
+    End Sub
 
 
     Dim current_checked As Integer
