@@ -149,6 +149,7 @@ Partial Class Form1
         wait_hour_NumericUpDown = New NumericUpDown()
         Label9 = New Label()
         TabPage3 = New TabPage()
+        comment_row_Numer = New NumericUpDown()
         Insert_share_url_btn = New Button()
         Insert_Random_Post_Background_Btn = New Button()
         Insert_Click_reply_Bottom_Btn = New Button()
@@ -391,6 +392,7 @@ Partial Class Form1
         CType(wait_minute_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(wait_hour_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         TabPage3.SuspendLayout()
+        CType(comment_row_Numer, ComponentModel.ISupportInitialize).BeginInit()
         CType(Selected_PictureBox, ComponentModel.ISupportInitialize).BeginInit()
         TabPage4.SuspendLayout()
         GroupBox5.SuspendLayout()
@@ -1648,6 +1650,7 @@ Partial Class Form1
         ' 
         ' TabPage3
         ' 
+        TabPage3.Controls.Add(comment_row_Numer)
         TabPage3.Controls.Add(Insert_share_url_btn)
         TabPage3.Controls.Add(Insert_Random_Post_Background_Btn)
         TabPage3.Controls.Add(Insert_Click_reply_Bottom_Btn)
@@ -1712,6 +1715,13 @@ Partial Class Form1
         TabPage3.TabIndex = 0
         TabPage3.Text = "發文發圖"
         TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' comment_row_Numer
+        ' 
+        comment_row_Numer.Location = New Point(693, 400)
+        comment_row_Numer.Name = "comment_row_Numer"
+        comment_row_Numer.Size = New Size(65, 27)
+        comment_row_Numer.TabIndex = 128
         ' 
         ' Insert_share_url_btn
         ' 
@@ -1868,9 +1878,9 @@ Partial Class Form1
         ' 
         ' Insert_reply_comment_btn
         ' 
-        Insert_reply_comment_btn.Location = New Point(688, 398)
+        Insert_reply_comment_btn.Location = New Point(764, 398)
         Insert_reply_comment_btn.Name = "Insert_reply_comment_btn"
-        Insert_reply_comment_btn.Size = New Size(224, 29)
+        Insert_reply_comment_btn.Size = New Size(148, 29)
         Insert_reply_comment_btn.TabIndex = 79
         Insert_reply_comment_btn.Text = "回覆內容-插入"
         Insert_reply_comment_btn.UseVisualStyleBackColor = True
@@ -1908,7 +1918,7 @@ Partial Class Form1
         ' 
         Insert_Reply_Random_TxtFile_btn.Location = New Point(688, 433)
         Insert_Reply_Random_TxtFile_btn.Name = "Insert_Reply_Random_TxtFile_btn"
-        Insert_Reply_Random_TxtFile_btn.Size = New Size(224, 29)
+        Insert_Reply_Random_TxtFile_btn.Size = New Size(220, 29)
         Insert_Reply_Random_TxtFile_btn.TabIndex = 93
         Insert_Reply_Random_TxtFile_btn.Text = "回覆隨機檔案 - 插入"
         Insert_Reply_Random_TxtFile_btn.UseVisualStyleBackColor = True
@@ -3856,6 +3866,7 @@ Partial Class Form1
         CType(wait_hour_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         TabPage3.ResumeLayout(False)
         TabPage3.PerformLayout()
+        CType(comment_row_Numer, ComponentModel.ISupportInitialize).EndInit()
         CType(Selected_PictureBox, ComponentModel.ISupportInitialize).EndInit()
         TabPage4.ResumeLayout(False)
         GroupBox5.ResumeLayout(False)
@@ -4240,4 +4251,5 @@ Partial Class Form1
     Friend WithEvents Save_script_queue_file_btn As Button
     Friend WithEvents script_queue_ComboBox As ComboBox
     Friend WithEvents Refresh_script_queue_btn As Button
+    Friend WithEvents comment_row_Numer As NumericUpDown
 End Class

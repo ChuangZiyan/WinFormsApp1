@@ -323,9 +323,6 @@ Public Class MyWebDriver
                     Debug.WriteLine(ex)
                     Return False
                 End Try
-
-            Case "留言"
-                Return Click_reply()
             Case "回覆上"
                 Return Click_Top_Reply()
             Case "回覆下"
@@ -696,14 +693,28 @@ Public Class MyWebDriver
 
     End Function
 
+    Public Function Click_reply_Task(index)
+        Return Task.Run(Function() Click_reply(index))
+    End Function
 
-    Public Function Click_reply()
+    Public Function Click_reply(ByVal index As Integer)
         Try
 
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-                chromeDriver.FindElements(By.CssSelector("div.xq8finb.x16n37ib.x3dsekl.x1uuop16 > div > div:nth-child(2) > div")).ElementAt(0).Click()
+                Debug.WriteLine("Comment")
+                chromeDriver.FindElements(By.CssSelector("div.xq8finb.x16n37ib.x3dsekl.x1uuop16 > div > div:nth-child(2) > div")).ElementAt(index).Click()
             Else
-                Return click_by_aria_label(langConverter.Item("aria-label-Leave-a-comment").ToString())
+                Debug.WriteLine("Text")
+                Try
+                    Dim ele = chromeDriver.FindElements(By.CssSelector("div:nth-child(1) > div > div.xq8finb.x16n37ib > div > div:nth-child(2) > div"))
+                    ele.ElementAt(index).Click()
+                    Return True
+                Catch ex As Exception
+                    Debug.WriteLine(ex)
+                    Return False
+                End Try
+
+                'Return click_by_aria_label(langConverter.Item("aria-label-Leave-a-comment").ToString())
             End If
 
             Return True
@@ -714,7 +725,7 @@ Public Class MyWebDriver
 
     Private Function Click_Top_Reply()
         Try
-            chromeDriver.FindElements(By.CssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x1pi30zi > ul > li:nth-child(2) > div")).First.Click()
+            chromeDriver.FindElements(By.CssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x1pi30zi > ul > li: nth-child(2) > div")).First.Click()
             Return True
         Catch ex As Exception
             Debug.WriteLine(ex)

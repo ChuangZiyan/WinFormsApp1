@@ -365,6 +365,8 @@ Public Class Form1
                     End Try
                 Case "點擊"
                     boolean_result = Await myWebDriver.Click_element_by_feature_Task(content)
+                Case "點擊:留言"
+                    boolean_result = Await myWebDriver.Click_reply_Task(CInt(content))
                 Case "點擊:文字"
                     Try
                         Dim mycontent = content.Split(";")
@@ -1220,7 +1222,7 @@ Public Class Form1
     End Sub
 
     Private Sub Insert_click_reply_btn_Click(sender As Object, e As EventArgs) Handles Insert_click_reply_btn.Click
-        Insert_to_script("點擊", "留言")
+        Insert_to_script("點擊:留言", comment_row_Numer.Value)
     End Sub
 
     Private Sub Insert_Click_reply_Top_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Click_reply_Top_Btn.Click
