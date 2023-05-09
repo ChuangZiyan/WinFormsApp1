@@ -2040,7 +2040,7 @@ Partial Class Form1
         ' 
         Insert_send_content_btn.Location = New Point(688, 64)
         Insert_send_content_btn.Name = "Insert_send_content_btn"
-        Insert_send_content_btn.Size = New Size(81, 29)
+        Insert_send_content_btn.Size = New Size(96, 29)
         Insert_send_content_btn.TabIndex = 72
         Insert_send_content_btn.Text = "內容-插入"
         Insert_send_content_btn.UseVisualStyleBackColor = True
@@ -2083,9 +2083,9 @@ Partial Class Form1
         ' 
         ' Insert_send_Random_content_TextFile_btn
         ' 
-        Insert_send_Random_content_TextFile_btn.Location = New Point(775, 64)
+        Insert_send_Random_content_TextFile_btn.Location = New Point(790, 64)
         Insert_send_Random_content_TextFile_btn.Name = "Insert_send_Random_content_TextFile_btn"
-        Insert_send_Random_content_TextFile_btn.Size = New Size(133, 29)
+        Insert_send_Random_content_TextFile_btn.Size = New Size(118, 29)
         Insert_send_Random_content_TextFile_btn.TabIndex = 95
         Insert_send_Random_content_TextFile_btn.Text = "隨機文檔-插入"
         Insert_send_Random_content_TextFile_btn.UseVisualStyleBackColor = True
