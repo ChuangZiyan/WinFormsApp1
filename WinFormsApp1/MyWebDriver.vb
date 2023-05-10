@@ -987,9 +987,9 @@ Public Class MyWebDriver
             Case "SPACE"
                 firstKey = Keys.Space
             Case "J"
-                firstKey = "J"
+                firstKey = "j"
             Case "K"
-                firstKey = "K"
+                firstKey = "k"
         End Select
 
         Try
