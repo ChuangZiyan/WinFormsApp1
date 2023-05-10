@@ -2631,7 +2631,7 @@ Partial Class Form1
         ' KeyboardFirstKey_ComboBox
         ' 
         KeyboardFirstKey_ComboBox.FormattingEnabled = True
-        KeyboardFirstKey_ComboBox.Items.AddRange(New Object() {"ENTER", "ESC", "CTRL", "ALT", "SPACE"})
+        KeyboardFirstKey_ComboBox.Items.AddRange(New Object() {"ENTER", "ESC", "CTRL", "ALT", "SPACE", "J", "K"})
         KeyboardFirstKey_ComboBox.Location = New Point(62, 35)
         KeyboardFirstKey_ComboBox.Name = "KeyboardFirstKey_ComboBox"
         KeyboardFirstKey_ComboBox.Size = New Size(125, 27)

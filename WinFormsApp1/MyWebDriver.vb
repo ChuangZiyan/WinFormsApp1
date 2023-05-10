@@ -706,7 +706,7 @@ Public Class MyWebDriver
             Else
                 Debug.WriteLine("Text")
                 Try
-                    Dim ele = chromeDriver.FindElements(By.CssSelector("div:nth-child(8) > div > div > div:nth-child(4) > div > div > div:nth-child(1) > div > div.xq8finb.x16n37ib > div > div:nth-child(2) > div"))
+                    Dim ele = chromeDriver.FindElements(By.CssSelector("div:nth-child(4) > div > div > div:nth-child(1) > div > div.xq8finb.x16n37ib > div > div:nth-child(2) > div"))
                     ele.ElementAt(index).Click()
                     Thread.Sleep(2000)
                     Return True
@@ -986,7 +986,10 @@ Public Class MyWebDriver
                 firstKey = Keys.LeftAlt
             Case "SPACE"
                 firstKey = Keys.Space
-
+            Case "J"
+                firstKey = "J"
+            Case "K"
+                firstKey = "K"
         End Select
 
         Try
