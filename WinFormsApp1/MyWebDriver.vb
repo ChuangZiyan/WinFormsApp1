@@ -523,6 +523,7 @@ Public Class MyWebDriver
     End Function
 
     Public Function Write_post_send_content_Task(content) As Task(Of Boolean)
+        Clipboard.SetText(content)
         Return Task.Run(Function() Write_post_send_content(content))
     End Function
 
@@ -537,7 +538,9 @@ Public Class MyWebDriver
                     Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
                     'Debug.WriteLine("pattern : " + pattern.ToString())
                     Dim msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
-                    msgbox_ele.SendKeys(content)
+                    'msgbox_ele.SendKeys(content)
+                    msgbox_ele.SendKeys(Keys.LeftControl + "v")
+                    'act.KeyDown(Keys.Control).SendKeys("v").Perform()
                     chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                     Return True
                 Catch ex As Exception
