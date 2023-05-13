@@ -381,7 +381,6 @@ Public Class MyWebDriver
         Dim d As New DataObject(DataFormats.FileDrop, f)
         Clipboard.SetDataObject(d, True)
 
-
         Return Task.Run(Function() Upload_reply_img(img))
     End Function
 
@@ -391,25 +390,24 @@ Public Class MyWebDriver
         IsUploadImage = True
 
         Try
-            Dim comment_img_input As Object
+            'Dim comment_img_input As Object
 
-            If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-
-                comment_img_input = chromeDriver.FindElements(By.CssSelector("div[aria-label^='回覆']"))
-            Else
-
-                comment_img_input = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
-            End If
+            'If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
+            'comment_img_input = chromeDriver.FindElements(By.CssSelector("div[aria-label^='回覆']"))
+            'Else
+            'comment_img_input = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
+            'End If
 
 
-            If headless_mode Then
-                Debug.WriteLine("headless mode")
-                Dim image_input = chromeDriver.FindElement(By.CssSelector("div.x4b6v7d.x1ojsi0c > ul > li:nth-child(3) > input"))
-                image_input.SendKeys(img)
-            Else
-                'Debug.WriteLine("Copy " + img)
-                comment_img_input(0).SendKeys(Keys.LeftControl + "v")
-            End If
+            'If headless_mode Then
+            'Debug.WriteLine("headless mode")
+            'Dim image_input = chromeDriver.FindElement(By.CssSelector("div.x4b6v7d.x1ojsi0c > ul > li:nth-child(3) > input"))
+            'image_input.SendKeys(img)
+            'Else
+            'Debug.WriteLine("Copy " + img)
+            act.KeyDown(Keys.Control).SendKeys("v").Perform()
+            'comment_img_input(0).SendKeys(Keys.LeftControl + "v")
+            'End If
 
             Return True
 

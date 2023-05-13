@@ -1972,9 +1972,9 @@ Partial Class Form1
         ' 
         ' Insert_Upload_Random_Image_btn
         ' 
-        Insert_Upload_Random_Image_btn.Location = New Point(775, 134)
+        Insert_Upload_Random_Image_btn.Location = New Point(790, 134)
         Insert_Upload_Random_Image_btn.Name = "Insert_Upload_Random_Image_btn"
-        Insert_Upload_Random_Image_btn.Size = New Size(133, 29)
+        Insert_Upload_Random_Image_btn.Size = New Size(118, 29)
         Insert_Upload_Random_Image_btn.TabIndex = 96
         Insert_Upload_Random_Image_btn.Text = "隨機圖片-插入"
         Insert_Upload_Random_Image_btn.UseVisualStyleBackColor = True
@@ -2058,7 +2058,7 @@ Partial Class Form1
         ' 
         Insert_click_img_video_btn.Location = New Point(688, 134)
         Insert_click_img_video_btn.Name = "Insert_click_img_video_btn"
-        Insert_click_img_video_btn.Size = New Size(81, 29)
+        Insert_click_img_video_btn.Size = New Size(96, 29)
         Insert_click_img_video_btn.TabIndex = 74
         Insert_click_img_video_btn.Text = "圖片-插入"
         Insert_click_img_video_btn.UseVisualStyleBackColor = True
