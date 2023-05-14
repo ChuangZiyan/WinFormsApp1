@@ -500,6 +500,8 @@ Public Class MyWebDriver
     Public Function Submit_reply_comment()
         Try
 
+            act.SendKeys(Keys.Enter).Perform()
+            Return True
             Dim msgbox_ele As Object
             If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
 

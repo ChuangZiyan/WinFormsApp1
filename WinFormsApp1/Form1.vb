@@ -457,7 +457,7 @@ Public Class Form1
                 Case "回應:送出"
 
                     If myWebDriver.IsUploadImage Then
-                        Debug.WriteLine("INININI")
+
                         'div.x1iyjqo2.xurb0ha.x1sxyh0.xh8yej3 > div.xzpqnlu.x1hyvwdk.xjm9jq1.x6ikm8r.x10wlt62.x10l6tqk.x1i1rx1s
 
                         'x1iyjqo2 x1emribx x1xmf6yo x1e56ztr

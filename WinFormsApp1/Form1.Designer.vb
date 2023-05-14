@@ -372,6 +372,9 @@ Partial Class Form1
         Script_File_ListBox = New ListBox()
         Timer1 = New Timer(components)
         SaveFileDialog1 = New SaveFileDialog()
+        Insert_Check_Last_script_btn = New Button()
+        NumericUpDown1 = New NumericUpDown()
+        Label78 = New Label()
         GroupBox1.SuspendLayout()
         CType(Target_Index_Script_ListView_NummericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(NumericUpDown_script_end_second, ComponentModel.ISupportInitialize).BeginInit()
@@ -416,6 +419,7 @@ Partial Class Form1
         Post_Crawler.SuspendLayout()
         Block_User.SuspendLayout()
         TabPage1.SuspendLayout()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' content_RichTextBox
@@ -908,6 +912,9 @@ Partial Class Form1
         ' 
         ' TabPage5
         ' 
+        TabPage5.Controls.Add(Label78)
+        TabPage5.Controls.Add(NumericUpDown1)
+        TabPage5.Controls.Add(Insert_Check_Last_script_btn)
         TabPage5.Controls.Add(Reveal_Profile_Info_Btn)
         TabPage5.Controls.Add(Insert_Available_RndQueue_To_script)
         TabPage5.Controls.Add(Insert_Available_Queue_To_script)
@@ -3832,6 +3839,31 @@ Partial Class Form1
         Timer1.Enabled = True
         Timer1.Interval = 1000
         ' 
+        ' Insert_Check_Last_script_btn
+        ' 
+        Insert_Check_Last_script_btn.Location = New Point(185, 710)
+        Insert_Check_Last_script_btn.Name = "Insert_Check_Last_script_btn"
+        Insert_Check_Last_script_btn.Size = New Size(94, 29)
+        Insert_Check_Last_script_btn.TabIndex = 155
+        Insert_Check_Last_script_btn.Text = "插入檢查"
+        Insert_Check_Last_script_btn.UseVisualStyleBackColor = True
+        ' 
+        ' NumericUpDown1
+        ' 
+        NumericUpDown1.Location = New Point(119, 710)
+        NumericUpDown1.Name = "NumericUpDown1"
+        NumericUpDown1.Size = New Size(60, 27)
+        NumericUpDown1.TabIndex = 156
+        ' 
+        ' Label78
+        ' 
+        Label78.AutoSize = True
+        Label78.Location = New Point(33, 716)
+        Label78.Name = "Label78"
+        Label78.Size = New Size(80, 19)
+        Label78.TabIndex = 157
+        Label78.Text = "略過行數 : "
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -3901,6 +3933,7 @@ Partial Class Form1
         Block_User.PerformLayout()
         TabPage1.ResumeLayout(False)
         TabPage1.PerformLayout()
+        CType(NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
     Friend WithEvents content_RichTextBox As RichTextBox
@@ -4252,4 +4285,7 @@ Partial Class Form1
     Friend WithEvents script_queue_ComboBox As ComboBox
     Friend WithEvents Refresh_script_queue_btn As Button
     Friend WithEvents comment_row_Numer As NumericUpDown
+    Friend WithEvents Label78 As Label
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents Insert_Check_Last_script_btn As Button
 End Class
