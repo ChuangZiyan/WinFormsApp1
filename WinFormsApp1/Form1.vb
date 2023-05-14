@@ -147,12 +147,15 @@ Public Class Form1
             record_script = True
         End If
         'Dim rnd_num As New Random()
-
+        Dim curr_line = 0
+        Dim ignore_counter = 0
         For Each item As ListViewItem In script_ListView.Items
             Restore_ListViewItems_BackColor()
             item.BackColor = Color.SteelBlue
             item.ForeColor = Color.White
             item.EnsureVisible()
+
+            curr_line += 1
 
 
             If Pause_Script = True Then ' Pause script
@@ -187,6 +190,7 @@ Public Class Form1
                 Continue For
             End If
 
+
             Dim brower = item.SubItems.Item(1).Text
             Dim devicetype = item.SubItems.Item(2).Text
             Dim profile = item.SubItems.Item(3).Text
@@ -195,6 +199,17 @@ Public Class Form1
             Dim execute_result = item.SubItems.Item(6)
             Dim boolean_result As Boolean
             item.SubItems.Item(3).Text = used_chrome_profile
+
+
+            If ignore_counter > 0 Then
+                ignore_counter -= 1
+                execute_result.Text = "略過"
+                Await Delay_msec(1000)
+                Continue For
+            End If
+
+
+
             Select Case action
                 Case "開始"
                     Continue_time = content
@@ -677,6 +692,21 @@ Public Class Form1
 
                 Case "更改密碼"
                     boolean_result = Await myWebDriver.Change_Fb_Password_Task()
+                Case "檢查"
+                    Try
+                        Debug.WriteLine("Curr Line : ")
+                        Debug.WriteLine(curr_line)
+                        Debug.WriteLine(" item.SubItems.Item(6) : " + script_ListView.Items(curr_line - 2).SubItems.Item(6).Text)
+                        Dim last_line_result = script_ListView.Items(curr_line - 2).SubItems.Item(6).Text
+                        If last_line_result = "失敗" Then
+                            Debug.WriteLine("ignore next:" + content + " lines")
+                            ignore_counter = CInt(content)
+                        End If
+                        boolean_result = True
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
 
             End Select
             If boolean_result = True Then 'record the result
@@ -2429,5 +2459,7 @@ Public Class Form1
         Load_Script_Queue_File(script_queue_ComboBox.Text)
     End Sub
 
-
+    Private Sub Insert_Check_Last_script_btn_Click(sender As Object, e As EventArgs) Handles Insert_Check_Last_script_btn.Click
+        Insert_to_script("檢查", Ignore_line_count_NumericUpDown1.Value)
+    End Sub
 End Class
