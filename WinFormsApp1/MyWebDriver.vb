@@ -21,6 +21,8 @@ Imports System.Reflection.Metadata
 Imports System.Collections.Specialized
 Imports System.Runtime.Intrinsics
 Imports System.DirectoryServices.ActiveDirectory
+Imports AngleSharp.Dom.Events
+Imports Microsoft.VisualBasic.ApplicationServices
 
 Public Class MyWebDriver
     Public chromeDriver As IWebDriver
@@ -110,14 +112,18 @@ Public Class MyWebDriver
                 If System.IO.File.Exists("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") Then
                     chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
                 End If
-
                 Dim processStartInfo As New ProcessStartInfo(chrome_path) ' for remote chrome
 
-                Dim chrome_argv = "--remote-debugging-port=9222 --disable-extensions --disable-popup-blocking --disable-notifications --disable-javascript"
+                Dim chrome_argv = "--remote-debugging-port=9222 --disable-extensions --disable-popup-blocking --disable-notifications "
+                used_dev_model = devicetype
+                used_browser = "Chrome"
+                If devicetype <> "PC" Then
+                    options.EnableMobileEmulation(used_dev_model)
 
+                    chrome_argv += "--user-agent=""Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/69.0.3497.105 Mobile/15E148 Safari/605.1"""
+                End If
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
-
                     running_chrome_profile_path = profile
                     used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
                     running_chrome_profile = used_chrome_profile
@@ -151,15 +157,6 @@ Public Class MyWebDriver
                 End If
 
 
-
-                used_dev_model = devicetype
-                used_browser = "Chrome"
-                If devicetype <> "PC" Then
-                    options.EnableMobileEmulation(used_dev_model)
-                End If
-
-
-
                 'chromeDriver = New ChromeDriver(serv, options)
 
 
@@ -173,6 +170,7 @@ Public Class MyWebDriver
                 Dim mainWindowHandle As String = chromeDriver.WindowHandles.First()
 
                 chromeDriver.SwitchTo().Window(mainWindowHandle)
+
 
                 'chromeDriver.Navigate.GoToUrl("https://www.facebook.com/")
 
@@ -406,6 +404,7 @@ Public Class MyWebDriver
             'Else
             'Debug.WriteLine("Copy " + img)
             act.KeyDown(Keys.Control).SendKeys("v").Perform()
+            act.KeyUp(Keys.Control).Perform()
             'comment_img_input(0).SendKeys(Keys.LeftControl + "v")
             'End If
 
@@ -771,6 +770,7 @@ Public Class MyWebDriver
             Else
 
                 act.KeyDown(Keys.Control).SendKeys("v").Perform()
+                act.KeyUp(Keys.Control).Perform()
                 'act.SendKeys(Keys.LeftControl + "v").Perform()
 
                 'If IsElementPresentByCssSelector("div[aria-label^='留言'] > p > span") Then
