@@ -14,6 +14,8 @@ Module FormInit
     Public auto_generated_textfile_path = curr_path + "auto_generated\"
     Public myscript_queue_path = curr_path + "myscript_queue\"
 
+    Public user_agent_file_path = curr_path + "user_agent_argv\"
+
 
     Public Sub FormInit_Render_All()
 
@@ -408,7 +410,6 @@ Module FormInit
             End If
 
         Next
-
 
     End Sub
 

@@ -114,14 +114,17 @@ Public Class MyWebDriver
                 End If
                 Dim processStartInfo As New ProcessStartInfo(chrome_path) ' for remote chrome
 
-                Dim chrome_argv = "--remote-debugging-port=9222 --disable-extensions --disable-popup-blocking --disable-notifications "
+                Dim chrome_argv = "--remote-debugging-port=9222 --disable-popup-blocking --disable-notifications "
                 used_dev_model = devicetype
                 used_browser = "Chrome"
                 If devicetype <> "PC" Then
-                    options.EnableMobileEmulation(used_dev_model)
+                    'options.EnableMobileEmulation(used_dev_model)
+                    'Debug.WriteLine(devicetype)
+                    chrome_argv += "--user-agent=""Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1"" --disable-extensions"
 
-                    chrome_argv += "--user-agent=""Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/69.0.3497.105 Mobile/15E148 Safari/605.1"""
                 End If
+
+
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
                     running_chrome_profile_path = profile
