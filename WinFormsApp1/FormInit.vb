@@ -243,8 +243,7 @@ Module FormInit
     End Sub
 
     Public Sub Render_DevList_combobox()
-        Dim EmulatedDevices() As String = {"iPhone SE", "iPhone XR", "Pixel 5", "Samsung Galaxy S8+", "Samsung Galaxy S20 Ultra", "iPad Air",
-            "iPad Mini", "Surface Pro 7", "Surface Duo", "Galaxy Fold", "Nest Hub", "Nest Hub Max"}
+        Dim EmulatedDevices() As String = {"PC", "iPhone", "Pixel", "iPad Mini", "Surface Pro", "Nest Hub"}
 
         For Each dev In EmulatedDevices
             Form1.EmulatedDevice_ComboBox.Items.Add(dev)
