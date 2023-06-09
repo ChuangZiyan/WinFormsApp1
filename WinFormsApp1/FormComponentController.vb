@@ -114,7 +114,7 @@ Module FormComponentController
 
             Dim tmp_str = ""
             For i = 1 To item.SubItems.Count - 1
-                cmd_arrlist.Add(item.SubItems.Item(i).Text)
+                cmd_arrlist.Add(item.SubItems.Item(i).Text.Replace(vbLf, "&vbLf"))
             Next
             cmd_arrlist(5) = ""
             tmp_str = String.Join(",", cmd_arrlist.ToArray())

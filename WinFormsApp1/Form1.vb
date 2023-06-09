@@ -1334,7 +1334,7 @@ Public Class Form1
                 Dim splittedLine() As String = line.Split(",")
                 script_ListView.Items.Add(index.ToString)
                 For Each cmd In splittedLine
-                    script_ListView.Items(curr_row).SubItems.Add(cmd)
+                    script_ListView.Items(curr_row).SubItems.Add(cmd.Replace("&vbLf", vbLf))
                 Next
                 curr_row += 1
                 index += 1
