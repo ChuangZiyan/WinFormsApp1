@@ -150,12 +150,36 @@ Public Class Form1
         Dim curr_line = 0
         Dim ignore_counter = 0
         For Each item As ListViewItem In script_ListView.Items
+
+            curr_line += 1
+
+
+            ' Only Run Selected row script
+            If seleted_script_item_index <> 0 Then
+
+                If curr_line <> seleted_script_item_index Then
+                    Continue For
+                End If
+
+            End If
+
+            ' run script from input start to end
+            If Script_Start_Row_Index <> 0 Then
+
+                If curr_line < Script_Start_Row_Index Then
+                    Continue For
+                ElseIf curr_line > Script_End_Row_Index Then
+                    Continue For
+                End If
+            End If
+
+
+
             Restore_ListViewItems_BackColor()
             item.BackColor = Color.SteelBlue
             item.ForeColor = Color.White
             item.EnsureVisible()
 
-            curr_line += 1
 
 
             If Pause_Script = True Then ' Pause script
@@ -943,6 +967,13 @@ Public Class Form1
 
 
 
+    Dim seleted_script_item_index = 0
+
+    Dim Script_Start_Row_Index = 0
+    Dim Script_End_Row_Index = 0
+
+
+
     Private Sub Countdown_Toggle_Button_Click(sender As Object, e As EventArgs) Handles Countdown_Toggle_Button.Click
 
         If Exit_Program_Counter_CheckBox.Checked Or PowerOff_PC_Counter_CheckBox.Checked = True Then
@@ -1055,6 +1086,9 @@ Public Class Form1
     Private Sub Run_script_btn_Click(sender As Object, e As EventArgs) Handles Run_script_btn.Click
         script_ListView.SelectedItems.Clear()
         loop_run = CheckBox_loop_run.Checked
+        seleted_script_item_index = 0
+        Script_Start_Row_Index = 0
+        Script_End_Row_Index = 0
         'Debug.WriteLine("Loop Run : " & loop_run)
 
         If CheckBox_script_start.Checked = True Then
@@ -1068,6 +1102,33 @@ Public Class Form1
         If CheckBox_script_end.Checked = True Then
             end_time = NumericUpDown_script_end_hour.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_end_minute.Value.ToString.PadLeft(2, "0") + ":" + NumericUpDown_script_end_second.Value.ToString.PadLeft(2, "0")
             'Debug.WriteLine("end time : " + end_time)
+        End If
+
+    End Sub
+
+
+    Private Sub Run_Selected_Script_Btn_Click(sender As Object, e As EventArgs) Handles Run_Selected_Script_Btn.Click
+        For i As Integer = script_ListView.SelectedIndices.Count - 1 To 0 Step -1
+            If script_ListView.SelectedItems.Count > 0 Then
+                Dim selectedItem = script_ListView.SelectedItems.Item(0).Text
+                Debug.WriteLine(selectedItem)
+                seleted_script_item_index = CInt(selectedItem)
+                Flag_start_script = True
+            End If
+        Next
+    End Sub
+
+
+    Private Sub Run_Script_From_Input_Row_To_Row_Btn_Click(sender As Object, e As EventArgs) Handles Run_Script_From_Input_Row_To_Row_Btn.Click
+        Script_Start_Row_Index = Start_Script_Row_NumericUpDown.Value
+        Script_End_Row_Index = End_Script_Row_NumericUpDown.Value
+
+        If Script_Start_Row_Index >= Script_End_Row_Index Then
+            MsgBox("開始行數不得小於等於結束行數")
+        ElseIf Script_Start_Row_Index = 0 Or Script_End_Row_Index = 0 Then
+            MsgBox("行數不得為0")
+        Else
+            Flag_start_script = True
         End If
 
     End Sub
@@ -2462,4 +2523,6 @@ Public Class Form1
     Private Sub Insert_Check_Last_script_btn_Click(sender As Object, e As EventArgs) Handles Insert_Check_Last_script_btn.Click
         Insert_to_script("檢查", Ignore_line_count_NumericUpDown1.Value)
     End Sub
+
+
 End Class

@@ -32,6 +32,11 @@ Partial Class Form1
         Label3 = New Label()
         script_ListView = New ListView()
         GroupBox1 = New GroupBox()
+        Label79 = New Label()
+        End_Script_Row_NumericUpDown = New NumericUpDown()
+        Start_Script_Row_NumericUpDown = New NumericUpDown()
+        Run_Script_From_Input_Row_To_Row_Btn = New Button()
+        Run_Selected_Script_Btn = New Button()
         Refresh_myScript_ComboBox_Btn = New Button()
         Insert_Def_Set_Btn = New Button()
         Target_Index_Script_ListView_NummericUpDown = New NumericUpDown()
@@ -376,6 +381,8 @@ Partial Class Form1
         Timer1 = New Timer(components)
         SaveFileDialog1 = New SaveFileDialog()
         GroupBox1.SuspendLayout()
+        CType(End_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Start_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(Target_Index_Script_ListView_NummericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(NumericUpDown_script_end_second, ComponentModel.ISupportInitialize).BeginInit()
         CType(NumericUpDown_script_end_minute, ComponentModel.ISupportInitialize).BeginInit()
@@ -486,6 +493,11 @@ Partial Class Form1
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(Label79)
+        GroupBox1.Controls.Add(End_Script_Row_NumericUpDown)
+        GroupBox1.Controls.Add(Start_Script_Row_NumericUpDown)
+        GroupBox1.Controls.Add(Run_Script_From_Input_Row_To_Row_Btn)
+        GroupBox1.Controls.Add(Run_Selected_Script_Btn)
         GroupBox1.Controls.Add(Refresh_myScript_ComboBox_Btn)
         GroupBox1.Controls.Add(Insert_Def_Set_Btn)
         GroupBox1.Controls.Add(Target_Index_Script_ListView_NummericUpDown)
@@ -530,6 +542,53 @@ Partial Class Form1
         GroupBox1.TabIndex = 41
         GroupBox1.TabStop = False
         GroupBox1.Text = "腳本"
+        ' 
+        ' Label79
+        ' 
+        Label79.AutoSize = True
+        Label79.Location = New Point(369, 849)
+        Label79.Name = "Label79"
+        Label79.Size = New Size(24, 19)
+        Label79.TabIndex = 137
+        Label79.Text = "到"
+        ' 
+        ' End_Script_Row_NumericUpDown
+        ' 
+        End_Script_Row_NumericUpDown.Location = New Point(399, 846)
+        End_Script_Row_NumericUpDown.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
+        End_Script_Row_NumericUpDown.Name = "End_Script_Row_NumericUpDown"
+        End_Script_Row_NumericUpDown.Size = New Size(50, 27)
+        End_Script_Row_NumericUpDown.TabIndex = 136
+        End_Script_Row_NumericUpDown.Value = New Decimal(New Integer() {2, 0, 0, 0})
+        ' 
+        ' Start_Script_Row_NumericUpDown
+        ' 
+        Start_Script_Row_NumericUpDown.Location = New Point(313, 846)
+        Start_Script_Row_NumericUpDown.Maximum = New Decimal(New Integer() {1, 0, 0, 0})
+        Start_Script_Row_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Start_Script_Row_NumericUpDown.Name = "Start_Script_Row_NumericUpDown"
+        Start_Script_Row_NumericUpDown.Size = New Size(50, 27)
+        Start_Script_Row_NumericUpDown.TabIndex = 135
+        Start_Script_Row_NumericUpDown.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        ' 
+        ' Run_Script_From_Input_Row_To_Row_Btn
+        ' 
+        Run_Script_From_Input_Row_To_Row_Btn.Location = New Point(182, 844)
+        Run_Script_From_Input_Row_To_Row_Btn.Name = "Run_Script_From_Input_Row_To_Row_Btn"
+        Run_Script_From_Input_Row_To_Row_Btn.Size = New Size(125, 29)
+        Run_Script_From_Input_Row_To_Row_Btn.TabIndex = 134
+        Run_Script_From_Input_Row_To_Row_Btn.Text = "執行行數"
+        Run_Script_From_Input_Row_To_Row_Btn.UseVisualStyleBackColor = True
+        ' 
+        ' Run_Selected_Script_Btn
+        ' 
+        Run_Selected_Script_Btn.BackColor = SystemColors.InactiveCaption
+        Run_Selected_Script_Btn.Location = New Point(505, 22)
+        Run_Selected_Script_Btn.Name = "Run_Selected_Script_Btn"
+        Run_Selected_Script_Btn.Size = New Size(94, 29)
+        Run_Selected_Script_Btn.TabIndex = 133
+        Run_Selected_Script_Btn.Text = "執行所選"
+        Run_Selected_Script_Btn.UseVisualStyleBackColor = False
         ' 
         ' Refresh_myScript_ComboBox_Btn
         ' 
@@ -662,11 +721,11 @@ Partial Class Form1
         ' Delete_selected_item_btn
         ' 
         Delete_selected_item_btn.BackColor = Color.LightCoral
-        Delete_selected_item_btn.Location = New Point(394, 22)
+        Delete_selected_item_btn.Location = New Point(605, 22)
         Delete_selected_item_btn.Name = "Delete_selected_item_btn"
         Delete_selected_item_btn.Size = New Size(94, 29)
         Delete_selected_item_btn.TabIndex = 66
-        Delete_selected_item_btn.Text = "刪除"
+        Delete_selected_item_btn.Text = "刪除所選"
         Delete_selected_item_btn.UseVisualStyleBackColor = False
         ' 
         ' load_script_btn
@@ -3876,6 +3935,8 @@ Partial Class Form1
         Text = "Main Form"
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
+        CType(End_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
+        CType(Start_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(Target_Index_Script_ListView_NummericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(NumericUpDown_script_end_second, ComponentModel.ISupportInitialize).EndInit()
         CType(NumericUpDown_script_end_minute, ComponentModel.ISupportInitialize).EndInit()
@@ -4288,4 +4349,9 @@ Partial Class Form1
     Friend WithEvents Label78 As Label
     Friend WithEvents Ignore_line_count_NumericUpDown1 As NumericUpDown
     Friend WithEvents Insert_Check_Last_script_btn As Button
+    Friend WithEvents Run_Selected_Script_Btn As Button
+    Friend WithEvents Label79 As Label
+    Friend WithEvents End_Script_Row_NumericUpDown As NumericUpDown
+    Friend WithEvents Start_Script_Row_NumericUpDown As NumericUpDown
+    Friend WithEvents Run_Script_From_Input_Row_To_Row_Btn As Button
 End Class
