@@ -165,8 +165,8 @@ Module ScriptInsertion
                 'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
 
                 If Form1.img_CheckedListBox.GetItemChecked(i) Then
-                    Debug.WriteLine("###################")
-                    Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
+                    'Debug.WriteLine("###################")
+                    'Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
                     If img_path_str = "" Then
                         img_path_str = image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
                     Else

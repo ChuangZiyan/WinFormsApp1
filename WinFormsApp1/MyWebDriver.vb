@@ -537,7 +537,12 @@ Public Class MyWebDriver
     End Function
 
     Public Function Write_post_send_content_Task(content) As Task(Of Boolean)
-        Clipboard.SetText(content)
+        Try
+            Clipboard.SetText(content)
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+
         Return Task.Run(Function() Write_post_send_content(content))
     End Function
 
@@ -608,6 +613,18 @@ Public Class MyWebDriver
 
     Public Function Tring_to_upload_img(img_path_str) As Boolean
         Try
+            Dim my_img_files() As String = img_path_str.Split(vbLf)
+
+            For Each substring As String In my_img_files
+
+                If Not File.Exists(substring) Then
+                    'Debug.Write("not exist " + substring)
+                    Return False
+                End If
+            Next
+
+            'Return False
+
             chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
             Dim upload_img_input As Object
             If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
@@ -763,6 +780,9 @@ Public Class MyWebDriver
     End Function
 
     Public Function Send_reply_comment_Task(content)
+        If Not File.Exists(content) Then
+            Return False
+        End If
         Clipboard.SetText(content)
         Return Task.Run(Function() Send_reply_comment(content))
     End Function

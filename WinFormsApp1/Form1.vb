@@ -431,65 +431,118 @@ Public Class Form1
                         boolean_result = Await myWebDriver.Write_post_send_content_Task(File.ReadAllText(text_folder_path + TextFiles(rnd)))
                     End If
                 Case "發送上載:隨機配對"
-                    boolean_result = Await Post_Random_Match_TextAndImage(content)
+                    Try
+                        boolean_result = Await Post_Random_Match_TextAndImage(content)
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "發送上載:隨機配對多圖"
-                    boolean_result = Await Post_Random_Match_TextAndImageFolder(content)
+                    Try
+                        boolean_result = Await Post_Random_Match_TextAndImageFolder(content)
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "清空"
                     boolean_result = Await myWebDriver.Clear_post_content_Task()
                 Case "上載"
-                    boolean_result = Await myWebDriver.Tring_to_upload_img_Task(content)
+                    Try
+                        boolean_result = Await myWebDriver.Tring_to_upload_img_Task(content)
+                        Debug.WriteLine(content)
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "上載:隨機"
-                    If content = "全部隨機" Then
-                        Dim allImageFile = img_CheckedListBox.Items
-                        Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + allImageFile(rnd))
-                    Else
-                        Dim ImageFiles = content.Split(";")
-                        Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + ImageFiles(rnd))
-                    End If
+                    Try
+                        If content = "全部隨機" Then
+                            Dim allImageFile = img_CheckedListBox.Items
+                            Dim rnd = rnd_num.Next(0, allImageFile.Count)
+                            boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + allImageFile(rnd))
+                        Else
+                            Dim ImageFiles = content.Split(";")
+                            Dim rnd = rnd_num.Next(0, ImageFiles.Length)
+                            boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + ImageFiles(rnd))
+                        End If
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "插入背景"
                     boolean_result = Await myWebDriver.Insert_Post_Background_Task()
 
                 Case "回應:上載"
-                    boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + content)
+                    Try
+                        boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + content)
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "回應:上載隨機"
-                    If content = "全部隨機" Then
-                        Dim allImageFile = img_CheckedListBox.Items
-                        Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + allImageFile(rnd))
-                    Else
-                        Dim ImageFiles = content.Split(";")
-                        Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + ImageFiles(rnd))
-                    End If
+                    Try
+                        If content = "全部隨機" Then
+                            Dim allImageFile = img_CheckedListBox.Items
+                            Dim rnd = rnd_num.Next(0, allImageFile.Count)
+                            boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + allImageFile(rnd))
+                        Else
+                            Dim ImageFiles = content.Split(";")
+                            Dim rnd = rnd_num.Next(0, ImageFiles.Length)
+                            boolean_result = Await myWebDriver.Upload_reply_img_Task(image_folder_path + ImageFiles(rnd))
+                        End If
+
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
+
                 Case "限時:上載"
-                    boolean_result = Await myWebDriver.Upload_Story_img_Task(content)
+                    Try
+                        boolean_result = Await myWebDriver.Upload_Story_img_Task(content)
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "限時:隨機上載"
-                    If content = "全部隨機" Then
-                        Dim allImageFile = img_CheckedListBox.Items
-                        Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                        boolean_result = Await myWebDriver.Upload_Story_img_Task(image_folder_path + allImageFile(rnd))
-                    Else
-                        Dim ImageFiles = content.Split(";")
-                        Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                        boolean_result = Await myWebDriver.Upload_Story_img_Task(image_folder_path + ImageFiles(rnd))
-                    End If
+                    Try
+                        If content = "全部隨機" Then
+                            Dim allImageFile = img_CheckedListBox.Items
+                            Dim rnd = rnd_num.Next(0, allImageFile.Count)
+                            boolean_result = Await myWebDriver.Upload_Story_img_Task(image_folder_path + allImageFile(rnd))
+                        Else
+                            Dim ImageFiles = content.Split(";")
+                            Dim rnd = rnd_num.Next(0, ImageFiles.Length)
+                            boolean_result = Await myWebDriver.Upload_Story_img_Task(image_folder_path + ImageFiles(rnd))
+                        End If
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
 
                 Case "回應:內容"
-                    boolean_result = Await myWebDriver.Send_reply_comment_Task(content)
+                    Try
+                        boolean_result = Await myWebDriver.Send_reply_comment_Task(content)
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "回應:隨機"
-                    If content = "全部隨機" Then
-                        Dim allTextFile = Text_File_CheckedListBox.Items
-                        Dim rnd = rnd_num.Next(0, allTextFile.Count)
-                        'Debug.WriteLine("TEXT : " + allTextFile(rnd))
-                        boolean_result = Await myWebDriver.Send_reply_comment_Task(File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd)))
-                    Else
-                        Dim TextFiles = content.Split(";")
-                        Dim rnd = rnd_num.Next(0, TextFiles.Length)
-                        'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
-                        boolean_result = Await myWebDriver.Send_reply_comment_Task(File.ReadAllText(curr_path + "resources\texts\" + TextFiles(rnd)))
-                    End If
+                    Try
+                        If content = "全部隨機" Then
+                            Dim allTextFile = Text_File_CheckedListBox.Items
+                            Dim rnd = rnd_num.Next(0, allTextFile.Count)
+                            'Debug.WriteLine("TEXT : " + allTextFile(rnd))
+                            boolean_result = Await myWebDriver.Send_reply_comment_Task(File.ReadAllText(curr_path + "resources\texts\" + allTextFile(rnd)))
+                        Else
+                            Dim TextFiles = content.Split(";")
+                            Dim rnd = rnd_num.Next(0, TextFiles.Length)
+                            'content_RichTextBox.Text = File.ReadAllText(TextFiles(rnd))
+                            boolean_result = Await myWebDriver.Send_reply_comment_Task(File.ReadAllText(curr_path + "resources\texts\" + TextFiles(rnd)))
+                        End If
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "回應:隨機配對"
                     boolean_result = Await myWebDriver.Reply_Random_Match_TextAndImage(content)
 
@@ -502,7 +555,6 @@ Public Class Form1
                         'x1iyjqo2 x1emribx x1xmf6yo x1e56ztr
 
                         For i = 0 To 15
-                            Debug.WriteLine("TRYYYYYYYYYYYYYY")
                             Await Delay_msec(2000)
 
                             If Await myWebDriver.IsElementPresentByClass_Task(".x1iyjqo2.x1emribx.x1xmf6yo.x1e56ztr") = False Then
@@ -1492,7 +1544,12 @@ Public Class Form1
     End Sub
 
     Private Sub img_CheckedListBox_Click(sender As Object, e As EventArgs) Handles img_CheckedListBox.SelectedIndexChanged
-        FormComponentController.Img_CheckedListBox_Click()
+        Try
+            FormComponentController.Img_CheckedListBox_Click()
+        Catch ex As Exception
+            MsgBox("File not exist")
+        End Try
+
     End Sub
 
     Private Sub Insert_send_Random_content_TextFile_btn_Click(sender As Object, e As EventArgs) Handles Insert_send_Random_content_TextFile_btn.Click
