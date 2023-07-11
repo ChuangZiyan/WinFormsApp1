@@ -2581,5 +2581,25 @@ Public Class Form1
         Insert_to_script("檢查", Ignore_line_count_NumericUpDown1.Value)
     End Sub
 
+    Private Sub Delete_selected_image_Btn_Click(sender As Object, e As EventArgs) Handles Delete_selected_image_Btn.Click
+        Dim filePath As String = ""
+        For Each itemSeleted In img_CheckedListBox.SelectedItems
+            filePath = FormInit.image_folder_path + itemSeleted
+            'Debug.WriteLine(filePath)
+        Next
 
+        If File.Exists(filePath) Then
+            Dim result As DialogResult = MessageBox.Show("確定要刪除圖片嗎?", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                File.Delete(filePath)
+                Selected_PictureBox.Image = Nothing
+                img_CheckedListBox.Items.Clear()
+                FormInit.Render_img_listbox()
+            End If
+        Else
+            MsgBox("找不到指定的檔案。")
+        End If
+
+
+    End Sub
 End Class

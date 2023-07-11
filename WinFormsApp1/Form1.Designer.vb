@@ -380,6 +380,7 @@ Partial Class Form1
         Script_File_ListBox = New ListBox()
         Timer1 = New Timer(components)
         SaveFileDialog1 = New SaveFileDialog()
+        Delete_selected_image_Btn = New Button()
         GroupBox1.SuspendLayout()
         CType(End_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(Start_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -1741,6 +1742,7 @@ Partial Class Form1
         ' 
         ' TabPage3
         ' 
+        TabPage3.Controls.Add(Delete_selected_image_Btn)
         TabPage3.Controls.Add(comment_row_Numer)
         TabPage3.Controls.Add(Insert_share_url_btn)
         TabPage3.Controls.Add(Insert_Random_Post_Background_Btn)
@@ -2237,7 +2239,7 @@ Partial Class Form1
         Selected_PictureBox.BorderStyle = BorderStyle.Fixed3D
         Selected_PictureBox.Location = New Point(365, 263)
         Selected_PictureBox.Name = "Selected_PictureBox"
-        Selected_PictureBox.Size = New Size(296, 237)
+        Selected_PictureBox.Size = New Size(296, 202)
         Selected_PictureBox.SizeMode = PictureBoxSizeMode.Zoom
         Selected_PictureBox.TabIndex = 106
         Selected_PictureBox.TabStop = False
@@ -3923,6 +3925,16 @@ Partial Class Form1
         Timer1.Enabled = True
         Timer1.Interval = 1000
         ' 
+        ' Delete_selected_image_Btn
+        ' 
+        Delete_selected_image_Btn.BackColor = Color.LightCoral
+        Delete_selected_image_Btn.Location = New Point(550, 468)
+        Delete_selected_image_Btn.Name = "Delete_selected_image_Btn"
+        Delete_selected_image_Btn.Size = New Size(110, 29)
+        Delete_selected_image_Btn.TabIndex = 129
+        Delete_selected_image_Btn.Text = "刪除此圖片"
+        Delete_selected_image_Btn.UseVisualStyleBackColor = False
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -4354,4 +4366,5 @@ Partial Class Form1
     Friend WithEvents End_Script_Row_NumericUpDown As NumericUpDown
     Friend WithEvents Start_Script_Row_NumericUpDown As NumericUpDown
     Friend WithEvents Run_Script_From_Input_Row_To_Row_Btn As Button
+    Friend WithEvents Delete_selected_image_Btn As Button
 End Class

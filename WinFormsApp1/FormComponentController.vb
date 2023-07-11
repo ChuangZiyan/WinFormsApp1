@@ -405,11 +405,13 @@ Module FormComponentController
 
         If allowed_video_extentions.Contains(Path.GetExtension(image_folder_path + Img_file_path)) Then ' if video
             'Debug.WriteLine("it's video")
-            Form1.Selected_PictureBox.Cursor = Cursors.Hand
-            Form1.Selected_PictureBox.Image = Image.FromFile(My.Computer.FileSystem.CurrentDirectory + "\images\PlayVideo.jpg")
+            'Form1.Selected_PictureBox.Cursor = Cursors.Hand
+            'Form1.Selected_PictureBox.Image = Image.FromFile(My.Computer.FileSystem.CurrentDirectory + "\images\PlayVideo.jpg")
+            Form1.Selected_PictureBox.ImageLocation = My.Computer.FileSystem.CurrentDirectory + "\images\PlayVideo.jpg"
         Else
-            Form1.Selected_PictureBox.Cursor = Cursors.Default
-            Form1.Selected_PictureBox.Image = Image.FromFile(image_folder_path + Img_file_path) ' image 
+            'Form1.Selected_PictureBox.Cursor = Cursors.Default
+            'Form1.Selected_PictureBox.Image = Image.FromFile(image_folder_path + Img_file_path) ' image 
+            Form1.Selected_PictureBox.ImageLocation = image_folder_path + Img_file_path
         End If
 
     End Sub
