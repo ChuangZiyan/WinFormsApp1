@@ -79,6 +79,11 @@ Partial Class Form1
         cmd_GroupBox = New GroupBox()
         TabControl2 = New TabControl()
         TabPage5 = New TabPage()
+        GroupBox7 = New GroupBox()
+        TextBox1 = New TextBox()
+        Manual_ChromeDriver_RadioButton1 = New RadioButton()
+        Auto_ChromeDriver_RadioButton1 = New RadioButton()
+        Label80 = New Label()
         Label78 = New Label()
         Ignore_line_count_NumericUpDown1 = New NumericUpDown()
         Insert_Check_Last_script_btn = New Button()
@@ -157,6 +162,7 @@ Partial Class Form1
         wait_hour_NumericUpDown = New NumericUpDown()
         Label9 = New Label()
         TabPage3 = New TabPage()
+        Delete_selected_image_Btn = New Button()
         comment_row_Numer = New NumericUpDown()
         Insert_share_url_btn = New Button()
         Insert_Random_Post_Background_Btn = New Button()
@@ -380,7 +386,6 @@ Partial Class Form1
         Script_File_ListBox = New ListBox()
         Timer1 = New Timer(components)
         SaveFileDialog1 = New SaveFileDialog()
-        Delete_selected_image_Btn = New Button()
         GroupBox1.SuspendLayout()
         CType(End_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(Start_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -394,6 +399,7 @@ Partial Class Form1
         cmd_GroupBox.SuspendLayout()
         TabControl2.SuspendLayout()
         TabPage5.SuspendLayout()
+        GroupBox7.SuspendLayout()
         CType(Ignore_line_count_NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         CType(mySecondsCounter_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(myMinutesCounter_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -972,6 +978,8 @@ Partial Class Form1
         ' 
         ' TabPage5
         ' 
+        TabPage5.Controls.Add(GroupBox7)
+        TabPage5.Controls.Add(Label80)
         TabPage5.Controls.Add(Label78)
         TabPage5.Controls.Add(Ignore_line_count_NumericUpDown1)
         TabPage5.Controls.Add(Insert_Check_Last_script_btn)
@@ -1058,6 +1066,55 @@ Partial Class Form1
         TabPage5.TabIndex = 2
         TabPage5.Text = "瀏覽器與通用"
         TabPage5.UseVisualStyleBackColor = True
+        ' 
+        ' GroupBox7
+        ' 
+        GroupBox7.Controls.Add(TextBox1)
+        GroupBox7.Controls.Add(Manual_ChromeDriver_RadioButton1)
+        GroupBox7.Controls.Add(Auto_ChromeDriver_RadioButton1)
+        GroupBox7.Location = New Point(594, 8)
+        GroupBox7.Name = "GroupBox7"
+        GroupBox7.Size = New Size(301, 59)
+        GroupBox7.TabIndex = 159
+        GroupBox7.TabStop = False
+        ' 
+        ' TextBox1
+        ' 
+        TextBox1.Location = New Point(163, 21)
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(132, 27)
+        TextBox1.TabIndex = 2
+        ' 
+        ' Manual_ChromeDriver_RadioButton1
+        ' 
+        Manual_ChromeDriver_RadioButton1.AutoSize = True
+        Manual_ChromeDriver_RadioButton1.Location = New Point(67, 23)
+        Manual_ChromeDriver_RadioButton1.Name = "Manual_ChromeDriver_RadioButton1"
+        Manual_ChromeDriver_RadioButton1.Size = New Size(90, 23)
+        Manual_ChromeDriver_RadioButton1.TabIndex = 1
+        Manual_ChromeDriver_RadioButton1.TabStop = True
+        Manual_ChromeDriver_RadioButton1.Text = "指定版本"
+        Manual_ChromeDriver_RadioButton1.UseVisualStyleBackColor = True
+        ' 
+        ' Auto_ChromeDriver_RadioButton1
+        ' 
+        Auto_ChromeDriver_RadioButton1.AutoSize = True
+        Auto_ChromeDriver_RadioButton1.Location = New Point(6, 23)
+        Auto_ChromeDriver_RadioButton1.Name = "Auto_ChromeDriver_RadioButton1"
+        Auto_ChromeDriver_RadioButton1.Size = New Size(60, 23)
+        Auto_ChromeDriver_RadioButton1.TabIndex = 0
+        Auto_ChromeDriver_RadioButton1.TabStop = True
+        Auto_ChromeDriver_RadioButton1.Text = "自動"
+        Auto_ChromeDriver_RadioButton1.UseVisualStyleBackColor = True
+        ' 
+        ' Label80
+        ' 
+        Label80.AutoSize = True
+        Label80.Location = New Point(439, 33)
+        Label80.Name = "Label80"
+        Label80.Size = New Size(149, 19)
+        Label80.TabIndex = 158
+        Label80.Text = "ChromeDriver版本 : "
         ' 
         ' Label78
         ' 
@@ -1808,6 +1865,16 @@ Partial Class Form1
         TabPage3.TabIndex = 0
         TabPage3.Text = "發文發圖"
         TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' Delete_selected_image_Btn
+        ' 
+        Delete_selected_image_Btn.BackColor = Color.LightCoral
+        Delete_selected_image_Btn.Location = New Point(550, 468)
+        Delete_selected_image_Btn.Name = "Delete_selected_image_Btn"
+        Delete_selected_image_Btn.Size = New Size(110, 29)
+        Delete_selected_image_Btn.TabIndex = 129
+        Delete_selected_image_Btn.Text = "刪除此圖片"
+        Delete_selected_image_Btn.UseVisualStyleBackColor = False
         ' 
         ' comment_row_Numer
         ' 
@@ -3925,16 +3992,6 @@ Partial Class Form1
         Timer1.Enabled = True
         Timer1.Interval = 1000
         ' 
-        ' Delete_selected_image_Btn
-        ' 
-        Delete_selected_image_Btn.BackColor = Color.LightCoral
-        Delete_selected_image_Btn.Location = New Point(550, 468)
-        Delete_selected_image_Btn.Name = "Delete_selected_image_Btn"
-        Delete_selected_image_Btn.Size = New Size(110, 29)
-        Delete_selected_image_Btn.TabIndex = 129
-        Delete_selected_image_Btn.Text = "刪除此圖片"
-        Delete_selected_image_Btn.UseVisualStyleBackColor = False
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -3960,6 +4017,8 @@ Partial Class Form1
         TabControl2.ResumeLayout(False)
         TabPage5.ResumeLayout(False)
         TabPage5.PerformLayout()
+        GroupBox7.ResumeLayout(False)
+        GroupBox7.PerformLayout()
         CType(Ignore_line_count_NumericUpDown1, ComponentModel.ISupportInitialize).EndInit()
         CType(mySecondsCounter_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(myMinutesCounter_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
@@ -4367,4 +4426,9 @@ Partial Class Form1
     Friend WithEvents Start_Script_Row_NumericUpDown As NumericUpDown
     Friend WithEvents Run_Script_From_Input_Row_To_Row_Btn As Button
     Friend WithEvents Delete_selected_image_Btn As Button
+    Friend WithEvents Label80 As Label
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Manual_ChromeDriver_RadioButton1 As RadioButton
+    Friend WithEvents Auto_ChromeDriver_RadioButton1 As RadioButton
 End Class
