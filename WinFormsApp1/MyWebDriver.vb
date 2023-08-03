@@ -100,10 +100,13 @@ Public Class MyWebDriver
 
         If browser = "Chrome" Then
             Try
+                '########### ChromeDriver Manger ##################
                 Dim driverManager = New DriverManager()
-                driverManager.SetUpDriver(New ChromeConfig(), "115.0.5790.99") 'Use specify version.
-                'driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
-                'driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+                'driverManager.SetUpDriver(New ChromeConfig(), "115.0.5790.99") 'Use specify version.
+                driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
+                'driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchngBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+                '#################################################
+
                 Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
                 serv.HideCommandPromptWindow = True 'hide cmd
                 Dim options = New Chrome.ChromeOptions()
