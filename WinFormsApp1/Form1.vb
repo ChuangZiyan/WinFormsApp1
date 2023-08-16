@@ -53,7 +53,7 @@ Public Class Form1
 
     Public Profile_Queue() As String
 
-    'Dim act = New Actions(chromeDriver)
+    'Dim act = New Actions(chromeDriver)e
     Public act As Actions
 
 
@@ -2667,6 +2667,42 @@ Public Class Form1
         End If
 
 
+    End Sub
+
+    Private Sub Reveal_Product_Dir_Button_Click(sender As Object, e As EventArgs) Handles Reveal_Product_Dir_Button.Click
+        Dim Product_Profile_Path As String = ""
+        For Each itemSeleted In Product_List_CheckedListBox.SelectedItems
+            Product_Profile_Path = FormInit.product_dir_path + itemSeleted
+        Next
+
+        If Product_Profile_Path = "" Then
+            MsgBox("未選取資料夾")
+        End If
+
+        If System.IO.Directory.Exists(Product_Profile_Path) Then
+            Process.Start("explorer.exe", Product_Profile_Path)
+        End If
 
     End Sub
+
+    Private Sub Delete_Selected_Product_Folder_Button_Click(sender As Object, e As EventArgs) Handles Delete_Selected_Product_Folder_Button.Click
+        For Each itemSelected In Product_List_CheckedListBox.SelectedItems
+            Dim Product_Dir_path = FormInit.product_dir_path + itemSelected
+            If Directory.Exists(Product_Dir_path) Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除此資料夾?", "確認訊息", MessageBoxButtons.YesNo)
+                If result = DialogResult.Yes Then
+                    Debug.WriteLine("Delete : " + Product_Dir_path)
+                    'Delete a Directory
+                    Directory.Delete(Product_Dir_path, True)
+                    Product_List_CheckedListBox.Items.Clear()
+                    Render_Product_List_CheckedListBox()
+                    Exit Sub
+                End If
+
+            End If
+        Next
+    End Sub
+
+
+
 End Class
