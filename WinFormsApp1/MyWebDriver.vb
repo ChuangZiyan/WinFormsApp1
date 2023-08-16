@@ -528,8 +528,8 @@ Public Class MyWebDriver
 
                 msgbox_ele = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
             End If
-            Debug.WriteLine("msgbox : ")
-            Debug.WriteLine(msgbox_ele(0))
+            'Debug.WriteLine("msgbox : ")
+            'Debug.WriteLine(msgbox_ele(0))
             msgbox_ele(0).SendKeys(Keys.Enter)
             Return True
 

@@ -27,6 +27,7 @@ Imports System.Collections.Specialized
 Imports System.Reflection.Metadata
 Imports System.Buffers
 Imports ICSharpCode.SharpZipLib.Zip
+Imports System.Text.Json
 
 Public Class Form1
 
@@ -2599,6 +2600,72 @@ Public Class Form1
         Else
             MsgBox("找不到指定的檔案。")
         End If
+
+
+    End Sub
+
+    Private Sub Save_Product_Profile_To_File_Button_Click(sender As Object, e As EventArgs) Handles Save_Product_Profile_To_File_Button.Click
+
+        Dim Product_Profile As New With {
+            .ProductName = Pruduct_Name_TextBox.Text,
+            .ProductPrice = Product_Price_TextBox.Text,
+            .ProductLocated = Product_Located_TextBox.Text,
+            .ProdcutDescription = Product_Description_RichTextBox.Text
+           }
+
+        Dim jsonStr As String = System.Text.Json.JsonSerializer.Serialize(Product_Profile)
+        Dim selectedText = ""
+        For Each selectedItem As Object In Product_List_CheckedListBox.SelectedItems
+            selectedText = selectedItem.ToString()
+            MessageBox.Show("Selected item: " & selectedText)
+        Next
+
+        If selectedText = "" Then
+            MsgBox("未選取要儲存的資料夾")
+        End If
+
+
+        Dim FilePath As String = FormInit.product_dir_path + selectedText + "\ProductProfile.json"
+
+        MsgBox(FilePath)
+
+        WriteAllText(FilePath, jsonStr)
+
+
+
+    End Sub
+
+
+    Public Class PruductProfileDataType
+        Public Property ProductName As String
+        Public Property ProductPrice As String
+        Public Property ProductLocated As String
+        Public Property ProdcutDescription As String
+    End Class
+
+    Private Sub Product_List_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Product_List_CheckedListBox.SelectedIndexChanged
+        Dim Product_Profile_Path As String = ""
+        For Each itemSeleted In Product_List_CheckedListBox.SelectedItems
+            Product_Profile_Path = FormInit.product_dir_path + itemSeleted + "\ProductProfile.json"
+        Next
+
+        If File.Exists(Product_Profile_Path) Then
+            Dim jsonString = File.ReadAllText(Product_Profile_Path)
+
+            Dim jsonData As PruductProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of PruductProfileDataType)(jsonString)
+
+            Pruduct_Name_TextBox.Text = jsonData.ProductName
+            Product_Price_TextBox.Text = jsonData.ProductPrice
+            Product_Located_TextBox.Text = jsonData.ProductLocated
+            Product_Description_RichTextBox.Text = jsonData.ProdcutDescription
+        Else
+            'MsgBox("File not exists")
+            Pruduct_Name_TextBox.Clear()
+            Product_Price_TextBox.Clear()
+            Product_Located_TextBox.Clear()
+            Product_Description_RichTextBox.Clear()
+        End If
+
 
 
     End Sub

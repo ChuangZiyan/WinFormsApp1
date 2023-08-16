@@ -16,6 +16,8 @@ Module FormInit
 
     Public user_agent_file_path = curr_path + "user_agent_argv\"
 
+    Public product_dir_path = curr_path + "products\"
+
 
     Public Sub FormInit_Render_All()
 
@@ -42,6 +44,9 @@ Module FormInit
         Render_My_Script_ListBox()
         Render_Script_File_Queue_ListView()
         Render_MyScript_Queue_ComboBox()
+
+
+        Render_Product_List_CheckedListBox()
 
 
         Form1.Selection_Item_ComboBox.Text = "搜尋"
@@ -159,8 +164,15 @@ Module FormInit
             System.IO.Directory.CreateDirectory(myscript_queue_path)
         End If
 
+        If Not System.IO.Directory.Exists(product_dir_path) Then
+            System.IO.Directory.CreateDirectory(product_dir_path)
+        End If
+
+
+
 
     End Sub
+
 
     Public Sub Render_profile_CheckedListBox()
         Form1.Profile_CheckedListBox.Items.Clear()
@@ -408,6 +420,18 @@ Module FormInit
                 Form1.script_queue_ComboBox.Items.Add(Path.GetFileName(file))
             End If
 
+        Next
+
+    End Sub
+
+
+    Public Sub Render_Product_List_CheckedListBox()
+        'Product_List_CheckedListBox
+        Dim dirs() As String = IO.Directory.GetDirectories(product_dir_path)
+
+        For Each dir As String In dirs
+            'Debug.WriteLine(dir)
+            Form1.Product_List_CheckedListBox.Items.Add(Path.GetFileName(dir))
         Next
 
     End Sub
