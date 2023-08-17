@@ -784,6 +784,13 @@ Public Class Form1
                         boolean_result = False
                     End Try
 
+                Case "拍賣"
+                    Try
+                        boolean_result = Await myWebDriver.Post_Product_Profile_To_Group_Task(content)
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
 
             End Select
             If boolean_result = True Then 'record the result
@@ -2703,6 +2710,38 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub Check_All_Product_Item_Btn_Click(sender As Object, e As EventArgs) Handles Check_All_Product_Item_Btn.Click
+        For i As Integer = 0 To Product_List_CheckedListBox.Items.Count - 1
+            Product_List_CheckedListBox.SetItemChecked(i, True)
+        Next
+    End Sub
+
+    Private Sub UnCheck_All_Product_Item_Btn_Click(sender As Object, e As EventArgs) Handles UnCheck_All_Product_Item_Btn.Click
+        For i As Integer = 0 To Product_List_CheckedListBox.Items.Count - 1
+            Product_List_CheckedListBox.SetItemChecked(i, False)
+        Next
+    End Sub
+
+    Private Sub Insert_Sale_Product_To_Script_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Sale_Product_To_Script_Btn.Click
 
 
+        Dim product_folders As String = ""
+        For Each checkedItem As Object In Product_List_CheckedListBox.CheckedItems
+            Dim checkedText As String = checkedItem.ToString()
+            Debug.WriteLine("Checked item: " & checkedText)
+            product_folders += checkedText + ";"
+        Next
+
+        If Fb_Sale_Group_Url_ComboBox.Text = "" Then
+            MsgBox("未選擇網址")
+            Exit Sub
+        End If
+
+        If product_folders = "" Then
+            MsgBox("未選擇商品")
+            Exit Sub
+        End If
+
+        Insert_to_script("拍賣", Fb_Sale_Group_Url_ComboBox.Text + ";" + product_folders)
+    End Sub
 End Class
