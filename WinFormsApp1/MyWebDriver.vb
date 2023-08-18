@@ -1130,7 +1130,7 @@ Public Class MyWebDriver
                 Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
                 For Each img As String In imgfiles
                     'Debug.WriteLine(file)
-                    If {".jpg", ".jpeg", ".png"}.Contains(Path.GetExtension(img)) Then
+                    If {".jpg", ".jpeg", ".png", ".mp4"}.Contains(Path.GetExtension(img)) Then
                         Debug.WriteLine(img)
                         chromeDriver.FindElement(By.CssSelector("#photo_input")).SendKeys(img)
                     End If
