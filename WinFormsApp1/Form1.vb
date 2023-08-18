@@ -786,7 +786,12 @@ Public Class Form1
 
                 Case "拍賣"
                     Try
-                        boolean_result = Await myWebDriver.Post_Product_Profile_To_Group_Task(content)
+                        Dim my_list = content.Split(";")
+                        Debug.WriteLine("URL : " + my_list(0))
+                        Dim pruduct_folders = my_list(1).Split("/")
+                        Dim rnd = rnd_num.Next(0, pruduct_folders.Length - 1)
+                        Await myWebDriver.Navigate_GoToUrl_Task(my_list(0))
+                        boolean_result = Await myWebDriver.Post_Product_Profile_To_Group_Task(pruduct_folders(rnd))
                     Catch ex As Exception
                         boolean_result = False
                     End Try
@@ -2729,7 +2734,7 @@ Public Class Form1
         For Each checkedItem As Object In Product_List_CheckedListBox.CheckedItems
             Dim checkedText As String = checkedItem.ToString()
             Debug.WriteLine("Checked item: " & checkedText)
-            product_folders += checkedText + ";"
+            product_folders += checkedText + "/"
         Next
 
         If Fb_Sale_Group_Url_ComboBox.Text = "" Then

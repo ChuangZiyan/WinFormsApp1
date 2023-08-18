@@ -288,7 +288,7 @@ Public Class MyWebDriver
             Return Task.Run(Function() click_by_span_text(text))
         End If
 
-        Return False
+
     End Function
 
     Public Function click_by_aria_label(str As String) As Boolean
@@ -1110,9 +1110,46 @@ Public Class MyWebDriver
     Public Function Post_Product_Profile_To_Group(content)
         Debug.WriteLine(content)
         Try
-            Dim my_list = content.Split(";")
-            Debug.WriteLine("URL : " + my_list(0))
-            'Navigate_GoToUrl_Task("")
+            Thread.Sleep(2000)
+            chromeDriver.FindElement(By.CssSelector("#MRoot > div > div.async_composer > div.structuredPublisher.feedRevampPadding._3b9 > table > tbody > tr > td:nth-child(1) > button")).Click()
+
+            Dim Product_Profile_Path = FormInit.product_dir_path + content + "\ProductProfile.json"
+            If File.Exists(Product_Profile_Path) Then
+                Dim jsonString = File.ReadAllText(Product_Profile_Path)
+
+                Dim jsonData As Form1.PruductProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of Form1.PruductProfileDataType)(jsonString)
+
+                chromeDriver.FindElement(By.CssSelector("input[name$='composer_attachment_sell_title']")).SendKeys(jsonData.ProductName)
+
+                chromeDriver.FindElement(By.CssSelector("input[placeholder$='價格']")).SendKeys(jsonData.ProductPrice)
+
+                chromeDriver.FindElement(By.CssSelector("input[name$='composer_attachment_sell_pickup_note']")).SendKeys(jsonData.ProductLocated)
+
+                chromeDriver.FindElement(By.CssSelector("textarea[data-sigil$='composer-textarea m-textarea-input']")).SendKeys(jsonData.ProdcutDescription)
+
+                Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
+                For Each img As String In imgfiles
+                    'Debug.WriteLine(file)
+                    If {".jpg", ".jpeg", ".png"}.Contains(Path.GetExtension(img)) Then
+                        Debug.WriteLine(img)
+                        chromeDriver.FindElement(By.CssSelector("#photo_input")).SendKeys(img)
+                    End If
+
+                Next
+
+                For i = 0 To 10
+                    Thread.Sleep(2000)
+                    Try
+                        chromeDriver.FindElement(By.CssSelector("button[value$='發佈']")).Click()
+                        Exit For
+                    Catch ex As Exception
+
+                    End Try
+
+                Next
+
+            End If
+
             Return True
         Catch ex As Exception
             Return False

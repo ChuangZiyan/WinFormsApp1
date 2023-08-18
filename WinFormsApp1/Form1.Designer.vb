@@ -2415,7 +2415,7 @@ Partial Class Form1
         'Fb_Sale_Group_Url_ComboBox
         '
         Me.Fb_Sale_Group_Url_ComboBox.FormattingEnabled = True
-        Me.Fb_Sale_Group_Url_ComboBox.Items.AddRange(New Object() {"www.fb.常用網址1.com", "www.fb.常用網址2.com", "www.fb.常用網址3.com"})
+        Me.Fb_Sale_Group_Url_ComboBox.Items.AddRange(New Object() {"https://m.facebook.com/groups/1448001268623486", "https://m.facebook.com/groups/1821823278043236"})
         Me.Fb_Sale_Group_Url_ComboBox.Location = New System.Drawing.Point(136, 32)
         Me.Fb_Sale_Group_Url_ComboBox.Name = "Fb_Sale_Group_Url_ComboBox"
         Me.Fb_Sale_Group_Url_ComboBox.Size = New System.Drawing.Size(532, 27)
