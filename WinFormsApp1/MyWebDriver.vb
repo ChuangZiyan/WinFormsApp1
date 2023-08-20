@@ -1103,11 +1103,12 @@ Public Class MyWebDriver
     End Function
 
 
-    Public Function Post_Product_Profile_To_Group_Task(content)
-        Return Task.Run(Function() Post_Product_Profile_To_Group(content))
+    Public Function Upload_Product_Profile_To_Group_Task(content)
+        Return Task.Run(Function() Upload_Product_Profile_To_Group(content))
     End Function
 
-    Public Function Post_Product_Profile_To_Group(content)
+
+    Public Function Upload_Product_Profile_To_Group(content)
         Debug.WriteLine(content)
         Try
             Thread.Sleep(2000)
@@ -1137,14 +1138,87 @@ Public Class MyWebDriver
 
                 Next
 
-                For i = 0 To 10
-                    Thread.Sleep(2000)
-                    Try
-                        chromeDriver.FindElement(By.CssSelector("button[value$='發佈']")).Click()
-                        Exit For
-                    Catch ex As Exception
+            End If
 
-                    End Try
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+
+
+    Public Function Click_Post_Product_Task()
+        Return Task.Run(Function() Click_Post_Product())
+    End Function
+
+
+    Public Function Click_Post_Product()
+        Try
+            For i = 0 To 10
+                Thread.Sleep(2000)
+                Try
+                    chromeDriver.FindElement(By.CssSelector("button[value$='發佈']")).Click()
+                    Return True
+                Catch ex As Exception
+
+                End Try
+
+            Next
+
+            Return False
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
+
+
+    Public Function Upload_Product_Profile_To_Group_IPhone_Task(content)
+        Return Task.Run(Function() Upload_Product_Profile_To_Group_IPhone(content))
+    End Function
+
+
+    Public Function Upload_Product_Profile_To_Group_IPhone(content)
+        Debug.WriteLine(content)
+        Try
+            Thread.Sleep(2000)
+            chromeDriver.FindElement(By.CssSelector("#screen-root > div > div:nth-child(2) > div:nth-child(6) > div")).Click()
+
+            'Return True
+
+            Dim Product_Profile_Path = FormInit.product_dir_path + content + "\ProductProfile.json"
+            If File.Exists(Product_Profile_Path) Then
+                Dim jsonString = File.ReadAllText(Product_Profile_Path)
+
+                Dim jsonData As Form1.PruductProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of Form1.PruductProfileDataType)(jsonString)
+
+                chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[3]/input")).SendKeys(jsonData.ProductName)
+
+                chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[7]/input")).SendKeys(jsonData.ProductPrice)
+
+                chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[10]/div[2]/input")).SendKeys(jsonData.ProductLocated)
+
+                chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[14]/textarea")).SendKeys(jsonData.ProdcutDescription)
+
+
+                Return True
+
+                Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
+                For Each img As String In imgfiles
+                    Debug.WriteLine("##########")
+                    If {".jpg", ".jpeg", ".png", ".mp4"}.Contains(Path.GetExtension(img)) Then
+                        Debug.WriteLine(img)
+                        chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[15]")).Click()
+                        Thread.Sleep(1000)
+                        chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div[2]/div[2]/div/div/div/div[2]")).Click()
+
+                        Return True
+                        'Thread.Sleep(1000)
+                        'chromeDriver.FindElement(By.XPath("//*[@id=""app-body""]/input")).SendKeys(img)
+
+                    End If
 
                 Next
 
@@ -1155,5 +1229,6 @@ Public Class MyWebDriver
             Return False
         End Try
     End Function
+
 
 End Class

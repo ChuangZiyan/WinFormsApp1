@@ -784,18 +784,30 @@ Public Class Form1
                         boolean_result = False
                     End Try
 
-                Case "拍賣"
+                Case "拍賣:上載"
                     Try
                         Dim my_list = content.Split(";")
                         Debug.WriteLine("URL : " + my_list(0))
                         Dim pruduct_folders = my_list(1).Split("/")
                         Dim rnd = rnd_num.Next(0, pruduct_folders.Length - 1)
                         Await myWebDriver.Navigate_GoToUrl_Task(my_list(0))
-                        boolean_result = Await myWebDriver.Post_Product_Profile_To_Group_Task(pruduct_folders(rnd))
+                        boolean_result = Await myWebDriver.Upload_Product_Profile_To_Group_Task(pruduct_folders(rnd))
                     Catch ex As Exception
                         boolean_result = False
                     End Try
-
+                Case "拍賣:按發布"
+                    boolean_result = Await myWebDriver.Click_Post_Product_Task()
+                Case "拍賣:IPhone上載"
+                    Try
+                        Dim my_list = content.Split(";")
+                        Debug.WriteLine("URL : " + my_list(0))
+                        Dim pruduct_folders = my_list(1).Split("/")
+                        Dim rnd = rnd_num.Next(0, pruduct_folders.Length - 1)
+                        Await myWebDriver.Navigate_GoToUrl_Task(my_list(0))
+                        boolean_result = Await myWebDriver.Upload_Product_Profile_To_Group_IPhone_Task(pruduct_folders(rnd))
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
 
             End Select
             If boolean_result = True Then 'record the result
@@ -2727,7 +2739,7 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub Insert_Sale_Product_To_Script_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Sale_Product_To_Script_Btn.Click
+    Private Sub Insert_Sale_Product_To_Script_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Upload_Product_Profile_To_Script_Btn.Click
 
 
         Dim product_folders As String = ""
@@ -2747,6 +2759,35 @@ Public Class Form1
             Exit Sub
         End If
 
-        Insert_to_script("拍賣", Fb_Sale_Group_Url_ComboBox.Text + ";" + product_folders)
+        Insert_to_script("拍賣:上載", Fb_Sale_Group_Url_ComboBox.Text + ";" + product_folders)
+    End Sub
+
+    Private Sub Insert_Post_Product_btn_Click(sender As Object, e As EventArgs) Handles Insert_Post_Product_btn.Click
+        Insert_to_script("拍賣:按發布", "")
+    End Sub
+
+    Private Sub Insert_IPhone_Upload_Product_Profile_To_Script_Btn_Click(sender As Object, e As EventArgs) Handles Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Click
+        Dim product_folders As String = ""
+        For Each checkedItem As Object In Product_List_CheckedListBox.CheckedItems
+            Dim checkedText As String = checkedItem.ToString()
+            Debug.WriteLine("Checked item: " & checkedText)
+            product_folders += checkedText + "/"
+        Next
+
+        If Fb_Sale_Group_Url_ComboBox.Text = "" Then
+            MsgBox("未選擇網址")
+            Exit Sub
+        End If
+
+        If product_folders = "" Then
+            MsgBox("未選擇商品")
+            Exit Sub
+        End If
+
+        Insert_to_script("拍賣:IPhone上載", Fb_Sale_Group_Url_ComboBox.Text + ";" + product_folders)
+    End Sub
+
+    Private Sub Insert_IPhone_Post_Product_btn_Click(sender As Object, e As EventArgs) Handles Insert_IPhone_Post_Product_btn.Click
+        Insert_to_script("拍賣:IPhone按發布", "")
     End Sub
 End Class
