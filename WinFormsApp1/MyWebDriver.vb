@@ -1104,44 +1104,57 @@ Public Class MyWebDriver
 
 
     Public Function Upload_Product_Profile_To_Group_Task(content)
-        Return Task.Run(Function() Upload_Product_Profile_To_Group(content))
+        Try
+            Dim Product_Profile_Path = FormInit.product_dir_path + content + "\ProductProfile.json"
+            If File.Exists(Product_Profile_Path) Then
+                chromeDriver.FindElement(By.CssSelector("#MRoot > div > div.async_composer > div.structuredPublisher.feedRevampPadding._3b9 > table > tbody > tr > td:nth-child(1) > button")).Click()
+                Dim jsonString = File.ReadAllText(Product_Profile_Path)
+                Dim jsonData As Form1.PruductProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of Form1.PruductProfileDataType)(jsonString)
+                Clipboard.SetText(jsonData.ProductName)
+                chromeDriver.FindElement(By.CssSelector("input[name$='composer_attachment_sell_title']")).SendKeys(Keys.LeftControl + "V")
+                Clipboard.SetText(jsonData.ProdcutDescription)
+                Return Task.Run(Function() Upload_Product_Profile_To_Group(content, jsonData))
+            End If
+        Catch ex As Exception
+            Return False
+        End Try
+
+        Return False
     End Function
 
 
-    Public Function Upload_Product_Profile_To_Group(content)
+    Public Function Upload_Product_Profile_To_Group(content, jsonData)
         Debug.WriteLine(content)
         Try
-            Thread.Sleep(2000)
-            chromeDriver.FindElement(By.CssSelector("#MRoot > div > div.async_composer > div.structuredPublisher.feedRevampPadding._3b9 > table > tbody > tr > td:nth-child(1) > button")).Click()
 
-            Dim Product_Profile_Path = FormInit.product_dir_path + content + "\ProductProfile.json"
-            If File.Exists(Product_Profile_Path) Then
-                Dim jsonString = File.ReadAllText(Product_Profile_Path)
+            'chromeDriver.FindElement(By.CssSelector("input[name$='composer_attachment_sell_title']")).Click() '.SendKeys(jsonData.ProductName)
+            'chromeDriver.ExecuteJavaScript("document.querySelector(""input[name$='composer_attachment_sell_title']"").value = '" & jsonData.ProductName & "'")
 
-                Dim jsonData As Form1.PruductProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of Form1.PruductProfileDataType)(jsonString)
 
-                chromeDriver.FindElement(By.CssSelector("input[name$='composer_attachment_sell_title']")).SendKeys(jsonData.ProductName)
+            chromeDriver.FindElement(By.CssSelector("input[placeholder$='價格']")).SendKeys(jsonData.ProductPrice)
 
-                chromeDriver.FindElement(By.CssSelector("input[placeholder$='價格']")).SendKeys(jsonData.ProductPrice)
+            chromeDriver.FindElement(By.CssSelector("input[name$='composer_attachment_sell_pickup_note']")).SendKeys(jsonData.ProductLocated)
 
-                chromeDriver.FindElement(By.CssSelector("input[name$='composer_attachment_sell_pickup_note']")).SendKeys(jsonData.ProductLocated)
+            chromeDriver.FindElement(By.CssSelector("textarea[data-sigil$='composer-textarea m-textarea-input']")).SendKeys(Keys.LeftControl + "V")
+            'chromeDriver.ExecuteJavaScript("document.querySelector(""textarea[data-sigil$='composer-textarea m-textarea-input']"").value = '" & jsonData.ProdcutDescription & "'")
 
-                chromeDriver.FindElement(By.CssSelector("textarea[data-sigil$='composer-textarea m-textarea-input']")).SendKeys(jsonData.ProdcutDescription)
+            Debug.WriteLine("TEXT : " + jsonData.ProdcutDescription)
 
-                Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
-                For Each img As String In imgfiles
-                    'Debug.WriteLine(file)
-                    If {".jpg", ".jpeg", ".png", ".mp4"}.Contains(Path.GetExtension(img)) Then
-                        Debug.WriteLine(img)
-                        chromeDriver.FindElement(By.CssSelector("#photo_input")).SendKeys(img)
-                    End If
+            Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
+            For Each img As String In imgfiles
+                'Debug.WriteLine(file)
+                If {".jpg", ".jpeg", ".png", ".mp4"}.Contains(Path.GetExtension(img)) Then
+                    Debug.WriteLine(img)
+                    chromeDriver.FindElement(By.CssSelector("#photo_input")).SendKeys(img)
+                End If
 
-                Next
+            Next
 
-            End If
+
 
             Return True
         Catch ex As Exception
+            Debug.WriteLine(ex)
             Return False
         End Try
     End Function
