@@ -215,6 +215,8 @@ Partial Class Form1
         Open_dir_in_explorer_btn = New Button()
         Clear_Conditions_Listview = New Button()
         TabPage2 = New TabPage()
+        Insert_IPhone_Post_Product_btn = New Button()
+        Insert_IPhone_Upload_Product_Profile_To_Script_Btn = New Button()
         Insert_Post_Product_btn = New Button()
         UnCheck_All_Product_Item_Btn = New Button()
         Check_All_Product_Item_Btn = New Button()
@@ -401,8 +403,6 @@ Partial Class Form1
         Script_File_ListBox = New ListBox()
         Timer1 = New Timer(components)
         SaveFileDialog1 = New SaveFileDialog()
-        Insert_IPhone_Post_Product_btn = New Button()
-        Insert_IPhone_Upload_Product_Profile_To_Script_Btn = New Button()
         GroupBox1.SuspendLayout()
         CType(End_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(Start_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -2382,6 +2382,24 @@ Partial Class Form1
         TabPage2.Text = "拍賣"
         TabPage2.UseVisualStyleBackColor = True
         ' 
+        ' Insert_IPhone_Post_Product_btn
+        ' 
+        Insert_IPhone_Post_Product_btn.Location = New Point(674, 610)
+        Insert_IPhone_Post_Product_btn.Name = "Insert_IPhone_Post_Product_btn"
+        Insert_IPhone_Post_Product_btn.Size = New Size(149, 29)
+        Insert_IPhone_Post_Product_btn.TabIndex = 23
+        Insert_IPhone_Post_Product_btn.Text = "IPhone按發布-插入"
+        Insert_IPhone_Post_Product_btn.UseVisualStyleBackColor = True
+        ' 
+        ' Insert_IPhone_Upload_Product_Profile_To_Script_Btn
+        ' 
+        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Location = New Point(674, 576)
+        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Name = "Insert_IPhone_Upload_Product_Profile_To_Script_Btn"
+        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Size = New Size(149, 29)
+        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.TabIndex = 22
+        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Text = "IPhone上載 - 插入"
+        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.UseVisualStyleBackColor = True
+        ' 
         ' Insert_Post_Product_btn
         ' 
         Insert_Post_Product_btn.Location = New Point(674, 529)
@@ -2430,7 +2448,7 @@ Partial Class Form1
         ' Fb_Sale_Group_Url_ComboBox
         ' 
         Fb_Sale_Group_Url_ComboBox.FormattingEnabled = True
-        Fb_Sale_Group_Url_ComboBox.Items.AddRange(New Object() {"https://m.facebook.com/groups/1448001268623486", "https://m.facebook.com/groups/1821823278043236"})
+        Fb_Sale_Group_Url_ComboBox.Items.AddRange(New Object() {"https://m.facebook.com/groups/1445290936313452", "https://m.facebook.com/groups/1821823278043236"})
         Fb_Sale_Group_Url_ComboBox.Location = New Point(136, 32)
         Fb_Sale_Group_Url_ComboBox.Name = "Fb_Sale_Group_Url_ComboBox"
         Fb_Sale_Group_Url_ComboBox.Size = New Size(532, 27)
@@ -4152,24 +4170,6 @@ Partial Class Form1
         ' 
         Timer1.Enabled = True
         Timer1.Interval = 1000
-        ' 
-        ' Insert_IPhone_Post_Product_btn
-        ' 
-        Insert_IPhone_Post_Product_btn.Location = New Point(674, 610)
-        Insert_IPhone_Post_Product_btn.Name = "Insert_IPhone_Post_Product_btn"
-        Insert_IPhone_Post_Product_btn.Size = New Size(149, 29)
-        Insert_IPhone_Post_Product_btn.TabIndex = 23
-        Insert_IPhone_Post_Product_btn.Text = "IPhone按發布-插入"
-        Insert_IPhone_Post_Product_btn.UseVisualStyleBackColor = True
-        ' 
-        ' Insert_IPhone_Upload_Product_Profile_To_Script_Btn
-        ' 
-        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Location = New Point(674, 576)
-        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Name = "Insert_IPhone_Upload_Product_Profile_To_Script_Btn"
-        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Size = New Size(149, 29)
-        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.TabIndex = 22
-        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Text = "IPhone上載 - 插入"
-        Insert_IPhone_Upload_Product_Profile_To_Script_Btn.UseVisualStyleBackColor = True
         ' 
         ' Form1
         ' 
