@@ -157,6 +157,11 @@ Partial Class Form1
         wait_hour_NumericUpDown = New NumericUpDown()
         Label9 = New Label()
         TabPage3 = New TabPage()
+        Submit_Message_Button = New Button()
+        Upload_Message_Button = New Button()
+        Insert_Messager_Submit_Content_Btn = New Button()
+        Label86 = New Label()
+        Insert_Messager_Contact_btn = New Button()
         Delete_selected_image_Btn = New Button()
         comment_row_Numer = New NumericUpDown()
         Insert_share_url_btn = New Button()
@@ -299,7 +304,7 @@ Partial Class Form1
         CursorX_TextBox = New TextBox()
         CursorY_TextBox = New TextBox()
         TabPage6 = New TabPage()
-        Insert_Messager_Contact_btn = New Button()
+        Button3 = New Button()
         Messager_Content_RichTextBox = New RichTextBox()
         Label34 = New Label()
         Label33 = New Label()
@@ -1223,7 +1228,7 @@ Partial Class Form1
         ' 
         Countdown_Toggle_Button.Location = New Point(538, 752)
         Countdown_Toggle_Button.Name = "Countdown_Toggle_Button"
-        Countdown_Toggle_Button.Size = New Size(94, 29)
+        Countdown_Toggle_Button.Size = New Size(64, 29)
         Countdown_Toggle_Button.TabIndex = 142
         Countdown_Toggle_Button.Text = "開始"
         Countdown_Toggle_Button.UseVisualStyleBackColor = True
@@ -1766,6 +1771,11 @@ Partial Class Form1
         ' 
         ' TabPage3
         ' 
+        TabPage3.Controls.Add(Submit_Message_Button)
+        TabPage3.Controls.Add(Upload_Message_Button)
+        TabPage3.Controls.Add(Insert_Messager_Submit_Content_Btn)
+        TabPage3.Controls.Add(Label86)
+        TabPage3.Controls.Add(Insert_Messager_Contact_btn)
         TabPage3.Controls.Add(Delete_selected_image_Btn)
         TabPage3.Controls.Add(comment_row_Numer)
         TabPage3.Controls.Add(Insert_share_url_btn)
@@ -1832,6 +1842,51 @@ Partial Class Form1
         TabPage3.TabIndex = 0
         TabPage3.Text = "發文發圖"
         TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' Submit_Message_Button
+        ' 
+        Submit_Message_Button.Location = New Point(689, 768)
+        Submit_Message_Button.Name = "Submit_Message_Button"
+        Submit_Message_Button.Size = New Size(94, 29)
+        Submit_Message_Button.TabIndex = 163
+        Submit_Message_Button.Text = "送出"
+        Submit_Message_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Upload_Message_Button
+        ' 
+        Upload_Message_Button.Location = New Point(687, 733)
+        Upload_Message_Button.Name = "Upload_Message_Button"
+        Upload_Message_Button.Size = New Size(94, 29)
+        Upload_Message_Button.TabIndex = 162
+        Upload_Message_Button.Text = "訊息上載"
+        Upload_Message_Button.UseVisualStyleBackColor = True
+        ' 
+        ' Insert_Messager_Submit_Content_Btn
+        ' 
+        Insert_Messager_Submit_Content_Btn.Location = New Point(790, 768)
+        Insert_Messager_Submit_Content_Btn.Name = "Insert_Messager_Submit_Content_Btn"
+        Insert_Messager_Submit_Content_Btn.Size = New Size(117, 29)
+        Insert_Messager_Submit_Content_Btn.TabIndex = 161
+        Insert_Messager_Submit_Content_Btn.Text = "送出-插入"
+        Insert_Messager_Submit_Content_Btn.UseVisualStyleBackColor = True
+        ' 
+        ' Label86
+        ' 
+        Label86.AutoSize = True
+        Label86.Location = New Point(693, 711)
+        Label86.Name = "Label86"
+        Label86.Size = New Size(61, 19)
+        Label86.TabIndex = 160
+        Label86.Text = "聊天室 :"
+        ' 
+        ' Insert_Messager_Contact_btn
+        ' 
+        Insert_Messager_Contact_btn.Location = New Point(786, 733)
+        Insert_Messager_Contact_btn.Name = "Insert_Messager_Contact_btn"
+        Insert_Messager_Contact_btn.Size = New Size(122, 29)
+        Insert_Messager_Contact_btn.TabIndex = 159
+        Insert_Messager_Contact_btn.Text = "訊息上載-插入"
+        Insert_Messager_Contact_btn.UseVisualStyleBackColor = True
         ' 
         ' Delete_selected_image_Btn
         ' 
@@ -1924,18 +1979,18 @@ Partial Class Form1
         ' 
         ' Insert_Random_Story_Image_Btn
         ' 
-        Insert_Random_Story_Image_Btn.Location = New Point(693, 781)
+        Insert_Random_Story_Image_Btn.Location = New Point(785, 673)
         Insert_Random_Story_Image_Btn.Name = "Insert_Random_Story_Image_Btn"
-        Insert_Random_Story_Image_Btn.Size = New Size(186, 29)
+        Insert_Random_Story_Image_Btn.Size = New Size(122, 29)
         Insert_Random_Story_Image_Btn.TabIndex = 119
         Insert_Random_Story_Image_Btn.Text = "隨機圖片 - 插入"
         Insert_Random_Story_Image_Btn.UseVisualStyleBackColor = True
         ' 
         ' Insert_Story_Image_Btn
         ' 
-        Insert_Story_Image_Btn.Location = New Point(693, 746)
+        Insert_Story_Image_Btn.Location = New Point(689, 673)
         Insert_Story_Image_Btn.Name = "Insert_Story_Image_Btn"
-        Insert_Story_Image_Btn.Size = New Size(186, 29)
+        Insert_Story_Image_Btn.Size = New Size(91, 29)
         Insert_Story_Image_Btn.TabIndex = 118
         Insert_Story_Image_Btn.Text = "圖片 - 插入"
         Insert_Story_Image_Btn.UseVisualStyleBackColor = True
@@ -1943,7 +1998,7 @@ Partial Class Form1
         ' Label55
         ' 
         Label55.AutoSize = True
-        Label55.Location = New Point(688, 721)
+        Label55.Location = New Point(688, 647)
         Label55.Name = "Label55"
         Label55.Size = New Size(80, 19)
         Label55.TabIndex = 117
@@ -1951,20 +2006,20 @@ Partial Class Form1
         ' 
         ' Insert_Reply_Random_Image_btn
         ' 
-        Insert_Reply_Random_Image_btn.Location = New Point(688, 503)
+        Insert_Reply_Random_Image_btn.Location = New Point(781, 468)
         Insert_Reply_Random_Image_btn.Name = "Insert_Reply_Random_Image_btn"
-        Insert_Reply_Random_Image_btn.Size = New Size(224, 29)
+        Insert_Reply_Random_Image_btn.Size = New Size(127, 29)
         Insert_Reply_Random_Image_btn.TabIndex = 94
         Insert_Reply_Random_Image_btn.Text = "隨機圖片-插入"
         Insert_Reply_Random_Image_btn.UseVisualStyleBackColor = True
         ' 
         ' Insert_Reply_Random_Match_btn
         ' 
-        Insert_Reply_Random_Match_btn.Location = New Point(687, 538)
+        Insert_Reply_Random_Match_btn.Location = New Point(688, 503)
         Insert_Reply_Random_Match_btn.Name = "Insert_Reply_Random_Match_btn"
-        Insert_Reply_Random_Match_btn.Size = New Size(224, 29)
+        Insert_Reply_Random_Match_btn.Size = New Size(127, 29)
         Insert_Reply_Random_Match_btn.TabIndex = 94
-        Insert_Reply_Random_Match_btn.Text = "回復隨機配對 - 插入"
+        Insert_Reply_Random_Match_btn.Text = "回復隨機配對"
         Insert_Reply_Random_Match_btn.UseVisualStyleBackColor = True
         ' 
         ' Label41
@@ -1978,9 +2033,9 @@ Partial Class Form1
         ' 
         ' Insert_submit_comment_btn
         ' 
-        Insert_submit_comment_btn.Location = New Point(688, 573)
+        Insert_submit_comment_btn.Location = New Point(818, 503)
         Insert_submit_comment_btn.Name = "Insert_submit_comment_btn"
-        Insert_submit_comment_btn.Size = New Size(224, 29)
+        Insert_submit_comment_btn.Size = New Size(88, 29)
         Insert_submit_comment_btn.TabIndex = 82
         Insert_submit_comment_btn.Text = "送出-插入"
         Insert_submit_comment_btn.UseVisualStyleBackColor = True
@@ -1996,7 +2051,7 @@ Partial Class Form1
         ' 
         ' Insert_emoji_btn
         ' 
-        Insert_emoji_btn.Location = New Point(752, 685)
+        Insert_emoji_btn.Location = New Point(758, 615)
         Insert_emoji_btn.Name = "Insert_emoji_btn"
         Insert_emoji_btn.Size = New Size(127, 29)
         Insert_emoji_btn.TabIndex = 92
@@ -2015,7 +2070,7 @@ Partial Class Form1
         ' Emoji_haha_CheckBox
         ' 
         Emoji_haha_CheckBox.AutoSize = True
-        Emoji_haha_CheckBox.Location = New Point(693, 685)
+        Emoji_haha_CheckBox.Location = New Point(699, 615)
         Emoji_haha_CheckBox.Name = "Emoji_haha_CheckBox"
         Emoji_haha_CheckBox.Size = New Size(61, 23)
         Emoji_haha_CheckBox.TabIndex = 91
@@ -2034,7 +2089,7 @@ Partial Class Form1
         ' Emoji_sad_CheckBox
         ' 
         Emoji_sad_CheckBox.AutoSize = True
-        Emoji_sad_CheckBox.Location = New Point(818, 656)
+        Emoji_sad_CheckBox.Location = New Point(824, 586)
         Emoji_sad_CheckBox.Name = "Emoji_sad_CheckBox"
         Emoji_sad_CheckBox.Size = New Size(61, 23)
         Emoji_sad_CheckBox.TabIndex = 90
@@ -2053,7 +2108,7 @@ Partial Class Form1
         ' Emoji_wow_CheckBox
         ' 
         Emoji_wow_CheckBox.AutoSize = True
-        Emoji_wow_CheckBox.Location = New Point(754, 656)
+        Emoji_wow_CheckBox.Location = New Point(760, 586)
         Emoji_wow_CheckBox.Name = "Emoji_wow_CheckBox"
         Emoji_wow_CheckBox.Size = New Size(61, 23)
         Emoji_wow_CheckBox.TabIndex = 89
@@ -2072,7 +2127,7 @@ Partial Class Form1
         ' Emoji_angry_CheckBox
         ' 
         Emoji_angry_CheckBox.AutoSize = True
-        Emoji_angry_CheckBox.Location = New Point(693, 656)
+        Emoji_angry_CheckBox.Location = New Point(699, 586)
         Emoji_angry_CheckBox.Name = "Emoji_angry_CheckBox"
         Emoji_angry_CheckBox.Size = New Size(61, 23)
         Emoji_angry_CheckBox.TabIndex = 88
@@ -2091,7 +2146,7 @@ Partial Class Form1
         ' Label14
         ' 
         Label14.AutoSize = True
-        Label14.Location = New Point(688, 605)
+        Label14.Location = New Point(688, 535)
         Label14.Name = "Label14"
         Label14.Size = New Size(76, 19)
         Label14.TabIndex = 84
@@ -2109,7 +2164,7 @@ Partial Class Form1
         ' Emoji_care_CheckBox
         ' 
         Emoji_care_CheckBox.AutoSize = True
-        Emoji_care_CheckBox.Location = New Point(818, 627)
+        Emoji_care_CheckBox.Location = New Point(824, 557)
         Emoji_care_CheckBox.Name = "Emoji_care_CheckBox"
         Emoji_care_CheckBox.Size = New Size(61, 23)
         Emoji_care_CheckBox.TabIndex = 87
@@ -2120,7 +2175,7 @@ Partial Class Form1
         ' 
         Insert_comment_upload_img_btn.Location = New Point(688, 468)
         Insert_comment_upload_img_btn.Name = "Insert_comment_upload_img_btn"
-        Insert_comment_upload_img_btn.Size = New Size(224, 29)
+        Insert_comment_upload_img_btn.Size = New Size(91, 29)
         Insert_comment_upload_img_btn.TabIndex = 81
         Insert_comment_upload_img_btn.Text = "圖片-插入"
         Insert_comment_upload_img_btn.UseVisualStyleBackColor = True
@@ -2128,7 +2183,7 @@ Partial Class Form1
         ' Emoji_like_CheckBox
         ' 
         Emoji_like_CheckBox.AutoSize = True
-        Emoji_like_CheckBox.Location = New Point(693, 627)
+        Emoji_like_CheckBox.Location = New Point(699, 557)
         Emoji_like_CheckBox.Name = "Emoji_like_CheckBox"
         Emoji_like_CheckBox.Size = New Size(61, 23)
         Emoji_like_CheckBox.TabIndex = 85
@@ -2147,7 +2202,7 @@ Partial Class Form1
         ' Emoji_love_CheckBox
         ' 
         Emoji_love_CheckBox.AutoSize = True
-        Emoji_love_CheckBox.Location = New Point(754, 627)
+        Emoji_love_CheckBox.Location = New Point(760, 557)
         Emoji_love_CheckBox.Name = "Emoji_love_CheckBox"
         Emoji_love_CheckBox.Size = New Size(61, 23)
         Emoji_love_CheckBox.TabIndex = 86
@@ -3169,7 +3224,7 @@ Partial Class Form1
         ' 
         ' TabPage6
         ' 
-        TabPage6.Controls.Add(Insert_Messager_Contact_btn)
+        TabPage6.Controls.Add(Button3)
         TabPage6.Controls.Add(Messager_Content_RichTextBox)
         TabPage6.Controls.Add(Label34)
         TabPage6.Controls.Add(Label33)
@@ -3181,14 +3236,14 @@ Partial Class Form1
         TabPage6.Text = "聊天室"
         TabPage6.UseVisualStyleBackColor = True
         ' 
-        ' Insert_Messager_Contact_btn
+        ' Button3
         ' 
-        Insert_Messager_Contact_btn.Location = New Point(474, 251)
-        Insert_Messager_Contact_btn.Name = "Insert_Messager_Contact_btn"
-        Insert_Messager_Contact_btn.Size = New Size(184, 29)
-        Insert_Messager_Contact_btn.TabIndex = 4
-        Insert_Messager_Contact_btn.Text = "聊天室傳送訊息 - 插入"
-        Insert_Messager_Contact_btn.UseVisualStyleBackColor = True
+        Button3.Location = New Point(474, 251)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(184, 29)
+        Button3.TabIndex = 5
+        Button3.Text = "聊天室訊息送出 - 插入"
+        Button3.UseVisualStyleBackColor = True
         ' 
         ' Messager_Content_RichTextBox
         ' 
@@ -4395,11 +4450,6 @@ Partial Class Form1
     Friend WithEvents Label32 As Label
     Friend WithEvents Label31 As Label
     Friend WithEvents TabPage6 As TabPage
-    Friend WithEvents Insert_Messager_Contact_btn As Button
-    Friend WithEvents Messager_Content_RichTextBox As RichTextBox
-    Friend WithEvents Label34 As Label
-    Friend WithEvents Label33 As Label
-    Friend WithEvents Messager_Name_TextBox As TextBox
     Friend WithEvents Script_Config_ComboBox As ComboBox
     Friend WithEvents Label35 As Label
     Friend WithEvents Delete_Selected_Profile_Folder_btn As Button
@@ -4627,4 +4677,14 @@ Partial Class Form1
     Friend WithEvents Insert_Post_Product_btn As Button
     Friend WithEvents Insert_IPhone_Post_Product_btn As Button
     Friend WithEvents Insert_IPhone_Upload_Product_Profile_To_Script_Btn As Button
+    Friend WithEvents Insert_Messager_Submit_Content_Btn As Button
+    Friend WithEvents Label86 As Label
+    Friend WithEvents Insert_Messager_Contact_btn As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Messager_Content_RichTextBox As RichTextBox
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label33 As Label
+    Friend WithEvents Messager_Name_TextBox As TextBox
+    Friend WithEvents Submit_Message_Button As Button
+    Friend WithEvents Upload_Message_Button As Button
 End Class

@@ -906,10 +906,25 @@ Public Class MyWebDriver
     End Function
 
 
-    Function Messager_Contact(Room_Id As String, message As String)
+    Function Messager_Contact(img_path_str As String, message As String)
 
         Try
-            Navigate_GoToUrl("https://www.facebook.com/messages/t/" + Room_Id)
+            'Navigate_GoToUrl("https://www.facebook.com/messages/t/" + Room_Id)
+
+
+            Dim my_img_files() As String = img_path_str.Split(vbLf)
+
+            For Each substring As String In my_img_files
+                Debug.WriteLine(substring)
+                If Not File.Exists(substring) Then
+                    'Debug.Write("not exist " + substring)
+                    Return False
+                End If
+            Next
+
+            Dim files_imput = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1ey2m1c.x78zum5.xl56j7k.x10l6tqk.x1vjfegm.x12nagc.xw3qccf.x3oybdh.x1g2r6go.x11xpdln.x1th4bbo > input"))
+            files_imput.SendKeys(img_path_str)
+
 
             Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate"))
 
@@ -921,14 +936,28 @@ Public Class MyWebDriver
                 Text_input.SendKeys(Keys.LeftShift + Keys.Return)
             Next
 
-
-            Text_input.SendKeys(Keys.Return)
+            'Text_input.SendKeys(Keys.Return)
             Return True
         Catch ex As Exception
             Return False
             Debug.WriteLine(ex)
         End Try
 
+    End Function
+
+    Public Function Messager_Submit_Content_Task()
+        Return Task.Run(Function() Messager_Submit_Content())
+    End Function
+
+
+    Public Function Messager_Submit_Content()
+        Try
+            Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate"))
+            Text_input.SendKeys(Keys.Return)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
     End Function
 
 
