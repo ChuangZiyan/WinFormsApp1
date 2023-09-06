@@ -772,20 +772,21 @@ Public Class Form1
                     boolean_result = Await myWebDriver.Change_Fb_Password_Task()
                 Case "檢查"
                     Try
-                        Debug.WriteLine("Curr Line : ")
-                        Debug.WriteLine(curr_line)
-                        Debug.WriteLine(" item.SubItems.Item(6) : " + script_ListView.Items(curr_line - 2).SubItems.Item(6).Text)
                         Dim last_line_result = script_ListView.Items(curr_line - 2).SubItems.Item(6).Text
                         If last_line_result = "失敗" Then
-                            Debug.WriteLine("ignore next:" + content + " lines")
                             ignore_counter = CInt(content)
                         End If
                         boolean_result = True
                     Catch ex As Exception
                         boolean_result = False
                     End Try
+                Case "拍賣:按拍賣"
+                    boolean_result = Await myWebDriver.Click_Sale_Product_Task()
 
                 Case "拍賣:上載"
+                    boolean_result = Await myWebDriver.Upload_Product_Profile_Task(content)
+
+                Case "m拍賣:上載"
                     Try
                         Dim my_list = content.Split(";")
                         Debug.WriteLine("URL : " + my_list(0))
@@ -796,7 +797,7 @@ Public Class Form1
                     Catch ex As Exception
                         boolean_result = False
                     End Try
-                Case "拍賣:按發布"
+                Case "m拍賣:按發布"
                     boolean_result = Await myWebDriver.Click_Post_Product_Task()
                 Case "拍賣:IPhone上載"
                     Try
@@ -2628,32 +2629,36 @@ Public Class Form1
 
     Private Sub Save_Product_Profile_To_File_Button_Click(sender As Object, e As EventArgs) Handles Save_Product_Profile_To_File_Button.Click
 
-        Dim Product_Profile As New With {
+        Try
+            Dim Product_Profile As New With {
             .ProductName = Pruduct_Name_TextBox.Text,
             .ProductPrice = Product_Price_TextBox.Text,
+            .ProductCondition = Product_Condition_ComboBox.Text,
             .ProductLocated = Product_Located_TextBox.Text,
             .ProdcutDescription = Product_Description_RichTextBox.Text
-           }
+            }
 
-        Dim jsonStr As String = System.Text.Json.JsonSerializer.Serialize(Product_Profile)
-        Dim selectedText = ""
-        For Each selectedItem As Object In Product_List_CheckedListBox.SelectedItems
-            selectedText = selectedItem.ToString()
-            MessageBox.Show("Selected item: " & selectedText)
-        Next
+            MsgBox(Product_Condition_ComboBox.Text)
 
-        If selectedText = "" Then
-            MsgBox("未選取要儲存的資料夾")
-        End If
+            Dim jsonStr As String = System.Text.Json.JsonSerializer.Serialize(Product_Profile)
+            Dim selectedText = ""
+            For Each selectedItem As Object In Product_List_CheckedListBox.SelectedItems
+                selectedText = selectedItem.ToString()
+                'MessageBox.Show("Selected item: " & selectedText)
+            Next
 
-
-        Dim FilePath As String = FormInit.product_dir_path + selectedText + "\ProductProfile.json"
-
-        MsgBox(FilePath)
-
-        WriteAllText(FilePath, jsonStr)
+            If selectedText = "" Then
+                MsgBox("未選取要儲存的資料夾")
+                Exit Sub
+            End If
 
 
+            Dim FilePath As String = FormInit.product_dir_path + selectedText + "\ProductProfile.json"
+            WriteAllText(FilePath, jsonStr)
+            MsgBox("儲存商品成功")
+        Catch ex As Exception
+            MsgBox("儲存商品失敗")
+        End Try
 
     End Sub
 
@@ -2661,6 +2666,7 @@ Public Class Form1
     Public Class PruductProfileDataType
         Public Property ProductName As String
         Public Property ProductPrice As String
+        Public Property ProductCondition As String
         Public Property ProductLocated As String
         Public Property ProdcutDescription As String
     End Class
@@ -2678,6 +2684,7 @@ Public Class Form1
 
             Pruduct_Name_TextBox.Text = jsonData.ProductName
             Product_Price_TextBox.Text = jsonData.ProductPrice
+            Product_Condition_ComboBox.Text = jsonData.ProductCondition
             Product_Located_TextBox.Text = jsonData.ProductLocated
             Product_Description_RichTextBox.Text = jsonData.ProdcutDescription
         Else
@@ -2737,7 +2744,7 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub Insert_Sale_Product_To_Script_Btn_Click(sender As Object, e As EventArgs) Handles Insert_Upload_Product_Profile_To_Script_Btn.Click
+    Private Sub Insert_Sale_Product_To_Script_Btn_Click(sender As Object, e As EventArgs) Handles Insert_m_Upload_Product_Profile_To_Script_Btn.Click
 
 
         Dim product_folders As String = ""
@@ -2757,11 +2764,11 @@ Public Class Form1
             Exit Sub
         End If
 
-        Insert_to_script("拍賣:上載", Fb_Sale_Group_Url_ComboBox.Text + ";" + product_folders)
+        Insert_to_script("m拍賣:上載", Fb_Sale_Group_Url_ComboBox.Text + ";" + product_folders)
     End Sub
 
-    Private Sub Insert_Post_Product_btn_Click(sender As Object, e As EventArgs) Handles Insert_Post_Product_btn.Click
-        Insert_to_script("拍賣:按發布", "")
+    Private Sub Insert_Post_Product_btn_Click(sender As Object, e As EventArgs) Handles Insert_m_Post_Product_btn.Click
+        Insert_to_script("m拍賣:按發布", "")
     End Sub
 
     Private Sub Insert_IPhone_Upload_Product_Profile_To_Script_Btn_Click(sender As Object, e As EventArgs) Handles Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Click
@@ -2838,4 +2845,24 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Insert_Click_Sale_button_Click(sender As Object, e As EventArgs) Handles Insert_Click_Sale_button.Click
+        Insert_to_script("拍賣:按拍賣", "")
+    End Sub
+
+    Private Sub Insert_Upload_Product_Profile_Button_Click(sender As Object, e As EventArgs) Handles Insert_Upload_Product_Profile_Button.Click
+
+        Dim product_folders As String = ""
+        For Each checkedItem As Object In Product_List_CheckedListBox.CheckedItems
+            Dim checkedText As String = checkedItem.ToString()
+            Debug.WriteLine("Checked item: " & checkedText)
+            product_folders += checkedText + "/"
+        Next
+
+        If product_folders = "" Then
+            MsgBox("未選擇商品")
+            Exit Sub
+        End If
+
+        Insert_to_script("拍賣:上載", product_folders)
+    End Sub
 End Class

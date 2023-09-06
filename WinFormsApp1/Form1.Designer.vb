@@ -220,9 +220,15 @@ Partial Class Form1
         Me.Open_dir_in_explorer_btn = New System.Windows.Forms.Button()
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Insert_Post_Product_Button = New System.Windows.Forms.Button()
+        Me.Insert_Upload_MoreDetails_Button = New System.Windows.Forms.Button()
+        Me.Insert_Upload_Product_Profile_Button = New System.Windows.Forms.Button()
+        Me.Insert_Click_Sale_button = New System.Windows.Forms.Button()
+        Me.Label88 = New System.Windows.Forms.Label()
+        Me.Label87 = New System.Windows.Forms.Label()
         Me.Insert_IPhone_Post_Product_btn = New System.Windows.Forms.Button()
         Me.Insert_IPhone_Upload_Product_Profile_To_Script_Btn = New System.Windows.Forms.Button()
-        Me.Insert_Post_Product_btn = New System.Windows.Forms.Button()
+        Me.Insert_m_Post_Product_btn = New System.Windows.Forms.Button()
         Me.UnCheck_All_Product_Item_Btn = New System.Windows.Forms.Button()
         Me.Check_All_Product_Item_Btn = New System.Windows.Forms.Button()
         Me.Product_List_CheckedListBox = New System.Windows.Forms.CheckedListBox()
@@ -230,7 +236,7 @@ Partial Class Form1
         Me.Fb_Sale_Group_Url_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Save_Product_Profile_To_File_Button = New System.Windows.Forms.Button()
         Me.Reveal_Product_Dir_Button = New System.Windows.Forms.Button()
-        Me.Insert_Upload_Product_Profile_To_Script_Btn = New System.Windows.Forms.Button()
+        Me.Insert_m_Upload_Product_Profile_To_Script_Btn = New System.Windows.Forms.Button()
         Me.Product_Description_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.Product_Located_TextBox = New System.Windows.Forms.TextBox()
         Me.Product_Price_TextBox = New System.Windows.Forms.TextBox()
@@ -408,12 +414,8 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label87 = New System.Windows.Forms.Label()
-        Me.Label88 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Label89 = New System.Windows.Forms.Label()
+        Me.Product_Condition_ComboBox = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2415,15 +2417,17 @@ Partial Class Form1
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Button7)
-        Me.TabPage2.Controls.Add(Me.Button6)
-        Me.TabPage2.Controls.Add(Me.Button5)
-        Me.TabPage2.Controls.Add(Me.Button4)
+        Me.TabPage2.Controls.Add(Me.Product_Condition_ComboBox)
+        Me.TabPage2.Controls.Add(Me.Label89)
+        Me.TabPage2.Controls.Add(Me.Insert_Post_Product_Button)
+        Me.TabPage2.Controls.Add(Me.Insert_Upload_MoreDetails_Button)
+        Me.TabPage2.Controls.Add(Me.Insert_Upload_Product_Profile_Button)
+        Me.TabPage2.Controls.Add(Me.Insert_Click_Sale_button)
         Me.TabPage2.Controls.Add(Me.Label88)
         Me.TabPage2.Controls.Add(Me.Label87)
         Me.TabPage2.Controls.Add(Me.Insert_IPhone_Post_Product_btn)
         Me.TabPage2.Controls.Add(Me.Insert_IPhone_Upload_Product_Profile_To_Script_Btn)
-        Me.TabPage2.Controls.Add(Me.Insert_Post_Product_btn)
+        Me.TabPage2.Controls.Add(Me.Insert_m_Post_Product_btn)
         Me.TabPage2.Controls.Add(Me.UnCheck_All_Product_Item_Btn)
         Me.TabPage2.Controls.Add(Me.Check_All_Product_Item_Btn)
         Me.TabPage2.Controls.Add(Me.Product_List_CheckedListBox)
@@ -2431,7 +2435,7 @@ Partial Class Form1
         Me.TabPage2.Controls.Add(Me.Fb_Sale_Group_Url_ComboBox)
         Me.TabPage2.Controls.Add(Me.Save_Product_Profile_To_File_Button)
         Me.TabPage2.Controls.Add(Me.Reveal_Product_Dir_Button)
-        Me.TabPage2.Controls.Add(Me.Insert_Upload_Product_Profile_To_Script_Btn)
+        Me.TabPage2.Controls.Add(Me.Insert_m_Upload_Product_Profile_To_Script_Btn)
         Me.TabPage2.Controls.Add(Me.Product_Description_RichTextBox)
         Me.TabPage2.Controls.Add(Me.Product_Located_TextBox)
         Me.TabPage2.Controls.Add(Me.Product_Price_TextBox)
@@ -2448,6 +2452,60 @@ Partial Class Form1
         Me.TabPage2.TabIndex = 11
         Me.TabPage2.Text = "拍賣"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Insert_Post_Product_Button
+        '
+        Me.Insert_Post_Product_Button.Location = New System.Drawing.Point(471, 761)
+        Me.Insert_Post_Product_Button.Name = "Insert_Post_Product_Button"
+        Me.Insert_Post_Product_Button.Size = New System.Drawing.Size(114, 29)
+        Me.Insert_Post_Product_Button.TabIndex = 29
+        Me.Insert_Post_Product_Button.Text = "發布 - 插入"
+        Me.Insert_Post_Product_Button.UseVisualStyleBackColor = True
+        '
+        'Insert_Upload_MoreDetails_Button
+        '
+        Me.Insert_Upload_MoreDetails_Button.Location = New System.Drawing.Point(471, 729)
+        Me.Insert_Upload_MoreDetails_Button.Name = "Insert_Upload_MoreDetails_Button"
+        Me.Insert_Upload_MoreDetails_Button.Size = New System.Drawing.Size(114, 29)
+        Me.Insert_Upload_MoreDetails_Button.TabIndex = 28
+        Me.Insert_Upload_MoreDetails_Button.Text = "填細節 - 插入"
+        Me.Insert_Upload_MoreDetails_Button.UseVisualStyleBackColor = True
+        '
+        'Insert_Upload_Product_Profile_Button
+        '
+        Me.Insert_Upload_Product_Profile_Button.Location = New System.Drawing.Point(471, 694)
+        Me.Insert_Upload_Product_Profile_Button.Name = "Insert_Upload_Product_Profile_Button"
+        Me.Insert_Upload_Product_Profile_Button.Size = New System.Drawing.Size(114, 29)
+        Me.Insert_Upload_Product_Profile_Button.TabIndex = 27
+        Me.Insert_Upload_Product_Profile_Button.Text = "上載 - 插入"
+        Me.Insert_Upload_Product_Profile_Button.UseVisualStyleBackColor = True
+        '
+        'Insert_Click_Sale_button
+        '
+        Me.Insert_Click_Sale_button.Location = New System.Drawing.Point(471, 659)
+        Me.Insert_Click_Sale_button.Name = "Insert_Click_Sale_button"
+        Me.Insert_Click_Sale_button.Size = New System.Drawing.Size(114, 29)
+        Me.Insert_Click_Sale_button.TabIndex = 26
+        Me.Insert_Click_Sale_button.Text = "按拍賣 - 插入"
+        Me.Insert_Click_Sale_button.UseVisualStyleBackColor = True
+        '
+        'Label88
+        '
+        Me.Label88.AutoSize = True
+        Me.Label88.Location = New System.Drawing.Point(400, 664)
+        Me.Label88.Name = "Label88"
+        Me.Label88.Size = New System.Drawing.Size(65, 19)
+        Me.Label88.TabIndex = 25
+        Me.Label88.Text = "網頁版 : "
+        '
+        'Label87
+        '
+        Me.Label87.AutoSize = True
+        Me.Label87.Location = New System.Drawing.Point(76, 659)
+        Me.Label87.Name = "Label87"
+        Me.Label87.Size = New System.Drawing.Size(49, 19)
+        Me.Label87.TabIndex = 24
+        Me.Label87.Text = "m版 : "
         '
         'Insert_IPhone_Post_Product_btn
         '
@@ -2467,18 +2525,18 @@ Partial Class Form1
         Me.Insert_IPhone_Upload_Product_Profile_To_Script_Btn.Text = "IPhone上載 - 插入"
         Me.Insert_IPhone_Upload_Product_Profile_To_Script_Btn.UseVisualStyleBackColor = True
         '
-        'Insert_Post_Product_btn
+        'Insert_m_Post_Product_btn
         '
-        Me.Insert_Post_Product_btn.Location = New System.Drawing.Point(136, 694)
-        Me.Insert_Post_Product_btn.Name = "Insert_Post_Product_btn"
-        Me.Insert_Post_Product_btn.Size = New System.Drawing.Size(149, 29)
-        Me.Insert_Post_Product_btn.TabIndex = 21
-        Me.Insert_Post_Product_btn.Text = "按發布-插入"
-        Me.Insert_Post_Product_btn.UseVisualStyleBackColor = True
+        Me.Insert_m_Post_Product_btn.Location = New System.Drawing.Point(136, 694)
+        Me.Insert_m_Post_Product_btn.Name = "Insert_m_Post_Product_btn"
+        Me.Insert_m_Post_Product_btn.Size = New System.Drawing.Size(149, 29)
+        Me.Insert_m_Post_Product_btn.TabIndex = 21
+        Me.Insert_m_Post_Product_btn.Text = "按發布-插入"
+        Me.Insert_m_Post_Product_btn.UseVisualStyleBackColor = True
         '
         'UnCheck_All_Product_Item_Btn
         '
-        Me.UnCheck_All_Product_Item_Btn.Location = New System.Drawing.Point(774, 229)
+        Me.UnCheck_All_Product_Item_Btn.Location = New System.Drawing.Point(774, 212)
         Me.UnCheck_All_Product_Item_Btn.Name = "UnCheck_All_Product_Item_Btn"
         Me.UnCheck_All_Product_Item_Btn.Size = New System.Drawing.Size(94, 29)
         Me.UnCheck_All_Product_Item_Btn.TabIndex = 20
@@ -2487,7 +2545,7 @@ Partial Class Form1
         '
         'Check_All_Product_Item_Btn
         '
-        Me.Check_All_Product_Item_Btn.Location = New System.Drawing.Point(674, 229)
+        Me.Check_All_Product_Item_Btn.Location = New System.Drawing.Point(674, 212)
         Me.Check_All_Product_Item_Btn.Name = "Check_All_Product_Item_Btn"
         Me.Check_All_Product_Item_Btn.Size = New System.Drawing.Size(94, 29)
         Me.Check_All_Product_Item_Btn.TabIndex = 19
@@ -2497,7 +2555,7 @@ Partial Class Form1
         'Product_List_CheckedListBox
         '
         Me.Product_List_CheckedListBox.FormattingEnabled = True
-        Me.Product_List_CheckedListBox.Location = New System.Drawing.Point(136, 91)
+        Me.Product_List_CheckedListBox.Location = New System.Drawing.Point(136, 74)
         Me.Product_List_CheckedListBox.Name = "Product_List_CheckedListBox"
         Me.Product_List_CheckedListBox.Size = New System.Drawing.Size(532, 202)
         Me.Product_List_CheckedListBox.TabIndex = 18
@@ -2505,7 +2563,7 @@ Partial Class Form1
         'Delete_Selected_Product_Folder_Button
         '
         Me.Delete_Selected_Product_Folder_Button.BackColor = System.Drawing.Color.LightCoral
-        Me.Delete_Selected_Product_Folder_Button.Location = New System.Drawing.Point(774, 91)
+        Me.Delete_Selected_Product_Folder_Button.Location = New System.Drawing.Point(774, 74)
         Me.Delete_Selected_Product_Folder_Button.Name = "Delete_Selected_Product_Folder_Button"
         Me.Delete_Selected_Product_Folder_Button.Size = New System.Drawing.Size(94, 29)
         Me.Delete_Selected_Product_Folder_Button.TabIndex = 17
@@ -2523,7 +2581,7 @@ Partial Class Form1
         '
         'Save_Product_Profile_To_File_Button
         '
-        Me.Save_Product_Profile_To_File_Button.Location = New System.Drawing.Point(674, 264)
+        Me.Save_Product_Profile_To_File_Button.Location = New System.Drawing.Point(674, 247)
         Me.Save_Product_Profile_To_File_Button.Name = "Save_Product_Profile_To_File_Button"
         Me.Save_Product_Profile_To_File_Button.Size = New System.Drawing.Size(94, 29)
         Me.Save_Product_Profile_To_File_Button.TabIndex = 15
@@ -2532,21 +2590,21 @@ Partial Class Form1
         '
         'Reveal_Product_Dir_Button
         '
-        Me.Reveal_Product_Dir_Button.Location = New System.Drawing.Point(674, 91)
+        Me.Reveal_Product_Dir_Button.Location = New System.Drawing.Point(674, 74)
         Me.Reveal_Product_Dir_Button.Name = "Reveal_Product_Dir_Button"
         Me.Reveal_Product_Dir_Button.Size = New System.Drawing.Size(94, 29)
         Me.Reveal_Product_Dir_Button.TabIndex = 14
         Me.Reveal_Product_Dir_Button.Text = "打開資料夾"
         Me.Reveal_Product_Dir_Button.UseVisualStyleBackColor = True
         '
-        'Insert_Upload_Product_Profile_To_Script_Btn
+        'Insert_m_Upload_Product_Profile_To_Script_Btn
         '
-        Me.Insert_Upload_Product_Profile_To_Script_Btn.Location = New System.Drawing.Point(136, 659)
-        Me.Insert_Upload_Product_Profile_To_Script_Btn.Name = "Insert_Upload_Product_Profile_To_Script_Btn"
-        Me.Insert_Upload_Product_Profile_To_Script_Btn.Size = New System.Drawing.Size(149, 29)
-        Me.Insert_Upload_Product_Profile_To_Script_Btn.TabIndex = 12
-        Me.Insert_Upload_Product_Profile_To_Script_Btn.Text = "上載 - 插入"
-        Me.Insert_Upload_Product_Profile_To_Script_Btn.UseVisualStyleBackColor = True
+        Me.Insert_m_Upload_Product_Profile_To_Script_Btn.Location = New System.Drawing.Point(136, 659)
+        Me.Insert_m_Upload_Product_Profile_To_Script_Btn.Name = "Insert_m_Upload_Product_Profile_To_Script_Btn"
+        Me.Insert_m_Upload_Product_Profile_To_Script_Btn.Size = New System.Drawing.Size(149, 29)
+        Me.Insert_m_Upload_Product_Profile_To_Script_Btn.TabIndex = 12
+        Me.Insert_m_Upload_Product_Profile_To_Script_Btn.Text = "上載 - 插入"
+        Me.Insert_m_Upload_Product_Profile_To_Script_Btn.UseVisualStyleBackColor = True
         '
         'Product_Description_RichTextBox
         '
@@ -2558,21 +2616,21 @@ Partial Class Form1
         '
         'Product_Located_TextBox
         '
-        Me.Product_Located_TextBox.Location = New System.Drawing.Point(136, 399)
+        Me.Product_Located_TextBox.Location = New System.Drawing.Point(136, 381)
         Me.Product_Located_TextBox.Name = "Product_Located_TextBox"
         Me.Product_Located_TextBox.Size = New System.Drawing.Size(532, 27)
         Me.Product_Located_TextBox.TabIndex = 10
         '
         'Product_Price_TextBox
         '
-        Me.Product_Price_TextBox.Location = New System.Drawing.Point(136, 355)
+        Me.Product_Price_TextBox.Location = New System.Drawing.Point(136, 315)
         Me.Product_Price_TextBox.Name = "Product_Price_TextBox"
         Me.Product_Price_TextBox.Size = New System.Drawing.Size(532, 27)
         Me.Product_Price_TextBox.TabIndex = 9
         '
         'Pruduct_Name_TextBox
         '
-        Me.Pruduct_Name_TextBox.Location = New System.Drawing.Point(136, 310)
+        Me.Pruduct_Name_TextBox.Location = New System.Drawing.Point(136, 282)
         Me.Pruduct_Name_TextBox.Name = "Pruduct_Name_TextBox"
         Me.Pruduct_Name_TextBox.Size = New System.Drawing.Size(532, 27)
         Me.Pruduct_Name_TextBox.TabIndex = 8
@@ -2580,7 +2638,7 @@ Partial Class Form1
         'Label85
         '
         Me.Label85.AutoSize = True
-        Me.Label85.Location = New System.Drawing.Point(35, 91)
+        Me.Label85.Location = New System.Drawing.Point(35, 74)
         Me.Label85.Name = "Label85"
         Me.Label85.Size = New System.Drawing.Size(95, 19)
         Me.Label85.TabIndex = 6
@@ -2589,7 +2647,7 @@ Partial Class Form1
         'Label84
         '
         Me.Label84.AutoSize = True
-        Me.Label84.Location = New System.Drawing.Point(80, 363)
+        Me.Label84.Location = New System.Drawing.Point(80, 323)
         Me.Label84.Name = "Label84"
         Me.Label84.Size = New System.Drawing.Size(50, 19)
         Me.Label84.TabIndex = 5
@@ -2598,7 +2656,7 @@ Partial Class Form1
         'Label83
         '
         Me.Label83.AutoSize = True
-        Me.Label83.Location = New System.Drawing.Point(80, 407)
+        Me.Label83.Location = New System.Drawing.Point(80, 384)
         Me.Label83.Name = "Label83"
         Me.Label83.Size = New System.Drawing.Size(50, 19)
         Me.Label83.TabIndex = 4
@@ -2616,7 +2674,7 @@ Partial Class Form1
         'Label81
         '
         Me.Label81.AutoSize = True
-        Me.Label81.Location = New System.Drawing.Point(50, 318)
+        Me.Label81.Location = New System.Drawing.Point(50, 285)
         Me.Label81.Name = "Label81"
         Me.Label81.Size = New System.Drawing.Size(80, 19)
         Me.Label81.TabIndex = 2
@@ -4238,59 +4296,23 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Label87
+        'Label89
         '
-        Me.Label87.AutoSize = True
-        Me.Label87.Location = New System.Drawing.Point(76, 659)
-        Me.Label87.Name = "Label87"
-        Me.Label87.Size = New System.Drawing.Size(54, 19)
-        Me.Label87.TabIndex = 24
-        Me.Label87.Text = "FB.m : "
+        Me.Label89.AutoSize = True
+        Me.Label89.Location = New System.Drawing.Point(80, 356)
+        Me.Label89.Name = "Label89"
+        Me.Label89.Size = New System.Drawing.Size(50, 19)
+        Me.Label89.TabIndex = 30
+        Me.Label89.Text = "狀態 : "
         '
-        'Label88
+        'Product_Condition_ComboBox
         '
-        Me.Label88.AutoSize = True
-        Me.Label88.Location = New System.Drawing.Point(400, 664)
-        Me.Label88.Name = "Label88"
-        Me.Label88.Size = New System.Drawing.Size(65, 19)
-        Me.Label88.TabIndex = 25
-        Me.Label88.Text = "網頁版 : "
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(471, 659)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(114, 29)
-        Me.Button4.TabIndex = 26
-        Me.Button4.Text = "按拍賣 - 插入"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(471, 694)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(114, 29)
-        Me.Button5.TabIndex = 27
-        Me.Button5.Text = "上載 - 插入"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(471, 729)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(114, 29)
-        Me.Button6.TabIndex = 28
-        Me.Button6.Text = "展開 - 插入"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(471, 761)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(114, 29)
-        Me.Button7.TabIndex = 29
-        Me.Button7.Text = "發布 - 插入"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.Product_Condition_ComboBox.FormattingEnabled = True
+        Me.Product_Condition_ComboBox.Items.AddRange(New Object() {"全新", "二手 - 近全新", "二手 - 良好", "二手 - 普通"})
+        Me.Product_Condition_ComboBox.Location = New System.Drawing.Point(136, 348)
+        Me.Product_Condition_ComboBox.Name = "Product_Condition_ComboBox"
+        Me.Product_Condition_ComboBox.Size = New System.Drawing.Size(532, 27)
+        Me.Product_Condition_ComboBox.TabIndex = 31
         '
         'Form1
         '
@@ -4735,13 +4757,13 @@ Partial Class Form1
     Friend WithEvents Label80 As Label
     Friend WithEvents Save_Product_Profile_To_File_Button As Button
     Friend WithEvents Reveal_Product_Dir_Button As Button
-    Friend WithEvents Insert_Upload_Product_Profile_To_Script_Btn As Button
+    Friend WithEvents Insert_m_Upload_Product_Profile_To_Script_Btn As Button
     Friend WithEvents Fb_Sale_Group_Url_ComboBox As ComboBox
     Friend WithEvents Delete_Selected_Product_Folder_Button As Button
     Friend WithEvents Product_List_CheckedListBox As CheckedListBox
     Friend WithEvents UnCheck_All_Product_Item_Btn As Button
     Friend WithEvents Check_All_Product_Item_Btn As Button
-    Friend WithEvents Insert_Post_Product_btn As Button
+    Friend WithEvents Insert_m_Post_Product_btn As Button
     Friend WithEvents Insert_IPhone_Post_Product_btn As Button
     Friend WithEvents Insert_IPhone_Upload_Product_Profile_To_Script_Btn As Button
     Friend WithEvents Insert_Messager_Submit_Content_Btn As Button
@@ -4754,10 +4776,12 @@ Partial Class Form1
     Friend WithEvents Messager_Name_TextBox As TextBox
     Friend WithEvents Submit_Message_Button As Button
     Friend WithEvents Upload_Message_Button As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents Insert_Post_Product_Button As Button
+    Friend WithEvents Insert_Upload_MoreDetails_Button As Button
+    Friend WithEvents Insert_Upload_Product_Profile_Button As Button
+    Friend WithEvents Insert_Click_Sale_button As Button
     Friend WithEvents Label88 As Label
     Friend WithEvents Label87 As Label
+    Friend WithEvents Product_Condition_ComboBox As ComboBox
+    Friend WithEvents Label89 As Label
 End Class

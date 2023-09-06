@@ -320,6 +320,21 @@ Public Class MyWebDriver
     End Function
 
 
+    Public Function Click_By_CssSelector_Task(cssSelectorStr)
+        Return Task.Run(Function() Click_By_CssSelector(cssSelectorStr))
+    End Function
+
+
+    Public Function Click_By_CssSelector(cssSelectorStr)
+        Try
+            chromeDriver.FindElement(By.CssSelector(cssSelectorStr)).Click()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+
     Public Function Click_element_by_feature_Task(parm)
         Return Task.Run(Function() Click_element_by_feature(parm))
     End Function
@@ -1244,7 +1259,6 @@ Public Class MyWebDriver
 
                 chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[14]/textarea")).SendKeys(jsonData.ProdcutDescription)
 
-
                 Return True
 
                 Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
@@ -1272,5 +1286,75 @@ Public Class MyWebDriver
         End Try
     End Function
 
+
+    Public Function Click_Sale_Product_Task()
+        Return Task.Run(Function() Click_Sale_Product())
+    End Function
+
+
+    Public Function Click_Sale_Product()
+        Try
+
+            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.xeuugli.xs83m0k.x1xmf6yo.x1emribx.x1e56ztr.x1i64zmx.xjl7jj.x19h7ccj.xu9j1y6.x7ep2pv > div:nth-child(1) > div > div > div > div > div > div")).Click()
+            chromeDriver.FindElement(By.CssSelector("div.xamitd3.x78zum5.x1q0g3np.x1a02dak.x1e56ztr.xw3qccf.x1sliqq.x14vqqas.xh8yej3.x1ni0lre.xlqeb66 > div:nth-child(1) > div > span > div > div")).Click()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+
+
+    Public Function Upload_Product_Profile_Task(content)
+        Try
+            Dim Product_Profile_Path = FormInit.product_dir_path + content + "\ProductProfile.json"
+            If File.Exists(Product_Profile_Path) Then
+                Dim jsonString = File.ReadAllText(Product_Profile_Path)
+                Dim jsonData As Form1.PruductProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of Form1.PruductProfileDataType)(jsonString)
+                Clipboard.SetText(jsonData.ProductName)
+                Return Task.Run(Function() Upload_Product_Profile(content, jsonData))
+            End If
+            Return False
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
+    Public Function Upload_Product_Profile(content, jsonData)
+        Try
+
+            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(3) > div > div > label > div > div > input")).SendKeys(Keys.LeftControl + "V")
+            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(4) > div > div > label > div > div > input")).SendKeys(jsonData.ProductPrice)
+
+            'chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[10]/div[2]/input")).SendKeys(jsonData.ProductLocated)
+
+            'chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[14]/textarea")).SendKeys(jsonData.ProdcutDescription)
+
+            Return True
+
+            Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
+            For Each img As String In imgfiles
+                Debug.WriteLine("##########")
+                If {".jpg", ".jpeg", ".png", ".mp4"}.Contains(Path.GetExtension(img)) Then
+                    Debug.WriteLine(img)
+                    chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[15]")).Click()
+                    Thread.Sleep(1000)
+                    chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div[2]/div[2]/div/div/div/div[2]")).Click()
+
+                    Return True
+                    'Thread.Sleep(1000)
+                    'chromeDriver.FindElement(By.XPath("//*[@id=""app-body""]/input")).SendKeys(img)
+
+                End If
+
+            Next
+
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
 
 End Class
