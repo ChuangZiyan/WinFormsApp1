@@ -2633,7 +2633,7 @@ Public Class Form1
             Dim Product_Profile As New With {
             .ProductName = Pruduct_Name_TextBox.Text,
             .ProductPrice = Product_Price_TextBox.Text,
-            .ProductCondition = Product_Condition_ComboBox.Text,
+            .ProductCondition = Product_Condition_ComboBox.SelectedIndex.ToString(),
             .ProductLocated = Product_Located_TextBox.Text,
             .ProdcutDescription = Product_Description_RichTextBox.Text
             }
@@ -2666,7 +2666,7 @@ Public Class Form1
     Public Class PruductProfileDataType
         Public Property ProductName As String
         Public Property ProductPrice As String
-        Public Property ProductCondition As String
+        Public Property ProductCondition As Integer
         Public Property ProductLocated As String
         Public Property ProdcutDescription As String
     End Class
@@ -2684,7 +2684,7 @@ Public Class Form1
 
             Pruduct_Name_TextBox.Text = jsonData.ProductName
             Product_Price_TextBox.Text = jsonData.ProductPrice
-            Product_Condition_ComboBox.Text = jsonData.ProductCondition
+            Product_Condition_ComboBox.SelectedIndex = jsonData.ProductCondition
             Product_Located_TextBox.Text = jsonData.ProductLocated
             Product_Description_RichTextBox.Text = jsonData.ProdcutDescription
         Else

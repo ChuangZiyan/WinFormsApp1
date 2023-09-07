@@ -1327,21 +1327,23 @@ Public Class MyWebDriver
             chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(3) > div > div > label > div > div > input")).SendKeys(Keys.LeftControl + "V")
             chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(4) > div > div > label > div > div > input")).SendKeys(jsonData.ProductPrice)
 
+            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(5) > div > div > div > label")).Click()
+
+            chromeDriver.FindElement(By.CssSelector("div.xu96u03.xm80bdy.x10l6tqk.x13vifvy > div.x1n2onr6 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div > div:nth-child(" & jsonData.ProductCondition + 1 & ")")).Click()
             'chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[10]/div[2]/input")).SendKeys(jsonData.ProductLocated)
 
             'chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[14]/textarea")).SendKeys(jsonData.ProdcutDescription)
 
-            Return True
+            'Return True
+            Dim img_input = chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div.x1gslohp.x1swvt13.x1pi30zi > label:nth-child(2) > input"))
 
             Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
             For Each img As String In imgfiles
-                Debug.WriteLine("##########")
+
                 If {".jpg", ".jpeg", ".png", ".mp4"}.Contains(Path.GetExtension(img)) Then
                     Debug.WriteLine(img)
-                    chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[15]")).Click()
-                    Thread.Sleep(1000)
-                    chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div[2]/div[2]/div/div/div/div[2]")).Click()
 
+                    img_input.SendKeys(img)
                     Return True
                     'Thread.Sleep(1000)
                     'chromeDriver.FindElement(By.XPath("//*[@id=""app-body""]/input")).SendKeys(img)
