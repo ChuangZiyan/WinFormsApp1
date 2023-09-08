@@ -220,6 +220,8 @@ Partial Class Form1
         Me.Open_dir_in_explorer_btn = New System.Windows.Forms.Button()
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Product_Condition_ComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label89 = New System.Windows.Forms.Label()
         Me.Insert_Post_Product_Button = New System.Windows.Forms.Button()
         Me.Insert_Upload_MoreDetails_Button = New System.Windows.Forms.Button()
         Me.Insert_Upload_Product_Profile_Button = New System.Windows.Forms.Button()
@@ -414,8 +416,6 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Label89 = New System.Windows.Forms.Label()
-        Me.Product_Condition_ComboBox = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2453,6 +2453,24 @@ Partial Class Form1
         Me.TabPage2.Text = "拍賣"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Product_Condition_ComboBox
+        '
+        Me.Product_Condition_ComboBox.FormattingEnabled = True
+        Me.Product_Condition_ComboBox.Items.AddRange(New Object() {"全新", "二手 - 近全新", "二手 - 良好", "二手 - 普通"})
+        Me.Product_Condition_ComboBox.Location = New System.Drawing.Point(136, 348)
+        Me.Product_Condition_ComboBox.Name = "Product_Condition_ComboBox"
+        Me.Product_Condition_ComboBox.Size = New System.Drawing.Size(532, 27)
+        Me.Product_Condition_ComboBox.TabIndex = 31
+        '
+        'Label89
+        '
+        Me.Label89.AutoSize = True
+        Me.Label89.Location = New System.Drawing.Point(80, 356)
+        Me.Label89.Name = "Label89"
+        Me.Label89.Size = New System.Drawing.Size(50, 19)
+        Me.Label89.TabIndex = 30
+        Me.Label89.Text = "狀態 : "
+        '
         'Insert_Post_Product_Button
         '
         Me.Insert_Post_Product_Button.Location = New System.Drawing.Point(471, 761)
@@ -4295,24 +4313,6 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
-        '
-        'Label89
-        '
-        Me.Label89.AutoSize = True
-        Me.Label89.Location = New System.Drawing.Point(80, 356)
-        Me.Label89.Name = "Label89"
-        Me.Label89.Size = New System.Drawing.Size(50, 19)
-        Me.Label89.TabIndex = 30
-        Me.Label89.Text = "狀態 : "
-        '
-        'Product_Condition_ComboBox
-        '
-        Me.Product_Condition_ComboBox.FormattingEnabled = True
-        Me.Product_Condition_ComboBox.Items.AddRange(New Object() {"全新", "二手 - 近全新", "二手 - 良好", "二手 - 普通"})
-        Me.Product_Condition_ComboBox.Location = New System.Drawing.Point(136, 348)
-        Me.Product_Condition_ComboBox.Name = "Product_Condition_ComboBox"
-        Me.Product_Condition_ComboBox.Size = New System.Drawing.Size(532, 27)
-        Me.Product_Condition_ComboBox.TabIndex = 31
         '
         'Form1
         '

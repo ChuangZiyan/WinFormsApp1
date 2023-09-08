@@ -785,6 +785,8 @@ Public Class Form1
 
                 Case "拍賣:上載"
                     boolean_result = Await myWebDriver.Upload_Product_Profile_Task(content)
+                Case "拍賣:發布"
+                    boolean_result = Await myWebDriver.Click_Post_Product_Task()
 
                 Case "m拍賣:上載"
                     Try
@@ -798,7 +800,7 @@ Public Class Form1
                         boolean_result = False
                     End Try
                 Case "m拍賣:按發布"
-                    boolean_result = Await myWebDriver.Click_Post_Product_Task()
+                    boolean_result = Await myWebDriver.m_Click_Post_Product_Task()
                 Case "拍賣:IPhone上載"
                     Try
                         Dim my_list = content.Split(";")
@@ -2864,5 +2866,9 @@ Public Class Form1
         End If
 
         Insert_to_script("拍賣:上載", product_folders)
+    End Sub
+
+    Private Sub Insert_Post_Product_Button_Click(sender As Object, e As EventArgs) Handles Insert_Post_Product_Button.Click
+        Insert_to_script("拍賣:發布", "")
     End Sub
 End Class
