@@ -785,6 +785,8 @@ Public Class Form1
 
                 Case "拍賣:上載"
                     boolean_result = Await myWebDriver.Upload_Product_Profile_Task(content)
+                Case "拍賣:填詳細"
+                    boolean_result = Await myWebDriver.Upload_Product_Detail_Profile_Task(content)
                 Case "拍賣:發布"
                     boolean_result = Await myWebDriver.Click_Post_Product_Task()
 
@@ -2635,7 +2637,7 @@ Public Class Form1
             Dim Product_Profile As New With {
             .ProductName = Pruduct_Name_TextBox.Text,
             .ProductPrice = Product_Price_TextBox.Text,
-            .ProductCondition = Product_Condition_ComboBox.SelectedIndex.ToString(),
+            .ProductCondition = Product_Condition_ComboBox.SelectedIndex,
             .ProductLocated = Product_Located_TextBox.Text,
             .ProdcutDescription = Product_Description_RichTextBox.Text
             }
@@ -2870,5 +2872,20 @@ Public Class Form1
 
     Private Sub Insert_Post_Product_Button_Click(sender As Object, e As EventArgs) Handles Insert_Post_Product_Button.Click
         Insert_to_script("拍賣:發布", "")
+    End Sub
+
+    Private Sub Insert_Upload_MoreDetails_Button_Click(sender As Object, e As EventArgs) Handles Insert_Upload_MoreDetails_Button.Click
+        Dim product_folders As String = ""
+        For Each checkedItem As Object In Product_List_CheckedListBox.CheckedItems
+            Dim checkedText As String = checkedItem.ToString()
+            Debug.WriteLine("Checked item: " & checkedText)
+            product_folders += checkedText + "/"
+        Next
+
+        If product_folders = "" Then
+            MsgBox("未選擇商品")
+            Exit Sub
+        End If
+        Insert_to_script("拍賣:填詳細", product_folders)
     End Sub
 End Class

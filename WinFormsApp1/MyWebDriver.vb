@@ -1341,8 +1341,8 @@ Public Class MyWebDriver
             For Each img As String In imgfiles
 
                 If {".jpg", ".jpeg", ".png", ".mp4"}.Contains(Path.GetExtension(img)) Then
+                    Debug.WriteLine("#####################################")
                     Debug.WriteLine(img)
-
                     img_input.SendKeys(img)
 
                 End If
@@ -1355,6 +1355,36 @@ Public Class MyWebDriver
             Return False
         End Try
     End Function
+
+
+    Public Function Upload_Product_Detail_Profile_Task(content)
+        Dim Product_Profile_Path = FormInit.product_dir_path + content + "\ProductProfile.json"
+        If File.Exists(Product_Profile_Path) Then
+            Dim jsonString = File.ReadAllText(Product_Profile_Path)
+            Dim jsonData As Form1.PruductProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of Form1.PruductProfileDataType)(jsonString)
+            Clipboard.SetText(jsonData.ProdcutDescription)
+            Return Task.Run(Function() Upload_Product_Detail_Profile(content, jsonData))
+        End If
+        Return False
+
+    End Function
+
+    Public Function Upload_Product_Detail_Profile(content, jsonData)
+
+
+        Try
+            chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div > div")).Click()
+            Dim txt_area = chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div:nth-child(2) > div > div > label > div > div > textarea"))
+            txt_area.Click()
+            txt_area.SendKeys(Keys.LeftControl + "V")
+
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
 
 
     Public Function Click_Post_Product_Task()
