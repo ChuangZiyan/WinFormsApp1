@@ -33,7 +33,6 @@ Public Class Form1
 
     'Const Version = "1.0.221027.1"
 
-
     'Dim chromeDriver As IWebDriver
     'Dim webDriverWait As WebDriverWait
 
@@ -174,14 +173,10 @@ Public Class Form1
                 End If
             End If
 
-
-
             Restore_ListViewItems_BackColor()
             item.BackColor = Color.SteelBlue
             item.ForeColor = Color.White
             item.EnsureVisible()
-
-
 
             If Pause_Script = True Then ' Pause script
                 While True
@@ -782,11 +777,14 @@ Public Class Form1
                     End Try
                 Case "拍賣:按拍賣"
                     boolean_result = Await myWebDriver.Click_Sale_Product_Task()
-
                 Case "拍賣:上載"
                     boolean_result = Await myWebDriver.Upload_Product_Profile_Task(content)
                 Case "拍賣:填詳細"
                     boolean_result = Await myWebDriver.Upload_Product_Detail_Profile_Task(content)
+                Case "拍賣:點繼續"
+                    boolean_result = Await myWebDriver.Click_Continue_Product_Task()
+                Case "拍賣:點MKT"
+                    boolean_result = Await myWebDriver.Click_MarketPlace_Product_Task()
                 Case "拍賣:發布"
                     boolean_result = Await myWebDriver.Click_Post_Product_Task()
 
@@ -2887,5 +2885,13 @@ Public Class Form1
             Exit Sub
         End If
         Insert_to_script("拍賣:填詳細", product_folders)
+    End Sub
+
+    Private Sub Insert_Product_Click_Continue_Button_Click(sender As Object, e As EventArgs) Handles Insert_Product_Click_Continue_Button.Click
+        Insert_to_script("拍賣:點繼續", "")
+    End Sub
+
+    Private Sub Insert_Product_Click_MarketPlace_Button_Click(sender As Object, e As EventArgs) Handles Insert_Product_Click_MarketPlace_Button.Click
+        Insert_to_script("拍賣:點MKT", "")
     End Sub
 End Class

@@ -1371,13 +1371,45 @@ Public Class MyWebDriver
 
     Public Function Upload_Product_Detail_Profile(content, jsonData)
 
-
         Try
             chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div > div")).Click()
             Dim txt_area = chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div:nth-child(2) > div > div > label > div > div > textarea"))
             txt_area.Click()
             txt_area.SendKeys(Keys.LeftControl + "V")
 
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+    End Function
+
+    Public Function Click_Continue_Product_Task()
+        Return Task.Run(Function() Click_Continue_Product())
+    End Function
+
+
+
+    Public Function Click_Continue_Product()
+        Try
+            chromeDriver.FindElement(By.CssSelector("div.x1n2xptk.x1l90r2v.xyamay9.x1pi30zi.x1swvt13 > div")).Click()
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+
+    End Function
+
+
+    Public Function Click_MarketPlace_Product_Task()
+        Return Task.Run(Function() Click_MarketPlace_Product())
+    End Function
+
+    Public Function Click_MarketPlace_Product()
+
+        Try
+            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(2) > div > div > div:nth-child(3) > div > div")).Click()
             Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -1393,8 +1425,6 @@ Public Class MyWebDriver
 
     Public Function Click_Post_Product()
         Try
-            chromeDriver.FindElement(By.CssSelector("div.x1n2xptk.x1l90r2v.xyamay9.x1pi30zi.x1swvt13 > div")).Click()
-            Thread.Sleep(3000)
             chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div.x1n2xptk.x1l90r2v.xyamay9.x1pi30zi.x1swvt13 > div")).Click()
             Return True
         Catch ex As Exception
