@@ -19,10 +19,8 @@ Imports System.Text.RegularExpressions
 Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AngleSharp.Text
 Imports System.Diagnostics.Metrics
-Imports System.Xml
 Imports System.Collections.Specialized
 Imports System.Reflection.Metadata
 Imports System.Buffers
@@ -60,8 +58,6 @@ Public Class Form1
     Public keyboardMouseController As New KeyboardAndMouseController()
 
     ' ######### Keyboard hook #############
-
-
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -778,9 +774,30 @@ Public Class Form1
                 Case "拍賣:按拍賣"
                     boolean_result = Await myWebDriver.Click_Sale_Product_Task()
                 Case "拍賣:上載"
-                    boolean_result = Await myWebDriver.Upload_Product_Profile_Task(content)
+
+                    Try
+                        Dim pruduct_folders = content.Split("/")
+                        Dim rnd = rnd_num.Next(0, pruduct_folders.Length - 1)
+                        boolean_result = Await myWebDriver.Upload_Product_Profile_Task(pruduct_folders(rnd))
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "拍賣:填詳細"
-                    boolean_result = Await myWebDriver.Upload_Product_Detail_Profile_Task(content)
+
+                    Try
+                        Dim pruduct_folders = content.Split("/")
+                        Dim rnd = rnd_num.Next(0, pruduct_folders.Length - 1)
+                        If Await myWebDriver.Upload_Product_Profile_Task(pruduct_folders(rnd)) = True Then
+                            Await Delay_msec(500)
+                            boolean_result = Await myWebDriver.Upload_Product_Detail_Profile_Task(pruduct_folders(rnd))
+                        Else
+                            boolean_result = False
+                        End If
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
                 Case "拍賣:點繼續"
                     boolean_result = Await myWebDriver.Click_Continue_Product_Task()
                 Case "拍賣:點MKT"
@@ -2639,8 +2656,6 @@ Public Class Form1
             .ProductLocated = Product_Located_TextBox.Text,
             .ProdcutDescription = Product_Description_RichTextBox.Text
             }
-
-            MsgBox(Product_Condition_ComboBox.Text)
 
             Dim jsonStr As String = System.Text.Json.JsonSerializer.Serialize(Product_Profile)
             Dim selectedText = ""
