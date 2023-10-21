@@ -916,8 +916,8 @@ Public Class MyWebDriver
     End Function
 
 
-    Public Function Messager_Contact_Task(Room_Id, message)
-        Return Task.Run(Function() Messager_Contact(Room_Id, message))
+    Public Function Messager_Contact_Task(img_path_str, message)
+        Return Task.Run(Function() Messager_Contact(img_path_str, message))
     End Function
 
 
@@ -927,21 +927,24 @@ Public Class MyWebDriver
             'Navigate_GoToUrl("https://www.facebook.com/messages/t/" + Room_Id)
 
 
-            Dim my_img_files() As String = img_path_str.Split(vbLf)
+            If img_path_str <> "" Then
+                Dim my_img_files() As String = img_path_str.Split(vbLf)
 
-            For Each substring As String In my_img_files
-                Debug.WriteLine(substring)
-                If Not File.Exists(substring) Then
-                    'Debug.Write("not exist " + substring)
-                    Return False
-                End If
-            Next
+                For Each substring As String In my_img_files
+                    Debug.WriteLine(substring)
+                    If Not File.Exists(substring) Then
+                        Debug.Write("not exist " + substring)
+                        Return False
+                    End If
+                Next
 
-            Dim files_imput = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1ey2m1c.x78zum5.xl56j7k.x10l6tqk.x1vjfegm.x12nagc.xw3qccf.x3oybdh.x1g2r6go.x11xpdln.x1th4bbo > input"))
-            files_imput.SendKeys(img_path_str)
+                Dim files_imput = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1ey2m1c.x78zum5.xl56j7k.x10l6tqk.x1vjfegm.x12nagc.xw3qccf.x3oybdh.x1g2r6go.x11xpdln.x1th4bbo > input"))
+                files_imput.SendKeys(img_path_str)
+
+            End If
 
 
-            Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate"))
+            Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate > p"))
 
             Dim str_arr() As String = message.Split(vbLf)
             For Each line As String In str_arr
@@ -954,8 +957,8 @@ Public Class MyWebDriver
             'Text_input.SendKeys(Keys.Return)
             Return True
         Catch ex As Exception
-            Return False
             Debug.WriteLine(ex)
+            Return False
         End Try
 
     End Function
