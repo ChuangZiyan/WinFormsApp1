@@ -358,10 +358,15 @@ Module ScriptInsertion
 
     Public Sub Insert_Messager_Contact()
 
-        If Form1.content_RichTextBox.Text = "" Then
-            MsgBox("內容不能為空")
-        Else
-            Dim img_path_str As String = ""
+
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Form1.Text_File_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_file_path += itemChecked + ";"
+        Next
+
+
+        Dim img_path_str As String = ""
 
             'get selected img path into string 
             If Form1.img_CheckedListBox.CheckedItems.Count <> 0 Then
@@ -382,9 +387,7 @@ Module ScriptInsertion
 
             End If
 
-            Insert_to_script("聊天", img_path_str + ";" + Form1.content_RichTextBox.Text)
-        End If
-
+        Insert_to_script("聊天", img_path_str + "%20" + Txt_file_path.Trim(";"c))
     End Sub
 
 

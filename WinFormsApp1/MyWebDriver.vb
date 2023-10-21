@@ -921,7 +921,7 @@ Public Class MyWebDriver
     End Function
 
 
-    Function Messager_Contact(img_path_str As String, message As String)
+    Function Messager_Contact(img_path_str As String, text_files_path As String)
 
         Try
             'Navigate_GoToUrl("https://www.facebook.com/messages/t/" + Room_Id)
@@ -944,15 +944,27 @@ Public Class MyWebDriver
             End If
 
 
-            Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate > p"))
+            If text_files_path <> "" Then
 
-            Dim str_arr() As String = message.Split(vbLf)
-            For Each line As String In str_arr
-                line = line.Replace(vbCr, "").Replace(vbLf, "")
-                Text_input.SendKeys(line)
-                Thread.Sleep(100)
-                Text_input.SendKeys(Keys.LeftShift + Keys.Return)
-            Next
+                Dim TextFiles = text_files_path.Trim(";"c).Split(";")
+                Dim rnd = rnd_num.Next(0, TextFiles.Length)
+
+                Dim msg = File.ReadAllText(text_folder_path + TextFiles(rnd))
+
+                'Return False
+
+                Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate > p"))
+
+                Dim str_arr() As String = msg.Split(vbLf)
+                For Each line As String In str_arr
+                    line = line.Replace(vbCr, "").Replace(vbLf, "")
+                    Text_input.SendKeys(line)
+                    Thread.Sleep(100)
+                    Text_input.SendKeys(Keys.LeftShift + Keys.Return)
+                Next
+
+            End If
+
 
             'Text_input.SendKeys(Keys.Return)
             Return True

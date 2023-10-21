@@ -591,8 +591,8 @@ Public Class Form1
                     Dim offset() = content.Split(";")
                     boolean_result = myWebDriver.Click_by_Cursor_Offset(offset(0), offset(1))
                 Case "聊天"
-                    Dim images = content.Split(";")(0)
-                    Dim Text = content.Split(";")(1)
+                    Dim images = content.Split("%20")(0)
+                    Dim Text = content.Split("%20")(1)
                     boolean_result = Await myWebDriver.Messager_Contact_Task(images, Text)
                 Case "聊天:送出"
                     boolean_result = Await myWebDriver.Messager_Submit_Content_Task()
@@ -2830,36 +2830,41 @@ Public Class Form1
     End Sub
 
     Private Async Sub Upload_Message_Button_Click(sender As Object, e As EventArgs) Handles Upload_Message_Button.Click
-        If content_RichTextBox.Text = "" Then
-            MsgBox("內容不能為空")
-        Else
-            Dim img_path_str As String = ""
 
-            'get selected img path into string 
-            If img_CheckedListBox.CheckedItems.Count <> 0 Then
-                For i = 0 To img_CheckedListBox.Items.Count - 1
-                    'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
 
-                    If img_CheckedListBox.GetItemChecked(i) Then
-                        'Debug.WriteLine("###################")
-                        'Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
-                        If img_path_str = "" Then
-                            img_path_str = image_folder_path + img_CheckedListBox.Items(i).ToString
-                        Else
-                            img_path_str = img_path_str & vbLf & image_folder_path + img_CheckedListBox.Items(i).ToString
-                        End If
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Text_File_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_file_path += itemChecked + ";"
+        Next
+
+        Dim img_path_str As String = ""
+
+        'get selected img path into string 
+        If img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To img_CheckedListBox.Items.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+
+                If img_CheckedListBox.GetItemChecked(i) Then
+                    'Debug.WriteLine("###################")
+                    'Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
+                    If img_path_str = "" Then
+                        img_path_str = image_folder_path + img_CheckedListBox.Items(i).ToString
+                    Else
+                        img_path_str = img_path_str & vbLf & image_folder_path + img_CheckedListBox.Items(i).ToString
                     End If
+                End If
 
-                Next
+            Next
 
-            End If
-
-            Dim task_result = Await myWebDriver.Messager_Contact_Task(img_path_str, content_RichTextBox.Text)
-
-            If task_result = False Then
-                MsgBox("聊天室上傳失敗")
-            End If
         End If
+
+        Dim task_result = Await myWebDriver.Messager_Contact_Task(img_path_str, Txt_file_path)
+
+        If task_result = False Then
+            MsgBox("聊天室上傳失敗")
+        End If
+
     End Sub
 
     Private Sub Insert_Click_Sale_button_Click(sender As Object, e As EventArgs) Handles Insert_Click_Sale_button.Click
