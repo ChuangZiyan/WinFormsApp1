@@ -370,7 +370,9 @@ Module FormComponentController
                 'Debug.WriteLine(line)
                 Dim myItem = line.Split("&nbsp")
                 Form1.Groups_ListView.Items.Add(myItem(0), 100)
-                Form1.Groups_ListView.Items(i).SubItems.Add(myItem(1))
+                If myItem.Length >= 2 Then
+                    Form1.Groups_ListView.Items(i).SubItems.Add(myItem(1))
+                End If
                 i += 1
             Loop Until line Is Nothing
 

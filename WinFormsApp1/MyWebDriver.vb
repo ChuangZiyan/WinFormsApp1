@@ -1424,7 +1424,7 @@ Public Class MyWebDriver
     Public Function Click_MarketPlace_Product()
 
         Try
-            click_by_aria_label("發佈")
+            chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(2) > div > div > div:nth-child(3) > div > div")).Click()
             Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
@@ -1440,7 +1440,7 @@ Public Class MyWebDriver
 
     Public Function Click_Post_Product()
         Try
-            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div.x1n2xptk.x1l90r2v.xyamay9.x1pi30zi.x1swvt13 > div")).Click()
+            click_by_aria_label("發佈")
             Return True
         Catch ex As Exception
             Debug.WriteLine(ex)

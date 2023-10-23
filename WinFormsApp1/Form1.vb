@@ -1732,6 +1732,7 @@ Public Class Form1
         Dim group_name_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x1iyjqo2.xs83m0k.xeuugli.x1qughib.x6s0dn4.x1a02dak.x1q0g3np.xdl72j9 > div > div > div > div:nth-child(1) > span > span > span"))
         Dim group_url_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.x1sxyh0.xurb0ha > a"))
         'Debug.WriteLine(group_name_classes.Count)
+        Groups_ListView.Items.Clear()
         For i As Integer = 0 To group_name_classes.Count - 1
             'Debug.WriteLine(group_name_classes.ElementAt(i))
             Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
@@ -1771,6 +1772,7 @@ Public Class Form1
         Dim group_url_classes = myWebDriver.chromeDriver.FindElements(By.CssSelector("div._7hkf._3qn7._61-3._2fyi._3qng > a"))
 
         'Debug.WriteLine(group_url_classes.Count)
+        Groups_ListView.Items.Clear()
         For i As Integer = 0 To group_url_classes.Count - 1
             'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
             Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML"), 100)
