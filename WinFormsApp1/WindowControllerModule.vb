@@ -4,7 +4,6 @@ Imports System.Text
 Imports System.Threading
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports ICSharpCode.SharpZipLib.Zip
-Imports OpenQA.Selenium.DevTools.V101.Emulation
 
 Module WindowControllerModule
 
