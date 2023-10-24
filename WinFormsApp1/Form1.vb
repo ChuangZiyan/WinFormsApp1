@@ -55,7 +55,7 @@ Public Class Form1
 
 
     Public myWebDriver As New MyWebDriver()
-    Public keyboardMouseController As New KeyboardAndMouseController()
+    'Public keyboardMouseController As New KeyboardAndMouseController()
 
     ' ######### Keyboard hook #############
 
@@ -655,7 +655,7 @@ Public Class Form1
                         item.SubItems.Item(6).Text = (i.ToString())
                         Await Delay_msec(1000)
                     Next
-                    boolean_result = keyboardMouseController.System_Mouse_OnClick_By_Position("left", CInt(position.Split(":")(0)), CInt(position.Split(":")(1)))
+                    boolean_result = False 'keyboardMouseController.System_Mouse_OnClick_By_Position("left", CInt(position.Split(":")(0)), CInt(position.Split(":")(1)))
                 Case "系統點擊:右鍵"
                     Dim position = content.Split(";")(1)
                     Dim counter = CInt(content.Split(";")(0))
@@ -663,7 +663,7 @@ Public Class Form1
                         item.SubItems.Item(6).Text = (i.ToString())
                         Await Delay_msec(1000)
                     Next
-                    boolean_result = keyboardMouseController.System_Mouse_OnClick_By_Position("right", CInt(position.Split(":")(0)), CInt(position.Split(":")(1)))
+                    boolean_result = False 'keyboardMouseController.System_Mouse_OnClick_By_Position("right", CInt(position.Split(":")(0)), CInt(position.Split(":")(1)))
                 Case "系統發送:按鍵"
                     boolean_result = System_SendKey(content.Split("+")(0), content.Split("+")(1))
 
@@ -2048,7 +2048,8 @@ Public Class Form1
 
     Private Sub Test_System_Mouse_Position_Click_btn_Click(sender As Object, e As EventArgs) Handles Test_System_Mouse_Position_Click_btn.Click
         If IsNumeric(Cursor_X_Position_TextBox.Text) And IsNumeric(Cursor_Y_Position_TextBox.Text) Then
-            keyboardMouseController.Test_System_Mouse_Position_OnClick()
+            'keyboardMouseController.Test_System_Mouse_Position_OnClick()
+            MsgBox("Disabled")
         Else
             MsgBox("非法數值")
         End If
