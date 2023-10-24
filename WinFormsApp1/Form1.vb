@@ -1735,8 +1735,8 @@ Public Class Form1
         Groups_ListView.Items.Clear()
         For i As Integer = 0 To group_name_classes.Count - 1
             'Debug.WriteLine(group_name_classes.ElementAt(i))
-            Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML").Replace("\n", ""), 100)
-            Groups_ListView.Items(i).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href").Replace("\n", ""))
+            Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML").Replace(vbCrLf, ""), 100)
+            Groups_ListView.Items(i).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href").Replace(vbCrLf, ""))
             'FB_Groups_CheckedListBox
         Next
     End Sub
@@ -1775,9 +1775,9 @@ Public Class Form1
         Groups_ListView.Items.Clear()
         For i As Integer = 0 To group_url_classes.Count - 1
             'Debug.WriteLine(group_classes.ElementAt(i).GetAttribute("href"))
-            Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML").Replace("\n", ""), 100)
+            Groups_ListView.Items.Add(group_name_classes.ElementAt(i).GetAttribute("innerHTML").Replace(vbCrLf, ""), 100)
             'Groups_ListView.Items.Add("NameGG", 100)
-            Groups_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href").Replace("\n", ""))
+            Groups_ListView.Items(curr_row).SubItems.Add(group_url_classes.ElementAt(i).GetAttribute("href").Replace(vbCrLf, ""))
             curr_row += 1
         Next
     End Sub
