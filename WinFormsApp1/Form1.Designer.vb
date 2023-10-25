@@ -418,6 +418,8 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Share_To_Other_Groups_Button = New System.Windows.Forms.Button()
+        Me.Share_To_Random_Groups_Button = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2419,6 +2421,8 @@ Partial Class Form1
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Share_To_Random_Groups_Button)
+        Me.TabPage2.Controls.Add(Me.Share_To_Other_Groups_Button)
         Me.TabPage2.Controls.Add(Me.Insert_Product_Click_MarketPlace_Button)
         Me.TabPage2.Controls.Add(Me.Insert_Product_Click_Continue_Button)
         Me.TabPage2.Controls.Add(Me.Product_Condition_ComboBox)
@@ -2459,7 +2463,7 @@ Partial Class Form1
         '
         'Insert_Product_Click_MarketPlace_Button
         '
-        Me.Insert_Product_Click_MarketPlace_Button.Location = New System.Drawing.Point(591, 694)
+        Me.Insert_Product_Click_MarketPlace_Button.Location = New System.Drawing.Point(591, 659)
         Me.Insert_Product_Click_MarketPlace_Button.Name = "Insert_Product_Click_MarketPlace_Button"
         Me.Insert_Product_Click_MarketPlace_Button.Size = New System.Drawing.Size(114, 29)
         Me.Insert_Product_Click_MarketPlace_Button.TabIndex = 33
@@ -2468,7 +2472,7 @@ Partial Class Form1
         '
         'Insert_Product_Click_Continue_Button
         '
-        Me.Insert_Product_Click_Continue_Button.Location = New System.Drawing.Point(591, 659)
+        Me.Insert_Product_Click_Continue_Button.Location = New System.Drawing.Point(471, 764)
         Me.Insert_Product_Click_Continue_Button.Name = "Insert_Product_Click_Continue_Button"
         Me.Insert_Product_Click_Continue_Button.Size = New System.Drawing.Size(114, 29)
         Me.Insert_Product_Click_Continue_Button.TabIndex = 32
@@ -2495,7 +2499,7 @@ Partial Class Form1
         '
         'Insert_Post_Product_Button
         '
-        Me.Insert_Post_Product_Button.Location = New System.Drawing.Point(591, 729)
+        Me.Insert_Post_Product_Button.Location = New System.Drawing.Point(591, 764)
         Me.Insert_Post_Product_Button.Name = "Insert_Post_Product_Button"
         Me.Insert_Post_Product_Button.Size = New System.Drawing.Size(114, 29)
         Me.Insert_Post_Product_Button.TabIndex = 29
@@ -4337,6 +4341,24 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Share_To_Other_Groups_Button
+        '
+        Me.Share_To_Other_Groups_Button.Location = New System.Drawing.Point(591, 694)
+        Me.Share_To_Other_Groups_Button.Name = "Share_To_Other_Groups_Button"
+        Me.Share_To_Other_Groups_Button.Size = New System.Drawing.Size(158, 29)
+        Me.Share_To_Other_Groups_Button.TabIndex = 34
+        Me.Share_To_Other_Groups_Button.Text = "分享至其他社團"
+        Me.Share_To_Other_Groups_Button.UseVisualStyleBackColor = True
+        '
+        'Share_To_Random_Groups_Button
+        '
+        Me.Share_To_Random_Groups_Button.Location = New System.Drawing.Point(591, 729)
+        Me.Share_To_Random_Groups_Button.Name = "Share_To_Random_Groups_Button"
+        Me.Share_To_Random_Groups_Button.Size = New System.Drawing.Size(158, 29)
+        Me.Share_To_Random_Groups_Button.TabIndex = 35
+        Me.Share_To_Random_Groups_Button.Text = "隨機分享至其他社團"
+        Me.Share_To_Random_Groups_Button.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -4809,4 +4831,6 @@ Partial Class Form1
     Friend WithEvents Label89 As Label
     Friend WithEvents Insert_Product_Click_Continue_Button As Button
     Friend WithEvents Insert_Product_Click_MarketPlace_Button As Button
+    Friend WithEvents Share_To_Random_Groups_Button As Button
+    Friend WithEvents Share_To_Other_Groups_Button As Button
 End Class
