@@ -802,6 +802,9 @@ Public Class Form1
                     boolean_result = Await myWebDriver.Click_Continue_Product_Task()
                 Case "拍賣:點MKT"
                     boolean_result = Await myWebDriver.Click_MarketPlace_Product_Task()
+                Case "拍賣:分享至其他社團"
+                    boolean_result = Await myWebDriver.Click_Share_Product_To_Other_Groups_Task(False)
+
                 Case "拍賣:發布"
                     boolean_result = Await myWebDriver.Click_Post_Product_Task()
 
@@ -2916,5 +2919,14 @@ Public Class Form1
 
     Private Sub Insert_Product_Click_MarketPlace_Button_Click(sender As Object, e As EventArgs) Handles Insert_Product_Click_MarketPlace_Button.Click
         Insert_to_script("拍賣:點MKT", "")
+    End Sub
+
+    Private Sub Share_To_Other_Groups_Button_Click(sender As Object, e As EventArgs) Handles Share_To_Other_Groups_Button.Click
+        Insert_to_script("拍賣:分享至其他社團", "")
+    End Sub
+
+    Private Sub Share_To_Random_Groups_Button_Click(sender As Object, e As EventArgs) Handles Share_To_Random_Groups_Button.Click
+        'Insert_to_script("拍賣:分享至隨機其他社團", "")
+        MsgBox("還沒好")
     End Sub
 End Class

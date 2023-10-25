@@ -1424,12 +1424,48 @@ Public Class MyWebDriver
     Public Function Click_MarketPlace_Product()
 
         Try
-            chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(2) > div > div > div:nth-child(3) > div > div")).Click()
+            chromeDriver.FindElement(By.CssSelector("div:nth-child(4) > div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x2lah0s.x193iq5w > div > div:nth-child(2) > div > div > div:nth-child(3) > div > div")).Click()
+
             Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
             Return False
         End Try
+    End Function
+
+
+    Public Function Click_Share_Product_To_Other_Groups_Task(random)
+        Return Task.Run(Function() Click_Share_Product_To_Other_Groups(random))
+    End Function
+
+    Public Function Click_Share_Product_To_Other_Groups(random As Boolean)
+
+        If random Then
+            Debug.WriteLine("Random")
+            Return False
+        Else
+            Try
+                Dim group_check_boxes = chromeDriver.FindElements(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xr9ek0c.xjpr12u.xzboxd6.x14l7nz5 > div > div"))
+
+                Dim idx = 0
+                For Each checkbox In group_check_boxes
+                    If idx > 4 Then
+                        checkbox.Click()
+                    End If
+                    idx += 1
+                    If idx > 24 Then
+                        Return True
+                    End If
+                Next
+
+                Return True
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+                Return False
+            End Try
+        End If
+
+
     End Function
 
 
