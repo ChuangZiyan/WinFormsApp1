@@ -1353,16 +1353,22 @@ Public Class MyWebDriver
             Dim img_input = chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div.x1gslohp.x1swvt13.x1pi30zi > label:nth-child(2) > input"))
 
             Dim imgfiles() As String = IO.Directory.GetFiles(FormInit.product_dir_path + content)
+            Dim imgUploadString As String = ""
             For Each img As String In imgfiles
 
                 If {".jpg", ".jpeg", ".png", ".mp4"}.Contains(Path.GetExtension(img)) Then
-                    Debug.WriteLine("#####################################")
+                    'Debug.WriteLine("#####################################")
                     Debug.WriteLine(img)
-                    img_input.SendKeys(img)
-
+                    imgUploadString += img & vbLf
                 End If
 
             Next
+
+            If imgUploadString <> "" Then
+                'Debug.WriteLine("####")
+                imgUploadString = imgUploadString.Trim(vbLf)
+                img_input.SendKeys(imgUploadString)
+            End If
 
             Return True
         Catch ex As Exception
