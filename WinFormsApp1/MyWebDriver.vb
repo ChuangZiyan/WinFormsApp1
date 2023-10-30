@@ -1499,9 +1499,8 @@ Public Class MyWebDriver
         Try
             Form1.Message_Id_ListBox.Items.Clear()
             'Await Navigate_GoToUrl_Task("https://m.facebook.com/messages")
-
             'chromeDriver.FindElement(By.Id("see_older_threads")).Click()
-            chromeDriver.FindElement(By.XPath("//*[contains(text(), '查看之前的訊息…')]"))
+            chromeDriver.FindElement(By.CssSelector("#see_older_threads")).Click()
 
             Await Delay_msec(3000)
             Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
@@ -1515,7 +1514,7 @@ Public Class MyWebDriver
                 Dim match As Match = regex.Match(item.GetAttribute("href"))
                 If match.Success Then
                     Dim result As String = match.Groups(2).Value
-                    Debug.WriteLine("匹配结果: " & result)
+                    'Debug.WriteLine("匹配结果: " & result)
 
                     If result.Contains("%3A") Then
                         result = result.Split("%3A")(1)

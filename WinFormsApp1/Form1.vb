@@ -597,7 +597,7 @@ Public Class Form1
                 Case "聊天:送出"
                     boolean_result = Await myWebDriver.Messager_Submit_Content_Task()
                 Case "聊天室:取得聯絡人"
-                    boolean_result = Await myWebDriver.Get_Message_Id(content)
+                    boolean_result = Await myWebDriver.Get_Message_Id_Task(content)
                 Case "搜尋"
                     Dim param() = content.Split(";")
                     boolean_result = Await myWebDriver.Search_Keyword_Task(param(0), param(1))
