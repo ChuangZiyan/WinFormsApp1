@@ -1490,14 +1490,18 @@ Public Class MyWebDriver
         End Try
     End Function
 
+    Public Function Get_Message_Id_Task(counter)
+        Return Task.Run(Function() Get_Message_Id(counter))
+    End Function
+
 
     Public Async Function Get_Message_Id(counter) As Task(Of Boolean)
         Try
             Form1.Message_Id_ListBox.Items.Clear()
-            Await Navigate_GoToUrl_Task("https://m.facebook.com/messages")
+            'Await Navigate_GoToUrl_Task("https://m.facebook.com/messages")
 
             'chromeDriver.FindElement(By.Id("see_older_threads")).Click()
-            click_by_span_text("查看之前的訊息…")
+            chromeDriver.FindElement(By.XPath("//*[contains(text(), '查看之前的訊息…')]"))
 
             Await Delay_msec(3000)
             Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
@@ -1514,7 +1518,7 @@ Public Class MyWebDriver
                     Debug.WriteLine("匹配结果: " & result)
 
                     If result.Contains("%3A") Then
-                        result = result.Split("%3A")(0)
+                        result = result.Split("%3A")(1)
                     End If
 
                     Form1.Message_Id_ListBox.Items.Add(result)
