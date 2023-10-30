@@ -2925,8 +2925,14 @@ Public Class Form1
         Insert_to_script("拍賣:分享至其他社團", "")
     End Sub
 
-    Private Sub Share_To_Random_Groups_Button_Click(sender As Object, e As EventArgs) Handles Share_To_Random_Groups_Button.Click
-        'Insert_to_script("拍賣:分享至隨機其他社團", "")
-        MsgBox("還沒好")
+    Private Async Sub Read_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_Message_Id_Button.Click
+        Await myWebDriver.Get_Message_Id()
+    End Sub
+
+    Private Sub Insert_Navigate_To_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Insert_Navigate_To_Message_Id_Button.Click
+        If Message_Id_ListBox.SelectedItem <> Nothing Then
+            Insert_to_script("前往", "https://www.facebook.com/messages/t/" & Message_Id_ListBox.SelectedItem.ToString())
+        End If
+
     End Sub
 End Class

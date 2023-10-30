@@ -1490,4 +1490,49 @@ Public Class MyWebDriver
         End Try
     End Function
 
+
+    Public Async Function Get_Message_Id() As Task(Of Boolean)
+        Try
+            Form1.Message_Id_ListBox.Items.Clear()
+            Await Navigate_GoToUrl_Task("https://m.facebook.com/messages")
+
+            chromeDriver.FindElement(By.Id("see_older_threads")).Click()
+            Await Delay_msec(3000)
+            Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
+            Dim myitems = chromeDriver.FindElements(By.CssSelector(my_css_selector))
+
+            Dim msg_id_pattern = "tid=cid\.(c|g)\.(.*?)(?:&|$)"
+            Dim counter = 0
+
+
+            For Each item In myitems
+                Debug.WriteLine(item.GetAttribute("href"))
+                Dim regex As New Regex(msg_id_pattern)
+                Dim match As Match = regex.Match(item.GetAttribute("href"))
+                If match.Success Then
+                    Dim result As String = match.Groups(2).Value
+                    Debug.WriteLine("匹配结果: " & result)
+
+                    If result.Contains("%3A") Then
+                        result = result.Split("%3A")(0)
+                    End If
+
+                    Form1.Message_Id_ListBox.Items.Add(result)
+                    counter += 1
+
+                    If Form1.Max_Message_Id_NumericUpDown.Value <> 0 And counter >= Form1.Max_Message_Id_NumericUpDown.Value Then
+                        Exit For
+                    End If
+
+                End If
+
+            Next
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
 End Class

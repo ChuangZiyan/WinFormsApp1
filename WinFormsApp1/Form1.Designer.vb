@@ -220,6 +220,7 @@ Partial Class Form1
         Me.Open_dir_in_explorer_btn = New System.Windows.Forms.Button()
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Share_To_Other_Groups_Button = New System.Windows.Forms.Button()
         Me.Insert_Product_Click_MarketPlace_Button = New System.Windows.Forms.Button()
         Me.Insert_Product_Click_Continue_Button = New System.Windows.Forms.Button()
         Me.Product_Condition_ComboBox = New System.Windows.Forms.ComboBox()
@@ -314,11 +315,11 @@ Partial Class Form1
         Me.CursorX_TextBox = New System.Windows.Forms.TextBox()
         Me.CursorY_TextBox = New System.Windows.Forms.TextBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Messager_Content_RichTextBox = New System.Windows.Forms.RichTextBox()
+        Me.Insert_Navigate_To_Message_Id_Button = New System.Windows.Forms.Button()
+        Me.Message_Id_ListBox = New System.Windows.Forms.ListBox()
+        Me.Read_Message_Id_Button = New System.Windows.Forms.Button()
         Me.Label34 = New System.Windows.Forms.Label()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.Messager_Name_TextBox = New System.Windows.Forms.TextBox()
+        Me.Max_Message_Id_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.GroupList = New System.Windows.Forms.TabPage()
         Me.Navigate_To_Selected_Group_Btn = New System.Windows.Forms.Button()
         Me.Add_Item_To_GroupList_Btn = New System.Windows.Forms.Button()
@@ -418,8 +419,6 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Share_To_Other_Groups_Button = New System.Windows.Forms.Button()
-        Me.Share_To_Random_Groups_Button = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -456,6 +455,7 @@ Partial Class Form1
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage6.SuspendLayout()
+        CType(Me.Max_Message_Id_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupList.SuspendLayout()
         Me.Searching.SuspendLayout()
         Me.Widget_TabPage.SuspendLayout()
@@ -2421,7 +2421,6 @@ Partial Class Form1
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Share_To_Random_Groups_Button)
         Me.TabPage2.Controls.Add(Me.Share_To_Other_Groups_Button)
         Me.TabPage2.Controls.Add(Me.Insert_Product_Click_MarketPlace_Button)
         Me.TabPage2.Controls.Add(Me.Insert_Product_Click_Continue_Button)
@@ -2460,6 +2459,15 @@ Partial Class Form1
         Me.TabPage2.TabIndex = 11
         Me.TabPage2.Text = "拍賣"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Share_To_Other_Groups_Button
+        '
+        Me.Share_To_Other_Groups_Button.Location = New System.Drawing.Point(591, 694)
+        Me.Share_To_Other_Groups_Button.Name = "Share_To_Other_Groups_Button"
+        Me.Share_To_Other_Groups_Button.Size = New System.Drawing.Size(158, 29)
+        Me.Share_To_Other_Groups_Button.TabIndex = 34
+        Me.Share_To_Other_Groups_Button.Text = "分享至其他社團"
+        Me.Share_To_Other_Groups_Button.UseVisualStyleBackColor = True
         '
         'Insert_Product_Click_MarketPlace_Button
         '
@@ -3339,11 +3347,11 @@ Partial Class Form1
         '
         'TabPage6
         '
-        Me.TabPage6.Controls.Add(Me.Button3)
-        Me.TabPage6.Controls.Add(Me.Messager_Content_RichTextBox)
+        Me.TabPage6.Controls.Add(Me.Insert_Navigate_To_Message_Id_Button)
+        Me.TabPage6.Controls.Add(Me.Message_Id_ListBox)
+        Me.TabPage6.Controls.Add(Me.Read_Message_Id_Button)
         Me.TabPage6.Controls.Add(Me.Label34)
-        Me.TabPage6.Controls.Add(Me.Label33)
-        Me.TabPage6.Controls.Add(Me.Messager_Name_TextBox)
+        Me.TabPage6.Controls.Add(Me.Max_Message_Id_NumericUpDown)
         Me.TabPage6.Location = New System.Drawing.Point(4, 28)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Size = New System.Drawing.Size(918, 820)
@@ -3351,47 +3359,48 @@ Partial Class Form1
         Me.TabPage6.Text = "聊天室"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
-        'Button3
+        'Insert_Navigate_To_Message_Id_Button
         '
-        Me.Button3.Location = New System.Drawing.Point(474, 251)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(184, 29)
-        Me.Button3.TabIndex = 5
-        Me.Button3.Text = "聊天室訊息送出 - 插入"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Insert_Navigate_To_Message_Id_Button.Location = New System.Drawing.Point(441, 100)
+        Me.Insert_Navigate_To_Message_Id_Button.Name = "Insert_Navigate_To_Message_Id_Button"
+        Me.Insert_Navigate_To_Message_Id_Button.Size = New System.Drawing.Size(178, 29)
+        Me.Insert_Navigate_To_Message_Id_Button.TabIndex = 5
+        Me.Insert_Navigate_To_Message_Id_Button.Text = "前往所選聊天室 - 插入"
+        Me.Insert_Navigate_To_Message_Id_Button.UseVisualStyleBackColor = True
         '
-        'Messager_Content_RichTextBox
+        'Message_Id_ListBox
         '
-        Me.Messager_Content_RichTextBox.Location = New System.Drawing.Point(99, 70)
-        Me.Messager_Content_RichTextBox.Name = "Messager_Content_RichTextBox"
-        Me.Messager_Content_RichTextBox.Size = New System.Drawing.Size(369, 210)
-        Me.Messager_Content_RichTextBox.TabIndex = 3
-        Me.Messager_Content_RichTextBox.Text = ""
+        Me.Message_Id_ListBox.FormattingEnabled = True
+        Me.Message_Id_ListBox.ItemHeight = 19
+        Me.Message_Id_ListBox.Location = New System.Drawing.Point(17, 100)
+        Me.Message_Id_ListBox.Name = "Message_Id_ListBox"
+        Me.Message_Id_ListBox.Size = New System.Drawing.Size(418, 688)
+        Me.Message_Id_ListBox.TabIndex = 4
+        '
+        'Read_Message_Id_Button
+        '
+        Me.Read_Message_Id_Button.Location = New System.Drawing.Point(17, 46)
+        Me.Read_Message_Id_Button.Name = "Read_Message_Id_Button"
+        Me.Read_Message_Id_Button.Size = New System.Drawing.Size(94, 29)
+        Me.Read_Message_Id_Button.TabIndex = 3
+        Me.Read_Message_Id_Button.Text = "讀取m.fb"
+        Me.Read_Message_Id_Button.UseVisualStyleBackColor = True
         '
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(43, 73)
+        Me.Label34.Location = New System.Drawing.Point(188, 54)
         Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(50, 19)
+        Me.Label34.Size = New System.Drawing.Size(24, 19)
         Me.Label34.TabIndex = 2
-        Me.Label34.Text = "訊息 : "
+        Me.Label34.Text = "個"
         '
-        'Label33
+        'Max_Message_Id_NumericUpDown
         '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(17, 32)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(76, 19)
-        Me.Label33.TabIndex = 1
-        Me.Label33.Text = "聯絡人ID :"
-        '
-        'Messager_Name_TextBox
-        '
-        Me.Messager_Name_TextBox.Location = New System.Drawing.Point(99, 29)
-        Me.Messager_Name_TextBox.Name = "Messager_Name_TextBox"
-        Me.Messager_Name_TextBox.Size = New System.Drawing.Size(369, 27)
-        Me.Messager_Name_TextBox.TabIndex = 0
+        Me.Max_Message_Id_NumericUpDown.Location = New System.Drawing.Point(117, 46)
+        Me.Max_Message_Id_NumericUpDown.Name = "Max_Message_Id_NumericUpDown"
+        Me.Max_Message_Id_NumericUpDown.Size = New System.Drawing.Size(65, 27)
+        Me.Max_Message_Id_NumericUpDown.TabIndex = 0
         '
         'GroupList
         '
@@ -4341,24 +4350,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Share_To_Other_Groups_Button
-        '
-        Me.Share_To_Other_Groups_Button.Location = New System.Drawing.Point(591, 694)
-        Me.Share_To_Other_Groups_Button.Name = "Share_To_Other_Groups_Button"
-        Me.Share_To_Other_Groups_Button.Size = New System.Drawing.Size(158, 29)
-        Me.Share_To_Other_Groups_Button.TabIndex = 34
-        Me.Share_To_Other_Groups_Button.Text = "分享至其他社團"
-        Me.Share_To_Other_Groups_Button.UseVisualStyleBackColor = True
-        '
-        'Share_To_Random_Groups_Button
-        '
-        Me.Share_To_Random_Groups_Button.Location = New System.Drawing.Point(591, 729)
-        Me.Share_To_Random_Groups_Button.Name = "Share_To_Random_Groups_Button"
-        Me.Share_To_Random_Groups_Button.Size = New System.Drawing.Size(158, 29)
-        Me.Share_To_Random_Groups_Button.TabIndex = 35
-        Me.Share_To_Random_Groups_Button.Text = "隨機分享至其他社團"
-        Me.Share_To_Random_Groups_Button.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -4414,6 +4405,7 @@ Partial Class Form1
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
         Me.TabPage6.PerformLayout()
+        CType(Me.Max_Message_Id_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupList.ResumeLayout(False)
         Me.GroupList.PerformLayout()
         Me.Searching.ResumeLayout(False)
@@ -4814,11 +4806,6 @@ Partial Class Form1
     Friend WithEvents Insert_Messager_Submit_Content_Btn As Button
     Friend WithEvents Label86 As Label
     Friend WithEvents Insert_Messager_Contact_btn As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Messager_Content_RichTextBox As RichTextBox
-    Friend WithEvents Label34 As Label
-    Friend WithEvents Label33 As Label
-    Friend WithEvents Messager_Name_TextBox As TextBox
     Friend WithEvents Submit_Message_Button As Button
     Friend WithEvents Upload_Message_Button As Button
     Friend WithEvents Insert_Post_Product_Button As Button
@@ -4831,6 +4818,10 @@ Partial Class Form1
     Friend WithEvents Label89 As Label
     Friend WithEvents Insert_Product_Click_Continue_Button As Button
     Friend WithEvents Insert_Product_Click_MarketPlace_Button As Button
-    Friend WithEvents Share_To_Random_Groups_Button As Button
     Friend WithEvents Share_To_Other_Groups_Button As Button
+    Friend WithEvents Message_Id_ListBox As ListBox
+    Friend WithEvents Read_Message_Id_Button As Button
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Max_Message_Id_NumericUpDown As NumericUpDown
+    Friend WithEvents Insert_Navigate_To_Message_Id_Button As Button
 End Class
