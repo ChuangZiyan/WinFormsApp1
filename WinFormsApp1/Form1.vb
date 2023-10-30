@@ -596,6 +596,8 @@ Public Class Form1
                     boolean_result = Await myWebDriver.Messager_Contact_Task(images, Text)
                 Case "聊天:送出"
                     boolean_result = Await myWebDriver.Messager_Submit_Content_Task()
+                Case "聊天室:取得聯絡人"
+                    boolean_result = Await myWebDriver.Get_Message_Id(content)
                 Case "搜尋"
                     Dim param() = content.Split(";")
                     boolean_result = Await myWebDriver.Search_Keyword_Task(param(0), param(1))
@@ -2925,9 +2927,10 @@ Public Class Form1
         Insert_to_script("拍賣:分享至其他社團", "")
     End Sub
 
-    Private Async Sub Read_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_Message_Id_Button.Click
-        Await myWebDriver.Get_Message_Id()
+    Private Sub Read_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_Message_Id_Button.Click
+        Insert_to_script("聊天室:取得聯絡人", Max_Message_Id_NumericUpDown.Value.ToString())
     End Sub
+
 
     Private Sub Insert_Navigate_To_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Insert_Navigate_To_Message_Id_Button.Click
         If Message_Id_ListBox.SelectedItem <> Nothing Then

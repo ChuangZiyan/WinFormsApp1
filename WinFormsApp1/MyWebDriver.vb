@@ -1491,19 +1491,19 @@ Public Class MyWebDriver
     End Function
 
 
-    Public Async Function Get_Message_Id() As Task(Of Boolean)
+    Public Async Function Get_Message_Id(counter) As Task(Of Boolean)
         Try
             Form1.Message_Id_ListBox.Items.Clear()
             Await Navigate_GoToUrl_Task("https://m.facebook.com/messages")
 
-            chromeDriver.FindElement(By.Id("see_older_threads")).Click()
+            'chromeDriver.FindElement(By.Id("see_older_threads")).Click()
+            click_by_span_text("查看之前的訊息…")
+
             Await Delay_msec(3000)
             Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
             Dim myitems = chromeDriver.FindElements(By.CssSelector(my_css_selector))
 
             Dim msg_id_pattern = "tid=cid\.(c|g)\.(.*?)(?:&|$)"
-            Dim counter = 0
-
 
             For Each item In myitems
                 Debug.WriteLine(item.GetAttribute("href"))
