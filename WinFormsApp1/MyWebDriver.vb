@@ -1499,7 +1499,7 @@ Public Class MyWebDriver
         Dim myList As New List(Of String)
         Try
             'Navigate_GoToUrl_Task("https://m.facebook.com/messages")
-            chromeDriver.Navigate.GoToUrl("https://m.facebook.com/messages")
+            'chromeDriver.Navigate.GoToUrl("https://m.facebook.com/messages")
             'chromeDriver.FindElement(By.Id("see_older_threads")).Click()
             chromeDriver.FindElement(By.CssSelector("#see_older_threads")).Click()
             Thread.Sleep(3000)
