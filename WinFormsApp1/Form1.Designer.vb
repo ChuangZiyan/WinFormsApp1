@@ -315,6 +315,9 @@ Partial Class Form1
         CursorX_TextBox = New TextBox()
         CursorY_TextBox = New TextBox()
         TabPage6 = New TabPage()
+        Max_Unread_Message_Id_NumericUpDown = New NumericUpDown()
+        Label34 = New Label()
+        Label33 = New Label()
         Clear_Message_Id_ListBox_Button = New Button()
         Insert_Save_ListBoxMessageId_To_Profile_Button = New Button()
         Insert_Navigate_To_Message_Id_Button = New Button()
@@ -420,9 +423,6 @@ Partial Class Form1
         Script_File_ListBox = New ListBox()
         Timer1 = New Timer(components)
         SaveFileDialog1 = New SaveFileDialog()
-        Label33 = New Label()
-        Label34 = New Label()
-        Max_Unread_Message_Id_NumericUpDown = New NumericUpDown()
         GroupBox1.SuspendLayout()
         CType(End_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(Start_Script_Row_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
@@ -459,6 +459,7 @@ Partial Class Form1
         CType(ScrollBy_Y_Offset_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(ScrollBy_X_Offset_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         TabPage6.SuspendLayout()
+        CType(Max_Unread_Message_Id_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         CType(Max_Read_Message_Id_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         GroupList.SuspendLayout()
         Searching.SuspendLayout()
@@ -472,7 +473,6 @@ Partial Class Form1
         Post_Crawler.SuspendLayout()
         Block_User.SuspendLayout()
         TabPage1.SuspendLayout()
-        CType(Max_Unread_Message_Id_NumericUpDown, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' content_RichTextBox
@@ -3368,6 +3368,32 @@ Partial Class Form1
         TabPage6.Text = "聊天室"
         TabPage6.UseVisualStyleBackColor = True
         ' 
+        ' Max_Unread_Message_Id_NumericUpDown
+        ' 
+        Max_Unread_Message_Id_NumericUpDown.Location = New Point(365, 48)
+        Max_Unread_Message_Id_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, Integer.MinValue})
+        Max_Unread_Message_Id_NumericUpDown.Name = "Max_Unread_Message_Id_NumericUpDown"
+        Max_Unread_Message_Id_NumericUpDown.Size = New Size(50, 27)
+        Max_Unread_Message_Id_NumericUpDown.TabIndex = 10
+        ' 
+        ' Label34
+        ' 
+        Label34.AutoSize = True
+        Label34.Location = New Point(320, 54)
+        Label34.Name = "Label34"
+        Label34.Size = New Size(39, 19)
+        Label34.TabIndex = 9
+        Label34.Text = "未讀"
+        ' 
+        ' Label33
+        ' 
+        Label33.AutoSize = True
+        Label33.Location = New Point(219, 54)
+        Label33.Name = "Label33"
+        Label33.Size = New Size(39, 19)
+        Label33.TabIndex = 8
+        Label33.Text = "已讀"
+        ' 
         ' Clear_Message_Id_ListBox_Button
         ' 
         Clear_Message_Id_ListBox_Button.Location = New Point(219, 81)
@@ -3416,6 +3442,7 @@ Partial Class Form1
         ' Max_Read_Message_Id_NumericUpDown
         ' 
         Max_Read_Message_Id_NumericUpDown.Location = New Point(264, 49)
+        Max_Read_Message_Id_NumericUpDown.Minimum = New Decimal(New Integer() {1, 0, 0, Integer.MinValue})
         Max_Read_Message_Id_NumericUpDown.Name = "Max_Read_Message_Id_NumericUpDown"
         Max_Read_Message_Id_NumericUpDown.Size = New Size(50, 27)
         Max_Read_Message_Id_NumericUpDown.TabIndex = 0
@@ -4368,31 +4395,6 @@ Partial Class Form1
         Timer1.Enabled = True
         Timer1.Interval = 1000
         ' 
-        ' Label33
-        ' 
-        Label33.AutoSize = True
-        Label33.Location = New Point(219, 54)
-        Label33.Name = "Label33"
-        Label33.Size = New Size(39, 19)
-        Label33.TabIndex = 8
-        Label33.Text = "已讀"
-        ' 
-        ' Label34
-        ' 
-        Label34.AutoSize = True
-        Label34.Location = New Point(320, 54)
-        Label34.Name = "Label34"
-        Label34.Size = New Size(39, 19)
-        Label34.TabIndex = 9
-        Label34.Text = "未讀"
-        ' 
-        ' Max_Unread_Message_Id_NumericUpDown
-        ' 
-        Max_Unread_Message_Id_NumericUpDown.Location = New Point(365, 48)
-        Max_Unread_Message_Id_NumericUpDown.Name = "Max_Unread_Message_Id_NumericUpDown"
-        Max_Unread_Message_Id_NumericUpDown.Size = New Size(50, 27)
-        Max_Unread_Message_Id_NumericUpDown.TabIndex = 10
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(9F, 19F)
@@ -4448,6 +4450,7 @@ Partial Class Form1
         CType(ScrollBy_X_Offset_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         TabPage6.ResumeLayout(False)
         TabPage6.PerformLayout()
+        CType(Max_Unread_Message_Id_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         CType(Max_Read_Message_Id_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         GroupList.ResumeLayout(False)
         GroupList.PerformLayout()
@@ -4468,7 +4471,6 @@ Partial Class Form1
         Block_User.PerformLayout()
         TabPage1.ResumeLayout(False)
         TabPage1.PerformLayout()
-        CType(Max_Unread_Message_Id_NumericUpDown, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
     Friend WithEvents content_RichTextBox As RichTextBox

@@ -1533,69 +1533,63 @@ Public Class MyWebDriver
 
 
 
-            For Each item In myunreaditems
-                'Debug.WriteLine(item.GetAttribute("href"))
-                Dim regex As New Regex(msg_id_pattern)
-                Dim match As Match = regex.Match(item.GetAttribute("href"))
-                If match.Success Then
-                    Dim result As String = match.Groups(2).Value
-                    'Debug.WriteLine("匹配结果: " & result)
+            If unread_counter <> -1 Then
+                For Each item In myunreaditems
+                    'Debug.WriteLine(item.GetAttribute("href"))
+                    Dim regex As New Regex(msg_id_pattern)
+                    Dim match As Match = regex.Match(item.GetAttribute("href"))
+                    If match.Success Then
+                        Dim result As String = match.Groups(2).Value
+                        'Debug.WriteLine("匹配结果: " & result)
 
-                    If result.Contains("%3A") Then
-                        myList.Add(result.Split("%3A")(0))
-                        myList.Add(result.Split("%3A")(1))
-                    Else
-                        myList.Add(result)
+                        If result.Contains("%3A") Then
+                            myList.Add(result.Split("%3A")(0))
+                            myList.Add(result.Split("%3A")(1))
+                        Else
+                            myList.Add(result)
+                        End If
+
+                        unread_counter -= 1
+                        If unread_counter = 0 Then
+                            Exit For
+                        End If
+
                     End If
 
-                    unread_counter -= 1
-                    If unread_counter = 0 Then
-                        Exit For
-                    End If
-
-                End If
-
-            Next
-
-
-
-
-
-
-
+                Next
+            End If
 
 
 
             Dim myitems = chromeDriver.FindElements(By.CssSelector(my_css_selector))
 
-            For Each item In myitems
-                Debug.WriteLine(item.GetAttribute("href"))
-                Dim regex As New Regex(msg_id_pattern)
-                Dim match As Match = regex.Match(item.GetAttribute("href"))
-                If match.Success Then
-                    Dim result As String = match.Groups(2).Value
-                    'Debug.WriteLine("匹配结果: " & result)
 
-                    If result.Contains("%3A") Then
-                        myList.Add(result.Split("%3A")(0))
-                        myList.Add(result.Split("%3A")(1))
-                    Else
-                        myList.Add(result)
+
+            If read_counter <> -1 Then
+                For Each item In myitems
+                    Debug.WriteLine(item.GetAttribute("href"))
+                    Dim regex As New Regex(msg_id_pattern)
+                    Dim match As Match = regex.Match(item.GetAttribute("href"))
+                    If match.Success Then
+                        Dim result As String = match.Groups(2).Value
+                        'Debug.WriteLine("匹配结果: " & result)
+
+                        If result.Contains("%3A") Then
+                            myList.Add(result.Split("%3A")(0))
+                            myList.Add(result.Split("%3A")(1))
+                        Else
+                            myList.Add(result)
+                        End If
+
+                        read_counter -= 1
+                        If read_counter = 0 Then
+                            Exit For
+                        End If
+
                     End If
 
-                    read_counter -= 1
-                    If read_counter = 0 Then
-                        Exit For
-                    End If
-
-                End If
-
-            Next
-
-
-
-
-
+                Next
+            End If
 
 
 
