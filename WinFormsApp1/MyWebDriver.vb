@@ -1497,24 +1497,36 @@ Public Class MyWebDriver
 
     Public Function Get_Message_Id(counter) As List(Of String)
         Dim myList As New List(Of String)
+
         Try
+            Dim read_counter = CInt(counter.split(";")(0))
+            Dim unread_counter = CInt(counter.split(";")(1))
             'Navigate_GoToUrl_Task("https://m.facebook.com/messages")
             'chromeDriver.Navigate.GoToUrl("https://m.facebook.com/messages")
             'chromeDriver.FindElement(By.Id("see_older_threads")).Click()
-            chromeDriver.FindElement(By.CssSelector("#see_older_threads")).Click()
+
+            While IsElementPresentByCssSelector("#see_older_threads")
+                chromeDriver.FindElement(By.CssSelector("#see_older_threads")).Click()
+                Thread.Sleep(2000)
+            End While
+
+
             Thread.Sleep(3000)
-            Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
-            Dim myitems = chromeDriver.FindElements(By.CssSelector(my_css_selector))
+
+
+            Dim my_unread_css_selector = "._55wp._7om2._5b6o._67iu._67ix._2ycx.aclb.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
+
+            Dim myunreaditems = chromeDriver.FindElements(By.CssSelector(my_unread_css_selector))
 
             Dim msg_id_pattern = "tid=cid\.(c|g)\.(.*?)(?:&|$)"
 
-            For Each item In myitems
+            For Each item In myunreaditems
                 Debug.WriteLine(item.GetAttribute("href"))
                 Dim regex As New Regex(msg_id_pattern)
                 Dim match As Match = regex.Match(item.GetAttribute("href"))
                 If match.Success Then
                     Dim result As String = match.Groups(2).Value
-                    Debug.WriteLine("匹配结果: " & result)
+                    'Debug.WriteLine("匹配结果: " & result)
 
                     If result.Contains("%3A") Then
                         myList.Add(result.Split("%3A")(0))
@@ -1523,14 +1535,58 @@ Public Class MyWebDriver
                         myList.Add(result)
                     End If
 
-                    counter -= 1
-                    If counter = 0 Then
+                    unread_counter -= 1
+                    If unread_counter = 0 Then
                         Exit For
                     End If
 
                 End If
 
             Next
+
+
+
+
+
+
+
+
+
+            Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
+            Dim myitems = chromeDriver.FindElements(By.CssSelector(my_css_selector))
+
+            For Each item In myitems
+                Debug.WriteLine(item.GetAttribute("href"))
+                Dim regex As New Regex(msg_id_pattern)
+                Dim match As Match = regex.Match(item.GetAttribute("href"))
+                If match.Success Then
+                    Dim result As String = match.Groups(2).Value
+                    'Debug.WriteLine("匹配结果: " & result)
+
+                    If result.Contains("%3A") Then
+                        myList.Add(result.Split("%3A")(0))
+                        myList.Add(result.Split("%3A")(1))
+                    Else
+                        myList.Add(result)
+                    End If
+
+                    read_counter -= 1
+                    If read_counter = 0 Then
+                        Exit For
+                    End If
+
+                End If
+
+            Next
+
+
+
+
+
+
+
+
+
             myList = myList.Distinct().ToList()
 
             Return myList

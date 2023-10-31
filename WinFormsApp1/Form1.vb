@@ -599,11 +599,16 @@ Public Class Form1
                 Case "聊天室:取得聯絡人"
                     Try
                         'Message_Id_ListBox.Items.Clear()
-                        Dim msgList = Await myWebDriver.Get_Message_Id_Task(content)
-                        For Each msg In msgList
-                            Message_Id_ListBox.Items.Add(msg)
-                        Next
-                        boolean_result = True
+                        Dim msgList As List(Of String) = Await myWebDriver.Get_Message_Id_Task(content)
+                        If msgList.Count > 0 Then
+                            For Each msg In msgList
+                                Message_Id_ListBox.Items.Add(msg)
+                            Next
+                            boolean_result = True
+                        Else
+                            boolean_result = False
+                        End If
+
                     Catch ex As Exception
                         Debug.WriteLine(ex)
                         boolean_result = False
@@ -2942,7 +2947,7 @@ Public Class Form1
     End Sub
 
     Private Sub Read_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_Message_Id_Button.Click
-        Insert_to_script("聊天室:取得聯絡人", Max_Message_Id_NumericUpDown.Value.ToString())
+        Insert_to_script("聊天室:取得聯絡人", Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
 
 
