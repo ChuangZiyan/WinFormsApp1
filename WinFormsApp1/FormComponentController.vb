@@ -380,6 +380,24 @@ Module FormComponentController
 
         End If
 
+
+
+        Form1.Message_Id_ListBox.Items.Clear()
+        'Debug.WriteLine(myprofile + "\GroupList.csv")
+        If My.Computer.FileSystem.FileExists(myprofile + "\message_ids.txt") Then
+
+            Using reader As New StreamReader(myprofile + "\message_ids.txt")
+
+                Dim line As String
+                While Not reader.EndOfStream
+                    line = reader.ReadLine()
+                    ' 在這裡對每一行的內容進行處理
+                    Form1.Message_Id_ListBox.Items.Add(line)
+                End While
+            End Using
+
+        End If
+
     End Sub
 
     Public Sub Text_File_CheckedListBox_Click()
@@ -883,5 +901,27 @@ Module FormComponentController
         Return generated_Password
     End Function
 
+
+
+    Public Function Save_Message_Id_To_Profile(file_path As String)
+
+        Try
+            If file_path <> "" Then
+                Using sw As New StreamWriter(file_path + "\message_ids.txt", FileMode.Create)
+                    For Each item In Form1.Message_Id_ListBox.Items
+                        sw.WriteLine(item.ToString())
+                    Next
+                End Using
+            Else
+                Return False
+            End If
+
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+
+    End Function
 
 End Module

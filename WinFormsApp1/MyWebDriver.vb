@@ -1495,14 +1495,14 @@ Public Class MyWebDriver
     End Function
 
 
-    Public Async Function Get_Message_Id(counter) As Task(Of Boolean)
+    Public Function Get_Message_Id(counter) As List(Of String)
+        Dim myList As New List(Of String)
         Try
-            Form1.Message_Id_ListBox.Items.Clear()
-            'Await Navigate_GoToUrl_Task("https://m.facebook.com/messages")
+            'Navigate_GoToUrl_Task("https://m.facebook.com/messages")
+            chromeDriver.Navigate.GoToUrl("https://m.facebook.com/messages")
             'chromeDriver.FindElement(By.Id("see_older_threads")).Click()
             chromeDriver.FindElement(By.CssSelector("#see_older_threads")).Click()
-
-            Await Delay_msec(3000)
+            Thread.Sleep(3000)
             Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
             Dim myitems = chromeDriver.FindElements(By.CssSelector(my_css_selector))
 
@@ -1514,26 +1514,29 @@ Public Class MyWebDriver
                 Dim match As Match = regex.Match(item.GetAttribute("href"))
                 If match.Success Then
                     Dim result As String = match.Groups(2).Value
-                    'Debug.WriteLine("匹配结果: " & result)
+                    Debug.WriteLine("匹配结果: " & result)
 
                     If result.Contains("%3A") Then
-                        result = result.Split("%3A")(1)
+                        myList.Add(result.Split("%3A")(0))
+                        myList.Add(result.Split("%3A")(1))
+                    Else
+                        myList.Add(result)
                     End If
 
-                    Form1.Message_Id_ListBox.Items.Add(result)
-                    counter += 1
-
-                    If Form1.Max_Message_Id_NumericUpDown.Value <> 0 And counter >= Form1.Max_Message_Id_NumericUpDown.Value Then
+                    counter -= 1
+                    If counter = 0 Then
                         Exit For
                     End If
 
                 End If
 
             Next
+            myList = myList.Distinct().ToList()
 
-            Return True
+            Return myList
         Catch ex As Exception
-            Return False
+            Debug.WriteLine(ex)
+            Return myList
         End Try
 
     End Function

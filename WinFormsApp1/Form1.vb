@@ -597,7 +597,21 @@ Public Class Form1
                 Case "聊天:送出"
                     boolean_result = Await myWebDriver.Messager_Submit_Content_Task()
                 Case "聊天室:取得聯絡人"
-                    boolean_result = Await myWebDriver.Get_Message_Id_Task(content)
+                    Try
+                        'Message_Id_ListBox.Items.Clear()
+                        Dim msgList = Await myWebDriver.Get_Message_Id_Task(content)
+                        For Each msg In msgList
+                            Message_Id_ListBox.Items.Add(msg)
+                        Next
+                        boolean_result = True
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
+
+                Case "儲存:聯絡人"
+                    boolean_result = Save_Message_Id_To_Profile(myWebDriver.running_chrome_profile_path)
+
                 Case "搜尋"
                     Dim param() = content.Split(";")
                     boolean_result = Await myWebDriver.Search_Keyword_Task(param(0), param(1))
@@ -2937,5 +2951,14 @@ Public Class Form1
             Insert_to_script("前往", "https://www.facebook.com/messages/t/" & Message_Id_ListBox.SelectedItem.ToString())
         End If
 
+    End Sub
+
+
+    Private Sub Insert_Save_ListBoxMessageId_To_Profile_Button_Click(sender As Object, e As EventArgs) Handles Insert_Save_ListBoxMessageId_To_Profile_Button.Click
+        Insert_to_script("儲存:聯絡人", "")
+    End Sub
+
+    Private Sub Clear_Message_Id_ListBox_Button_Click(sender As Object, e As EventArgs) Handles Clear_Message_Id_ListBox_Button.Click
+        Message_Id_ListBox.Items.Clear()
     End Sub
 End Class
