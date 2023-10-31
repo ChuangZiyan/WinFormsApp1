@@ -1501,12 +1501,23 @@ Public Class MyWebDriver
         Try
             Dim read_counter = CInt(counter.split(";")(0))
             Dim unread_counter = CInt(counter.split(";")(1))
-            'Navigate_GoToUrl_Task("https://m.facebook.com/messages")
+
             'chromeDriver.Navigate.GoToUrl("https://m.facebook.com/messages")
-            'chromeDriver.FindElement(By.Id("see_older_threads")).Click()
+
+
+            Dim my_unread_css_selector = "._55wp._7om2._5b6o._67iu._67ix._2ycx.aclb.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
+            Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
+
 
             While IsElementPresentByCssSelector("#see_older_threads")
                 chromeDriver.FindElement(By.CssSelector("#see_older_threads")).Click()
+
+                Dim unread_num = chromeDriver.FindElements(By.CssSelector(my_unread_css_selector)).Count
+                Dim read_num = chromeDriver.FindElements(By.CssSelector(my_css_selector)).Count
+
+                If unread_num >= unread_counter And read_num >= read_counter Then
+                    Exit While
+                End If
                 Thread.Sleep(2000)
             End While
 
@@ -1514,14 +1525,16 @@ Public Class MyWebDriver
             Thread.Sleep(3000)
 
 
-            Dim my_unread_css_selector = "._55wp._7om2._5b6o._67iu._67ix._2ycx.aclb.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
+
 
             Dim myunreaditems = chromeDriver.FindElements(By.CssSelector(my_unread_css_selector))
 
             Dim msg_id_pattern = "tid=cid\.(c|g)\.(.*?)(?:&|$)"
 
+
+
             For Each item In myunreaditems
-                Debug.WriteLine(item.GetAttribute("href"))
+                'Debug.WriteLine(item.GetAttribute("href"))
                 Dim regex As New Regex(msg_id_pattern)
                 Dim match As Match = regex.Match(item.GetAttribute("href"))
                 If match.Success Then
@@ -1552,7 +1565,7 @@ Public Class MyWebDriver
 
 
 
-            Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
+
             Dim myitems = chromeDriver.FindElements(By.CssSelector(my_css_selector))
 
             For Each item In myitems
