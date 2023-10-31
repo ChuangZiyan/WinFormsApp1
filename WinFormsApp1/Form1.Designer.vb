@@ -318,7 +318,7 @@ Partial Class Form1
         Max_Unread_Message_Id_NumericUpDown = New NumericUpDown()
         Label34 = New Label()
         Label33 = New Label()
-        Clear_Message_Id_ListBox_Button = New Button()
+        Insert_Clear_Message_Id_ListBox_Button = New Button()
         Insert_Save_ListBoxMessageId_To_Profile_Button = New Button()
         Insert_Navigate_To_Message_Id_Button = New Button()
         Message_Id_ListBox = New ListBox()
@@ -3355,7 +3355,7 @@ Partial Class Form1
         TabPage6.Controls.Add(Max_Unread_Message_Id_NumericUpDown)
         TabPage6.Controls.Add(Label34)
         TabPage6.Controls.Add(Label33)
-        TabPage6.Controls.Add(Clear_Message_Id_ListBox_Button)
+        TabPage6.Controls.Add(Insert_Clear_Message_Id_ListBox_Button)
         TabPage6.Controls.Add(Insert_Save_ListBoxMessageId_To_Profile_Button)
         TabPage6.Controls.Add(Insert_Navigate_To_Message_Id_Button)
         TabPage6.Controls.Add(Message_Id_ListBox)
@@ -3394,14 +3394,14 @@ Partial Class Form1
         Label33.TabIndex = 8
         Label33.Text = "已讀"
         ' 
-        ' Clear_Message_Id_ListBox_Button
+        ' Insert_Clear_Message_Id_ListBox_Button
         ' 
-        Clear_Message_Id_ListBox_Button.Location = New Point(219, 81)
-        Clear_Message_Id_ListBox_Button.Name = "Clear_Message_Id_ListBox_Button"
-        Clear_Message_Id_ListBox_Button.Size = New Size(216, 29)
-        Clear_Message_Id_ListBox_Button.TabIndex = 7
-        Clear_Message_Id_ListBox_Button.Text = "清除列表"
-        Clear_Message_Id_ListBox_Button.UseVisualStyleBackColor = True
+        Insert_Clear_Message_Id_ListBox_Button.Location = New Point(219, 81)
+        Insert_Clear_Message_Id_ListBox_Button.Name = "Insert_Clear_Message_Id_ListBox_Button"
+        Insert_Clear_Message_Id_ListBox_Button.Size = New Size(216, 29)
+        Insert_Clear_Message_Id_ListBox_Button.TabIndex = 7
+        Insert_Clear_Message_Id_ListBox_Button.Text = "清除列表 - 插入"
+        Insert_Clear_Message_Id_ListBox_Button.UseVisualStyleBackColor = True
         ' 
         ' Insert_Save_ListBoxMessageId_To_Profile_Button
         ' 
@@ -4869,7 +4869,7 @@ Partial Class Form1
     Friend WithEvents Max_Read_Message_Id_NumericUpDown As NumericUpDown
     Friend WithEvents Insert_Navigate_To_Message_Id_Button As Button
     Friend WithEvents Insert_Save_ListBoxMessageId_To_Profile_Button As Button
-    Friend WithEvents Clear_Message_Id_ListBox_Button As Button
+    Friend WithEvents Insert_Clear_Message_Id_ListBox_Button As Button
     Friend WithEvents Max_Unread_Message_Id_NumericUpDown As NumericUpDown
     Friend WithEvents Label34 As Label
     Friend WithEvents Label33 As Label

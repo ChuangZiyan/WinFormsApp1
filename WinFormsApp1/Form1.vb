@@ -616,6 +616,13 @@ Public Class Form1
 
                 Case "儲存:聯絡人"
                     boolean_result = Save_Message_Id_To_Profile(myWebDriver.running_chrome_profile_path)
+                Case "清空:聯絡人列表"
+                    Try
+                        Message_Id_ListBox.Items.Clear()
+                        boolean_result = True
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
 
                 Case "搜尋"
                     Dim param() = content.Split(";")
@@ -2963,7 +2970,7 @@ Public Class Form1
         Insert_to_script("儲存:聯絡人", "")
     End Sub
 
-    Private Sub Clear_Message_Id_ListBox_Button_Click(sender As Object, e As EventArgs) Handles Clear_Message_Id_ListBox_Button.Click
-        Message_Id_ListBox.Items.Clear()
+    Private Sub Clear_Message_Id_ListBox_Button_Click(sender As Object, e As EventArgs) Handles Insert_Clear_Message_Id_ListBox_Button.Click
+        Insert_to_script("清空:聯絡人列表", "")
     End Sub
 End Class
