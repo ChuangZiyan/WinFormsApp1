@@ -2954,7 +2954,7 @@ Public Class Form1
     End Sub
 
     Private Sub Read_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_Message_Id_Button.Click
-        Insert_to_script("聊天室:取得聯絡人", Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
+        Insert_to_script("聊天室:取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
 
 

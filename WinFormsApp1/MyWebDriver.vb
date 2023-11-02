@@ -1499,8 +1499,8 @@ Public Class MyWebDriver
         Dim myList As New List(Of String)
 
         Try
-            Dim read_counter = CInt(counter.split(";")(0))
-            Dim unread_counter = CInt(counter.split(";")(1))
+            Dim read_counter = CInt(counter.split(";")(0).split(":")(1))
+            Dim unread_counter = CInt(counter.split(";")(1).split(":")(1))
 
             'chromeDriver.Navigate.GoToUrl("https://m.facebook.com/messages")
 
@@ -1508,6 +1508,7 @@ Public Class MyWebDriver
             Dim my_unread_css_selector = "._55wp._7om2._5b6o._67iu._67ix._2ycx.aclb.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
             Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
 
+            Dim unread_try = 0
 
             While IsElementPresentByCssSelector("#see_older_threads")
                 chromeDriver.FindElement(By.CssSelector("#see_older_threads")).Click()
@@ -1515,25 +1516,23 @@ Public Class MyWebDriver
                 Dim unread_num = chromeDriver.FindElements(By.CssSelector(my_unread_css_selector)).Count
                 Dim read_num = chromeDriver.FindElements(By.CssSelector(my_css_selector)).Count
 
+                unread_try += 1
+
                 If unread_num >= unread_counter And read_num >= read_counter Then
+                    Exit While
+                ElseIf unread_try > 3 And read_num >= read_counter Then
                     Exit While
                 End If
                 Thread.Sleep(2000)
             End While
 
-
             Thread.Sleep(3000)
-
-
-
 
             Dim myunreaditems = chromeDriver.FindElements(By.CssSelector(my_unread_css_selector))
 
             Dim msg_id_pattern = "tid=cid\.(c|g)\.(.*?)(?:&|$)"
 
-
-
-            If unread_counter <> -1 Then
+            If unread_counter > 0 Then
                 For Each item In myunreaditems
                     'Debug.WriteLine(item.GetAttribute("href"))
                     Dim regex As New Regex(msg_id_pattern)
@@ -1560,12 +1559,10 @@ Public Class MyWebDriver
             End If
 
 
-
             Dim myitems = chromeDriver.FindElements(By.CssSelector(my_css_selector))
 
 
-
-            If read_counter <> -1 Then
+            If read_counter > 0 Then
                 For Each item In myitems
                     Debug.WriteLine(item.GetAttribute("href"))
                     Dim regex As New Regex(msg_id_pattern)
@@ -1590,9 +1587,6 @@ Public Class MyWebDriver
 
                 Next
             End If
-
-
-
 
             myList = myList.Distinct().ToList()
 
