@@ -1509,6 +1509,7 @@ Public Class MyWebDriver
             Dim my_css_selector = "._55wp._7om2._5b6o._67ix._2ycx.acw.del_area.async_del.abb.touchable._592p._25mv > div:nth-child(4) > div > a"
 
             Dim unread_try = 0
+            Dim last_unread_count = 0
 
             While IsElementPresentByCssSelector("#see_older_threads")
                 chromeDriver.FindElement(By.CssSelector("#see_older_threads")).Click()
@@ -1516,7 +1517,13 @@ Public Class MyWebDriver
                 Dim unread_num = chromeDriver.FindElements(By.CssSelector(my_unread_css_selector)).Count
                 Dim read_num = chromeDriver.FindElements(By.CssSelector(my_css_selector)).Count
 
-                unread_try += 1
+                If last_unread_count = unread_num Then
+                    unread_try += 1
+                Else
+                    unread_try = 0
+                    last_unread_count = unread_num
+                End If
+
 
                 If unread_num >= unread_counter And read_num >= read_counter Then
                     Exit While
