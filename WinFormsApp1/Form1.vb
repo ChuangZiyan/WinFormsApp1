@@ -614,6 +614,25 @@ Public Class Form1
                         boolean_result = False
                     End Try
 
+                Case "聊天室:www取得聯絡人"
+
+                    Try
+                        'Message_Id_ListBox.Items.Clear()
+                        Dim msgList As List(Of String) = Await myWebDriver.Get_wwwfb_Message_Id_Task(content)
+                        If msgList.Count > 0 Then
+                            For Each msg In msgList
+                                Message_Id_ListBox.Items.Add(msg)
+                            Next
+                            boolean_result = True
+                        Else
+                            boolean_result = False
+                        End If
+
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
+
                 Case "儲存:聯絡人"
                     boolean_result = Save_Message_Id_To_Profile(myWebDriver.running_chrome_profile_path)
                 Case "清空:聯絡人列表"
@@ -2972,5 +2991,9 @@ Public Class Form1
 
     Private Sub Clear_Message_Id_ListBox_Button_Click(sender As Object, e As EventArgs) Handles Insert_Clear_Message_Id_ListBox_Button.Click
         Insert_to_script("清空:聯絡人列表", "")
+    End Sub
+
+    Private Sub Read_wwwfb_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_wwwfb_Message_Id_Button.Click
+        Insert_to_script("聊天室:www取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
 End Class

@@ -1605,4 +1605,149 @@ Public Class MyWebDriver
 
     End Function
 
+
+    Public Function Get_wwwfb_Message_Id_Task(counter)
+        Return Task.Run(Function() Get_wwwfb_Message_Id(counter))
+    End Function
+
+
+    Public Function Get_wwwfb_Message_Id(counter) As List(Of String)
+        Dim myList As New List(Of String)
+
+        Try
+            Dim read_counter = CInt(counter.split(";")(0).split(":")(1))
+            Dim unread_counter = CInt(counter.split(";")(1).split(":")(1))
+
+            'chromeDriver.Navigate.GoToUrl("https://m.facebook.com/messages")
+
+            Dim try_scroll_down_count = 3
+
+            Dim temp_finalScrollTop = 0
+
+            Dim temp_unread_count = 0
+
+            Dim try_unread_count = 3
+
+            While True
+
+                ' find element
+                Dim elements As IList(Of IWebElement) = chromeDriver.FindElements(By.CssSelector("div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"))
+
+                Dim total_read_count = 0
+                Dim total_unread_count = 0
+                For Each element As IWebElement In elements
+
+                    Dim elementText As String = element.Text
+                    Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
+
+                    Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
+
+                    Dim message_href_id = element.GetAttribute("href").Split("/")(5)
+
+                    'Debug.WriteLine("cout : " & childElements.Count)
+                    If childElements.Count = 4 Then
+                        ' unread msg
+                        Dim aria_label = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div > div > div")).GetAttribute("aria-label")
+                        'Debug.WriteLine("aria-label : " & aria_label)
+
+                        If aria_label = "標示為已讀" Then
+                            total_unread_count += 1
+                        End If
+
+                    Else
+                        ' read msg
+                        total_read_count += 1
+                    End If
+
+                Next
+
+                'Debug.WriteLine("total_read_count" & total_read_count)
+
+                'Debug.WriteLine("total_unread_count" & total_unread_count)
+
+                If read_counter <= total_read_count And unread_counter <= total_unread_count Then
+                    'Debug.WriteLine("EXIT")
+                    Exit While
+                End If
+
+
+                If unread_counter > temp_unread_count Then
+                    temp_unread_count = unread_counter
+                    try_unread_count = 3
+                Else
+                    try_unread_count -= 1
+                End If
+
+                If try_unread_count <= 0 Then
+                    'Debug.WriteLine("EXIT2")
+                    Exit While
+                End If
+
+                ' scroll down
+                Dim divElement As IWebElement = chromeDriver.FindElement(By.CssSelector("div[aria-label$='聊天室']  > div > div > div"))
+
+                Dim initialScrollTop As Long = CType(DirectCast(chromeDriver, IJavaScriptExecutor).ExecuteScript("return arguments[0].scrollTop;", divElement), Long)
+
+
+                DirectCast(chromeDriver, IJavaScriptExecutor).ExecuteScript("arguments[0].scrollTop = arguments[0].scrollHeight;", divElement)
+
+                Thread.Sleep(3000)
+
+                Dim finalScrollTop As Long = CType(DirectCast(chromeDriver, IJavaScriptExecutor).ExecuteScript("return arguments[0].scrollTop;", divElement), Long)
+                'Debug.WriteLine("finalScrollTop" & finalScrollTop)
+                'Debug.WriteLine("finalScrollTop" & temp_finalScrollTop)
+
+
+                If finalScrollTop = temp_finalScrollTop Then
+                    Exit While
+                Else
+                    temp_finalScrollTop = finalScrollTop
+                End If
+
+
+            End While
+
+
+
+            Dim all_elements As IList(Of IWebElement) = chromeDriver.FindElements(By.CssSelector("div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"))
+            For Each element As IWebElement In all_elements
+
+                Dim elementText As String = element.Text
+                Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
+
+                Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
+
+                Dim message_href_id = element.GetAttribute("href").Split("/")(5)
+                If childElements.Count = 4 Then
+                    ' unread msg
+                    Dim aria_label = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div > div > div")).GetAttribute("aria-label")
+                    'Debug.WriteLine("aria-label : " & aria_label)
+
+                    If aria_label = "標示為已讀" Then
+                        If unread_counter >= 1 Then
+                            unread_counter -= 1
+                            myList.Add(message_href_id)
+                        End If
+                    End If
+
+                Else
+                    ' read msg
+
+                    If read_counter >= 1 Then
+                        read_counter -= 1
+                        myList.Add(message_href_id)
+                    End If
+                End If
+            Next
+
+
+            Return myList
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return myList
+        End Try
+
+    End Function
+
+
 End Class
