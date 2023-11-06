@@ -2996,4 +2996,35 @@ Public Class Form1
     Private Sub Read_wwwfb_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_wwwfb_Message_Id_Button.Click
         Insert_to_script("聊天室:www取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim elements As IList(Of IWebElement) = myWebDriver.chromeDriver.FindElements(By.CssSelector("div[aria-label$='陌生訊息'] div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"))
+
+        Dim total_read_count = 0
+        Dim total_unread_count = 0
+        For Each element As IWebElement In elements
+
+            Dim elementText As String = element.Text
+            Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
+
+            Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
+
+            Dim message_href_id = element.GetAttribute("href").Split("/")(6)
+
+            'Debug.WriteLine("cout : " & childElements.Count)
+            If childElements.Count = 4 Then
+                ' unread msg
+                Dim aria_label = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div > div > div")).GetAttribute("aria-label")
+                'Debug.WriteLine("aria-label : " & aria_label)
+                If aria_label = "標示為已讀" Then
+                    Message_Id_ListBox.Items.Add(message_href_id)
+                End If
+
+            Else
+                ' read msg
+                Message_Id_ListBox.Items.Add(message_href_id)
+            End If
+
+        Next
+    End Sub
 End Class

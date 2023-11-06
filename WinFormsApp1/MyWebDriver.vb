@@ -1628,10 +1628,26 @@ Public Class MyWebDriver
 
             Dim try_unread_count = 3
 
+
+            Dim messages_collection_css = "div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"
+            Dim scroll_div_css = "div[aria-label$='聊天室']  > div > div > div"
+
+            Dim href_id_pos = 5
+
+            If chromeDriver.Url.Contains("requests") Then
+                Debug.WriteLine("request")
+                messages_collection_css = "div[aria-label$='陌生訊息'] div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"
+                scroll_div_css = "div[aria-label$='陌生訊息']  > div > div > div"
+                href_id_pos = 6
+            End If
+
+
+
+
             While True
 
                 ' find element
-                Dim elements As IList(Of IWebElement) = chromeDriver.FindElements(By.CssSelector("div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"))
+                Dim elements As IList(Of IWebElement) = chromeDriver.FindElements(By.CssSelector(messages_collection_css))
 
                 Dim total_read_count = 0
                 Dim total_unread_count = 0
@@ -1666,7 +1682,7 @@ Public Class MyWebDriver
                 'Debug.WriteLine("total_unread_count" & total_unread_count)
 
                 If read_counter <= total_read_count And unread_counter <= total_unread_count Then
-                    'Debug.WriteLine("EXIT")
+                    Debug.WriteLine("EXIT")
                     Exit While
                 End If
 
@@ -1674,17 +1690,17 @@ Public Class MyWebDriver
                 If unread_counter > temp_unread_count Then
                     temp_unread_count = unread_counter
                     try_unread_count = 3
-                Else
+                ElseIf unread_counter > 0 Then
                     try_unread_count -= 1
                 End If
 
                 If try_unread_count <= 0 Then
-                    'Debug.WriteLine("EXIT2")
+                    Debug.WriteLine("EXIT2")
                     Exit While
                 End If
 
                 ' scroll down
-                Dim divElement As IWebElement = chromeDriver.FindElement(By.CssSelector("div[aria-label$='聊天室']  > div > div > div"))
+                Dim divElement As IWebElement = chromeDriver.FindElement(By.CssSelector(scroll_div_css))
 
                 Dim initialScrollTop As Long = CType(DirectCast(chromeDriver, IJavaScriptExecutor).ExecuteScript("return arguments[0].scrollTop;", divElement), Long)
 
@@ -1694,11 +1710,13 @@ Public Class MyWebDriver
                 Thread.Sleep(3000)
 
                 Dim finalScrollTop As Long = CType(DirectCast(chromeDriver, IJavaScriptExecutor).ExecuteScript("return arguments[0].scrollTop;", divElement), Long)
-                'Debug.WriteLine("finalScrollTop" & finalScrollTop)
-                'Debug.WriteLine("finalScrollTop" & temp_finalScrollTop)
+                Debug.WriteLine("finalScrollTop" & finalScrollTop)
+                Debug.WriteLine("finalScrollTop" & temp_finalScrollTop)
 
 
                 If finalScrollTop = temp_finalScrollTop Then
+
+                    Debug.WriteLine("EXIT3")
                     Exit While
                 Else
                     temp_finalScrollTop = finalScrollTop
@@ -1709,7 +1727,7 @@ Public Class MyWebDriver
 
 
 
-            Dim all_elements As IList(Of IWebElement) = chromeDriver.FindElements(By.CssSelector("div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"))
+            Dim all_elements As IList(Of IWebElement) = chromeDriver.FindElements(By.CssSelector(messages_collection_css))
             For Each element As IWebElement In all_elements
 
                 Dim elementText As String = element.Text
@@ -1717,7 +1735,7 @@ Public Class MyWebDriver
 
                 Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
 
-                Dim message_href_id = element.GetAttribute("href").Split("/")(5)
+                Dim message_href_id = element.GetAttribute("href").Split("/")(href_id_pos)
                 If childElements.Count = 4 Then
                     ' unread msg
                     Dim aria_label = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div > div > div")).GetAttribute("aria-label")
@@ -1732,7 +1750,6 @@ Public Class MyWebDriver
 
                 Else
                     ' read msg
-
                     If read_counter >= 1 Then
                         read_counter -= 1
                         myList.Add(message_href_id)
