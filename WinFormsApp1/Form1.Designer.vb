@@ -424,7 +424,6 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3354,7 +3353,6 @@ Partial Class Form1
         '
         'TabPage6
         '
-        Me.TabPage6.Controls.Add(Me.Button3)
         Me.TabPage6.Controls.Add(Me.Read_wwwfb_Message_Id_Button)
         Me.TabPage6.Controls.Add(Me.Max_Unread_Message_Id_NumericUpDown)
         Me.TabPage6.Controls.Add(Me.Label34)
@@ -4406,15 +4404,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(516, 265)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(94, 29)
-        Me.Button3.TabIndex = 12
-        Me.Button3.Text = "Button3"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -4895,5 +4884,4 @@ Partial Class Form1
     Friend WithEvents Label34 As Label
     Friend WithEvents Label33 As Label
     Friend WithEvents Read_wwwfb_Message_Id_Button As Button
-    Friend WithEvents Button3 As Button
 End Class

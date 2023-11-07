@@ -1639,6 +1639,12 @@ Public Class MyWebDriver
                 messages_collection_css = "div[aria-label$='陌生訊息'] div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"
                 scroll_div_css = "div[aria-label$='陌生訊息']  > div > div > div"
                 href_id_pos = 6
+
+            ElseIf chromeDriver.Url.Contains("filtered") Then
+                Debug.WriteLine("filtered")
+                messages_collection_css = "div[aria-label$='陌生訊息'] div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"
+                scroll_div_css = "div[aria-label$='陌生訊息']  > div > div > div"
+                href_id_pos = 5
             End If
 
 
@@ -1682,7 +1688,7 @@ Public Class MyWebDriver
                 'Debug.WriteLine("total_unread_count" & total_unread_count)
 
                 If read_counter <= total_read_count And unread_counter <= total_unread_count Then
-                    Debug.WriteLine("EXIT")
+                    'Debug.WriteLine("EXIT")
                     Exit While
                 End If
 
@@ -1695,7 +1701,7 @@ Public Class MyWebDriver
                 End If
 
                 If try_unread_count <= 0 Then
-                    Debug.WriteLine("EXIT2")
+                    'Debug.WriteLine("EXIT2")
                     Exit While
                 End If
 
@@ -1710,13 +1716,12 @@ Public Class MyWebDriver
                 Thread.Sleep(3000)
 
                 Dim finalScrollTop As Long = CType(DirectCast(chromeDriver, IJavaScriptExecutor).ExecuteScript("return arguments[0].scrollTop;", divElement), Long)
-                Debug.WriteLine("finalScrollTop" & finalScrollTop)
-                Debug.WriteLine("finalScrollTop" & temp_finalScrollTop)
+                'Debug.WriteLine("finalScrollTop" & finalScrollTop)
+                'Debug.WriteLine("finalScrollTop" & temp_finalScrollTop)
 
 
                 If finalScrollTop = temp_finalScrollTop Then
-
-                    Debug.WriteLine("EXIT3")
+                    'Debug.WriteLine("EXIT3")
                     Exit While
                 Else
                     temp_finalScrollTop = finalScrollTop
