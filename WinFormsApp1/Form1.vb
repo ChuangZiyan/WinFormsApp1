@@ -619,14 +619,24 @@ Public Class Form1
                     Try
                         'Message_Id_ListBox.Items.Clear()
                         Dim msgList As List(Of String) = Await myWebDriver.Get_wwwfb_Message_Id_Task(content)
+                        For Each msg In msgList
+                            Debug.WriteLine("###")
+                            Debug.WriteLine(msg)
+                        Next
+
                         If msgList.Count > 0 Then
-                            For Each msg In msgList
-                                Message_Id_ListBox.Items.Add(msg)
-                            Next
-                            boolean_result = True
+                            If msgList(0) = False Then
+                                boolean_result = False
+                            Else
+                                For Each msg In msgList
+                                    Message_Id_ListBox.Items.Add(msg)
+                                Next
+                                boolean_result = True
+                            End If
                         Else
-                            boolean_result = False
+                            boolean_result = True
                         End If
+
 
                     Catch ex As Exception
                         Debug.WriteLine(ex)

@@ -1766,6 +1766,7 @@ Public Class MyWebDriver
             Return myList
         Catch ex As Exception
             Debug.WriteLine(ex)
+            myList.Add(False)
             Return myList
         End Try
 
