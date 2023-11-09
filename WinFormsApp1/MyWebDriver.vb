@@ -1606,12 +1606,13 @@ Public Class MyWebDriver
     End Function
 
 
-    Public Function Get_wwwfb_Message_Id_Task(counter)
-        Return Task.Run(Function() Get_wwwfb_Message_Id(counter))
+    Public Function Get_wwwfb_Message_Id_Task(counter, Optional marketplace = False)
+        Return Task.Run(Function() Get_wwwfb_Message_Id(counter, marketplace))
     End Function
 
 
-    Public Function Get_wwwfb_Message_Id(counter) As List(Of String)
+    Public Function Get_wwwfb_Message_Id(counter, Optional marketplace = False) As List(Of String)
+        Debug.WriteLine("JKNFKJDASNFKJ")
         Dim myList As New List(Of String)
 
         Try
@@ -1645,8 +1646,21 @@ Public Class MyWebDriver
                 messages_collection_css = "div[aria-label$='陌生訊息'] div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"
                 scroll_div_css = "div[aria-label$='陌生訊息']  > div > div > div"
                 href_id_pos = 5
-            End If
+            ElseIf marketplace Then
+                Debug.WriteLine("marketplace")
+                Dim eles = chromeDriver.FindElements(By.XPath("//span[contains(text(),'Marketplace')]/../../../../../../../../../.."))
+                For Each ele In eles
+                    'Debug.WriteLine(ele.GetAttribute("role"))
+                    If ele.GetAttribute("role") = "button" Then
+                        ele.Click()
+                    End If
+                Next
 
+
+                messages_collection_css = "div[aria-label$='Marketplace'] div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"
+                scroll_div_css = "div[aria-label$='Marketplace']  > div > div > div"
+
+            End If
 
 
 

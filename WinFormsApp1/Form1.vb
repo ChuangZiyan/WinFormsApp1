@@ -642,6 +642,33 @@ Public Class Form1
                         Debug.WriteLine(ex)
                         boolean_result = False
                     End Try
+                Case "聊天室:MKT取得聯絡人"
+                    Try
+                        'Message_Id_ListBox.Items.Clear()
+                        Dim msgList As List(Of String) = Await myWebDriver.Get_wwwfb_Message_Id_Task(content, True)
+                        For Each msg In msgList
+                            Debug.WriteLine("###")
+                            Debug.WriteLine(msg)
+                        Next
+
+                        If msgList.Count > 0 Then
+                            If msgList(0) = False Then
+                                boolean_result = False
+                            Else
+                                For Each msg In msgList
+                                    Message_Id_ListBox.Items.Add(msg)
+                                Next
+                                boolean_result = True
+                            End If
+                        Else
+                            boolean_result = True
+                        End If
+
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                        boolean_result = False
+                    End Try
+
 
                 Case "儲存:聯絡人"
                     boolean_result = Save_Message_Id_To_Profile(myWebDriver.running_chrome_profile_path)
@@ -3007,4 +3034,19 @@ Public Class Form1
         Insert_to_script("聊天室:www取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        Dim eles = myWebDriver.chromeDriver.FindElements(By.XPath("//span[contains(text(),'Marketplace')]/../../../../../../../../../.."))
+        For Each ele In eles
+            Debug.WriteLine(ele.GetAttribute("role"))
+            If ele.GetAttribute("role") = "button" Then
+                ele.Click()
+            End If
+        Next
+
+    End Sub
+
+    Private Sub Read_MarketPlace_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_MarketPlace_Message_Id_Button.Click
+        Insert_to_script("聊天室:MKT取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
+    End Sub
 End Class

@@ -315,6 +315,8 @@ Partial Class Form1
         Me.CursorX_TextBox = New System.Windows.Forms.TextBox()
         Me.CursorY_TextBox = New System.Windows.Forms.TextBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.Read_MarketPlace_Message_Id_Button = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Read_wwwfb_Message_Id_Button = New System.Windows.Forms.Button()
         Me.Max_Unread_Message_Id_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label34 = New System.Windows.Forms.Label()
@@ -3353,6 +3355,8 @@ Partial Class Form1
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.Read_MarketPlace_Message_Id_Button)
+        Me.TabPage6.Controls.Add(Me.Button3)
         Me.TabPage6.Controls.Add(Me.Read_wwwfb_Message_Id_Button)
         Me.TabPage6.Controls.Add(Me.Max_Unread_Message_Id_NumericUpDown)
         Me.TabPage6.Controls.Add(Me.Label34)
@@ -3369,6 +3373,24 @@ Partial Class Form1
         Me.TabPage6.TabIndex = 3
         Me.TabPage6.Text = "聊天室"
         Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'Read_MarketPlace_Message_Id_Button
+        '
+        Me.Read_MarketPlace_Message_Id_Button.Location = New System.Drawing.Point(220, 81)
+        Me.Read_MarketPlace_Message_Id_Button.Name = "Read_MarketPlace_Message_Id_Button"
+        Me.Read_MarketPlace_Message_Id_Button.Size = New System.Drawing.Size(229, 29)
+        Me.Read_MarketPlace_Message_Id_Button.TabIndex = 13
+        Me.Read_MarketPlace_Message_Id_Button.Text = "讀取MartketPlace聯絡人 - 插入"
+        Me.Read_MarketPlace_Message_Id_Button.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(545, 490)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(94, 29)
+        Me.Button3.TabIndex = 12
+        Me.Button3.Text = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Read_wwwfb_Message_Id_Button
         '
@@ -4884,4 +4906,6 @@ Partial Class Form1
     Friend WithEvents Label34 As Label
     Friend WithEvents Label33 As Label
     Friend WithEvents Read_wwwfb_Message_Id_Button As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Read_MarketPlace_Message_Id_Button As Button
 End Class
