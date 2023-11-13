@@ -61,6 +61,10 @@ Public Class Form1
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim driverManager = New DriverManager()
+        'driverManager.SetUpDriver(New ChromeConfig(), "115.0.5790.99") 'Use specify version.
+        'driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
+        driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
 
         'Me.Text = "Main Form - " + Version
         'Default String : 
@@ -250,7 +254,7 @@ Public Class Form1
                         'Return
                         used_chrome_profile = content.Split("\")(UBound(content.Split("\")))
                         item.SubItems.Item(3).Text = used_chrome_profile
-                        boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, content)
+                        boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, content, ChromeDriver_Version_ComboBox.Text)
                     Else
                         boolean_result = False
                     End If
@@ -265,7 +269,7 @@ Public Class Form1
 
                     used_chrome_profile = Profile_Queue(profile_index).Split("\")(UBound(Profile_Queue(profile_index).Split("\")))
                     item.SubItems.Item(3).Text = used_chrome_profile
-                    boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, Profile_Queue(profile_index))
+                    boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, Profile_Queue(profile_index), ChromeDriver_Version_ComboBox.Text)
 
                     'Debug.WriteLine("ProfleQ: " & Profile_Queue.Count)
 
@@ -303,7 +307,7 @@ Public Class Form1
 
                     used_chrome_profile = Profile_Queue(profile_index).Split("\")(UBound(Profile_Queue(profile_index).Split("\")))
                     item.SubItems.Item(3).Text = used_chrome_profile
-                    boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, Profile_Queue(profile_index))
+                    boolean_result = Await myWebDriver.Open_Browser_Task(brower, devicetype, Profile_Queue(profile_index), ChromeDriver_Version_ComboBox.Text)
 
                     'Debug.WriteLine("ProfleQ: " & Profile_Queue.Count)
 
@@ -964,7 +968,7 @@ Public Class Form1
             'Open_Browser("Chrome", used_dev_model, myprofile)
             'Debug.WriteLine("profile : " + myprofile)
             'Exit Sub
-            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, myprofile)
+            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, myprofile, ChromeDriver_Version_ComboBox.Text)
             Render_profile_CheckedListBox()
 
         ElseIf firefox_RadioButton.Checked = True Then
@@ -1004,7 +1008,7 @@ Public Class Form1
             Debug.WriteLine("count : " & allProfileItem.Count)
             Dim rnd = rnd_num.Next(0, allProfileItem.Count)
 
-            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, FormInit.profile_path + allProfileItem(rnd))
+            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, FormInit.profile_path + allProfileItem(rnd), ChromeDriver_Version_ComboBox.Text)
 
             If curr_url_ComboBox.Text <> "" Then
                 Dim pattern As String
@@ -3049,4 +3053,5 @@ Public Class Form1
     Private Sub Read_MarketPlace_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_MarketPlace_Message_Id_Button.Click
         Insert_to_script("聊天室:MKT取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
+
 End Class

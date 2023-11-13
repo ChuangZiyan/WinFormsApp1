@@ -63,11 +63,11 @@ Public Class MyWebDriver
 
 
 
-    Public Function Open_Browser_Task(browser As String, devicetype As String, profile As String)
-        Return Task.Run(Function() Open_Browser(browser, devicetype, profile))
+    Public Function Open_Browser_Task(browser As String, devicetype As String, profile As String, chromedriver_ver As String)
+        Return Task.Run(Function() Open_Browser(browser, devicetype, profile, chromedriver_ver))
     End Function
 
-    Public Function Open_Browser(browser As String, devicetype As String, profile As String)
+    Public Function Open_Browser(browser As String, devicetype As String, profile As String, chromedriver_ver As String)
         'Debug.WriteLine("profile : " + profile)
         'Debug.WriteLine("browser : " + browser)
 
@@ -102,9 +102,19 @@ Public Class MyWebDriver
             Try
                 '########### ChromeDriver Manger ##################
                 Dim driverManager = New DriverManager()
+
+                If chromedriver_ver = "Auto" Then
+                    Debug.WriteLine("Auto")
+                    driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+                Else
+                    Debug.WriteLine("Use: " + chromedriver_ver)
+                    driverManager.SetUpDriver(New ChromeConfig(), chromedriver_ver) 'Use specify version.
+                End If
+
+
                 'driverManager.SetUpDriver(New ChromeConfig(), "115.0.5790.99") 'Use specify version.
                 'driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
-                driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+
                 '#################################################
 
                 Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService

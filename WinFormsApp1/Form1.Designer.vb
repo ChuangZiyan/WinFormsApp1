@@ -79,6 +79,8 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Label90 = New System.Windows.Forms.Label()
+        Me.ChromeDriver_Version_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Label78 = New System.Windows.Forms.Label()
         Me.Ignore_line_count_NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.Insert_Check_Last_script_btn = New System.Windows.Forms.Button()
@@ -426,6 +428,7 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1021,6 +1024,9 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Button4)
+        Me.TabPage5.Controls.Add(Me.Label90)
+        Me.TabPage5.Controls.Add(Me.ChromeDriver_Version_ComboBox)
         Me.TabPage5.Controls.Add(Me.Label78)
         Me.TabPage5.Controls.Add(Me.Ignore_line_count_NumericUpDown1)
         Me.TabPage5.Controls.Add(Me.Insert_Check_Last_script_btn)
@@ -1107,6 +1113,24 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Label90
+        '
+        Me.Label90.AutoSize = True
+        Me.Label90.Location = New System.Drawing.Point(439, 37)
+        Me.Label90.Name = "Label90"
+        Me.Label90.Size = New System.Drawing.Size(46, 19)
+        Me.Label90.TabIndex = 159
+        Me.Label90.Text = "版本 :"
+        '
+        'ChromeDriver_Version_ComboBox
+        '
+        Me.ChromeDriver_Version_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ChromeDriver_Version_ComboBox.FormattingEnabled = True
+        Me.ChromeDriver_Version_ComboBox.Location = New System.Drawing.Point(491, 32)
+        Me.ChromeDriver_Version_ComboBox.Name = "ChromeDriver_Version_ComboBox"
+        Me.ChromeDriver_Version_ComboBox.Size = New System.Drawing.Size(255, 27)
+        Me.ChromeDriver_Version_ComboBox.TabIndex = 158
         '
         'Label78
         '
@@ -4426,6 +4450,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(797, 36)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(94, 29)
+        Me.Button4.TabIndex = 160
+        Me.Button4.Text = "Button4"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -4908,4 +4941,7 @@ Partial Class Form1
     Friend WithEvents Read_wwwfb_Message_Id_Button As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Read_MarketPlace_Message_Id_Button As Button
+    Friend WithEvents Label90 As Label
+    Friend WithEvents ChromeDriver_Version_ComboBox As ComboBox
+    Friend WithEvents Button4 As Button
 End Class

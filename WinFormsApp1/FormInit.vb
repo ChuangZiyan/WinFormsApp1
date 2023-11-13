@@ -18,6 +18,7 @@ Module FormInit
 
     Public product_dir_path = curr_path + "products\"
 
+    Public chromedriver_dir_path = curr_path + "Chrome"
 
     Public Sub FormInit_Render_All()
 
@@ -47,11 +48,21 @@ Module FormInit
 
 
         Render_Product_List_CheckedListBox()
+        Render_ChromeDriver_Version_ComboBox()
 
 
         Form1.Selection_Item_ComboBox.Text = "搜尋"
     End Sub
 
+
+    Public Sub Render_ChromeDriver_Version_ComboBox()
+        Form1.ChromeDriver_Version_ComboBox.Items.Add("Auto")
+        Dim dirs() As String = IO.Directory.GetDirectories(chromedriver_dir_path)
+        For Each dir As String In dirs
+            Form1.ChromeDriver_Version_ComboBox.Items.Add(Path.GetFileName(dir))
+        Next
+        Form1.ChromeDriver_Version_ComboBox.SelectedIndex = 0
+    End Sub
 
 
     Public Sub Render_Script_listview()
