@@ -61,10 +61,6 @@ Public Class Form1
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim driverManager = New DriverManager()
-        'driverManager.SetUpDriver(New ChromeConfig(), "115.0.5790.99") 'Use specify version.
-        'driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
-        driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
 
         'Me.Text = "Main Form - " + Version
         'Default String : 
@@ -649,7 +645,7 @@ Public Class Form1
                 Case "聊天室:MKT取得聯絡人"
                     Try
                         'Message_Id_ListBox.Items.Clear()
-                        Dim msgList As List(Of String) = Await myWebDriver.Get_wwwfb_Message_Id_Task(content, True)
+                        Dim msgList As List(Of String) = Await myWebDriver.Get_Messenger_Message_Id_Task(content)
                         For Each msg In msgList
                             Debug.WriteLine("###")
                             Debug.WriteLine(msg)
@@ -3038,7 +3034,7 @@ Public Class Form1
         Insert_to_script("聊天室:www取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
 
         Dim eles = myWebDriver.chromeDriver.FindElements(By.XPath("//span[contains(text(),'Marketplace')]/../../../../../../../../../.."))
         For Each ele In eles
@@ -3052,6 +3048,25 @@ Public Class Form1
 
     Private Sub Read_MarketPlace_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_MarketPlace_Message_Id_Button.Click
         Insert_to_script("聊天室:MKT取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
+    End Sub
+
+    Private Sub Check_ChromeDriver_Update_Button4_Click(sender As Object, e As EventArgs) Handles Check_ChromeDriver_Update_Button4.Click
+        Try
+            Dim driverManager = New DriverManager()
+            driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+            ChromeDriver_Version_ComboBox.Items.Clear()
+            ChromeDriver_Version_ComboBox.Items.Add("Auto")
+            Dim dirs() As String = IO.Directory.GetDirectories(chromedriver_dir_path)
+            For Each dir As String In dirs
+                ChromeDriver_Version_ComboBox.Items.Add(Path.GetFileName(dir))
+            Next
+            ChromeDriver_Version_ComboBox.SelectedIndex = ChromeDriver_Version_ComboBox.Items.Count - 1
+            MsgBox("檢查更新完成!")
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            MsgBox("檢查更新失敗!")
+        End Try
+
     End Sub
 
 End Class

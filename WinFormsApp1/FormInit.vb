@@ -61,7 +61,7 @@ Module FormInit
         For Each dir As String In dirs
             Form1.ChromeDriver_Version_ComboBox.Items.Add(Path.GetFileName(dir))
         Next
-        Form1.ChromeDriver_Version_ComboBox.SelectedIndex = 0
+        Form1.ChromeDriver_Version_ComboBox.SelectedIndex = Form1.ChromeDriver_Version_ComboBox.Items.Count - 1
     End Sub
 
 

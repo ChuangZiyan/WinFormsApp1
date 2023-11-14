@@ -79,6 +79,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Check_ChromeDriver_Update_Button4 = New System.Windows.Forms.Button()
         Me.Label90 = New System.Windows.Forms.Label()
         Me.ChromeDriver_Version_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Label78 = New System.Windows.Forms.Label()
@@ -318,7 +319,6 @@ Partial Class Form1
         Me.CursorY_TextBox = New System.Windows.Forms.TextBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.Read_MarketPlace_Message_Id_Button = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Read_wwwfb_Message_Id_Button = New System.Windows.Forms.Button()
         Me.Max_Unread_Message_Id_NumericUpDown = New System.Windows.Forms.NumericUpDown()
         Me.Label34 = New System.Windows.Forms.Label()
@@ -428,7 +428,6 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1024,7 +1023,7 @@ Partial Class Form1
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.Button4)
+        Me.TabPage5.Controls.Add(Me.Check_ChromeDriver_Update_Button4)
         Me.TabPage5.Controls.Add(Me.Label90)
         Me.TabPage5.Controls.Add(Me.ChromeDriver_Version_ComboBox)
         Me.TabPage5.Controls.Add(Me.Label78)
@@ -1113,6 +1112,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Check_ChromeDriver_Update_Button4
+        '
+        Me.Check_ChromeDriver_Update_Button4.Location = New System.Drawing.Point(750, 30)
+        Me.Check_ChromeDriver_Update_Button4.Name = "Check_ChromeDriver_Update_Button4"
+        Me.Check_ChromeDriver_Update_Button4.Size = New System.Drawing.Size(145, 29)
+        Me.Check_ChromeDriver_Update_Button4.TabIndex = 160
+        Me.Check_ChromeDriver_Update_Button4.Text = "檢查更新"
+        Me.Check_ChromeDriver_Update_Button4.UseVisualStyleBackColor = True
         '
         'Label90
         '
@@ -3380,7 +3388,6 @@ Partial Class Form1
         'TabPage6
         '
         Me.TabPage6.Controls.Add(Me.Read_MarketPlace_Message_Id_Button)
-        Me.TabPage6.Controls.Add(Me.Button3)
         Me.TabPage6.Controls.Add(Me.Read_wwwfb_Message_Id_Button)
         Me.TabPage6.Controls.Add(Me.Max_Unread_Message_Id_NumericUpDown)
         Me.TabPage6.Controls.Add(Me.Label34)
@@ -3406,15 +3413,6 @@ Partial Class Form1
         Me.Read_MarketPlace_Message_Id_Button.TabIndex = 13
         Me.Read_MarketPlace_Message_Id_Button.Text = "讀取MartketPlace聯絡人 - 插入"
         Me.Read_MarketPlace_Message_Id_Button.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(545, 490)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(94, 29)
-        Me.Button3.TabIndex = 12
-        Me.Button3.Text = "Button3"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'Read_wwwfb_Message_Id_Button
         '
@@ -4450,15 +4448,6 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(797, 36)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(94, 29)
-        Me.Button4.TabIndex = 160
-        Me.Button4.Text = "Button4"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -4939,9 +4928,8 @@ Partial Class Form1
     Friend WithEvents Label34 As Label
     Friend WithEvents Label33 As Label
     Friend WithEvents Read_wwwfb_Message_Id_Button As Button
-    Friend WithEvents Button3 As Button
     Friend WithEvents Read_MarketPlace_Message_Id_Button As Button
     Friend WithEvents Label90 As Label
     Friend WithEvents ChromeDriver_Version_ComboBox As ComboBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents Check_ChromeDriver_Update_Button4 As Button
 End Class
