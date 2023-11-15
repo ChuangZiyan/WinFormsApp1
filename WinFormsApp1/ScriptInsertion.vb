@@ -368,26 +368,61 @@ Module ScriptInsertion
 
         Dim img_path_str As String = ""
 
-            'get selected img path into string 
-            If Form1.img_CheckedListBox.CheckedItems.Count <> 0 Then
-                For i = 0 To Form1.img_CheckedListBox.Items.Count - 1
-                    'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+        'get selected img path into string 
+        If Form1.img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To Form1.img_CheckedListBox.Items.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
 
-                    If Form1.img_CheckedListBox.GetItemChecked(i) Then
-                        'Debug.WriteLine("###################")
-                        'Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
-                        If img_path_str = "" Then
-                            img_path_str = image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
-                        Else
-                            img_path_str = img_path_str & vbLf & image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
-                        End If
+                If Form1.img_CheckedListBox.GetItemChecked(i) Then
+                    'Debug.WriteLine("###################")
+                    'Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
+                    If img_path_str = "" Then
+                        img_path_str = image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
+                    Else
+                        img_path_str = img_path_str & vbLf & image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
                     End If
+                End If
 
-                Next
+            Next
 
-            End If
+        End If
 
         Insert_to_script("聊天", img_path_str + "%20" + Txt_file_path.Trim(";"c))
+    End Sub
+
+
+    Public Sub Insert_Messager_Contact_Listbox_Ids()
+
+
+        Dim Txt_file_path As String = ""
+        For Each itemChecked In Form1.Text_File_CheckedListBox.CheckedItems
+            'Debug.WriteLine(itemChecked)
+            Txt_file_path += itemChecked + ";"
+        Next
+
+
+        Dim img_path_str As String = ""
+
+        'get selected img path into string 
+        If Form1.img_CheckedListBox.CheckedItems.Count <> 0 Then
+            For i = 0 To Form1.img_CheckedListBox.Items.Count - 1
+                'img_upload_input.SendKeys(img_CheckedListBox.Items(i).ToString)
+
+                If Form1.img_CheckedListBox.GetItemChecked(i) Then
+                    'Debug.WriteLine("###################")
+                    'Debug.WriteLine(Form1.img_CheckedListBox.Items(i).ToString)
+                    If img_path_str = "" Then
+                        img_path_str = image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
+                    Else
+                        img_path_str = img_path_str & vbLf & image_folder_path + Form1.img_CheckedListBox.Items(i).ToString
+                    End If
+                End If
+
+            Next
+
+        End If
+
+        Insert_to_script("聊天:列表", img_path_str + "%20" + Txt_file_path.Trim(";"c))
     End Sub
 
 

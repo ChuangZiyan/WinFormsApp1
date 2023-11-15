@@ -428,6 +428,7 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.Insert_Send_Message_To_All_Id_Button = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3387,6 +3388,7 @@ Partial Class Form1
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.Insert_Send_Message_To_All_Id_Button)
         Me.TabPage6.Controls.Add(Me.Read_MarketPlace_Message_Id_Button)
         Me.TabPage6.Controls.Add(Me.Read_wwwfb_Message_Id_Button)
         Me.TabPage6.Controls.Add(Me.Max_Unread_Message_Id_NumericUpDown)
@@ -3470,7 +3472,7 @@ Partial Class Form1
         '
         Me.Insert_Navigate_To_Message_Id_Button.Location = New System.Drawing.Point(441, 176)
         Me.Insert_Navigate_To_Message_Id_Button.Name = "Insert_Navigate_To_Message_Id_Button"
-        Me.Insert_Navigate_To_Message_Id_Button.Size = New System.Drawing.Size(178, 29)
+        Me.Insert_Navigate_To_Message_Id_Button.Size = New System.Drawing.Size(262, 29)
         Me.Insert_Navigate_To_Message_Id_Button.TabIndex = 5
         Me.Insert_Navigate_To_Message_Id_Button.Text = "前往所選聊天室 - 插入"
         Me.Insert_Navigate_To_Message_Id_Button.UseVisualStyleBackColor = True
@@ -4448,6 +4450,15 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Insert_Send_Message_To_All_Id_Button
+        '
+        Me.Insert_Send_Message_To_All_Id_Button.Location = New System.Drawing.Point(441, 211)
+        Me.Insert_Send_Message_To_All_Id_Button.Name = "Insert_Send_Message_To_All_Id_Button"
+        Me.Insert_Send_Message_To_All_Id_Button.Size = New System.Drawing.Size(262, 29)
+        Me.Insert_Send_Message_To_All_Id_Button.TabIndex = 14
+        Me.Insert_Send_Message_To_All_Id_Button.Text = "傳送訊息至列表所有聯絡人 - 插入"
+        Me.Insert_Send_Message_To_All_Id_Button.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -4932,4 +4943,5 @@ Partial Class Form1
     Friend WithEvents Label90 As Label
     Friend WithEvents ChromeDriver_Version_ComboBox As ComboBox
     Friend WithEvents Check_ChromeDriver_Update_Button4 As Button
+    Friend WithEvents Insert_Send_Message_To_All_Id_Button As Button
 End Class

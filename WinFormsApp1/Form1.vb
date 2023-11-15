@@ -19,12 +19,8 @@ Imports System.Text.RegularExpressions
 Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
-Imports AngleSharp.Text
-Imports System.Diagnostics.Metrics
 Imports System.Collections.Specialized
-Imports System.Reflection.Metadata
 Imports System.Buffers
-Imports ICSharpCode.SharpZipLib.Zip
 Imports System.Text.Json
 
 Public Class Form1
@@ -594,6 +590,15 @@ Public Class Form1
                     Dim images = content.Split("%20")(0)
                     Dim Text = content.Split("%20")(1)
                     boolean_result = Await myWebDriver.Messager_Contact_Task(images, Text)
+                Case "聊天:列表"
+                    Dim images = content.Split("%20")(0)
+                    Dim Text = content.Split("%20")(1)
+
+                    Dim Id_List As New List(Of String)
+                    For Each my_id As Object In Message_Id_ListBox.Items
+                        Id_List.Add(my_id)
+                    Next
+                    boolean_result = Await myWebDriver.Send_To_ListBox_Messager_Contact_Task(Id_List, images, Text)
                 Case "聊天:送出"
                     boolean_result = Await myWebDriver.Messager_Submit_Content_Task()
                 Case "聊天室:取得聯絡人"
@@ -3067,6 +3072,10 @@ Public Class Form1
             MsgBox("檢查更新失敗!")
         End Try
 
+    End Sub
+
+    Private Sub Insert_Send_Message_To_All_Id_Button_Click(sender As Object, e As EventArgs) Handles Insert_Send_Message_To_All_Id_Button.Click
+        Insert_Messager_Contact_Listbox_Ids()
     End Sub
 
 End Class

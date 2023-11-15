@@ -17,12 +17,7 @@ Imports System.Text.RegularExpressions
 Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
-Imports System.Reflection.Metadata
-Imports System.Collections.Specialized
-Imports System.Runtime.Intrinsics
-Imports System.DirectoryServices.ActiveDirectory
-Imports AngleSharp.Dom.Events
-Imports Microsoft.VisualBasic.ApplicationServices
+
 
 Public Class MyWebDriver
     Public chromeDriver As IWebDriver
@@ -1963,6 +1958,75 @@ Public Class MyWebDriver
 
 
 
+    'Send_To_ListBox_Messager_Contact_Task
+    Public Function Send_To_ListBox_Messager_Contact_Task(Id_List, img_path_str, message)
+        Return Task.Run(Function() Send_To_ListBox_Messager_Contact(Id_List, img_path_str, message))
+    End Function
 
+
+    Function Send_To_ListBox_Messager_Contact(Id_List As List(Of String), img_path_str As String, text_files_path As String)
+
+
+        For Each my_id In Id_List
+            Debug.WriteLine("ID : " + my_id)
+            Try
+                Navigate_GoToUrl("https://www.facebook.com/messages/t/" + my_id)
+
+                Thread.Sleep(1000)
+                'Continue For
+
+                If img_path_str <> "" Then
+                    Dim my_img_files() As String = img_path_str.Split(vbLf)
+
+                    For Each substring As String In my_img_files
+                        Debug.WriteLine(substring)
+                        If Not File.Exists(substring) Then
+                            Debug.Write("not exist " + substring)
+                            Return False
+                        End If
+                    Next
+
+                    Dim files_imput = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1ey2m1c.x78zum5.xl56j7k.x10l6tqk.x1vjfegm.x12nagc.xw3qccf.x3oybdh.x1g2r6go.x11xpdln.x1th4bbo > input"))
+                    files_imput.SendKeys(img_path_str)
+
+                End If
+
+                Dim Text_input = chromeDriver.FindElement(By.CssSelector("div.xzsf02u.x1a2a7pz.x1n2onr6.x14wi4xw.x1iyjqo2.x1gh3ibb.xisnujt.xeuugli.x1odjw0f.notranslate > p"))
+                If text_files_path <> "" Then
+
+                    Dim TextFiles = text_files_path.Trim(";"c).Split(";")
+                    Dim rnd = rnd_num.Next(0, TextFiles.Length)
+
+                    Dim msg = File.ReadAllText(text_folder_path + TextFiles(rnd))
+
+                    'Return False
+
+                    Dim str_arr() As String = msg.Split(vbLf)
+                    For Each line As String In str_arr
+                        line = line.Replace(vbCr, "").Replace(vbLf, "")
+                        Text_input.SendKeys(line)
+                        Thread.Sleep(100)
+                        Text_input.SendKeys(Keys.LeftShift + Keys.Return)
+                    Next
+
+                End If
+
+
+                Text_input.SendKeys(Keys.Return)
+                Thread.Sleep(1000)
+                'Return True
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+                Return False
+            End Try
+
+        Next
+
+
+        Return True
+
+
+
+    End Function
 
 End Class
