@@ -216,7 +216,7 @@ Public Class Form1
             If ignore_counter > 0 Then
                 ignore_counter -= 1
                 execute_result.Text = "略過"
-                Await Delay_msec(1000)
+                Await Delay_msec(500)
                 Continue For
             End If
 
@@ -593,12 +593,13 @@ Public Class Form1
                 Case "聊天:列表"
                     Dim images = content.Split("%20")(0)
                     Dim Text = content.Split("%20")(1)
+                    Dim delay_sec = CInt(content.Split("%20")(2))
 
                     Dim Id_List As New List(Of String)
                     For Each my_id As Object In Message_Id_ListBox.Items
                         Id_List.Add(my_id)
                     Next
-                    boolean_result = Await myWebDriver.Send_To_ListBox_Messager_Contact_Task(Id_List, images, Text)
+                    boolean_result = Await myWebDriver.Send_To_ListBox_Messager_Contact_Task(Id_List, images, Text, delay_sec)
                 Case "聊天:送出"
                     boolean_result = Await myWebDriver.Messager_Submit_Content_Task()
                 Case "聊天室:取得聯絡人"
@@ -3055,8 +3056,10 @@ Public Class Form1
         Insert_to_script("聊天室:MKT取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
 
-    Private Sub Check_ChromeDriver_Update_Button4_Click(sender As Object, e As EventArgs) Handles Check_ChromeDriver_Update_Button4.Click
+    Private Sub Check_ChromeDriver_Update_Button_Click(sender As Object, e As EventArgs) Handles Check_ChromeDriver_Update_Button.Click
         Try
+            Check_ChromeDriver_Update_Button.Enabled = False
+            Check_ChromeDriver_Update_Button.Text = "檢查中..."
             Dim driverManager = New DriverManager()
             driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
             ChromeDriver_Version_ComboBox.Items.Clear()
@@ -3071,6 +3074,8 @@ Public Class Form1
             Debug.WriteLine(ex)
             MsgBox("檢查更新失敗!")
         End Try
+        Check_ChromeDriver_Update_Button.Enabled = True
+        Check_ChromeDriver_Update_Button.Text = "檢查更新"
 
     End Sub
 

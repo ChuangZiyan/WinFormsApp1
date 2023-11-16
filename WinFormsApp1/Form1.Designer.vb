@@ -79,7 +79,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.Check_ChromeDriver_Update_Button4 = New System.Windows.Forms.Button()
+        Me.Check_ChromeDriver_Update_Button = New System.Windows.Forms.Button()
         Me.Label90 = New System.Windows.Forms.Label()
         Me.ChromeDriver_Version_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Label78 = New System.Windows.Forms.Label()
@@ -318,6 +318,8 @@ Partial Class Form1
         Me.CursorX_TextBox = New System.Windows.Forms.TextBox()
         Me.CursorY_TextBox = New System.Windows.Forms.TextBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.Send_Message_To_All_Id_delay_sec_NumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.Insert_Send_Message_To_All_Id_Button = New System.Windows.Forms.Button()
         Me.Read_MarketPlace_Message_Id_Button = New System.Windows.Forms.Button()
         Me.Read_wwwfb_Message_Id_Button = New System.Windows.Forms.Button()
         Me.Max_Unread_Message_Id_NumericUpDown = New System.Windows.Forms.NumericUpDown()
@@ -428,7 +430,7 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Insert_Send_Message_To_All_Id_Button = New System.Windows.Forms.Button()
+        Me.Label91 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -465,6 +467,7 @@ Partial Class Form1
         CType(Me.ScrollBy_Y_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage6.SuspendLayout()
+        CType(Me.Send_Message_To_All_Id_delay_sec_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Max_Unread_Message_Id_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Max_Read_Message_Id_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupList.SuspendLayout()
@@ -1024,7 +1027,7 @@ Partial Class Form1
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.Check_ChromeDriver_Update_Button4)
+        Me.TabPage5.Controls.Add(Me.Check_ChromeDriver_Update_Button)
         Me.TabPage5.Controls.Add(Me.Label90)
         Me.TabPage5.Controls.Add(Me.ChromeDriver_Version_ComboBox)
         Me.TabPage5.Controls.Add(Me.Label78)
@@ -1114,14 +1117,14 @@ Partial Class Form1
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
-        'Check_ChromeDriver_Update_Button4
+        'Check_ChromeDriver_Update_Button
         '
-        Me.Check_ChromeDriver_Update_Button4.Location = New System.Drawing.Point(750, 30)
-        Me.Check_ChromeDriver_Update_Button4.Name = "Check_ChromeDriver_Update_Button4"
-        Me.Check_ChromeDriver_Update_Button4.Size = New System.Drawing.Size(145, 29)
-        Me.Check_ChromeDriver_Update_Button4.TabIndex = 160
-        Me.Check_ChromeDriver_Update_Button4.Text = "檢查更新"
-        Me.Check_ChromeDriver_Update_Button4.UseVisualStyleBackColor = True
+        Me.Check_ChromeDriver_Update_Button.Location = New System.Drawing.Point(750, 30)
+        Me.Check_ChromeDriver_Update_Button.Name = "Check_ChromeDriver_Update_Button"
+        Me.Check_ChromeDriver_Update_Button.Size = New System.Drawing.Size(145, 29)
+        Me.Check_ChromeDriver_Update_Button.TabIndex = 160
+        Me.Check_ChromeDriver_Update_Button.Text = "檢查更新"
+        Me.Check_ChromeDriver_Update_Button.UseVisualStyleBackColor = True
         '
         'Label90
         '
@@ -3388,6 +3391,8 @@ Partial Class Form1
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.Label91)
+        Me.TabPage6.Controls.Add(Me.Send_Message_To_All_Id_delay_sec_NumericUpDown)
         Me.TabPage6.Controls.Add(Me.Insert_Send_Message_To_All_Id_Button)
         Me.TabPage6.Controls.Add(Me.Read_MarketPlace_Message_Id_Button)
         Me.TabPage6.Controls.Add(Me.Read_wwwfb_Message_Id_Button)
@@ -3406,6 +3411,22 @@ Partial Class Form1
         Me.TabPage6.TabIndex = 3
         Me.TabPage6.Text = "聊天室"
         Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'Send_Message_To_All_Id_delay_sec_NumericUpDown
+        '
+        Me.Send_Message_To_All_Id_delay_sec_NumericUpDown.Location = New System.Drawing.Point(709, 211)
+        Me.Send_Message_To_All_Id_delay_sec_NumericUpDown.Name = "Send_Message_To_All_Id_delay_sec_NumericUpDown"
+        Me.Send_Message_To_All_Id_delay_sec_NumericUpDown.Size = New System.Drawing.Size(77, 27)
+        Me.Send_Message_To_All_Id_delay_sec_NumericUpDown.TabIndex = 15
+        '
+        'Insert_Send_Message_To_All_Id_Button
+        '
+        Me.Insert_Send_Message_To_All_Id_Button.Location = New System.Drawing.Point(441, 211)
+        Me.Insert_Send_Message_To_All_Id_Button.Name = "Insert_Send_Message_To_All_Id_Button"
+        Me.Insert_Send_Message_To_All_Id_Button.Size = New System.Drawing.Size(262, 29)
+        Me.Insert_Send_Message_To_All_Id_Button.TabIndex = 14
+        Me.Insert_Send_Message_To_All_Id_Button.Text = "傳送訊息至列表所有聯絡人 - 插入"
+        Me.Insert_Send_Message_To_All_Id_Button.UseVisualStyleBackColor = True
         '
         'Read_MarketPlace_Message_Id_Button
         '
@@ -4450,14 +4471,14 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Insert_Send_Message_To_All_Id_Button
+        'Label91
         '
-        Me.Insert_Send_Message_To_All_Id_Button.Location = New System.Drawing.Point(441, 211)
-        Me.Insert_Send_Message_To_All_Id_Button.Name = "Insert_Send_Message_To_All_Id_Button"
-        Me.Insert_Send_Message_To_All_Id_Button.Size = New System.Drawing.Size(262, 29)
-        Me.Insert_Send_Message_To_All_Id_Button.TabIndex = 14
-        Me.Insert_Send_Message_To_All_Id_Button.Text = "傳送訊息至列表所有聯絡人 - 插入"
-        Me.Insert_Send_Message_To_All_Id_Button.UseVisualStyleBackColor = True
+        Me.Label91.AutoSize = True
+        Me.Label91.Location = New System.Drawing.Point(792, 216)
+        Me.Label91.Name = "Label91"
+        Me.Label91.Size = New System.Drawing.Size(24, 19)
+        Me.Label91.TabIndex = 16
+        Me.Label91.Text = "秒"
         '
         'Form1
         '
@@ -4514,6 +4535,7 @@ Partial Class Form1
         CType(Me.ScrollBy_X_Offset_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
         Me.TabPage6.PerformLayout()
+        CType(Me.Send_Message_To_All_Id_delay_sec_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Max_Unread_Message_Id_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Max_Read_Message_Id_NumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupList.ResumeLayout(False)
@@ -4942,6 +4964,8 @@ Partial Class Form1
     Friend WithEvents Read_MarketPlace_Message_Id_Button As Button
     Friend WithEvents Label90 As Label
     Friend WithEvents ChromeDriver_Version_ComboBox As ComboBox
-    Friend WithEvents Check_ChromeDriver_Update_Button4 As Button
+    Friend WithEvents Check_ChromeDriver_Update_Button As Button
     Friend WithEvents Insert_Send_Message_To_All_Id_Button As Button
+    Friend WithEvents Send_Message_To_All_Id_delay_sec_NumericUpDown As NumericUpDown
+    Friend WithEvents Label91 As Label
 End Class

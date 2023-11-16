@@ -2,6 +2,7 @@
 Imports System.Threading
 Imports OpenQA.Selenium
 Imports OpenQA.Selenium.Chrome
+Imports System.Drawing
 Imports OpenQA.Selenium.Support.Extensions
 Imports OpenQA.Selenium.Support.UI
 Imports OpenQA.Selenium.Interactions
@@ -426,25 +427,10 @@ Public Class MyWebDriver
         IsUploadImage = True
 
         Try
-            'Dim comment_img_input As Object
 
-            'If chromeDriver.Url.Contains("comment_id") Then ' reply someone comment
-            'comment_img_input = chromeDriver.FindElements(By.CssSelector("div[aria-label^='回覆']"))
-            'Else
-            'comment_img_input = chromeDriver.FindElements(By.CssSelector("div[aria-label^='留言'] > p"))
-            'End If
-
-
-            'If headless_mode Then
-            'Debug.WriteLine("headless mode")
-            'Dim image_input = chromeDriver.FindElement(By.CssSelector("div.x4b6v7d.x1ojsi0c > ul > li:nth-child(3) > input"))
-            'image_input.SendKeys(img)
-            'Else
-            'Debug.WriteLine("Copy " + img)
             act.KeyDown(Keys.Control).SendKeys("v").Perform()
             act.KeyUp(Keys.Control).Perform()
-            'comment_img_input(0).SendKeys(Keys.LeftControl + "v")
-            'End If
+
 
             Return True
 
@@ -630,41 +616,77 @@ Public Class MyWebDriver
         Return False
     End Function
 
+
     Public Function Tring_to_upload_img_Task(image_path) As Task(Of Boolean)
-        Return Task.Run(Function() Tring_to_upload_img(image_path))
+
+        Try
+
+            Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
+            Dim my_img_files() As String = image_path.Split(vbLf)
+            Dim d As New DataObject(DataFormats.FileDrop, my_img_files)
+            Clipboard.SetDataObject(d, True)
+            Return Task.Run(Function() Tring_to_upload_img())
+        Catch ex As Exception
+            Return Task.FromResult(False)
+            Debug.WriteLine(ex)
+        End Try
+
+
+
     End Function
 
-    Public Function Tring_to_upload_img(img_path_str) As Boolean
+
+
+    Public Function Tring_to_upload_img() As Boolean
         Try
-            Dim my_img_files() As String = img_path_str.Split(vbLf)
+            Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
 
-            For Each substring As String In my_img_files
+            For Each pattern In str_patterns
+                'Debug.WriteLine("try : " + pattern.ToString())
+                Try
+                    Dim xpath = "//div[contains(@aria-label, '" + pattern.ToString() + "')]"
+                    'Debug.WriteLine("pattern : " + pattern.ToString())
+                    Dim msgbox_ele = chromeDriver.FindElement(By.XPath(xpath))
+                    msgbox_ele.SendKeys(Keys.LeftControl + "v")
+                    Return True
+                Catch ex As Exception
 
-                If Not File.Exists(substring) Then
-                    'Debug.Write("not exist " + substring)
-                    Return False
-                End If
+                End Try
             Next
+
+            Return False
+
+
+            'Dim my_img_files() As String = img_path_str.Split(vbLf)
+
+            'For Each substring As String In my_img_files
+
+            'If Not File.Exists(substring) Then
+            'Debug.Write("not exist " + substring)
+            'Return False
+            'End If
+            'Next
 
             'Return False
 
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
-            Dim upload_img_input As Object
-            If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
-                upload_img_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input"))
-                upload_img_input.SendKeys(img_path_str)
-            ElseIf IsElementPresentByCssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x4uap5 > div:nth-child(1) > form > div > div > div.x4b6v7d.x1ojsi0c.x10e4vud.x1bouk6t > ul > li:nth-child(3) > input") Then
-                upload_img_input = chromeDriver.FindElement(By.CssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x4uap5 > div:nth-child(1) > form > div > div > div.x4b6v7d.x1ojsi0c.x10e4vud.x1bouk6t > ul > li:nth-child(3) > input"))
-                upload_img_input.SendKeys(img_path_str)
-            Else
-                click_by_aria_label(langConverter.Item("Photo_Video"))
-                upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
-                upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
-            End If
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
-            Return True
+            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
+            'Dim upload_img_input As Object
+            'If IsElementPresentByCssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input") Then
+            'upload_img_input = chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x1jx94hy.x1n2xptk.xkbpzyx.xdppsyt.x1rr5fae.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xev17xk.x9f619.x78zum5.x1qughib.xktsk01.x1d52u69.x1y1aw1k.x1sxyh0.xwib8y2.xurb0ha > div.x78zum5 > div:nth-child(1) > input"))
+            'upload_img_input.SendKeys(img_path_str)
+            'ElseIf IsElementPresentByCssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x4uap5 > div:nth-child(1) > form > div > div > div.x4b6v7d.x1ojsi0c.x10e4vud.x1bouk6t > ul > li:nth-child(3) > input") Then
+            'upload_img_input = chromeDriver.FindElement(By.CssSelector("div.x1r8uery.x1iyjqo2.x6ikm8r.x10wlt62.x4uap5 > div:nth-child(1) > form > div > div > div.x4b6v7d.x1ojsi0c.x10e4vud.x1bouk6t > ul > li:nth-child(3) > input"))
+            'upload_img_input.SendKeys(img_path_str)
+            'Else
+            'click_by_aria_label(langConverter.Item("Photo_Video"))
+            'upload_img_input = chromeDriver.FindElement(By.CssSelector(css_selector_config_obj.Item("group_post_img_input_1").ToString))
+            'upload_img_input.SendKeys(img_path_str) ' if muti img use "& vbLf &" to join the img path
+            'End If
+            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+            'Return True
         Catch ex As Exception
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+            Debug.WriteLine(ex)
+            'chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return False
         End Try
 
@@ -1959,12 +1981,12 @@ Public Class MyWebDriver
 
 
     'Send_To_ListBox_Messager_Contact_Task
-    Public Function Send_To_ListBox_Messager_Contact_Task(Id_List, img_path_str, message)
-        Return Task.Run(Function() Send_To_ListBox_Messager_Contact(Id_List, img_path_str, message))
+    Public Function Send_To_ListBox_Messager_Contact_Task(Id_List, img_path_str, message, delay_sec)
+        Return Task.Run(Function() Send_To_ListBox_Messager_Contact(Id_List, img_path_str, message, delay_sec))
     End Function
 
 
-    Function Send_To_ListBox_Messager_Contact(Id_List As List(Of String), img_path_str As String, text_files_path As String)
+    Function Send_To_ListBox_Messager_Contact(Id_List As List(Of String), img_path_str As String, text_files_path As String, delay_sec As Integer)
 
 
         For Each my_id In Id_List
@@ -2011,7 +2033,7 @@ Public Class MyWebDriver
 
                 End If
 
-
+                Thread.Sleep(delay_sec * 1000)
                 Text_input.SendKeys(Keys.Return)
                 Thread.Sleep(1000)
                 'Return True

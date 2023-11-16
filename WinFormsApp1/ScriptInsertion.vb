@@ -422,7 +422,7 @@ Module ScriptInsertion
 
         End If
 
-        Insert_to_script("聊天:列表", img_path_str + "%20" + Txt_file_path.Trim(";"c))
+        Insert_to_script("聊天:列表", img_path_str + "%20" + Txt_file_path.Trim(";"c) & "%20" & Form1.Send_Message_To_All_Id_delay_sec_NumericUpDown.Value)
     End Sub
 
 
