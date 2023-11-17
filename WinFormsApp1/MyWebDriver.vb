@@ -2035,7 +2035,7 @@ Public Class MyWebDriver
 
                 Thread.Sleep(delay_sec * 1000)
                 Text_input.SendKeys(Keys.Return)
-                Thread.Sleep(1000)
+                Thread.Sleep(delay_sec * 1000)
                 'Return True
             Catch ex As Exception
                 Debug.WriteLine(ex)
