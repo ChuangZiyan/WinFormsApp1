@@ -1990,7 +1990,7 @@ Public Class MyWebDriver
 
 
         For Each my_id In Id_List
-            Debug.WriteLine("ID : " + my_id)
+            'Debug.WriteLine("ID : " + my_id)
             Try
                 Navigate_GoToUrl("https://www.facebook.com/messages/t/" + my_id)
 
@@ -2039,7 +2039,7 @@ Public Class MyWebDriver
                 'Return True
             Catch ex As Exception
                 Debug.WriteLine(ex)
-                Return False
+
             End Try
 
         Next
