@@ -594,12 +594,13 @@ Public Class Form1
                     Dim images = content.Split("%20")(0)
                     Dim Text = content.Split("%20")(1)
                     Dim delay_sec = CInt(content.Split("%20")(2))
+                    Dim submit_delay_sec = CInt(content.Split("%20")(3))
 
                     Dim Id_List As New List(Of String)
                     For Each my_id As Object In Message_Id_ListBox.Items
                         Id_List.Add(my_id)
                     Next
-                    boolean_result = Await myWebDriver.Send_To_ListBox_Messager_Contact_Task(Id_List, images, Text, delay_sec)
+                    boolean_result = Await myWebDriver.Send_To_ListBox_Messager_Contact_Task(Id_List, images, Text, delay_sec, submit_delay_sec)
                 Case "聊天:送出"
                     boolean_result = Await myWebDriver.Messager_Submit_Content_Task()
                 Case "聊天室:取得聯絡人"

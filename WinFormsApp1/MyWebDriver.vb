@@ -1981,12 +1981,12 @@ Public Class MyWebDriver
 
 
     'Send_To_ListBox_Messager_Contact_Task
-    Public Function Send_To_ListBox_Messager_Contact_Task(Id_List, img_path_str, message, delay_sec)
-        Return Task.Run(Function() Send_To_ListBox_Messager_Contact(Id_List, img_path_str, message, delay_sec))
+    Public Function Send_To_ListBox_Messager_Contact_Task(Id_List, img_path_str, message, delay_sec, submit_delay_sec)
+        Return Task.Run(Function() Send_To_ListBox_Messager_Contact(Id_List, img_path_str, message, delay_sec, submit_delay_sec))
     End Function
 
 
-    Function Send_To_ListBox_Messager_Contact(Id_List As List(Of String), img_path_str As String, text_files_path As String, delay_sec As Integer)
+    Function Send_To_ListBox_Messager_Contact(Id_List As List(Of String), img_path_str As String, text_files_path As String, delay_sec As Integer, submit_delay_sec As Integer)
 
 
         For Each my_id In Id_List
@@ -2033,9 +2033,9 @@ Public Class MyWebDriver
 
                 End If
 
-                Thread.Sleep(2000)
-                Text_input.SendKeys(Keys.Return)
                 Thread.Sleep(delay_sec * 1000)
+                Text_input.SendKeys(Keys.Return)
+                Thread.Sleep(submit_delay_sec * 1000)
                 'Return True
             Catch ex As Exception
                 Debug.WriteLine(ex)
