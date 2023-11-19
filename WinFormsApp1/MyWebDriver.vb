@@ -2033,7 +2033,7 @@ Public Class MyWebDriver
 
                 End If
 
-                Thread.Sleep(delay_sec * 1000)
+                Thread.Sleep(2000)
                 Text_input.SendKeys(Keys.Return)
                 Thread.Sleep(delay_sec * 1000)
                 'Return True
