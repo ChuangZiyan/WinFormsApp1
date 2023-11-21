@@ -1086,8 +1086,6 @@ Public Class Form1
             used_chrome_profile = ""
             running_chrome_profile = ""
             myWebDriver.Quit_ChromeDriver()
-            'Dismiss_alert()
-
             Return True
         Catch ex As Exception
             Return False
@@ -1099,13 +1097,13 @@ Public Class Form1
         Try
 
             Dim alert As IAlert = myWebDriver.chromeDriver.SwitchTo().Alert()
-
-            Dim alertText As String = alert.Text
-
+            'Dim alertText As String = alert.Text
+            'Debug.WriteLine("######")
+            'Debug.WriteLine(alertText)
             'alert.Accept() ' 或者
             alert.Dismiss()
-        Catch ex As NoAlertPresentException
-            ' 如果没有警报框弹出，继续测试
+        Catch ex As Exception
+            Debug.WriteLine(ex)
         End Try
     End Sub
 
@@ -3041,17 +3039,6 @@ Public Class Form1
         Insert_to_script("聊天室:www取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
-
-        Dim eles = myWebDriver.chromeDriver.FindElements(By.XPath("//span[contains(text(),'Marketplace')]/../../../../../../../../../.."))
-        For Each ele In eles
-            Debug.WriteLine(ele.GetAttribute("role"))
-            If ele.GetAttribute("role") = "button" Then
-                ele.Click()
-            End If
-        Next
-
-    End Sub
 
     Private Sub Read_MarketPlace_Message_Id_Button_Click(sender As Object, e As EventArgs) Handles Read_MarketPlace_Message_Id_Button.Click
         Insert_to_script("聊天室:MKT取得聯絡人", "已讀:" + Max_Read_Message_Id_NumericUpDown.Value.ToString() + ";未讀:" + Max_Unread_Message_Id_NumericUpDown.Value.ToString())
@@ -3084,4 +3071,7 @@ Public Class Form1
         Insert_Messager_Contact_Listbox_Ids()
     End Sub
 
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
+        Dismiss_alert()
+    End Sub
 End Class

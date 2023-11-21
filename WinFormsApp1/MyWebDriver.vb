@@ -229,14 +229,35 @@ Public Class MyWebDriver
                 chromeProcess.CloseMainWindow()
                 chromeProcess.Close()
             Next
+            Thread.Sleep(1000)
+            Ignore_Chrome_Alert()
             chromeDriver.Quit()
             Return True
         Catch ex As Exception
+            Debug.WriteLine(ex)
             MsgBox("未偵測到Chrome")
             Return False
         End Try
 
     End Function
+
+
+    Public Function Ignore_Chrome_Alert()
+        Try
+            Dim alert As IAlert = chromeDriver.SwitchTo().Alert()
+            'Dim alertText As String = alert.Text
+            'Debug.WriteLine("######")
+            'Debug.WriteLine(alertText)
+            alert.Accept() ' 或者
+            'alert.Dismiss()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
+
 
     Public Function Navigate_GoToUrl_Task(url) As Task(Of Boolean)
         Return Task.Run(Function() Navigate_GoToUrl(url))
