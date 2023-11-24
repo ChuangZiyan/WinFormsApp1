@@ -3072,6 +3072,12 @@ Public Class Form1
     End Sub
 
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
-        Dismiss_alert()
+        Dim script As String = "var privacySandboxNoticeDialog = document.querySelector(""body > privacy-sandbox-notice-dialog-app"");" &
+                               "var shadowRoot = privacySandboxNoticeDialog.shadowRoot;" &
+                               "var settingsButton = shadowRoot.querySelector(""#ackButton"");" &
+                               "var clickEvent = new Event(""click"");" &
+                               "settingsButton.dispatchEvent(clickEvent);"
+
+        DirectCast(myWebDriver.chromeDriver, IJavaScriptExecutor).ExecuteScript(script)
     End Sub
 End Class
