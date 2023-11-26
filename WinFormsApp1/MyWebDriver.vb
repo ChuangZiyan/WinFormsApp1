@@ -107,7 +107,6 @@ Public Class MyWebDriver
                     driverManager.SetUpDriver(New ChromeConfig(), chromedriver_ver) 'Use specify version.
                 End If
 
-
                 'driverManager.SetUpDriver(New ChromeConfig(), "115.0.5790.99") 'Use specify version.
                 'driverManager.SetUpDriver(New ChromeConfig()) 'Automatic download the lastest version and use it.
 
@@ -202,9 +201,21 @@ Public Class MyWebDriver
 
                 chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
                 ' Refresh Profile Items
-
-
                 act = New Actions(chromeDriver)
+
+
+
+                ' check privacy notice
+                Thread.Sleep(5000)
+                Dim chrome_data As New List(Of String) From {}
+                Dim privacyNotice_path = profile + "\PrivacyNotice"
+                Debug.WriteLine("PPP : " + privacyNotice_path)
+                If Not Exists(privacyNotice_path) Then
+                    ' if return true need to restart chrome
+                    Debug.WriteLine("####")
+                    Return Check_Chrome_privacy_sandbox_dialog_notice(browser, devicetype, profile, chromedriver_ver, privacyNotice_path)
+                End If
+
 
                 Return True
             Catch ex As Exception
@@ -220,6 +231,46 @@ Public Class MyWebDriver
 
         Return False
     End Function
+
+
+    Public Function Check_Chrome_privacy_sandbox_dialog_notice(browser, devicetype, profile, chromedriver_ver, privacyNotice_path)
+        Try
+
+            Debug.WriteLine("privacyNotice_path : " + privacyNotice_path)
+            If chromeDriver.Url = "chrome://privacy-sandbox-dialog/notice" Then
+                Debug.WriteLine("Diss miss notice and creat file")
+                Thread.Sleep(2000)
+                Dim script As String = "var privacySandboxNoticeDialog = document.querySelector(""body > privacy-sandbox-notice-dialog-app"");" &
+                                       "var shadowRoot = privacySandboxNoticeDialog.shadowRoot;" &
+                                       "var settingsButton = shadowRoot.querySelector(""#ackButton"");" &
+                                       "var clickEvent = new Event(""click"");" &
+                                       "settingsButton.dispatchEvent(clickEvent);"
+
+                DirectCast(chromeDriver, IJavaScriptExecutor).ExecuteScript(script)
+
+                Dim fileStream As FileStream = File.Create(privacyNotice_path)
+                fileStream.Close()
+
+                Thread.Sleep(2000)
+                Quit_ChromeDriver()
+
+                Thread.Sleep(5000)
+                Open_Browser(browser, devicetype, profile, chromedriver_ver)
+
+
+                Debug.WriteLine("TTTTT")
+            End If
+            Debug.WriteLine("TTTTT")
+            Return True
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Debug.WriteLine("FFFFFFF")
+            Return False
+
+        End Try
+
+    End Function
+
 
     Public Function Quit_ChromeDriver()
         Try
@@ -1998,9 +2049,6 @@ Public Class MyWebDriver
     End Function
 
 
-
-
-
     'Send_To_ListBox_Messager_Contact_Task
     Public Function Send_To_ListBox_Messager_Contact_Task(Id_List, img_path_str, message, delay_sec, submit_delay_sec)
         Return Task.Run(Function() Send_To_ListBox_Messager_Contact(Id_List, img_path_str, message, delay_sec, submit_delay_sec))
@@ -2008,7 +2056,6 @@ Public Class MyWebDriver
 
 
     Function Send_To_ListBox_Messager_Contact(Id_List As List(Of String), img_path_str As String, text_files_path As String, delay_sec As Integer, submit_delay_sec As Integer)
-
 
         For Each my_id In Id_List
             'Debug.WriteLine("ID : " + my_id)
@@ -2071,5 +2118,8 @@ Public Class MyWebDriver
 
 
     End Function
+
+
+
 
 End Class

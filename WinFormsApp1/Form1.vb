@@ -971,7 +971,19 @@ Public Class Form1
             'Open_Browser("Chrome", used_dev_model, myprofile)
             'Debug.WriteLine("profile : " + myprofile)
             'Exit Sub
-            Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, myprofile, ChromeDriver_Version_ComboBox.Text)
+            If Await myWebDriver.Open_Browser_Task("Chrome", myWebDriver.used_dev_model, myprofile, ChromeDriver_Version_ComboBox.Text) Then
+                If curr_url_ComboBox.Text <> "" Then
+                    Dim pattern As String
+                    pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+                    If Regex.IsMatch(curr_url_ComboBox.Text, pattern) Then
+                        Await myWebDriver.Navigate_GoToUrl_Task(curr_url_ComboBox.Text)
+                    Else
+                        MsgBox("網址格式錯誤")
+                    End If
+
+                End If
+            End If
+
             Render_profile_CheckedListBox()
 
         ElseIf firefox_RadioButton.Checked = True Then
@@ -982,16 +994,7 @@ Public Class Form1
 
 
 
-        If curr_url_ComboBox.Text <> "" Then
-            Dim pattern As String
-            pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
-            If Regex.IsMatch(curr_url_ComboBox.Text, pattern) Then
-                Await myWebDriver.Navigate_GoToUrl_Task(curr_url_ComboBox.Text)
-            Else
-                MsgBox("網址格式錯誤")
-            End If
 
-        End If
 
     End Sub
 
