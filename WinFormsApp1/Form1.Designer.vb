@@ -79,6 +79,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Check_ChromeDriver_Update_Button = New System.Windows.Forms.Button()
         Me.Label90 = New System.Windows.Forms.Label()
         Me.ChromeDriver_Version_ComboBox = New System.Windows.Forms.ComboBox()
@@ -435,7 +436,6 @@ Partial Class Form1
         Me.Script_File_ListBox = New System.Windows.Forms.ListBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.End_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Start_Script_Row_NumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1123,6 +1123,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(621, 732)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(94, 29)
+        Me.Button3.TabIndex = 161
+        Me.Button3.Text = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Check_ChromeDriver_Update_Button
         '
@@ -4526,15 +4535,6 @@ Partial Class Form1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(621, 732)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(94, 29)
-        Me.Button3.TabIndex = 161
-        Me.Button3.Text = "Button3"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'Form1
         '

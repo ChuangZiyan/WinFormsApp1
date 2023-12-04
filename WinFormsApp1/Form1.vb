@@ -948,13 +948,13 @@ Public Class Form1
     Private Async Sub Open_browser_Button_Click(sender As Object, e As EventArgs) Handles open_browser_Button.Click
 
 
-        If chrome_RadioButton.Checked = True Then
+        If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
+            myWebDriver.used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
+        Else
+            myWebDriver.used_dev_model = "PC"
+        End If
 
-            If EmulatedDevice_ComboBox.SelectedItem IsNot Nothing Then
-                myWebDriver.used_dev_model = EmulatedDevice_ComboBox.SelectedItem.ToString
-            Else
-                myWebDriver.used_dev_model = "PC"
-            End If
+        If chrome_RadioButton.Checked = True Then
 
             Dim myprofile = ""
             If Profile_TextBox.Text <> "" And Profile_Name_ComboBox.Text <> "" Then
@@ -989,7 +989,20 @@ Public Class Form1
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
         ElseIf edge_RadioButton.Checked = True Then
-            Open_Edge()
+            If Await myWebDriver.Open_Browser_Task("Edge", myWebDriver.used_dev_model, "", ChromeDriver_Version_ComboBox.Text) Then
+                Debug.WriteLine(" crr" + curr_url_ComboBox.Text)
+                If curr_url_ComboBox.Text <> "" Then
+                    Dim pattern As String
+                    pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+                    If Regex.IsMatch(curr_url_ComboBox.Text, pattern) Then
+                        Await myWebDriver.Navigate_GoToUrl_Task(curr_url_ComboBox.Text)
+                    Else
+                        MsgBox("網址格式錯誤")
+                    End If
+
+                End If
+            End If
+
         End If
 
 
@@ -1030,7 +1043,7 @@ Public Class Form1
         ElseIf firefox_RadioButton.Checked = True Then
             Open_Firefox()
         ElseIf edge_RadioButton.Checked = True Then
-            Open_Edge()
+            Await myWebDriver.Open_Edge()
         End If
 
     End Sub
@@ -1042,12 +1055,6 @@ Public Class Form1
         Dim firefoxDriver = New FirefoxDriver()
     End Sub
 
-    Public Sub Open_Edge()
-        myWebDriver.used_browser = "Edge"
-        Dim driverManager = New DriverManager()
-        driverManager.SetUpDriver(New EdgeConfig())
-        Dim edgeDrvier = New EdgeDriver()
-    End Sub
 
     Public Function Navigate_GoToUrl(url As String)
         Try
@@ -3083,4 +3090,5 @@ Public Class Form1
 
         DirectCast(myWebDriver.chromeDriver, IJavaScriptExecutor).ExecuteScript(script)
     End Sub
+
 End Class

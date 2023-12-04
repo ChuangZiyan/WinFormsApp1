@@ -18,7 +18,7 @@ Imports System.Text.RegularExpressions
 Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
-
+Imports OpenQA.Selenium.Edge
 
 Public Class MyWebDriver
     Public chromeDriver As IWebDriver
@@ -209,10 +209,10 @@ Public Class MyWebDriver
                 Thread.Sleep(5000)
                 Dim chrome_data As New List(Of String) From {}
                 Dim privacyNotice_path = profile + "\PrivacyNotice"
-                Debug.WriteLine("PPP : " + privacyNotice_path)
+                'Debug.WriteLine("PPP : " + privacyNotice_path)
                 If Not Exists(privacyNotice_path) Then
                     ' if return true need to restart chrome
-                    Debug.WriteLine("####")
+                    'Debug.WriteLine("####")
                     Return Check_Chrome_privacy_sandbox_dialog_notice(browser, devicetype, profile, chromedriver_ver, privacyNotice_path)
                 End If
 
@@ -226,12 +226,31 @@ Public Class MyWebDriver
         ElseIf browser = "Firefox" Then
             Form1.Open_Firefox()
         ElseIf browser = "Edge" Then
-            Form1.Open_Edge()
+            Try
+                Open_Edge()
+                Return True
+            Catch ex As Exception
+                Return False
+            End Try
+
         End If
 
         Return False
     End Function
 
+
+    Public Function Open_Edge()
+        Try
+            used_browser = "Edge"
+            Dim driverManager = New DriverManager()
+            driverManager.SetUpDriver(New EdgeConfig())
+            chromeDriver = New EdgeDriver()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
 
     Public Function Check_Chrome_privacy_sandbox_dialog_notice(browser, devicetype, profile, chromedriver_ver, privacyNotice_path)
         Try
@@ -257,14 +276,11 @@ Public Class MyWebDriver
                 Thread.Sleep(5000)
                 Open_Browser(browser, devicetype, profile, chromedriver_ver)
 
-
-                Debug.WriteLine("TTTTT")
             End If
-            Debug.WriteLine("TTTTT")
+
             Return True
         Catch ex As Exception
             Debug.WriteLine(ex)
-            Debug.WriteLine("FFFFFFF")
             Return False
 
         End Try
