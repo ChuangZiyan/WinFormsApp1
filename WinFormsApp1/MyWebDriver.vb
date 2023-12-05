@@ -19,6 +19,7 @@ Imports System.Threading.Tasks.Task
 Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
 Imports OpenQA.Selenium.Edge
+Imports ShadowRoot.Digger
 
 Public Class MyWebDriver
     Public chromeDriver As IWebDriver
@@ -122,7 +123,7 @@ Public Class MyWebDriver
                 End If
                 Dim processStartInfo As New ProcessStartInfo(chrome_path) ' for remote chrome
 
-                Dim chrome_argv = "--remote-debugging-port=9222 --disable-popup-blocking --disable-notifications --disable-extensions "
+                Dim chrome_argv = "--remote-debugging-port=9222 --disable-popup-blocking --disable-notifications --disable-extensions"
                 used_dev_model = devicetype
                 used_browser = "Chrome"
                 If devicetype <> "PC" Then
@@ -203,10 +204,16 @@ Public Class MyWebDriver
                 ' Refresh Profile Items
                 act = New Actions(chromeDriver)
 
+                Thread.Sleep(3000)
 
+
+                If chromeDriver.Url = "chrome://welcome/" Then
+                    Debug.WriteLine("do welcome init")
+                    Init_Chrome_Welcom_Page(browser, devicetype, profile, chromedriver_ver)
+                End If
 
                 ' check privacy notice
-                Thread.Sleep(5000)
+
                 Dim chrome_data As New List(Of String) From {}
                 Dim privacyNotice_path = profile + "\PrivacyNotice"
                 'Debug.WriteLine("PPP : " + privacyNotice_path)
@@ -259,13 +266,9 @@ Public Class MyWebDriver
             If chromeDriver.Url = "chrome://privacy-sandbox-dialog/notice" Then
                 Debug.WriteLine("Diss miss notice and creat file")
                 Thread.Sleep(2000)
-                Dim script As String = "var privacySandboxNoticeDialog = document.querySelector(""body > privacy-sandbox-notice-dialog-app"");" &
-                                       "var shadowRoot = privacySandboxNoticeDialog.shadowRoot;" &
-                                       "var settingsButton = shadowRoot.querySelector(""#ackButton"");" &
-                                       "var clickEvent = new Event(""click"");" &
-                                       "settingsButton.dispatchEvent(clickEvent);"
 
-                DirectCast(chromeDriver, IJavaScriptExecutor).ExecuteScript(script)
+                Dim dialog_ShadowRoot = chromeDriver.FindElement(By.CssSelector("body > privacy-sandbox-notice-dialog-app")).GetShadowRoot()
+                dialog_ShadowRoot.FindElement(By.Id("ackButton")).Click()
 
                 Dim fileStream As FileStream = File.Create(privacyNotice_path)
                 fileStream.Close()
@@ -273,7 +276,7 @@ Public Class MyWebDriver
                 Thread.Sleep(2000)
                 Quit_ChromeDriver()
 
-                Thread.Sleep(5000)
+                Thread.Sleep(2000)
                 Open_Browser(browser, devicetype, profile, chromedriver_ver)
 
             End If
@@ -287,6 +290,41 @@ Public Class MyWebDriver
 
     End Function
 
+
+    Public Function Init_Chrome_Welcom_Page(browser, devicetype, profile, chromedriver_ver)
+        Debug.WriteLine("Init Chrome Welcome Page")
+        Try
+            'Dim mybutton = ShadowRootAssist.GetNestedShadowRootElement(chromeDriver, "#text > cr-button")
+            Dim viewManager_ShadowRoot = chromeDriver.FindElement(By.CssSelector("body > welcome-app")).GetShadowRoot()
+            viewManager_ShadowRoot.FindElement(By.Id("step-landing")).GetShadowRoot().FindElement(By.CssSelector("#text > cr-button")).Click()
+            Thread.Sleep(500)
+            viewManager_ShadowRoot.FindElement(By.Id("step-1")).GetShadowRoot().FindElement(By.CssSelector("#noThanksButton")).Click()
+            Thread.Sleep(500)
+            viewManager_ShadowRoot.FindElement(By.Id("step-2")).GetShadowRoot().FindElement(By.CssSelector("#skipButton")).Click()
+            Thread.Sleep(500)
+            viewManager_ShadowRoot.FindElement(By.Id("step-3")).GetShadowRoot().FindElement(By.CssSelector("#text > button")).Click()
+            Thread.Sleep(2000)
+            Quit_ChromeDriver()
+
+            Dim Local_State_FilePath As String = profile + "\Local State"
+            Dim jsonString As String = File.ReadAllText(Local_State_FilePath)
+
+            ' 將 JSON 字串轉換為 JObject
+            Dim jsonObject As JObject = JObject.Parse(jsonString)
+            If jsonObject("browser") IsNot Nothing AndAlso TypeOf jsonObject("browser") Is JObject Then
+                Dim browserObject As JObject = DirectCast(jsonObject("browser"), JObject)
+                browserObject("has_shown_refresh_2023_whats_new") = True
+            End If
+
+            File.WriteAllText(Local_State_FilePath, jsonObject.ToString())
+
+            Thread.Sleep(3000)
+            Open_Browser(browser, devicetype, profile, chromedriver_ver)
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+        End Try
+    End Function
 
     Public Function Quit_ChromeDriver()
         Try
