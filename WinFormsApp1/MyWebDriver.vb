@@ -37,6 +37,8 @@ Public Class MyWebDriver
     Public running_chrome_profile As String = ""
 
     Public running_chrome_profile_path As String = ""
+
+    Public running_chrome_process_Id As Integer
     'Dim webDriverWait As WebDriverWait
 
     Public langConverter As Newtonsoft.Json.Linq.JObject
@@ -188,6 +190,10 @@ Public Class MyWebDriver
 
                 Dim chromeProcess As Process = Process.Start(processStartInfo)
                 chromeProcess.WaitForInputIdle()
+
+                Debug.WriteLine("PID : " & chromeProcess.Id)
+
+                running_chrome_process_Id = chromeProcess.Id
                 'chromeProcess.WaitForExit()
                 chromeDriver = New ChromeDriver(serv, options)
 
@@ -329,11 +335,30 @@ Public Class MyWebDriver
     Public Function Quit_ChromeDriver()
         Try
 
-            Dim chromeProcesses() As Process = Process.GetProcessesByName("chrome")
-            For Each chromeProcess As Process In chromeProcesses
-                chromeProcess.CloseMainWindow()
-                chromeProcess.Close()
-            Next
+            'Dim chromeProcesses() As Process = Process.GetProcessesByName("chrome")
+            'For Each chromeProcess As Process In chromeProcesses
+            '  chromeProcess.CloseMainWindow()
+            '   chromeProcess.Close()
+            'Next
+            If running_chrome_process_Id <> Nothing Then
+                Dim targetProcess As Process = Process.GetProcessById(running_chrome_process_Id)
+
+                ' 关闭进程
+                If Not targetProcess.HasExited Then
+                    targetProcess.CloseMainWindow()
+                    targetProcess.WaitForExit(5000)
+                    running_chrome_process_Id = Nothing
+                    'If Not targetProcess.HasExited Then
+                    'targetProcess.Kill() ' 如果超时仍未关闭，则强制终止进程
+                    'End If
+                Else
+                    Return False
+                End If
+            Else
+                Return False
+            End If
+
+
             Thread.Sleep(1000)
             Ignore_Chrome_Alert()
             chromeDriver.Quit()

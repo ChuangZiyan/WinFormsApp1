@@ -1092,11 +1092,9 @@ Public Class Form1
     Public Function Quit_chromedriver()
 
         Try
-
             used_chrome_profile = ""
             running_chrome_profile = ""
-            myWebDriver.Quit_ChromeDriver()
-            Return True
+            Return myWebDriver.Quit_ChromeDriver()
         Catch ex As Exception
             Return False
         End Try
