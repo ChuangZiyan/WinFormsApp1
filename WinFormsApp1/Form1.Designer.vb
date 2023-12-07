@@ -79,7 +79,6 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Check_ChromeDriver_Update_Button = New System.Windows.Forms.Button()
         Me.Label90 = New System.Windows.Forms.Label()
         Me.ChromeDriver_Version_ComboBox = New System.Windows.Forms.ComboBox()
@@ -1033,7 +1032,6 @@ Partial Class Form1
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.Button3)
         Me.TabPage5.Controls.Add(Me.Check_ChromeDriver_Update_Button)
         Me.TabPage5.Controls.Add(Me.Label90)
         Me.TabPage5.Controls.Add(Me.ChromeDriver_Version_ComboBox)
@@ -1123,15 +1121,6 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(621, 732)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(94, 29)
-        Me.Button3.TabIndex = 161
-        Me.Button3.Text = "Button3"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'Check_ChromeDriver_Update_Button
         '
@@ -5029,5 +5018,4 @@ Partial Class Form1
     Friend WithEvents Label92 As Label
     Friend WithEvents Send_Message_To_All_Id_Submit_delay_sec_NumericUpDown As NumericUpDown
     Friend WithEvents Label94 As Label
-    Friend WithEvents Button3 As Button
 End Class

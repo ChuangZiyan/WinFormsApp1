@@ -3079,6 +3079,4 @@ Public Class Form1
         Insert_Messager_Contact_Listbox_Ids()
     End Sub
 
-
-
 End Class
