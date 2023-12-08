@@ -873,6 +873,9 @@ Public Class Form1
                     Catch ex As Exception
                         boolean_result = False
                     End Try
+                Case "拍賣:改地點"
+                    boolean_result = myWebDriver.Change_Product_Located(content)
+
 
                 Case "拍賣:填詳細"
 
@@ -3079,4 +3082,7 @@ Public Class Form1
         Insert_Messager_Contact_Listbox_Ids()
     End Sub
 
+    Private Sub Insert_Change_Product_Located_button_Click(sender As Object, e As EventArgs) Handles Insert_Change_Product_Located_button.Click
+        Insert_to_script("拍賣:改地點", Product_Located_TextBox.Text)
+    End Sub
 End Class

@@ -223,6 +223,7 @@ Partial Class Form1
         Me.Open_dir_in_explorer_btn = New System.Windows.Forms.Button()
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Insert_Change_Product_Located_button = New System.Windows.Forms.Button()
         Me.Share_To_Other_Groups_Button = New System.Windows.Forms.Button()
         Me.Insert_Product_Click_MarketPlace_Button = New System.Windows.Forms.Button()
         Me.Insert_Product_Click_Continue_Button = New System.Windows.Forms.Button()
@@ -2470,6 +2471,7 @@ Partial Class Form1
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Insert_Change_Product_Located_button)
         Me.TabPage2.Controls.Add(Me.Share_To_Other_Groups_Button)
         Me.TabPage2.Controls.Add(Me.Insert_Product_Click_MarketPlace_Button)
         Me.TabPage2.Controls.Add(Me.Insert_Product_Click_Continue_Button)
@@ -2509,9 +2511,18 @@ Partial Class Form1
         Me.TabPage2.Text = "拍賣"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Insert_Change_Product_Located_button
+        '
+        Me.Insert_Change_Product_Located_button.Location = New System.Drawing.Point(456, 729)
+        Me.Insert_Change_Product_Located_button.Name = "Insert_Change_Product_Located_button"
+        Me.Insert_Change_Product_Located_button.Size = New System.Drawing.Size(129, 29)
+        Me.Insert_Change_Product_Located_button.TabIndex = 35
+        Me.Insert_Change_Product_Located_button.Text = "更改地點 - 插入"
+        Me.Insert_Change_Product_Located_button.UseVisualStyleBackColor = True
+        '
         'Share_To_Other_Groups_Button
         '
-        Me.Share_To_Other_Groups_Button.Location = New System.Drawing.Point(591, 694)
+        Me.Share_To_Other_Groups_Button.Location = New System.Drawing.Point(591, 729)
         Me.Share_To_Other_Groups_Button.Name = "Share_To_Other_Groups_Button"
         Me.Share_To_Other_Groups_Button.Size = New System.Drawing.Size(158, 29)
         Me.Share_To_Other_Groups_Button.TabIndex = 34
@@ -2520,7 +2531,7 @@ Partial Class Form1
         '
         'Insert_Product_Click_MarketPlace_Button
         '
-        Me.Insert_Product_Click_MarketPlace_Button.Location = New System.Drawing.Point(591, 659)
+        Me.Insert_Product_Click_MarketPlace_Button.Location = New System.Drawing.Point(591, 694)
         Me.Insert_Product_Click_MarketPlace_Button.Name = "Insert_Product_Click_MarketPlace_Button"
         Me.Insert_Product_Click_MarketPlace_Button.Size = New System.Drawing.Size(114, 29)
         Me.Insert_Product_Click_MarketPlace_Button.TabIndex = 33
@@ -2529,7 +2540,7 @@ Partial Class Form1
         '
         'Insert_Product_Click_Continue_Button
         '
-        Me.Insert_Product_Click_Continue_Button.Location = New System.Drawing.Point(471, 764)
+        Me.Insert_Product_Click_Continue_Button.Location = New System.Drawing.Point(591, 659)
         Me.Insert_Product_Click_Continue_Button.Name = "Insert_Product_Click_Continue_Button"
         Me.Insert_Product_Click_Continue_Button.Size = New System.Drawing.Size(114, 29)
         Me.Insert_Product_Click_Continue_Button.TabIndex = 32
@@ -2565,7 +2576,7 @@ Partial Class Form1
         '
         'Insert_Upload_MoreDetails_Button
         '
-        Me.Insert_Upload_MoreDetails_Button.Location = New System.Drawing.Point(471, 729)
+        Me.Insert_Upload_MoreDetails_Button.Location = New System.Drawing.Point(471, 764)
         Me.Insert_Upload_MoreDetails_Button.Name = "Insert_Upload_MoreDetails_Button"
         Me.Insert_Upload_MoreDetails_Button.Size = New System.Drawing.Size(114, 29)
         Me.Insert_Upload_MoreDetails_Button.TabIndex = 28
@@ -5018,4 +5029,5 @@ Partial Class Form1
     Friend WithEvents Label92 As Label
     Friend WithEvents Send_Message_To_All_Id_Submit_delay_sec_NumericUpDown As NumericUpDown
     Friend WithEvents Label94 As Label
+    Friend WithEvents Insert_Change_Product_Located_button As Button
 End Class

@@ -1516,7 +1516,6 @@ Public Class MyWebDriver
 
     Public Function Upload_Product_Profile(content, jsonData)
         Try
-
             chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(3) > div > div > label > div > div > input")).SendKeys(Keys.LeftControl + "V")
             chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j.xh8yej3 > div > div:nth-child(4) > div:nth-child(4) > div > div > label > div > div > input")).SendKeys(jsonData.ProductPrice)
 
@@ -1554,6 +1553,27 @@ Public Class MyWebDriver
             Return False
         End Try
     End Function
+
+
+    Public Function Change_Product_Located(located)
+        Try
+            chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div > div")).Click()
+            Thread.Sleep(2000)
+            Dim located_input = chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div:nth-child(4) > div > div > div > div > div > div > div > label > div > div:nth-child(2) > input"))
+            located_input.Click()
+            located_input.SendKeys(Keys.Delete)
+            Thread.Sleep(1000)
+            located_input.SendKeys(located)
+            Thread.Sleep(2000)
+            'located_input.SendKeys(Keys.Enter)
+            chromeDriver.FindElement(By.CssSelector("div.xu96u03.xm80bdy.x10l6tqk.x13vifvy > div.x1jx94hy.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xbsqzb3.x9f619.x78zum5.xdt5ytf.x1iyjqo2.xr9ek0c.xh8yej3 > div > ul > li:nth-child(1)")).Click()
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 
 
     Public Function Upload_Product_Detail_Profile_Task(content)
