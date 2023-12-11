@@ -222,7 +222,7 @@ Partial Class Form1
         Me.Match_Condition_ListView = New System.Windows.Forms.ListView()
         Me.Open_dir_in_explorer_btn = New System.Windows.Forms.Button()
         Me.Clear_Conditions_Listview = New System.Windows.Forms.Button()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Sale_Product_TabPage = New System.Windows.Forms.TabPage()
         Me.Insert_Change_Product_Located_button = New System.Windows.Forms.Button()
         Me.Share_To_Other_Groups_Button = New System.Windows.Forms.Button()
         Me.Insert_Product_Click_MarketPlace_Button = New System.Windows.Forms.Button()
@@ -256,6 +256,29 @@ Partial Class Form1
         Me.Label82 = New System.Windows.Forms.Label()
         Me.Label81 = New System.Windows.Forms.Label()
         Me.Label80 = New System.Windows.Forms.Label()
+        Me.Sale_Event_TabPage = New System.Windows.Forms.TabPage()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.Label101 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label100 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label99 = New System.Windows.Forms.Label()
+        Me.SaleEvent_End_Datetime_DateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.Label98 = New System.Windows.Forms.Label()
+        Me.SaleEvent_Start_Datetime_DateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.Label97 = New System.Windows.Forms.Label()
+        Me.Label96 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.MySaleEvent_CheckedListBox = New System.Windows.Forms.CheckedListBox()
+        Me.Delete_Selected_SaleEvent_Folder_Button = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Reveal_SaleEvent_Dir_Button = New System.Windows.Forms.Button()
+        Me.Label95 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Insert_Paste_Match_TextAndImg_Btn = New System.Windows.Forms.Button()
@@ -461,7 +484,8 @@ Partial Class Form1
         Me.TabPage3.SuspendLayout()
         CType(Me.comment_row_Numer, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Selected_PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
+        Me.Sale_Product_TabPage.SuspendLayout()
+        Me.Sale_Event_TabPage.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         CType(Me.Mouse_OnClick_Delay_Sec_Numeric, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1016,7 +1040,8 @@ Partial Class Form1
         '
         Me.TabControl2.Controls.Add(Me.TabPage5)
         Me.TabControl2.Controls.Add(Me.TabPage3)
-        Me.TabControl2.Controls.Add(Me.TabPage2)
+        Me.TabControl2.Controls.Add(Me.Sale_Product_TabPage)
+        Me.TabControl2.Controls.Add(Me.Sale_Event_TabPage)
         Me.TabControl2.Controls.Add(Me.TabPage4)
         Me.TabControl2.Controls.Add(Me.TabPage6)
         Me.TabControl2.Controls.Add(Me.GroupList)
@@ -2469,47 +2494,47 @@ Partial Class Form1
         Me.Clear_Conditions_Listview.Text = "清除全部配對條件"
         Me.Clear_Conditions_Listview.UseVisualStyleBackColor = True
         '
-        'TabPage2
+        'Sale_Product_TabPage
         '
-        Me.TabPage2.Controls.Add(Me.Insert_Change_Product_Located_button)
-        Me.TabPage2.Controls.Add(Me.Share_To_Other_Groups_Button)
-        Me.TabPage2.Controls.Add(Me.Insert_Product_Click_MarketPlace_Button)
-        Me.TabPage2.Controls.Add(Me.Insert_Product_Click_Continue_Button)
-        Me.TabPage2.Controls.Add(Me.Product_Condition_ComboBox)
-        Me.TabPage2.Controls.Add(Me.Label89)
-        Me.TabPage2.Controls.Add(Me.Insert_Post_Product_Button)
-        Me.TabPage2.Controls.Add(Me.Insert_Upload_MoreDetails_Button)
-        Me.TabPage2.Controls.Add(Me.Insert_Upload_Product_Profile_Button)
-        Me.TabPage2.Controls.Add(Me.Insert_Click_Sale_button)
-        Me.TabPage2.Controls.Add(Me.Label88)
-        Me.TabPage2.Controls.Add(Me.Label87)
-        Me.TabPage2.Controls.Add(Me.Insert_IPhone_Post_Product_btn)
-        Me.TabPage2.Controls.Add(Me.Insert_IPhone_Upload_Product_Profile_To_Script_Btn)
-        Me.TabPage2.Controls.Add(Me.Insert_m_Post_Product_btn)
-        Me.TabPage2.Controls.Add(Me.UnCheck_All_Product_Item_Btn)
-        Me.TabPage2.Controls.Add(Me.Check_All_Product_Item_Btn)
-        Me.TabPage2.Controls.Add(Me.Product_List_CheckedListBox)
-        Me.TabPage2.Controls.Add(Me.Delete_Selected_Product_Folder_Button)
-        Me.TabPage2.Controls.Add(Me.Fb_Sale_Group_Url_ComboBox)
-        Me.TabPage2.Controls.Add(Me.Save_Product_Profile_To_File_Button)
-        Me.TabPage2.Controls.Add(Me.Reveal_Product_Dir_Button)
-        Me.TabPage2.Controls.Add(Me.Insert_m_Upload_Product_Profile_To_Script_Btn)
-        Me.TabPage2.Controls.Add(Me.Product_Description_RichTextBox)
-        Me.TabPage2.Controls.Add(Me.Product_Located_TextBox)
-        Me.TabPage2.Controls.Add(Me.Product_Price_TextBox)
-        Me.TabPage2.Controls.Add(Me.Pruduct_Name_TextBox)
-        Me.TabPage2.Controls.Add(Me.Label85)
-        Me.TabPage2.Controls.Add(Me.Label84)
-        Me.TabPage2.Controls.Add(Me.Label83)
-        Me.TabPage2.Controls.Add(Me.Label82)
-        Me.TabPage2.Controls.Add(Me.Label81)
-        Me.TabPage2.Controls.Add(Me.Label80)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 28)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(918, 820)
-        Me.TabPage2.TabIndex = 11
-        Me.TabPage2.Text = "拍賣"
-        Me.TabPage2.UseVisualStyleBackColor = True
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_Change_Product_Located_button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Share_To_Other_Groups_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_Product_Click_MarketPlace_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_Product_Click_Continue_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Product_Condition_ComboBox)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label89)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_Post_Product_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_Upload_MoreDetails_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_Upload_Product_Profile_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_Click_Sale_button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label88)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label87)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_IPhone_Post_Product_btn)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_IPhone_Upload_Product_Profile_To_Script_Btn)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_m_Post_Product_btn)
+        Me.Sale_Product_TabPage.Controls.Add(Me.UnCheck_All_Product_Item_Btn)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Check_All_Product_Item_Btn)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Product_List_CheckedListBox)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Delete_Selected_Product_Folder_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Fb_Sale_Group_Url_ComboBox)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Save_Product_Profile_To_File_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Reveal_Product_Dir_Button)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Insert_m_Upload_Product_Profile_To_Script_Btn)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Product_Description_RichTextBox)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Product_Located_TextBox)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Product_Price_TextBox)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Pruduct_Name_TextBox)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label85)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label84)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label83)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label82)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label81)
+        Me.Sale_Product_TabPage.Controls.Add(Me.Label80)
+        Me.Sale_Product_TabPage.Location = New System.Drawing.Point(4, 28)
+        Me.Sale_Product_TabPage.Name = "Sale_Product_TabPage"
+        Me.Sale_Product_TabPage.Size = New System.Drawing.Size(918, 820)
+        Me.Sale_Product_TabPage.TabIndex = 11
+        Me.Sale_Product_TabPage.Text = "拍賣"
+        Me.Sale_Product_TabPage.UseVisualStyleBackColor = True
         '
         'Insert_Change_Product_Located_button
         '
@@ -2801,6 +2826,232 @@ Partial Class Form1
         Me.Label80.Size = New System.Drawing.Size(110, 19)
         Me.Label80.TabIndex = 0
         Me.Label80.Text = "拍賣社團網址 : "
+        '
+        'Sale_Event_TabPage
+        '
+        Me.Sale_Event_TabPage.Controls.Add(Me.Button8)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Button7)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Button5)
+        Me.Sale_Event_TabPage.Controls.Add(Me.RichTextBox1)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Label101)
+        Me.Sale_Event_TabPage.Controls.Add(Me.ComboBox2)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Label100)
+        Me.Sale_Event_TabPage.Controls.Add(Me.ComboBox1)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Label99)
+        Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_End_Datetime_DateTimePicker)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Label98)
+        Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_Start_Datetime_DateTimePicker)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Label97)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Label96)
+        Me.Sale_Event_TabPage.Controls.Add(Me.TextBox1)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Button3)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Button4)
+        Me.Sale_Event_TabPage.Controls.Add(Me.MySaleEvent_CheckedListBox)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Delete_Selected_SaleEvent_Folder_Button)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Button6)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Reveal_SaleEvent_Dir_Button)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Label95)
+        Me.Sale_Event_TabPage.Location = New System.Drawing.Point(4, 28)
+        Me.Sale_Event_TabPage.Name = "Sale_Event_TabPage"
+        Me.Sale_Event_TabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.Sale_Event_TabPage.Size = New System.Drawing.Size(918, 820)
+        Me.Sale_Event_TabPage.TabIndex = 12
+        Me.Sale_Event_TabPage.Text = "建立活動"
+        Me.Sale_Event_TabPage.UseVisualStyleBackColor = True
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(133, 667)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(228, 29)
+        Me.Button8.TabIndex = 42
+        Me.Button8.Text = "點擊建立活動 - 插入"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
+        'Button7
+        '
+        Me.Button7.Location = New System.Drawing.Point(133, 632)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(228, 29)
+        Me.Button7.TabIndex = 41
+        Me.Button7.Text = "上傳活動資料 - 插入"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(133, 597)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(228, 29)
+        Me.Button5.TabIndex = 40
+        Me.Button5.Text = "點擊商品拍賣建立活動 - 插入"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Location = New System.Drawing.Point(133, 413)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(532, 178)
+        Me.RichTextBox1.TabIndex = 39
+        Me.RichTextBox1.Text = ""
+        '
+        'Label101
+        '
+        Me.Label101.AutoSize = True
+        Me.Label101.Location = New System.Drawing.Point(47, 413)
+        Me.Label101.Name = "Label101"
+        Me.Label101.Size = New System.Drawing.Size(80, 19)
+        Me.Label101.TabIndex = 38
+        Me.Label101.Text = "活動細節 : "
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Items.AddRange(New Object() {"私人", "公開", "朋友", "社團"})
+        Me.ComboBox2.Location = New System.Drawing.Point(451, 380)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(214, 27)
+        Me.ComboBox2.TabIndex = 37
+        '
+        'Label100
+        '
+        Me.Label100.AutoSize = True
+        Me.Label100.Location = New System.Drawing.Point(305, 388)
+        Me.Label100.Name = "Label100"
+        Me.Label100.Size = New System.Drawing.Size(140, 19)
+        Me.Label100.TabIndex = 36
+        Me.Label100.Text = "誰可以看到此活動 : "
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"現場活動", "線上活動"})
+        Me.ComboBox1.Location = New System.Drawing.Point(133, 380)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(151, 27)
+        Me.ComboBox1.TabIndex = 35
+        '
+        'Label99
+        '
+        Me.Label99.AutoSize = True
+        Me.Label99.Location = New System.Drawing.Point(47, 388)
+        Me.Label99.Name = "Label99"
+        Me.Label99.Size = New System.Drawing.Size(80, 19)
+        Me.Label99.TabIndex = 34
+        Me.Label99.Text = "活動類型 : "
+        '
+        'SaleEvent_End_Datetime_DateTimePicker
+        '
+        Me.SaleEvent_End_Datetime_DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.SaleEvent_End_Datetime_DateTimePicker.Location = New System.Drawing.Point(455, 347)
+        Me.SaleEvent_End_Datetime_DateTimePicker.Name = "SaleEvent_End_Datetime_DateTimePicker"
+        Me.SaleEvent_End_Datetime_DateTimePicker.Size = New System.Drawing.Size(210, 27)
+        Me.SaleEvent_End_Datetime_DateTimePicker.TabIndex = 33
+        '
+        'Label98
+        '
+        Me.Label98.AutoSize = True
+        Me.Label98.Location = New System.Drawing.Point(373, 353)
+        Me.Label98.Name = "Label98"
+        Me.Label98.Size = New System.Drawing.Size(76, 19)
+        Me.Label98.TabIndex = 32
+        Me.Label98.Text = "結束時間 :"
+        '
+        'SaleEvent_Start_Datetime_DateTimePicker
+        '
+        Me.SaleEvent_Start_Datetime_DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.SaleEvent_Start_Datetime_DateTimePicker.Location = New System.Drawing.Point(133, 347)
+        Me.SaleEvent_Start_Datetime_DateTimePicker.Name = "SaleEvent_Start_Datetime_DateTimePicker"
+        Me.SaleEvent_Start_Datetime_DateTimePicker.Size = New System.Drawing.Size(210, 27)
+        Me.SaleEvent_Start_Datetime_DateTimePicker.TabIndex = 31
+        '
+        'Label97
+        '
+        Me.Label97.AutoSize = True
+        Me.Label97.Location = New System.Drawing.Point(47, 353)
+        Me.Label97.Name = "Label97"
+        Me.Label97.Size = New System.Drawing.Size(76, 19)
+        Me.Label97.TabIndex = 30
+        Me.Label97.Text = "開始時間 :"
+        '
+        'Label96
+        '
+        Me.Label96.AutoSize = True
+        Me.Label96.Location = New System.Drawing.Point(47, 322)
+        Me.Label96.Name = "Label96"
+        Me.Label96.Size = New System.Drawing.Size(80, 19)
+        Me.Label96.TabIndex = 29
+        Me.Label96.Text = "活動名稱 : "
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(133, 314)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(532, 27)
+        Me.TextBox1.TabIndex = 28
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(771, 214)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(94, 29)
+        Me.Button3.TabIndex = 27
+        Me.Button3.Text = "全不選"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(671, 214)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(94, 29)
+        Me.Button4.TabIndex = 26
+        Me.Button4.Text = "全選"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'MySaleEvent_CheckedListBox
+        '
+        Me.MySaleEvent_CheckedListBox.CheckOnClick = True
+        Me.MySaleEvent_CheckedListBox.FormattingEnabled = True
+        Me.MySaleEvent_CheckedListBox.Location = New System.Drawing.Point(133, 76)
+        Me.MySaleEvent_CheckedListBox.Name = "MySaleEvent_CheckedListBox"
+        Me.MySaleEvent_CheckedListBox.Size = New System.Drawing.Size(532, 202)
+        Me.MySaleEvent_CheckedListBox.TabIndex = 25
+        '
+        'Delete_Selected_SaleEvent_Folder_Button
+        '
+        Me.Delete_Selected_SaleEvent_Folder_Button.BackColor = System.Drawing.Color.LightCoral
+        Me.Delete_Selected_SaleEvent_Folder_Button.Location = New System.Drawing.Point(771, 76)
+        Me.Delete_Selected_SaleEvent_Folder_Button.Name = "Delete_Selected_SaleEvent_Folder_Button"
+        Me.Delete_Selected_SaleEvent_Folder_Button.Size = New System.Drawing.Size(94, 29)
+        Me.Delete_Selected_SaleEvent_Folder_Button.TabIndex = 24
+        Me.Delete_Selected_SaleEvent_Folder_Button.Text = "刪除資料夾"
+        Me.Delete_Selected_SaleEvent_Folder_Button.UseVisualStyleBackColor = False
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(671, 249)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(94, 29)
+        Me.Button6.TabIndex = 23
+        Me.Button6.Text = "儲存商品"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'Reveal_SaleEvent_Dir_Button
+        '
+        Me.Reveal_SaleEvent_Dir_Button.Location = New System.Drawing.Point(671, 76)
+        Me.Reveal_SaleEvent_Dir_Button.Name = "Reveal_SaleEvent_Dir_Button"
+        Me.Reveal_SaleEvent_Dir_Button.Size = New System.Drawing.Size(94, 29)
+        Me.Reveal_SaleEvent_Dir_Button.TabIndex = 22
+        Me.Reveal_SaleEvent_Dir_Button.Text = "打開資料夾"
+        Me.Reveal_SaleEvent_Dir_Button.UseVisualStyleBackColor = True
+        '
+        'Label95
+        '
+        Me.Label95.AutoSize = True
+        Me.Label95.Location = New System.Drawing.Point(32, 76)
+        Me.Label95.Name = "Label95"
+        Me.Label95.Size = New System.Drawing.Size(95, 19)
+        Me.Label95.TabIndex = 21
+        Me.Label95.Text = "已儲存活動 : "
         '
         'TabPage4
         '
@@ -4575,8 +4826,10 @@ Partial Class Form1
         Me.TabPage3.PerformLayout()
         CType(Me.comment_row_Numer, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Selected_PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
+        Me.Sale_Product_TabPage.ResumeLayout(False)
+        Me.Sale_Product_TabPage.PerformLayout()
+        Me.Sale_Event_TabPage.ResumeLayout(False)
+        Me.Sale_Event_TabPage.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
@@ -4970,7 +5223,7 @@ Partial Class Form1
     Friend WithEvents Start_Script_Row_NumericUpDown As NumericUpDown
     Friend WithEvents Run_Script_From_Input_Row_To_Row_Btn As Button
     Friend WithEvents Delete_selected_image_Btn As Button
-    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents Sale_Product_TabPage As TabPage
     Friend WithEvents Product_Description_RichTextBox As RichTextBox
     Friend WithEvents Product_Located_TextBox As TextBox
     Friend WithEvents Product_Price_TextBox As TextBox
@@ -5030,4 +5283,27 @@ Partial Class Form1
     Friend WithEvents Send_Message_To_All_Id_Submit_delay_sec_NumericUpDown As NumericUpDown
     Friend WithEvents Label94 As Label
     Friend WithEvents Insert_Change_Product_Located_button As Button
+    Friend WithEvents Sale_Event_TabPage As TabPage
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents MySaleEvent_CheckedListBox As CheckedListBox
+    Friend WithEvents Delete_Selected_SaleEvent_Folder_Button As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Reveal_SaleEvent_Dir_Button As Button
+    Friend WithEvents Label95 As Label
+    Friend WithEvents SaleEvent_End_Datetime_DateTimePicker As DateTimePicker
+    Friend WithEvents Label98 As Label
+    Friend WithEvents SaleEvent_Start_Datetime_DateTimePicker As DateTimePicker
+    Friend WithEvents Label97 As Label
+    Friend WithEvents Label96 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Label101 As Label
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents Label100 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label99 As Label
+    Friend WithEvents Button8 As Button
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button5 As Button
 End Class

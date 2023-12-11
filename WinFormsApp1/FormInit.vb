@@ -18,6 +18,8 @@ Module FormInit
 
     Public product_dir_path = curr_path + "products\"
 
+    Public sale_event_dir_path = curr_path + "sale_events\"
+
     Public chromedriver_dir_path = curr_path + "Chrome"
 
     Public Sub FormInit_Render_All()
@@ -48,6 +50,9 @@ Module FormInit
 
 
         Render_Product_List_CheckedListBox()
+        Render_SaleEvent_List_CheckedListBox()
+
+
         Render_ChromeDriver_Version_ComboBox()
 
 
@@ -151,36 +156,16 @@ Module FormInit
         Next
 
 
-        If Not System.IO.Directory.Exists(save_script_folder_path) Then
-            System.IO.Directory.CreateDirectory(save_script_folder_path)
-        End If
+        Dim folder_list As New List(Of String) From
+            {save_script_folder_path, keyword_Searching_path, URL_Navigation_path, configs_dir, auto_generated_textfile_path,
+            myscript_queue_path, product_dir_path, sale_event_dir_path
+        }
 
-        If Not System.IO.Directory.Exists(keyword_Searching_path) Then
-            System.IO.Directory.CreateDirectory(keyword_Searching_path)
-        End If
-
-        If Not System.IO.Directory.Exists(URL_Navigation_path) Then
-            System.IO.Directory.CreateDirectory(URL_Navigation_path)
-        End If
-
-        If Not System.IO.Directory.Exists(configs_dir) Then
-            System.IO.Directory.CreateDirectory(configs_dir)
-        End If
-
-        If Not System.IO.Directory.Exists(auto_generated_textfile_path) Then
-            System.IO.Directory.CreateDirectory(auto_generated_textfile_path)
-        End If
-
-        If Not System.IO.Directory.Exists(myscript_queue_path) Then
-            System.IO.Directory.CreateDirectory(myscript_queue_path)
-        End If
-
-        If Not System.IO.Directory.Exists(product_dir_path) Then
-            System.IO.Directory.CreateDirectory(product_dir_path)
-        End If
-
-
-
+        For Each my_path In folder_list
+            If Not System.IO.Directory.Exists(my_path) Then
+                System.IO.Directory.CreateDirectory(my_path)
+            End If
+        Next
 
     End Sub
 
@@ -443,6 +428,18 @@ Module FormInit
         For Each dir As String In dirs
             'Debug.WriteLine(dir)
             Form1.Product_List_CheckedListBox.Items.Add(Path.GetFileName(dir))
+        Next
+
+    End Sub
+
+
+    Public Sub Render_SaleEvent_List_CheckedListBox()
+        'Product_List_CheckedListBox
+        Dim dirs() As String = IO.Directory.GetDirectories(sale_event_dir_path)
+
+        For Each dir As String In dirs
+            'Debug.WriteLine(dir)
+            Form1.MySaleEvent_CheckedListBox.Items.Add(Path.GetFileName(dir))
         Next
 
     End Sub

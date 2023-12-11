@@ -65,6 +65,10 @@ Public Class Form1
         curr_url_ComboBox.Text = "https://www.facebook.com/"
         FormInit.FormInit_Render_All()
         Filter_Available_Profile_CheckBox.Checked = True
+
+        SaleEvent_Start_Datetime_DateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss"
+        SaleEvent_End_Datetime_DateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss"
+
     End Sub
 
 
@@ -3084,5 +3088,38 @@ Public Class Form1
 
     Private Sub Insert_Change_Product_Located_button_Click(sender As Object, e As EventArgs) Handles Insert_Change_Product_Located_button.Click
         Insert_to_script("拍賣:改地點", Product_Located_TextBox.Text)
+    End Sub
+
+    Private Sub Reveal_SaleEvent_Dir_Button_Click(sender As Object, e As EventArgs) Handles Reveal_SaleEvent_Dir_Button.Click
+        Dim SaleEvent_Profile_Path As String = ""
+        For Each itemSeleted In MySaleEvent_CheckedListBox.SelectedItems
+            SaleEvent_Profile_Path = FormInit.sale_event_dir_path + itemSeleted
+        Next
+
+        If SaleEvent_Profile_Path = "" Then
+            MsgBox("未選取資料夾")
+        End If
+
+        If System.IO.Directory.Exists(SaleEvent_Profile_Path) Then
+            Process.Start("explorer.exe", SaleEvent_Profile_Path)
+        End If
+    End Sub
+
+    Private Sub Delete_Selected_SaleEvent_Folder_Button_Click(sender As Object, e As EventArgs) Handles Delete_Selected_SaleEvent_Folder_Button.Click
+        For Each itemSelected In MySaleEvent_CheckedListBox.SelectedItems
+            Dim SaleEvent_Dir_path = FormInit.sale_event_dir_path + itemSelected
+            If Directory.Exists(SaleEvent_Dir_path) Then
+                Dim result As DialogResult = MessageBox.Show("確定要刪除此資料夾?", "確認訊息", MessageBoxButtons.YesNo)
+                If result = DialogResult.Yes Then
+                    Debug.WriteLine("Delete : " + SaleEvent_Dir_path)
+                    'Delete a Directory
+                    Directory.Delete(SaleEvent_Dir_path, True)
+                    MySaleEvent_CheckedListBox.Items.Clear()
+                    Render_SaleEvent_List_CheckedListBox()
+                    Exit Sub
+                End If
+
+            End If
+        Next
     End Sub
 End Class
