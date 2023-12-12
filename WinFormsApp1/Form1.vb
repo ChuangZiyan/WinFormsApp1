@@ -22,6 +22,7 @@ Imports WebDriverManager.Helpers
 Imports System.Collections.Specialized
 Imports System.Buffers
 Imports System.Text.Json
+Imports System.Globalization
 
 Public Class Form1
 
@@ -3121,5 +3122,85 @@ Public Class Form1
 
             End If
         Next
+    End Sub
+
+    Private Sub Save_SaleEvent_Button_Click(sender As Object, e As EventArgs) Handles Save_SaleEvent_Button.Click
+        Try
+            Dim SaleEvent_Profile As New With {
+            .EventName = SaleEvent_Name_TextBox.Text,
+            .EventType = SaleEvent_Type_ComboBox.Text,
+            .EventStartDatetime = SaleEvent_Start_Datetime_DateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+            .EventEndDateTime = SaleEvent_End_Datetime_DateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+            .EventWhoCanSeeIt = SaleEvent_WhoCanSeeIt_ComboBox.Text,
+            .EventDescription = SaleEvent_Description_RichTextBox.Text
+            }
+
+            Dim jsonStr As String = System.Text.Json.JsonSerializer.Serialize(SaleEvent_Profile)
+            Dim selectedText = ""
+            For Each selectedItem As Object In MySaleEvent_CheckedListBox.SelectedItems
+                selectedText = selectedItem.ToString()
+            Next
+
+            If selectedText = "" Then
+                MsgBox("未選取要儲存的資料夾")
+                Exit Sub
+            End If
+
+
+            Dim FilePath As String = FormInit.sale_event_dir_path + selectedText + "\SaleEventProfile.json"
+            WriteAllText(FilePath, jsonStr)
+            MsgBox("儲存活動成功")
+        Catch ex As Exception
+            MsgBox("儲存活動失敗")
+        End Try
+    End Sub
+
+
+    Public Class SaleEventProfileDataType
+        Public Property EventName As String
+        Public Property EventType As String
+        Public Property EventStartDatetime As String
+        Public Property EventEndDateTime As String
+        Public Property EventWhoCanSeeIt As String
+        Public Property EventDescription As String
+    End Class
+
+
+    Private Sub MySaleEvent_CheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MySaleEvent_CheckedListBox.SelectedIndexChanged
+        Dim SaleEvent_Profile_Path As String = ""
+        For Each itemSeleted In MySaleEvent_CheckedListBox.SelectedItems
+            SaleEvent_Profile_Path = FormInit.sale_event_dir_path + itemSeleted + "\SaleEventProfile.json"
+        Next
+
+        If File.Exists(SaleEvent_Profile_Path) Then
+            Dim jsonString = File.ReadAllText(SaleEvent_Profile_Path)
+
+            Dim jsonData As SaleEventProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of SaleEventProfileDataType)(jsonString)
+
+            Try
+                Dim parsedStartDateTime As DateTime = DateTime.ParseExact(jsonData.EventStartDatetime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
+                Dim parsedEndDateTime As DateTime = DateTime.ParseExact(jsonData.EventEndDateTime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)
+
+                SaleEvent_Start_Datetime_DateTimePicker.Value = parsedStartDateTime
+                SaleEvent_End_Datetime_DateTimePicker.Value = parsedEndDateTime
+
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+            End Try
+
+
+            SaleEvent_Name_TextBox.Text = jsonData.EventName
+            SaleEvent_Type_ComboBox.Text = jsonData.EventType
+            SaleEvent_WhoCanSeeIt_ComboBox.Text = jsonData.EventWhoCanSeeIt
+            SaleEvent_Description_RichTextBox.Text = jsonData.EventDescription
+
+        Else
+            'MsgBox("File not exists")
+            SaleEvent_Name_TextBox.Clear()
+            SaleEvent_Type_ComboBox.Text = ""
+            SaleEvent_WhoCanSeeIt_ComboBox.Text = ""
+            SaleEvent_Description_RichTextBox.Clear()
+        End If
+
     End Sub
 End Class

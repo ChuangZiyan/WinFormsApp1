@@ -260,23 +260,21 @@ Partial Class Form1
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.SaleEvent_Description_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.Label101 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.SaleEvent_WhoCanSeeIt_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Label100 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.SaleEvent_Type_ComboBox = New System.Windows.Forms.ComboBox()
         Me.Label99 = New System.Windows.Forms.Label()
         Me.SaleEvent_End_Datetime_DateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.Label98 = New System.Windows.Forms.Label()
         Me.SaleEvent_Start_Datetime_DateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.Label97 = New System.Windows.Forms.Label()
         Me.Label96 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.SaleEvent_Name_TextBox = New System.Windows.Forms.TextBox()
         Me.MySaleEvent_CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Delete_Selected_SaleEvent_Folder_Button = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Save_SaleEvent_Button = New System.Windows.Forms.Button()
         Me.Reveal_SaleEvent_Dir_Button = New System.Windows.Forms.Button()
         Me.Label95 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -2832,23 +2830,21 @@ Partial Class Form1
         Me.Sale_Event_TabPage.Controls.Add(Me.Button8)
         Me.Sale_Event_TabPage.Controls.Add(Me.Button7)
         Me.Sale_Event_TabPage.Controls.Add(Me.Button5)
-        Me.Sale_Event_TabPage.Controls.Add(Me.RichTextBox1)
+        Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_Description_RichTextBox)
         Me.Sale_Event_TabPage.Controls.Add(Me.Label101)
-        Me.Sale_Event_TabPage.Controls.Add(Me.ComboBox2)
+        Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_WhoCanSeeIt_ComboBox)
         Me.Sale_Event_TabPage.Controls.Add(Me.Label100)
-        Me.Sale_Event_TabPage.Controls.Add(Me.ComboBox1)
+        Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_Type_ComboBox)
         Me.Sale_Event_TabPage.Controls.Add(Me.Label99)
         Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_End_Datetime_DateTimePicker)
         Me.Sale_Event_TabPage.Controls.Add(Me.Label98)
         Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_Start_Datetime_DateTimePicker)
         Me.Sale_Event_TabPage.Controls.Add(Me.Label97)
         Me.Sale_Event_TabPage.Controls.Add(Me.Label96)
-        Me.Sale_Event_TabPage.Controls.Add(Me.TextBox1)
-        Me.Sale_Event_TabPage.Controls.Add(Me.Button3)
-        Me.Sale_Event_TabPage.Controls.Add(Me.Button4)
+        Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_Name_TextBox)
         Me.Sale_Event_TabPage.Controls.Add(Me.MySaleEvent_CheckedListBox)
         Me.Sale_Event_TabPage.Controls.Add(Me.Delete_Selected_SaleEvent_Folder_Button)
-        Me.Sale_Event_TabPage.Controls.Add(Me.Button6)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Save_SaleEvent_Button)
         Me.Sale_Event_TabPage.Controls.Add(Me.Reveal_SaleEvent_Dir_Button)
         Me.Sale_Event_TabPage.Controls.Add(Me.Label95)
         Me.Sale_Event_TabPage.Location = New System.Drawing.Point(4, 28)
@@ -2886,13 +2882,13 @@ Partial Class Form1
         Me.Button5.Text = "點擊商品拍賣建立活動 - 插入"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'RichTextBox1
+        'SaleEvent_Description_RichTextBox
         '
-        Me.RichTextBox1.Location = New System.Drawing.Point(133, 413)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(532, 178)
-        Me.RichTextBox1.TabIndex = 39
-        Me.RichTextBox1.Text = ""
+        Me.SaleEvent_Description_RichTextBox.Location = New System.Drawing.Point(133, 413)
+        Me.SaleEvent_Description_RichTextBox.Name = "SaleEvent_Description_RichTextBox"
+        Me.SaleEvent_Description_RichTextBox.Size = New System.Drawing.Size(532, 178)
+        Me.SaleEvent_Description_RichTextBox.TabIndex = 39
+        Me.SaleEvent_Description_RichTextBox.Text = ""
         '
         'Label101
         '
@@ -2903,14 +2899,14 @@ Partial Class Form1
         Me.Label101.TabIndex = 38
         Me.Label101.Text = "活動細節 : "
         '
-        'ComboBox2
+        'SaleEvent_WhoCanSeeIt_ComboBox
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"私人", "公開", "朋友", "社團"})
-        Me.ComboBox2.Location = New System.Drawing.Point(451, 380)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(214, 27)
-        Me.ComboBox2.TabIndex = 37
+        Me.SaleEvent_WhoCanSeeIt_ComboBox.FormattingEnabled = True
+        Me.SaleEvent_WhoCanSeeIt_ComboBox.Items.AddRange(New Object() {"私人", "公開", "朋友", "社團"})
+        Me.SaleEvent_WhoCanSeeIt_ComboBox.Location = New System.Drawing.Point(451, 380)
+        Me.SaleEvent_WhoCanSeeIt_ComboBox.Name = "SaleEvent_WhoCanSeeIt_ComboBox"
+        Me.SaleEvent_WhoCanSeeIt_ComboBox.Size = New System.Drawing.Size(214, 27)
+        Me.SaleEvent_WhoCanSeeIt_ComboBox.TabIndex = 37
         '
         'Label100
         '
@@ -2921,14 +2917,14 @@ Partial Class Form1
         Me.Label100.TabIndex = 36
         Me.Label100.Text = "誰可以看到此活動 : "
         '
-        'ComboBox1
+        'SaleEvent_Type_ComboBox
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"現場活動", "線上活動"})
-        Me.ComboBox1.Location = New System.Drawing.Point(133, 380)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(151, 27)
-        Me.ComboBox1.TabIndex = 35
+        Me.SaleEvent_Type_ComboBox.FormattingEnabled = True
+        Me.SaleEvent_Type_ComboBox.Items.AddRange(New Object() {"現場活動", "線上活動"})
+        Me.SaleEvent_Type_ComboBox.Location = New System.Drawing.Point(133, 380)
+        Me.SaleEvent_Type_ComboBox.Name = "SaleEvent_Type_ComboBox"
+        Me.SaleEvent_Type_ComboBox.Size = New System.Drawing.Size(151, 27)
+        Me.SaleEvent_Type_ComboBox.TabIndex = 35
         '
         'Label99
         '
@@ -2982,30 +2978,12 @@ Partial Class Form1
         Me.Label96.TabIndex = 29
         Me.Label96.Text = "活動名稱 : "
         '
-        'TextBox1
+        'SaleEvent_Name_TextBox
         '
-        Me.TextBox1.Location = New System.Drawing.Point(133, 314)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(532, 27)
-        Me.TextBox1.TabIndex = 28
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(771, 214)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(94, 29)
-        Me.Button3.TabIndex = 27
-        Me.Button3.Text = "全不選"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(671, 214)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(94, 29)
-        Me.Button4.TabIndex = 26
-        Me.Button4.Text = "全選"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.SaleEvent_Name_TextBox.Location = New System.Drawing.Point(133, 314)
+        Me.SaleEvent_Name_TextBox.Name = "SaleEvent_Name_TextBox"
+        Me.SaleEvent_Name_TextBox.Size = New System.Drawing.Size(532, 27)
+        Me.SaleEvent_Name_TextBox.TabIndex = 28
         '
         'MySaleEvent_CheckedListBox
         '
@@ -3026,14 +3004,14 @@ Partial Class Form1
         Me.Delete_Selected_SaleEvent_Folder_Button.Text = "刪除資料夾"
         Me.Delete_Selected_SaleEvent_Folder_Button.UseVisualStyleBackColor = False
         '
-        'Button6
+        'Save_SaleEvent_Button
         '
-        Me.Button6.Location = New System.Drawing.Point(671, 249)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(94, 29)
-        Me.Button6.TabIndex = 23
-        Me.Button6.Text = "儲存商品"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.Save_SaleEvent_Button.Location = New System.Drawing.Point(671, 249)
+        Me.Save_SaleEvent_Button.Name = "Save_SaleEvent_Button"
+        Me.Save_SaleEvent_Button.Size = New System.Drawing.Size(94, 29)
+        Me.Save_SaleEvent_Button.TabIndex = 23
+        Me.Save_SaleEvent_Button.Text = "儲存商品"
+        Me.Save_SaleEvent_Button.UseVisualStyleBackColor = True
         '
         'Reveal_SaleEvent_Dir_Button
         '
@@ -5284,11 +5262,9 @@ Partial Class Form1
     Friend WithEvents Label94 As Label
     Friend WithEvents Insert_Change_Product_Located_button As Button
     Friend WithEvents Sale_Event_TabPage As TabPage
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
     Friend WithEvents MySaleEvent_CheckedListBox As CheckedListBox
     Friend WithEvents Delete_Selected_SaleEvent_Folder_Button As Button
-    Friend WithEvents Button6 As Button
+    Friend WithEvents Save_SaleEvent_Button As Button
     Friend WithEvents Reveal_SaleEvent_Dir_Button As Button
     Friend WithEvents Label95 As Label
     Friend WithEvents SaleEvent_End_Datetime_DateTimePicker As DateTimePicker
@@ -5296,12 +5272,12 @@ Partial Class Form1
     Friend WithEvents SaleEvent_Start_Datetime_DateTimePicker As DateTimePicker
     Friend WithEvents Label97 As Label
     Friend WithEvents Label96 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents SaleEvent_Name_TextBox As TextBox
+    Friend WithEvents SaleEvent_Description_RichTextBox As RichTextBox
     Friend WithEvents Label101 As Label
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents SaleEvent_WhoCanSeeIt_ComboBox As ComboBox
     Friend WithEvents Label100 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents SaleEvent_Type_ComboBox As ComboBox
     Friend WithEvents Label99 As Label
     Friend WithEvents Button8 As Button
     Friend WithEvents Button7 As Button
