@@ -67,8 +67,8 @@ Public Class Form1
         FormInit.FormInit_Render_All()
         Filter_Available_Profile_CheckBox.Checked = True
 
-        SaleEvent_Start_Datetime_DateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss"
-        SaleEvent_End_Datetime_DateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss"
+        SaleEvent_Start_Datetime_DateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm"
+        SaleEvent_End_Datetime_DateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm"
 
     End Sub
 
@@ -931,6 +931,16 @@ Public Class Form1
                     Catch ex As Exception
                         boolean_result = False
                     End Try
+                Case "拍賣:點商品拍賣活動"
+                    boolean_result = Await myWebDriver.Click_Sale_Product_Create_Event_Task()
+                Case "拍賣:上傳活動訊息"
+                    'boolean_result = False
+                    Try
+                        boolean_result = Await myWebDriver.Upload_SaleEvent_Info_Task(content)
+                    Catch ex As Exception
+                        boolean_result = False
+                    End Try
+
 
             End Select
             If boolean_result = True Then 'record the result
@@ -3202,5 +3212,24 @@ Public Class Form1
             SaleEvent_Description_RichTextBox.Clear()
         End If
 
+    End Sub
+
+    Private Sub Insert_Click_Sale_And_Create_Event_Button_Click(sender As Object, e As EventArgs) Handles Insert_Click_Sale_And_Create_Event_Button.Click
+        Insert_to_script("拍賣:點商品拍賣活動", "")
+    End Sub
+
+    Private Sub Insert_Upload_SaleEvent_Info_Button_Click(sender As Object, e As EventArgs) Handles Insert_Upload_SaleEvent_Info_Button.Click
+        Dim event_folders As String = ""
+        For Each checkedItem As Object In MySaleEvent_CheckedListBox.CheckedItems
+            Dim checkedText As String = checkedItem.ToString()
+            Debug.WriteLine("Checked item: " & checkedText)
+            event_folders += checkedText + "/"
+        Next
+
+        If event_folders = "" Then
+            MsgBox("未選擇活動")
+            Exit Sub
+        End If
+        Insert_to_script("拍賣:上傳活動訊息", event_folders)
     End Sub
 End Class

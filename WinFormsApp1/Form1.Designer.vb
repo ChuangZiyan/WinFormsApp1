@@ -258,8 +258,8 @@ Partial Class Form1
         Me.Label80 = New System.Windows.Forms.Label()
         Me.Sale_Event_TabPage = New System.Windows.Forms.TabPage()
         Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Insert_Upload_SaleEvent_Info_Button = New System.Windows.Forms.Button()
+        Me.Insert_Click_Sale_And_Create_Event_Button = New System.Windows.Forms.Button()
         Me.SaleEvent_Description_RichTextBox = New System.Windows.Forms.RichTextBox()
         Me.Label101 = New System.Windows.Forms.Label()
         Me.SaleEvent_WhoCanSeeIt_ComboBox = New System.Windows.Forms.ComboBox()
@@ -2828,8 +2828,8 @@ Partial Class Form1
         'Sale_Event_TabPage
         '
         Me.Sale_Event_TabPage.Controls.Add(Me.Button8)
-        Me.Sale_Event_TabPage.Controls.Add(Me.Button7)
-        Me.Sale_Event_TabPage.Controls.Add(Me.Button5)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Insert_Upload_SaleEvent_Info_Button)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Insert_Click_Sale_And_Create_Event_Button)
         Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_Description_RichTextBox)
         Me.Sale_Event_TabPage.Controls.Add(Me.Label101)
         Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_WhoCanSeeIt_ComboBox)
@@ -2864,23 +2864,23 @@ Partial Class Form1
         Me.Button8.Text = "點擊建立活動 - 插入"
         Me.Button8.UseVisualStyleBackColor = True
         '
-        'Button7
+        'Insert_Upload_SaleEvent_Info_Button
         '
-        Me.Button7.Location = New System.Drawing.Point(133, 632)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(228, 29)
-        Me.Button7.TabIndex = 41
-        Me.Button7.Text = "上傳活動資料 - 插入"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.Insert_Upload_SaleEvent_Info_Button.Location = New System.Drawing.Point(133, 632)
+        Me.Insert_Upload_SaleEvent_Info_Button.Name = "Insert_Upload_SaleEvent_Info_Button"
+        Me.Insert_Upload_SaleEvent_Info_Button.Size = New System.Drawing.Size(228, 29)
+        Me.Insert_Upload_SaleEvent_Info_Button.TabIndex = 41
+        Me.Insert_Upload_SaleEvent_Info_Button.Text = "上傳活動資料 - 插入"
+        Me.Insert_Upload_SaleEvent_Info_Button.UseVisualStyleBackColor = True
         '
-        'Button5
+        'Insert_Click_Sale_And_Create_Event_Button
         '
-        Me.Button5.Location = New System.Drawing.Point(133, 597)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(228, 29)
-        Me.Button5.TabIndex = 40
-        Me.Button5.Text = "點擊商品拍賣建立活動 - 插入"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.Insert_Click_Sale_And_Create_Event_Button.Location = New System.Drawing.Point(133, 597)
+        Me.Insert_Click_Sale_And_Create_Event_Button.Name = "Insert_Click_Sale_And_Create_Event_Button"
+        Me.Insert_Click_Sale_And_Create_Event_Button.Size = New System.Drawing.Size(228, 29)
+        Me.Insert_Click_Sale_And_Create_Event_Button.TabIndex = 40
+        Me.Insert_Click_Sale_And_Create_Event_Button.Text = "點擊商品拍賣建立活動 - 插入"
+        Me.Insert_Click_Sale_And_Create_Event_Button.UseVisualStyleBackColor = True
         '
         'SaleEvent_Description_RichTextBox
         '
@@ -5280,6 +5280,6 @@ Partial Class Form1
     Friend WithEvents SaleEvent_Type_ComboBox As ComboBox
     Friend WithEvents Label99 As Label
     Friend WithEvents Button8 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents Insert_Upload_SaleEvent_Info_Button As Button
+    Friend WithEvents Insert_Click_Sale_And_Create_Event_Button As Button
 End Class

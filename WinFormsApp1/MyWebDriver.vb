@@ -2231,6 +2231,75 @@ Public Class MyWebDriver
     End Function
 
 
+    Public Function Click_Sale_Product_Create_Event_Task()
+        Return Task.Run(Function() Click_Sale_Product_Create_Event())
+    End Function
 
+
+    Public Function Click_Sale_Product_Create_Event()
+        Try
+
+            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.xeuugli.xs83m0k.x1xmf6yo.x1emribx.x1e56ztr.x1i64zmx.xjl7jj.x19h7ccj.xu9j1y6.x7ep2pv > div:nth-child(1) > div > div > div > div > div > div")).Click()
+            Thread.Sleep(500)
+            chromeDriver.FindElement(By.CssSelector("div.xamitd3.x78zum5.x1q0g3np.x1a02dak.x1e56ztr.xw3qccf.x1sliqq.x14vqqas.xh8yej3.x1ni0lre.xlqeb66 > div:nth-child(4) > div > span > div > div")).Click()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Public Function Upload_SaleEvent_Info_Task(content)
+        Try
+            Debug.WriteLine("Test")
+            Dim Profile_Path = FormInit.sale_event_dir_path + content + "\SaleEventProfile.json"
+            If File.Exists(Profile_Path) Then
+                Dim jsonString = File.ReadAllText(Profile_Path)
+                Dim jsonData As Form1.SaleEventProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of Form1.SaleEventProfileDataType)(jsonString)
+                'Clipboard.SetText(jsonData.ProdcutDescription)
+                Return Task.Run(Function() Upload_SaleEvent_Info(jsonData))
+            End If
+            Return False
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            Return False
+        End Try
+
+
+
+    End Function
+
+
+    Public Function Upload_SaleEvent_Info(jsonData)
+        Try
+            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x2lah0s.x193iq5w.xsag5q8.xexx8yu > div > div > label > div > div > input")).SendKeys(jsonData.EventName)
+
+            Dim start_date_input = chromeDriver.FindElement(By.CssSelector("div:nth-child(2) > div > div > div > div > div > div.x1iyjqo2.xw3qccf > div > label > div > div.xjbqb8w.x1iyjqo2.x193iq5w.xeuugli.x1n2onr6 > div > input"))
+            start_date_input.SendKeys(Keys.LeftControl + "A")
+            start_date_input.SendKeys(Keys.Delete)
+            Thread.Sleep(1000)
+            start_date_input.SendKeys(jsonData.EventStartDatetime.ToString().Split(" ")(0))
+            Thread.Sleep(1000)
+            start_date_input.SendKeys(Keys.Return)
+
+            Dim start_time_input = chromeDriver.FindElement(By.CssSelector("div:nth-child(2) > div > Label > div > div.xjbqb8w.x1iyjqo2.x193iq5w.xeuugli.x1n2onr6 > div > Input"))
+            start_time_input.SendKeys(Keys.LeftControl + "A")
+            start_time_input.SendKeys(Keys.Delete)
+            Thread.Sleep(1000)
+            start_time_input.SendKeys(jsonData.EventStartDatetime.ToString().Split(" ")(1))
+            Thread.Sleep(1000)
+            start_time_input.SendKeys(Keys.Return)
+
+
+            chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xsag5q8.xexx8yu > div > div > div > div > label")).Click()
+
+
+            'div.xu96u03.xm80bdy.x10l6tqk.x13vifvy > div.x1n2onr6 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div
+
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
 
 End Class
