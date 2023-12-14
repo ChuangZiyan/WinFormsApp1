@@ -2291,6 +2291,14 @@ Public Class MyWebDriver
 
 
             chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xsag5q8.xexx8yu > div > div > div > div > label")).Click()
+            Thread.Sleep(500)
+            chromeDriver.FindElement(By.CssSelector("div.xu96u03.xm80bdy.x10l6tqk.x13vifvy > div.x1n2onr6 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div > div:nth-child(" & jsonData.EventType + 1 & ")")).Click()
+            Thread.Sleep(500)
+            chromeDriver.FindElement(By.CssSelector("div.xexx8yu.x1pi30zi.xwib8y2.x1swvt13 > div:nth-child(3) > div > div > div > div > label")).Click()
+            Thread.Sleep(500)
+            chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j > div > div:nth-child(" & jsonData.EventWhoCanSeeIt + 1 & ")")).Click()
+            Thread.Sleep(500)
+            chromeDriver.FindElement(By.CssSelector("div.xexx8yu.x1pi30zi.xwib8y2.x1swvt13 > div:nth-child(4) > div > div > div > div > label > div > div > textarea")).SendKeys(jsonData.EventDescription)
 
 
             'div.xu96u03.xm80bdy.x10l6tqk.x13vifvy > div.x1n2onr6 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div

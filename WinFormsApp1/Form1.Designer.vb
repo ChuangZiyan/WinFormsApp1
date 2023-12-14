@@ -257,7 +257,7 @@ Partial Class Form1
         Me.Label81 = New System.Windows.Forms.Label()
         Me.Label80 = New System.Windows.Forms.Label()
         Me.Sale_Event_TabPage = New System.Windows.Forms.TabPage()
-        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Insert_Click_Create_SaleEvent_Button = New System.Windows.Forms.Button()
         Me.Insert_Upload_SaleEvent_Info_Button = New System.Windows.Forms.Button()
         Me.Insert_Click_Sale_And_Create_Event_Button = New System.Windows.Forms.Button()
         Me.SaleEvent_Description_RichTextBox = New System.Windows.Forms.RichTextBox()
@@ -2827,7 +2827,7 @@ Partial Class Form1
         '
         'Sale_Event_TabPage
         '
-        Me.Sale_Event_TabPage.Controls.Add(Me.Button8)
+        Me.Sale_Event_TabPage.Controls.Add(Me.Insert_Click_Create_SaleEvent_Button)
         Me.Sale_Event_TabPage.Controls.Add(Me.Insert_Upload_SaleEvent_Info_Button)
         Me.Sale_Event_TabPage.Controls.Add(Me.Insert_Click_Sale_And_Create_Event_Button)
         Me.Sale_Event_TabPage.Controls.Add(Me.SaleEvent_Description_RichTextBox)
@@ -2855,14 +2855,14 @@ Partial Class Form1
         Me.Sale_Event_TabPage.Text = "建立活動"
         Me.Sale_Event_TabPage.UseVisualStyleBackColor = True
         '
-        'Button8
+        'Insert_Click_Create_SaleEvent_Button
         '
-        Me.Button8.Location = New System.Drawing.Point(133, 667)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(228, 29)
-        Me.Button8.TabIndex = 42
-        Me.Button8.Text = "點擊建立活動 - 插入"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.Insert_Click_Create_SaleEvent_Button.Location = New System.Drawing.Point(133, 667)
+        Me.Insert_Click_Create_SaleEvent_Button.Name = "Insert_Click_Create_SaleEvent_Button"
+        Me.Insert_Click_Create_SaleEvent_Button.Size = New System.Drawing.Size(228, 29)
+        Me.Insert_Click_Create_SaleEvent_Button.TabIndex = 42
+        Me.Insert_Click_Create_SaleEvent_Button.Text = "點擊建立活動 - 插入"
+        Me.Insert_Click_Create_SaleEvent_Button.UseVisualStyleBackColor = True
         '
         'Insert_Upload_SaleEvent_Info_Button
         '
@@ -5279,7 +5279,7 @@ Partial Class Form1
     Friend WithEvents Label100 As Label
     Friend WithEvents SaleEvent_Type_ComboBox As ComboBox
     Friend WithEvents Label99 As Label
-    Friend WithEvents Button8 As Button
+    Friend WithEvents Insert_Click_Create_SaleEvent_Button As Button
     Friend WithEvents Insert_Upload_SaleEvent_Info_Button As Button
     Friend WithEvents Insert_Click_Sale_And_Create_Event_Button As Button
 End Class

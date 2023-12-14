@@ -940,7 +940,8 @@ Public Class Form1
                     Catch ex As Exception
                         boolean_result = False
                     End Try
-
+                Case "拍賣:點擊建立活動"
+                    boolean_result = Await myWebDriver.Click_By_CssSelector_Task("div.x1jx94hy.xh8yej3.x1hlgzme.xvcs8rp.x1bpvpm7.xefnots.x13xjmei.xv7j57z > div > div > div > div > div > div")
 
             End Select
             If boolean_result = True Then 'record the result
@@ -3138,10 +3139,10 @@ Public Class Form1
         Try
             Dim SaleEvent_Profile As New With {
             .EventName = SaleEvent_Name_TextBox.Text,
-            .EventType = SaleEvent_Type_ComboBox.Text,
+            .EventType = SaleEvent_Type_ComboBox.SelectedIndex,
+            .EventWhoCanSeeIt = SaleEvent_WhoCanSeeIt_ComboBox.SelectedIndex,
             .EventStartDatetime = SaleEvent_Start_Datetime_DateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"),
             .EventEndDateTime = SaleEvent_End_Datetime_DateTimePicker.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-            .EventWhoCanSeeIt = SaleEvent_WhoCanSeeIt_ComboBox.Text,
             .EventDescription = SaleEvent_Description_RichTextBox.Text
             }
 
@@ -3168,10 +3169,10 @@ Public Class Form1
 
     Public Class SaleEventProfileDataType
         Public Property EventName As String
-        Public Property EventType As String
+        Public Property EventType As Integer
         Public Property EventStartDatetime As String
         Public Property EventEndDateTime As String
-        Public Property EventWhoCanSeeIt As String
+        Public Property EventWhoCanSeeIt As Integer
         Public Property EventDescription As String
     End Class
 
@@ -3200,8 +3201,8 @@ Public Class Form1
 
 
             SaleEvent_Name_TextBox.Text = jsonData.EventName
-            SaleEvent_Type_ComboBox.Text = jsonData.EventType
-            SaleEvent_WhoCanSeeIt_ComboBox.Text = jsonData.EventWhoCanSeeIt
+            SaleEvent_Type_ComboBox.SelectedIndex = jsonData.EventType
+            SaleEvent_WhoCanSeeIt_ComboBox.SelectedIndex = jsonData.EventWhoCanSeeIt
             SaleEvent_Description_RichTextBox.Text = jsonData.EventDescription
 
         Else
@@ -3232,4 +3233,9 @@ Public Class Form1
         End If
         Insert_to_script("拍賣:上傳活動訊息", event_folders)
     End Sub
+
+    Private Sub Insert_Click_Create_SaleEvent_Button_Click(sender As Object, e As EventArgs) Handles Insert_Click_Create_SaleEvent_Button.Click
+        Insert_to_script("拍賣:點擊建立活動", "")
+    End Sub
+
 End Class
