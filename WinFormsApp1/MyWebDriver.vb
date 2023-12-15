@@ -2250,12 +2250,27 @@ Public Class MyWebDriver
 
     Public Function Upload_SaleEvent_Info_Task(content)
         Try
-            Debug.WriteLine("Test")
             Dim Profile_Path = FormInit.sale_event_dir_path + content + "\SaleEventProfile.json"
             If File.Exists(Profile_Path) Then
                 Dim jsonString = File.ReadAllText(Profile_Path)
                 Dim jsonData As Form1.SaleEventProfileDataType = System.Text.Json.JsonSerializer.Deserialize(Of Form1.SaleEventProfileDataType)(jsonString)
-                'Clipboard.SetText(jsonData.ProdcutDescription)
+                Dim imageFiles As New List(Of String)
+                For Each filePath As String In Directory.GetFiles(FormInit.sale_event_dir_path + content)
+                    Dim extension As String = Path.GetExtension(filePath).ToLower()
+                    If extension = ".jpeg" OrElse extension = ".jpg" OrElse extension = ".png" Then
+                        imageFiles.Add(filePath)
+                    End If
+                Next
+
+                If imageFiles.Count > 0 Then
+
+                    Dim randomIndex As Integer = rnd_num.Next(0, imageFiles.Count)
+                    Dim randomImagePath As String = imageFiles(randomIndex)
+                    chromeDriver.FindElement(By.CssSelector("div.x1ey2m1c.xds687c.x10l6tqk.x17qophe > div > div > div > div.x1yztbdb > div > input")).SendKeys(randomImagePath)
+
+                End If
+
+
                 Return Task.Run(Function() Upload_SaleEvent_Info(jsonData))
             End If
             Return False
@@ -2293,13 +2308,19 @@ Public Class MyWebDriver
             chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xsag5q8.xexx8yu > div > div > div > div > label")).Click()
             Thread.Sleep(500)
             chromeDriver.FindElement(By.CssSelector("div.xu96u03.xm80bdy.x10l6tqk.x13vifvy > div.x1n2onr6 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div > div:nth-child(" & jsonData.EventType + 1 & ")")).Click()
+            If jsonData.EventType = 1 Then
+                chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xsag5q8.xexx8yu > div > div:nth-child(2) > div > div > div:nth-child(3) > label > div > div > div > div")).Click()
+                Thread.Sleep(500)
+            End If
             Thread.Sleep(500)
             chromeDriver.FindElement(By.CssSelector("div.xexx8yu.x1pi30zi.xwib8y2.x1swvt13 > div:nth-child(3) > div > div > div > div > label")).Click()
             Thread.Sleep(500)
             chromeDriver.FindElement(By.CssSelector("div.x9f619.x1ja2u2z.x1k90msu.x6o7n8i.x1qfuztq.x10l6tqk.x17qophe.x13vifvy.x1hc1fzr.x71s49j > div > div:nth-child(" & jsonData.EventWhoCanSeeIt + 1 & ")")).Click()
             Thread.Sleep(500)
             chromeDriver.FindElement(By.CssSelector("div.xexx8yu.x1pi30zi.xwib8y2.x1swvt13 > div:nth-child(4) > div > div > div > div > label > div > div > textarea")).SendKeys(jsonData.EventDescription)
+            Thread.Sleep(500)
 
+            'div.x1ey2m1c.xds687c.x10l6tqk.x17qophe > div > div > div > div.x1yztbdb > div > input
 
             'div.xu96u03.xm80bdy.x10l6tqk.x13vifvy > div.x1n2onr6 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div
 
