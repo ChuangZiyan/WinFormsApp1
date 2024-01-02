@@ -67,7 +67,7 @@ Public Class MyWebDriver
     End Function
 
     Public Function Open_Browser(browser As String, devicetype As String, profile As String, chromedriver_ver As String)
-        'Debug.WriteLine("profile : " + profile)
+        Debug.WriteLine("profile : " + profile)
         'Debug.WriteLine("browser : " + browser)
 
         If My.Computer.FileSystem.FileExists(profile + "\ProfileInfo.txt") Then
@@ -146,18 +146,20 @@ Public Class MyWebDriver
                     'Debug.WriteLine(devicetype)
 
                 End If
-
-
+                'Debug.WriteLine(profile)
                 If profile <> "" Then
                     options.AddArguments("--user-data-dir=" + profile)
                     running_chrome_profile_path = profile
                     used_chrome_profile = profile.Split("\")(UBound(profile.Split("\")))
                     running_chrome_profile = used_chrome_profile
-                    processStartInfo.Arguments = chrome_argv + " --user-data-dir=" + profile
+                    processStartInfo.Arguments = chrome_argv + " --user-data-dir=""" + profile + """"
+                    'Debug.WriteLine(chrome_argv + " --user-data-dir=""" + profile + """")
                     'FormInit.Render_profile_CheckedListBox()
                 Else
                     processStartInfo.Arguments = chrome_argv
                 End If
+
+                'Debug.WriteLine(chrome_argv)
                 options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
                 'options.AddArguments("remote-debugging-port=9222", "--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
                 'options.AddExcludedArgument("enable-automation")
