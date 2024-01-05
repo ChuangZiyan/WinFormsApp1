@@ -20,6 +20,7 @@ Imports WinFormsApp1.MyLogging
 Imports WebDriverManager.Helpers
 Imports OpenQA.Selenium.Edge
 Imports ShadowRoot.Digger
+Imports System.Collections.ObjectModel
 
 Public Class MyWebDriver
     Public chromeDriver As IWebDriver
@@ -2332,5 +2333,6 @@ Public Class MyWebDriver
             Return False
         End Try
     End Function
+
 
 End Class

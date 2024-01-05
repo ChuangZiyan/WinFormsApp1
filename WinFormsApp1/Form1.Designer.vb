@@ -79,6 +79,7 @@ Partial Class Form1
         Me.cmd_GroupBox = New System.Windows.Forms.GroupBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Edit_Cookie_Button = New System.Windows.Forms.Button()
         Me.Check_ChromeDriver_Update_Button = New System.Windows.Forms.Button()
         Me.Label90 = New System.Windows.Forms.Label()
         Me.ChromeDriver_Version_ComboBox = New System.Windows.Forms.ComboBox()
@@ -524,7 +525,7 @@ Partial Class Form1
         'driver_close_bnt
         '
         Me.driver_close_bnt.BackColor = System.Drawing.Color.LightCoral
-        Me.driver_close_bnt.Location = New System.Drawing.Point(750, 79)
+        Me.driver_close_bnt.Location = New System.Drawing.Point(750, 73)
         Me.driver_close_bnt.Name = "driver_close_bnt"
         Me.driver_close_bnt.Size = New System.Drawing.Size(145, 29)
         Me.driver_close_bnt.TabIndex = 3
@@ -1056,6 +1057,7 @@ Partial Class Form1
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.Edit_Cookie_Button)
         Me.TabPage5.Controls.Add(Me.Check_ChromeDriver_Update_Button)
         Me.TabPage5.Controls.Add(Me.Label90)
         Me.TabPage5.Controls.Add(Me.ChromeDriver_Version_ComboBox)
@@ -1145,6 +1147,15 @@ Partial Class Form1
         Me.TabPage5.TabIndex = 2
         Me.TabPage5.Text = "瀏覽器與通用"
         Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Edit_Cookie_Button
+        '
+        Me.Edit_Cookie_Button.Location = New System.Drawing.Point(439, 112)
+        Me.Edit_Cookie_Button.Name = "Edit_Cookie_Button"
+        Me.Edit_Cookie_Button.Size = New System.Drawing.Size(163, 29)
+        Me.Edit_Cookie_Button.TabIndex = 161
+        Me.Edit_Cookie_Button.Text = "編輯Cookie"
+        Me.Edit_Cookie_Button.UseVisualStyleBackColor = True
         '
         'Check_ChromeDriver_Update_Button
         '
@@ -1436,7 +1447,7 @@ Partial Class Form1
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(439, 119)
+        Me.Label38.Location = New System.Drawing.Point(281, 119)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(46, 19)
         Me.Label38.TabIndex = 128
@@ -1445,9 +1456,9 @@ Partial Class Form1
         'Profile_Name_ComboBox
         '
         Me.Profile_Name_ComboBox.FormattingEnabled = True
-        Me.Profile_Name_ComboBox.Location = New System.Drawing.Point(491, 116)
+        Me.Profile_Name_ComboBox.Location = New System.Drawing.Point(333, 114)
         Me.Profile_Name_ComboBox.Name = "Profile_Name_ComboBox"
-        Me.Profile_Name_ComboBox.Size = New System.Drawing.Size(111, 27)
+        Me.Profile_Name_ComboBox.Size = New System.Drawing.Size(100, 27)
         Me.Profile_Name_ComboBox.TabIndex = 127
         '
         'Label37
@@ -1524,7 +1535,7 @@ Partial Class Form1
         '
         Me.Profile_TextBox.Location = New System.Drawing.Point(119, 116)
         Me.Profile_TextBox.Name = "Profile_TextBox"
-        Me.Profile_TextBox.Size = New System.Drawing.Size(314, 27)
+        Me.Profile_TextBox.Size = New System.Drawing.Size(162, 27)
         Me.Profile_TextBox.TabIndex = 118
         '
         'Profile_Queue_ListBox
@@ -1711,7 +1722,7 @@ Partial Class Form1
         '
         'open_browser_Button
         '
-        Me.open_browser_Button.Location = New System.Drawing.Point(608, 79)
+        Me.open_browser_Button.Location = New System.Drawing.Point(608, 73)
         Me.open_browser_Button.Name = "open_browser_Button"
         Me.open_browser_Button.Size = New System.Drawing.Size(138, 29)
         Me.open_browser_Button.TabIndex = 54
@@ -5282,4 +5293,5 @@ Partial Class Form1
     Friend WithEvents Insert_Click_Create_SaleEvent_Button As Button
     Friend WithEvents Insert_Upload_SaleEvent_Info_Button As Button
     Friend WithEvents Insert_Click_Sale_And_Create_Event_Button As Button
+    Friend WithEvents Edit_Cookie_Button As Button
 End Class

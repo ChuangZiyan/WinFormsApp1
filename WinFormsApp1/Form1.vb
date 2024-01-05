@@ -3238,4 +3238,9 @@ Public Class Form1
         Insert_to_script("拍賣:點擊建立活動", "")
     End Sub
 
+    Private Sub Edit_Cookie_Button_Click(sender As Object, e As EventArgs) Handles Edit_Cookie_Button.Click
+        CookieEditorDialog1.ShowDialog()
+
+
+    End Sub
 End Class
