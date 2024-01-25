@@ -529,7 +529,7 @@ Module FormComponentController
 
     Public Sub Load_Script_File(file_name)
         Try
-            Debug.WriteLine("LOAD " + file_name)
+            'Debug.WriteLine("LOAD " + file_name)
             Form1.script_ListView.Items.Clear()
             Dim log_lines = IO.File.ReadAllLines(save_script_folder_path + file_name)
             Dim curr_row As Integer = 0
@@ -538,7 +538,7 @@ Module FormComponentController
                 Dim splittedLine() As String = line.Split(",")
                 Form1.script_ListView.Items.Add(index.ToString)
                 For Each cmd In splittedLine
-                    Form1.script_ListView.Items(curr_row).SubItems.Add(cmd)
+                    Form1.script_ListView.Items(curr_row).SubItems.Add(cmd.Replace("&vbLf", vbLf))
                 Next
                 curr_row += 1
                 index += 1
