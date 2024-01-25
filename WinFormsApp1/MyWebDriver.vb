@@ -777,6 +777,10 @@ Public Class MyWebDriver
 
             Dim str_patterns = JsonConvert.DeserializeObject(langConverter.Item("Create_Post").ToString())
             Dim my_img_files() As String = image_path.Split(vbLf)
+            For i As Integer = 0 To my_img_files.Length - 1
+                my_img_files(i) = FormInit.image_folder_path & my_img_files(i)
+                Debug.WriteLine(my_img_files(i))
+            Next
             Dim d As New DataObject(DataFormats.FileDrop, my_img_files)
             Clipboard.SetDataObject(d, True)
             Return Task.Run(Function() Tring_to_upload_img())

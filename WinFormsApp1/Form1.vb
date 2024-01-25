@@ -452,11 +452,11 @@ Public Class Form1
                         If content = "全部隨機" Then
                             Dim allImageFile = img_CheckedListBox.Items
                             Dim rnd = rnd_num.Next(0, allImageFile.Count)
-                            boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + allImageFile(rnd))
+                            boolean_result = Await myWebDriver.Tring_to_upload_img_Task(allImageFile(rnd))
                         Else
                             Dim ImageFiles = content.Split(";")
                             Dim rnd = rnd_num.Next(0, ImageFiles.Length)
-                            boolean_result = Await myWebDriver.Tring_to_upload_img_Task(image_folder_path + ImageFiles(rnd))
+                            boolean_result = Await myWebDriver.Tring_to_upload_img_Task(ImageFiles(rnd))
                         End If
                     Catch ex As Exception
                         boolean_result = False
@@ -2657,43 +2657,48 @@ Public Class Form1
 
         For i = 0 To Script_File_Queue_ListView.Items.Count - 1
 
-            Dim currentScriptTime = Script_File_Queue_ListView.Items(i).SubItems(1).Text
-            Dim TimeNow = Date.Now.ToString("HH:mm:ss")
+            Try
 
-            'Debug.WriteLine("script : " + Script_File_Queue_ListView.Items(i).Text)
-            'Debug.WriteLine("time : " + currentScriptTime)
+                Dim currentScriptTime = Script_File_Queue_ListView.Items(i).SubItems(1).Text
+                Dim TimeNow = Date.Now.ToString("HH:mm:ss")
+
+                Debug.WriteLine("script : " + Script_File_Queue_ListView.Items(i).Text)
+                Debug.WriteLine("time : " + currentScriptTime)
 
 
-            If TimeCheck(currentScriptTime) Then 'if still running, interrupt current script and start next script
+                If TimeCheck(currentScriptTime) Then 'if still running, interrupt current script and start next script
+
+                    If script_running = True Then
+                        script_running = False
+                        Await Delay_msec(2000)
+                    End If
+
+                    Try
+                        Quit_chromedriver()
+                    Catch ex As Exception
+                        Debug.WriteLine(ex)
+                    End Try
 
 
-                If script_running = True Then
-                    script_running = False
+                    Restore_ScriptFileQueueListView_BackColor()
+                    Dim first_item = Script_File_Queue_ListView.Items(i)
+                    first_item.BackColor = Color.SteelBlue
+                    first_item.ForeColor = Color.White
+                    first_item.EnsureVisible()
+
+                    Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
+                    If Script_File_Queue_ListView.Items(i).SubItems(2).Text = "是" Then
+                        loop_run = True
+                    Else
+                        loop_run = False
+                    End If
+                    Flag_start_script = True
                     Await Delay_msec(2000)
                 End If
 
-                Try
-                    myWebDriver.chromeDriver.Close()
-                Catch ex As Exception
-                    Debug.WriteLine(ex)
-                End Try
-
-
-                Restore_ScriptFileQueueListView_BackColor()
-                Dim first_item = Script_File_Queue_ListView.Items(i)
-                first_item.BackColor = Color.SteelBlue
-                first_item.ForeColor = Color.White
-                first_item.EnsureVisible()
-
-                Load_Script_File(Script_File_Queue_ListView.Items(i).Text)
-                If Script_File_Queue_ListView.Items(i).SubItems(2).Text = "是" Then
-                    loop_run = True
-                Else
-                    loop_run = False
-                End If
-                Flag_start_script = True
-                Await Delay_msec(2000)
-            End If
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+            End Try
 
         Next
 
