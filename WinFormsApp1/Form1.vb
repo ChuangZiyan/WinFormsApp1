@@ -23,6 +23,7 @@ Imports System.Collections.Specialized
 Imports System.Buffers
 Imports System.Text.Json
 Imports System.Globalization
+Imports System.Windows.Forms.Design.AxImporter
 
 Public Class Form1
 
@@ -3248,4 +3249,53 @@ Public Class Form1
 
 
     End Sub
+
+    Private Sub Mutil_thread_Test_Btn_Click(sender As Object, e As EventArgs) Handles Mutil_thread_Test_Btn.Click
+
+
+        Dim t_id = 0
+        For Each item In Profile_CheckedListBox.CheckedItems
+            'MsgBox(item.ToString)
+            'Dim data() As Object = New Object() {item.ToString, t_id}
+            ThreadPool.QueueUserWorkItem(AddressOf MyThread, item.ToString)
+            t_id += 1
+        Next item
+
+
+        Exit Sub
+
+    End Sub
+
+
+    Private Sub MyThread(profile As String)
+        Debug.WriteLine("--user-data-dir=" + FormInit.profile_path + profile)
+        'Exit Sub
+        Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
+        serv.HideCommandPromptWindow = True 'hide cmd
+        Dim options = New Chrome.ChromeOptions()
+        options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
+        options.AddArguments("--user-data-dir=" + FormInit.profile_path + profile)
+
+        ' run script here
+        Dim chromeDriver As IWebDriver = New ChromeDriver(serv, options)
+        Try
+
+            Thread.Sleep(2000)
+
+            ChromeDriver.Navigate.GoToUrl("https://translate.google.com.tw/")
+            Thread.Sleep(2000)
+            ChromeDriver.FindElement(By.CssSelector("div[aria-label$='加朋友']")).Click()
+            'chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x78zum5.x9wm9x2.xs9i9mj.x12k03ys.x1fst9g5.x1wwn1hn > div.x1f96rhh.xig2yid.x1csz39x.xs42yjr.x1cdhp0d.x1obogrm.x1f1051q.x1ty54ac.x1v6bbt2.xfk785k.xsc10am > div > div > div:nth-child(1) > div > div")).Click()
+            Thread.Sleep(2000)
+
+            ChromeDriver.Quit()
+
+        Catch ex As Exception
+            Debug.WriteLine(ex)
+            chromeDriver.Quit()
+        End Try
+
+    End Sub
+
+
 End Class
