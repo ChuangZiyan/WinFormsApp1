@@ -3270,6 +3270,10 @@ Public Class Form1
     Private Sub MyThread(profile As String)
         Debug.WriteLine("--user-data-dir=" + FormInit.profile_path + profile)
         'Exit Sub
+        Dim driverManager = New DriverManager()
+
+        driverManager.SetUpDriver(New ChromeConfig(), VersionResolveStrategy.MatchingBrowser) 'automatically download a chromedriver.exe matching the version of the browser
+
         Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
         serv.HideCommandPromptWindow = True 'hide cmd
         Dim options = New Chrome.ChromeOptions()
@@ -3284,7 +3288,7 @@ Public Class Form1
 
             ChromeDriver.Navigate.GoToUrl("https://translate.google.com.tw/")
             Thread.Sleep(2000)
-            ChromeDriver.FindElement(By.CssSelector("div[aria-label$='加朋友']")).Click()
+            chromeDriver.FindElement(By.CssSelector("div[aria-label$='加朋友']")).Click()
             'chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x78zum5.x9wm9x2.xs9i9mj.x12k03ys.x1fst9g5.x1wwn1hn > div.x1f96rhh.xig2yid.x1csz39x.xs42yjr.x1cdhp0d.x1obogrm.x1f1051q.x1ty54ac.x1v6bbt2.xfk785k.xsc10am > div > div > div:nth-child(1) > div > div")).Click()
             Thread.Sleep(2000)
 
