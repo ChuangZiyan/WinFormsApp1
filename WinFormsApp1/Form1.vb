@@ -3256,8 +3256,8 @@ Public Class Form1
         Dim t_id = 0
         For Each item In Profile_CheckedListBox.CheckedItems
             'MsgBox(item.ToString)
-            'Dim data() As Object = New Object() {item.ToString, t_id}
-            ThreadPool.QueueUserWorkItem(AddressOf MyThread, item.ToString)
+            Dim data() As Object = New Object() {item.ToString, t_id}
+            ThreadPool.QueueUserWorkItem(AddressOf MyThread, data)
             t_id += 1
         Next item
 
@@ -3267,8 +3267,9 @@ Public Class Form1
     End Sub
 
 
-    Private Sub MyThread(profile As String)
-        Debug.WriteLine("--user-data-dir=" + FormInit.profile_path + profile)
+    Private Sub MyThread(data As Object)
+        Dim profile = FormInit.profile_path & data(0)
+        Debug.WriteLine("--user-data-dir=" + profile)
         'Exit Sub
         Dim driverManager = New DriverManager()
 
@@ -3276,27 +3277,44 @@ Public Class Form1
 
         Dim serv As ChromeDriverService = ChromeDriverService.CreateDefaultService
         serv.HideCommandPromptWindow = True 'hide cmd
+
+        Dim chrome_path = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+        If System.IO.File.Exists("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe") Then
+            chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+        End If
+        Dim processStartInfo As New ProcessStartInfo(chrome_path) ' for remote chrome
+
+        Dim chrome_argv = "--remote-debugging-port=922" & data(1) & " --disable-popup-blocking --disable-notifications --disable-extensions"
+
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
-        options.AddArguments("--user-data-dir=" + FormInit.profile_path + profile)
+        options.AddArguments("--user-data-dir=" + profile)
+        processStartInfo.Arguments = chrome_argv + " --user-data-dir=""" + profile + """"
 
-        ' run script here
+        options.DebuggerAddress = "localhost:922" & data(1)
+
+        Dim chromeProcess As Process = Process.Start(processStartInfo)
+        chromeProcess.WaitForInputIdle()
+        Debug.WriteLine("PID : " & chromeProcess.Id)
+
+        '########### run script here ######################
         Dim chromeDriver As IWebDriver = New ChromeDriver(serv, options)
         Try
 
             Thread.Sleep(2000)
-
-            ChromeDriver.Navigate.GoToUrl("https://translate.google.com.tw/")
+            chromeDriver.Navigate.GoToUrl("https://translate.google.com.tw/")
             Thread.Sleep(2000)
             chromeDriver.FindElement(By.CssSelector("div[aria-label$='加朋友']")).Click()
             'chromeDriver.FindElement(By.CssSelector("div.x6s0dn4.x78zum5.x9wm9x2.xs9i9mj.x12k03ys.x1fst9g5.x1wwn1hn > div.x1f96rhh.xig2yid.x1csz39x.xs42yjr.x1cdhp0d.x1obogrm.x1f1051q.x1ty54ac.x1v6bbt2.xfk785k.xsc10am > div > div > div:nth-child(1) > div > div")).Click()
             Thread.Sleep(2000)
-
-            ChromeDriver.Quit()
-
         Catch ex As Exception
             Debug.WriteLine(ex)
+        Finally
+            Debug.WriteLine("finally")
             chromeDriver.Quit()
+            Dim targetProcess As Process = Process.GetProcessById(chromeProcess.Id)
+            targetProcess.CloseMainWindow()
+            targetProcess.WaitForExit(5000)
         End Try
 
     End Sub
