@@ -3257,18 +3257,17 @@ Public Class Form1
         For Each item In Profile_CheckedListBox.CheckedItems
             'MsgBox(item.ToString)
             Dim data() As Object = New Object() {item.ToString, t_id}
+            'MsgBox(item.ToString & " i_id " & t_id)
             ThreadPool.QueueUserWorkItem(AddressOf MyThread, data)
             t_id += 1
         Next item
-
-
-        Exit Sub
 
     End Sub
 
 
     Private Sub MyThread(data As Object)
         Dim profile = FormInit.profile_path & data(0)
+        Dim debug_port = CInt(data(1)) + 9222
         Debug.WriteLine("--user-data-dir=" + profile)
         'Exit Sub
         Dim driverManager = New DriverManager()
@@ -3284,14 +3283,14 @@ Public Class Form1
         End If
         Dim processStartInfo As New ProcessStartInfo(chrome_path) ' for remote chrome
 
-        Dim chrome_argv = "--remote-debugging-port=922" & data(1) & " --disable-popup-blocking --disable-notifications --disable-extensions"
+        Dim chrome_argv = "--remote-debugging-port=" & debug_port & " --disable-popup-blocking --disable-notifications --disable-extensions"
 
         Dim options = New Chrome.ChromeOptions()
         options.AddArguments("--disable-notifications", "--disable-popup-blocking", "--disable-blink-features", "--disable-blink-features=AutomationControlled")
         options.AddArguments("--user-data-dir=" + profile)
         processStartInfo.Arguments = chrome_argv + " --user-data-dir=""" + profile + """"
 
-        options.DebuggerAddress = "localhost:922" & data(1)
+        options.DebuggerAddress = "localhost:" & debug_port
 
         Dim chromeProcess As Process = Process.Start(processStartInfo)
         chromeProcess.WaitForInputIdle()
