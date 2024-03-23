@@ -1829,7 +1829,7 @@ Public Class MyWebDriver
 
 
     Public Function Get_wwwfb_Message_Id(counter) As List(Of String)
-        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0.2)
         Dim myList As New List(Of String)
 
         Try
