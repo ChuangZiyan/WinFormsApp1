@@ -1885,8 +1885,13 @@ Public Class MyWebDriver
                     Dim elementText As String = element.Text
                     'Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
                     'Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
+                    Dim message_href_id = ""
+                    Try
+                        message_href_id = element.GetAttribute("href").Split("/")(href_id_pos)
+                    Catch ex As Exception
+                        Continue For
+                    End Try
 
-                    Dim message_href_id = element.GetAttribute("href").Split("/")(href_id_pos)
 
                     'Debug.WriteLine("cout : " & childElements.Count)
                     Debug.WriteLine("message_href_id = " + message_href_id)
@@ -1968,7 +1973,12 @@ Public Class MyWebDriver
                 'Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
                 'Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
 
-                Dim message_href_id = element.GetAttribute("href").Split("/")(href_id_pos)
+                Dim message_href_id = ""
+                Try
+                    message_href_id = element.GetAttribute("href").Split("/")(href_id_pos)
+                Catch ex As Exception
+                    Continue For
+                End Try
 
                 Try
                     Dim unread_dot = element.FindElement(By.CssSelector("div > div  > div div:nth-child(3) > div > div > div > div"))
