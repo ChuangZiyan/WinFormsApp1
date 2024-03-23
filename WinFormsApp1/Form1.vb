@@ -1010,7 +1010,7 @@ Public Class Form1
             Open_Firefox()
         ElseIf edge_RadioButton.Checked = True Then
             If Await myWebDriver.Open_Browser_Task("Edge", myWebDriver.used_dev_model, "", ChromeDriver_Version_ComboBox.Text) Then
-                Debug.WriteLine(" crr" + curr_url_ComboBox.Text)
+                'Debug.WriteLine(" crr" + curr_url_ComboBox.Text)
                 If curr_url_ComboBox.Text <> "" Then
                     Dim pattern As String
                     pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"

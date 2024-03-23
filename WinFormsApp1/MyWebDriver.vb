@@ -1829,7 +1829,7 @@ Public Class MyWebDriver
 
 
     Public Function Get_wwwfb_Message_Id(counter) As List(Of String)
-
+        chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2)
         Dim myList As New List(Of String)
 
         Try
@@ -1847,11 +1847,11 @@ Public Class MyWebDriver
             Dim try_unread_count = 3
 
 
-            Dim messages_collection_css = "div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"
+            Dim messages_collection_css = ".x1i10hfl.x1qjc9v5.xjbqb8w.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.x13fuv20.xu3j5b3.x1q0q8m5.x26u7qi.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xdl72j9.x2lah0s.xe8uvvx.x2lwn1j.xeuugli.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x16tdsg8.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x87ps6o.x1lku1pv.x1a2a7pz.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x78zum5"
             Dim unread_dot_css = "div.x1qjc9v5.x9f619.x78zum5.xdl72j9.xdt5ytf.x2lwn1j.xeuugli.x1n2onr6.x1ja2u2z.x889kno.x1iji9kk.x1a8lsjc.x1sln4lm.x1iyjqo2.xs83m0k > div > div > div:nth-child(3) > div > div > div > div"
             Dim scroll_div_css = "div[aria-label$='聊天室']  > div > div > div"
 
-            Dim href_id_pos = 5
+            Dim href_id_pos = 4
 
             If chromeDriver.Url.Contains("requests") Then
                 Debug.WriteLine("request")
@@ -1883,35 +1883,39 @@ Public Class MyWebDriver
                 For Each element As IWebElement In elements
 
                     Dim elementText As String = element.Text
-                    Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
+                    'Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
+                    'Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
 
-                    Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
-
-                    Dim message_href_id = element.GetAttribute("href").Split("/")(5)
+                    Dim message_href_id = element.GetAttribute("href").Split("/")(href_id_pos)
 
                     'Debug.WriteLine("cout : " & childElements.Count)
-                    If childElements.Count = 4 Then
-                        ' unread msg
-                        Dim aria_label = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div > div > div")).GetAttribute("aria-label")
-                        'Debug.WriteLine("aria-label : " & aria_label)
+                    Debug.WriteLine("message_href_id = " + message_href_id)
 
-                        If aria_label = "標示為已讀" Then
+                    Try
+                        Dim unread_dot = element.FindElement(By.CssSelector("div > div  > div div:nth-child(3) > div > div > div > div"))
+                        Debug.WriteLine("unread_dot_aria-hidden : " + unread_dot.GetAttribute("aria-hidden"))
+                        If unread_dot.GetAttribute("aria-hidden") = "true" Then
                             total_unread_count += 1
+                        Else
+                            total_read_count += 1
                         End If
 
-                    Else
-                        ' read msg
+
+                    Catch ex As Exception
                         total_read_count += 1
-                    End If
+                        'Debug.WriteLine(ex)
+                    End Try
 
                 Next
 
-                'Debug.WriteLine("total_read_count" & total_read_count)
 
-                'Debug.WriteLine("total_unread_count" & total_unread_count)
+                Debug.WriteLine("total_read_count : " & total_read_count)
+
+                Debug.WriteLine("total_unread_count : " & total_unread_count)
+
 
                 If read_counter <= total_read_count And unread_counter <= total_unread_count Then
-                    'Debug.WriteLine("EXIT")
+                    Debug.WriteLine("EXIT")
                     Exit While
                 End If
 
@@ -1954,37 +1958,45 @@ Public Class MyWebDriver
             End While
 
 
+
+            '########## add msg id to list
+
             Dim all_elements As IList(Of IWebElement) = chromeDriver.FindElements(By.CssSelector(messages_collection_css))
             For Each element As IWebElement In all_elements
 
                 Dim elementText As String = element.Text
-                Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
-
-                Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
+                'Dim unread_dot = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div"))
+                'Dim childElements As IList(Of IWebElement) = unread_dot.FindElements(By.CssSelector("*"))
 
                 Dim message_href_id = element.GetAttribute("href").Split("/")(href_id_pos)
-                If childElements.Count = 4 Then
-                    ' unread msg
-                    Dim aria_label = element.FindElement(By.CssSelector("div:nth-child(1) > div > div:nth-child(3) > div > div > div")).GetAttribute("aria-label")
-                    'Debug.WriteLine("aria-label : " & aria_label)
 
-                    If aria_label = "標示為已讀" Then
+                Try
+                    Dim unread_dot = element.FindElement(By.CssSelector("div > div  > div div:nth-child(3) > div > div > div > div"))
+                    Debug.WriteLine("unread_dot_aria-hidden : " + unread_dot.GetAttribute("aria-hidden"))
+                    If unread_dot.GetAttribute("aria-hidden") = "true" Then
                         If unread_counter >= 1 Then
                             unread_counter -= 1
                             myList.Add(message_href_id)
                         End If
+                    Else
+                        If read_counter >= 1 Then
+                            read_counter -= 1
+                            myList.Add(message_href_id)
+                        End If
                     End If
 
-                Else
-                    ' read msg
+
+                Catch ex As Exception
                     If read_counter >= 1 Then
                         read_counter -= 1
                         myList.Add(message_href_id)
                     End If
-                End If
+                    'Debug.WriteLine(ex)
+                End Try
+
             Next
 
-
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
             Return myList
         Catch ex As Exception
             Debug.WriteLine(ex)
