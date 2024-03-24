@@ -1855,9 +1855,9 @@ Public Class MyWebDriver
 
             If chromeDriver.Url.Contains("requests") Then
                 Debug.WriteLine("request")
-                messages_collection_css = "div[aria-label$='陌生訊息'] div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > div > a"
+                messages_collection_css = "div[aria-label$='陌生訊息'] div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > div > div > a"
                 scroll_div_css = "div[aria-label$='陌生訊息']  > div > div > div"
-                href_id_pos = 6
+                href_id_pos = 5
 
             ElseIf chromeDriver.Url.Contains("filtered") Then
                 Debug.WriteLine("filtered")
@@ -1865,7 +1865,8 @@ Public Class MyWebDriver
                 scroll_div_css = "div[aria-label$='陌生訊息']  > div > div > div"
                 href_id_pos = 5
             ElseIf chromeDriver.Url.Contains("marketplace") Then
-                Debug.WriteLine("marketplace")
+                Debug.WriteLine("it's marketplace")
+                href_id_pos = 5
                 ' https://www.messenger.com/marketplace/
                 messages_collection_css = "div[aria-label$='聊天室'] div > div.html-div.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd > a"
                 scroll_div_css = "div[aria-label$='聊天室']  > div > div > div"
