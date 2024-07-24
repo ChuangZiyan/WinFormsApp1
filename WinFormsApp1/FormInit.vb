@@ -405,7 +405,7 @@ Module FormInit
         For Each url In URLs
             Form1.curr_url_ComboBox.Items.Add(url)
         Next
-        Form1.curr_url_ComboBox.Text = "https://www.messenger.com/"
+        'Form1.curr_url_ComboBox.Text = "https://www.messenger.com/"
     End Sub
 
 
