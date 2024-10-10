@@ -1523,10 +1523,10 @@ Public Class MyWebDriver
 
     Public Function Upload_Product_Profile(content, jsonData)
         Try
-            chromeDriver.FindElement(By.CssSelector("div:nth-child(4) > div:nth-child(3) > div > div > div > div > label > input")).SendKeys(Keys.LeftControl + "V")
-            chromeDriver.FindElement(By.CssSelector("div:nth-child(4) > div:nth-child(4) > div > div > div > div > label > input")).SendKeys(jsonData.ProductPrice)
+            chromeDriver.FindElement(By.CssSelector("div:nth-child(4) > div:nth-child(3) > div > div > div > label > div > input")).SendKeys(Keys.LeftControl + "V")
+            chromeDriver.FindElement(By.CssSelector("div:nth-child(4) > div:nth-child(4) > div > div > div > label > div > input")).SendKeys(jsonData.ProductPrice)
 
-            chromeDriver.FindElement(By.CssSelector("div:nth-child(4) > div:nth-child(5) > div > div > div > div > div > label")).Click()
+            chromeDriver.FindElement(By.CssSelector("div:nth-child(4) > div:nth-child(5) > div > div > div > div > label")).Click()
 
             chromeDriver.FindElement(By.CssSelector("div.xu96u03.xm80bdy.x10l6tqk.x13vifvy > div.x1n2onr6 > div > div > div > div > div.x78zum5.xdt5ytf.x1iyjqo2.x1n2onr6 > div > div:nth-child(" & jsonData.ProductCondition + 1 & ")")).Click()
             'chromeDriver.FindElement(By.XPath("//*[@id=""screen-root""]/div/div[2]/div[3]/div[10]/div[2]/input")).SendKeys(jsonData.ProductLocated)
@@ -1601,12 +1601,12 @@ Public Class MyWebDriver
 
             chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div > div")).Click()
             Thread.Sleep(2000)
-            Dim txt_area = chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div:nth-child(2) > div > div > div > div > label > div > textarea"))
+            Dim txt_area = chromeDriver.FindElement(By.CssSelector("div > div > div:nth-child(2) > div > div > div > label > div > div > textarea"))
             txt_area.Click()
             txt_area.SendKeys(Keys.LeftControl + "V")
 
             Thread.Sleep(1000)
-            Dim located_input = chromeDriver.FindElement(By.CssSelector("div.x1n2onr6.x1ja2u2z.x9f619.x78zum5.xdt5ytf.x193iq5w.x1l7klhg.x1iyjqo2.xs83m0k.x2lwn1j.xyamay9 > div > div > div:nth-child(4) > div > div > div > div > div > div > div > div > div > label > input"))
+            Dim located_input = chromeDriver.FindElement(By.CssSelector("div > div > div:nth-child(4) > div > div > div > div > div > div > div > div > label > div.xjbqb8w.x1iyjqo2.x193iq5w.xeuugli.x1n2onr6 > input"))
             located_input.Click()
             located_input.SendKeys(Keys.Delete)
             Thread.Sleep(1000)
